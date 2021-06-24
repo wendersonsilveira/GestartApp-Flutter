@@ -42,6 +42,13 @@ mixin _$SignInController on _SignInControllerBase, Store {
     return _$checkUserAsyncAction.run(() => super.checkUser(cpfCnpj));
   }
 
+  final _$loginAsyncAction = AsyncAction('_SignInControllerBase.login');
+
+  @override
+  Future<ResourceData<UserEntity>> login(LoginAuthEntity entity) {
+    return _$loginAsyncAction.run(() => super.login(entity));
+  }
+
   final _$_SignInControllerBaseActionController =
       ActionController(name: '_SignInControllerBase');
 

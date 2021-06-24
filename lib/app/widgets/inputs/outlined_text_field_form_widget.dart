@@ -74,7 +74,7 @@ class OutlinedTextFieldFormWidget extends StatelessWidget {
             ? IconButton(
                 onPressed: onPressLeftIcon,
                 icon: Icon(leftIcon),
-                color: AppColorScheme.primaryColor,
+                color: Colors.white,
               )
             : null,
         errorText: textError,

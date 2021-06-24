@@ -1,4 +1,6 @@
+import 'package:Gestart/data/datasource/auth/auth_local_data_source.dart';
 import 'package:Gestart/data/datasource/user/user_remote_data_source.dart';
+import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/data/remote/custom_dio.dart';
 import 'package:Gestart/data/remote/interceptors/auth_interceptor.dart';
 import 'package:Gestart/data/repositories/user/user_repository_impl.dart';
@@ -7,6 +9,7 @@ import 'package:Gestart/domain/usecases/auth/check_user_use_case.dart';
 import 'package:Gestart/domain/repositories/auth/auth_repository.dart';
 import 'package:Gestart/data/repositories/auth/auth_repository_impl.dart';
 import 'package:Gestart/data/datasource/auth/auth_remote_data_source.dart';
+import 'package:Gestart/domain/usecases/auth/login_use_case.dart';
 import 'package:Gestart/domain/usecases/user/create_user_use_case.dart';
 import 'package:Gestart/domain/usecases/user/update_password_use_case.dart';
 
@@ -24,7 +27,10 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<AuthInterceptor>(() => AuthInterceptor(get<Dio>()));
   gh.factory<AuthRemoteDataSource>(
       () => AuthRemoteDataSource(get<CustomDio>()));
+  gh.factory<AuthLocalDataSource>(
+      () => AuthLocalDataSource(get<SharedPreferencesManager>()));
   gh.factory<CheckUserUseCase>(() => CheckUserUseCase(get<AuthRepository>()));
+  gh.factory<LoginUseCase>(() => LoginUseCase(get<AuthRepository>()));
 
   // User
   gh.factory<UserRemoteDataSource>(
@@ -35,10 +41,12 @@ Future<GetIt> initGetIt(GetIt get) async {
 
   //  Singleton
   gh.singleton<Dio>(dio);
+  gh.singleton<SharedPreferencesManager>(SharedPreferencesManager());
 
   gh.singleton<CustomDio>(CustomDio(get<Dio>(), get<AuthInterceptor>()));
 
-  gh.singleton<AuthRepository>(AuthRepositoryImpl(get<AuthRemoteDataSource>()));
+  gh.singleton<AuthRepository>(AuthRepositoryImpl(
+      get<AuthRemoteDataSource>(), get<AuthLocalDataSource>()));
   gh.singleton<UserRepository>(UserRepositoryImpl(get<UserRemoteDataSource>()));
 
   return get;
