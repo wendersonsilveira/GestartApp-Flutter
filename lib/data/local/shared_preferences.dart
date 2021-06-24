@@ -5,9 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesManager {
   static String token = "token";
-  static String config = "config";
-  static String user = "user";
-  static String card = "card";
 
   Completer<SharedPreferences> instance = Completer<SharedPreferences>();
 

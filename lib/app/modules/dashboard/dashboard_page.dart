@@ -1,3 +1,5 @@
+import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
+import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'dashboard_controller.dart';
@@ -17,11 +19,18 @@ class _DashboardPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+      appBar: AppBarCustom(
+        context,
+        title: Text('GestartApp'),
       ),
       body: Column(
-        children: <Widget>[],
+        children: <Widget>[
+          ContainedButtonWidget(
+              text: "CONTINUAR",
+              onPressed: () {
+                controller.voltar();
+              })
+        ],
       ),
     );
   }
