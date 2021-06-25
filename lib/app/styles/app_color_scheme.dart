@@ -35,9 +35,12 @@ class AppColorScheme {
 
   static const Color black = Color(0xff000000);
   static const Color white = Color(0xffFFFFFF);
+  static const Color grey = Color(0xffe0e0eb);
 
   static const primaryColor = Color(0xFF008001);
   static const primaryColor50 = Color(0xFFFFEBE3);
+
+  static const corMenuBotton = Color(0xFFe8e8e8);
 
   static const neutralWhite2A = Color.fromRGBO(255, 255, 255, 0.1);
   static const neutralDefault2 = Color(0xff616e7c);

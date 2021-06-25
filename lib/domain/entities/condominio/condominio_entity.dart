@@ -1,16 +1,24 @@
 import 'package:flutter/foundation.dart';
 
 @immutable
-class IdUserEntity {
-  final String cpfCnpj;
+class CondominioEntity {
+  final int codcon;
+  final String apelido;
+  final String nomcon;
+  final String cgccon;
+  final String logo;
 
-  const IdUserEntity({
-    this.cpfCnpj,
+  const CondominioEntity({
+    this.codcon,
+    this.apelido,
+    this.nomcon,
+    this.cgccon,
+    this.logo,
   });
 
   @override
   String toString() {
-    return 'IdUserEntity(cpf: $cpfCnpj)';
+    return 'CondominioEntity(codcon: $codcon,apelido: $apelido, nomcon: $nomcon,cgccon: $cgccon,logo: $logo)';
   }
 
   // @override

@@ -9,6 +9,7 @@ import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
 import 'package:Gestart/app/widgets/buttons/flat_button_widget.dart';
 import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
+import 'package:Gestart/domain/entities/auth/check_auth_entity.dart';
 import 'package:Gestart/domain/entities/auth/login_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -76,9 +77,8 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
     if (!_formKey.currentState.validate()) return;
     if (_formKey.currentState.validate()) {
       FocusScope.of(context).unfocus();
-      final check = await controller.checkUser(
-        _cpfCnpjController.text,
-      );
+      final check = await controller
+          .checkUser(IdUserEntity(cpfCnpj: _cpfCnpjController.text));
 
       if (check.status == Status.failed) {
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {

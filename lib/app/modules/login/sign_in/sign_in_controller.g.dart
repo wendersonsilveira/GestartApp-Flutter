@@ -38,7 +38,7 @@ mixin _$SignInController on _SignInControllerBase, Store {
   final _$checkUserAsyncAction = AsyncAction('_SignInControllerBase.checkUser');
 
   @override
-  Future<ResourceData<int>> checkUser(String cpfCnpj) {
+  Future<ResourceData<int>> checkUser(IdUserEntity cpfCnpj) {
     return _$checkUserAsyncAction.run(() => super.checkUser(cpfCnpj));
   }
 

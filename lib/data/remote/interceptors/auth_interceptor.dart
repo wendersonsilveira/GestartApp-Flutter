@@ -31,7 +31,7 @@ class AuthInterceptor extends Interceptor {
   @override
   Future onRequest(RequestOptions options) async {
     var token = await getIt<AuthLocalDataSource>().getToken();
-    if (token != null) options.headers['Authorization'] = token;
+    if (token != null) options.headers['accesstoken'] = token;
     return super.onRequest(options);
   }
 }
