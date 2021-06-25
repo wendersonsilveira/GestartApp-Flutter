@@ -13,6 +13,7 @@ import 'package:Gestart/domain/repositories/auth/auth_repository.dart';
 import 'package:Gestart/data/repositories/auth/auth_repository_impl.dart';
 import 'package:Gestart/data/datasource/auth/auth_remote_data_source.dart';
 import 'package:Gestart/domain/usecases/auth/login_use_case.dart';
+import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_case.dart';
 import 'package:Gestart/domain/usecases/user/create_user_use_case.dart';
 import 'package:Gestart/domain/usecases/user/update_password_use_case.dart';
@@ -48,6 +49,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => CondominioRemoteDataSource(get<CustomDio>()));
   gh.factory<GetCondominioPorCpfUseCase>(
       () => GetCondominioPorCpfUseCase(get<CondominioRepository>()));
+  gh.factory<GetCondominioAtivoUseCase>(
+      () => GetCondominioAtivoUseCase(get<CondominioRepository>()));
 
   //  Singleton
   gh.singleton<Dio>(dio);
