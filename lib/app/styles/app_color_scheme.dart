@@ -37,6 +37,7 @@ class AppColorScheme {
   static const Color white = Color(0xffFFFFFF);
   static const Color grey = Color(0xffe0e0eb);
 
+  static const backgroundColor = Color(0xFFf4f4f4);
   static const primaryColor = Color(0xFF008001);
   static const primaryColor50 = Color(0xFFFFEBE3);
 

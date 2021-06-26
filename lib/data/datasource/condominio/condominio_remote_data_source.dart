@@ -18,9 +18,13 @@ class CondominioRemoteDataSource {
   Future<ResourceData<CondominioEntity>> getCondominioPorCpf() async {
     try {
       final result = await _dio.get('condominios_por_cpfcnpj');
-
-      return ResourceData<CondominioEntity>(
-          status: Status.success, data: CondominioEntity().fromMap(result[0]));
+      if (result.length > 0)
+        return ResourceData<CondominioEntity>(
+            status: Status.success,
+            data: CondominioEntity().fromMap(result[0]));
+      else
+        return ResourceData<CondominioEntity>(
+            status: Status.success, data: null);
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,
@@ -33,7 +37,7 @@ class CondominioRemoteDataSource {
   Future<ResourceData<CondominioAtivoEntity>> condominioAtivo() async {
     try {
       final result = await _dio.get('condominiosAtivos');
-      print(result.length);
+
       if (result.length > 0)
         return ResourceData<CondominioAtivoEntity>(
             status: Status.success,

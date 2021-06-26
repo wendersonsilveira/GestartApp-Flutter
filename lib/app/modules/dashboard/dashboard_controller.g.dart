@@ -34,28 +34,96 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
     });
   }
 
-  final _$getCondominioPorCpfAsyncAction =
-      AsyncAction('_DashboardControllerBase.getCondominioPorCpf');
+  final _$condominiosAtivosAtom =
+      Atom(name: '_DashboardControllerBase.condominiosAtivos');
 
   @override
-  Future getCondominioPorCpf() {
-    return _$getCondominioPorCpfAsyncAction
-        .run(() => super.getCondominioPorCpf());
+  ResourceData<CondominioAtivoEntity> get condominiosAtivos {
+    _$condominiosAtivosAtom.reportRead();
+    return super.condominiosAtivos;
   }
 
-  final _$getCondominiosAtivosAsyncAction =
-      AsyncAction('_DashboardControllerBase.getCondominiosAtivos');
+  @override
+  set condominiosAtivos(ResourceData<CondominioAtivoEntity> value) {
+    _$condominiosAtivosAtom.reportWrite(value, super.condominiosAtivos, () {
+      super.condominiosAtivos = value;
+    });
+  }
+
+  final _$statusCondominioAtom =
+      Atom(name: '_DashboardControllerBase.statusCondominio');
 
   @override
-  Future getCondominiosAtivos() {
-    return _$getCondominiosAtivosAsyncAction
-        .run(() => super.getCondominiosAtivos());
+  int get statusCondominio {
+    _$statusCondominioAtom.reportRead();
+    return super.statusCondominio;
+  }
+
+  @override
+  set statusCondominio(int value) {
+    _$statusCondominioAtom.reportWrite(value, super.statusCondominio, () {
+      super.statusCondominio = value;
+    });
+  }
+
+  final _$existeCondominiosAtivosAtom =
+      Atom(name: '_DashboardControllerBase.existeCondominiosAtivos');
+
+  @override
+  bool get existeCondominiosAtivos {
+    _$existeCondominiosAtivosAtom.reportRead();
+    return super.existeCondominiosAtivos;
+  }
+
+  @override
+  set existeCondominiosAtivos(bool value) {
+    _$existeCondominiosAtivosAtom
+        .reportWrite(value, super.existeCondominiosAtivos, () {
+      super.existeCondominiosAtivos = value;
+    });
+  }
+
+  final _$getInforCondominiosAsyncAction =
+      AsyncAction('_DashboardControllerBase.getInforCondominios');
+
+  @override
+  Future getInforCondominios() {
+    return _$getInforCondominiosAsyncAction
+        .run(() => super.getInforCondominios());
+  }
+
+  final _$_DashboardControllerBaseActionController =
+      ActionController(name: '_DashboardControllerBase');
+
+  @override
+  void mudarStatusCondominio(dynamic value) {
+    final _$actionInfo = _$_DashboardControllerBaseActionController.startAction(
+        name: '_DashboardControllerBase.mudarStatusCondominio');
+    try {
+      return super.mudarStatusCondominio(value);
+    } finally {
+      _$_DashboardControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void checkCondominiosAtivos(dynamic value) {
+    final _$actionInfo = _$_DashboardControllerBaseActionController.startAction(
+        name: '_DashboardControllerBase.checkCondominiosAtivos');
+    try {
+      return super.checkCondominiosAtivos(value);
+    } finally {
+      _$_DashboardControllerBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
   String toString() {
     return '''
-condominios: ${condominios}
+condominios: ${condominios},
+condominiosAtivos: ${condominiosAtivos},
+statusCondominio: ${statusCondominio},
+existeCondominiosAtivos: ${existeCondominiosAtivos}
     ''';
   }
 }

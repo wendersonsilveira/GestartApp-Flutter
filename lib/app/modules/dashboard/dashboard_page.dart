@@ -1,11 +1,19 @@
+import 'package:Gestart/app/modules/dashboard/components/cards/card_infor_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
+import 'package:Gestart/app/styles/app_images.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
+import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
+import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'components/button_services/button_services_widget.dart';
+import 'components/itens_services/item_servico_widget.dart';
 import 'dashboard_controller.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DashboardPage extends StatefulWidget {
   final String title;
@@ -22,6 +30,7 @@ class _DashboardPageState
   @override
   void initState() {
     controller.testsUseCases();
+    controller.init();
     super.initState();
   }
 
@@ -87,14 +96,90 @@ class _DashboardPageState
         selectedItemColor: AppColorScheme.primaryColor,
         // onTap: _onItemTapped,
       ),
-      body: Column(
-        children: <Widget>[
-          ContainedButtonWidget(
-              text: "CONTINUAR",
-              onPressed: () {
-                controller.voltar();
-              })
-        ],
+      body: Observer(
+        builder: (_) => controller.condominios?.status == Status.loading &&
+                controller.condominiosAtivos?.status == Status.loading
+            ? Center(child: CircularProgressCustom())
+            : Container(
+                color: AppColorScheme.backgroundColor,
+                child: Column(
+                  children: <Widget>[
+                    Observer(
+                      builder: (_) => CardInfor(
+                        statusCondominio: controller.statusCondominio,
+                        condominio: controller.condominios.data,
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              ButtonSercicesWidget(
+                                condominioAtivo:
+                                    controller.existeCondominiosAtivos,
+                                icon: FlutterIcons.barcode_ant,
+                                descricao: 'Boleto Digital',
+                              ),
+                              ButtonSercicesWidget(
+                                condominioAtivo:
+                                    controller.existeCondominiosAtivos,
+                                icon: FlutterIcons.md_paper_ion,
+                                descricao: 'Prestação de Contas',
+                              ),
+                              ButtonSercicesWidget(
+                                condominioAtivo:
+                                    controller.existeCondominiosAtivos,
+                                icon: FlutterIcons.check_ant,
+                                descricao: 'Reservas',
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 46.h,
+                        ),
+                        Container(
+                          child: Column(
+                            children: [
+                              ItemServicoWidget(
+                                condominioAtivo:
+                                    controller.existeCondominiosAtivos,
+                                descricao: 'Assembleia',
+                                icone: FlutterIcons.gavel_faw5s,
+                              ),
+                              ItemServicoWidget(
+                                condominioAtivo:
+                                    controller.existeCondominiosAtivos,
+                                descricao: 'Documentos',
+                                icone: FlutterIcons.file1_ant,
+                              ),
+                              ItemServicoWidget(
+                                condominioAtivo:
+                                    controller.existeCondominiosAtivos,
+                                descricao: 'Seus Documentos',
+                                icone: FlutterIcons.building_faw,
+                              ),
+                              ItemServicoWidget(
+                                condominioAtivo: true,
+                                descricao: 'Cadastro',
+                                icone: FlutterIcons.id_card_mco,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    ContainedButtonWidget(
+                        text: "LOGOUT",
+                        onPressed: () {
+                          controller.voltar();
+                        })
+                  ],
+                ),
+              ),
       ),
     );
   }
