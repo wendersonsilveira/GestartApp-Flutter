@@ -17,6 +17,9 @@ extension CondominioMapper on CondominioEntity {
     );
   }
 
+  List<CondominioEntity> fromMapList(List<dynamic> data) =>
+      List.from(data).map((element) => fromMap(element)).toList();
+
   CondominioEntity fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
 

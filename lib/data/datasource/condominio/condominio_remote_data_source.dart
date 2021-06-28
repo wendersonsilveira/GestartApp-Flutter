@@ -15,15 +15,15 @@ class CondominioRemoteDataSource {
   CustomDio _dio;
   CondominioRemoteDataSource(this._dio);
 
-  Future<ResourceData<CondominioEntity>> getCondominioPorCpf() async {
+  Future<ResourceData<List<CondominioEntity>>> getCondominioPorCpf() async {
     try {
       final result = await _dio.get('condominios_por_cpfcnpj');
       if (result.length > 0)
-        return ResourceData<CondominioEntity>(
+        return ResourceData<List<CondominioEntity>>(
             status: Status.success,
-            data: CondominioEntity().fromMap(result[0]));
+            data: CondominioEntity().fromMapList(result));
       else
-        return ResourceData<CondominioEntity>(
+        return ResourceData<List<CondominioEntity>>(
             status: Status.success, data: null);
     } on DioError catch (e) {
       return ResourceData(

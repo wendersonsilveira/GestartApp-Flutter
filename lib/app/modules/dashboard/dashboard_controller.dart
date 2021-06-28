@@ -21,7 +21,7 @@ abstract class _DashboardControllerBase with Store {
   final _getCondominioAtivo = getIt.get<GetCondominioAtivoUseCase>();
 
   @observable
-  ResourceData<CondominioEntity> condominios;
+  ResourceData<List<CondominioEntity>> condominios;
 
   @observable
   ResourceData<CondominioAtivoEntity> condominiosAtivos;

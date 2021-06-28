@@ -96,90 +96,92 @@ class _DashboardPageState
         selectedItemColor: AppColorScheme.primaryColor,
         // onTap: _onItemTapped,
       ),
-      body: Observer(
-        builder: (_) => controller.condominios?.status == Status.loading &&
-                controller.condominiosAtivos?.status == Status.loading
-            ? Center(child: CircularProgressCustom())
-            : Container(
-                color: AppColorScheme.backgroundColor,
-                child: Column(
-                  children: <Widget>[
-                    Observer(
-                      builder: (_) => CardInfor(
-                        statusCondominio: controller.statusCondominio,
-                        condominio: controller.condominios.data,
+      body: SingleChildScrollView(
+        child: Observer(
+          builder: (_) => controller.condominios?.status == Status.loading &&
+                  controller.condominiosAtivos?.status == Status.loading
+              ? Center(child: CircularProgressCustom())
+              : Container(
+                  color: AppColorScheme.backgroundColor,
+                  child: Column(
+                    children: <Widget>[
+                      Observer(
+                        builder: (_) => CardInfor(
+                          statusCondominio: controller.statusCondominio,
+                          condominio: controller.condominios.data,
+                        ),
                       ),
-                    ),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 30),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              ButtonSercicesWidget(
-                                condominioAtivo:
-                                    controller.existeCondominiosAtivos,
-                                icon: FlutterIcons.barcode_ant,
-                                descricao: 'Boleto Digital',
-                              ),
-                              ButtonSercicesWidget(
-                                condominioAtivo:
-                                    controller.existeCondominiosAtivos,
-                                icon: FlutterIcons.md_paper_ion,
-                                descricao: 'Prestação de Contas',
-                              ),
-                              ButtonSercicesWidget(
-                                condominioAtivo:
-                                    controller.existeCondominiosAtivos,
-                                icon: FlutterIcons.check_ant,
-                                descricao: 'Reservas',
-                              ),
-                            ],
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 30),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                ButtonSercicesWidget(
+                                  condominioAtivo:
+                                      controller.existeCondominiosAtivos,
+                                  icon: FlutterIcons.barcode_ant,
+                                  descricao: 'Boleto Digital',
+                                ),
+                                ButtonSercicesWidget(
+                                  condominioAtivo:
+                                      controller.existeCondominiosAtivos,
+                                  icon: FlutterIcons.md_paper_ion,
+                                  descricao: 'Prestação de Contas',
+                                ),
+                                ButtonSercicesWidget(
+                                  condominioAtivo:
+                                      controller.existeCondominiosAtivos,
+                                  icon: FlutterIcons.check_ant,
+                                  descricao: 'Reservas',
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 46.h,
-                        ),
-                        Container(
-                          child: Column(
-                            children: [
-                              ItemServicoWidget(
-                                condominioAtivo:
-                                    controller.existeCondominiosAtivos,
-                                descricao: 'Assembleia',
-                                icone: FlutterIcons.gavel_faw5s,
-                              ),
-                              ItemServicoWidget(
-                                condominioAtivo:
-                                    controller.existeCondominiosAtivos,
-                                descricao: 'Documentos',
-                                icone: FlutterIcons.file1_ant,
-                              ),
-                              ItemServicoWidget(
-                                condominioAtivo:
-                                    controller.existeCondominiosAtivos,
-                                descricao: 'Seus Documentos',
-                                icone: FlutterIcons.building_faw,
-                              ),
-                              ItemServicoWidget(
-                                condominioAtivo: true,
-                                descricao: 'Cadastro',
-                                icone: FlutterIcons.id_card_mco,
-                              ),
-                            ],
+                          SizedBox(
+                            height: 46.h,
                           ),
-                        ),
-                      ],
-                    ),
-                    ContainedButtonWidget(
-                        text: "LOGOUT",
-                        onPressed: () {
-                          controller.voltar();
-                        })
-                  ],
+                          Container(
+                            child: Column(
+                              children: [
+                                ItemServicoWidget(
+                                  condominioAtivo:
+                                      controller.existeCondominiosAtivos,
+                                  descricao: 'Assembleia',
+                                  icone: FlutterIcons.gavel_faw5s,
+                                ),
+                                ItemServicoWidget(
+                                  condominioAtivo:
+                                      controller.existeCondominiosAtivos,
+                                  descricao: 'Documentos',
+                                  icone: FlutterIcons.file1_ant,
+                                ),
+                                ItemServicoWidget(
+                                  condominioAtivo:
+                                      controller.existeCondominiosAtivos,
+                                  descricao: 'Seus Documentos',
+                                  icone: FlutterIcons.building_faw,
+                                ),
+                                ItemServicoWidget(
+                                  condominioAtivo: true,
+                                  descricao: 'Cadastro',
+                                  icone: FlutterIcons.id_card_mco,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      ContainedButtonWidget(
+                          text: "LOGOUT",
+                          onPressed: () {
+                            controller.voltar();
+                          })
+                    ],
+                  ),
                 ),
-              ),
+        ),
       ),
     );
   }

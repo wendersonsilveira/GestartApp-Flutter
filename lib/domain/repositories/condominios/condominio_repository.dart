@@ -5,6 +5,6 @@ import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 
 abstract class CondominioRepository {
-  Future<ResourceData<CondominioEntity>> getCondominiosPorCpf();
+  Future<ResourceData<List<CondominioEntity>>> getCondominiosPorCpf();
   Future<ResourceData<CondominioAtivoEntity>> getCondominiosAtivos();
 }

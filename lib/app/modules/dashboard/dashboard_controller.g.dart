@@ -22,13 +22,13 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
   final _$condominiosAtom = Atom(name: '_DashboardControllerBase.condominios');
 
   @override
-  ResourceData<CondominioEntity> get condominios {
+  ResourceData<List<CondominioEntity>> get condominios {
     _$condominiosAtom.reportRead();
     return super.condominios;
   }
 
   @override
-  set condominios(ResourceData<CondominioEntity> value) {
+  set condominios(ResourceData<List<CondominioEntity>> value) {
     _$condominiosAtom.reportWrite(value, super.condominios, () {
       super.condominios = value;
     });

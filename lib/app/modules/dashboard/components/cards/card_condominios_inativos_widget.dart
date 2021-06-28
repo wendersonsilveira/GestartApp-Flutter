@@ -8,13 +8,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CardCondInativosWidget extends StatelessWidget {
   const CardCondInativosWidget({Key key, this.condominio}) : super(key: key);
-  final CondominioEntity condominio;
+  final List<CondominioEntity> condominio;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 400
-            .w, //colocar a condição para caso tenha mais de 1 condominio vinculado
+        height: 400 +
+            (40 * condominio.length)
+                .w, //colocar a condição para caso tenha mais de 1 condominio vinculado
         color: AppColorScheme.white,
         padding: EdgeInsets.all(14),
         child: Container(
@@ -42,7 +43,16 @@ class CardCondInativosWidget extends StatelessWidget {
               SizedBox(
                 height: 26.h,
               ),
-              Text('- ' + condominio.apelido),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: condominio.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      title: Text('- ${condominio[index].apelido}'),
+                    );
+                  },
+                ),
+              ),
               SizedBox(
                 height: 26.h,
               ),
@@ -50,30 +60,34 @@ class CardCondInativosWidget extends StatelessWidget {
                 onTap: () {
                   print('ativar condominios');
                 },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      child: Row(
-                        children: [
-                          Icon(
-                            FlutterIcons.check_circle_outline_mco,
-                            size: 40.h,
-                            color: AppColorScheme.primaryColor,
-                          ),
-                          SizedBox(
-                            width: 26.h,
-                          ),
-                          Text('Ative agora'),
-                        ],
+                child: Container(
+                  color: Colors.white,
+                  width: double.infinity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        child: Row(
+                          children: [
+                            Icon(
+                              FlutterIcons.check_circle_outline_mco,
+                              size: 40.h,
+                              color: AppColorScheme.primaryColor,
+                            ),
+                            SizedBox(
+                              width: 26.h,
+                            ),
+                            Text('Ative agora'),
+                          ],
+                        ),
                       ),
-                    ),
-                    Icon(
-                      FlutterIcons.md_arrow_round_forward_ion,
-                      size: 40.h,
-                      color: AppColorScheme.primaryColor,
-                    ),
-                  ],
+                      Icon(
+                        FlutterIcons.md_arrow_round_forward_ion,
+                        size: 40.h,
+                        color: AppColorScheme.primaryColor,
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],

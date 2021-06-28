@@ -17,7 +17,7 @@ class CardInfor extends StatelessWidget {
   final String messageClienteNovo = '';
 
   final String messageClienteExistente = 'Cliente ja existente';
-  final CondominioEntity condominio;
+  final List<CondominioEntity> condominio;
 
   @override
   Widget build(BuildContext context) {
