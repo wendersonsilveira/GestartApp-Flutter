@@ -1,6 +1,12 @@
+import 'package:Gestart/app/modules/cadastros/cadastros_controller.dart';
+import 'package:Gestart/app/modules/cadastros/cadastros_page.dart';
+import 'package:Gestart/app/modules/condominio/ativar_condominio/ativar_condominio_controller.dart';
+import 'package:Gestart/app/modules/condominio/ativar_condominio/ativar_condominio_page.dart';
 import 'package:Gestart/app/modules/dashboard/dashboard_page.dart';
 
 import 'constants/route_name.dart';
+import 'modules/condominio/condominio_controller.dart';
+import 'modules/condominio/condominio_page.dart';
 import 'modules/dashboard/dashboard_controller.dart';
 import 'package:Gestart/app/modules/login/login_module.dart';
 import 'app_controller.dart';
@@ -13,12 +19,20 @@ class AppModule extends MainModule {
   List<Bind> get binds => [
         $DashboardController,
         $AppController,
+        $CondominioController,
+        $AtivarCondominioController,
+        $CadastrosController
       ];
 
   @override
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute, module: LoginModule()),
+        ModularRouter(RouteName.condominio,
+            child: (_, args) => CondominioPage()),
         ModularRouter(RouteName.dashboard, child: (_, args) => DashboardPage()),
+        ModularRouter(RouteName.ativar_condominio,
+            child: (_, args) => AtivarCondominioPage()),
+        ModularRouter(RouteName.cadastros, child: (_, args) => CadastrosPage()),
       ];
 
   @override

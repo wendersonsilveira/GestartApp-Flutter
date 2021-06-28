@@ -160,7 +160,7 @@ class _DashboardPageState
                                 ItemServicoWidget(
                                   condominioAtivo:
                                       controller.existeCondominiosAtivos,
-                                  descricao: 'Seus Documentos',
+                                  descricao: 'Seus Condomínios',
                                   icone: FlutterIcons.building_faw,
                                 ),
                                 ItemServicoWidget(

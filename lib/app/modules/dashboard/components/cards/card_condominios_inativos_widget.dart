@@ -1,9 +1,11 @@
+import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/styles/app_images.dart';
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CardCondInativosWidget extends StatelessWidget {
@@ -13,8 +15,8 @@ class CardCondInativosWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 400 +
-            (40 * condominio.length)
+        height: 300 +
+            (2 * condominio.length)
                 .w, //colocar a condição para caso tenha mais de 1 condominio vinculado
         color: AppColorScheme.white,
         padding: EdgeInsets.all(14),
@@ -47,18 +49,13 @@ class CardCondInativosWidget extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: condominio.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      title: Text('- ${condominio[index].apelido}'),
-                    );
+                    return Text('- ${condominio[index].apelido}');
                   },
                 ),
               ),
-              SizedBox(
-                height: 26.h,
-              ),
               GestureDetector(
                 onTap: () {
-                  print('ativar condominios');
+                  Modular.navigator.pushNamed(RouteName.ativar_condominio);
                 },
                 child: Container(
                   color: Colors.white,
