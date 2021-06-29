@@ -28,17 +28,25 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
         context,
         title: Text(widget.title),
       ),
-      body: Observer(
-        builder: (_) => controller.pets == null
-            ? Center(child: CircularProgressCustom())
-            : Expanded(
-                child: ListView.builder(
-                  itemCount: controller.pets.data.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Text('- ${controller.pets.data[0].nome}');
-                  },
+      body: Container(
+        child: Observer(
+          builder: (_) => controller.pets == null
+              ? Center(child: CircularProgressCustom())
+              : Container(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: controller.pets.data.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Text('- ${controller.pets.data[0].nome}');
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+        ),
       ),
     );
   }
