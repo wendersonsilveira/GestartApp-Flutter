@@ -1,6 +1,5 @@
 import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/di/di.dart';
-import 'package:Gestart/domain/entities/auth/check_auth_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_ativo_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case.dart';
@@ -39,10 +38,11 @@ abstract class _DashboardControllerBase with Store {
   }
 
   testsUseCases() async {
-    // var result = await _getCondominioAtivo();
-
-    // print("Result Check: \n ${result.data.toString()}");
+    // var result = await _getAllPets();
+    // print("Result Check: ");
+    // print(result);
   }
+
   /*
   TIPOS DE CLIENTE:
   0 = sem condominios vinculados

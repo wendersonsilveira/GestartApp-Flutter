@@ -1,12 +1,15 @@
 import 'package:Gestart/data/datasource/auth/auth_local_data_source.dart';
 import 'package:Gestart/data/datasource/condominio/condominio_remote_data_source.dart';
+import 'package:Gestart/data/datasource/pet/pet_remote_data_source.dart';
 import 'package:Gestart/data/datasource/user/user_remote_data_source.dart';
 import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/data/remote/custom_dio.dart';
 import 'package:Gestart/data/remote/interceptors/auth_interceptor.dart';
 import 'package:Gestart/data/repositories/condominio/condominio_repository_impl.dart';
+import 'package:Gestart/data/repositories/pet/pet_repository_impl.dart';
 import 'package:Gestart/data/repositories/user/user_repository_impl.dart';
 import 'package:Gestart/domain/repositories/condominios/condominio_repository.dart';
+import 'package:Gestart/domain/repositories/pet/pet_repository.dart';
 import 'package:Gestart/domain/repositories/user/user_repository.dart';
 import 'package:Gestart/domain/usecases/auth/check_user_use_case.dart';
 import 'package:Gestart/domain/repositories/auth/auth_repository.dart';
@@ -15,6 +18,8 @@ import 'package:Gestart/data/datasource/auth/auth_remote_data_source.dart';
 import 'package:Gestart/domain/usecases/auth/login_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_case.dart';
+import 'package:Gestart/domain/usecases/pet/create_pet_use_case.dart';
+import 'package:Gestart/domain/usecases/pet/get_all_pets_use_case.dart';
 import 'package:Gestart/domain/usecases/user/create_user_use_case.dart';
 import 'package:Gestart/domain/usecases/user/update_password_use_case.dart';
 
@@ -52,6 +57,11 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<GetCondominioAtivoUseCase>(
       () => GetCondominioAtivoUseCase(get<CondominioRepository>()));
 
+  //pet
+  gh.factory<PetRemoteDataSource>(() => PetRemoteDataSource(get<CustomDio>()));
+  gh.factory<CreatePetUseCase>(() => CreatePetUseCase(get<PetRepository>()));
+  gh.factory<GetAllPetsUseCase>(() => GetAllPetsUseCase(get<PetRepository>()));
+
   //  Singleton
   gh.singleton<Dio>(dio);
   gh.singleton<SharedPreferencesManager>(SharedPreferencesManager());
@@ -65,6 +75,8 @@ Future<GetIt> initGetIt(GetIt get) async {
 
   gh.singleton<CondominioRepository>(
       CondominioRepositoryImpl(get<CondominioRemoteDataSource>()));
+
+  gh.singleton<PetRepository>(PetRepositoryImpl(get<PetRemoteDataSource>()));
 
   return get;
 }
