@@ -5,12 +5,17 @@ import 'package:flutter_icons/flutter_icons.dart';
 
 class ItemServicoWidget extends StatelessWidget {
   const ItemServicoWidget(
-      {Key key, this.condominioAtivo, this.descricao, this.icone})
+      {Key key,
+      this.condominioAtivo,
+      this.descricao,
+      this.icone,
+      this.routeName})
       : super(key: key);
 
   final bool condominioAtivo;
   final String descricao;
   final IconData icone;
+  final String routeName;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +26,10 @@ class ItemServicoWidget extends StatelessWidget {
                 ? ItemServicoDesabilitadoWidget(
                     descricao: descricao, icone: icone)
                 : ItemServicoHabilitadoWidget(
-                    descricao: descricao, icone: icone),
+                    descricao: descricao,
+                    icone: icone,
+                    routeName: routeName,
+                  ),
           ],
         ));
   }

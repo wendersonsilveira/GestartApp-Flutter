@@ -1,6 +1,6 @@
+import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/dashboard/components/cards/card_infor_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
-import 'package:Gestart/app/styles/app_images.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
@@ -167,6 +167,7 @@ class _DashboardPageState
                                   condominioAtivo: true,
                                   descricao: 'Cadastro',
                                   icone: FlutterIcons.id_card_mco,
+                                  routeName: RouteName.cadastros,
                                 ),
                               ],
                             ),

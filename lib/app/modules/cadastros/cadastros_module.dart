@@ -1,3 +1,4 @@
+import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/cadastros/cadastros_page.dart';
 
 import 'cadastros_controller.dart';

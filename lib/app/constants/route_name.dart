@@ -6,4 +6,5 @@ class RouteName {
   static const String condominio = '/condominio';
   static const String ativar_condominio = '/condominio/ativar-condominio';
   static const String cadastros = '/cadastro';
+  static const String pets = '/pets';
 }

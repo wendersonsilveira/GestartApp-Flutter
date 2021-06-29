@@ -3,6 +3,8 @@ import 'package:Gestart/app/modules/cadastros/cadastros_page.dart';
 import 'package:Gestart/app/modules/condominio/ativar_condominio/ativar_condominio_controller.dart';
 import 'package:Gestart/app/modules/condominio/ativar_condominio/ativar_condominio_page.dart';
 import 'package:Gestart/app/modules/dashboard/dashboard_page.dart';
+import 'package:Gestart/app/modules/pets/pets_controller.dart';
+import 'package:Gestart/app/modules/pets/pets_page.dart';
 
 import 'constants/route_name.dart';
 import 'modules/condominio/condominio_controller.dart';
@@ -21,7 +23,8 @@ class AppModule extends MainModule {
         $AppController,
         $CondominioController,
         $AtivarCondominioController,
-        $CadastrosController
+        $CadastrosController,
+        $PetsController
       ];
 
   @override
@@ -33,6 +36,7 @@ class AppModule extends MainModule {
         ModularRouter(RouteName.ativar_condominio,
             child: (_, args) => AtivarCondominioPage()),
         ModularRouter(RouteName.cadastros, child: (_, args) => CadastrosPage()),
+        ModularRouter(RouteName.pets, child: (_, args) => PetsPage()),
       ];
 
   @override

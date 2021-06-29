@@ -1,18 +1,21 @@
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ItemServicoHabilitadoWidget extends StatelessWidget {
-  const ItemServicoHabilitadoWidget({Key key, this.icone, this.descricao})
+  const ItemServicoHabilitadoWidget(
+      {Key key, this.icone, this.descricao, this.routeName})
       : super(key: key);
   final IconData icone;
   final String descricao;
+  final String routeName;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('Teste');
+        Modular.navigator.pushNamed(routeName);
       },
       child: Container(
           color: Colors.white,
