@@ -1,21 +1,25 @@
 import 'package:Gestart/app/styles/app_color_scheme.dart';
+import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ItemServicoHabilitadoWidget extends StatelessWidget {
   const ItemServicoHabilitadoWidget(
-      {Key key, this.icone, this.descricao, this.routeName})
+      {Key key, this.icone, this.descricao, this.routeName, this.condominios})
       : super(key: key);
   final IconData icone;
   final String descricao;
   final String routeName;
+  final List<CondominioEntity> condominios;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Modular.navigator.pushNamed(routeName);
+        condominios != null
+            ? Modular.navigator.pushNamed(routeName)
+            : Modular.navigator.pushNamed(routeName, arguments: condominios);
       },
       child: Container(
           color: Colors.white,

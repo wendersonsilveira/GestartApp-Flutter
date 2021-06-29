@@ -1,3 +1,5 @@
+import 'package:Gestart/app/modules/assembleia/assembleia_controller.dart';
+import 'package:Gestart/app/modules/assembleia/assembleia_page.dart';
 import 'package:Gestart/app/modules/cadastros/cadastros_controller.dart';
 import 'package:Gestart/app/modules/cadastros/cadastros_page.dart';
 import 'package:Gestart/app/modules/condominio/ativar_condominio/ativar_condominio_controller.dart';
@@ -24,7 +26,8 @@ class AppModule extends MainModule {
         $CondominioController,
         $AtivarCondominioController,
         $CadastrosController,
-        $PetsController
+        $PetsController,
+        $AssembleiaController
       ];
 
   @override
@@ -37,6 +40,8 @@ class AppModule extends MainModule {
             child: (_, args) => AtivarCondominioPage()),
         ModularRouter(RouteName.cadastros, child: (_, args) => CadastrosPage()),
         ModularRouter(RouteName.pets, child: (_, args) => PetsPage()),
+        ModularRouter(RouteName.assembleia,
+            child: (_, args) => AssembleiaPage(condominios: args.data)),
       ];
 
   @override

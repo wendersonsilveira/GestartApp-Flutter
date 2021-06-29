@@ -150,6 +150,8 @@ class _DashboardPageState
                                       controller.existeCondominiosAtivos,
                                   descricao: 'Assembleia',
                                   icone: FlutterIcons.gavel_faw5s,
+                                  routeName: RouteName.assembleia,
+                                  condominios: controller.condominios.data,
                                 ),
                                 ItemServicoWidget(
                                   condominioAtivo:
