@@ -1,5 +1,6 @@
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
+import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -29,13 +30,13 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
         title: Text(widget.title),
       ),
       body: Observer(
-        builder: (_) => controller.pets == null
+        builder: (_) => controller.pets.status == Status.loading
             ? Center(child: CircularProgressCustom())
             : Expanded(
                 child: ListView.builder(
                   itemCount: controller.pets.data.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Text('- ${controller.pets.data[0].nome}');
+                    return Text('- ${controller.pets.data[index].nome}');
                   },
                 ),
               ),
