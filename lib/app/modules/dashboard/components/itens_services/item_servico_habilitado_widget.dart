@@ -17,9 +17,7 @@ class ItemServicoHabilitadoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        condominios != null
-            ? Modular.navigator.pushNamed(routeName)
-            : Modular.navigator.pushNamed(routeName, arguments: condominios);
+        Modular.navigator.pushNamed(routeName);
       },
       child: Container(
           color: Colors.white,

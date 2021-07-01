@@ -5,9 +5,9 @@ class EditaisEntity {
   final int id;
   final int codcon;
   final int codtip;
-  final String datreu;
-  final String horreu_1;
-  final String horreu_2;
+  final DateTime datreu;
+  final DateTime horreu_1;
+  final DateTime horreu_2;
   final String loc;
   final int idAta;
   final String nomtip;

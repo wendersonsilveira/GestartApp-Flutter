@@ -1,4 +1,5 @@
 import 'package:Gestart/app/styles/app_color_scheme.dart';
+import 'package:Gestart/domain/entities/assembleia/editais_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:Gestart/domain/entities/dropdown/dropdown_item.dart';
 import 'package:flutter/material.dart';

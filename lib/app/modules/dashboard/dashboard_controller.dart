@@ -20,7 +20,6 @@ abstract class _DashboardControllerBase with Store {
   final sharedPreferences = getIt.get<SharedPreferencesManager>();
   final _getCondominios = getIt.get<GetCondominioPorCpfUseCase>();
   final _getCondominioAtivo = getIt.get<GetCondominioAtivoUseCase>();
-  final _getEditais = getIt.get<GetEditaisUseCase>();
 
   @observable
   ResourceData<List<CondominioEntity>> condominios;
@@ -41,9 +40,9 @@ abstract class _DashboardControllerBase with Store {
   }
 
   testsUseCases() async {
-    var result = await _getEditais();
+    // var result = await _getEditais();
 
-    print("Result Check: \n ${result.data.toString()}");
+    // print("Result Check: \n ${result.data.toString()}");
   }
 
   /*

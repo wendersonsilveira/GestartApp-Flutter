@@ -1,19 +1,7 @@
 import 'package:Gestart/domain/entities/assembleia/editais_entity.dart';
 
 extension AssembleiaMapper on EditaisEntity {
-  EditaisEntity copyWith(
-      {int id,
-      int codcon,
-      int codtip,
-      String datreu,
-      String horreu_1,
-      String horreu_2,
-      String loc,
-      int idAta,
-      String nomtip,
-      int status,
-      String apelido,
-      String logo}) {
+  EditaisEntity copyWith(EditaisEntity editais) {
     return EditaisEntity(
       id: id ?? this.id,
       codcon: codcon ?? this.codcon,
@@ -40,9 +28,9 @@ extension AssembleiaMapper on EditaisEntity {
       id: map['ID'],
       codcon: map['CODCON'],
       codtip: map['CODTIP'],
-      datreu: map['DATREU'],
-      horreu_1: map['HORREU_1'],
-      horreu_2: map['HORREU_2'],
+      datreu: DateTime.parse(map['DATREU']),
+      horreu_1: DateTime.parse(map['HORREU_1']),
+      horreu_2: DateTime.parse(map['HORREU_2']),
       loc: map['LOC'],
       idAta: map['ID_ATA'],
       nomtip: map['NOMTIP'],
