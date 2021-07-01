@@ -24,7 +24,8 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
   }
 
   _editarPet() {
-    //Modular.navigator.pushNamed(RouteName.cadastro_pet);
+    Modular.navigator.pushNamed(RouteName.cadastro_pet);
+    // Modular.navigator.pushNamed(RouteName.pets);
   }
 
   @override
@@ -32,6 +33,12 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
     return Scaffold(
       appBar: AppBarCustom(
         context,
+        actions: [
+          RaisedButton(
+            onPressed: () => _editarPet(),
+            child: Text('Cadastro'),
+          )
+        ],
         title: Text(widget.title),
       ),
       body: Container(
