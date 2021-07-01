@@ -2,23 +2,18 @@ import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/inputs/dropdown_button_field.widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
-import 'package:Gestart/domain/entities/assembleia/editais_entity.dart';
-import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
-import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'assembleia_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
+import 'package:Gestart/app/constants/route_name.dart';
 
 class AssembleiaPage extends StatefulWidget {
   final String title;
-  final List<CondominioEntity> condominios;
 
-  const AssembleiaPage(
-      {Key key, this.title = "Assembleia", @required this.condominios})
-      : super(key: key);
+  const AssembleiaPage({Key key, this.title = "Assembleia"}) : super(key: key);
 
   @override
   _AssembleiaPageState createState() => _AssembleiaPageState();
@@ -70,6 +65,13 @@ class _AssembleiaPageState
                                     return Card(
                                         margin: EdgeInsets.all(10),
                                         child: ListTile(
+                                            onTap: () {
+                                              Modular.navigator.pushNamed(
+                                                  RouteName
+                                                      .detalhes_assembleia);
+                                              // print(RouteName
+                                              //     .detalhes_assembleia);
+                                            },
                                             leading: Icon(
                                               Icons.calendar_today,
                                               color:
