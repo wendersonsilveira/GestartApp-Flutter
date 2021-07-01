@@ -25,7 +25,6 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
 
   _editarPet() {
     Modular.navigator.pushNamed(RouteName.cadastro_pet);
-    // Modular.navigator.pushNamed(RouteName.pets);
   }
 
   @override

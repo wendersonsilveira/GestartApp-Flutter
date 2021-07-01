@@ -36,8 +36,6 @@ class PetRemoteDataSource {
     try {
       final result = await _dio.get('pets');
 
-      print(result);
-
       return ResourceData(
           status: Status.success,
           data: PetEntity().fromMapList(result),
