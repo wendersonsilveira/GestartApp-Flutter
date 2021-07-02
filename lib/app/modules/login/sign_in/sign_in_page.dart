@@ -2,12 +2,15 @@ import 'dart:ffi';
 
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/login/components/cpf_outlined_text_field_widget.dart';
+import 'package:Gestart/app/modules/login/components/password_outlined_text_field_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
 import 'package:Gestart/app/widgets/buttons/flat_button_widget.dart';
 import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
+import 'package:Gestart/domain/entities/auth/check_auth_entity.dart';
+import 'package:Gestart/domain/entities/auth/login_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/cupertino.dart';
@@ -41,13 +44,41 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
   final _cpfCnpjController = TextEditingController();
   final _senhaController = TextEditingController();
 
+  Future<void> _onactionLogin() async {
+    if (!_formKey.currentState.validate()) return;
+    if (_formKey.currentState.validate()) {
+      FocusScope.of(context).unfocus();
+      final login = await controller.login(LoginAuthEntity(
+          usuario: _cpfCnpjController.text, senha: _senhaController.text));
+
+      if (login.status == Status.failed) {
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: Text(login.message),
+            backgroundColor: Colors.white,
+            titleTextStyle: TextStyle(color: Colors.red),
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Ok'))
+            ],
+          ),
+          barrierDismissible: false,
+        );
+      } else if (login.data.status == 1)
+        Modular.navigator.popAndPushNamed(RouteName.dashboard);
+    }
+  }
+
   Future<void> _onactionCheckUser() async {
     if (!_formKey.currentState.validate()) return;
     if (_formKey.currentState.validate()) {
       FocusScope.of(context).unfocus();
-      final check = await controller.checkUser(
-        _cpfCnpjController.text,
-      );
+      final check = await controller
+          .checkUser(IdUserEntity(cpfCnpj: _cpfCnpjController.text));
 
       if (check.status == Status.failed) {
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -141,16 +172,15 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                           ),
                           Observer(builder: (_) {
                             return controller.usuarioCadastrado == true
-                                ? OutlinedTextFieldWidget(
-                                    placeholder: "Senha",
-                                    validator: Validators.empty,
+                                ? PasswordOutlinedTextFieldWidget(
                                     controller: _senhaController,
+                                    validator: Validators.password,
                                   )
                                 : Text("");
                           }),
                           Observer(builder: (_) {
                             return ContainedButtonWidget(
-                                text: "CONTINUAR", onPressed: () => {});
+                                text: "CONTINUAR", onPressed: _onactionLogin);
                           }),
                           const Spacer(flex: 1),
                           Observer(builder: (_) {

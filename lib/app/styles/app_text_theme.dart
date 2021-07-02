@@ -71,7 +71,7 @@ class AppTextTheme {
 
   static TextStyle white = TextStyle(
     color: Colors.white,
-    fontSize: 34.sp,
+    fontSize: 5,
     fontFamily: 'roboto',
     fontStyle: FontStyle.normal,
   );

@@ -13,6 +13,7 @@ class OutlinedTextFieldWidget extends StatelessWidget {
   final void Function(String) onChange;
   final TextInputAction textInputAction;
   final bool loading;
+  final IconData rightIcon;
 
   const OutlinedTextFieldWidget(
       {Key key,
@@ -25,7 +26,8 @@ class OutlinedTextFieldWidget extends StatelessWidget {
       this.onSubmitted,
       this.onChange,
       this.textInputAction,
-      this.loading})
+      this.loading,
+      this.rightIcon})
       : super(key: key);
 
   @override
@@ -40,6 +42,7 @@ class OutlinedTextFieldWidget extends StatelessWidget {
       onChanged: onChange,
       onSubmitted: onSubmitted,
       inputAction: textInputAction,
+      leftIcon: rightIcon,
     );
   }
 }

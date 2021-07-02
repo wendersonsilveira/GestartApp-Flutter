@@ -13,8 +13,10 @@ class CustomDio {
     _dio.interceptors.add(_authInterceptor);
     _dio.interceptors.add(LogInterceptor(
         requestBody: true, responseBody: true, requestHeader: true));
-    // _dio.options.headers['Device'] = '1';
-    _dio.options.baseUrl = "http://api.gestartapp.com.br:8080/gestartapp/";
+
+    // _dio.options.baseUrl = "http://api.gestartapp.com.br:8080/gestartapp/";
+    _dio.options.baseUrl =
+        "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/";
     // _dio.options.baseUrl = "localhost:";
   }
 

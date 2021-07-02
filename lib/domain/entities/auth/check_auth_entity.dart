@@ -1,16 +1,16 @@
 import 'package:flutter/foundation.dart';
 
 @immutable
-class CheckAuthEntity {
+class IdUserEntity {
   final String cpfCnpj;
 
-  const CheckAuthEntity({
+  const IdUserEntity({
     this.cpfCnpj,
   });
 
   @override
   String toString() {
-    return 'AuthEntity(cpf: $cpfCnpj)';
+    return 'IdUserEntity(cpf: $cpfCnpj)';
   }
 
   // @override

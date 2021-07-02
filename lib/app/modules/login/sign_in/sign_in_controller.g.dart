@@ -38,8 +38,15 @@ mixin _$SignInController on _SignInControllerBase, Store {
   final _$checkUserAsyncAction = AsyncAction('_SignInControllerBase.checkUser');
 
   @override
-  Future<ResourceData<int>> checkUser(String cpfCnpj) {
+  Future<ResourceData<int>> checkUser(IdUserEntity cpfCnpj) {
     return _$checkUserAsyncAction.run(() => super.checkUser(cpfCnpj));
+  }
+
+  final _$loginAsyncAction = AsyncAction('_SignInControllerBase.login');
+
+  @override
+  Future<ResourceData<UserEntity>> login(LoginAuthEntity entity) {
+    return _$loginAsyncAction.run(() => super.login(entity));
   }
 
   final _$_SignInControllerBaseActionController =
