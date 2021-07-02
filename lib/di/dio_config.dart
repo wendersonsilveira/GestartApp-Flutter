@@ -12,6 +12,7 @@ import 'package:Gestart/domain/repositories/assembleia/assembleia_repository.dar
 import 'package:Gestart/domain/repositories/condominios/condominio_repository.dart';
 import 'package:Gestart/domain/repositories/user/user_repository.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
+import 'package:Gestart/domain/usecases/assembleia/get_edital_use_case.dart';
 import 'package:Gestart/domain/usecases/auth/check_user_use_case.dart';
 import 'package:Gestart/domain/repositories/auth/auth_repository.dart';
 import 'package:Gestart/data/repositories/auth/auth_repository_impl.dart';
@@ -61,6 +62,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => AssembleiaRemoteDataSource(get<CustomDio>()));
   gh.factory<GetEditaisUseCase>(
       () => GetEditaisUseCase(get<AssembleiaRepository>()));
+  gh.factory<GetEditalUseCase>(
+      () => GetEditalUseCase(get<AssembleiaRepository>()));
 
   //  Singleton
   gh.singleton<Dio>(dio);

@@ -37,13 +37,13 @@ mixin _$AssembleiaController on _AssembleiaControllerBase, Store {
   final _$listaViewAtom = Atom(name: '_AssembleiaControllerBase.listaView');
 
   @override
-  List<EditaisEntity> get listaView {
+  List<AssembleiaEntity> get listaView {
     _$listaViewAtom.reportRead();
     return super.listaView;
   }
 
   @override
-  set listaView(List<EditaisEntity> value) {
+  set listaView(List<AssembleiaEntity> value) {
     _$listaViewAtom.reportWrite(value, super.listaView, () {
       super.listaView = value;
     });

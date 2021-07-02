@@ -1,3 +1,6 @@
+import 'package:Gestart/app/modules/view_documentos/view_documentos_page.dart';
+
+import 'modules/view_documentos/view_documentos_controller.dart';
 import 'package:Gestart/app/modules/assembleia/assembleia_controller.dart';
 import 'package:Gestart/app/modules/assembleia/assembleia_page.dart';
 import 'package:Gestart/app/modules/assembleia/detalhes_assembleia/detalhes_assembleia_page.dart';
@@ -23,6 +26,7 @@ import 'package:Gestart/app/app_widget.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        $ViewDocumentosController,
         $DashboardController,
         $AppController,
         $CondominioController,
@@ -46,7 +50,9 @@ class AppModule extends MainModule {
         ModularRouter(RouteName.assembleia,
             child: (_, args) => AssembleiaPage()),
         ModularRouter(RouteName.detalhes_assembleia,
-            child: (_, args) => DetalhesAssembleiaPage()),
+            child: (_, args) => DetalhesAssembleiaPage(id: args.data)),
+        ModularRouter(RouteName.view_documento,
+            child: (_, args) => ViewDocumentosPage(url: args.data)),
       ];
 
   @override

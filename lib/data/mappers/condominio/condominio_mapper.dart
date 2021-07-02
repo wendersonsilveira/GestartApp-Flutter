@@ -1,4 +1,4 @@
-import 'package:Gestart/domain/entities/assembleia/editais_entity.dart';
+import 'package:Gestart/domain/entities/assembleia/assembleia_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 
 extension CondominioMapper on CondominioEntity {
@@ -33,10 +33,10 @@ extension CondominioMapper on CondominioEntity {
     );
   }
 
-  List<CondominioEntity> fromEditaisList(List<EditaisEntity> data) =>
+  List<CondominioEntity> fromEditaisList(List<AssembleiaEntity> data) =>
       List.from(data).map((element) => fromEditais(element)).toList();
 
-  CondominioEntity fromEditais(EditaisEntity map) {
+  CondominioEntity fromEditais(AssembleiaEntity map) {
     return CondominioEntity(
       codcon: map.codcon,
       apelido: map.apelido,

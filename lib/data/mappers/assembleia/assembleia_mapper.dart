@@ -1,8 +1,8 @@
-import 'package:Gestart/domain/entities/assembleia/editais_entity.dart';
+import 'package:Gestart/domain/entities/assembleia/assembleia_entity.dart';
 
-extension AssembleiaMapper on EditaisEntity {
-  EditaisEntity copyWith(EditaisEntity editais) {
-    return EditaisEntity(
+extension AssembleiaMapper on AssembleiaEntity {
+  AssembleiaEntity copyWith(AssembleiaEntity editais) {
+    return AssembleiaEntity(
       id: id ?? this.id,
       codcon: codcon ?? this.codcon,
       codtip: codtip ?? this.codtip,
@@ -18,13 +18,13 @@ extension AssembleiaMapper on EditaisEntity {
     );
   }
 
-  List<EditaisEntity> fromMapList(List<dynamic> data) =>
+  List<AssembleiaEntity> fromMapList(List<dynamic> data) =>
       List.from(data).map((element) => fromMap(element)).toList();
 
-  EditaisEntity fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
+  AssembleiaEntity fromMap(Map<String, dynamic> map) {
+    if (map == null || map.length == 0) return null;
 
-    return EditaisEntity(
+    return AssembleiaEntity(
       id: map['ID'],
       codcon: map['CODCON'],
       codtip: map['CODTIP'],

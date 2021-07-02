@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 @immutable
-class EditaisEntity {
+class AssembleiaEntity {
   final int id;
   final int codcon;
   final int codtip;
@@ -15,7 +15,7 @@ class EditaisEntity {
   final String apelido;
   final String logo;
 
-  const EditaisEntity(
+  const AssembleiaEntity(
       {this.id,
       this.codcon,
       this.codtip,
@@ -31,7 +31,7 @@ class EditaisEntity {
 
   @override
   String toString() {
-    return 'EditaisEntity(id: $id,codcon: $codcon,codtip: $codtip,datreu: $datreu,horreu_1: $horreu_1,horreu_2: $horreu_2,loc: $loc,idAta: $idAta,nomtip: $nomtip,status: $status,apelido: $apelido,logo: $logo, )';
+    return 'AssembleiaEntity(id: $id,codcon: $codcon,codtip: $codtip,datreu: $datreu,horreu_1: $horreu_1,horreu_2: $horreu_2,loc: $loc,idAta: $idAta,nomtip: $nomtip,status: $status,apelido: $apelido,logo: $logo, )';
   }
 
   // @override

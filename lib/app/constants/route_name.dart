@@ -9,4 +9,5 @@ class RouteName {
   static const String pets = '/pets';
   static const String assembleia = '/assembleia';
   static const String detalhes_assembleia = '/detalhes_assembleia';
+  static const String view_documento = '/view_documento';
 }

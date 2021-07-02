@@ -9,6 +9,8 @@ import 'assembleia_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/constants/route_name.dart';
+import 'package:Gestart/app/modules/assembleia/components/title_widget.dart';
+import 'package:Gestart/app/modules/assembleia/components/subtitle_widget.dart';
 
 class AssembleiaPage extends StatefulWidget {
   final String title;
@@ -65,54 +67,31 @@ class _AssembleiaPageState
                                     return Card(
                                         margin: EdgeInsets.all(10),
                                         child: ListTile(
-                                            onTap: () {
-                                              Modular.navigator.pushNamed(
-                                                  RouteName
-                                                      .detalhes_assembleia);
-                                              // print(RouteName
-                                              //     .detalhes_assembleia);
-                                            },
-                                            leading: Icon(
-                                              Icons.calendar_today,
-                                              color:
-                                                  AppColorScheme.primaryColor,
-                                            ),
-                                            title: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  '${controller.listaView[index].nomtip}',
-                                                  style: TextStyle(
-                                                      fontSize: 25.h,
-                                                      color: Colors.grey),
-                                                ),
-                                                Text(
-                                                  '- ${controller.listaView[index].apelido}',
-                                                  style: TextStyle(
-                                                      fontSize: 23.h,
-                                                      color: Colors.grey),
-                                                ),
-                                              ],
-                                            ),
-                                            subtitle: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text('Data: ' +
-                                                    UIHelper.formatDate(
-                                                        controller
-                                                            .listaView[index]
-                                                            .datreu) +
-                                                    '-' +
-                                                    UIHelper.formatTime(
-                                                        controller
-                                                            .listaView[index]
-                                                            .horreu_1)),
-                                                Text(
-                                                    'Local: ${controller.listaView[index].loc}'),
-                                              ],
-                                            )));
+                                          onTap: () {
+                                            Modular.navigator.pushNamed(
+                                                RouteName.detalhes_assembleia,
+                                                arguments: controller
+                                                    .listaView[index].id);
+                                          },
+                                          leading: Icon(
+                                            Icons.calendar_today,
+                                            color: AppColorScheme.primaryColor,
+                                          ),
+                                          title: TitleWidget(
+                                            nomTip: controller
+                                                .listaView[index].nomtip,
+                                            apelido: controller
+                                                .listaView[index].apelido,
+                                          ),
+                                          subtitle: SubTitleWidget(
+                                            data: controller
+                                                .listaView[index].datreu,
+                                            hora: controller
+                                                .listaView[index].horreu_1,
+                                            local:
+                                                controller.listaView[index].loc,
+                                          ),
+                                        ));
                                   },
                                 ))
                         : Center(child: Text('Nenhuma assembleia disponível')),

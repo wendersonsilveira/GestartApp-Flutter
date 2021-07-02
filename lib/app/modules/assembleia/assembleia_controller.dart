@@ -1,15 +1,12 @@
 import 'package:Gestart/di/di.dart';
-import 'package:Gestart/domain/entities/assembleia/editais_entity.dart';
+import 'package:Gestart/domain/entities/assembleia/assembleia_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
-import 'package:Gestart/domain/entities/user/user_entity.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
 import 'package:Gestart/data/mappers/condominio/condominio_mapper.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
-import 'package:Gestart/data/mappers/assembleia/editais_mapper.dart';
 
 part 'assembleia_controller.g.dart';
 
@@ -20,14 +17,14 @@ class AssembleiaController = _AssembleiaControllerBase
 abstract class _AssembleiaControllerBase with Store {
   final _getEditais = getIt.get<GetEditaisUseCase>();
 
-  ResourceData<List<EditaisEntity>> editais;
-  ResourceData<List<EditaisEntity>> listaEditais;
+  ResourceData<List<AssembleiaEntity>> editais;
+  ResourceData<List<AssembleiaEntity>> listaEditais;
 
   @observable
   List<CondominioEntity> conds = [];
 
   @observable
-  List<EditaisEntity> listaView;
+  List<AssembleiaEntity> listaView;
 
   @observable
   List<CondominioEntity> condominios = [];
