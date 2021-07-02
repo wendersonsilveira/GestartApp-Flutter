@@ -40,13 +40,13 @@ class _AssembleiaPageState
         elevation: 0,
       ),
       body: Observer(
-        builder: (_) => Column(
-          children: [
-            Container(
-              height: 110.h,
-              child: controller.loading == 0
-                  ? Center(child: CircularProgressCustom())
-                  : DropdownButtonFieldWidget(
+        builder: (_) => controller.loading == 0
+            ? Center(child: CircularProgressCustom())
+            : Column(
+                children: [
+                  Container(
+                    height: 110.h,
+                    child: DropdownButtonFieldWidget(
                       label: 'Condominios',
                       hint: 'Selecione',
                       value: controller.conds[0].codcon,
@@ -55,50 +55,54 @@ class _AssembleiaPageState
                         controller.changeDropdown(value);
                       },
                     ),
-            ),
-            controller.loading != 0
-                ? Expanded(
-                    child: controller.listaView != null
-                        ? Observer(
-                            builder: (_) => ListView.builder(
-                                  itemCount: controller.listaView.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Card(
-                                        margin: EdgeInsets.all(10),
-                                        child: ListTile(
-                                          onTap: () {
-                                            Modular.navigator.pushNamed(
-                                                RouteName.detalhes_assembleia,
-                                                arguments: controller
-                                                    .listaView[index].id);
-                                          },
-                                          leading: Icon(
-                                            Icons.calendar_today,
-                                            color: AppColorScheme.primaryColor,
-                                          ),
-                                          title: TitleWidget(
-                                            nomTip: controller
-                                                .listaView[index].nomtip,
-                                            apelido: controller
-                                                .listaView[index].apelido,
-                                          ),
-                                          subtitle: SubTitleWidget(
-                                            data: controller
-                                                .listaView[index].datreu,
-                                            hora: controller
-                                                .listaView[index].horreu_1,
-                                            local:
-                                                controller.listaView[index].loc,
-                                          ),
-                                        ));
-                                  },
-                                ))
-                        : Center(child: Text('Nenhuma assembleia disponível')),
-                  )
-                : Container(),
-          ],
-        ),
+                  ),
+                  controller.loading != 0
+                      ? Expanded(
+                          child: controller.listaView != null
+                              ? Observer(
+                                  builder: (_) => ListView.builder(
+                                        itemCount: controller.listaView.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return Card(
+                                              margin: EdgeInsets.all(10),
+                                              child: ListTile(
+                                                onTap: () {
+                                                  Modular.navigator.pushNamed(
+                                                      RouteName
+                                                          .detalhes_assembleia,
+                                                      arguments: controller
+                                                          .listaView[index].id);
+                                                },
+                                                leading: Icon(
+                                                  Icons.calendar_today,
+                                                  color: AppColorScheme
+                                                      .primaryColor,
+                                                ),
+                                                title: TitleWidget(
+                                                  nomTip: controller
+                                                      .listaView[index].nomtip,
+                                                  apelido: controller
+                                                      .listaView[index].apelido,
+                                                ),
+                                                subtitle: SubTitleWidget(
+                                                  data: controller
+                                                      .listaView[index].datreu,
+                                                  hora: controller
+                                                      .listaView[index]
+                                                      .horreu_1,
+                                                  local: controller
+                                                      .listaView[index].loc,
+                                                ),
+                                              ));
+                                        },
+                                      ))
+                              : Center(
+                                  child: Text('Nenhuma assembleia disponível')),
+                        )
+                      : Container(),
+                ],
+              ),
       ),
     );
   }

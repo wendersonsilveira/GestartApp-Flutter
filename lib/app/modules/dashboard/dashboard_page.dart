@@ -35,28 +35,7 @@ class _DashboardPageState
     controller.testsUseCases();
     controller.init();
     super.initState();
-    // loadDocument();
   }
-
-  // loadDocument() async {
-  //   document = await PDFDocument.fromURL(
-  //       "http://conorlastowka.com/book/CitationNeededBook-Sample.pdf");
-
-  //   setState(() => _isLoading = false);
-  // }
-
-  // changePDF(value) async {
-  //   setState(() => _isLoading = true);
-  //   if (value == 1) {
-  //     document = await PDFDocument.fromAsset('assets/sample2.pdf');
-  //   } else if (value == 2) {
-  //     document = await PDFDocument.fromURL(
-  //         "http://conorlastowka.com/book/CitationNeededBook-Sample.pdf");
-  //   } else {
-  //     document = await PDFDocument.fromAsset('assets/sample.pdf');
-  //   }
-  //   setState(() => _isLoading = false);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -120,12 +99,12 @@ class _DashboardPageState
         selectedItemColor: AppColorScheme.primaryColor,
         // onTap: _onItemTapped,
       ),
-      body: SingleChildScrollView(
-        child: Observer(
-          builder: (_) => controller.condominios?.status == Status.loading &&
-                  controller.condominiosAtivos?.status == Status.loading
-              ? Center(child: CircularProgressCustom())
-              : Container(
+      body: Observer(
+        builder: (_) => controller.condominios?.status == Status.loading &&
+                controller.condominiosAtivos?.status == Status.loading
+            ? Center(child: CircularProgressCustom())
+            : SingleChildScrollView(
+                child: Container(
                   color: AppColorScheme.backgroundColor,
                   child: Column(
                     children: <Widget>[
@@ -208,9 +187,8 @@ class _DashboardPageState
                     ],
                   ),
                 ),
-        ),
+              ),
       ),
-      // _isLoading ? PDFViewer(document: document) : CircularProgressCustom(),
     );
   }
 }

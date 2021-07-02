@@ -19,25 +19,26 @@ class ItemCadastroWidget extends StatelessWidget {
         Modular.navigator.pushNamed(RouteName.pets);
       },
       child: Container(
-          color: Color(0xfffafafa),
-          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Icon(
-                icone,
-                size: 50.h,
-                color: AppColorScheme.primaryColor,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Text(
-                descricao,
-                style: TextStyle(fontSize: 16),
-              )
-            ],
-          )),
+        color: Color(0xfffafafa),
+        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(
+              icone,
+              size: 50.h,
+              color: AppColorScheme.primaryColor,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              descricao,
+              style: TextStyle(fontSize: 16),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

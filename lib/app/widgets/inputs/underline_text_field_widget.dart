@@ -104,7 +104,7 @@ class UnderlineTextFieldWidget extends StatelessWidget {
         labelText: labelText,
         hintText: hint,
         fillColor: textError == null
-            ? AppColorScheme.white
+            ? Color(0xFFfafafa)
             : AppColorScheme.feedbackDangerLight,
         filled: true,
         focusedBorder: UnderlineInputBorder(
