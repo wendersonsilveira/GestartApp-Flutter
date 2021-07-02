@@ -12,6 +12,8 @@ import 'package:Gestart/app/modules/dashboard/dashboard_page.dart';
 import 'package:Gestart/app/modules/pets/pets_controller.dart';
 import 'package:Gestart/app/modules/assembleia/detalhes_assembleia/detalhes_assembleia_controller.dart';
 import 'package:Gestart/app/modules/pets/pets_page.dart';
+import 'package:Gestart/app/modules/pets/cadastro_pet/cadastro_pet_page.dart';
+import 'package:Gestart/app/modules/pets/cadastro_pet/cadastro_pet_controller.dart';
 
 import 'constants/route_name.dart';
 import 'modules/condominio/condominio_controller.dart';
@@ -35,6 +37,7 @@ class AppModule extends MainModule {
         $PetsController,
         $AssembleiaController,
         $DetalhesAssembleiaController,
+        $CadastroPetController,
       ];
 
   @override
@@ -53,6 +56,8 @@ class AppModule extends MainModule {
             child: (_, args) => DetalhesAssembleiaPage(id: args.data)),
         ModularRouter(RouteName.view_documento,
             child: (_, args) => ViewDocumentosPage(url: args.data)),
+        ModularRouter(RouteName.cadastro_pet,
+            child: (_, args) => CadastroPetPage(id: args.data)),
       ];
 
   @override

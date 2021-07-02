@@ -1,6 +1,5 @@
 import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/di/di.dart';
-import 'package:Gestart/domain/entities/auth/check_auth_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_ativo_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
@@ -45,6 +44,9 @@ abstract class _DashboardControllerBase with Store {
     // var result = await _getEdital(7294);
 
     // print("Result Edital: \n ${result.data.toString()}");
+    // var result = await _getAllPets();
+    // print("Result Check: ");
+    // print(result);
   }
 
   /*

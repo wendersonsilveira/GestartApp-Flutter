@@ -8,12 +8,14 @@ class CircularProgressCustom extends StatelessWidget {
   CircularProgressCustom({this.color: AppColorScheme.primaryColor});
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: 36.h,
-        height: 36.h,
-        child: CircularProgressIndicator(
-          strokeWidth: 5.w,
-          valueColor: new AlwaysStoppedAnimation<Color>(color),
-        ));
+    return Center(
+      child: Container(
+          width: 36.h,
+          height: 36.h,
+          child: CircularProgressIndicator(
+            strokeWidth: 5.w,
+            valueColor: new AlwaysStoppedAnimation<Color>(color),
+          )),
+    );
   }
 }

@@ -291,4 +291,10 @@ class AppTextTheme {
     fontWeight: FontWeight.w400,
     color: AppColorScheme.neutralDefault2,
   );
+  // -------- novos ------------------------------
+
+  static TextStyle textActionButton = TextStyle(
+    fontSize: 32.sp,
+    color: Color(0xFFffffff),
+  );
 }
