@@ -16,9 +16,6 @@ class PetRemoteDataSource {
   Future<ResourceData> createPet(PetEntity pet) async {
     try {
       final result = await _dio.post('pets', data: pet.toMap());
-
-      print(result);
-
       return ResourceData(
           status: Status.success,
           data: null,
@@ -45,6 +42,23 @@ class PetRemoteDataSource {
           status: Status.failed,
           data: null,
           message: "Erro ao cadastra o pets",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<PetEntity>> getPet(int id) async {
+    try {
+      final result = await _dio.get('pet/${id}');
+
+      return ResourceData(
+          status: Status.success,
+          data: PetEntity().fromMap(result[0]),
+          message: 'Pet econtrado!');
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar o pets",
           error: ErrorMapper.from(e));
     }
   }

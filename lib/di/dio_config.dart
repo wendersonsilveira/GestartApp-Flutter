@@ -20,6 +20,7 @@ import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case
 import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/create_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_all_pets_use_case.dart';
+import 'package:Gestart/domain/usecases/pet/get_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/user/create_user_use_case.dart';
 import 'package:Gestart/domain/usecases/user/update_password_use_case.dart';
 
@@ -61,6 +62,7 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<PetRemoteDataSource>(() => PetRemoteDataSource(get<CustomDio>()));
   gh.factory<CreatePetUseCase>(() => CreatePetUseCase(get<PetRepository>()));
   gh.factory<GetAllPetsUseCase>(() => GetAllPetsUseCase(get<PetRepository>()));
+  gh.factory<GetPetUseCase>(() => GetPetUseCase(get<PetRepository>()));
 
   //  Singleton
   gh.singleton<Dio>(dio);

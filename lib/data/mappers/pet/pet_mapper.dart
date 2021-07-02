@@ -22,6 +22,7 @@ extension PetMapper on PetEntity {
     if (map == null) return null;
 
     return PetEntity(
+      id: map['ID'],
       tipo: map['TIPO'],
       raca: map['RACA'],
       porte: map['PORTE'],
@@ -31,6 +32,7 @@ extension PetMapper on PetEntity {
 
   Map<String, dynamic> toMap() {
     return {
+      'ID': id != null ? id : 0,
       'TIPO': tipo,
       'RACA': raca,
       'PORTE': porte,

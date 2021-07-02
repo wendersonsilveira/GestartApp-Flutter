@@ -21,4 +21,11 @@ class PetRepositoryImpl implements PetRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData<PetEntity>> getPet(int id) async {
+    final resource = await _petRemoteDataSource.getPet(id);
+
+    return resource;
+  }
 }

@@ -7,6 +7,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'pets_controller.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:Gestart/app/styles/app_text_theme.dart';
 
 class PetsPage extends StatefulWidget {
   final String title;
@@ -23,8 +24,10 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
     super.initState();
   }
 
-  _editarPet() {
-    Modular.navigator.pushNamed(RouteName.cadastro_pet);
+  _editarPet(int id) {
+    Modular.navigator
+        .pushNamed(RouteName.cadastro_pet, arguments: id)
+        .then((value) => controller.getPets());
   }
 
   @override
@@ -33,9 +36,9 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
       appBar: AppBarCustom(
         context,
         actions: [
-          RaisedButton(
-            onPressed: () => _editarPet(),
-            child: Text('Cadastro'),
+          TextButton(
+            onPressed: () => _editarPet(null),
+            child: Text('ADICIONAR', style: AppTextTheme.textActionButton),
           )
         ],
         title: Text(widget.title),
@@ -90,7 +93,8 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
                                     color: AppColorScheme.primaryColor,
                                   ),
                                 ),
-                                onTap: () => _editarPet(),
+                                onTap: () =>
+                                    _editarPet(controller.pets.data[index].id),
                               ),
                             );
                           },
