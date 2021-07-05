@@ -5,4 +5,5 @@ abstract class PetRepository {
   Future<ResourceData> createPet(PetEntity pet);
   Future<ResourceData<List<PetEntity>>> getPets();
   Future<ResourceData<PetEntity>> getPet(int id);
+  Future<ResourceData> deletePet(int id);
 }

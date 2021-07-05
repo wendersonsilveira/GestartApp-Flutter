@@ -41,6 +41,13 @@ mixin _$PetsController on _PetsControllerBase, Store {
     return _$getPetsAsyncAction.run(() => super.getPets());
   }
 
+  final _$deletePetAsyncAction = AsyncAction('_PetsControllerBase.deletePet');
+
+  @override
+  Future<dynamic> deletePet(int id) {
+    return _$deletePetAsyncAction.run(() => super.deletePet(id));
+  }
+
   final _$_PetsControllerBaseActionController =
       ActionController(name: '_PetsControllerBase');
 
@@ -50,6 +57,17 @@ mixin _$PetsController on _PetsControllerBase, Store {
         name: '_PetsControllerBase.increment');
     try {
       return super.increment();
+    } finally {
+      _$_PetsControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic removePet(int index) {
+    final _$actionInfo = _$_PetsControllerBaseActionController.startAction(
+        name: '_PetsControllerBase.removePet');
+    try {
+      return super.removePet(index);
     } finally {
       _$_PetsControllerBaseActionController.endAction(_$actionInfo);
     }

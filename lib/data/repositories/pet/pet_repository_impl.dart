@@ -28,4 +28,11 @@ class PetRepositoryImpl implements PetRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData> deletePet(int id) async {
+    final resource = await _petRemoteDataSource.deletePet(id);
+
+    return resource;
+  }
 }

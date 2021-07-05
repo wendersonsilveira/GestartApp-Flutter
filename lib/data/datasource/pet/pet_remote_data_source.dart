@@ -62,4 +62,18 @@ class PetRemoteDataSource {
           error: ErrorMapper.from(e));
     }
   }
+
+  Future<ResourceData> deletePet(int id) async {
+    try {
+      final result = await _dio.delete('pet/${id}');
+
+      return ResourceData(status: Status.success, message: 'Pet deletado!');
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao deletar o pets",
+          error: ErrorMapper.from(e));
+    }
+  }
 }

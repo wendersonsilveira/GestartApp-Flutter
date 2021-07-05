@@ -50,24 +50,34 @@ class _CadastroPetPageState
 
   Future<void> handleSubmit() async {
     if (_formKey.currentState.validate()) {
-      final pet = await controller.createPet(
-        PetEntity(
+      PetEntity pet;
+      if (widget.id != null) {
+        pet = PetEntity(
+            id: widget.id,
             nome: _nomeController.text,
             porte: _porteController,
             raca: _racaController.text,
-            tipo: _tipoController),
-      );
+            tipo: _tipoController);
+      } else {
+        pet = PetEntity(
+            nome: _nomeController.text,
+            porte: _porteController,
+            raca: _racaController.text,
+            tipo: _tipoController);
+      }
 
-      if (pet.status == Status.failed) {
-        showInSnackBar(pet.message);
+      final r = await controller.createPet(pet);
+
+      if (r.status == Status.failed) {
+        showInSnackBar(r.message);
 
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-          CustomAlertDialog.error(context, pet.error.message);
+          CustomAlertDialog.error(context, r.error.message);
           controller.alteraLoading(false);
         });
       }
 
-      if (pet.status == Status.success) {
+      if (r.status == Status.success) {
         showInSnackBar('Pet adicionado com sucesso');
         Timer(Duration(seconds: 1), () {
           Modular.navigator.pop();
