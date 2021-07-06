@@ -69,6 +69,13 @@ class AppTextTheme {
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold);
 
+  static TextStyle negrito = TextStyle(
+      // color: Colors.black,
+      fontSize: 40.sp,
+      fontFamily: 'roboto',
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold);
+
   static TextStyle white = TextStyle(
     color: Colors.white,
     fontSize: 5,

@@ -29,8 +29,8 @@ class DropdownButtonField3Widget extends StatelessWidget {
     return DropdownButtonFormField(
       items: list
           .map((element) => DropdownMenuItem(
-                value: element.codcon,
-                child: Text("${element.apelido}"),
+                value: element.codord,
+                child: Text("${element.apelido} - ${element.codimo}"),
               ))
           .toList(),
       focusNode: focusNode,

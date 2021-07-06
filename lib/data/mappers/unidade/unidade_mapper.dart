@@ -41,6 +41,7 @@ extension UnidadeMapper on UnidadeEntity {
       codcon: map['CODCON'],
       nompro: map['NOMPRO'],
       codimo: map['CODIMO'],
+      codord: map['CODORD'],
       nomcon: map['NOMCON'],
       parentCondonUserId: map['PARENT_CONDON_USER_ID'],
       condonUserId: map['CONDON_USER_ID'],

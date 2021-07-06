@@ -48,6 +48,10 @@ class UIHelper {
     return NumberFormat.simpleCurrency(locale: 'pt').format(priceDouble);
   }
 
+  static String moneyFormatInt(int priceDouble) {
+    return NumberFormat.simpleCurrency(locale: 'pt').format(priceDouble);
+  }
+
   static String formaUrlImage(String enpoint) {
     return 'http://ineedapiapp-prod.us-east-2.elasticbeanstalk.com/$enpoint';
   }

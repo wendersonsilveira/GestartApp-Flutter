@@ -30,7 +30,7 @@ extension BoletoMapper on BoletoEntity {
       id: map['ID'],
       datven: DateTime.parse(map['DATVEN']),
       datemi: DateTime.parse(map['DATEMI']),
-      valtot: map['VALTOT'],
+      valtot: (map['VALTOT']).toDouble(),
       nompro: map['NOMPRO'],
       codcon: map['CODCON'],
       nomcon: map['NOMCON'],

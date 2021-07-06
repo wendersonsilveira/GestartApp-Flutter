@@ -1,3 +1,6 @@
+import 'package:Gestart/app/constants/route_name.dart';
+import 'package:Gestart/app/styles/app_color_scheme.dart';
+import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/inputs/dropdown_button_field.widget.dart';
 import 'package:Gestart/app/widgets/inputs/dropdown_button_field3.widget.dart';
@@ -8,6 +11,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'boleto_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'component/texto_infor_widget.dart';
 
 class BoletoPage extends StatefulWidget {
   final String title;
@@ -34,26 +39,90 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
         title: Text('Boleto Digital'),
       ),
       body: Observer(
-        builder: (_) => controller.condominios.status == Status.loading
+        builder: (_) => controller.unidades.status == Status.loading
             ? CircularProgressCustom()
             : Column(
                 children: <Widget>[
                   Container(
                     height: 110.h,
-                    child: controller.condominios.data == null
+                    child: controller.unidades.data == null
                         ? CircularProgressCustom()
                         : DropdownButtonField3Widget(
-                            label: 'Condominios',
+                            label: 'Unidade',
                             hint: 'Selecione',
-                            value: controller.condominios.data[0].codcon,
-                            list: controller.condominios.data != null
-                                ? controller.condominios.data
+                            value: controller.unidades.data[0].codord,
+                            list: controller.unidades.data != null
+                                ? controller.unidades.data
                                 : [],
                             onChanged: (value) {
-                              print(value);
+                              controller.changeDropdown(value);
                             },
                           ),
-                  )
+                  ),
+                  Observer(
+                      builder: (_) => controller.listaView == null
+                          ? CircularProgressCustom()
+                          : controller.listaView.length == 0
+                              ? Expanded(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.subtitles_off,
+                                        size: 70,
+                                        color: AppColorScheme.primaryColor,
+                                      ),
+                                      SizedBox(
+                                        height: 30.h,
+                                      ),
+                                      Text(
+                                          'Não existe boletos para esta unidade'),
+                                    ],
+                                  ),
+                                )
+                              : Expanded(
+                                  child: ListView.builder(
+                                    itemCount: controller.listaView.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Card(
+                                        margin: EdgeInsets.all(10),
+                                        child: Expanded(
+                                          child: ListTile(
+                                            onTap: () {
+                                              Modular.navigator.pushNamed(
+                                                  RouteName.detalhe_boleto);
+                                            },
+                                            trailing: Icon(Icons.arrow_right),
+                                            title: Column(
+                                              children: [
+                                                TextoInforWidget(
+                                                  titulo: 'Vencimento',
+                                                  valor: UIHelper
+                                                      .formatDateFromDateTime(
+                                                          controller
+                                                              .listaView[index]
+                                                              .datven),
+                                                ),
+                                                TextoInforWidget(
+                                                    titulo: 'Valor',
+                                                    valor: UIHelper.moneyFormat(
+                                                        controller
+                                                            .listaView[index]
+                                                            .valtot)),
+                                                TextoInforWidget(
+                                                  titulo: 'Unidade',
+                                                  valor: controller
+                                                      .listaView[index].codimo,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ))
                 ],
               ),
       ),
