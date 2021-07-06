@@ -1,3 +1,5 @@
+import 'package:Gestart/app/modules/boleto/boleto_controller.dart';
+import 'package:Gestart/app/modules/boleto/boleto_page.dart';
 import 'package:Gestart/app/modules/view_documentos/view_documentos_page.dart';
 
 import 'modules/view_documentos/view_documentos_controller.dart';
@@ -38,6 +40,7 @@ class AppModule extends MainModule {
         $AssembleiaController,
         $DetalhesAssembleiaController,
         $CadastroPetController,
+        $BoletoController
       ];
 
   @override
@@ -58,6 +61,7 @@ class AppModule extends MainModule {
             child: (_, args) => ViewDocumentosPage(url: args.data)),
         ModularRouter(RouteName.cadastro_pet,
             child: (_, args) => CadastroPetPage(id: args.data)),
+        ModularRouter(RouteName.boleto, child: (_, args) => BoletoPage()),
       ];
 
   @override

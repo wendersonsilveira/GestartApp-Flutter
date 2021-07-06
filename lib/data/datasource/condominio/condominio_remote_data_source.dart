@@ -1,9 +1,11 @@
 import 'package:Gestart/data/helpers/error_mapper.dart';
 import 'package:Gestart/data/remote/custom_dio.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_ativo_entity.dart';
+import 'package:Gestart/domain/entities/condominio/condominios_ativos_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:Gestart/data/mappers/condominio/condominio_mapper.dart';
 import 'package:Gestart/data/mappers/condominio/condominio_ativo_mapper.dart';
+import 'package:Gestart/data/mappers/condominio/condominios_ativos_mapper.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 
 import 'package:Gestart/domain/utils/status.dart';
@@ -44,6 +46,27 @@ class CondominioRemoteDataSource {
             data: CondominioAtivoEntity().fromMap(result[0]));
       else
         return ResourceData<CondominioAtivoEntity>(
+            status: Status.success, data: null);
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao checar os condominios ativos",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<List<CondominiosAtivosEntity>>>
+      condominiosAtivos() async {
+    try {
+      final result = await _dio.get('condominiosAtivosV2');
+
+      if (result.length > 0)
+        return ResourceData<List<CondominiosAtivosEntity>>(
+            status: Status.success,
+            data: CondominiosAtivosEntity().fromMapList(result));
+      else
+        return ResourceData<List<CondominiosAtivosEntity>>(
             status: Status.success, data: null);
     } on DioError catch (e) {
       return ResourceData(

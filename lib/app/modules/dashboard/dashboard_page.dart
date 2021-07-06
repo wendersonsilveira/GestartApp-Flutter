@@ -143,11 +143,11 @@ class _DashboardPageState
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 ButtonSercicesWidget(
-                                  condominioAtivo:
-                                      controller.existeCondominiosAtivos,
-                                  icon: FlutterIcons.barcode_ant,
-                                  descricao: 'Boleto Digital',
-                                ),
+                                    condominioAtivo:
+                                        controller.existeCondominiosAtivos,
+                                    icon: FlutterIcons.barcode_ant,
+                                    descricao: 'Boleto Digital',
+                                    rota: RouteName.boleto),
                                 ButtonSercicesWidget(
                                   condominioAtivo:
                                       controller.existeCondominiosAtivos,

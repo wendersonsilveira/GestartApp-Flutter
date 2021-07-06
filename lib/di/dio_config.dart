@@ -1,18 +1,24 @@
 import 'package:Gestart/data/datasource/assembleia/assembleia_remote_data_source.dart';
 import 'package:Gestart/data/datasource/auth/auth_local_data_source.dart';
+import 'package:Gestart/data/datasource/boleto/boleto_remote_data_source.dart';
 import 'package:Gestart/data/datasource/condominio/condominio_remote_data_source.dart';
 import 'package:Gestart/data/datasource/pet/pet_remote_data_source.dart';
+import 'package:Gestart/data/datasource/unidade/unidade_remote_data_source.dart';
 import 'package:Gestart/data/datasource/user/user_remote_data_source.dart';
 import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/data/remote/custom_dio.dart';
 import 'package:Gestart/data/remote/interceptors/auth_interceptor.dart';
 import 'package:Gestart/data/repositories/assembleia/assembleia_repository_impl.dart';
+import 'package:Gestart/data/repositories/boleto/boleto_repository_impl.dart';
 import 'package:Gestart/data/repositories/condominio/condominio_repository_impl.dart';
 import 'package:Gestart/data/repositories/pet/pet_repository_impl.dart';
+import 'package:Gestart/data/repositories/unidade/unidade_repository_impl.dart';
 import 'package:Gestart/data/repositories/user/user_repository_impl.dart';
 import 'package:Gestart/domain/repositories/assembleia/assembleia_repository.dart';
+import 'package:Gestart/domain/repositories/boleto/boleto_repository.dart';
 import 'package:Gestart/domain/repositories/condominios/condominio_repository.dart';
 import 'package:Gestart/domain/repositories/pet/pet_repository.dart';
+import 'package:Gestart/domain/repositories/unidade/unidade_repository.dart';
 import 'package:Gestart/domain/repositories/user/user_repository.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_edital_use_case.dart';
@@ -21,11 +27,14 @@ import 'package:Gestart/domain/repositories/auth/auth_repository.dart';
 import 'package:Gestart/data/repositories/auth/auth_repository_impl.dart';
 import 'package:Gestart/data/datasource/auth/auth_remote_data_source.dart';
 import 'package:Gestart/domain/usecases/auth/login_use_case.dart';
+import 'package:Gestart/domain/usecases/boleto/get_boletos_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_case.dart';
+import 'package:Gestart/domain/usecases/condominio/get_condominios_ativos_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/create_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_all_pets_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_pet_use_case.dart';
+import 'package:Gestart/domain/usecases/unidade/get_unidades_use_case.dart';
 import 'package:Gestart/domain/usecases/user/create_user_use_case.dart';
 import 'package:Gestart/domain/usecases/user/update_password_use_case.dart';
 
@@ -62,6 +71,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => GetCondominioPorCpfUseCase(get<CondominioRepository>()));
   gh.factory<GetCondominioAtivoUseCase>(
       () => GetCondominioAtivoUseCase(get<CondominioRepository>()));
+  gh.factory<GetCondominiosAtivosUseCase>(
+      () => GetCondominiosAtivosUseCase(get<CondominioRepository>()));
 
   //assembleia
   gh.factory<AssembleiaRemoteDataSource>(
@@ -70,11 +81,24 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => GetEditaisUseCase(get<AssembleiaRepository>()));
   gh.factory<GetEditalUseCase>(
       () => GetEditalUseCase(get<AssembleiaRepository>()));
+
   //pet
   gh.factory<PetRemoteDataSource>(() => PetRemoteDataSource(get<CustomDio>()));
   gh.factory<CreatePetUseCase>(() => CreatePetUseCase(get<PetRepository>()));
   gh.factory<GetAllPetsUseCase>(() => GetAllPetsUseCase(get<PetRepository>()));
   gh.factory<GetPetUseCase>(() => GetPetUseCase(get<PetRepository>()));
+
+  //boleto
+  gh.factory<BoletoRemoteDataSource>(
+      () => BoletoRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetBoletosUseCase>(
+      () => GetBoletosUseCase(get<BoletoRepository>()));
+
+  //unidade
+  gh.factory<UnidadeRemoteDataSource>(
+      () => UnidadeRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetUnidadesUseCase>(
+      () => GetUnidadesUseCase(get<UnidadeRepository>()));
 
   //  Singleton
   gh.singleton<Dio>(dio);
@@ -84,6 +108,11 @@ Future<GetIt> initGetIt(GetIt get) async {
 
   gh.singleton<AuthRepository>(AuthRepositoryImpl(
       get<AuthRemoteDataSource>(), get<AuthLocalDataSource>()));
+
+  gh.singleton<BoletoRepository>(
+      BoletoRepositoryImpl(get<BoletoRemoteDataSource>()));
+  gh.singleton<UnidadeRepository>(
+      UnidadeRepositoryImpl(get<UnidadeRemoteDataSource>()));
 
   gh.singleton<UserRepository>(UserRepositoryImpl(get<UserRemoteDataSource>()));
   gh.singleton<AssembleiaRepository>(
