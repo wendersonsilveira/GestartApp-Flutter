@@ -1,15 +1,14 @@
-import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class ButtonServiceWidget extends StatelessWidget {
-  const ButtonServiceWidget({Key key, this.icon, this.descricao, this.rota})
+  const ButtonServiceWidget({Key key, this.icon, this.descricao, this.route})
       : super(key: key);
 
   final IconData icon;
   final String descricao;
-  final String rota;
+  final String route;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,9 +17,7 @@ class ButtonServiceWidget extends StatelessWidget {
           height: 60,
           width: 60,
           child: OutlinedButton(
-            onPressed: () {
-              Modular.navigator.pushNamed(RouteName.boleto);
-            },
+            onPressed: () => Modular.navigator.pushNamed(route),
             child: Icon(
               icon,
               color: AppColorScheme.primaryColor,

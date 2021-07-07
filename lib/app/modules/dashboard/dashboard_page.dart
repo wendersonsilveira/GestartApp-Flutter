@@ -147,12 +147,13 @@ class _DashboardPageState
                                         controller.existeCondominiosAtivos,
                                     icon: FlutterIcons.barcode_ant,
                                     descricao: 'Boleto Digital',
-                                    rota: RouteName.boleto),
+                                    route: RouteName.boleto),
                                 ButtonSercicesWidget(
                                   condominioAtivo:
                                       controller.existeCondominiosAtivos,
                                   icon: FlutterIcons.md_paper_ion,
                                   descricao: 'Prestação de Contas',
+                                  route: RouteName.balancetes,
                                 ),
                                 ButtonSercicesWidget(
                                   condominioAtivo:

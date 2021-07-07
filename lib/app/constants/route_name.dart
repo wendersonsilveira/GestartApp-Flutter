@@ -13,4 +13,5 @@ class RouteName {
   static const String cadastro_pet = '/cadastro_pet';
   static const String boleto = '/boleto';
   static const String detalhe_boleto = '/detalhe_boleto';
+  static const String balancetes = '/balancetes';
 }
