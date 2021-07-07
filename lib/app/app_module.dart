@@ -66,7 +66,7 @@ class AppModule extends MainModule {
             child: (_, args) => CadastroPetPage(id: args.data)),
         ModularRouter(RouteName.boleto, child: (_, args) => BoletoPage()),
         ModularRouter(RouteName.detalhe_boleto,
-            child: (_, args) => DetalheBoletoPage()),
+            child: (_, args) => DetalheBoletoPage(codord: args.data)),
       ];
 
   @override

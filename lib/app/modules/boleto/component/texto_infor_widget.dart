@@ -1,3 +1,4 @@
+import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +17,12 @@ class TextoInforWidget extends StatelessWidget {
         ),
         Text(
           valor,
-          style: AppTextTheme.headingH4Regular2,
+          style: TextStyle(
+              color: AppColorScheme.primaryColor,
+              fontSize: 32.sp,
+              fontFamily: 'roboto',
+              fontWeight: FontWeight.w500,
+              fontStyle: FontStyle.normal),
         )
       ],
     );

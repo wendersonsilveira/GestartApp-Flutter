@@ -27,6 +27,7 @@ import 'package:Gestart/domain/repositories/auth/auth_repository.dart';
 import 'package:Gestart/data/repositories/auth/auth_repository_impl.dart';
 import 'package:Gestart/data/datasource/auth/auth_remote_data_source.dart';
 import 'package:Gestart/domain/usecases/auth/login_use_case.dart';
+import 'package:Gestart/domain/usecases/boleto/get_boleto_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boletos_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_case.dart';
@@ -93,6 +94,7 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => BoletoRemoteDataSource(get<CustomDio>()));
   gh.factory<GetBoletosUseCase>(
       () => GetBoletosUseCase(get<BoletoRepository>()));
+  gh.factory<GetBoletoUseCase>(() => GetBoletoUseCase(get<BoletoRepository>()));
 
   //unidade
   gh.factory<UnidadeRemoteDataSource>(

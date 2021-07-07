@@ -6,9 +6,9 @@ class CustomDio {
   final AuthInterceptor _authInterceptor;
 
   CustomDio(this._dio, this._authInterceptor) {
-    _dio.options.connectTimeout = 10000;
-    _dio.options.sendTimeout = 10000;
-    _dio.options.receiveTimeout = 10000;
+    _dio.options.connectTimeout = 30000;
+    _dio.options.sendTimeout = 30000;
+    _dio.options.receiveTimeout = 30000;
 
     _dio.interceptors.add(_authInterceptor);
     _dio.interceptors.add(LogInterceptor(
