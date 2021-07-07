@@ -1,8 +1,6 @@
-import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/inputs/dropdown_button_field.widget.dart';
-import 'package:Gestart/app/widgets/inputs/dropdown_button_field3.widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +9,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'documentos_controller.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DocumentosPage extends StatefulWidget {
   final String title;
@@ -58,31 +57,54 @@ class _DocumentosPageState
                       ),
                       Expanded(
                         child: controller.documentos.data != null
-                            ? ListView.builder(
-                                itemCount: controller.listaView.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      _launchURL(controller.documentos
-                                          .data[index].linkDocumento);
+                            ? controller.listaView.length == 0
+                                ? Expanded(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.subtitles_off,
+                                          size: 70,
+                                          color: AppColorScheme.primaryColor,
+                                        ),
+                                        SizedBox(
+                                          height: 30.h,
+                                        ),
+                                        Text(
+                                            'Não existe documentos para este condomínio'),
+                                      ],
+                                    ),
+                                  )
+                                : ListView.builder(
+                                    itemCount: controller.listaView.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          _launchURL(controller.documentos
+                                              .data[index].linkDocumento);
+                                        },
+                                        child: Card(
+                                            margin: EdgeInsets.all(10),
+                                            child: ListTile(
+                                                leading: Icon(
+                                                  FlutterIcons.file1_ant,
+                                                  color: AppColorScheme
+                                                      .primaryColor,
+                                                ),
+                                                title: Text(
+                                                  '${controller.listaView[index].pasta}',
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                                subtitle: Text(
+                                                    ' ${controller.listaView[index].descricao}'),
+                                                trailing: Icon(FlutterIcons
+                                                    .download_faw))),
+                                      );
                                     },
-                                    child: Card(
-                                        margin: EdgeInsets.all(10),
-                                        child: ListTile(
-                                            leading: Icon(
-                                              FlutterIcons.file1_ant,
-                                              color:
-                                                  AppColorScheme.primaryColor,
-                                            ),
-                                            title: Text(
-                                              '${controller.documentos.data[index].pasta} ${controller.documentos.data[index].apelido}',
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            trailing: Icon(
-                                                FlutterIcons.download_faw))),
-                                  );
-                                },
-                              )
+                                  )
                             : CircularProgressCustom(),
                       )
                     ],

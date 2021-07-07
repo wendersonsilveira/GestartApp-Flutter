@@ -35,6 +35,7 @@ abstract class _DocumentosControllerBase with Store {
   }
 
   @action
-  changeDropdown(int codCond) =>
-      listaView = documentos.data.where((i) => i.codCon == codCond).toList();
+  changeDropdown(int codCond) {
+    listaView = documentos.data.where((i) => i.codCon == codCond).toList();
+  }
 }

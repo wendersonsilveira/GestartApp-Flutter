@@ -12,6 +12,7 @@ extension DocumentoMapper on DocumentoEntity {
       pasta: map['PASTA'],
       linkDocumento: map['LINK_DOCUMENTO'],
       apelido: map['APELIDO'],
+      descricao: map['DESCRICAO'],
       logo: map['LOGO'],
     );
   }

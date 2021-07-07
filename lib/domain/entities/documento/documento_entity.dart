@@ -7,12 +7,14 @@ class DocumentoEntity {
   final String apelido;
   final String pasta;
   final String linkDocumento;
+  final String descricao;
 
   const DocumentoEntity({
     this.codCon,
     this.logo,
     this.apelido,
     this.pasta,
+    this.descricao,
     this.linkDocumento,
   });
 
