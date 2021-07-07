@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 @immutable
 class BalanceteEntity {
-  final int id;
+  final String id;
   final int codcon;
   final String mesAno;
   final String mesAnoAnterior;

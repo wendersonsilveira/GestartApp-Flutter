@@ -8,6 +8,7 @@ import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/data/remote/custom_dio.dart';
 import 'package:Gestart/data/remote/interceptors/auth_interceptor.dart';
 import 'package:Gestart/data/repositories/assembleia/assembleia_repository_impl.dart';
+import 'package:Gestart/data/repositories/balancete/pet_repository_impl.dart';
 import 'package:Gestart/data/repositories/condominio/condominio_repository_impl.dart';
 import 'package:Gestart/data/repositories/pet/pet_repository_impl.dart';
 import 'package:Gestart/data/repositories/user/user_repository_impl.dart';
@@ -104,6 +105,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       CondominioRepositoryImpl(get<CondominioRemoteDataSource>()));
 
   gh.singleton<PetRepository>(PetRepositoryImpl(get<PetRemoteDataSource>()));
+  gh.singleton<BalanceteRepository>(
+      BalanceteRepositoryImpl(get<BalanceteRemoteDataSource>()));
 
   return get;
 }

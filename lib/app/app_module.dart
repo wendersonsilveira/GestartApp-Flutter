@@ -1,3 +1,5 @@
+import 'package:Gestart/app/modules/balancete/balancete_controller.dart';
+import 'package:Gestart/app/modules/balancete/balancete_page.dart';
 import 'package:Gestart/app/modules/view_documentos/view_documentos_page.dart';
 
 import 'modules/view_documentos/view_documentos_controller.dart';
@@ -38,6 +40,7 @@ class AppModule extends MainModule {
         $AssembleiaController,
         $DetalhesAssembleiaController,
         $CadastroPetController,
+        $BalanceteController
       ];
 
   @override
@@ -55,9 +58,14 @@ class AppModule extends MainModule {
         ModularRouter(RouteName.detalhes_assembleia,
             child: (_, args) => DetalhesAssembleiaPage(id: args.data)),
         ModularRouter(RouteName.view_documento,
-            child: (_, args) => ViewDocumentosPage(url: args.data)),
+            child: (_, args) => ViewDocumentosPage(
+                  url: args.data[0],
+                  title: args.data[1],
+                )),
         ModularRouter(RouteName.cadastro_pet,
             child: (_, args) => CadastroPetPage(id: args.data)),
+        ModularRouter(RouteName.balancetes,
+            child: (_, args) => BalancetePage()),
       ];
 
   @override

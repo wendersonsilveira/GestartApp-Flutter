@@ -153,6 +153,7 @@ class _DashboardPageState
                                       controller.existeCondominiosAtivos,
                                   icon: FlutterIcons.md_paper_ion,
                                   descricao: 'Prestação de Contas',
+                                  route: RouteName.balancetes,
                                 ),
                                 ButtonSercicesWidget(
                                   condominioAtivo:
