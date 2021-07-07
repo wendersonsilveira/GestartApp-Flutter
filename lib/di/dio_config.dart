@@ -4,6 +4,7 @@ import 'package:Gestart/data/datasource/boleto/boleto_remote_data_source.dart';
 import 'package:Gestart/data/datasource/balancete/balancete_data_source.dart';
 import 'package:Gestart/data/datasource/condominio/condominio_remote_data_source.dart';
 import 'package:Gestart/data/datasource/pet/pet_remote_data_source.dart';
+import 'package:Gestart/data/datasource/reserva/reserva_remote_data_source.dart';
 import 'package:Gestart/data/datasource/unidade/unidade_remote_data_source.dart';
 import 'package:Gestart/data/datasource/user/user_remote_data_source.dart';
 import 'package:Gestart/data/local/shared_preferences.dart';
@@ -14,6 +15,7 @@ import 'package:Gestart/data/repositories/boleto/boleto_repository_impl.dart';
 import 'package:Gestart/data/repositories/balancete/pet_repository_impl.dart';
 import 'package:Gestart/data/repositories/condominio/condominio_repository_impl.dart';
 import 'package:Gestart/data/repositories/pet/pet_repository_impl.dart';
+import 'package:Gestart/data/repositories/reserva/reserva_repository_impl.dart';
 import 'package:Gestart/data/repositories/unidade/unidade_repository_impl.dart';
 import 'package:Gestart/data/repositories/user/user_repository_impl.dart';
 import 'package:Gestart/domain/repositories/assembleia/assembleia_repository.dart';
@@ -21,6 +23,7 @@ import 'package:Gestart/domain/repositories/boleto/boleto_repository.dart';
 import 'package:Gestart/domain/repositories/balancete/balancete_repository.dart';
 import 'package:Gestart/domain/repositories/condominios/condominio_repository.dart';
 import 'package:Gestart/domain/repositories/pet/pet_repository.dart';
+import 'package:Gestart/domain/repositories/reserva/reserva_repository.dart';
 import 'package:Gestart/domain/repositories/unidade/unidade_repository.dart';
 import 'package:Gestart/domain/repositories/user/user_repository.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
@@ -107,11 +110,16 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => UnidadeRemoteDataSource(get<CustomDio>()));
   gh.factory<GetUnidadesUseCase>(
       () => GetUnidadesUseCase(get<UnidadeRepository>()));
+
   //balancetes
   gh.factory<BalanceteRemoteDataSource>(
       () => BalanceteRemoteDataSource(get<CustomDio>()));
   gh.factory<GetBalancetesUseCase>(
       () => GetBalancetesUseCase(get<BalanceteRepository>()));
+
+  //reservas
+  gh.factory<ReservaRemoteDataSource>(
+      () => ReservaRemoteDataSource(get<CustomDio>()));
 
   //  Singleton
   gh.singleton<Dio>(dio);
@@ -137,6 +145,7 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.singleton<PetRepository>(PetRepositoryImpl(get<PetRemoteDataSource>()));
   gh.singleton<BalanceteRepository>(
       BalanceteRepositoryImpl(get<BalanceteRemoteDataSource>()));
-
+  gh.singleton<ReservaRepository>(
+      ReservaRepositoryImpl(get<ReservaRemoteDataSource>()));
   return get;
 }

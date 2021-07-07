@@ -36,7 +36,7 @@ class PetRemoteDataSource {
       return ResourceData(
           status: Status.success,
           data: PetEntity().fromMapList(result),
-          message: 'Pet cadastrado com sucesso!');
+          message: 'Pets listados com sucesso!');
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,
