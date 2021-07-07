@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DropdownButtonFieldWidget extends StatelessWidget {
-  final List<CondominioEntity> list;
+  final List<dynamic> list;
   final String label;
   final String hint;
   final Function onChanged;

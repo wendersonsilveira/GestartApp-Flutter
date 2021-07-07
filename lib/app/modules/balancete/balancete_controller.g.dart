@@ -19,6 +19,21 @@ final $BalanceteController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$BalanceteController on _BalanceteControllerBase, Store {
+  final _$condominiosAtom = Atom(name: '_BalanceteControllerBase.condominios');
+
+  @override
+  List<CondominiosAtivosEntity> get condominios {
+    _$condominiosAtom.reportRead();
+    return super.condominios;
+  }
+
+  @override
+  set condominios(List<CondominiosAtivosEntity> value) {
+    _$condominiosAtom.reportWrite(value, super.condominios, () {
+      super.condominios = value;
+    });
+  }
+
   final _$codConAtom = Atom(name: '_BalanceteControllerBase.codCon');
 
   @override
@@ -76,11 +91,11 @@ mixin _$BalanceteController on _BalanceteControllerBase, Store {
       ActionController(name: '_BalanceteControllerBase');
 
   @override
-  Future<dynamic> filterBalancetes(int codcon) {
+  Future<dynamic> filterBalancetes(int id) {
     final _$actionInfo = _$_BalanceteControllerBaseActionController.startAction(
         name: '_BalanceteControllerBase.filterBalancetes');
     try {
-      return super.filterBalancetes(codcon);
+      return super.filterBalancetes(id);
     } finally {
       _$_BalanceteControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -89,6 +104,7 @@ mixin _$BalanceteController on _BalanceteControllerBase, Store {
   @override
   String toString() {
     return '''
+condominios: ${condominios},
 codCon: ${codCon},
 isLoading: ${isLoading},
 balancetes: ${balancetes}

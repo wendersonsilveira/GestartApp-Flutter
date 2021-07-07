@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/balancete/balancete_entity.dart';
-import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
+import 'package:Gestart/domain/entities/condominio/condominios_ativos_entity.dart';
 import 'package:Gestart/domain/usecases/balancete/get_all_pets_use_case.dart';
+import 'package:Gestart/domain/usecases/condominio/get_condominios_ativos_use_case.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -14,10 +15,10 @@ class BalanceteController = _BalanceteControllerBase with _$BalanceteController;
 
 abstract class _BalanceteControllerBase with Store {
   final _getBalancetes = getIt.get<GetBalancetesUseCase>();
-  List<CondominioEntity> condominios = [
-    CondominioEntity(apelido: "Flamboyant", codcon: 47),
-    CondominioEntity(apelido: "fff", codcon: 1005)
-  ];
+  final _getCondominios = getIt.get<GetCondominiosAtivosUseCase>();
+
+  @observable
+  List<CondominiosAtivosEntity> condominios;
 
   @observable
   int codCon;
@@ -32,19 +33,21 @@ abstract class _BalanceteControllerBase with Store {
   @action
   Future getBalancetes() async {
     final r = await _getBalancetes();
+    final rc = await _getCondominios();
 
     allBalancetes = r.data;
+    condominios = rc.data;
+    codCon = codCon == null ? condominios[0].codcon : codCon;
 
-    codCon = condominios[0].codcon;
-
-    await filterBalancetes(condominios[0].codcon);
+    await filterBalancetes(codCon);
   }
 
   @action
-  Future filterBalancetes(int codcon) {
+  Future filterBalancetes(int id) {
+    codCon = id;
     isLoading = true;
     balancetes = allBalancetes.where((balancete) {
-      return balancete.codcon == codcon;
+      return balancete.codcon == id;
     }).toList();
 
     return Future.delayed(Duration(milliseconds: 300), () {
