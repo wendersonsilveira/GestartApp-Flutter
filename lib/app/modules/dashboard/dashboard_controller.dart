@@ -3,9 +3,12 @@ import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_ativo_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
+import 'package:Gestart/domain/usecases/boleto/get_boletos_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_case.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_edital_use_case.dart';
+import 'package:Gestart/domain/usecases/condominio/get_condominios_ativos_use_case.dart';
+import 'package:Gestart/domain/usecases/unidade/get_unidades_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
@@ -20,7 +23,7 @@ abstract class _DashboardControllerBase with Store {
   final sharedPreferences = getIt.get<SharedPreferencesManager>();
   final _getCondominios = getIt.get<GetCondominioPorCpfUseCase>();
   final _getCondominioAtivo = getIt.get<GetCondominioAtivoUseCase>();
-  final _getEdital = getIt.get<GetEditalUseCase>();
+  final _getUnidades = getIt.get<GetUnidadesUseCase>();
 
   @observable
   ResourceData<List<CondominioEntity>> condominios;
@@ -41,12 +44,9 @@ abstract class _DashboardControllerBase with Store {
   }
 
   testsUseCases() async {
-    // var result = await _getEdital(7294);
+    var result = await _getUnidades();
 
-    // print("Result Edital: \n ${result.data.toString()}");
-    // var result = await _getAllPets();
-    // print("Result Check: ");
-    // print(result);
+    print("Result Unidades ***: \n ${result.data.toString()}");
   }
 
   /*

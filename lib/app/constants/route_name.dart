@@ -11,4 +11,6 @@ class RouteName {
   static const String detalhes_assembleia = '/detalhes_assembleia';
   static const String view_documento = '/view_documento';
   static const String cadastro_pet = '/cadastro_pet';
+  static const String boleto = '/boleto';
+  static const String detalhe_boleto = '/detalhe_boleto';
 }
