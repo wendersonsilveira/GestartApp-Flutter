@@ -91,7 +91,9 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
                                           child: ListTile(
                                             onTap: () {
                                               Modular.navigator.pushNamed(
-                                                  RouteName.detalhe_boleto);
+                                                  RouteName.detalhe_boleto,
+                                                  arguments: controller
+                                                      .boletos.data[index].id);
                                             },
                                             trailing: Icon(Icons.arrow_right),
                                             title: Column(

@@ -27,8 +27,9 @@ class ButtonDocumentoWidget extends StatelessWidget {
           )
         : FlatButtonWidget(
             text: "VISUALIZAR ${tipoDocumento}",
-            onPressed: () => Modular.navigator
-                .pushNamed(RouteName.view_documento, arguments: link),
+            onPressed: () => Modular.navigator.pushNamed(
+                RouteName.view_documento,
+                arguments: [link, tipoDocumento]),
             cor: AppColorScheme.primaryColor,
           );
   }
