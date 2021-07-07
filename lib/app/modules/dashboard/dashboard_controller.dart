@@ -8,6 +8,7 @@ import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case
 import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_case.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_edital_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominios_ativos_use_case.dart';
+import 'package:Gestart/domain/usecases/documento/get_documento_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -44,9 +45,9 @@ abstract class _DashboardControllerBase with Store {
   }
 
   testsUseCases() async {
-    var result = await _getUnidades();
+    // var result = await _getdocumentos();
 
-    print("Result Unidades ***: \n ${result.data.toString()}");
+    // print("Result Documentos ***: \n ${result.data.toString()}");
   }
 
   /*

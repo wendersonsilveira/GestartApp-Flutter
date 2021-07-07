@@ -183,6 +183,7 @@ class _DashboardPageState
                                       controller.existeCondominiosAtivos,
                                   descricao: 'Documentos',
                                   icone: FlutterIcons.file1_ant,
+                                  routeName: RouteName.documentos,
                                 ),
                                 ItemServicoWidget(
                                   condominioAtivo:
