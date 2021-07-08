@@ -83,6 +83,8 @@ class AppModule extends MainModule {
             child: (_, args) => BalancetePage()),
         ModularRouter(RouteName.infor_condominio,
             child: (_, args) => InforCondominioPage()),
+        ModularRouter(RouteName.documentos,
+            child: (_, args) => DocumentosPage()),
       ];
 
   @override
