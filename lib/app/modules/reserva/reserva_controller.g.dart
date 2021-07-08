@@ -19,39 +19,33 @@ final $ReservaController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ReservaController on _ReservaControllerBase, Store {
-  final _$valueAtom = Atom(name: '_ReservaControllerBase.value');
+  final _$reservasAtom = Atom(name: '_ReservaControllerBase.reservas');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  List<ReservaEntity> get reservas {
+    _$reservasAtom.reportRead();
+    return super.reservas;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set reservas(List<ReservaEntity> value) {
+    _$reservasAtom.reportWrite(value, super.reservas, () {
+      super.reservas = value;
     });
   }
 
-  final _$_ReservaControllerBaseActionController =
-      ActionController(name: '_ReservaControllerBase');
+  final _$getReservasAsyncAction =
+      AsyncAction('_ReservaControllerBase.getReservas');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_ReservaControllerBaseActionController.startAction(
-        name: '_ReservaControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_ReservaControllerBaseActionController.endAction(_$actionInfo);
-    }
+  Future getReservas() {
+    return _$getReservasAsyncAction.run(() => super.getReservas());
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+reservas: ${reservas}
     ''';
   }
 }

@@ -80,4 +80,6 @@ class AppColorScheme {
   static const appleButton = Color.fromRGBO(0, 0, 0, 1);
 
   static const itemOptionCardShadow = Color(0xFFDCDCDC);
+
+  static const textInfo = Color(0xFF0975BD);
 }

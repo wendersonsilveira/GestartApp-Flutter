@@ -43,6 +43,7 @@ import 'package:Gestart/domain/usecases/pet/create_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/delete_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_all_pets_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_pet_use_case.dart';
+import 'package:Gestart/domain/usecases/reserva/get_reservas_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_use_case.dart';
 import 'package:Gestart/domain/usecases/user/create_user_use_case.dart';
 import 'package:Gestart/domain/usecases/user/update_password_use_case.dart';
@@ -120,6 +121,8 @@ Future<GetIt> initGetIt(GetIt get) async {
   //reservas
   gh.factory<ReservaRemoteDataSource>(
       () => ReservaRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetReservasUseCase>(
+      () => GetReservasUseCase(get<ReservaRepository>()));
 
   //  Singleton
   gh.singleton<Dio>(dio);
@@ -143,8 +146,10 @@ Future<GetIt> initGetIt(GetIt get) async {
       CondominioRepositoryImpl(get<CondominioRemoteDataSource>()));
 
   gh.singleton<PetRepository>(PetRepositoryImpl(get<PetRemoteDataSource>()));
+
   gh.singleton<BalanceteRepository>(
       BalanceteRepositoryImpl(get<BalanceteRemoteDataSource>()));
+
   gh.singleton<ReservaRepository>(
       ReservaRepositoryImpl(get<ReservaRemoteDataSource>()));
   return get;

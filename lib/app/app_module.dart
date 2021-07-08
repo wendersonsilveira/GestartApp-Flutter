@@ -6,6 +6,8 @@ import 'package:Gestart/app/modules/balancete/balancete_controller.dart';
 import 'package:Gestart/app/modules/balancete/balancete_page.dart';
 import 'package:Gestart/app/modules/view_documentos/view_documentos_page.dart';
 
+import 'modules/reserva/reserva_controller.dart';
+import 'modules/reserva/reserva_page.dart';
 import 'modules/view_documentos/view_documentos_controller.dart';
 import 'package:Gestart/app/modules/assembleia/assembleia_controller.dart';
 import 'package:Gestart/app/modules/assembleia/assembleia_page.dart';
@@ -46,7 +48,8 @@ class AppModule extends MainModule {
         $CadastroPetController,
         $BoletoController,
         $DetalheBoletoController,
-        $BalanceteController
+        $BalanceteController,
+        $ReservaController,
       ];
 
   @override
@@ -75,6 +78,7 @@ class AppModule extends MainModule {
             child: (_, args) => DetalheBoletoPage(codord: args.data)),
         ModularRouter(RouteName.balancetes,
             child: (_, args) => BalancetePage()),
+        ModularRouter(RouteName.reservas, child: (_, args) => ReservaPage()),
       ];
 
   @override

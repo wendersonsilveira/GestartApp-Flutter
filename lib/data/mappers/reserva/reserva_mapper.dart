@@ -22,7 +22,7 @@ extension ReservaMapper on ReservaEntity {
       statusDescricao: map['STATUS_DESCRICAO'],
       motivoRecusa: map['MOTIVO_RECUSA'],
       datIni: DateTime.parse(map['DATINI']),
-      datFim: DateTime.parse(map['DATFIM']),
+      datFim: map['DATFIM'] != null ? DateTime.parse(map['DATFIM']) : null,
       horIniId: map['HORINI_ID'],
       horFimId: map['HORFIM_ID'],
       createat: DateTime.parse(map['CREATEAT']),
