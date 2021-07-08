@@ -3,6 +3,7 @@ import 'package:Gestart/domain/entities/auth/check_auth_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_ativo_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominios_ativos_entity.dart';
+import 'package:Gestart/domain/entities/user_adm/user_adm_entity.dart';
 import 'package:Gestart/domain/repositories/condominios/condominio_repository.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 
@@ -28,6 +29,12 @@ class CondominioRepositoryImpl implements CondominioRepository {
   Future<ResourceData<List<CondominiosAtivosEntity>>>
       getAllCondominiosAtivos() async {
     final resource = await _condominioRemoteDataSource.condominiosAtivos();
+    return resource;
+  }
+
+  @override
+  Future<ResourceData<List<UserAdmEntity>>> getInforAdmCondominios() async {
+    final resource = await _condominioRemoteDataSource.inforCondominios();
     return resource;
   }
 }

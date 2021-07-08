@@ -35,28 +35,7 @@ class _DashboardPageState
     controller.testsUseCases();
     controller.init();
     super.initState();
-    // loadDocument();
   }
-
-  // loadDocument() async {
-  //   document = await PDFDocument.fromURL(
-  //       "http://conorlastowka.com/book/CitationNeededBook-Sample.pdf");
-
-  //   setState(() => _isLoading = false);
-  // }
-
-  // changePDF(value) async {
-  //   setState(() => _isLoading = true);
-  //   if (value == 1) {
-  //     document = await PDFDocument.fromAsset('assets/sample2.pdf');
-  //   } else if (value == 2) {
-  //     document = await PDFDocument.fromURL(
-  //         "http://conorlastowka.com/book/CitationNeededBook-Sample.pdf");
-  //   } else {
-  //     document = await PDFDocument.fromAsset('assets/sample.pdf');
-  //   }
-  //   setState(() => _isLoading = false);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -188,8 +167,9 @@ class _DashboardPageState
                                 ItemServicoWidget(
                                   condominioAtivo:
                                       controller.existeCondominiosAtivos,
-                                  descricao: 'Seus Condomínios',
+                                  descricao: 'Seu Condomínio',
                                   icone: FlutterIcons.building_faw,
+                                  routeName: RouteName.infor_condominio,
                                 ),
                                 ItemServicoWidget(
                                   condominioAtivo: true,

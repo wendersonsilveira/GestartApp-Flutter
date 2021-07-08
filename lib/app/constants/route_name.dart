@@ -15,4 +15,5 @@ class RouteName {
   static const String detalhe_boleto = '/detalhe_boleto';
   static const String balancetes = '/balancetes';
   static const String documentos = '/documentos';
+  static const String infor_condominio = '/infor_condominio';
 }

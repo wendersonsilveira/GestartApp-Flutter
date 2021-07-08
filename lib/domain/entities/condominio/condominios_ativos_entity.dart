@@ -20,6 +20,6 @@ class CondominiosAtivosEntity {
 
   @override
   String toString() {
-    return 'CondominiosAtivosEntity(codcon: $codcon,,nomcon: $nomcon,apelido: $apelido,logo: $logo,gestartapp: $gestartapp,gestartappReserva: $gestartappReserva)';
+    return 'CondominiosAtivosEntity(codcon: $codcon,nomcon: $nomcon,apelido: $apelido,logo: $logo,gestartapp: $gestartapp,gestartappReserva: $gestartappReserva)';
   }
 }

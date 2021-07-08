@@ -1,3 +1,4 @@
+import 'infor_condominio/infor_condominio_controller.dart';
 import 'condominio_controller.dart';
 import 'package:Gestart/app/constants/route_name.dart';
 
@@ -10,6 +11,7 @@ import 'condominio_page.dart';
 class CondominioModule extends ChildModule {
   @override
   List<Bind> get binds => [
+        $InforCondominioController,
         $CondominioController,
         $AtivarCondominioController,
       ];

@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 @immutable
 class UserAdmEntity {
   String nomAdm;
-  String datIni;
-  String datFin;
+  DateTime datIni;
+  DateTime datFin;
   int codCar;
   String codImo;
   String nomCar;
@@ -20,7 +20,7 @@ class UserAdmEntity {
   String cep;
   String cgcCon;
   String apelido;
-  String codImoCdm;
+  String codImoAdm;
   int codOrdAdm;
   String logo;
   String linkPhoto;
@@ -41,7 +41,7 @@ class UserAdmEntity {
     this.cep,
     this.cgcCon,
     this.apelido,
-    this.codImoCdm,
+    this.codImoAdm,
     this.codOrdAdm,
     this.logo,
     this.linkPhoto,
@@ -49,6 +49,6 @@ class UserAdmEntity {
 
   @override
   String toString() {
-    return 'UserAdmEntity(nomAdm: $nomAdm, datIni: $datIni, datFin: $datFin, codCar: $codCar, codImo: $codImo, nomCar: $nomCar, perfil: $perfil, codCon: $codCon, nomCon: $nomCon, endCon: $endCon, baiCon: $baiCon, cidade: $cidade, estado: $estado, cep: $cep, cgcCon: $cgcCon, apelido: $apelido, codImoCdm: $codImoCdm, codOrdAdm: $codOrdAdm, logo: $logo, linkPhoto: $linkPhoto)';
+    return 'UserAdmEntity(nomAdm: $nomAdm, datIni: $datIni, datFin: $datFin, codCar: $codCar, codImo: $codImo, nomCar: $nomCar, perfil: $perfil, codCon: $codCon, nomCon: $nomCon, endCon: $endCon, baiCon: $baiCon, cidade: $cidade, estado: $estado, cep: $cep, cgcCon: $cgcCon, apelido: $apelido, codImoCdm: $codImoAdm, codOrdAdm: $codOrdAdm, logo: $logo, linkPhoto: $linkPhoto)';
   }
 }

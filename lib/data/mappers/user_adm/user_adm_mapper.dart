@@ -1,4 +1,3 @@
-import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/entities/user_adm/user_adm_entity.dart';
 
 extension UserAdmMapper on UserAdmEntity {
@@ -41,32 +40,40 @@ extension UserAdmMapper on UserAdmEntity {
       cep: cep ?? this.cep,
       cgcCon: cgcCon ?? this.cgcCon,
       apelido: apelido ?? this.apelido,
-      codImoCdm: codImoCdm ?? this.codImoCdm,
+      codImoAdm: codImoCdm ?? this.codImoAdm,
       codOrdAdm: codOrdAdm ?? this.codOrdAdm,
       logo: logo ?? this.logo,
       linkPhoto: linkPhoto ?? this.linkPhoto,
     );
   }
 
-  List<UnidadeEntity> fromMapList(List<dynamic> data) =>
+  List<UserAdmEntity> fromMapList(List<dynamic> data) =>
       List.from(data).map((element) => fromMap(element)).toList();
 
-  UnidadeEntity fromMap(Map<String, dynamic> map) {
+  UserAdmEntity fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
 
-    return UnidadeEntity(
-      codcon: map['CODCON'],
-      nompro: map['NOMPRO'],
-      codimo: map['CODIMO'],
-      codord: map['CODORD'],
-      nomcon: map['NOMCON'],
-      parentCondonUserId: map['PARENT_CONDON_USER_ID'],
-      condonUserId: map['CONDON_USER_ID'],
+    return UserAdmEntity(
+      nomAdm: map['NOMADM'],
+      datIni: DateTime.parse(map['DATINI']),
+      datFin: DateTime.parse(map['DATFIN']),
+      codCar: map['CODCAR'],
+      codImo: map['CODIMO'],
+      nomCar: map['NOMCAR'],
       perfil: map['PERFIL'],
+      codCon: map['CODCON'],
+      nomCon: map['NOMCON'],
+      endCon: map['ENDCON'],
+      baiCon: map['BAICON'],
+      cidade: map['CIDADE'],
+      estado: map['ESTADO'],
+      cep: map['CEP'],
+      cgcCon: map['CGCCON'],
       apelido: map['APELIDO'],
+      codImoAdm: map['CODIMO_ADM'],
+      codOrdAdm: map['CODORD_ADM'],
       logo: map['LOGO'],
-      gestartapp: map['GESTARTAPP'],
-      gestartappReserva: map['GESTARTAPP_RESERVA'],
+      linkPhoto: map['LINK_PHOTO'],
     );
   }
 }
