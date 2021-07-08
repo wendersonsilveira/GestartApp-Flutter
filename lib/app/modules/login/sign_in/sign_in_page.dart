@@ -69,7 +69,7 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
           barrierDismissible: false,
         );
       } else if (login.data.status == 1)
-        Modular.navigator.popAndPushNamed(RouteName.dashboard);
+        Modular.navigator.popAndPushNamed(RouteName.home);
     }
   }
 

@@ -7,6 +7,8 @@ import 'package:Gestart/app/modules/balancete/balancete_page.dart';
 import 'package:Gestart/app/modules/condominio/infor_condominio/infor_condominio_controller.dart';
 import 'package:Gestart/app/modules/condominio/infor_condominio/infor_condominio_page.dart';
 import 'package:Gestart/app/modules/documentos/documentos_controller.dart';
+import 'package:Gestart/app/modules/home/home_controller.dart';
+import 'package:Gestart/app/modules/home/home_page.dart';
 import 'package:Gestart/app/modules/view_documentos/view_documentos_page.dart';
 
 import 'modules/documentos/documentos_page.dart';
@@ -52,7 +54,8 @@ class AppModule extends MainModule {
         $DetalheBoletoController,
         $BalanceteController,
         $DocumentosController,
-        $InforCondominioController
+        $InforCondominioController,
+        $HomeController
       ];
 
   @override
@@ -85,6 +88,7 @@ class AppModule extends MainModule {
             child: (_, args) => InforCondominioPage()),
         ModularRouter(RouteName.documentos,
             child: (_, args) => DocumentosPage()),
+        ModularRouter(RouteName.home, child: (_, args) => HomePage()),
       ];
 
   @override

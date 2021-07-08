@@ -1,5 +1,7 @@
 import 'package:Gestart/app/constants/route_name.dart';
+import 'package:Gestart/app/modules/cadastros/cadastros_page.dart';
 import 'package:Gestart/app/modules/dashboard/components/cards/card_infor_widget.dart';
+import 'package:Gestart/app/modules/documentos/documentos_page.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
@@ -52,53 +54,7 @@ class _DashboardPageState
               onPressed: () async {}),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
-              color: Colors.grey,
-            ),
-            backgroundColor: AppColorScheme.corMenuBotton,
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.info,
-              color: Colors.grey,
-            ),
-            label: 'wewewe',
-            backgroundColor: AppColorScheme.corMenuBotton,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FlutterIcons.mic_mdi,
-              color: Colors.grey,
-            ),
-            backgroundColor: AppColorScheme.corMenuBotton,
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FlutterIcons.bell_mco,
-              color: Colors.grey,
-            ),
-            backgroundColor: AppColorScheme.corMenuBotton,
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FlutterIcons.person_mdi,
-              color: Colors.grey,
-            ),
-            backgroundColor: AppColorScheme.corMenuBotton,
-            label: '',
-          ),
-        ],
-        // currentIndex: _selectedIndex,
-        selectedItemColor: AppColorScheme.primaryColor,
-        // onTap: _onItemTapped,
-      ),
+
       body: SingleChildScrollView(
         child: Observer(
           builder: (_) => controller.condominios?.status == Status.loading &&

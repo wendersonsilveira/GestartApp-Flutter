@@ -29,18 +29,13 @@ class _CadastrosPageState
         ),
         body: Column(
           children: [
-            ItemCadastroWidget(
-              descricao: 'Dependente',
-              icone: Icons.person,
-            ),
-            Divider(
-              color: Colors.black,
-              indent: 50,
-            ),
-            ItemCadastroWidget(
-              descricao: 'Pets',
-              icone: Icons.pets,
-              routeName: RouteName.pets,
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: ItemCadastroWidget(
+                descricao: 'Pets',
+                icone: Icons.pets,
+                routeName: RouteName.pets,
+              ),
             ),
             Divider(
               color: Colors.black,
