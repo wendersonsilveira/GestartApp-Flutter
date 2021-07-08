@@ -1,7 +1,4 @@
-import 'detalhes_assembleia/detalhes_assembleia_controller.dart';
 import 'package:Gestart/app/modules/assembleia/assembleia_page.dart';
-import 'package:Gestart/app/modules/assembleia/detalhes_assembleia/detalhes_assembleia_page.dart';
-import 'package:Gestart/app/constants/route_name.dart';
 
 import 'assembleia_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
