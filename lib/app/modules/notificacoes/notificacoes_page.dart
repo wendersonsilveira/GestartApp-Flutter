@@ -39,7 +39,7 @@ class _NotificacoesPageState
                 ? CircularProgressCustom()
                 : controller.notificacoes.data.length == 0
                     ? EmptyWidget(
-                        descricao: 'Sem notificações!',
+                        descricao: 'Sem Notificações!',
                       )
                     : Container(
                         child: ListView.builder(
