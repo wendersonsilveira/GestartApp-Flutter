@@ -1,3 +1,4 @@
+import 'modules/notificacoes/notificacoes_controller.dart';
 import 'package:Gestart/app/modules/informativos/informativo/informativo_page.dart';
 
 import 'modules/informativos/informativo/informativo_controller.dart';
@@ -43,6 +44,7 @@ import 'package:Gestart/app/app_widget.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        $NotificacoesController,
         $InformativoController,
         $InformativoController,
         $InformativosController,

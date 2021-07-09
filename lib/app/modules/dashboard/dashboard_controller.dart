@@ -5,6 +5,7 @@ import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_case.dart';
 import 'package:Gestart/domain/usecases/feed/get_informacoes_use_case.dart';
+import 'package:Gestart/domain/usecases/notificacao/get_notificacao_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
@@ -19,7 +20,7 @@ abstract class _DashboardControllerBase with Store {
   final sharedPreferences = getIt.get<SharedPreferencesManager>();
   final _getCondominios = getIt.get<GetCondominioPorCpfUseCase>();
   final _getCondominioAtivo = getIt.get<GetCondominioAtivoUseCase>();
-  // final _getInfor = getIt.get<GetInformacoesUseCase>();
+  // final _getNotificacao = getIt.get<GetNotificacaoUseCase>();
 
   @observable
   ResourceData<List<CondominioEntity>> condominios;
@@ -40,9 +41,9 @@ abstract class _DashboardControllerBase with Store {
   }
 
   testsUseCases() async {
-    // var result = await _getInfor();
+    // var result = await _getNotificacao();
 
-    // print("Result Infor ***: \n ${result.data.toString()}");
+    // print("Result Notificacao ***: \n ${result.data.toString()}");
   }
 
   /*
