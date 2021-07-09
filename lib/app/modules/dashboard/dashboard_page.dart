@@ -44,6 +44,7 @@ class _DashboardPageState
     return Scaffold(
       appBar: AppBarCustom(
         context,
+        center: false,
         title: Text('GestartApp'),
         leading: Padding(
           padding: const EdgeInsets.all(5),

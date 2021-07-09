@@ -22,7 +22,7 @@ abstract class _AppControllerBase with Store {
   Future<void> isUserLogged() async {
     loading = true;
     String token = await sharedPreferences.get(SharedPreferencesManager.token);
-    if (token != null && token.isNotEmpty) initRouter = RouteName.dashboard;
+    if (token != null && token.isNotEmpty) initRouter = RouteName.home;
     loading = false;
   }
 }

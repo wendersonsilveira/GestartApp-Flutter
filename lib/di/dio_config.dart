@@ -4,6 +4,7 @@ import 'package:Gestart/data/datasource/boleto/boleto_remote_data_source.dart';
 import 'package:Gestart/data/datasource/balancete/balancete_data_source.dart';
 import 'package:Gestart/data/datasource/condominio/condominio_remote_data_source.dart';
 import 'package:Gestart/data/datasource/documento/documento_remote_data_source.dart';
+import 'package:Gestart/data/datasource/feed/feed_data_source.dart';
 import 'package:Gestart/data/datasource/pet/pet_remote_data_source.dart';
 import 'package:Gestart/data/datasource/unidade/unidade_remote_data_source.dart';
 import 'package:Gestart/data/datasource/user/user_remote_data_source.dart';
@@ -15,6 +16,7 @@ import 'package:Gestart/data/repositories/boleto/boleto_repository_impl.dart';
 import 'package:Gestart/data/repositories/balancete/pet_repository_impl.dart';
 import 'package:Gestart/data/repositories/condominio/condominio_repository_impl.dart';
 import 'package:Gestart/data/repositories/documento/boleto_repository_impl.dart';
+import 'package:Gestart/data/repositories/feed/feed_repository_impl.dart';
 import 'package:Gestart/data/repositories/pet/pet_repository_impl.dart';
 import 'package:Gestart/data/repositories/unidade/unidade_repository_impl.dart';
 import 'package:Gestart/data/repositories/user/user_repository_impl.dart';
@@ -23,6 +25,7 @@ import 'package:Gestart/domain/repositories/boleto/boleto_repository.dart';
 import 'package:Gestart/domain/repositories/balancete/balancete_repository.dart';
 import 'package:Gestart/domain/repositories/condominios/condominio_repository.dart';
 import 'package:Gestart/domain/repositories/documento/documento_repository.dart';
+import 'package:Gestart/domain/repositories/feed/feed_repository.dart';
 import 'package:Gestart/domain/repositories/pet/pet_repository.dart';
 import 'package:Gestart/domain/repositories/unidade/unidade_repository.dart';
 import 'package:Gestart/domain/repositories/user/user_repository.dart';
@@ -41,6 +44,8 @@ import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_ca
 import 'package:Gestart/domain/usecases/condominio/get_condominios_ativos_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_infor_adm_condominios_use_case.dart';
 import 'package:Gestart/domain/usecases/documento/get_documento_use_case.dart';
+import 'package:Gestart/domain/usecases/feed/get_aviso_use_case.dart';
+import 'package:Gestart/domain/usecases/feed/get_informacoes_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/create_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/delete_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_all_pets_use_case.dart';
@@ -127,6 +132,13 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<GetDocumentoUseCase>(
       () => GetDocumentoUseCase(get<DocumentoRepository>()));
 
+  //feed
+  gh.factory<FeedRemoteDataSource>(
+      () => FeedRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetInformacoesUseCase>(
+      () => GetInformacoesUseCase(get<FeedRepository>()));
+  gh.factory<GetAvisoUseCase>(() => GetAvisoUseCase(get<FeedRepository>()));
+
   //  Singleton
   gh.singleton<Dio>(dio);
   gh.singleton<SharedPreferencesManager>(SharedPreferencesManager());
@@ -140,6 +152,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       BoletoRepositoryImpl(get<BoletoRemoteDataSource>()));
   gh.singleton<UnidadeRepository>(
       UnidadeRepositoryImpl(get<UnidadeRemoteDataSource>()));
+
+  gh.singleton<FeedRepository>(FeedRepositoryImpl(get<FeedRemoteDataSource>()));
 
   gh.singleton<UserRepository>(UserRepositoryImpl(get<UserRemoteDataSource>()));
   gh.singleton<AssembleiaRepository>(

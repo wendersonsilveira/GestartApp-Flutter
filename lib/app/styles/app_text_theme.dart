@@ -86,6 +86,12 @@ class AppTextTheme {
   static TextStyle smallIconEmoji = TextStyle(
       fontSize: 11.sp, fontFamily: 'roboto', fontStyle: FontStyle.normal);
 
+  static TextStyle negritoInformativo = TextStyle(
+      fontSize: 24.sp,
+      fontFamily: 'roboto',
+      fontWeight: FontWeight.bold,
+      fontStyle: FontStyle.normal);
+
   static TextStyle headingH4Regular2 = TextStyle(
       fontSize: 32.sp,
       fontFamily: 'roboto',
@@ -129,7 +135,7 @@ class AppTextTheme {
       fontStyle: FontStyle.normal);
 
   static TextStyle bodySemibold4 = TextStyle(
-      fontSize: 19.sp,
+      fontSize: 24.sp,
       fontFamily: 'roboto',
       fontWeight: FontWeight.w600,
       fontStyle: FontStyle.normal);

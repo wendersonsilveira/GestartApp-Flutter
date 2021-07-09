@@ -1,3 +1,7 @@
+import 'package:Gestart/app/modules/informativos/informativo/informativo_page.dart';
+
+import 'modules/informativos/informativo/informativo_controller.dart';
+import 'modules/informativos/informativos_controller.dart';
 import 'package:Gestart/app/modules/boleto/boleto_controller.dart';
 import 'package:Gestart/app/modules/boleto/boleto_page.dart';
 import 'package:Gestart/app/modules/boleto/detalhe_boleto/detalhe_boleto_controller.dart';
@@ -10,7 +14,6 @@ import 'package:Gestart/app/modules/documentos/documentos_controller.dart';
 import 'package:Gestart/app/modules/home/home_controller.dart';
 import 'package:Gestart/app/modules/home/home_page.dart';
 import 'package:Gestart/app/modules/view_documentos/view_documentos_page.dart';
-
 import 'modules/documentos/documentos_page.dart';
 import 'modules/view_documentos/view_documentos_controller.dart';
 import 'package:Gestart/app/modules/assembleia/assembleia_controller.dart';
@@ -40,6 +43,9 @@ import 'package:Gestart/app/app_widget.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        $InformativoController,
+        $InformativoController,
+        $InformativosController,
         $ViewDocumentosController,
         $DashboardController,
         $AppController,
@@ -55,7 +61,9 @@ class AppModule extends MainModule {
         $BalanceteController,
         $DocumentosController,
         $InforCondominioController,
-        $HomeController
+        $HomeController,
+        $InformativosController,
+        $InformativoController
       ];
 
   @override
@@ -89,6 +97,8 @@ class AppModule extends MainModule {
         ModularRouter(RouteName.documentos,
             child: (_, args) => DocumentosPage()),
         ModularRouter(RouteName.home, child: (_, args) => HomePage()),
+        ModularRouter(RouteName.informativo,
+            child: (_, args) => InformativoPage(id: args.data)),
       ];
 
   @override
