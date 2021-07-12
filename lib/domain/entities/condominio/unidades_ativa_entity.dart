@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 @immutable
-class CondominioAtivoEntity {
+class UnidadeAtivaEntity {
   final int codcon;
   final String nompro;
   final String codimo;
@@ -15,7 +15,7 @@ class CondominioAtivoEntity {
   final int gestartapp;
   final int gestartappReserva;
 
-  const CondominioAtivoEntity({
+  const UnidadeAtivaEntity({
     this.codcon,
     this.codimo,
     this.codord,

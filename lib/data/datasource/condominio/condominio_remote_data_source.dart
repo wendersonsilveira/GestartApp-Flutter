@@ -1,6 +1,6 @@
 import 'package:Gestart/data/helpers/error_mapper.dart';
 import 'package:Gestart/data/remote/custom_dio.dart';
-import 'package:Gestart/domain/entities/condominio/condominio_ativo_entity.dart';
+import 'package:Gestart/domain/entities/condominio/unidades_ativa_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominios_ativos_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:Gestart/data/mappers/condominio/condominio_mapper.dart';
@@ -38,16 +38,16 @@ class CondominioRemoteDataSource {
     }
   }
 
-  Future<ResourceData<CondominioAtivoEntity>> condominioAtivo() async {
+  Future<ResourceData<UnidadeAtivaEntity>> condominioAtivo() async {
     try {
       final result = await _dio.get('condominiosAtivos');
 
       if (result.length > 0)
-        return ResourceData<CondominioAtivoEntity>(
+        return ResourceData<UnidadeAtivaEntity>(
             status: Status.success,
-            data: CondominioAtivoEntity().fromMap(result[0]));
+            data: UnidadeAtivaEntity().fromMap(result[0]));
       else
-        return ResourceData<CondominioAtivoEntity>(
+        return ResourceData<UnidadeAtivaEntity>(
             status: Status.success, data: null);
     } on DioError catch (e) {
       return ResourceData(

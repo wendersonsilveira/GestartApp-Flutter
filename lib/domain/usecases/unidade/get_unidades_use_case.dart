@@ -1,5 +1,3 @@
-import 'package:Gestart/domain/entities/auth/check_auth_entity.dart';
-import 'package:Gestart/domain/entities/condominio/condominio_ativo_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/repositories/unidade/unidade_repository.dart';
 import 'package:Gestart/domain/usecases/base/base_future_use_case.dart';

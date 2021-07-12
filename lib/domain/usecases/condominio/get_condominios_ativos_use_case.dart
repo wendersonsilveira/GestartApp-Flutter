@@ -1,4 +1,3 @@
-import 'package:Gestart/domain/entities/condominio/condominio_ativo_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominios_ativos_entity.dart';
 import 'package:Gestart/domain/repositories/condominios/condominio_repository.dart';
 import 'package:Gestart/domain/usecases/base/base_future_use_case.dart';

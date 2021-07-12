@@ -1,4 +1,3 @@
-import 'package:Gestart/domain/entities/condominio/condominio_ativo_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominios_ativos_entity.dart';
 
 extension CondominiosAtivosMapper on CondominiosAtivosEntity {

@@ -1,14 +1,9 @@
 import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/di/di.dart';
-import 'package:Gestart/domain/entities/condominio/condominio_ativo_entity.dart';
+import 'package:Gestart/domain/entities/condominio/unidades_ativa_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
-import 'package:Gestart/domain/entities/user/password_entity.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_case.dart';
-import 'package:Gestart/domain/usecases/feed/get_informacoes_use_case.dart';
-import 'package:Gestart/domain/usecases/notificacao/get_notificacao_use_case.dart';
-import 'package:Gestart/domain/usecases/user/alterar_senha_use_case.dart';
-import 'package:Gestart/domain/usecases/user/get_perfil_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
@@ -28,7 +23,7 @@ abstract class _DashboardControllerBase with Store {
   ResourceData<List<CondominioEntity>> condominios;
 
   @observable
-  ResourceData<CondominioAtivoEntity> condominiosAtivos;
+  ResourceData<UnidadeAtivaEntity> condominiosAtivos;
 
   @observable
   int statusCondominio;
