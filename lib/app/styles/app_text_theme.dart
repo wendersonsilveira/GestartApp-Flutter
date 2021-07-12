@@ -307,7 +307,7 @@ class AppTextTheme {
   // -------- novos ------------------------------
 
   static TextStyle textActionButton = TextStyle(
-    fontSize: 32.sp,
+    fontSize: 30.sp,
     color: Color(0xFFffffff),
   );
 }

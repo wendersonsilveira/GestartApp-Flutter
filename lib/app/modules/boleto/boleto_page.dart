@@ -81,48 +81,59 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
                                   ),
                                 )
                               : Expanded(
-                                  child: ListView.builder(
-                                    itemCount: controller.listaView.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Card(
-                                        margin: EdgeInsets.all(10),
-                                        child: Expanded(
-                                          child: ListTile(
-                                            onTap: () {
-                                              Modular.navigator.pushNamed(
-                                                  RouteName.detalhe_boleto,
-                                                  arguments: controller
-                                                      .boletos.data[index].id);
-                                            },
-                                            trailing: Icon(Icons.arrow_right),
-                                            title: Column(
-                                              children: [
-                                                TextoInforWidget(
-                                                  titulo: 'Vencimento',
-                                                  valor: UIHelper
-                                                      .formatDateFromDateTime(
-                                                          controller
-                                                              .listaView[index]
-                                                              .datven),
+                                  child: Container(
+                                    child: ListView.builder(
+                                      itemCount: controller.listaView.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return Card(
+                                          margin: EdgeInsets.all(10),
+                                          child: Expanded(
+                                            child: Container(
+                                              child: ListTile(
+                                                onTap: () {
+                                                  Modular.navigator.pushNamed(
+                                                      RouteName.detalhe_boleto,
+                                                      arguments: controller
+                                                          .boletos
+                                                          .data[index]
+                                                          .id);
+                                                },
+                                                trailing:
+                                                    Icon(Icons.arrow_right),
+                                                title: Column(
+                                                  children: [
+                                                    TextoInforWidget(
+                                                      titulo: 'Vencimento',
+                                                      valor: UIHelper
+                                                          .formatDateFromDateTime(
+                                                              controller
+                                                                  .listaView[
+                                                                      index]
+                                                                  .datven),
+                                                    ),
+                                                    TextoInforWidget(
+                                                        titulo: 'Valor',
+                                                        valor: UIHelper
+                                                            .moneyFormat(
+                                                                controller
+                                                                    .listaView[
+                                                                        index]
+                                                                    .valtot)),
+                                                    TextoInforWidget(
+                                                      titulo: 'Unidade',
+                                                      valor: controller
+                                                          .listaView[index]
+                                                          .codimo,
+                                                    ),
+                                                  ],
                                                 ),
-                                                TextoInforWidget(
-                                                    titulo: 'Valor',
-                                                    valor: UIHelper.moneyFormat(
-                                                        controller
-                                                            .listaView[index]
-                                                            .valtot)),
-                                                TextoInforWidget(
-                                                  titulo: 'Unidade',
-                                                  valor: controller
-                                                      .listaView[index].codimo,
-                                                ),
-                                              ],
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    },
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ))
                 ],

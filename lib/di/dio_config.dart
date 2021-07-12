@@ -55,7 +55,11 @@ import 'package:Gestart/domain/usecases/pet/delete_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_all_pets_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_use_case.dart';
+import 'package:Gestart/domain/usecases/user/alterar_senha_use_case.dart';
+import 'package:Gestart/domain/usecases/user/checar_senha_use_case.dart';
 import 'package:Gestart/domain/usecases/user/create_user_use_case.dart';
+import 'package:Gestart/domain/usecases/user/excluir_conta_use_case.dart';
+import 'package:Gestart/domain/usecases/user/get_perfil_use_case.dart';
 import 'package:Gestart/domain/usecases/user/update_password_use_case.dart';
 
 import 'package:dio/dio.dart';
@@ -83,7 +87,13 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<CreateUserUseCase>(() => CreateUserUseCase(get<UserRepository>()));
   gh.factory<UpdatePasswordUseCase>(
       () => UpdatePasswordUseCase(get<UserRepository>()));
-
+  gh.factory<GetPerfilUseCase>(() => GetPerfilUseCase(get<UserRepository>()));
+  gh.factory<AlterarSenhaUseCase>(
+      () => AlterarSenhaUseCase(get<UserRepository>()));
+  gh.factory<ChecarSenhaUseCase>(
+      () => ChecarSenhaUseCase(get<UserRepository>()));
+  gh.factory<ExcluirContaUseCase>(
+      () => ExcluirContaUseCase(get<UserRepository>()));
   //condominio
   gh.factory<CondominioRemoteDataSource>(
       () => CondominioRemoteDataSource(get<CustomDio>()));

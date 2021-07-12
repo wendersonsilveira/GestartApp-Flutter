@@ -19,4 +19,5 @@ class RouteName {
   static const String home = '/home';
   static const String informativos = '/informativos';
   static const String informativo = '/informativo';
+  static const String alterar_perfil = '/alterar_perfil';
 }

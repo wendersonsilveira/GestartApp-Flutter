@@ -13,6 +13,7 @@ extension UserMapper on UserEntity {
     String email,
     String telefone,
     String cpfCnpj,
+    String linkPhoto,
   }) {
     return UserEntity(
       status: status ?? this.status,
@@ -23,6 +24,7 @@ extension UserMapper on UserEntity {
       email: email ?? this.email,
       telefone: telefone ?? this.telefone,
       cpfCnpj: cpfCnpj ?? this.cpfCnpj,
+      linkPhoto: linkPhoto ?? this.linkPhoto,
     );
   }
 
@@ -38,6 +40,17 @@ extension UserMapper on UserEntity {
       sobreNome: map['SOBRENOME'],
       telefone: map['TELEFONE'],
       token: map['TOKEN'],
+      linkPhoto: map['LINK_PHOTO'],
     );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'NOME': nome,
+      'SOBRENOME': sobreNome,
+      'EMAIL': email,
+      'TELEFONE': telefone,
+      'CPFCNPJ': cpfCnpj,
+    };
   }
 }

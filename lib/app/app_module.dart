@@ -1,3 +1,7 @@
+import 'package:Gestart/app/modules/perfil/alterar_perfil/alterar_perfil_page.dart';
+
+import 'modules/perfil/alterar_perfil/alterar_perfil_controller.dart';
+import 'modules/perfil/perfil_controller.dart';
 import 'modules/notificacoes/notificacoes_controller.dart';
 import 'package:Gestart/app/modules/informativos/informativo/informativo_page.dart';
 
@@ -44,6 +48,8 @@ import 'package:Gestart/app/app_widget.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        $AlterarPerfilController,
+        $PerfilController,
         $NotificacoesController,
         $InformativoController,
         $InformativoController,
@@ -101,6 +107,8 @@ class AppModule extends MainModule {
         ModularRouter(RouteName.home, child: (_, args) => HomePage()),
         ModularRouter(RouteName.informativo,
             child: (_, args) => InformativoPage(id: args.data)),
+        ModularRouter(RouteName.alterar_perfil,
+            child: (_, args) => AlterarPerfilPage(usuario: args.data)),
       ];
 
   @override

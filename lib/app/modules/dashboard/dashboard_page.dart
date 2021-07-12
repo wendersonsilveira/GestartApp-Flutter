@@ -56,12 +56,12 @@ class _DashboardPageState
         ),
       ),
 
-      body: SingleChildScrollView(
-        child: Observer(
-          builder: (_) => controller.condominios?.status == Status.loading &&
-                  controller.condominiosAtivos?.status == Status.loading
-              ? Center(child: CircularProgressCustom())
-              : Container(
+      body: Observer(
+        builder: (_) => controller.condominios?.status == Status.loading &&
+                controller.condominiosAtivos?.status == Status.loading
+            ? Center(child: CircularProgressCustom())
+            : SingleChildScrollView(
+                child: Container(
                   color: AppColorScheme.backgroundColor,
                   child: Column(
                     children: <Widget>[
@@ -139,15 +139,10 @@ class _DashboardPageState
                           ),
                         ],
                       ),
-                      ContainedButtonWidget(
-                          text: "LOGOUT",
-                          onPressed: () {
-                            controller.voltar();
-                          })
                     ],
                   ),
                 ),
-        ),
+              ),
       ),
       // _isLoading ? PDFViewer(document: document) : CircularProgressCustom(),
     );
