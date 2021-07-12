@@ -47,6 +47,13 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
+  Future<ResourceData<bool>> alterarConta(CreateUserEntity entity) async {
+    final resource = await _userRemoteDataSource.alterarPerfil(entity);
+
+    return resource;
+  }
+
+  @override
   Future<ResourceData<int>> excluirConta() async {
     final resource = await _userRemoteDataSource.excluirConta();
 

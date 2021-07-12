@@ -103,8 +103,7 @@ class UserRemoteDataSource {
     try {
       final result = await _dio.post('updateAccount', data: user.toMap());
 
-      return ResourceData<bool>(
-          status: Status.success, data: result['success']);
+      return ResourceData<bool>(status: Status.success, data: result);
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,

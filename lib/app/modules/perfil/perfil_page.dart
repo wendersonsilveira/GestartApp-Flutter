@@ -6,7 +6,9 @@ import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
+import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
 import 'package:Gestart/app/widgets/custom_alert_dialog/types/error_dialog.dart';
+import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/entities/user/password_entity.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -16,6 +18,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'component/button_expanded_widget.dart';
 import 'component/button_widget.dart';
 import 'perfil_controller.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PerfilPage extends StatefulWidget {
   final String title;
@@ -89,8 +92,10 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
   alterarPefril() {
     controller.checarSenha(_senhaAtual.text).then((value) {
       if (value) {
-        Modular.navigator.popAndPushNamed(RouteName.alterar_perfil,
-            arguments: controller.perfil.data);
+        Modular.navigator
+            .popAndPushNamed(RouteName.alterar_perfil,
+                arguments: controller.perfil.data)
+            .then((value) => controller.init());
       } else {
         Modular.navigator.pop();
         showInSnackBar('Senha Incorreta');
@@ -233,60 +238,96 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
         ],
         title: Text(widget.title),
       ),
-      body: Observer(
-          builder: (_) => controller.perfil.status == Status.loading
-              ? CircularProgressCustom()
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      body: Center(
+        child: Observer(builder: (_) {
+          switch (controller.perfil.status) {
+            case Status.success:
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Text(
+                      'Seus Dados',
+                      style: AppTextTheme.negritoInformativo,
+                    ),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage:
+                          NetworkImage(controller.perfil.data.linkPhoto),
+                    ),
+                    title: Text('Nome'),
+                    subtitle: Text('${controller.perfil.data.nome} ' +
+                        '${controller.perfil.data.sobreNome}'),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text('Email'),
+                    subtitle: Text(controller.perfil.data.email),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text('CPF/CNPJ'),
+                    subtitle: Text(controller.perfil.data.cpfCnpj),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text('Telefone'),
+                    subtitle: Text(controller.perfil.data.telefone),
+                  ),
+                  Divider(),
+                  ButtonExpandedWidget(
+                    descricao: 'SAIR',
+                    funcao: () => controller.logout(),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ButtonWidget(
+                        descricao: 'ALTERAR SENHA',
+                        funcao: () => _showDialog(),
+                        cor: AppColorScheme.backgroundColor,
+                      ),
+                      ButtonWidget(
+                        descricao: 'EXCLUIR CONTA',
+                        funcao: () => _showDialogConfirmarSenha(0),
+                        cor: Colors.red,
+                        corTexto: Colors.white,
+                      )
+                    ],
+                  ),
+                ],
+              );
+              break;
+            case Status.failed:
+              return Container(
+                padding: const EdgeInsets.only(
+                    top: 16, left: 32, right: 32, bottom: 16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Text(
-                        'Seus Dados',
-                        style: AppTextTheme.negritoInformativo,
-                      ),
+                    Image.asset(
+                      'assets/images/error.png',
+                      height: 60,
                     ),
-                    ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage:
-                            NetworkImage(controller.perfil.data.linkPhoto),
-                      ),
-                      title: Text('Nome'),
-                      subtitle: Text(controller.perfil.data.nome),
+                    SizedBox(
+                      height: 16.h,
                     ),
-                    Divider(),
-                    ListTile(
-                      title: Text('CPF/CNPJ'),
-                      subtitle: Text(controller.perfil.data.cpfCnpj),
-                    ),
-                    Divider(),
-                    ListTile(
-                      title: Text('Telefone'),
-                      subtitle: Text(controller.perfil.data.telefone),
-                    ),
-                    Divider(),
-                    ButtonExpandedWidget(
-                      descricao: 'SAIR',
-                      funcao: () => controller.logout(),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        ButtonWidget(
-                          descricao: 'ALTERAR SENHA',
-                          funcao: () => _showDialog(),
-                          cor: AppColorScheme.backgroundColor,
-                        ),
-                        ButtonWidget(
-                          descricao: 'EXCLUIR CONTA',
-                          funcao: () => _showDialogConfirmarSenha(0),
-                          cor: Colors.red,
-                          corTexto: Colors.white,
-                        )
-                      ],
+                    Text(
+                      'teste',
+                      textAlign: TextAlign.center,
+                      style: AppTextTheme.messageError,
                     ),
                   ],
-                )),
+                ),
+              );
+              break;
+            default:
+              return Center(child: CircularProgressCustom());
+          }
+        }),
+      ),
     );
   }
 }

@@ -34,7 +34,7 @@ extension UserMapper on UserEntity {
     return UserEntity(
       status: map['status'],
       cpfCnpj: map['CPFCNPJ'],
-      email: map['email'],
+      email: map['EMAIL'],
       id: map['ID'],
       nome: map['NOME'],
       sobreNome: map['SOBRENOME'],

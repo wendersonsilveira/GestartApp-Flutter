@@ -58,6 +58,7 @@ import 'package:Gestart/domain/usecases/unidade/get_unidades_use_case.dart';
 import 'package:Gestart/domain/usecases/user/alterar_senha_use_case.dart';
 import 'package:Gestart/domain/usecases/user/checar_senha_use_case.dart';
 import 'package:Gestart/domain/usecases/user/create_user_use_case.dart';
+import 'package:Gestart/domain/usecases/user/editar_usuario.dart';
 import 'package:Gestart/domain/usecases/user/excluir_conta_use_case.dart';
 import 'package:Gestart/domain/usecases/user/get_perfil_use_case.dart';
 import 'package:Gestart/domain/usecases/user/update_password_use_case.dart';
@@ -94,6 +95,10 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => ChecarSenhaUseCase(get<UserRepository>()));
   gh.factory<ExcluirContaUseCase>(
       () => ExcluirContaUseCase(get<UserRepository>()));
+
+  gh.factory<EditarUsuarioUseCase>(
+      () => EditarUsuarioUseCase(get<UserRepository>()));
+
   //condominio
   gh.factory<CondominioRemoteDataSource>(
       () => CondominioRemoteDataSource(get<CustomDio>()));

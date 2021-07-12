@@ -11,4 +11,5 @@ abstract class UserRepository {
   Future<ResourceData<bool>> alterarSenha(PasswordEntity pass);
   Future<ResourceData<bool>> checarSenha(String pass);
   Future<ResourceData<int>> excluirConta();
+  Future<ResourceData<bool>> alterarConta(CreateUserEntity user);
 }
