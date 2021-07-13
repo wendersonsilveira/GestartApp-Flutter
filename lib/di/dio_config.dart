@@ -54,6 +54,7 @@ import 'package:Gestart/domain/usecases/pet/create_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/delete_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_all_pets_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_pet_use_case.dart';
+import 'package:Gestart/domain/usecases/unidade/get_unidades_adm_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_use_case.dart';
 import 'package:Gestart/domain/usecases/user/alterar_senha_use_case.dart';
 import 'package:Gestart/domain/usecases/user/checar_senha_use_case.dart';
@@ -138,6 +139,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => UnidadeRemoteDataSource(get<CustomDio>()));
   gh.factory<GetUnidadesUseCase>(
       () => GetUnidadesUseCase(get<UnidadeRepository>()));
+  gh.factory<GetUnidadesAdmUseCase>(
+      () => GetUnidadesAdmUseCase(get<UnidadeRepository>()));
 
   //balancetes
   gh.factory<BalanceteRemoteDataSource>(

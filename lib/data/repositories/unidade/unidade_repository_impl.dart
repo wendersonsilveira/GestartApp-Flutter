@@ -14,4 +14,11 @@ class UnidadeRepositoryImpl implements UnidadeRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData<List<UnidadeEntity>>> getUnidadesAdm() async {
+    final resource = await _unidadeRemoteDataSource.getUnidadesAdm();
+
+    return resource;
+  }
 }

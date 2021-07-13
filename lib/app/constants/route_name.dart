@@ -20,4 +20,6 @@ class RouteName {
   static const String informativos = '/informativos';
   static const String informativo = '/informativo';
   static const String alterar_perfil = '/alterar_perfil';
+  static const String painel_sindico = '/painel_sindico';
+  static const String cadastro_espaco = '/cadastro_espaco';
 }

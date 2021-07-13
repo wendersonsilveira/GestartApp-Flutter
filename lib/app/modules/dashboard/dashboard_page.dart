@@ -1,10 +1,7 @@
 import 'package:Gestart/app/constants/route_name.dart';
-import 'package:Gestart/app/modules/cadastros/cadastros_page.dart';
 import 'package:Gestart/app/modules/dashboard/components/cards/card_infor_widget.dart';
-import 'package:Gestart/app/modules/documentos/documentos_page.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
-import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -57,8 +54,7 @@ class _DashboardPageState
       ),
 
       body: Observer(
-        builder: (_) => controller.condominios?.status == Status.loading &&
-                controller.condominiosAtivos?.status == Status.loading
+        builder: (_) => controller.statusLoading
             ? Center(child: CircularProgressCustom())
             : SingleChildScrollView(
                 child: Container(
@@ -134,6 +130,13 @@ class _DashboardPageState
                                   icone: FlutterIcons.id_card_mco,
                                   routeName: RouteName.cadastros,
                                 ),
+                                if (controller.isSindico)
+                                  ItemServicoWidget(
+                                    condominioAtivo: true,
+                                    descricao: 'Painel do Síndico',
+                                    icone: FlutterIcons.md_analytics_ion,
+                                    routeName: RouteName.painel_sindico,
+                                  ),
                               ],
                             ),
                           ),

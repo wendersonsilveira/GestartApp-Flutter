@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/boleto/boleto_entity.dart';
-import 'package:Gestart/domain/entities/condominio/condominios_ativos_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boletos_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominios_ativos_use_case.dart';

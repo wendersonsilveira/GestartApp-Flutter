@@ -1,3 +1,9 @@
+import 'package:Gestart/app/modules/sindico/cadastro_espaco/cadastro_espaco_page.dart';
+
+import 'modules/sindico/cadastro_espaco/cadastro_espaco_controller.dart';
+import 'package:Gestart/app/modules/sindico/sindico_page.dart';
+
+import 'modules/sindico/sindico_controller.dart';
 import 'package:Gestart/app/modules/perfil/alterar_perfil/alterar_perfil_page.dart';
 
 import 'modules/perfil/alterar_perfil/alterar_perfil_controller.dart';
@@ -48,6 +54,8 @@ import 'package:Gestart/app/app_widget.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        $CadastroEspacoController,
+        $SindicoController,
         $AlterarPerfilController,
         $PerfilController,
         $NotificacoesController,
@@ -109,6 +117,10 @@ class AppModule extends MainModule {
             child: (_, args) => InformativoPage(id: args.data)),
         ModularRouter(RouteName.alterar_perfil,
             child: (_, args) => AlterarPerfilPage(usuario: args.data)),
+        ModularRouter(RouteName.painel_sindico,
+            child: (_, args) => SindicoPage()),
+        ModularRouter(RouteName.cadastro_espaco,
+            child: (_, args) => CadastroEspacoPage()),
       ];
 
   @override

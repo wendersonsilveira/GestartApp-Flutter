@@ -1,14 +1,19 @@
+import 'package:Gestart/app/modules/dashboard/components/button_services/button_ativo_service_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class ButtonServiceWidget extends StatelessWidget {
-  const ButtonServiceWidget({Key key, this.icon, this.descricao, this.route})
+class ButtonMenuWidget extends StatefulWidget {
+  const ButtonMenuWidget({Key key, this.icone, this.descricao})
       : super(key: key);
-
-  final IconData icon;
+  final IconData icone;
   final String descricao;
-  final String route;
+
+  @override
+  ButtonMenuWidgetState createState() => ButtonMenuWidgetState();
+}
+
+class ButtonMenuWidgetState extends State<ButtonMenuWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,9 +22,9 @@ class ButtonServiceWidget extends StatelessWidget {
           height: 60,
           width: 60,
           child: OutlinedButton(
-            onPressed: () => Modular.navigator.pushNamed(route),
+            // onPressed: () => Modular.navigator.pushNamed(route),
             child: Icon(
-              icon,
+              widget.icone,
               color: AppColorScheme.primaryColor,
             ),
             style: OutlinedButton.styleFrom(
@@ -29,7 +34,7 @@ class ButtonServiceWidget extends StatelessWidget {
           ),
         ),
         Text(
-          descricao,
+          widget.descricao,
           style: TextStyle(color: AppColorScheme.primaryColor),
           textAlign: TextAlign.center,
         )

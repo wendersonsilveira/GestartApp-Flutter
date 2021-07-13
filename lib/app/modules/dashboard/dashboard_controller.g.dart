@@ -19,6 +19,21 @@ final $DashboardController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$DashboardController on _DashboardControllerBase, Store {
+  Computed<bool> _$statusLoadingComputed;
+
+  @override
+  bool get statusLoading =>
+      (_$statusLoadingComputed ??= Computed<bool>(() => super.statusLoading,
+              name: '_DashboardControllerBase.statusLoading'))
+          .value;
+  Computed<bool> _$isSindicoComputed;
+
+  @override
+  bool get isSindico =>
+      (_$isSindicoComputed ??= Computed<bool>(() => super.isSindico,
+              name: '_DashboardControllerBase.isSindico'))
+          .value;
+
   final _$condominiosAtom = Atom(name: '_DashboardControllerBase.condominios');
 
   @override
@@ -47,6 +62,22 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
   set condominiosAtivos(ResourceData<UnidadeAtivaEntity> value) {
     _$condominiosAtivosAtom.reportWrite(value, super.condominiosAtivos, () {
       super.condominiosAtivos = value;
+    });
+  }
+
+  final _$unidadesAtivasAdmAtom =
+      Atom(name: '_DashboardControllerBase.unidadesAtivasAdm');
+
+  @override
+  ResourceData<List<UnidadeEntity>> get unidadesAtivasAdm {
+    _$unidadesAtivasAdmAtom.reportRead();
+    return super.unidadesAtivasAdm;
+  }
+
+  @override
+  set unidadesAtivasAdm(ResourceData<List<UnidadeEntity>> value) {
+    _$unidadesAtivasAdmAtom.reportWrite(value, super.unidadesAtivasAdm, () {
+      super.unidadesAtivasAdm = value;
     });
   }
 
@@ -122,8 +153,11 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
     return '''
 condominios: ${condominios},
 condominiosAtivos: ${condominiosAtivos},
+unidadesAtivasAdm: ${unidadesAtivasAdm},
 statusCondominio: ${statusCondominio},
-existeCondominiosAtivos: ${existeCondominiosAtivos}
+existeCondominiosAtivos: ${existeCondominiosAtivos},
+statusLoading: ${statusLoading},
+isSindico: ${isSindico}
     ''';
   }
 }
