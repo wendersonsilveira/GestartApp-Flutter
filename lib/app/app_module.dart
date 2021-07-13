@@ -4,10 +4,16 @@ import 'package:Gestart/app/modules/boleto/detalhe_boleto/detalhe_boleto_control
 import 'package:Gestart/app/modules/boleto/detalhe_boleto/detalhe_boleto_page.dart';
 import 'package:Gestart/app/modules/balancete/balancete_controller.dart';
 import 'package:Gestart/app/modules/balancete/balancete_page.dart';
+import 'package:Gestart/app/modules/reserva/espacos/espacos_controller.dart';
+import 'package:Gestart/app/modules/reserva/espacos/espacos_page.dart';
+import 'package:Gestart/app/modules/reserva/horarios/horarios_controller.dart';
+import 'package:Gestart/app/modules/reserva/horarios/horarios_page.dart';
+import 'package:Gestart/app/modules/reserva/unidades/unidades_controller.dart';
 import 'package:Gestart/app/modules/view_documentos/view_documentos_page.dart';
 
 import 'modules/reserva/reserva_controller.dart';
 import 'modules/reserva/reserva_page.dart';
+import 'modules/reserva/unidades/unidades_page.dart';
 import 'modules/view_documentos/view_documentos_controller.dart';
 import 'package:Gestart/app/modules/assembleia/assembleia_controller.dart';
 import 'package:Gestart/app/modules/assembleia/assembleia_page.dart';
@@ -50,6 +56,9 @@ class AppModule extends MainModule {
         $DetalheBoletoController,
         $BalanceteController,
         $ReservaController,
+        $UnidadesController,
+        $EspacosController,
+        $HorariosController
       ];
 
   @override
@@ -79,6 +88,12 @@ class AppModule extends MainModule {
         ModularRouter(RouteName.balancetes,
             child: (_, args) => BalancetePage()),
         ModularRouter(RouteName.reservas, child: (_, args) => ReservaPage()),
+        ModularRouter(RouteName.reservaUnidades,
+            child: (_, args) => UnidadesPage()),
+        ModularRouter(RouteName.reservaEspacos,
+            child: (_, args) => EspacosPage(codcon: args.data)),
+        ModularRouter(RouteName.reservaHorarios,
+            child: (_, args) => HorariosPage(espacoId: args.data)),
       ];
 
   @override

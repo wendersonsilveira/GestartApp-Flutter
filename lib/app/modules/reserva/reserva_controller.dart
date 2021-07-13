@@ -12,7 +12,7 @@ class ReservaController = _ReservaControllerBase with _$ReservaController;
 abstract class _ReservaControllerBase with Store {
   final _getReservas = getIt.get<GetReservasUseCase>();
   @observable
-  List<ReservaEntity> reservas = [];
+  List<ReservaEntity> reservas;
 
   @action
   getReservas() async {
