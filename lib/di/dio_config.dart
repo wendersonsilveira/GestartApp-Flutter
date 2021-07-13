@@ -68,6 +68,7 @@ import 'package:Gestart/domain/usecases/unidade/get_unidades_adm_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_espaco_use_id.dart';
 import 'package:Gestart/domain/usecases/reserva/get_espacos_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_horarios_espaco_use_case.dart';
+import 'package:Gestart/domain/usecases/reserva/get_horas_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_use_case.dart';
 import 'package:Gestart/domain/usecases/user/alterar_senha_use_case.dart';
@@ -90,17 +91,15 @@ Future<GetIt> initGetIt(GetIt get) async {
 
   // Auth
   gh.factory<AuthInterceptor>(() => AuthInterceptor(get<Dio>()));
-  gh.factory<AuthRemoteDataSource>(
-      () => AuthRemoteDataSource(get<CustomDio>()));
-  gh.factory<AuthLocalDataSource>(
-      () => AuthLocalDataSource(get<SharedPreferencesManager>()));
+  gh.factory<AuthRemoteDataSource>(() => AuthRemoteDataSource(get<CustomDio>()));
+  gh.factory<AuthLocalDataSource>(() => AuthLocalDataSource(get<SharedPreferencesManager>()));
   gh.factory<CheckUserUseCase>(() => CheckUserUseCase(get<AuthRepository>()));
   gh.factory<LoginUseCase>(() => LoginUseCase(get<AuthRepository>()));
 
   // User
-  gh.factory<UserRemoteDataSource>(
-      () => UserRemoteDataSource(get<CustomDio>()));
+  gh.factory<UserRemoteDataSource>(() => UserRemoteDataSource(get<CustomDio>()));
   gh.factory<CreateUserUseCase>(() => CreateUserUseCase(get<UserRepository>()));
+<<<<<<< HEAD
   gh.factory<UpdatePasswordUseCase>(
       () => UpdatePasswordUseCase(get<UserRepository>()));
   gh.factory<GetPerfilUseCase>(() => GetPerfilUseCase(get<UserRepository>()));
@@ -126,14 +125,20 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => GetCondominiosAtivosUseCase(get<CondominioRepository>()));
   gh.factory<GetInforAdmCondominiosUseCase>(
       () => GetInforAdmCondominiosUseCase(get<CondominioRepository>()));
+=======
+  gh.factory<UpdatePasswordUseCase>(() => UpdatePasswordUseCase(get<UserRepository>()));
+
+  //condominio
+  gh.factory<CondominioRemoteDataSource>(() => CondominioRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetCondominioPorCpfUseCase>(() => GetCondominioPorCpfUseCase(get<CondominioRepository>()));
+  gh.factory<GetCondominioAtivoUseCase>(() => GetCondominioAtivoUseCase(get<CondominioRepository>()));
+  gh.factory<GetCondominiosAtivosUseCase>(() => GetCondominiosAtivosUseCase(get<CondominioRepository>()));
+>>>>>>> feat/reservas
 
   //assembleia
-  gh.factory<AssembleiaRemoteDataSource>(
-      () => AssembleiaRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetEditaisUseCase>(
-      () => GetEditaisUseCase(get<AssembleiaRepository>()));
-  gh.factory<GetEditalUseCase>(
-      () => GetEditalUseCase(get<AssembleiaRepository>()));
+  gh.factory<AssembleiaRemoteDataSource>(() => AssembleiaRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetEditaisUseCase>(() => GetEditaisUseCase(get<AssembleiaRepository>()));
+  gh.factory<GetEditalUseCase>(() => GetEditalUseCase(get<AssembleiaRepository>()));
 
   //pet
   gh.factory<PetRemoteDataSource>(() => PetRemoteDataSource(get<CustomDio>()));
@@ -143,25 +148,26 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<DeletePetUseCase>(() => DeletePetUseCase(get<PetRepository>()));
 
   //boleto
-  gh.factory<BoletoRemoteDataSource>(
-      () => BoletoRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetBoletosUseCase>(
-      () => GetBoletosUseCase(get<BoletoRepository>()));
+  gh.factory<BoletoRemoteDataSource>(() => BoletoRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetBoletosUseCase>(() => GetBoletosUseCase(get<BoletoRepository>()));
   gh.factory<GetBoletoUseCase>(() => GetBoletoUseCase(get<BoletoRepository>()));
 
   //unidade
+<<<<<<< HEAD
   gh.factory<UnidadeRemoteDataSource>(
       () => UnidadeRemoteDataSource(get<CustomDio>()));
   gh.factory<GetUnidadesUseCase>(
       () => GetUnidadesUseCase(get<UnidadeRepository>()));
   gh.factory<GetUnidadesAdmUseCase>(
       () => GetUnidadesAdmUseCase(get<UnidadeRepository>()));
+=======
+  gh.factory<UnidadeRemoteDataSource>(() => UnidadeRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetUnidadesUseCase>(() => GetUnidadesUseCase(get<UnidadeRepository>()));
+>>>>>>> feat/reservas
 
   //balancetes
-  gh.factory<BalanceteRemoteDataSource>(
-      () => BalanceteRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetBalancetesUseCase>(
-      () => GetBalancetesUseCase(get<BalanceteRepository>()));
+  gh.factory<BalanceteRemoteDataSource>(() => BalanceteRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetBalancetesUseCase>(() => GetBalancetesUseCase(get<BalanceteRepository>()));
 
   //documentos
   gh.factory<DocumentoRemoteDataSource>(
@@ -182,21 +188,16 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<GetNotificacaoUseCase>(
       () => GetNotificacaoUseCase(get<NotificacaoRepository>()));
   //reservas
-  gh.factory<ReservaRemoteDataSource>(
-      () => ReservaRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetReservasUseCase>(
-      () => GetReservasUseCase(get<ReservaRepository>()));
+  gh.factory<ReservaRemoteDataSource>(() => ReservaRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetReservasUseCase>(() => GetReservasUseCase(get<ReservaRepository>()));
+  gh.factory<GetHorasUseCase>(() => GetHorasUseCase(get<ReservaRepository>()));
   //espacos
-  gh.factory<EspacoRemoteDataSource>(
-      () => EspacoRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetEspacosUseCase>(
-      () => GetEspacosUseCase(get<EspacoRepository>()));
+  gh.factory<EspacoRemoteDataSource>(() => EspacoRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetEspacosUseCase>(() => GetEspacosUseCase(get<EspacoRepository>()));
   gh.factory<GetEspacoUseCase>(() => GetEspacoUseCase(get<EspacoRepository>()));
   //espacos horarios
-  gh.factory<HorariosEspacoRemoteDataSource>(
-      () => HorariosEspacoRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetHorariosEspacosUseCase>(
-      () => GetHorariosEspacosUseCase(get<HorariosEspacoRepository>()));
+  gh.factory<HorariosEspacoRemoteDataSource>(() => HorariosEspacoRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetHorariosEspacosUseCase>(() => GetHorariosEspacosUseCase(get<HorariosEspacoRepository>()));
 
   //  Singleton
   gh.singleton<Dio>(dio);
@@ -204,13 +205,10 @@ Future<GetIt> initGetIt(GetIt get) async {
 
   gh.singleton<CustomDio>(CustomDio(get<Dio>(), get<AuthInterceptor>()));
 
-  gh.singleton<AuthRepository>(AuthRepositoryImpl(
-      get<AuthRemoteDataSource>(), get<AuthLocalDataSource>()));
+  gh.singleton<AuthRepository>(AuthRepositoryImpl(get<AuthRemoteDataSource>(), get<AuthLocalDataSource>()));
 
-  gh.singleton<BoletoRepository>(
-      BoletoRepositoryImpl(get<BoletoRemoteDataSource>()));
-  gh.singleton<UnidadeRepository>(
-      UnidadeRepositoryImpl(get<UnidadeRemoteDataSource>()));
+  gh.singleton<BoletoRepository>(BoletoRepositoryImpl(get<BoletoRemoteDataSource>()));
+  gh.singleton<UnidadeRepository>(UnidadeRepositoryImpl(get<UnidadeRemoteDataSource>()));
 
   gh.singleton<FeedRepository>(FeedRepositoryImpl(get<FeedRemoteDataSource>()));
 
@@ -218,17 +216,15 @@ Future<GetIt> initGetIt(GetIt get) async {
       NotificacaoRepositoryImpl(get<NotificacaoRemoteDataSource>()));
 
   gh.singleton<UserRepository>(UserRepositoryImpl(get<UserRemoteDataSource>()));
-  gh.singleton<AssembleiaRepository>(
-      AssembleiaRepositoryImpl(get<AssembleiaRemoteDataSource>()));
+  gh.singleton<AssembleiaRepository>(AssembleiaRepositoryImpl(get<AssembleiaRemoteDataSource>()));
 
-  gh.singleton<CondominioRepository>(
-      CondominioRepositoryImpl(get<CondominioRemoteDataSource>()));
+  gh.singleton<CondominioRepository>(CondominioRepositoryImpl(get<CondominioRemoteDataSource>()));
 
   gh.singleton<PetRepository>(PetRepositoryImpl(get<PetRemoteDataSource>()));
 
-  gh.singleton<BalanceteRepository>(
-      BalanceteRepositoryImpl(get<BalanceteRemoteDataSource>()));
+  gh.singleton<BalanceteRepository>(BalanceteRepositoryImpl(get<BalanceteRemoteDataSource>()));
 
+<<<<<<< HEAD
   gh.singleton<DocumentoRepository>(
       DocumentoRepositoryImpl(get<DocumentoRemoteDataSource>()));
 
@@ -238,5 +234,10 @@ Future<GetIt> initGetIt(GetIt get) async {
       EspacoRepositoryImpl(get<EspacoRemoteDataSource>()));
   gh.singleton<HorariosEspacoRepository>(
       HorariosEspacoRepositoryImpl(get<HorariosEspacoRemoteDataSource>()));
+=======
+  gh.singleton<ReservaRepository>(ReservaRepositoryImpl(get<ReservaRemoteDataSource>()));
+  gh.singleton<EspacoRepository>(EspacoRepositoryImpl(get<EspacoRemoteDataSource>()));
+  gh.singleton<HorariosEspacoRepository>(HorariosEspacoRepositoryImpl(get<HorariosEspacoRemoteDataSource>()));
+>>>>>>> feat/reservas
   return get;
 }

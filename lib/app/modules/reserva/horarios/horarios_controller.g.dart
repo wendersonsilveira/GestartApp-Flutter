@@ -67,13 +67,13 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
   final _$horaInAtom = Atom(name: '_HorariosControllerBase.horaIn');
 
   @override
-  String get horaIn {
+  int get horaIn {
     _$horaInAtom.reportRead();
     return super.horaIn;
   }
 
   @override
-  set horaIn(String value) {
+  set horaIn(int value) {
     _$horaInAtom.reportWrite(value, super.horaIn, () {
       super.horaIn = value;
     });
@@ -82,15 +82,31 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
   final _$horaFiAtom = Atom(name: '_HorariosControllerBase.horaFi');
 
   @override
-  String get horaFi {
+  int get horaFi {
     _$horaFiAtom.reportRead();
     return super.horaFi;
   }
 
   @override
-  set horaFi(String value) {
+  set horaFi(int value) {
     _$horaFiAtom.reportWrite(value, super.horaFi, () {
       super.horaFi = value;
+    });
+  }
+
+  final _$horariosTotaisAtom =
+      Atom(name: '_HorariosControllerBase.horariosTotais');
+
+  @override
+  List<HoraEntity> get horariosTotais {
+    _$horariosTotaisAtom.reportRead();
+    return super.horariosTotais;
+  }
+
+  @override
+  set horariosTotais(List<HoraEntity> value) {
+    _$horariosTotaisAtom.reportWrite(value, super.horariosTotais, () {
+      super.horariosTotais = value;
     });
   }
 
@@ -98,13 +114,13 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
       Atom(name: '_HorariosControllerBase.horariosDisponiveis');
 
   @override
-  List<String> get horariosDisponiveis {
+  List<HoraEntity> get horariosDisponiveis {
     _$horariosDisponiveisAtom.reportRead();
     return super.horariosDisponiveis;
   }
 
   @override
-  set horariosDisponiveis(List<String> value) {
+  set horariosDisponiveis(List<HoraEntity> value) {
     _$horariosDisponiveisAtom.reportWrite(value, super.horariosDisponiveis, () {
       super.horariosDisponiveis = value;
     });
@@ -114,13 +130,13 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
       Atom(name: '_HorariosControllerBase.horariosFinal');
 
   @override
-  List<String> get horariosFinal {
+  List<HoraEntity> get horariosFinal {
     _$horariosFinalAtom.reportRead();
     return super.horariosFinal;
   }
 
   @override
-  set horariosFinal(List<String> value) {
+  set horariosFinal(List<HoraEntity> value) {
     _$horariosFinalAtom.reportWrite(value, super.horariosFinal, () {
       super.horariosFinal = value;
     });
@@ -143,11 +159,20 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
     return _$getEspacoAsyncAction.run(() => super.getEspaco(espacoId));
   }
 
+  final _$criarHorariosDisponiveisAsyncAction =
+      AsyncAction('_HorariosControllerBase.criarHorariosDisponiveis');
+
+  @override
+  Future criarHorariosDisponiveis() {
+    return _$criarHorariosDisponiveisAsyncAction
+        .run(() => super.criarHorariosDisponiveis());
+  }
+
   final _$_HorariosControllerBaseActionController =
       ActionController(name: '_HorariosControllerBase');
 
   @override
-  dynamic setHorarioIn(String hIni) {
+  dynamic setHorarioIn(int hIni) {
     final _$actionInfo = _$_HorariosControllerBaseActionController.startAction(
         name: '_HorariosControllerBase.setHorarioIn');
     try {
@@ -158,7 +183,7 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
   }
 
   @override
-  dynamic setHorarioFi(String hFim) {
+  dynamic setHorarioFi(int hFim) {
     final _$actionInfo = _$_HorariosControllerBaseActionController.startAction(
         name: '_HorariosControllerBase.setHorarioFi');
     try {
@@ -174,17 +199,6 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
         name: '_HorariosControllerBase.checarPermanencia');
     try {
       return super.checarPermanencia();
-    } finally {
-      _$_HorariosControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic criarHorariosDisponiveis(dynamic h) {
-    final _$actionInfo = _$_HorariosControllerBaseActionController.startAction(
-        name: '_HorariosControllerBase.criarHorariosDisponiveis');
-    try {
-      return super.criarHorariosDisponiveis(h);
     } finally {
       _$_HorariosControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -209,6 +223,7 @@ espaco: ${espaco},
 isLoading: ${isLoading},
 horaIn: ${horaIn},
 horaFi: ${horaFi},
+horariosTotais: ${horariosTotais},
 horariosDisponiveis: ${horariosDisponiveis},
 horariosFinal: ${horariosFinal}
     ''';

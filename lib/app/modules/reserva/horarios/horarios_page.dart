@@ -27,10 +27,16 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
     super.initState();
   }
 
-  openDialogHorario(String hIni, String hFim) {
+  checarPermanencia() async {
+    final per = await controller.salvarHorario();
+
+    print(per);
+  }
+
+  openDialogHorario(int hIni, int hFim) async {
     controller.setHorarioIn(hIni);
     controller.setHorarioFi(hFim);
-    controller.criarHorariosDisponiveis(hIni);
+    await controller.criarHorariosDisponiveis();
 
     return showDialog(
       context: context,
@@ -47,15 +53,16 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
                     Expanded(child: Text('Início')),
                     Expanded(
                       child: DropdownButtonFormField(
-                        value: controller.horariosDisponiveis.first,
+                        value: controller.horariosDisponiveis.length > 0 ? controller.horariosDisponiveis.first.id : 0,
                         items: controller.horariosDisponiveis.map((e) {
                           return DropdownMenuItem(
-                            child: Text(e),
-                            value: e,
+                            child: Text(e.descricao),
+                            value: e.id,
                           );
                         }).toList(),
-                        onChanged: (String value) {
+                        onChanged: (int value) {
                           controller.setHorarioIn(value);
+                          controller.setHorarioFi(value >= controller.horaFi ? controller.horariosDisponiveis.last.id : controller.horaFi);
                           controller.setHorariosFinal();
                         },
                       ),
@@ -68,24 +75,23 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
                     Expanded(child: Text('Fim')),
                     Expanded(
                       child: DropdownButtonFormField(
-                        value: controller.horariosFinal.length > 0 ? controller.horariosFinal.last : null,
-                        items: controller.horariosFinal.length > 0
-                            ? controller.horariosFinal.map((e) {
-                                return DropdownMenuItem(
-                                  child: Text(e),
-                                  value: e,
-                                );
-                              }).toList()
-                            : controller.horariosFinal.map((e) {
-                                return DropdownMenuItem(
-                                  child: Text(e),
-                                  value: e,
-                                );
-                              }).toList(),
-                        onChanged: (String value) {
-                          controller.setHorarioFi(value);
-                        },
-                      ),
+                          value: controller.horaFi,
+                          items: controller.horariosFinal.length > 0
+                              ? controller.horariosFinal.map((e) {
+                                  return DropdownMenuItem(
+                                    child: Text(e.descricao),
+                                    value: e.id,
+                                  );
+                                }).toList()
+                              : [
+                                  DropdownMenuItem(
+                                    child: Text(controller.horariosDisponiveis.firstWhere((element) => element.id == controller.horaFi).descricao),
+                                    value: controller.horaFi,
+                                  )
+                                ],
+                          onChanged: (int value) {
+                            controller.setHorarioFi(value);
+                          }),
                     ),
                   ],
                 ),
@@ -96,10 +102,10 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context, 'Cancel'),
-            child: const Text('Cancel'),
+            child: const Text('Cancelar'),
           ),
           TextButton(
-            onPressed: () => Navigator.pop(context, 'OK'),
+            onPressed: checarPermanencia,
             child: const Text('OK'),
           ),
         ],
@@ -163,7 +169,7 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
                                                   color: AppColorScheme.primaryColor,
                                                 )),
                                             borderSide: BorderSide(color: AppColorScheme.primaryColor),
-                                            onPressed: () => openDialogHorario(controller.horarios[index].horIniDescricao, controller.horarios[index].horfimDescricao)),
+                                            onPressed: () => openDialogHorario(controller.horarios[index].horiniId, controller.horarios[index].horfimId)),
                                   ),
                                 ),
                               ),
