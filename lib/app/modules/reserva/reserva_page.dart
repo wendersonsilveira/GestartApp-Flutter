@@ -11,7 +11,7 @@ import 'reserva_controller.dart';
 
 class ReservaPage extends StatefulWidget {
   final String title;
-  const ReservaPage({Key key, this.title = "Reserva"}) : super(key: key);
+  const ReservaPage({Key key, this.title = "Reservas"}) : super(key: key);
 
   @override
   _ReservaPageState createState() => _ReservaPageState();
@@ -34,8 +34,7 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
         title: Text(widget.title),
         actions: [
           TextButton(
-            onPressed: () =>
-                Modular.navigator.pushNamed(RouteName.reservaUnidades),
+            onPressed: () => Modular.navigator.pushNamed(RouteName.reservaUnidades),
             child: Text(
               'Criar',
               style: AppTextTheme.textActionButton,
@@ -73,8 +72,7 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
                             padding: const EdgeInsets.all(8.0),
                             child: ListView.builder(
                               itemCount: controller.reservas.length,
-                              itemBuilder: (BuildContext context, int index) =>
-                                  Card(
+                              itemBuilder: (BuildContext context, int index) => Card(
                                 child: ListTile(
                                   title: Text(
                                     '${controller.reservas[index].espacoDescricao}\n${controller.reservas[index].apelido} - ${controller.reservas[index].codimo}\n${UIHelper.formatDate(controller.reservas[index].datIni)} | ${controller.reservas[index].horIniDescricao} - ${controller.reservas[index].horFimDescricao}',
@@ -82,9 +80,7 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
                                   ),
                                   subtitle: Text(
                                     'AGUARDANDO APROVAÇÃO',
-                                    style: TextStyle(
-                                        color: AppColorScheme.textInfo,
-                                        height: 1.5),
+                                    style: TextStyle(color: AppColorScheme.textInfo, height: 1.5),
                                   ),
                                   trailing: Padding(
                                     padding: EdgeInsets.only(top: 14),

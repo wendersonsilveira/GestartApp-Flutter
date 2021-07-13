@@ -1,9 +1,11 @@
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/reserva/espaco_entity.dart';
+import 'package:Gestart/domain/entities/reserva/hora_entity.dart';
 import 'package:Gestart/domain/entities/reserva/horarios_espaco_entity.dart';
 import 'package:Gestart/domain/usecases/reserva/get_espaco_use_id.dart';
 import 'package:Gestart/domain/usecases/reserva/get_horarios_espaco_use_case.dart';
+import 'package:Gestart/domain/usecases/reserva/get_horas_use_case.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -15,6 +17,7 @@ class HorariosController = _HorariosControllerBase with _$HorariosController;
 abstract class _HorariosControllerBase with Store {
   final _getHorariosEspaco = getIt.get<GetHorariosEspacosUseCase>();
   final _getEspaco = getIt.get<GetEspacoUseCase>();
+  final _getHoras = getIt.get<GetHorasUseCase>();
 
   @observable
   List<HorarioEspacoEntity> horarios;
@@ -23,15 +26,18 @@ abstract class _HorariosControllerBase with Store {
   @observable
   bool isLoading = false;
   @observable
-  String horaIn;
+  int horaIn;
   @observable
-  String horaFi;
+  int horaFi;
 
   @observable
-  List<String> horariosDisponiveis = [];
+  List<HoraEntity> horariosTotais = [];
 
   @observable
-  List<String> horariosFinal = [];
+  List<HoraEntity> horariosDisponiveis = [];
+
+  @observable
+  List<HoraEntity> horariosFinal = [];
 
   @action
   getHorariosEspaco(DateTime data) async {
@@ -51,12 +57,12 @@ abstract class _HorariosControllerBase with Store {
   }
 
   @action
-  setHorarioIn(String hIni) {
+  setHorarioIn(int hIni) {
     horaIn = hIni;
   }
 
   @action
-  setHorarioFi(String hFim) {
+  setHorarioFi(int hFim) {
     horaFi = hFim;
   }
 
@@ -64,65 +70,28 @@ abstract class _HorariosControllerBase with Store {
   checarPermanencia() {}
 
   @action
-  criarHorariosDisponiveis(h) {
-    horariosDisponiveis = [];
-    var horario = horarios.where((element) => element.horIniDescricao == h);
-    String hi = horario.first.horIniDescricao.replaceAll(RegExp(r' hr'), '');
-    List haI = hi.split(':');
-    String hf = horario.first.horfimDescricao.replaceAll(RegExp(r' hr'), '');
-    List haF = hf.split(':');
-
-    int mIni = int.parse(haI[1]);
-    bool state = true;
-
-    for (var i = int.parse(haI[0]); i <= int.parse(haF[0]); i++) {
-      if (i == int.parse(haF[0])) {
-        state = false;
-        if (int.parse(haF[1]) > 30) {
-          horariosDisponiveis.add('${i < 10 ? '0' + i.toString() : i}:00 hr');
-          horariosDisponiveis.add('${i < 10 ? '0' + i.toString() : i}:30 hr');
-          horariosDisponiveis.add('${i < 10 ? '0' + i.toString() : i}:${haF[1]} hr');
-        } else if (int.parse(haF[1]) > 0) {
-          horariosDisponiveis.add('${i < 10 ? '0' + i.toString() : i}:00 hr');
-          horariosDisponiveis.add('${i < 10 ? '0' + i.toString() : i}:${haF[1]} hr');
-        } else {
-          horariosDisponiveis.add('${i < 10 ? '0' + i.toString() : i}:${haF[1]} hr');
-        }
-      }
-
-      if (state) {
-        if (mIni > 0) {
-          horariosDisponiveis.add('${i < 10 ? '0' + i.toString() : i}:$mIni hr');
-          mIni = 0;
-        } else {
-          horariosDisponiveis.add('${i < 10 ? '0' + i.toString() : i}:00 hr');
-          mIni = 30;
-          horariosDisponiveis.add('${i < 10 ? '0' + i.toString() : i}:$mIni hr');
-        }
-        mIni = 0;
-      }
-    }
-
-    horariosDisponiveis.sort();
+  criarHorariosDisponiveis() async {
+    final r = await _getHoras();
+    horariosTotais = r.data;
+    horariosDisponiveis = r.data.where((element) => element.id >= horaIn && element.id <= horaFi).toList();
   }
 
   @action
   setHorariosFinal() {
-    horariosFinal = [];
-    bool iniHoraF = false;
-    List<String> l = [];
-    horariosDisponiveis.forEach((h) {
-      if (h == horaIn) {
-        iniHoraF = true;
-      }
+    horariosFinal = horariosDisponiveis.where((element) => element.id > horaIn).toList();
+  }
 
-      if (iniHoraF) {
-        l.add(h);
-      }
-    });
+  Future<String> salvarHorario() {
+    if ((horaFi - horaIn) > espaco.perMax) {
+      final permMax = horariosTotais.firstWhere((element) => element.id == espaco.perMax);
+      return Future(() => 'A permanência máxima é ${permMax.descricao}');
+    }
 
-    horariosFinal = l;
+    if ((horaFi - horaIn) < espaco.perMin) {
+      final permMim = horariosTotais.firstWhere((element) => element.id == espaco.perMin);
+      return Future(() => 'A permanência mínima é ${permMim.descricao}');
+    }
 
-    print(horariosFinal);
+    return null;
   }
 }
