@@ -26,6 +26,9 @@ import 'package:Gestart/app/modules/home/home_controller.dart';
 import 'package:Gestart/app/modules/home/home_page.dart';
 import 'package:Gestart/app/modules/view_documentos/view_documentos_page.dart';
 import 'modules/documentos/documentos_page.dart';
+
+import 'modules/reserva/reserva_controller.dart';
+import 'modules/reserva/reserva_page.dart';
 import 'modules/view_documentos/view_documentos_controller.dart';
 import 'package:Gestart/app/modules/assembleia/assembleia_controller.dart';
 import 'package:Gestart/app/modules/assembleia/assembleia_page.dart';
@@ -40,6 +43,7 @@ import 'package:Gestart/app/modules/assembleia/detalhes_assembleia/detalhes_asse
 import 'package:Gestart/app/modules/pets/pets_page.dart';
 import 'package:Gestart/app/modules/pets/cadastro_pet/cadastro_pet_page.dart';
 import 'package:Gestart/app/modules/pets/cadastro_pet/cadastro_pet_controller.dart';
+import 'package:Gestart/app/modules/reserva/reserva_controller.dart';
 
 import 'constants/route_name.dart';
 import 'modules/condominio/condominio_controller.dart';
@@ -79,7 +83,8 @@ class AppModule extends MainModule {
         $InforCondominioController,
         $HomeController,
         $InformativosController,
-        $InformativoController
+        $InformativoController,
+        $ReservaController,
       ];
 
   @override
@@ -121,6 +126,7 @@ class AppModule extends MainModule {
             child: (_, args) => SindicoPage()),
         ModularRouter(RouteName.cadastro_espaco,
             child: (_, args) => CadastroEspacoPage()),
+        ModularRouter(RouteName.reservas, child: (_, args) => ReservaPage()),
       ];
 
   @override

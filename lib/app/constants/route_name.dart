@@ -22,4 +22,5 @@ class RouteName {
   static const String alterar_perfil = '/alterar_perfil';
   static const String painel_sindico = '/painel_sindico';
   static const String cadastro_espaco = '/cadastro_espaco';
+  static const String reservas = '/reservas';
 }

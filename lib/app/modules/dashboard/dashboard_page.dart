@@ -92,6 +92,7 @@ class _DashboardPageState
                                       controller.existeCondominiosAtivos,
                                   icon: FlutterIcons.check_ant,
                                   descricao: 'Reservas',
+                                  route: RouteName.reservas,
                                 ),
                               ],
                             ),
