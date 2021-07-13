@@ -40,6 +40,7 @@ class AppColorScheme {
   static const backgroundColor = Color(0xFFf4f4f4);
   static const primaryColor = Color(0xFF008001);
   static const primaryColor50 = Color(0xFFFFEBE3);
+  static const secondaryColor = Color(0x70008000);
 
   static const corMenuBotton = Color(0xFFe8e8e8);
 

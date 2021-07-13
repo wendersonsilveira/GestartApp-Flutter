@@ -7,6 +7,8 @@ import 'package:Gestart/data/datasource/documento/documento_remote_data_source.d
 import 'package:Gestart/data/datasource/feed/feed_data_source.dart';
 import 'package:Gestart/data/datasource/notificacao/notificacao_data_source.dart';
 import 'package:Gestart/data/datasource/pet/pet_remote_data_source.dart';
+import 'package:Gestart/data/datasource/reserva/espaco_remote_data_source.dart';
+import 'package:Gestart/data/datasource/reserva/horarios_espaco_remote_data_source.dart';
 import 'package:Gestart/data/datasource/reserva/reserva_remote_data_source.dart';
 import 'package:Gestart/data/datasource/unidade/unidade_remote_data_source.dart';
 import 'package:Gestart/data/datasource/user/user_remote_data_source.dart';
@@ -21,6 +23,8 @@ import 'package:Gestart/data/repositories/documento/boleto_repository_impl.dart'
 import 'package:Gestart/data/repositories/feed/feed_repository_impl.dart';
 import 'package:Gestart/data/repositories/notificacao/notificacao_repository_impl.dart';
 import 'package:Gestart/data/repositories/pet/pet_repository_impl.dart';
+import 'package:Gestart/data/repositories/reserva/espaco_repository_impl.dart';
+import 'package:Gestart/data/repositories/reserva/horarios_espaco_repository_impl.dart';
 import 'package:Gestart/data/repositories/reserva/reserva_repository_impl.dart';
 import 'package:Gestart/data/repositories/unidade/unidade_repository_impl.dart';
 import 'package:Gestart/data/repositories/user/user_repository_impl.dart';
@@ -32,6 +36,8 @@ import 'package:Gestart/domain/repositories/documento/documento_repository.dart'
 import 'package:Gestart/domain/repositories/feed/feed_repository.dart';
 import 'package:Gestart/domain/repositories/notificacao/notificacao_repository.dart';
 import 'package:Gestart/domain/repositories/pet/pet_repository.dart';
+import 'package:Gestart/domain/repositories/reserva/espaco_repository.dart';
+import 'package:Gestart/domain/repositories/reserva/horarios_espaco_repository.dart';
 import 'package:Gestart/domain/repositories/reserva/reserva_repository.dart';
 import 'package:Gestart/domain/repositories/unidade/unidade_repository.dart';
 import 'package:Gestart/domain/repositories/user/user_repository.dart';
@@ -58,6 +64,9 @@ import 'package:Gestart/domain/usecases/pet/delete_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_all_pets_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_adm_use_case.dart';
+import 'package:Gestart/domain/usecases/reserva/get_espaco_use_id.dart';
+import 'package:Gestart/domain/usecases/reserva/get_espacos_use_case.dart';
+import 'package:Gestart/domain/usecases/reserva/get_horarios_espaco_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_use_case.dart';
 import 'package:Gestart/domain/usecases/user/alterar_senha_use_case.dart';
@@ -175,6 +184,17 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => ReservaRemoteDataSource(get<CustomDio>()));
   gh.factory<GetReservasUseCase>(
       () => GetReservasUseCase(get<ReservaRepository>()));
+  //espacos
+  gh.factory<EspacoRemoteDataSource>(
+      () => EspacoRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetEspacosUseCase>(
+      () => GetEspacosUseCase(get<EspacoRepository>()));
+  gh.factory<GetEspacoUseCase>(() => GetEspacoUseCase(get<EspacoRepository>()));
+  //espacos horarios
+  gh.factory<HorariosEspacoRemoteDataSource>(
+      () => HorariosEspacoRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetHorariosEspacosUseCase>(
+      () => GetHorariosEspacosUseCase(get<HorariosEspacoRepository>()));
 
   //  Singleton
   gh.singleton<Dio>(dio);
@@ -212,5 +232,9 @@ Future<GetIt> initGetIt(GetIt get) async {
 
   gh.singleton<ReservaRepository>(
       ReservaRepositoryImpl(get<ReservaRemoteDataSource>()));
+  gh.singleton<EspacoRepository>(
+      EspacoRepositoryImpl(get<EspacoRemoteDataSource>()));
+  gh.singleton<HorariosEspacoRepository>(
+      HorariosEspacoRepositoryImpl(get<HorariosEspacoRemoteDataSource>()));
   return get;
 }

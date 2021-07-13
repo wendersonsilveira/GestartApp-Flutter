@@ -19,39 +19,33 @@ final $EspacosController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$EspacosController on _EspacosControllerBase, Store {
-  final _$valueAtom = Atom(name: '_EspacosControllerBase.value');
+  final _$espacosAtom = Atom(name: '_EspacosControllerBase.espacos');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  List<EspacoEntity> get espacos {
+    _$espacosAtom.reportRead();
+    return super.espacos;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set espacos(List<EspacoEntity> value) {
+    _$espacosAtom.reportWrite(value, super.espacos, () {
+      super.espacos = value;
     });
   }
 
-  final _$_EspacosControllerBaseActionController =
-      ActionController(name: '_EspacosControllerBase');
+  final _$getEspacosAsyncAction =
+      AsyncAction('_EspacosControllerBase.getEspacos');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_EspacosControllerBaseActionController.startAction(
-        name: '_EspacosControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_EspacosControllerBaseActionController.endAction(_$actionInfo);
-    }
+  Future getEspacos(int codcon) {
+    return _$getEspacosAsyncAction.run(() => super.getEspacos(codcon));
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+espacos: ${espacos}
     ''';
   }
 }

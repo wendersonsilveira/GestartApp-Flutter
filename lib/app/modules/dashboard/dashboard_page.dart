@@ -90,7 +90,7 @@ class _DashboardPageState
                                 ButtonSercicesWidget(
                                   condominioAtivo:
                                       controller.existeCondominiosAtivos,
-                                  icon: FlutterIcons.check_ant,
+                                  icon: Icons.event_available,
                                   descricao: 'Reservas',
                                   route: RouteName.reservas,
                                 ),

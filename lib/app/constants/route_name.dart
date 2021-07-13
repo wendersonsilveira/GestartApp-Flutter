@@ -23,4 +23,8 @@ class RouteName {
   static const String painel_sindico = '/painel_sindico';
   static const String cadastro_espaco = '/cadastro_espaco';
   static const String reservas = '/reservas';
+  static const String reservaUnidades = '/reserva_unidades';
+  static const String reservaEspacos = '/reserva_espacos';
+  static const String reservaHorarios = '/reserva_horarios';
+  static const String reservaCadastro = '/reserva_cadastro';
 }
