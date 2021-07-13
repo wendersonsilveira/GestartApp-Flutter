@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UIHelper {
   static String formatDateFromDateTime(DateTime dateTime) {
@@ -52,7 +53,13 @@ class UIHelper {
     return NumberFormat.simpleCurrency(locale: 'pt').format(priceDouble);
   }
 
-  static String formaUrlImage(String enpoint) {
-    return 'http://ineedapiapp-prod.us-east-2.elasticbeanstalk.com/$enpoint';
+  static void saveStorage(key, value1) {
+    SharedPreferences.getInstance()
+        .then((value) => value.setString(key, value1.toString()));
+  }
+
+  static Future<String> getStorage(key) {
+    return SharedPreferences.getInstance()
+        .then((value) => value.getString(key));
   }
 }

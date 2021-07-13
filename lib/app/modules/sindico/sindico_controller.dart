@@ -1,3 +1,6 @@
+import 'package:Gestart/app/utils/ui_helper.dart';
+import 'package:Gestart/data/datasource/condominio/condominio_local_data_source.dart';
+import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_adm_use_case.dart';
@@ -6,6 +9,7 @@ import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'sindico_controller.g.dart';
 
@@ -14,6 +18,7 @@ class SindicoController = _SindicoControllerBase with _$SindicoController;
 
 abstract class _SindicoControllerBase with Store {
   final _getUnidades = getIt.get<GetUnidadesAdmUseCase>();
+  CondominioLocalDataSource _condominioLocalDataSource;
 
   @observable
   ResourceData<List<UnidadeEntity>> unidades;
@@ -40,16 +45,14 @@ abstract class _SindicoControllerBase with Store {
   init() async {
     unidades = ResourceData(status: Status.loading);
     unidades = await _getUnidades();
+    UIHelper.saveStorage('cond', unidades.data[0].codcon);
   }
 
   @action
   alterarSelecao(value) {
     unidadeSelecionada =
         unidades.data.firstWhere((element) => element.codord == value);
-    print(unidadeSelecionada);
+    UIHelper.saveStorage('cond', unidadeSelecionada.codcon);
+    UIHelper.getStorage('cond').then((value) => print(value));
   }
-
-  // @action
-  // changeDropdown(int codOrd) =>
-  //     listaView = boletos.data.where((i) => i.codord == codOrd).toList();
 }

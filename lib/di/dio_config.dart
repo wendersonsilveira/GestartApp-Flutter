@@ -2,6 +2,7 @@ import 'package:Gestart/data/datasource/assembleia/assembleia_remote_data_source
 import 'package:Gestart/data/datasource/auth/auth_local_data_source.dart';
 import 'package:Gestart/data/datasource/boleto/boleto_remote_data_source.dart';
 import 'package:Gestart/data/datasource/balancete/balancete_data_source.dart';
+import 'package:Gestart/data/datasource/condominio/condominio_local_data_source.dart';
 import 'package:Gestart/data/datasource/condominio/condominio_remote_data_source.dart';
 import 'package:Gestart/data/datasource/documento/documento_remote_data_source.dart';
 import 'package:Gestart/data/datasource/feed/feed_data_source.dart';
@@ -116,6 +117,7 @@ Future<GetIt> initGetIt(GetIt get) async {
   //condominio
   gh.factory<CondominioRemoteDataSource>(
       () => CondominioRemoteDataSource(get<CustomDio>()));
+  gh.factory<CondominioLocalDataSource>(() => CondominioLocalDataSource());
   gh.factory<GetCondominioPorCpfUseCase>(
       () => GetCondominioPorCpfUseCase(get<CondominioRepository>()));
   gh.factory<GetCondominioAtivoUseCase>(

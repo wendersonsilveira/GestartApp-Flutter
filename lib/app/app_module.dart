@@ -1,6 +1,9 @@
 import 'package:Gestart/app/modules/sindico/cadastro_espaco/cadastro_espaco_page.dart';
 
 import 'modules/sindico/cadastro_espaco/cadastro_espaco_controller.dart';
+import 'package:Gestart/app/modules/sindico/listar_espacos/listar_espacos_page.dart';
+
+import 'modules/sindico/listar_espacos/listar_espacos_controller.dart';
 import 'package:Gestart/app/modules/sindico/sindico_page.dart';
 
 import 'modules/sindico/sindico_controller.dart';
@@ -19,19 +22,16 @@ import 'package:Gestart/app/modules/boleto/detalhe_boleto/detalhe_boleto_control
 import 'package:Gestart/app/modules/boleto/detalhe_boleto/detalhe_boleto_page.dart';
 import 'package:Gestart/app/modules/balancete/balancete_controller.dart';
 import 'package:Gestart/app/modules/balancete/balancete_page.dart';
-<<<<<<< HEAD
 import 'package:Gestart/app/modules/condominio/infor_condominio/infor_condominio_controller.dart';
 import 'package:Gestart/app/modules/condominio/infor_condominio/infor_condominio_page.dart';
 import 'package:Gestart/app/modules/documentos/documentos_controller.dart';
 import 'package:Gestart/app/modules/home/home_controller.dart';
 import 'package:Gestart/app/modules/home/home_page.dart';
-=======
 import 'package:Gestart/app/modules/reserva/espacos/espacos_controller.dart';
 import 'package:Gestart/app/modules/reserva/espacos/espacos_page.dart';
 import 'package:Gestart/app/modules/reserva/horarios/horarios_controller.dart';
 import 'package:Gestart/app/modules/reserva/horarios/horarios_page.dart';
 import 'package:Gestart/app/modules/reserva/unidades/unidades_controller.dart';
->>>>>>> feat/reservas
 import 'package:Gestart/app/modules/view_documentos/view_documentos_page.dart';
 import 'modules/documentos/documentos_page.dart';
 
@@ -68,6 +68,7 @@ class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
         $CadastroEspacoController,
+        $ListarEspacosController,
         $SindicoController,
         $AlterarPerfilController,
         $PerfilController,
@@ -136,8 +137,6 @@ class AppModule extends MainModule {
             child: (_, args) => AlterarPerfilPage(usuario: args.data)),
         ModularRouter(RouteName.painel_sindico,
             child: (_, args) => SindicoPage()),
-        ModularRouter(RouteName.cadastro_espaco,
-            child: (_, args) => CadastroEspacoPage()),
         ModularRouter(RouteName.reservas, child: (_, args) => ReservaPage()),
         ModularRouter(RouteName.reservaUnidades,
             child: (_, args) => UnidadesPage()),
@@ -145,6 +144,10 @@ class AppModule extends MainModule {
             child: (_, args) => EspacosPage(codcon: args.data)),
         ModularRouter(RouteName.reservaHorarios,
             child: (_, args) => HorariosPage(espacoId: args.data)),
+        ModularRouter(RouteName.listarEspacos,
+            child: (_, args) => ListarEspacosPage()),
+        ModularRouter(RouteName.cadastro_espaco,
+            child: (_, args) => CadastroEspacoPage()),
       ];
 
   @override
