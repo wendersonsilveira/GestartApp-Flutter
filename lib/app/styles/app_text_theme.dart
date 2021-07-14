@@ -105,9 +105,9 @@ class AppTextTheme {
       fontStyle: FontStyle.normal);
 
   static TextStyle headingH5Regular2 = TextStyle(
-      fontSize: 19.sp,
+      fontSize: 12.sp,
       fontFamily: 'roboto',
-      fontWeight: FontWeight.w400,
+      color: Colors.grey[300],
       fontStyle: FontStyle.normal);
 
   static TextStyle headingH5Medium = TextStyle(
