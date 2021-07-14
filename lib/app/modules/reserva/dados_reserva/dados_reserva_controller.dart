@@ -1,18 +1,19 @@
+import 'package:Gestart/di/di.dart';
+import 'package:Gestart/domain/usecases/reserva/cancelar_reserva_use_case.dart';
+import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 part 'dados_reserva_controller.g.dart';
 
 @Injectable()
-class DadosReservaController = _DadosReservaControllerBase
-    with _$DadosReservaController;
+class DadosReservaController = _DadosReservaControllerBase with _$DadosReservaController;
 
 abstract class _DadosReservaControllerBase with Store {
-  @observable
-  int value = 0;
+  final _cancelarReserva = getIt.get<CancelarReservaUseCase>();
 
   @action
-  void increment() {
-    value++;
+  Future<ResourceData> cancelarReserva(int id) {
+    return _cancelarReserva(id);
   }
 }

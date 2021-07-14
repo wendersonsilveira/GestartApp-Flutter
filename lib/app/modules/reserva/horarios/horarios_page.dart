@@ -15,7 +15,7 @@ class HorariosPage extends StatefulWidget {
 
   const HorariosPage({
     Key key,
-    this.title = "Nova reserva - Horarios",
+    this.title = "Nova reserva - Horários",
     this.espacoId,
     this.codord,
   }) : super(key: key);
@@ -26,6 +26,8 @@ class HorariosPage extends StatefulWidget {
 
 class _HorariosPageState extends ModularState<HorariosPage, HorariosController> {
   CalendarController _calendarController = CalendarController();
+
+  DateTime now = DateTime.now();
 
   @override
   void initState() {
@@ -53,7 +55,7 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: Text(
-          'Regras e orientações sobre o espaço que está reservando',
+          'Regras e orientações sobre o espaço que está sendo reservando',
           softWrap: true,
         ),
         content: Observer(
@@ -186,6 +188,17 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
     );
   }
 
+  bool checkDay(DateTime date) {
+    if (date.isAfter(now)) {
+      return true;
+    } else {
+      if ((date.day.toString() + date.month.toString()) == (now.day.toString() + now.month.toString())) {
+        return true;
+      }
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -199,6 +212,7 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
             calendarController: _calendarController,
             locale: 'pt_BR',
             initialCalendarFormat: CalendarFormat.month,
+            enabledDayPredicate: checkDay,
             headerStyle: HeaderStyle(
               formatButtonVisible: false,
               centerHeaderTitle: true,

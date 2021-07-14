@@ -43,4 +43,14 @@ class ReservaRemoteDataSource {
       return ResourceData(status: Status.failed, data: null, message: "Erro ao fazer reserva", error: ErrorMapper.from(e));
     }
   }
+
+  Future<ResourceData> cancelarReserva(int id) async {
+    try {
+      await _dio.post('cancelar-reserva/$id');
+
+      return ResourceData(status: Status.success, data: null, message: 'Reserva cancelada!');
+    } on DioError catch (e) {
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao cancelar reserva", error: ErrorMapper.from(e));
+    }
+  }
 }

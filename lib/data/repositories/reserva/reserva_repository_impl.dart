@@ -29,4 +29,11 @@ class ReservaRepositoryImpl implements ReservaRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData> cancelarReserva(int id) async {
+    final resource = await _reservaRemoteDataSource.cancelarReserva(id);
+
+    return resource;
+  }
 }
