@@ -34,6 +34,22 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
     });
   }
 
+  final _$statusCriacaoAtom =
+      Atom(name: '_CadastroEspacoControllerBase.statusCriacao');
+
+  @override
+  ResourceData<dynamic> get statusCriacao {
+    _$statusCriacaoAtom.reportRead();
+    return super.statusCriacao;
+  }
+
+  @override
+  set statusCriacao(ResourceData<dynamic> value) {
+    _$statusCriacaoAtom.reportWrite(value, super.statusCriacao, () {
+      super.statusCriacao = value;
+    });
+  }
+
   final _$tempoMinPermanenciaAtom =
       Atom(name: '_CadastroEspacoControllerBase.tempoMinPermanencia');
 
@@ -219,6 +235,40 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
   set ativarSab(bool value) {
     _$ativarSabAtom.reportWrite(value, super.ativarSab, () {
       super.ativarSab = value;
+    });
+  }
+
+  final _$autorizacaoResponsavelAtom =
+      Atom(name: '_CadastroEspacoControllerBase.autorizacaoResponsavel');
+
+  @override
+  bool get autorizacaoResponsavel {
+    _$autorizacaoResponsavelAtom.reportRead();
+    return super.autorizacaoResponsavel;
+  }
+
+  @override
+  set autorizacaoResponsavel(bool value) {
+    _$autorizacaoResponsavelAtom
+        .reportWrite(value, super.autorizacaoResponsavel, () {
+      super.autorizacaoResponsavel = value;
+    });
+  }
+
+  final _$apenasProprietarioReservaAtom =
+      Atom(name: '_CadastroEspacoControllerBase.apenasProprietarioReserva');
+
+  @override
+  bool get apenasProprietarioReserva {
+    _$apenasProprietarioReservaAtom.reportRead();
+    return super.apenasProprietarioReserva;
+  }
+
+  @override
+  set apenasProprietarioReserva(bool value) {
+    _$apenasProprietarioReservaAtom
+        .reportWrite(value, super.apenasProprietarioReserva, () {
+      super.apenasProprietarioReserva = value;
     });
   }
 
@@ -443,6 +493,87 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
       ActionController(name: '_CadastroEspacoControllerBase');
 
   @override
+  dynamic setPerMin(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setPerMin');
+    try {
+      return super.setPerMin(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setPerMax(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setPerMax');
+    try {
+      return super.setPerMax(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setAntMin(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setAntMin');
+    try {
+      return super.setAntMin(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setAntMax(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setAntMax');
+    try {
+      return super.setAntMax(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setTempIntervaloReserva(dynamic value) {
+    final _$actionInfo =
+        _$_CadastroEspacoControllerBaseActionController.startAction(
+            name: '_CadastroEspacoControllerBase.setTempIntervaloReserva');
+    try {
+      return super.setTempIntervaloReserva(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic statusAutorizacaoResponsavel() {
+    final _$actionInfo =
+        _$_CadastroEspacoControllerBaseActionController.startAction(
+            name: '_CadastroEspacoControllerBase.statusAutorizacaoResponsavel');
+    try {
+      return super.statusAutorizacaoResponsavel();
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic statusapenasProprietarioReserva() {
+    final _$actionInfo =
+        _$_CadastroEspacoControllerBaseActionController.startAction(
+            name:
+                '_CadastroEspacoControllerBase.statusapenasProprietarioReserva');
+    try {
+      return super.statusapenasProprietarioReserva();
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic statusDom() {
     final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
         .startAction(name: '_CadastroEspacoControllerBase.statusDom');
@@ -454,9 +585,230 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
   }
 
   @override
+  dynamic statusSeg() {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.statusSeg');
+    try {
+      return super.statusSeg();
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic statusTer() {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.statusTer');
+    try {
+      return super.statusTer();
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic statusQua() {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.statusQua');
+    try {
+      return super.statusQua();
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic statusQui() {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.statusQui');
+    try {
+      return super.statusQui();
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic statusSex() {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.statusSex');
+    try {
+      return super.statusSex();
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic statusSab() {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.statusSab');
+    try {
+      return super.statusSab();
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioDomIni(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioDomIni');
+    try {
+      return super.setHorarioDomIni(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioDomFim(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioDomFim');
+    try {
+      return super.setHorarioDomFim(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioSegIni(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioSegIni');
+    try {
+      return super.setHorarioSegIni(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioSegFim(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioSegFim');
+    try {
+      return super.setHorarioSegFim(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioTerIni(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioTerIni');
+    try {
+      return super.setHorarioTerIni(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioTerFim(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioTerFim');
+    try {
+      return super.setHorarioTerFim(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioQuaIni(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioQuaIni');
+    try {
+      return super.setHorarioQuaIni(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioQuaFim(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioQuaFim');
+    try {
+      return super.setHorarioQuaFim(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioQuiIni(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioQuiIni');
+    try {
+      return super.setHorarioQuiIni(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioQuiFim(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioQuiFim');
+    try {
+      return super.setHorarioQuiFim(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioSexIni(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioSexIni');
+    try {
+      return super.setHorarioSexIni(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioSexFim(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioSexFim');
+    try {
+      return super.setHorarioSexFim(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioSabIni(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioSabIni');
+    try {
+      return super.setHorarioSabIni(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioSabFim(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioSabFim');
+    try {
+      return super.setHorarioSabFim(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 horarios: ${horarios},
+statusCriacao: ${statusCriacao},
 tempoMinPermanencia: ${tempoMinPermanencia},
 tempoMaxPermanencia: ${tempoMaxPermanencia},
 tempoMinAntecedencia: ${tempoMinAntecedencia},
@@ -469,6 +821,8 @@ ativarQua: ${ativarQua},
 ativarQui: ${ativarQui},
 ativarSex: ${ativarSex},
 ativarSab: ${ativarSab},
+autorizacaoResponsavel: ${autorizacaoResponsavel},
+apenasProprietarioReserva: ${apenasProprietarioReserva},
 domIni: ${domIni},
 domFim: ${domFim},
 segIni: ${segIni},

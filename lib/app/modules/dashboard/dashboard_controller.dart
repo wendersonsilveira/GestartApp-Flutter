@@ -2,9 +2,11 @@ import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/condominio/unidades_ativa_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
+import 'package:Gestart/domain/entities/reserva/espaco_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_case.dart';
+import 'package:Gestart/domain/usecases/reserva/criar_espaco_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_adm_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -21,6 +23,7 @@ abstract class _DashboardControllerBase with Store {
   final _getCondominios = getIt.get<GetCondominioPorCpfUseCase>();
   final _getCondominioAtivo = getIt.get<GetCondominioAtivoUseCase>();
   final _getUnidadesAtivas = getIt.get<GetUnidadesAdmUseCase>();
+  // final _criarEspaco = getIt.get<CriarEspacoUseCase>();
 
   @observable
   ResourceData<List<CondominioEntity>> condominios;
@@ -45,9 +48,40 @@ abstract class _DashboardControllerBase with Store {
   }
 
   testsUseCases() async {
-    // var result = await _getUnidadesAtivas();
+    // var result = await _criarEspaco(EspacoEntity(
+    //     codcon: 12089,
+    //     antMax: 1,
+    //     antMin: 1,
+    //     apenasMaster: false,
+    //     aprovacao: false,
+    //     capacidade: 5,
+    //     descricao: 'TEste aaaaaa',
+    //     dom: true,
+    //     domIni: 1,
+    //     domFim: 1,
+    //     seg: true,
+    //     segIni: 1,
+    //     segFim: 1,
+    //     ter: true,
+    //     terIni: 1,
+    //     terFim: 1,
+    //     qua: true,
+    //     quaIni: 1,
+    //     quaFim: 1,
+    //     qui: true,
+    //     quiIni: 1,
+    //     quiFim: 1,
+    //     sex: true,
+    //     sexIni: 1,
+    //     sexFim: 1,
+    //     sab: true,
+    //     sabIni: 1,
+    //     sabFim: 1,
+    //     obs: 'obs app',
+    //     perMin: 5,
+    //     perMax: 5));
 
-    // print("Result unidades adm ***: \n ${result.data.toString()}");
+    // print("Result espaco ***: \n ${result.data.toString()}");
   }
 
   @action
