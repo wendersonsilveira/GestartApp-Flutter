@@ -1,18 +1,24 @@
+import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
-import 'package:Gestart/domain/entities/dropdown/dropdown_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:time_picker_widget/time_picker_widget.dart' as Timer;
 import 'horarios_controller.dart';
 
 class HorariosPage extends StatefulWidget {
   final String title;
   final int espacoId;
-  const HorariosPage({Key key, this.title = "Nova reserva - Horarios", this.espacoId}) : super(key: key);
+  final int codord;
+
+  const HorariosPage({
+    Key key,
+    this.title = "Nova reserva - Horarios",
+    this.espacoId,
+    this.codord,
+  }) : super(key: key);
 
   @override
   _HorariosPageState createState() => _HorariosPageState();
@@ -24,13 +30,57 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
   @override
   void initState() {
     controller.getEspaco(widget.espacoId);
+    controller.setCodOrd(widget.codord);
     super.initState();
   }
 
   checarPermanencia() async {
+    controller.setLoaginPerm(true);
+    controller.setMsgErro(null);
     final per = await controller.salvarHorario();
+    if (per == null) {
+      controller.criarJSONReserva();
+      controller.setLoaginPerm(false);
+      openDialogInfo();
+    } else {
+      controller.setLoaginPerm(false);
+      controller.setMsgErro(per);
+    }
+  }
 
-    print(per);
+  openDialogInfo() async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(
+          'Regras e orientações sobre o espaço que está reservando',
+          softWrap: true,
+        ),
+        content: Observer(
+          builder: (_) => Container(
+            height: 70,
+            child: Column(
+              children: [Text(controller.espaco.obs)],
+            ),
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Modular.navigator.pop(),
+            child: const Text(
+              'CANCELAR',
+              style: TextStyle(color: AppColorScheme.feedbackDangerBase),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              Modular.navigator.pushNamed(RouteName.reservaCadastro, arguments: controller.reserva);
+            },
+            child: const Text('CONCORDO'),
+          ),
+        ],
+      ),
+    );
   }
 
   openDialogHorario(int hIni, int hFim) async {
@@ -44,7 +94,7 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
         title: Text('Selecione o horário'),
         content: Observer(
           builder: (_) => Container(
-            height: 100,
+            height: 150,
             child: Column(
               children: [
                 Row(
@@ -64,6 +114,7 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
                           controller.setHorarioIn(value);
                           controller.setHorarioFi(value >= controller.horaFi ? controller.horariosDisponiveis.last.id : controller.horaFi);
                           controller.setHorariosFinal();
+                          controller.setMsgErro(null);
                         },
                       ),
                     )
@@ -83,25 +134,47 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
                                     value: e.id,
                                   );
                                 }).toList()
-                              : [
-                                  DropdownMenuItem(
-                                    child: Text(controller.horariosDisponiveis.firstWhere((element) => element.id == controller.horaFi).descricao),
-                                    value: controller.horaFi,
-                                  )
-                                ],
+                              : controller.horariosDisponiveis.map((e) {
+                                  return DropdownMenuItem(
+                                    child: Text(e.descricao),
+                                    value: e.id,
+                                  );
+                                }).toList(),
                           onChanged: (int value) {
                             controller.setHorarioFi(value);
+                            controller.setMsgErro(null);
                           }),
                     ),
                   ],
                 ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        child: controller.checkingPerm
+                            ? CircularProgressCustom()
+                            : controller.erroMsg == null
+                                ? Text('')
+                                : Text(
+                                    controller.erroMsg,
+                                    softWrap: true,
+                                    style: TextStyle(color: AppColorScheme.feedbackDangerBase, fontSize: 14),
+                                  ),
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
         ),
         actions: <Widget>[
           TextButton(
-            onPressed: () => Navigator.pop(context, 'Cancel'),
+            onPressed: () {
+              controller.setMsgErro(null);
+              Modular.navigator.pop();
+            },
             child: const Text('Cancelar'),
           ),
           TextButton(

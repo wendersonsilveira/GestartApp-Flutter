@@ -64,6 +64,36 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
     });
   }
 
+  final _$checkingPermAtom = Atom(name: '_HorariosControllerBase.checkingPerm');
+
+  @override
+  bool get checkingPerm {
+    _$checkingPermAtom.reportRead();
+    return super.checkingPerm;
+  }
+
+  @override
+  set checkingPerm(bool value) {
+    _$checkingPermAtom.reportWrite(value, super.checkingPerm, () {
+      super.checkingPerm = value;
+    });
+  }
+
+  final _$erroMsgAtom = Atom(name: '_HorariosControllerBase.erroMsg');
+
+  @override
+  String get erroMsg {
+    _$erroMsgAtom.reportRead();
+    return super.erroMsg;
+  }
+
+  @override
+  set erroMsg(String value) {
+    _$erroMsgAtom.reportWrite(value, super.erroMsg, () {
+      super.erroMsg = value;
+    });
+  }
+
   final _$horaInAtom = Atom(name: '_HorariosControllerBase.horaIn');
 
   @override
@@ -168,8 +198,27 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
         .run(() => super.criarHorariosDisponiveis());
   }
 
+  final _$criarJSONReservaAsyncAction =
+      AsyncAction('_HorariosControllerBase.criarJSONReserva');
+
+  @override
+  Future criarJSONReserva() {
+    return _$criarJSONReservaAsyncAction.run(() => super.criarJSONReserva());
+  }
+
   final _$_HorariosControllerBaseActionController =
       ActionController(name: '_HorariosControllerBase');
+
+  @override
+  dynamic setCodOrd(int codord) {
+    final _$actionInfo = _$_HorariosControllerBaseActionController.startAction(
+        name: '_HorariosControllerBase.setCodOrd');
+    try {
+      return super.setCodOrd(codord);
+    } finally {
+      _$_HorariosControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setHorarioIn(int hIni) {
@@ -194,17 +243,6 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
   }
 
   @override
-  dynamic checarPermanencia() {
-    final _$actionInfo = _$_HorariosControllerBaseActionController.startAction(
-        name: '_HorariosControllerBase.checarPermanencia');
-    try {
-      return super.checarPermanencia();
-    } finally {
-      _$_HorariosControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   dynamic setHorariosFinal() {
     final _$actionInfo = _$_HorariosControllerBaseActionController.startAction(
         name: '_HorariosControllerBase.setHorariosFinal');
@@ -216,11 +254,46 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
   }
 
   @override
+  Future<String> salvarHorario() {
+    final _$actionInfo = _$_HorariosControllerBaseActionController.startAction(
+        name: '_HorariosControllerBase.salvarHorario');
+    try {
+      return super.salvarHorario();
+    } finally {
+      _$_HorariosControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setLoaginPerm(bool per) {
+    final _$actionInfo = _$_HorariosControllerBaseActionController.startAction(
+        name: '_HorariosControllerBase.setLoaginPerm');
+    try {
+      return super.setLoaginPerm(per);
+    } finally {
+      _$_HorariosControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setMsgErro(String msg) {
+    final _$actionInfo = _$_HorariosControllerBaseActionController.startAction(
+        name: '_HorariosControllerBase.setMsgErro');
+    try {
+      return super.setMsgErro(msg);
+    } finally {
+      _$_HorariosControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 horarios: ${horarios},
 espaco: ${espaco},
 isLoading: ${isLoading},
+checkingPerm: ${checkingPerm},
+erroMsg: ${erroMsg},
 horaIn: ${horaIn},
 horaFi: ${horaFi},
 horariosTotais: ${horariosTotais},

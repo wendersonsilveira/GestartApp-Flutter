@@ -34,7 +34,9 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
         title: Text(widget.title),
         actions: [
           TextButton(
-            onPressed: () => Modular.navigator.pushNamed(RouteName.reservaUnidades),
+            onPressed: () {
+              Modular.navigator.pushNamed(RouteName.reservaUnidades).then((value) => controller.getReservas());
+            },
             child: Text(
               'Criar',
               style: AppTextTheme.textActionButton,
@@ -78,10 +80,15 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
                                     '${controller.reservas[index].espacoDescricao}\n${controller.reservas[index].apelido} - ${controller.reservas[index].codimo}\n${UIHelper.formatDate(controller.reservas[index].datIni)} | ${controller.reservas[index].horIniDescricao} - ${controller.reservas[index].horFimDescricao}',
                                     style: TextStyle(height: 1.5),
                                   ),
-                                  subtitle: Text(
-                                    'AGUARDANDO APROVAÇÃO',
-                                    style: TextStyle(color: AppColorScheme.textInfo, height: 1.5),
-                                  ),
+                                  subtitle: controller.reservas[index].status == 0
+                                      ? Text(
+                                          'AGUARDANDO APROVAÇÃO',
+                                          style: TextStyle(color: AppColorScheme.textInfo, height: 1.5),
+                                        )
+                                      : Text(
+                                          'APROVADA',
+                                          style: TextStyle(color: AppColorScheme.primaryColor, height: 1.5),
+                                        ),
                                   trailing: Padding(
                                     padding: EdgeInsets.only(top: 14),
                                     child: Icon(

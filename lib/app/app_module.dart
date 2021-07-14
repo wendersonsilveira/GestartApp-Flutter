@@ -4,6 +4,7 @@ import 'package:Gestart/app/modules/boleto/detalhe_boleto/detalhe_boleto_control
 import 'package:Gestart/app/modules/boleto/detalhe_boleto/detalhe_boleto_page.dart';
 import 'package:Gestart/app/modules/balancete/balancete_controller.dart';
 import 'package:Gestart/app/modules/balancete/balancete_page.dart';
+import 'package:Gestart/app/modules/reserva/cadastro/cadastro_controller.dart' as cadastroReservaController;
 import 'package:Gestart/app/modules/reserva/espacos/espacos_controller.dart';
 import 'package:Gestart/app/modules/reserva/espacos/espacos_page.dart';
 import 'package:Gestart/app/modules/reserva/horarios/horarios_controller.dart';
@@ -11,6 +12,7 @@ import 'package:Gestart/app/modules/reserva/horarios/horarios_page.dart';
 import 'package:Gestart/app/modules/reserva/unidades/unidades_controller.dart';
 import 'package:Gestart/app/modules/view_documentos/view_documentos_page.dart';
 
+import 'modules/reserva/cadastro/cadastro_page.dart' as cadastroReserva;
 import 'modules/reserva/reserva_controller.dart';
 import 'modules/reserva/reserva_page.dart';
 import 'modules/reserva/unidades/unidades_page.dart';
@@ -58,42 +60,34 @@ class AppModule extends MainModule {
         $ReservaController,
         $UnidadesController,
         $EspacosController,
-        $HorariosController
+        $HorariosController,
+        cadastroReservaController.$CadastroController
       ];
 
   @override
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute, module: LoginModule()),
-        ModularRouter(RouteName.condominio,
-            child: (_, args) => CondominioPage()),
+        ModularRouter(RouteName.condominio, child: (_, args) => CondominioPage()),
         ModularRouter(RouteName.dashboard, child: (_, args) => DashboardPage()),
-        ModularRouter(RouteName.ativar_condominio,
-            child: (_, args) => AtivarCondominioPage()),
+        ModularRouter(RouteName.ativar_condominio, child: (_, args) => AtivarCondominioPage()),
         ModularRouter(RouteName.cadastros, child: (_, args) => CadastrosPage()),
         ModularRouter(RouteName.pets, child: (_, args) => PetsPage()),
-        ModularRouter(RouteName.assembleia,
-            child: (_, args) => AssembleiaPage()),
-        ModularRouter(RouteName.detalhes_assembleia,
-            child: (_, args) => DetalhesAssembleiaPage(id: args.data)),
+        ModularRouter(RouteName.assembleia, child: (_, args) => AssembleiaPage()),
+        ModularRouter(RouteName.detalhes_assembleia, child: (_, args) => DetalhesAssembleiaPage(id: args.data)),
         ModularRouter(RouteName.view_documento,
             child: (_, args) => ViewDocumentosPage(
                   url: args.data[0],
                   title: args.data[1],
                 )),
-        ModularRouter(RouteName.cadastro_pet,
-            child: (_, args) => CadastroPetPage(id: args.data)),
+        ModularRouter(RouteName.cadastro_pet, child: (_, args) => CadastroPetPage(id: args.data)),
         ModularRouter(RouteName.boleto, child: (_, args) => BoletoPage()),
-        ModularRouter(RouteName.detalhe_boleto,
-            child: (_, args) => DetalheBoletoPage(codord: args.data)),
-        ModularRouter(RouteName.balancetes,
-            child: (_, args) => BalancetePage()),
+        ModularRouter(RouteName.detalhe_boleto, child: (_, args) => DetalheBoletoPage(codord: args.data)),
+        ModularRouter(RouteName.balancetes, child: (_, args) => BalancetePage()),
         ModularRouter(RouteName.reservas, child: (_, args) => ReservaPage()),
-        ModularRouter(RouteName.reservaUnidades,
-            child: (_, args) => UnidadesPage()),
-        ModularRouter(RouteName.reservaEspacos,
-            child: (_, args) => EspacosPage(codcon: args.data)),
-        ModularRouter(RouteName.reservaHorarios,
-            child: (_, args) => HorariosPage(espacoId: args.data)),
+        ModularRouter(RouteName.reservaUnidades, child: (_, args) => UnidadesPage()),
+        ModularRouter(RouteName.reservaEspacos, child: (_, args) => EspacosPage(codcon: args.data[0], codord: args.data[1])),
+        ModularRouter(RouteName.reservaHorarios, child: (_, args) => HorariosPage(espacoId: args.data[0], codord: args.data[1])),
+        ModularRouter(RouteName.reservaCadastro, child: (_, args) => cadastroReserva.CadastroPage(reserva: args.data)),
       ];
 
   @override

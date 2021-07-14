@@ -9,16 +9,16 @@ class ReservaRepositoryImpl implements ReservaRepository {
 
   ReservaRepositoryImpl(this._reservaRemoteDataSource);
 
-  // @override
-  // Future<ResourceData> createPet(PetEntity pet) async {
-  //   final resource = await _petRemoteDataSource.createPet(pet);
-
-  //   return resource;
-  // }
-
   @override
   Future<ResourceData<List<ReservaEntity>>> getReservas() async {
     final resource = await _reservaRemoteDataSource.getReservas();
+
+    return resource;
+  }
+
+  @override
+  Future<ResourceData> criarReserva(data) async {
+    final resource = await _reservaRemoteDataSource.criarReserva(data);
 
     return resource;
   }
@@ -29,18 +29,4 @@ class ReservaRepositoryImpl implements ReservaRepository {
 
     return resource;
   }
-
-  // @override
-  // Future<ResourceData<PetEntity>> getPet(int id) async {
-  //   final resource = await _petRemoteDataSource.getPet(id);
-
-  //   return resource;
-  // }
-
-  // @override
-  // Future<ResourceData> deletePet(int id) async {
-  //   final resource = await _petRemoteDataSource.deletePet(id);
-
-  //   return resource;
-  // }
 }

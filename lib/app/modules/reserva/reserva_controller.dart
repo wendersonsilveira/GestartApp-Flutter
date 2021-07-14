@@ -16,6 +16,7 @@ abstract class _ReservaControllerBase with Store {
 
   @action
   getReservas() async {
+    reservas = null;
     final r = await _getReservas();
     reservas = r.data;
   }

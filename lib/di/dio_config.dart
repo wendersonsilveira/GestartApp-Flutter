@@ -49,6 +49,7 @@ import 'package:Gestart/domain/usecases/pet/create_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/delete_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_all_pets_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_pet_use_case.dart';
+import 'package:Gestart/domain/usecases/reserva/create_reserva_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_espaco_use_id.dart';
 import 'package:Gestart/domain/usecases/reserva/get_espacos_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_horarios_espaco_use_case.dart';
@@ -114,6 +115,7 @@ Future<GetIt> initGetIt(GetIt get) async {
   //reservas
   gh.factory<ReservaRemoteDataSource>(() => ReservaRemoteDataSource(get<CustomDio>()));
   gh.factory<GetReservasUseCase>(() => GetReservasUseCase(get<ReservaRepository>()));
+  gh.factory<CreateReservaUseCase>(() => CreateReservaUseCase(get<ReservaRepository>()));
   gh.factory<GetHorasUseCase>(() => GetHorasUseCase(get<ReservaRepository>()));
   //espacos
   gh.factory<EspacoRemoteDataSource>(() => EspacoRemoteDataSource(get<CustomDio>()));
