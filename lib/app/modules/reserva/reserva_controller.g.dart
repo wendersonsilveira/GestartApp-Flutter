@@ -42,6 +42,20 @@ mixin _$ReservaController on _ReservaControllerBase, Store {
     return _$getReservasAsyncAction.run(() => super.getReservas());
   }
 
+  final _$_ReservaControllerBaseActionController =
+      ActionController(name: '_ReservaControllerBase');
+
+  @override
+  Future<ResourceData<dynamic>> cancelarReserva(int id) {
+    final _$actionInfo = _$_ReservaControllerBaseActionController.startAction(
+        name: '_ReservaControllerBase.cancelarReserva');
+    try {
+      return super.cancelarReserva(id);
+    } finally {
+      _$_ReservaControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

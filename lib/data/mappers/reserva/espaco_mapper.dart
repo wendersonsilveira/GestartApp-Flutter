@@ -1,8 +1,7 @@
 import 'package:Gestart/domain/entities/reserva/espaco_entity.dart';
 
-extension ReservaMapper on EspacoEntity {
-  List<EspacoEntity> fromMapList(List<dynamic> data) =>
-      List.from(data).map((element) => fromMap(element)).toList();
+extension EspacoMapper on EspacoEntity {
+  List<EspacoEntity> fromMapList(List<dynamic> data) => List.from(data).map((element) => fromMap(element)).toList();
 
   EspacoEntity fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
@@ -52,19 +51,7 @@ extension ReservaMapper on EspacoEntity {
     );
   }
 
-  // Map<String, dynamic> toMap() {
-  //   return {
-  //     'CODCON': codcon,
-  //     'CODORD': codord,
-  //     'ESPACO_ID': espacoId,
-  //     'ESPACO_DESCRICAO': espacoDescricao,
-  //     'APELIDO': apelido,
-  //     'DATINI': datIni,
-  //     'DATINI_ORIGINAL': datIniOriginal,
-  //     'HORINI_ID': horIniId,
-  //     'HORINI_DESCRICAO': horIniDescricao,
-  //     'HORFIM_ID': horFimId,
-  //     'HORFIM_DESCRICAO': horFimDescricao
-  //   };
-  // }
+  Map<String, dynamic> toMap() {
+    return {'DOM': dom, 'SEG': seg, 'TER': ter, 'QUA': qua, 'QUI': qui, 'SEX': sex, 'SAB': sab};
+  }
 }

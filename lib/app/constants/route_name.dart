@@ -27,4 +27,5 @@ class RouteName {
   static const String reservaEspacos = '/reserva_espacos';
   static const String reservaHorarios = '/reserva_horarios';
   static const String reservaCadastro = '/reserva_cadastro';
+  static const String reservaDados = '/reserva_dados';
 }
