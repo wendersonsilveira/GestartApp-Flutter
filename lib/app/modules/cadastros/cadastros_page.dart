@@ -16,8 +16,7 @@ class CadastrosPage extends StatefulWidget {
   _CadastrosPageState createState() => _CadastrosPageState();
 }
 
-class _CadastrosPageState
-    extends ModularState<CadastrosPage, CadastrosController> {
+class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosController> {
   //use 'controller' variable to access controller
 
   @override
@@ -44,6 +43,7 @@ class _CadastrosPageState
             ItemCadastroWidget(
               descricao: 'Veiculos',
               icone: FlutterIcons.car_alt_faw5s,
+              routeName: RouteName.veiculos,
             ),
           ],
         ));

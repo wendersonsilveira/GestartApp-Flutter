@@ -20,16 +20,4 @@ class PetEntity {
   String toString() {
     return 'PetEntity(tipo: $tipo, raca: $raca,porte: $porte,nome: $nome)';
   }
-
-  // @override
-  // bool operator ==(Object o) {
-  //   if (identical(this, o)) return true;
-
-  //   return o is AuthEntity && o.email == email && o.password == password;
-  // }
-
-  // @override
-  // int get hashCode {
-  //   return email.hashCode ^ password.hashCode;
-  // }
 }

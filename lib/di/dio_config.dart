@@ -12,6 +12,7 @@ import 'package:Gestart/data/datasource/reserva/horarios_espaco_remote_data_sour
 import 'package:Gestart/data/datasource/reserva/reserva_remote_data_source.dart';
 import 'package:Gestart/data/datasource/unidade/unidade_remote_data_source.dart';
 import 'package:Gestart/data/datasource/user/user_remote_data_source.dart';
+import 'package:Gestart/data/datasource/veiculo/veiculo_remote_data_source.dart';
 import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/data/remote/custom_dio.dart';
 import 'package:Gestart/data/remote/interceptors/auth_interceptor.dart';
@@ -28,6 +29,7 @@ import 'package:Gestart/data/repositories/reserva/horarios_espaco_repository_imp
 import 'package:Gestart/data/repositories/reserva/reserva_repository_impl.dart';
 import 'package:Gestart/data/repositories/unidade/unidade_repository_impl.dart';
 import 'package:Gestart/data/repositories/user/user_repository_impl.dart';
+import 'package:Gestart/data/repositories/veiculo/veiculo_repository_impl.dart';
 import 'package:Gestart/domain/repositories/assembleia/assembleia_repository.dart';
 import 'package:Gestart/domain/repositories/boleto/boleto_repository.dart';
 import 'package:Gestart/domain/repositories/balancete/balancete_repository.dart';
@@ -41,6 +43,7 @@ import 'package:Gestart/domain/repositories/reserva/horarios_espaco_repository.d
 import 'package:Gestart/domain/repositories/reserva/reserva_repository.dart';
 import 'package:Gestart/domain/repositories/unidade/unidade_repository.dart';
 import 'package:Gestart/domain/repositories/user/user_repository.dart';
+import 'package:Gestart/domain/repositories/veiculo/veiculo_repository.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_edital_use_case.dart';
 import 'package:Gestart/domain/usecases/auth/check_user_use_case.dart';
@@ -79,6 +82,10 @@ import 'package:Gestart/domain/usecases/user/editar_usuario.dart';
 import 'package:Gestart/domain/usecases/user/excluir_conta_use_case.dart';
 import 'package:Gestart/domain/usecases/user/get_perfil_use_case.dart';
 import 'package:Gestart/domain/usecases/user/update_password_use_case.dart';
+import 'package:Gestart/domain/usecases/veiculo/create_veiculo_use_case.dart';
+import 'package:Gestart/domain/usecases/veiculo/delete_veiculo_use_case.dart';
+import 'package:Gestart/domain/usecases/veiculo/get_veiculo_use_case.dart';
+import 'package:Gestart/domain/usecases/veiculo/get_veiculos_use_case.dart';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -167,6 +174,13 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<HorariosEspacoRemoteDataSource>(() => HorariosEspacoRemoteDataSource(get<CustomDio>()));
   gh.factory<GetHorariosEspacosUseCase>(() => GetHorariosEspacosUseCase(get<HorariosEspacoRepository>()));
 
+  //veiculo
+  gh.factory<VeiculoRemoteDataSource>(() => VeiculoRemoteDataSource(get<CustomDio>()));
+  gh.factory<CreateVeiculoUseCase>(() => CreateVeiculoUseCase(get<VeiculoRepository>()));
+  gh.factory<GetVeiculosUseCase>(() => GetVeiculosUseCase(get<VeiculoRepository>()));
+  gh.factory<GetVeiculoUseCase>(() => GetVeiculoUseCase(get<VeiculoRepository>()));
+  gh.factory<DeleteVeiculoUseCase>(() => DeleteVeiculoUseCase(get<VeiculoRepository>()));
+
   //  Singleton
   gh.singleton<Dio>(dio);
   gh.singleton<SharedPreferencesManager>(SharedPreferencesManager());
@@ -196,5 +210,8 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.singleton<ReservaRepository>(ReservaRepositoryImpl(get<ReservaRemoteDataSource>()));
   gh.singleton<EspacoRepository>(EspacoRepositoryImpl(get<EspacoRemoteDataSource>()));
   gh.singleton<HorariosEspacoRepository>(HorariosEspacoRepositoryImpl(get<HorariosEspacoRemoteDataSource>()));
+
+  gh.singleton<VeiculoRepository>(VeiculoRepositoryImpl(get<VeiculoRemoteDataSource>()));
+
   return get;
 }
