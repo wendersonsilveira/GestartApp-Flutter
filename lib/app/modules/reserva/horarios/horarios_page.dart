@@ -5,6 +5,7 @@ import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'horarios_controller.dart';
 
@@ -190,7 +191,9 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
 
   bool checkDay(DateTime date) {
     if (date.isAfter(now)) {
-      return true;
+      String dayPrefix = DateFormat('EEE', 'pt_BR').format(date);
+      dayPrefix = dayPrefix.toUpperCase().replaceAll(r'Á', 'A');
+      return controller.espacoJSON[dayPrefix];
     } else {
       if ((date.day.toString() + date.month.toString()) == (now.day.toString() + now.month.toString())) {
         return true;
@@ -206,80 +209,84 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
         context,
         title: Text(widget.title),
       ),
-      body: Column(
-        children: <Widget>[
-          TableCalendar(
-            calendarController: _calendarController,
-            locale: 'pt_BR',
-            initialCalendarFormat: CalendarFormat.month,
-            enabledDayPredicate: checkDay,
-            headerStyle: HeaderStyle(
-              formatButtonVisible: false,
-              centerHeaderTitle: true,
-            ),
-            calendarStyle: CalendarStyle(
-              todayColor: AppColorScheme.secondaryColor,
-              selectedColor: AppColorScheme.primaryColor,
-            ),
-            onDaySelected: (data, b, c) => controller.getHorariosEspaco(data),
-          ),
-          Observer(
-              builder: (_) => controller.horarios == null
-                  ? controller.isLoading
-                      ? Expanded(child: CircularProgressCustom())
-                      : Container(child: null)
-                  : controller.isLoading
-                      ? Expanded(child: CircularProgressCustom())
-                      : controller.horarios.length > 0
-                          ? Expanded(
-                              child: ListView.builder(
-                                itemCount: controller.horarios.length,
-                                itemBuilder: (con, index) => Card(
-                                  child: ListTile(
-                                    title: Text('${controller.horarios[index].horIniDescricao} - ${controller.horarios[index].horfimDescricao}'),
-                                    leading: Icon(
-                                      controller.horarios[index].reservaId > 0 ? Icons.alarm_off : Icons.alarm,
-                                      color: controller.horarios[index].reservaId > 0 ? AppColorScheme.feedbackDangerDark : AppColorScheme.primaryColor,
+      body: Observer(
+        builder: (_) => Column(
+          children: <Widget>[
+            controller.espacoJSON != null
+                ? TableCalendar(
+                    calendarController: _calendarController,
+                    locale: 'pt_BR',
+                    initialCalendarFormat: CalendarFormat.month,
+                    enabledDayPredicate: checkDay,
+                    headerStyle: HeaderStyle(
+                      formatButtonVisible: false,
+                      centerHeaderTitle: true,
+                    ),
+                    calendarStyle: CalendarStyle(
+                      todayColor: AppColorScheme.secondaryColor,
+                      selectedColor: AppColorScheme.primaryColor,
+                    ),
+                    onDaySelected: (data, b, c) => controller.getHorariosEspaco(data),
+                  )
+                : CircularProgressCustom(),
+            Observer(
+                builder: (_) => controller.horarios == null
+                    ? controller.isLoading
+                        ? Expanded(child: CircularProgressCustom())
+                        : Container(child: null)
+                    : controller.isLoading
+                        ? Expanded(child: CircularProgressCustom())
+                        : controller.horarios.length > 0
+                            ? Expanded(
+                                child: ListView.builder(
+                                  itemCount: controller.horarios.length,
+                                  itemBuilder: (con, index) => Card(
+                                    child: ListTile(
+                                      title: Text('${controller.horarios[index].horIniDescricao} - ${controller.horarios[index].horfimDescricao}'),
+                                      leading: Icon(
+                                        controller.horarios[index].reservaId > 0 ? Icons.alarm_off : Icons.alarm,
+                                        color: controller.horarios[index].reservaId > 0 ? AppColorScheme.feedbackDangerDark : AppColorScheme.primaryColor,
+                                      ),
+                                      trailing: controller.horarios[index].reservaId > 0
+                                          ? OutlineButton(
+                                              child: Text(
+                                                'Reservado',
+                                                style: TextStyle(color: AppColorScheme.feedbackDangerDark),
+                                              ),
+                                              borderSide: BorderSide(color: AppColorScheme.feedbackDangerDark),
+                                              onPressed: () => print('Reservado'),
+                                            )
+                                          : OutlineButton(
+                                              child: Text('Disponível',
+                                                  style: TextStyle(
+                                                    color: AppColorScheme.primaryColor,
+                                                  )),
+                                              borderSide: BorderSide(color: AppColorScheme.primaryColor),
+                                              onPressed: () => openDialogHorario(controller.horarios[index].horiniId, controller.horarios[index].horfimId)),
                                     ),
-                                    trailing: controller.horarios[index].reservaId > 0
-                                        ? OutlineButton(
-                                            child: Text(
-                                              'Reservado',
-                                              style: TextStyle(color: AppColorScheme.feedbackDangerDark),
-                                            ),
-                                            borderSide: BorderSide(color: AppColorScheme.feedbackDangerDark),
-                                            onPressed: () => print('Reservado'),
-                                          )
-                                        : OutlineButton(
-                                            child: Text('Disponível',
-                                                style: TextStyle(
-                                                  color: AppColorScheme.primaryColor,
-                                                )),
-                                            borderSide: BorderSide(color: AppColorScheme.primaryColor),
-                                            onPressed: () => openDialogHorario(controller.horarios[index].horiniId, controller.horarios[index].horfimId)),
                                   ),
                                 ),
-                              ),
-                            )
-                          : Expanded(
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.alarm_off,
-                                      size: 70,
-                                      color: AppColorScheme.primaryColor,
-                                    ),
-                                    SizedBox(
-                                      height: 30,
-                                    ),
-                                    Text('Não há horários para reservas.'),
-                                  ],
+                              )
+                            : Expanded(
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.alarm_off,
+                                        size: 70,
+                                        color: AppColorScheme.primaryColor,
+                                      ),
+                                      SizedBox(
+                                        height: 30,
+                                      ),
+                                      Text('Não há horários para reservas.'),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            )),
-        ],
+                              )),
+          ],
+        ),
       ),
     );
   }

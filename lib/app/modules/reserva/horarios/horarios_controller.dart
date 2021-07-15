@@ -8,6 +8,7 @@ import 'package:Gestart/domain/usecases/reserva/get_horarios_espaco_use_case.dar
 import 'package:Gestart/domain/usecases/reserva/get_horas_use_case.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:Gestart/data/mappers/reserva/espaco_mapper.dart';
 
 part 'horarios_controller.g.dart';
 
@@ -39,6 +40,9 @@ abstract class _HorariosControllerBase with Store {
   List<HoraEntity> horariosDisponiveis = [];
   @observable
   List<HoraEntity> horariosFinal = [];
+
+  @observable
+  Map<String, dynamic> espacoJSON;
 
   var reserva = {
     'CODCON': '',
@@ -75,6 +79,7 @@ abstract class _HorariosControllerBase with Store {
     final r = await _getEspaco(espacoId);
 
     espaco = r.data;
+    espacoJSON = espaco.toMap();
   }
 
   @action

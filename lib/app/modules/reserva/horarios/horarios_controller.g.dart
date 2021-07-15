@@ -172,6 +172,21 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
     });
   }
 
+  final _$espacoJSONAtom = Atom(name: '_HorariosControllerBase.espacoJSON');
+
+  @override
+  Map<String, dynamic> get espacoJSON {
+    _$espacoJSONAtom.reportRead();
+    return super.espacoJSON;
+  }
+
+  @override
+  set espacoJSON(Map<String, dynamic> value) {
+    _$espacoJSONAtom.reportWrite(value, super.espacoJSON, () {
+      super.espacoJSON = value;
+    });
+  }
+
   final _$getHorariosEspacoAsyncAction =
       AsyncAction('_HorariosControllerBase.getHorariosEspaco');
 
@@ -298,7 +313,8 @@ horaIn: ${horaIn},
 horaFi: ${horaFi},
 horariosTotais: ${horariosTotais},
 horariosDisponiveis: ${horariosDisponiveis},
-horariosFinal: ${horariosFinal}
+horariosFinal: ${horariosFinal},
+espacoJSON: ${espacoJSON}
     ''';
   }
 }
