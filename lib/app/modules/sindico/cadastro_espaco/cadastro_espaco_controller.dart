@@ -19,8 +19,8 @@ abstract class _CadastroEspacoControllerBase with Store {
   final _getHorarios = getIt.get<GetHorasUseCase>();
   final _criarEspaco = getIt.get<CriarEspacoUseCase>();
 
-  enviarParametros(String nome, capacidade, obs) async {
-    _criarEspaco(EspacoEntity(
+  Future<ResourceData> enviarParametros(String nome, capacidade, obs) async {
+    statusCriacao = await _criarEspaco(EspacoEntity(
         codcon: int.parse(this.cond),
         descricao: nome,
         capacidade: int.parse(capacidade),
@@ -53,6 +53,31 @@ abstract class _CadastroEspacoControllerBase with Store {
         sabFim: this.sabFim,
         aprovacao: this.autorizacaoResponsavel,
         apenasMaster: this.apenasProprietarioReserva));
+
+    return statusCriacao;
+  }
+
+  String checarValores() {
+    if (this.tempoMinPermanencia >= this.tempoMaxPermanencia)
+      return 'Tempo mínimo de permanência não pode ser maior ou igual ao máximo.';
+    else if (this.tempoMinAntecedencia >= this.tempoMaxAntecedencia)
+      return 'Tempo mínimo de antecedência não pode ser maior ou igual ao máximo.';
+    else if (this.domIni >= this.domFim)
+      return 'Horarío inicial não pode ser maior que o final (Domingo).';
+    else if (this.segIni >= this.segFim)
+      return 'Horarío inicial não pode ser maior que o final (Segunda).';
+    else if (this.terIni >= this.terFim)
+      return 'Horarío inicial não pode ser maior que o final (Terça).';
+    else if (this.quaIni >= this.quaFim)
+      return 'Horarío inicial não pode ser maior que o final (Quarta).';
+    else if (this.quiIni >= this.quiFim)
+      return 'Horarío inicial não pode ser maior que o final (Quinta).';
+    else if (this.sexIni >= this.sexFim)
+      return 'Horarío inicial não pode ser maior que o final (Sexta).';
+    else if (this.sabIni >= this.sabFim)
+      return 'Horarío inicial não pode ser maior que o final (Sabado).';
+    else
+      return null;
   }
 
   String cond;
@@ -70,7 +95,7 @@ abstract class _CadastroEspacoControllerBase with Store {
   int tempoMaxPermanencia = 1;
 
   @observable
-  int tempoMinAntecedencia = 1;
+  int tempoMinAntecedencia = 5;
 
   @observable
   int tempoMaxAntecedencia = 1;
@@ -78,20 +103,25 @@ abstract class _CadastroEspacoControllerBase with Store {
   @observable
   int tempoIntervaloReserva = 1;
 
-  @action
-  setPerMin(value) => tempoMinPermanencia = value;
+  setMinPer(int idTempo) {
+    tempoMinPermanencia = idTempo;
+  }
 
-  @action
-  setPerMax(value) => tempoMaxPermanencia = value;
+  setMaxPer(int idTempo) {
+    tempoMaxPermanencia = idTempo;
+  }
 
-  @action
-  setAntMin(value) => tempoMinAntecedencia = value;
+  setMinAnt(int idTempo) {
+    tempoMinAntecedencia = idTempo;
+  }
 
-  @action
-  setAntMax(value) => tempoMaxAntecedencia = value;
+  setMaxAnt(int idTempo) {
+    tempoMaxAntecedencia = idTempo;
+  }
 
-  @action
-  setTempIntervaloReserva(value) => tempoIntervaloReserva = value;
+  setIntRes(int idTempo) {
+    tempoIntervaloReserva = idTempo;
+  }
 
   @observable
   bool ativarDom = true;
@@ -158,33 +188,33 @@ abstract class _CadastroEspacoControllerBase with Store {
   }
 
   @observable
-  int domIni = 1;
+  int domIni = 16;
   @observable
-  int domFim = 1;
+  int domFim = 44;
   @observable
-  int segIni = 1;
+  int segIni = 16;
   @observable
-  int segFim = 1;
+  int segFim = 44;
   @observable
-  int terIni = 1;
+  int terIni = 16;
   @observable
-  int terFim = 1;
+  int terFim = 44;
   @observable
-  int quaIni = 1;
+  int quaIni = 16;
   @observable
-  int quaFim = 1;
+  int quaFim = 44;
   @observable
-  int quiIni = 1;
+  int quiIni = 16;
   @observable
-  int quiFim = 1;
+  int quiFim = 44;
   @observable
-  int sexIni = 1;
+  int sexIni = 16;
   @observable
-  int sexFim = 1;
+  int sexFim = 44;
   @observable
-  int sabIni = 1;
+  int sabIni = 16;
   @observable
-  int sabFim = 1;
+  int sabFim = 44;
 
   @action
   setHorarioDomIni(value) => domIni = value;
@@ -228,25 +258,5 @@ abstract class _CadastroEspacoControllerBase with Store {
     horarios = ResourceData(status: Status.loading);
     horarios = await _getHorarios();
     this.cond = await UIHelper.getStorage('cond');
-  }
-
-  setMinPer(int idTempo) {
-    tempoMinPermanencia = idTempo;
-  }
-
-  setMaxPer(int idTempo) {
-    tempoMaxPermanencia = idTempo;
-  }
-
-  setMinAnt(int idTempo) {
-    tempoMinAntecedencia = idTempo;
-  }
-
-  setMaxAnt(int idTempo) {
-    tempoMaxAntecedencia = idTempo;
-  }
-
-  setIntRes(int idTempo) {
-    tempoIntervaloReserva = idTempo;
   }
 }

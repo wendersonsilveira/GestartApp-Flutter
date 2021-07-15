@@ -3,6 +3,7 @@ import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/widgets/buttons/flat_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ErrorDialog extends StatelessWidget {
@@ -33,12 +34,7 @@ class ErrorDialog extends StatelessWidget {
       ),
       content: Text(error),
       actions: [
-        FlatButtonWidget(
-            cor: Colors.red,
-            text: "Ok",
-            onPressed: () {
-              Navigator.of(context).pop();
-            }),
+        TextButton(onPressed: () => Modular.navigator.pop(), child: Text('OK'))
       ],
     );
   }

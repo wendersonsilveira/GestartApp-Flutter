@@ -127,8 +127,8 @@ Future<GetIt> initGetIt(GetIt get) async {
   //     () => GetCondominioAtivoUseCase(get<CondominioRepository>()));
   // gh.factory<GetCondominiosAtivosUseCase>(
   //     () => GetCondominiosAtivosUseCase(get<CondominioRepository>()));
-  // gh.factory<GetInforAdmCondominiosUseCase>(
-  //     () => GetInforAdmCondominiosUseCase(get<CondominioRepository>()));
+  gh.factory<GetInforAdmCondominiosUseCase>(
+      () => GetInforAdmCondominiosUseCase(get<CondominioRepository>()));
 
   //condominio
   gh.factory<CondominioRemoteDataSource>(

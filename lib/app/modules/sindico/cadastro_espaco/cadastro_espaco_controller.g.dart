@@ -493,62 +493,6 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
       ActionController(name: '_CadastroEspacoControllerBase');
 
   @override
-  dynamic setPerMin(dynamic value) {
-    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
-        .startAction(name: '_CadastroEspacoControllerBase.setPerMin');
-    try {
-      return super.setPerMin(value);
-    } finally {
-      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic setPerMax(dynamic value) {
-    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
-        .startAction(name: '_CadastroEspacoControllerBase.setPerMax');
-    try {
-      return super.setPerMax(value);
-    } finally {
-      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic setAntMin(dynamic value) {
-    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
-        .startAction(name: '_CadastroEspacoControllerBase.setAntMin');
-    try {
-      return super.setAntMin(value);
-    } finally {
-      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic setAntMax(dynamic value) {
-    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
-        .startAction(name: '_CadastroEspacoControllerBase.setAntMax');
-    try {
-      return super.setAntMax(value);
-    } finally {
-      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic setTempIntervaloReserva(dynamic value) {
-    final _$actionInfo =
-        _$_CadastroEspacoControllerBaseActionController.startAction(
-            name: '_CadastroEspacoControllerBase.setTempIntervaloReserva');
-    try {
-      return super.setTempIntervaloReserva(value);
-    } finally {
-      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   dynamic statusAutorizacaoResponsavel() {
     final _$actionInfo =
         _$_CadastroEspacoControllerBaseActionController.startAction(

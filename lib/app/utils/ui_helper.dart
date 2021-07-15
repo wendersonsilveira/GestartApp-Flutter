@@ -62,4 +62,10 @@ class UIHelper {
     return SharedPreferences.getInstance()
         .then((value) => value.getString(key));
   }
+
+  static void showInSnackBar(
+      String value, GlobalKey<ScaffoldState> _scaffoldKey) {
+    _scaffoldKey.currentState
+        .showSnackBar(new SnackBar(content: new Text(value)));
+  }
 }

@@ -37,8 +37,9 @@ class _ListarEspacosPageState
         center: false,
         actions: [
           TextButton(
-            onPressed: () =>
-                Modular.navigator.pushNamed(RouteName.cadastro_espaco),
+            onPressed: () => Modular.navigator
+                .pushNamed(RouteName.cadastro_espaco)
+                .then((value) => controller.init()),
             child: Text('ADICIONAR', style: AppTextTheme.textActionButton),
           )
         ],

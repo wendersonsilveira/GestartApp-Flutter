@@ -47,7 +47,7 @@ class EspacoRemoteDataSource {
     }
   }
 
-  Future<ResourceData> criarEspaco(EspacoEntity espaco) async {
+  Future<ResourceData<bool>> criarEspaco(EspacoEntity espaco) async {
     try {
       final result = await _dio.post('espacos', data: espaco.toMap());
 
