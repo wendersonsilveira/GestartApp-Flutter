@@ -29,5 +29,5 @@ class RouteName {
   static const String reservaCadastro = '/reserva_cadastro';
   static const String reservaDados = '/reserva_dados';
   static const String veiculos = '/veiculos';
-  static const String cadastroVeiculo = '/reserva_dados';
+  static const String cadastroVeiculo = '/cadastroVeirculo';
 }

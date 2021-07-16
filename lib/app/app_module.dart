@@ -1,4 +1,5 @@
 import 'package:Gestart/app/modules/sindico/cadastro_espaco/cadastro_espaco_page.dart';
+import 'package:Gestart/app/modules/veiculo/cadastro_veiculo/cadastro_veiculo_controller.dart';
 import 'package:Gestart/app/modules/veiculo/veiculos_controller.dart';
 import 'package:Gestart/app/modules/veiculo/veiculos_page.dart';
 
@@ -45,6 +46,7 @@ import 'modules/reserva/cadastro/cadastro_page.dart' as cadastroReserva;
 import 'modules/reserva/reserva_controller.dart';
 import 'modules/reserva/reserva_page.dart';
 import 'modules/reserva/unidades/unidades_page.dart';
+import 'modules/veiculo/cadastro_veiculo/cadastro_veiculo_page.dart';
 import 'modules/view_documentos/view_documentos_controller.dart';
 import 'package:Gestart/app/modules/assembleia/assembleia_controller.dart';
 import 'package:Gestart/app/modules/assembleia/assembleia_page.dart';
@@ -107,7 +109,8 @@ class AppModule extends MainModule {
         $HorariosController,
         cadastroReservaController.$CadastroController,
         $DadosReservaController,
-        $VeiculosController
+        $VeiculosController,
+        $CadastroVeiculoController
       ];
 
   @override
@@ -145,6 +148,7 @@ class AppModule extends MainModule {
         ModularRouter(RouteName.reservaCadastro, child: (_, args) => cadastroReserva.CadastroPage(reserva: args.data)),
         ModularRouter(RouteName.reservaDados, child: (_, args) => DadosReservaPage(reserva: args.data)),
         ModularRouter(RouteName.veiculos, child: (_, args) => VeiculosPage()),
+        ModularRouter(RouteName.cadastroVeiculo, child: (_, args) => CadastroVeiculoPage(id: args.data)),
       ];
 
   @override

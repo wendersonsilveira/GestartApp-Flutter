@@ -5,9 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ItemCadastroWidget extends StatelessWidget {
-  const ItemCadastroWidget(
-      {Key key, this.descricao, this.icone, this.routeName})
-      : super(key: key);
+  const ItemCadastroWidget({Key key, this.descricao, this.icone, this.routeName}) : super(key: key);
 
   final String descricao;
   final IconData icone;
@@ -16,7 +14,7 @@ class ItemCadastroWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Modular.navigator.pushNamed(RouteName.pets);
+        Modular.navigator.pushNamed(routeName);
       },
       child: Container(
         color: Color(0xfffafafa),

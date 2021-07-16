@@ -59,11 +59,7 @@ abstract class Validators {
       return "Telefone em branco";
     }
 
-    final split = value
-        .replaceAll(' ', '')
-        .replaceAll('(', '')
-        .replaceAll(')', '')
-        .replaceAll('-', '');
+    final split = value.replaceAll(' ', '').replaceAll('(', '').replaceAll(')', '').replaceAll('-', '');
     if (split.length == 11) {
       return null;
     } else {
@@ -155,8 +151,7 @@ abstract class Validators {
     // 1. The year is in the past. In that case, we just assume that the month
     // has passed
     // 2. Card's month (plus another month) is less than current month.
-    return hasYearPassed(year) ||
-        convertYearTo4Digits(year) == now.year && (month < now.month + 1);
+    return hasYearPassed(year) || convertYearTo4Digits(year) == now.year && (month < now.month + 1);
   }
 
   static bool hasYearPassed(int year) {
@@ -219,6 +214,22 @@ abstract class Validators {
     if (password != repeatPassword) {
       return "Senhas diferentes";
     }
+    return null;
+  }
+
+  static String yearNotEmptyValid(String year) {
+    if (year == null || year.isEmpty) {
+      return "O ano não pode ser vazio.";
+    }
+
+    var now = DateTime.now();
+    if (int.parse(year) < 1800) {
+      return 'Ano inválido.';
+    }
+    if (int.parse(year) > now.year + 1) {
+      return 'Ano não pode ter 2 anos a mais que o atual.';
+    }
+
     return null;
   }
 }
