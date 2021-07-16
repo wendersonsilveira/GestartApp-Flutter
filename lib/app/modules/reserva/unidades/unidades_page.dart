@@ -38,7 +38,7 @@ class _UnidadesPageState extends ModularState<UnidadesPage, UnidadesController> 
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                     child: Text(
-                      'Selecione a unidade para qual deseja ralizar a reserva',
+                      'Selecione a unidade para qual deseja realizar a reserva',
                       style: TextStyle(fontSize: 18),
                       textAlign: TextAlign.center,
                     ),

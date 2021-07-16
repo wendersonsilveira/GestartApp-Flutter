@@ -7,6 +7,7 @@ import 'package:Gestart/domain/usecases/balancete/get_all_pets_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominios_ativos_use_case.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'balancete_controller.g.dart';
 
@@ -37,7 +38,16 @@ abstract class _BalanceteControllerBase with Store {
 
     allBalancetes = r.data;
     condominios = rc.data;
-    codCon = codCon == null ? condominios[0].codcon : codCon;
+
+    var storage = await SharedPreferences.getInstance();
+    int cod = storage.getInt('codCon');
+    if (codCon == null) {
+      if (cod != null) {
+        codCon = cod;
+      } else {
+        codCon = condominios[0].codcon;
+      }
+    }
 
     await filterBalancetes(codCon);
   }
