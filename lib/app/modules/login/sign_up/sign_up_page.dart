@@ -198,6 +198,9 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                     ContainedButtonWidget(
                       text: "Criar Conta",
                       onPressed: _onactionCreateUser,
+                      loading: controller.loadingUser.status == Status.loading
+                          ? true
+                          : false,
                     )
                   ],
                 ),

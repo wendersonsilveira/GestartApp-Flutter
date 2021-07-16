@@ -180,7 +180,15 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                           }),
                           Observer(builder: (_) {
                             return ContainedButtonWidget(
-                                text: "CONTINUAR", onPressed: _onactionLogin);
+                              text: "CONTINUAR",
+                              onPressed: _onactionLogin,
+                              loading: (controller.loadingCheck.status ==
+                                          Status.loading ||
+                                      controller.userLogin.status ==
+                                          Status.loading)
+                                  ? true
+                                  : false,
+                            );
                           }),
                           const Spacer(flex: 1),
                           Observer(builder: (_) {
