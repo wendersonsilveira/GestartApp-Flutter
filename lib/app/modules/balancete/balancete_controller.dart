@@ -47,6 +47,8 @@ abstract class _BalanceteControllerBase with Store {
       } else {
         codCon = condominios[0].codcon;
       }
+    } else {
+      codCon = condominios[0].codcon;
     }
 
     await filterBalancetes(codCon);

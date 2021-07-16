@@ -50,7 +50,6 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
                         : DropdownButtonField3Widget(
                             label: 'Unidade',
                             hint: 'Selecione',
-                            value: controller.unidades.data[0].codord,
                             list: controller.unidades.data != null
                                 ? controller.unidades.data
                                 : [],
