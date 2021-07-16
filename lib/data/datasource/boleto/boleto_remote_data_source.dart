@@ -18,12 +18,8 @@ class BoletoRemoteDataSource {
   Future<ResourceData<List<BoletoEntity>>> getBoletos() async {
     try {
       final result = await _dio.get('faturas');
-      if (result.length > 0)
-        return ResourceData<List<BoletoEntity>>(
-            status: Status.success, data: BoletoEntity().fromMapList(result));
-      else
-        return ResourceData<List<BoletoEntity>>(
-            status: Status.success, data: null);
+      return ResourceData<List<BoletoEntity>>(
+          status: Status.success, data: BoletoEntity().fromMapList(result));
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,
