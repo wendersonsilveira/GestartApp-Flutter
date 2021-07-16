@@ -52,22 +52,9 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
           usuario: _cpfCnpjController.text, senha: _senhaController.text));
 
       if (login.status == Status.failed) {
-        showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-            title: Text(login.message),
-            backgroundColor: Colors.white,
-            titleTextStyle: TextStyle(color: Colors.red),
-            actions: [
-              FlatButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('Ok'))
-            ],
-          ),
-          barrierDismissible: false,
-        );
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+          CustomAlertDialog.error(context, login.message);
+        });
       } else if (login.data.status == 1)
         Modular.navigator.popAndPushNamed(RouteName.home);
     }
