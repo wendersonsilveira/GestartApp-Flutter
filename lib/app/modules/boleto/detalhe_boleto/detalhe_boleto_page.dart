@@ -1,10 +1,10 @@
 import 'package:Gestart/app/modules/boleto/component/button_expanded_widget.dart';
 import 'package:Gestart/app/modules/boleto/component/texto_infor_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
-import 'package:Gestart/app/styles/app_images.dart';
 import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
+import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
 import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'detalhe_boleto_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,12 +56,12 @@ class _DetalheBoletoPageState
         context,
         title: Text(widget.title),
       ),
-      body: SingleChildScrollView(
-        child: Observer(
-          builder: (_) {
-            switch (controller.boleto.status) {
-              case Status.success:
-                return Column(
+      body: Observer(
+        builder: (_) {
+          switch (controller.boleto.status) {
+            case Status.success:
+              return SingleChildScrollView(
+                child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Padding(
@@ -195,19 +194,23 @@ class _DetalheBoletoPageState
                               setState(() => _isOpen = !isOPen),
                         ),
                       )
-                    ]);
-                break;
-              case Status.failed:
-                return PageError(
-                  messageError: controller.boleto.error.message,
-                  onPressed: controller.init(),
-                );
-                break;
-              default:
-                return Center(child: CircularProgressCustom());
-            }
-          },
-        ),
+                    ]),
+              );
+              break;
+            case Status.failed:
+              return controller.boleto.status == Status.failed
+                  ? Center(
+                      child: PageError(
+                        messageError: 'Erro ao carregar o boleto',
+                        onPressed: controller.init,
+                      ),
+                    )
+                  : Container();
+              break;
+            default:
+              return Center(child: CircularProgressCustom());
+          }
+        },
       ),
     );
   }

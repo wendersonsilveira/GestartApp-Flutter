@@ -20,6 +20,7 @@ abstract class _DetalheBoletoControllerBase with Store {
 
   List<dynamic> inforBoletos = [];
 
+  @action
   init({idBoleto}) async {
     boleto = ResourceData(status: Status.loading);
     boleto = await _getBoleto(idBoleto);

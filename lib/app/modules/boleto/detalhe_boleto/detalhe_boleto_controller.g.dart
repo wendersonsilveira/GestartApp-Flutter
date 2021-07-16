@@ -49,6 +49,13 @@ mixin _$DetalheBoletoController on _DetalheBoletoControllerBase, Store {
     });
   }
 
+  final _$initAsyncAction = AsyncAction('_DetalheBoletoControllerBase.init');
+
+  @override
+  Future init({dynamic idBoleto}) {
+    return _$initAsyncAction.run(() => super.init(idBoleto: idBoleto));
+  }
+
   final _$_DetalheBoletoControllerBaseActionController =
       ActionController(name: '_DetalheBoletoControllerBase');
 

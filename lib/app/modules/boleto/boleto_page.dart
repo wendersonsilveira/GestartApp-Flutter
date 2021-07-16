@@ -39,7 +39,8 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
         title: Text('Boleto Digital'),
       ),
       body: Observer(
-        builder: (_) => controller.unidades.status == Status.loading
+        builder: (_) => controller.unidades.status == Status.loading ||
+                controller.listaView == null
             ? CircularProgressCustom()
             : Column(
                 children: <Widget>[
@@ -60,82 +61,72 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
                           ),
                   ),
                   Observer(
-                      builder: (_) => controller.listaView == null
-                          ? CircularProgressCustom()
-                          : controller.listaView.length == 0
-                              ? Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.subtitles_off,
-                                        size: 70,
-                                        color: AppColorScheme.primaryColor,
-                                      ),
-                                      SizedBox(
-                                        height: 30.h,
-                                      ),
-                                      Text(
-                                          'Não existe boletos para esta unidade'),
-                                    ],
+                      builder: (_) => controller.listaView.length == 0
+                          ? Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.subtitles_off,
+                                    size: 70,
+                                    color: AppColorScheme.primaryColor,
                                   ),
-                                )
-                              : Expanded(
-                                  child: Container(
-                                    child: ListView.builder(
-                                      itemCount: controller.listaView.length,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        return Card(
-                                          margin: EdgeInsets.all(10),
-                                          child: Expanded(
-                                            child: Container(
-                                              child: ListTile(
-                                                onTap: () {
-                                                  Modular.navigator.pushNamed(
-                                                      RouteName.detalhe_boleto,
-                                                      arguments: controller
-                                                          .boletos
-                                                          .data[index]
-                                                          .id);
-                                                },
-                                                trailing:
-                                                    Icon(Icons.arrow_right),
-                                                title: Column(
-                                                  children: [
-                                                    TextoInforWidget(
-                                                      titulo: 'Vencimento',
-                                                      valor: UIHelper
-                                                          .formatDateFromDateTime(
-                                                              controller
-                                                                  .listaView[
-                                                                      index]
-                                                                  .datven),
-                                                    ),
-                                                    TextoInforWidget(
-                                                        titulo: 'Valor',
-                                                        valor: UIHelper
-                                                            .moneyFormat(
-                                                                controller
-                                                                    .listaView[
-                                                                        index]
-                                                                    .valtot)),
-                                                    TextoInforWidget(
-                                                      titulo: 'Unidade',
-                                                      valor: controller
-                                                          .listaView[index]
-                                                          .codimo,
-                                                    ),
-                                                  ],
+                                  SizedBox(
+                                    height: 30.h,
+                                  ),
+                                  Text('Não existe boletos para esta unidade'),
+                                ],
+                              ),
+                            )
+                          : Expanded(
+                              child: Container(
+                                child: ListView.builder(
+                                  itemCount: controller.listaView.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return Card(
+                                      margin: EdgeInsets.all(10),
+                                      child: Expanded(
+                                        child: Container(
+                                          child: ListTile(
+                                            onTap: () {
+                                              Modular.navigator.pushNamed(
+                                                  RouteName.detalhe_boleto,
+                                                  arguments: controller
+                                                      .boletos.data[index].id);
+                                            },
+                                            trailing: Icon(Icons.arrow_right),
+                                            title: Column(
+                                              children: [
+                                                TextoInforWidget(
+                                                  titulo: 'Vencimento',
+                                                  valor: UIHelper
+                                                      .formatDateFromDateTime(
+                                                          controller
+                                                              .listaView[index]
+                                                              .datven),
                                                 ),
-                                              ),
+                                                TextoInforWidget(
+                                                    titulo: 'Valor',
+                                                    valor: UIHelper.moneyFormat(
+                                                        controller
+                                                            .listaView[index]
+                                                            .valtot)),
+                                                TextoInforWidget(
+                                                  titulo: 'Unidade',
+                                                  valor: controller
+                                                      .listaView[index].codimo,
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ))
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ))
                 ],
               ),
       ),
