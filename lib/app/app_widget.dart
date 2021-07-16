@@ -19,6 +19,7 @@ class _AppWidgetState extends ModularState<AppWidget, AppController> {
       DeviceOrientation.portraitDown,
     ]);
     controller.isUserLogged();
+
     return Observer(builder: (_) {
       return controller.loading
           ? Container(child: Center(child: CircularProgressCustom()))
@@ -28,9 +29,8 @@ class _AppWidgetState extends ModularState<AppWidget, AppController> {
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
               ],
-              supportedLocales: [
-                const Locale('en', 'US'),
-                const Locale('pt_BR', 'BR'),
+              supportedLocales: <Locale>[
+                Locale.fromSubtags(languageCode: 'en'),
               ],
               navigatorKey: Modular.navigatorKey,
               title: 'Gestart App',
