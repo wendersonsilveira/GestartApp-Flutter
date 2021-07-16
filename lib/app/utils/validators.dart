@@ -26,6 +26,13 @@ abstract class Validators {
     return null;
   }
 
+  static String teste01(int um, int dois) {
+    if (um > dois)
+      return "valor menor";
+    else
+      return null;
+  }
+
   static String empty(String value) {
     if (value == null || value.isEmpty) {
       return "Campo em branco";

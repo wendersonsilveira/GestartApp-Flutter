@@ -52,12 +52,27 @@ class EspacoRemoteDataSource {
       final result = await _dio.post('espacos', data: espaco.toMap());
 
       return ResourceData(
-          status: Status.success, message: 'Espaço cirado com sucesso!');
+          status: Status.success, message: 'Espaço criado com sucesso!');
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,
           data: null,
           message: "Erro ao criar espaço",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<bool>> excluirEspaco(int idEspaco) async {
+    try {
+      final result = await _dio.delete('espaco/$idEspaco');
+
+      return ResourceData(
+          status: Status.success, message: 'Espaço excluido com sucesso!');
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao excluir espaço",
           error: ErrorMapper.from(e));
     }
   }

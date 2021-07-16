@@ -147,7 +147,9 @@ class AppModule extends MainModule {
         ModularRouter(RouteName.listarEspacos,
             child: (_, args) => ListarEspacosPage()),
         ModularRouter(RouteName.cadastro_espaco,
-            child: (_, args) => CadastroEspacoPage()),
+            child: (_, args) => CadastroEspacoPage(
+                  id: args.data,
+                )),
       ];
 
   @override

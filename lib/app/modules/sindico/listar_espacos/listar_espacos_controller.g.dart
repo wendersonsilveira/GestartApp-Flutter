@@ -34,10 +34,27 @@ mixin _$ListarEspacosController on _ListarEspacosControllerBase, Store {
     });
   }
 
+  final _$statusExcluirEspacoAtom =
+      Atom(name: '_ListarEspacosControllerBase.statusExcluirEspaco');
+
+  @override
+  ResourceData<dynamic> get statusExcluirEspaco {
+    _$statusExcluirEspacoAtom.reportRead();
+    return super.statusExcluirEspaco;
+  }
+
+  @override
+  set statusExcluirEspaco(ResourceData<dynamic> value) {
+    _$statusExcluirEspacoAtom.reportWrite(value, super.statusExcluirEspaco, () {
+      super.statusExcluirEspaco = value;
+    });
+  }
+
   @override
   String toString() {
     return '''
-reservas: ${reservas}
+reservas: ${reservas},
+statusExcluirEspaco: ${statusExcluirEspaco}
     ''';
   }
 }

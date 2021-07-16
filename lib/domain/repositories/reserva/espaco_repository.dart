@@ -5,4 +5,5 @@ abstract class EspacoRepository {
   Future<ResourceData<List<EspacoEntity>>> getEspacos(int espacoId);
   Future<ResourceData<EspacoEntity>> getEspaco(int espacoId);
   Future<ResourceData> criarEspaco(EspacoEntity espaco);
+  Future<ResourceData> excluirEspaco(int idEspaco);
 }

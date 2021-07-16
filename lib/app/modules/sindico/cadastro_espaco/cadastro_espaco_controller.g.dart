@@ -50,6 +50,22 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
     });
   }
 
+  final _$espacoEditarAtom =
+      Atom(name: '_CadastroEspacoControllerBase.espacoEditar');
+
+  @override
+  ResourceData<EspacoEntity> get espacoEditar {
+    _$espacoEditarAtom.reportRead();
+    return super.espacoEditar;
+  }
+
+  @override
+  set espacoEditar(ResourceData<EspacoEntity> value) {
+    _$espacoEditarAtom.reportWrite(value, super.espacoEditar, () {
+      super.espacoEditar = value;
+    });
+  }
+
   final _$tempoMinPermanenciaAtom =
       Atom(name: '_CadastroEspacoControllerBase.tempoMinPermanencia');
 
@@ -753,6 +769,7 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
     return '''
 horarios: ${horarios},
 statusCriacao: ${statusCriacao},
+espacoEditar: ${espacoEditar},
 tempoMinPermanencia: ${tempoMinPermanencia},
 tempoMaxPermanencia: ${tempoMaxPermanencia},
 tempoMinAntecedencia: ${tempoMinAntecedencia},

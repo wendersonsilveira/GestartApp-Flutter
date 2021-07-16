@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:Gestart/app/modules/sindico/component/config_horario_dia_widget.dart';
+import 'package:Gestart/app/modules/sindico/component/drop_validator_widget.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
@@ -22,7 +23,9 @@ import 'cadastro_espaco_controller.dart';
 
 class CadastroEspacoPage extends StatefulWidget {
   final String title;
-  const CadastroEspacoPage({Key key, this.title = "Espaço"}) : super(key: key);
+  final int id;
+  const CadastroEspacoPage({Key key, this.title = "Espaço", this.id})
+      : super(key: key);
 
   @override
   _CadastroEspacoPageState createState() => _CadastroEspacoPageState();
@@ -32,7 +35,6 @@ class _CadastroEspacoPageState
     extends ModularState<CadastroEspacoPage, CadastroEspacoController> {
   //use 'controller' variable to access controller
   final _formKey = GlobalKey<FormState>();
-  final _formKey2 = GlobalKey<FormState>();
 
   final _nomeController = TextEditingController();
   final _capacidadeController = TextEditingController();
@@ -42,18 +44,34 @@ class _CadastroEspacoPageState
   @override
   void initState() {
     controller.init();
+    if (widget.id != null) getEspaco(widget.id);
     super.initState();
+  }
+
+  getEspaco(idEspaco) async {
+    final r = await controller.getEspaco(idEspaco);
+    if (r.status == Status.success) {
+      _nomeController.text = r.data.descricao;
+      _capacidadeController.text = r.data.capacidade.toString();
+      _observacaoIniController.text = r.data.obs;
+    }
   }
 
   criarEspaco() async {
     if (controller.checarValores() == null) {
       if (_formKey.currentState.validate()) {
-        final result = await controller.enviarParametros(_nomeController.text,
-            _capacidadeController.text, _observacaoIniController.text);
+        final result = await controller.enviarParametros(
+            _nomeController.text,
+            _capacidadeController.text,
+            _observacaoIniController.text,
+            widget.id);
 
         if (result.status == Status.success) {
+          String message = widget.id != null
+              ? 'Espaço alterado com sucesso'
+              : 'Espaço adicionado com sucesso';
           UIHelper.showInSnackBar(
-            'Espaço adicionado com sucesso',
+            message,
             _scaffoldKey,
           );
           Timer(Duration(seconds: 1), () {
@@ -126,6 +144,17 @@ class _CadastroEspacoPageState
                                 ),
                               ),
                             ),
+                            // Card(
+                            //   child: DropDownValidator(
+                            //       lista: controller.horarios.data,
+                            //       onChange: (_) => print('teste'),
+                            //       validator: (value) {
+                            //         if (controller.tempoMinPermanencia >=
+                            //             controller.tempoMaxPermanencia) {
+                            //           return 'Relationship is required';
+                            //         }
+                            //       }),
+                            // )
                           ],
                         ),
                       ),
@@ -133,49 +162,69 @@ class _CadastroEspacoPageState
                         child: Padding(
                           padding: const EdgeInsets.only(
                               top: 0, left: 8, right: 8, bottom: 12),
-                          child: Form(
-                            key: _formKey2,
-                            child: Column(
-                              children: [
-                                LinhaDropdownWidget(
-                                  controller: controller,
-                                  descricao: 'Tempo mínimo de permanência',
-                                  valorInicial: controller.tempoMinPermanencia,
-                                  acaoIni: controller.setMinPer,
-                                ),
-                                Divider(),
-                                LinhaDropdownWidget(
-                                  controller: controller,
-                                  descricao: 'Tempo máximo de permanência*',
-                                  valorInicial: controller.tempoMaxPermanencia,
-                                  acaoIni: controller.setMaxPer,
-                                ),
-                                Divider(),
-                                LinhaDropdownWidget(
-                                  controller: controller,
-                                  descricao:
-                                      'Antecedência mínima para reserva*',
-                                  valorInicial: controller.tempoMinAntecedencia,
-                                  acaoIni: controller.setMinAnt,
-                                ),
-                                Divider(),
-                                LinhaDropdownWidget(
-                                  controller: controller,
-                                  descricao:
-                                      'Antecedência máxima para reserva*',
-                                  valorInicial: controller.tempoMaxPermanencia,
-                                  acaoIni: controller.setMaxAnt,
-                                ),
-                                Divider(),
-                                LinhaDropdownWidget(
-                                  controller: controller,
-                                  descricao: 'Intervalo entre reservas*',
-                                  valorInicial:
-                                      controller.tempoIntervaloReserva,
-                                  acaoIni: controller.setIntRes,
-                                ),
-                              ],
-                            ),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                      child: Text(
+                                    'Tempo mínimo de permanência',
+                                    style: TextStyle(
+                                        fontSize: 26.sp,
+                                        fontFamily: 'roboto',
+                                        color: Colors.grey[600],
+                                        fontStyle: FontStyle.normal),
+                                  )),
+                                  Expanded(
+                                    child: DropDownValidator(
+                                        lista: controller.horarios.data,
+                                        onChange: (value) =>
+                                            controller.setMinPer(value),
+                                        value: controller.tempoMinPermanencia,
+                                        validator: (value) {
+                                          if (controller.tempoMinPermanencia >=
+                                              controller.tempoMaxPermanencia) {
+                                            return 'Permanência miníma não pode ser maior ou igual a máxima';
+                                          }
+                                        }),
+                                  ),
+                                ],
+                              ),
+                              // LinhaDropdownWidget(
+                              //   controller: controller,
+                              //   descricao: 'Tempo mínimo de permanência',
+                              //   valorInicial: controller.tempoMinPermanencia,
+                              //   acaoIni: controller.setMinPer,
+                              // ),
+                              Divider(),
+                              LinhaDropdownWidget(
+                                controller: controller,
+                                descricao: 'Tempo máximo de permanência*',
+                                valorInicial: controller.tempoMaxPermanencia,
+                                acaoIni: controller.setMaxPer,
+                              ),
+                              Divider(),
+                              LinhaDropdownWidget(
+                                controller: controller,
+                                descricao: 'Antecedência mínima para reserva*',
+                                valorInicial: controller.tempoMinAntecedencia,
+                                acaoIni: controller.setMinAnt,
+                              ),
+                              Divider(),
+                              LinhaDropdownWidget(
+                                controller: controller,
+                                descricao: 'Antecedência máxima para reserva*',
+                                valorInicial: controller.tempoMaxPermanencia,
+                                acaoIni: controller.setMaxAnt,
+                              ),
+                              Divider(),
+                              LinhaDropdownWidget(
+                                controller: controller,
+                                descricao: 'Intervalo entre reservas*',
+                                valorInicial: controller.tempoIntervaloReserva,
+                                acaoIni: controller.setIntRes,
+                              ),
+                            ],
                           ),
                         ),
                       ),

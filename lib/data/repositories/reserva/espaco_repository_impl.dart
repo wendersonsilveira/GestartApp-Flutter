@@ -28,4 +28,11 @@ class EspacoRepositoryImpl implements EspacoRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData> excluirEspaco(int idEspaco) async {
+    final resource = await _espacoRemoteDataSource.excluirEspaco(idEspaco);
+
+    return resource;
+  }
 }

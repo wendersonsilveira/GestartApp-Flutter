@@ -3,6 +3,7 @@ import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/reserva/espaco_entity.dart';
 import 'package:Gestart/domain/entities/reserva/hora_entity.dart';
 import 'package:Gestart/domain/usecases/reserva/criar_espaco_use_case.dart';
+import 'package:Gestart/domain/usecases/reserva/get_espaco_use_id.dart';
 import 'package:Gestart/domain/usecases/reserva/get_horas_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -18,43 +19,125 @@ class CadastroEspacoController = _CadastroEspacoControllerBase
 abstract class _CadastroEspacoControllerBase with Store {
   final _getHorarios = getIt.get<GetHorasUseCase>();
   final _criarEspaco = getIt.get<CriarEspacoUseCase>();
+  final _getEspaco = getIt.get<GetEspacoUseCase>();
 
-  Future<ResourceData> enviarParametros(String nome, capacidade, obs) async {
-    statusCriacao = await _criarEspaco(EspacoEntity(
-        codcon: int.parse(this.cond),
-        descricao: nome,
-        capacidade: int.parse(capacidade),
-        obs: obs,
-        perMin: this.tempoMinPermanencia,
-        perMax: this.tempoMaxPermanencia,
-        antMin: this.tempoMinAntecedencia,
-        antMax: this.tempoMaxPermanencia,
-        intRes: this.tempoIntervaloReserva,
-        dom: this.ativarDom,
-        domIni: this.domIni,
-        domFim: this.domFim,
-        seg: this.ativarSeg,
-        segIni: this.segIni,
-        segFim: this.segFim,
-        ter: this.ativarTer,
-        terIni: this.terIni,
-        terFim: this.terFim,
-        qua: this.ativarQua,
-        quaIni: this.quaIni,
-        quaFim: this.quaFim,
-        qui: this.ativarQui,
-        quiIni: this.quiIni,
-        quiFim: this.quiFim,
-        sex: this.ativarSex,
-        sexIni: this.sexIni,
-        sexFim: this.sexFim,
-        sab: this.ativarSab,
-        sabIni: this.sabIni,
-        sabFim: this.sabFim,
-        aprovacao: this.autorizacaoResponsavel,
-        apenasMaster: this.apenasProprietarioReserva));
+  @action
+  init() async {
+    horarios = ResourceData(status: Status.loading);
+    horarios = await _getHorarios();
+    this.cond = await UIHelper.getStorage('cond');
+  }
+
+  Future<ResourceData> enviarParametros(
+      String nome, capacidade, obs, int id) async {
+    EspacoEntity espaco = id != null
+        ? EspacoEntity(
+            id: id,
+            codcon: int.parse(this.cond),
+            descricao: nome,
+            capacidade: int.parse(capacidade),
+            obs: obs,
+            perMin: this.tempoMinPermanencia,
+            perMax: this.tempoMaxPermanencia,
+            antMin: this.tempoMinAntecedencia,
+            antMax: this.tempoMaxPermanencia,
+            intRes: this.tempoIntervaloReserva,
+            dom: this.ativarDom,
+            domIni: this.domIni,
+            domFim: this.domFim,
+            seg: this.ativarSeg,
+            segIni: this.segIni,
+            segFim: this.segFim,
+            ter: this.ativarTer,
+            terIni: this.terIni,
+            terFim: this.terFim,
+            qua: this.ativarQua,
+            quaIni: this.quaIni,
+            quaFim: this.quaFim,
+            qui: this.ativarQui,
+            quiIni: this.quiIni,
+            quiFim: this.quiFim,
+            sex: this.ativarSex,
+            sexIni: this.sexIni,
+            sexFim: this.sexFim,
+            sab: this.ativarSab,
+            sabIni: this.sabIni,
+            sabFim: this.sabFim,
+            aprovacao: this.autorizacaoResponsavel,
+            apenasMaster: this.apenasProprietarioReserva)
+        : EspacoEntity(
+            codcon: int.parse(this.cond),
+            descricao: nome,
+            capacidade: int.parse(capacidade),
+            obs: obs,
+            perMin: this.tempoMinPermanencia,
+            perMax: this.tempoMaxPermanencia,
+            antMin: this.tempoMinAntecedencia,
+            antMax: this.tempoMaxPermanencia,
+            intRes: this.tempoIntervaloReserva,
+            dom: this.ativarDom,
+            domIni: this.domIni,
+            domFim: this.domFim,
+            seg: this.ativarSeg,
+            segIni: this.segIni,
+            segFim: this.segFim,
+            ter: this.ativarTer,
+            terIni: this.terIni,
+            terFim: this.terFim,
+            qua: this.ativarQua,
+            quaIni: this.quaIni,
+            quaFim: this.quaFim,
+            qui: this.ativarQui,
+            quiIni: this.quiIni,
+            quiFim: this.quiFim,
+            sex: this.ativarSex,
+            sexIni: this.sexIni,
+            sexFim: this.sexFim,
+            sab: this.ativarSab,
+            sabIni: this.sabIni,
+            sabFim: this.sabFim,
+            aprovacao: this.autorizacaoResponsavel,
+            apenasMaster: this.apenasProprietarioReserva);
+    statusCriacao = await _criarEspaco(espaco);
 
     return statusCriacao;
+  }
+
+  Future<ResourceData<EspacoEntity>> getEspaco(int idEspaco) async {
+    espacoEditar = await _getEspaco(idEspaco);
+    setarValores(espacoEditar.data);
+    return espacoEditar;
+  }
+
+  setarValores(EspacoEntity espaco) {
+    this.tempoMinPermanencia = espaco.perMin;
+    this.tempoMaxPermanencia = espaco.perMax;
+    this.tempoMinAntecedencia = espaco.antMin;
+    this.tempoMaxAntecedencia = espaco.antMax;
+    this.tempoIntervaloReserva = espaco.intRes;
+    this.ativarDom = espaco.dom;
+    this.domIni = espaco.domIni;
+    this.domFim = espaco.domFim;
+    this.ativarSeg = espaco.dom;
+    this.segIni = espaco.segIni;
+    this.segFim = espaco.segFim;
+    this.ativarTer = espaco.dom;
+    this.terIni = espaco.terIni;
+    this.terFim = espaco.terFim;
+    this.ativarQua = espaco.dom;
+    this.quaIni = espaco.quaIni;
+    this.quaFim = espaco.quaFim;
+    this.ativarQui = espaco.dom;
+    this.quiIni = espaco.quiIni;
+    this.quiFim = espaco.quiFim;
+    this.ativarSex = espaco.dom;
+    this.sexIni = espaco.sexIni;
+    this.sexFim = espaco.sexFim;
+    this.ativarSab = espaco.dom;
+    this.sabIni = espaco.sabIni;
+    this.sabFim = espaco.sabFim;
+    this.apenasProprietarioReserva = espaco.aprovacao;
+    this.autorizacaoResponsavel = espaco.apenasMaster;
   }
 
   String checarValores() {
@@ -89,16 +172,19 @@ abstract class _CadastroEspacoControllerBase with Store {
   ResourceData statusCriacao;
 
   @observable
+  ResourceData<EspacoEntity> espacoEditar;
+
+  @observable
   int tempoMinPermanencia = 1;
 
   @observable
-  int tempoMaxPermanencia = 1;
+  int tempoMaxPermanencia = 16;
 
   @observable
-  int tempoMinAntecedencia = 5;
+  int tempoMinAntecedencia = 1;
 
   @observable
-  int tempoMaxAntecedencia = 1;
+  int tempoMaxAntecedencia = 8;
 
   @observable
   int tempoIntervaloReserva = 1;
@@ -252,11 +338,4 @@ abstract class _CadastroEspacoControllerBase with Store {
 
   @action
   setHorarioSabFim(value) => sabFim = value;
-
-  @action
-  init() async {
-    horarios = ResourceData(status: Status.loading);
-    horarios = await _getHorarios();
-    this.cond = await UIHelper.getStorage('cond');
-  }
 }
