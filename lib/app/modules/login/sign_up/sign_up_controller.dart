@@ -13,7 +13,7 @@ class SignUpController = _SignUpControllerBase with _$SignUpController;
 
 abstract class _SignUpControllerBase with Store {
   final _createUser = getIt.get<CreateUserUseCase>();
-  ResourceData loadingUser;
+  ResourceData loadingUser = ResourceData(status: Status.success);
 
   @action
   Future<ResourceData> createUser(CreateUserEntity user) async {

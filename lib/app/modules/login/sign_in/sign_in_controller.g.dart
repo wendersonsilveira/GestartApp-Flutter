@@ -19,6 +19,36 @@ final $SignInController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SignInController on _SignInControllerBase, Store {
+  final _$loadingCheckAtom = Atom(name: '_SignInControllerBase.loadingCheck');
+
+  @override
+  ResourceData<int> get loadingCheck {
+    _$loadingCheckAtom.reportRead();
+    return super.loadingCheck;
+  }
+
+  @override
+  set loadingCheck(ResourceData<int> value) {
+    _$loadingCheckAtom.reportWrite(value, super.loadingCheck, () {
+      super.loadingCheck = value;
+    });
+  }
+
+  final _$userLoginAtom = Atom(name: '_SignInControllerBase.userLogin');
+
+  @override
+  ResourceData<UserEntity> get userLogin {
+    _$userLoginAtom.reportRead();
+    return super.userLogin;
+  }
+
+  @override
+  set userLogin(ResourceData<UserEntity> value) {
+    _$userLoginAtom.reportWrite(value, super.userLogin, () {
+      super.userLogin = value;
+    });
+  }
+
   final _$usuarioCadastradoAtom =
       Atom(name: '_SignInControllerBase.usuarioCadastrado');
 
@@ -66,6 +96,8 @@ mixin _$SignInController on _SignInControllerBase, Store {
   @override
   String toString() {
     return '''
+loadingCheck: ${loadingCheck},
+userLogin: ${userLogin},
 usuarioCadastrado: ${usuarioCadastrado}
     ''';
   }
