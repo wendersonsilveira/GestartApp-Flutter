@@ -2,6 +2,7 @@ import 'package:Gestart/app/modules/perfil/component/button_expanded_widget.dart
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
+import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
 import 'package:Gestart/app/widgets/inputs/underline_text_field_widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/entities/user/create_user_entity.dart';
@@ -126,10 +127,20 @@ class _AlterarPerfilPageState
                           enabled: false,
                         ),
                         Divider(),
-                        ButtonExpandedWidget(
-                          descricao: 'Salvar',
-                          corTexto: true,
-                          funcao: () => enviarAlteracao(),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: ContainedButtonWidget(
+                                text: 'Salvar',
+                                cor: AppColorScheme.primaryColor,
+                                loading:
+                                    controller.usuario.status == Status.loading
+                                        ? true
+                                        : false,
+                                onPressed: enviarAlteracao,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
