@@ -254,6 +254,7 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
                   ),
                   ListTile(
                     leading: CircleAvatar(
+                      backgroundColor: AppColorScheme.backgroundGreyLight,
                       backgroundImage:
                           NetworkImage(controller.perfil.data.linkPhoto),
                     ),

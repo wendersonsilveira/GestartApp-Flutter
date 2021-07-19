@@ -56,6 +56,7 @@ class _InforCondominioPageState
                       margin: EdgeInsets.all(10),
                       child: ListTile(
                         leading: CircleAvatar(
+                          backgroundColor: AppColorScheme.backgroundGreyLight,
                           backgroundImage:
                               NetworkImage(controller.cond[0].logo),
                         ),
@@ -108,6 +109,8 @@ class _InforCondominioPageState
                                         return Card(
                                           child: ListTile(
                                             leading: CircleAvatar(
+                                              backgroundColor: AppColorScheme
+                                                  .backgroundGreyLight,
                                               backgroundImage: NetworkImage(
                                                   controller.listView[index]
                                                       .linkPhoto),

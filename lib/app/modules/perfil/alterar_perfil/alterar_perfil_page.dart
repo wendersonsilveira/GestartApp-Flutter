@@ -1,4 +1,5 @@
 import 'package:Gestart/app/modules/perfil/component/button_expanded_widget.dart';
+import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/inputs/underline_text_field_widget.dart';
@@ -69,6 +70,7 @@ class _AlterarPerfilPageState
                       children: <Widget>[
                         ListTile(
                           leading: CircleAvatar(
+                            backgroundColor: AppColorScheme.backgroundGreyLight,
                             backgroundImage:
                                 NetworkImage(widget.usuario.linkPhoto),
                           ),
