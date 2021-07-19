@@ -5,6 +5,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:Gestart/app/app_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
 class AppWidget extends StatefulWidget {
   @override
@@ -12,6 +15,12 @@ class AppWidget extends StatefulWidget {
 }
 
 class _AppWidgetState extends ModularState<AppWidget, AppController> {
+  @override
+  void initState() {
+    _firebaseMessaging.getToken().then((value) => print(value));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([

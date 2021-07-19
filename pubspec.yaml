@@ -52,6 +52,9 @@ dependencies:
 
   intl: ^0.16.1
 
+  #notificações
+  firebase_messaging: ^7.0.3
+
   # Validators
   cpfcnpj: ^1.0.3
 

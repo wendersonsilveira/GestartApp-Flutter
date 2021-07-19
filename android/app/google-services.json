@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1024139128893",
+    "firebase_url": "https://gestart-conline-default-rtdb.firebaseio.com",
+    "project_id": "gestart-conline",
+    "storage_bucket": "gestart-conline.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024139128893:android:a11f9df2eb4cc876667a54",
+        "android_client_info": {
+          "package_name": "com.gestart.gestartapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024139128893-169a2qn8p02e3k437b6gopuilsv2jqec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQOnquY4rL5f4hpBiHjvraUrQRkYcqHhA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024139128893-169a2qn8p02e3k437b6gopuilsv2jqec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
