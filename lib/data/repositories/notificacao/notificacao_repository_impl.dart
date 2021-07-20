@@ -14,4 +14,11 @@ class NotificacaoRepositoryImpl implements NotificacaoRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData> sendLog(String log) async {
+    final resource = await _notificacaoRemoteDataSource.sendLog(log);
+
+    return resource;
+  }
 }

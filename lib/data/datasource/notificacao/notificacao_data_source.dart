@@ -10,6 +10,8 @@ import 'package:injectable/injectable.dart';
 @injectable
 class NotificacaoRemoteDataSource {
   CustomDio _dio;
+  Dio _di;
+
   NotificacaoRemoteDataSource(this._dio);
 
   Future<ResourceData<List<NotificacaoEntity>>> getNotificacao() async {
@@ -22,6 +24,20 @@ class NotificacaoRemoteDataSource {
       else
         return ResourceData<List<NotificacaoEntity>>(
             status: Status.success, data: null);
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar as notificações",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData> sendLog(String log) async {
+    try {
+      final result =
+          await _di.post('http://192.168.100.24:3000/log', data: {'log': log});
+      return ResourceData(status: Status.success, data: null);
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,

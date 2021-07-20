@@ -60,5 +60,8 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.google.firebase:firebase-messaging:17.3.4"
+    // implementation "com.google.firebase:firebase-iid"
 }
 apply plugin: 'com.google.gms.google-services'
+googleServices { disableVersionCheck = true }

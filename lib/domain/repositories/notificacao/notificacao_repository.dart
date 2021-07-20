@@ -4,4 +4,5 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 
 abstract class NotificacaoRepository {
   Future<ResourceData<List<NotificacaoEntity>>> getNotificacao();
+  Future<ResourceData> sendLog(String log);
 }
