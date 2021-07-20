@@ -8,10 +8,12 @@ import 'package:Gestart/di/di.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:injectable/injectable.dart';
+import 'package:Gestart/data/local/shared_preferences.dart';
 
 @injectable
 class AuthInterceptor extends Interceptor {
   final Dio _dio;
+  final sharedPreferences = getIt.get<SharedPreferencesManager>();
 
   AuthInterceptor(this._dio);
 
@@ -30,8 +32,10 @@ class AuthInterceptor extends Interceptor {
 
   @override
   Future onRequest(RequestOptions options) async {
+    var tokenFcm = await sharedPreferences.getString('devicekey');
     var token = await getIt<AuthLocalDataSource>().getToken();
     if (token != null) options.headers['accesstoken'] = token;
+    if (tokenFcm != null) options.headers['devicekey'] = tokenFcm;
     return super.onRequest(options);
   }
 }

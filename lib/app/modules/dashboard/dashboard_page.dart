@@ -4,6 +4,7 @@ import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
+import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -14,6 +15,8 @@ import 'components/button_services/button_services_widget.dart';
 import 'components/itens_services/item_servico_widget.dart';
 import 'dashboard_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:Gestart/data/local/shared_preferences.dart';
 
 class DashboardPage extends StatefulWidget {
   final String title;
@@ -23,6 +26,9 @@ class DashboardPage extends StatefulWidget {
   _DashboardPageState createState() => _DashboardPageState();
 }
 
+final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+final sharedPreferences = getIt.get<SharedPreferencesManager>();
+
 class _DashboardPageState
     extends ModularState<DashboardPage, DashboardController> {
   //use 'controller' variable to access controller
@@ -31,6 +37,9 @@ class _DashboardPageState
 
   @override
   void initState() {
+    _firebaseMessaging
+        .getToken()
+        .then((value) => sharedPreferences.putString('devicekey', value));
     controller.testsUseCases();
     controller.init();
     super.initState();
