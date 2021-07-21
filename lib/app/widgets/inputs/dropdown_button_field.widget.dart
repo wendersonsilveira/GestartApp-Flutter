@@ -11,12 +11,21 @@ class DropdownButtonFieldWidget extends StatefulWidget {
   final FocusNode focusNode;
   final bool contentPadding;
   final int value;
-  const DropdownButtonFieldWidget({Key key, this.list, this.label, @required this.hint, this.onChanged, this.focusNode, this.contentPadding = true, this.value})
+  const DropdownButtonFieldWidget(
+      {Key key,
+      this.list,
+      this.label,
+      @required this.hint,
+      this.onChanged,
+      this.focusNode,
+      this.contentPadding = true,
+      this.value})
       : assert(hint != null),
         super(key: key);
 
   @override
-  _DropdownButtonFieldWidgetState createState() => _DropdownButtonFieldWidgetState();
+  _DropdownButtonFieldWidgetState createState() =>
+      _DropdownButtonFieldWidgetState();
 }
 
 class _DropdownButtonFieldWidgetState extends State<DropdownButtonFieldWidget> {
@@ -31,7 +40,7 @@ class _DropdownButtonFieldWidgetState extends State<DropdownButtonFieldWidget> {
           if (r != null) {
             oldValue = r;
           } else {
-            oldValue = widget.list[0].codCon;
+            oldValue = widget.list[0].codcon;
           }
         });
       });
@@ -44,7 +53,8 @@ class _DropdownButtonFieldWidgetState extends State<DropdownButtonFieldWidget> {
   setCodConShared(int codCon) async {
     widget.onChanged(codCon);
 
-    SharedPreferences.getInstance().then((value) => value.setInt('codCon', codCon));
+    SharedPreferences.getInstance()
+        .then((value) => value.setInt('codCon', codCon));
   }
 
   @override
@@ -67,10 +77,18 @@ class _DropdownButtonFieldWidgetState extends State<DropdownButtonFieldWidget> {
         hintText: widget.hint,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         hintStyle: TextStyle(color: AppColorScheme.white),
-        focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColorScheme.primaryColor, width: 3.0.h)),
-        enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColorScheme.primaryColor, width: 3.0.h)),
-        focusedErrorBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColorScheme.feedbackDangerDark, width: 3.0.h)),
-        errorBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColorScheme.feedbackDangerDark, width: 3.0.h)),
+        focusedBorder: UnderlineInputBorder(
+            borderSide:
+                BorderSide(color: AppColorScheme.primaryColor, width: 3.0.h)),
+        enabledBorder: UnderlineInputBorder(
+            borderSide:
+                BorderSide(color: AppColorScheme.primaryColor, width: 3.0.h)),
+        focusedErrorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+                color: AppColorScheme.feedbackDangerDark, width: 3.0.h)),
+        errorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+                color: AppColorScheme.feedbackDangerDark, width: 3.0.h)),
       ),
     );
   }

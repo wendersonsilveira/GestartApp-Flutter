@@ -7,6 +7,7 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'infor_condominio_controller.g.dart';
 
@@ -30,12 +31,24 @@ abstract class _InforCondominioControllerBase with Store {
   @observable
   ResourceData<List<UserAdmEntity>> inforAdmCond;
 
+  int codCon;
   init() async {
     condominios = ResourceData(status: Status.loading);
     condominios = await _getCondominios();
     inforAdmCond = await _getInforCondominios();
     // listView = inforAdmCond.data;
-    changeDropdown(condominios.data[0].codcon);
+    var storage = await SharedPreferences.getInstance();
+    int cod = storage.getInt('codCon');
+    if (codCon == null) {
+      if (cod != null) {
+        codCon = cod;
+      } else {
+        codCon = condominios.data[0].codcon;
+      }
+    } else {
+      codCon = condominios.data[0].codcon;
+    }
+    changeDropdown(codCon);
   }
 
   @action
@@ -43,10 +56,6 @@ abstract class _InforCondominioControllerBase with Store {
     cond =
         condominios.data.where((element) => element.codcon == codCond).toList();
 
-    /******----*******/
-    // listView = inforAdmCond.data
-    //     .where((element) => element.codCon == codCond && element.nomAdm == inforAdmCond.data[count].nomAdm)
-    //     .toList();
     int count = 0;
     listView = [];
     while (count < inforAdmCond.data.length) {
