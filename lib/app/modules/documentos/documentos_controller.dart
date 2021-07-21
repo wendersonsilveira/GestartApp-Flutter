@@ -11,12 +11,14 @@ import 'package:flutter_modular/flutter_modular.dart';
 part 'documentos_controller.g.dart';
 
 @Injectable()
-class DocumentosController = _DocumentosControllerBase
-    with _$DocumentosController;
+class DocumentosController = _DocumentosControllerBase with _$DocumentosController;
 
 abstract class _DocumentosControllerBase with Store {
   final _getDocumentos = getIt.get<GetDocumentoUseCase>();
   final _getCondominios = getIt.get<GetCondominiosAtivosUseCase>();
+
+  @observable
+  int downloadProgress = 0;
 
   @observable
   ResourceData<List<DocumentoEntity>> documentos;
@@ -37,5 +39,18 @@ abstract class _DocumentosControllerBase with Store {
   @action
   changeDropdown(int codCond) {
     listaView = documentos.data.where((i) => i.codCon == codCond).toList();
+  }
+
+  @action
+  setProgressStatus(int received, int total) {
+    if (total != -1) {
+      downloadProgress = (received / total * 100).toInt();
+      print(downloadProgress);
+    }
+  }
+
+  @action
+  resetProgress() {
+    downloadProgress = 0;
   }
 }

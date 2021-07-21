@@ -80,6 +80,8 @@ abstract class _HorariosControllerBase with Store {
 
     espaco = r.data;
     espacoJSON = espaco.toMap();
+
+    getHorariosEspaco(DateTime.now());
   }
 
   @action

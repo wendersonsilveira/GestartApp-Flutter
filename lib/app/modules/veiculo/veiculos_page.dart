@@ -74,87 +74,104 @@ class _VeiculosPageState extends ModularState<VeiculosPage, VeiculosController> 
         child: Observer(
           builder: (_) => controller.veiculos == null
               ? Center(child: CircularProgressCustom())
-              : Container(
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: controller.veiculos.data.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Card(
-                              child: Dismissible(
-                                key: Key(controller.veiculos.data[index].id.toString()),
-                                background: Container(
-                                  color: AppColorScheme.tagRed2,
-                                  child: Icon(
-                                    Icons.delete,
-                                    color: AppColorScheme.white,
-                                  ),
-                                ),
-                                child: ListTile(
-                                  title: Text(
-                                    '${controller.veiculos.data[index].modelo}  ${controller.veiculos.data[index].ano}',
-                                    style: TextStyle(fontSize: 14, color: Color(0xFF8A8A8A)),
-                                  ),
-                                  subtitle: Text(
-                                    'Placa: ${controller.veiculos.data[index].placa}/${controller.veiculos.data[index].cor}',
-                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                  ),
-                                  leading: Container(
-                                    padding: EdgeInsets.only(top: 9),
-                                    child: Icon(
-                                      FlutterIcons.car_alt_faw5s,
-                                      size: 50.h,
-                                      color: AppColorScheme.primaryColor,
+              : controller.veiculos.data.length == 0
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            FlutterIcons.car_alt_faw5s,
+                            size: 70,
+                            color: AppColorScheme.primaryColor,
+                          ),
+                          SizedBox(
+                            height: 30.h,
+                          ),
+                          Text('Não há veículos cadastrados ainda'),
+                        ],
+                      ),
+                    )
+                  : Container(
+                      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: controller.veiculos.data.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Card(
+                                  child: Dismissible(
+                                    key: Key(controller.veiculos.data[index].id.toString()),
+                                    background: Container(
+                                      color: AppColorScheme.tagRed2,
+                                      child: Icon(
+                                        Icons.delete,
+                                        color: AppColorScheme.white,
+                                      ),
                                     ),
-                                  ),
-                                  onTap: () => _editarVeiculo(controller.veiculos.data[index].id),
-                                ),
-                                onDismissed: (_) {
-                                  setState(() {
-                                    controller.removeVeiculo(index);
-                                  });
-                                },
-                                confirmDismiss: (DismissDirection direction) async {
-                                  return await showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: const Text(
-                                          "Atenção",
-                                          style: TextStyle(
-                                            color: AppColorScheme.feedbackWarningDefault2,
-                                          ),
+                                    child: ListTile(
+                                      title: Text(
+                                        '${controller.veiculos.data[index].modelo}  ${controller.veiculos.data[index].ano}',
+                                        style: TextStyle(fontSize: 14, color: Color(0xFF8A8A8A)),
+                                      ),
+                                      subtitle: Text(
+                                        'Placa: ${controller.veiculos.data[index].placa}/${controller.veiculos.data[index].cor}',
+                                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                      ),
+                                      leading: Container(
+                                        padding: EdgeInsets.only(top: 9),
+                                        child: Icon(
+                                          FlutterIcons.car_alt_faw5s,
+                                          size: 50.h,
+                                          color: AppColorScheme.primaryColor,
                                         ),
-                                        content: const Text("Deseja realmente excluir este veiculo?"),
-                                        actions: [
-                                          FlatButton(
-                                            onPressed: () => deleteVeiculo(controller.veiculos.data[index].id),
-                                            child: const Text(
-                                              "Sim",
+                                      ),
+                                      onTap: () => _editarVeiculo(controller.veiculos.data[index].id),
+                                    ),
+                                    onDismissed: (_) {
+                                      setState(() {
+                                        controller.removeVeiculo(index);
+                                      });
+                                    },
+                                    confirmDismiss: (DismissDirection direction) async {
+                                      return await showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: const Text(
+                                              "Atenção",
                                               style: TextStyle(
-                                                color: AppColorScheme.feedbackDangerBase,
+                                                color: AppColorScheme.feedbackWarningDefault2,
                                               ),
                                             ),
-                                          ),
-                                          FlatButton(
-                                            onPressed: () => Modular.navigator.pop(false),
-                                            child: const Text("Não"),
-                                          ),
-                                        ],
+                                            content: const Text("Deseja realmente excluir este veiculo?"),
+                                            actions: [
+                                              FlatButton(
+                                                onPressed: () => deleteVeiculo(controller.veiculos.data[index].id),
+                                                child: const Text(
+                                                  "Sim",
+                                                  style: TextStyle(
+                                                    color: AppColorScheme.feedbackDangerBase,
+                                                  ),
+                                                ),
+                                              ),
+                                              FlatButton(
+                                                onPressed: () => Modular.navigator.pop(false),
+                                                child: const Text("Não"),
+                                              ),
+                                            ],
+                                          );
+                                        },
                                       );
                                     },
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                        ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
+                    ),
         ),
       ),
     );

@@ -8,6 +8,7 @@ class DocumentoEntity {
   final String pasta;
   final String linkDocumento;
   final String descricao;
+  final String tipo;
 
   const DocumentoEntity({
     this.codCon,
@@ -16,6 +17,7 @@ class DocumentoEntity {
     this.pasta,
     this.descricao,
     this.linkDocumento,
+    this.tipo,
   });
 
   @override
