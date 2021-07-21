@@ -1,35 +1,42 @@
 {
   "project_info": {
-    "project_number": "1024139128893",
-    "firebase_url": "https://gestart-conline-default-rtdb.firebaseio.com",
-    "project_id": "gestart-conline",
-    "storage_bucket": "gestart-conline.appspot.com"
+    "project_number": "443705811741",
+    "firebase_url": "https://gestartapp.firebaseio.com",
+    "project_id": "gestartapp",
+    "storage_bucket": "gestartapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1024139128893:android:a11f9df2eb4cc876667a54",
+        "mobilesdk_app_id": "1:443705811741:android:d093719041925c2c",
         "android_client_info": {
           "package_name": "com.gestart.gestartapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1024139128893-169a2qn8p02e3k437b6gopuilsv2jqec.apps.googleusercontent.com",
+          "client_id": "443705811741-8o5g1k874qj7nhsnce5iaius8viia5ek.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCQOnquY4rL5f4hpBiHjvraUrQRkYcqHhA"
+          "current_key": "AIzaSyAIZe4825-6iq_5X2RRcZPYhotveXYeEdw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1024139128893-169a2qn8p02e3k437b6gopuilsv2jqec.apps.googleusercontent.com",
+              "client_id": "443705811741-8o5g1k874qj7nhsnce5iaius8viia5ek.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "443705811741-dmohnje4badfjhnr7hokh1dhlbk3eknr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gestart.gestartapp"
+              }
             }
           ]
         }
