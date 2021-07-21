@@ -45,7 +45,6 @@ class _InforCondominioPageState
                     DropdownButtonFieldWidget(
                       label: 'Condominios',
                       hint: 'Selecione',
-                      value: controller.condominios.data[0].codcon,
                       list: controller.condominios.data != null
                           ? controller.condominios.data
                           : [],
@@ -57,6 +56,7 @@ class _InforCondominioPageState
                       margin: EdgeInsets.all(10),
                       child: ListTile(
                         leading: CircleAvatar(
+                          backgroundColor: AppColorScheme.backgroundGreyLight,
                           backgroundImage:
                               NetworkImage(controller.cond[0].logo),
                         ),
@@ -109,6 +109,8 @@ class _InforCondominioPageState
                                         return Card(
                                           child: ListTile(
                                             leading: CircleAvatar(
+                                              backgroundColor: AppColorScheme
+                                                  .backgroundGreyLight,
                                               backgroundImage: NetworkImage(
                                                   controller.listView[index]
                                                       .linkPhoto),

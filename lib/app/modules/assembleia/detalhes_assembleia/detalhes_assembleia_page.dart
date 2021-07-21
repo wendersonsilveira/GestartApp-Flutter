@@ -1,9 +1,6 @@
 import 'package:Gestart/app/modules/assembleia/components/button_ata_widget.dart';
-import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
-import 'package:Gestart/app/widgets/buttons/flat_button_widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'detalhes_assembleia_controller.dart';
@@ -100,20 +97,18 @@ class _DetalhesAssembleiaPageState
                                 height: (130.0 *
                                             controller.edital.data.length) >
                                         520
-                                    ? 520.h
-                                    : (110.0 * controller.edital.data.length).h,
-                                child: Expanded(
-                                  child: ListView.builder(
-                                    itemCount: controller.edital.data.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.all(12),
-                                        child: Text(
-                                            '${index + 1} - ${controller.edital.data[index].assunto}'),
-                                      );
-                                    },
-                                  ),
+                                    ? 520
+                                    : (40.0 * controller.edital.data.length),
+                                child: ListView.builder(
+                                  itemCount: controller.edital.data.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(12),
+                                      child: Text(
+                                          '${index + 1} - ${controller.edital.data[index].assunto}'),
+                                    );
+                                  },
                                 ),
                               ),
                             ],
