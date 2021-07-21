@@ -59,14 +59,12 @@ class _DashboardPageState
       onBackgroundMessage: myBackgroundMessageHandler,
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
-        Dio().post('http://192.168.100.24:3000/log', data: {"log": "teste"});
         Modular.navigator.pushNamed(message['data']['status'],
             arguments: message['data']['id']);
       },
       onResume: (Map<String, dynamic> message) async {
         // print("onResumeeeeeeeeee: $message");
         print("Status*****: ${message['data']['status']}");
-        Dio().post('http://192.168.100.24:3000/log', data: {"log": "teste"});
 
         Modular.navigator.pushNamed(message['data']['status'],
             arguments: message['data']['id']);
@@ -77,7 +75,6 @@ class _DashboardPageState
   static Future<dynamic> myBackgroundMessageHandler(
       Map<String, dynamic> message) async {
     print(message);
-    Dio().post('http://192.168.100.24:3000/log', data: {"log": "teste"});
     Modular.navigator
         .pushNamed(message['data']['status'], arguments: message['data']['id']);
     return Future<void>.value();
