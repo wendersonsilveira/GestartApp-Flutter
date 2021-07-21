@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:intl/intl.dart';
+import 'package:dio/dio.dart';
+import 'package:open_file/open_file.dart';
+import 'package:android_path_provider/android_path_provider.dart';
 
 class UIHelper {
   static String formatDateFromDateTime(DateTime dateTime) {
@@ -54,5 +58,34 @@ class UIHelper {
 
   static String formaUrlImage(String enpoint) {
     return 'http://ineedapiapp-prod.us-east-2.elasticbeanstalk.com/$enpoint';
+  }
+
+  static Future<void> downloadFiles(String _url, String _name, BuildContext context, double downloadProgress, Function setProgress) async {
+    final dir = await AndroidPathProvider.downloadsPath;
+    String fullName;
+    Dio().download(_url, (headers) {
+      var arrFil = headers.value('content-disposition').split('.');
+      String ext = arrFil[1].replaceAll(r'"', '');
+      fullName = '$dir/$_name.$ext';
+      return fullName;
+    }, onReceiveProgress: setProgress).then((value) {
+      OpenFile.open(fullName).then((v) => print(v.type));
+    });
+
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Baixando aquivo...'),
+          content: SingleChildScrollView(
+            child: Observer(
+              builder: (_) => Text(downloadProgress.toString()),
+            ),
+          ),
+          actions: [],
+        );
+      },
+    );
   }
 }

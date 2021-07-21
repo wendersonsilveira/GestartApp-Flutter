@@ -242,62 +242,65 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
         child: Observer(builder: (_) {
           switch (controller.perfil.status) {
             case Status.success:
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Text(
-                      'Seus Dados',
-                      style: AppTextTheme.negritoInformativo,
-                    ),
-                  ),
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage:
-                          NetworkImage(controller.perfil.data.linkPhoto),
-                    ),
-                    title: Text('Nome'),
-                    subtitle: Text('${controller.perfil.data.nome} ' +
-                        '${controller.perfil.data.sobreNome}'),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text('Email'),
-                    subtitle: Text(controller.perfil.data.email),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text('CPF/CNPJ'),
-                    subtitle: Text(controller.perfil.data.cpfCnpj),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text('Telefone'),
-                    subtitle: Text(controller.perfil.data.telefone),
-                  ),
-                  Divider(),
-                  ButtonExpandedWidget(
-                    descricao: 'SAIR',
-                    funcao: () => controller.logout(),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ButtonWidget(
-                        descricao: 'ALTERAR SENHA',
-                        funcao: () => _showDialog(),
-                        cor: AppColorScheme.backgroundColor,
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Text(
+                        'Seus Dados',
+                        style: AppTextTheme.negritoInformativo,
                       ),
-                      ButtonWidget(
-                        descricao: 'EXCLUIR CONTA',
-                        funcao: () => _showDialogConfirmarSenha(0),
-                        cor: Colors.red,
-                        corTexto: Colors.white,
-                      )
-                    ],
-                  ),
-                ],
+                    ),
+                    ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: AppColorScheme.backgroundGreyLight,
+                        backgroundImage:
+                            NetworkImage(controller.perfil.data.linkPhoto),
+                      ),
+                      title: Text('Nome'),
+                      subtitle: Text('${controller.perfil.data.nome} ' +
+                          '${controller.perfil.data.sobreNome}'),
+                    ),
+                    Divider(),
+                    ListTile(
+                      title: Text('Email'),
+                      subtitle: Text(controller.perfil.data.email),
+                    ),
+                    Divider(),
+                    ListTile(
+                      title: Text('CPF/CNPJ'),
+                      subtitle: Text(controller.perfil.data.cpfCnpj),
+                    ),
+                    Divider(),
+                    ListTile(
+                      title: Text('Telefone'),
+                      subtitle: Text(controller.perfil.data.telefone),
+                    ),
+                    Divider(),
+                    ButtonExpandedWidget(
+                      descricao: 'SAIR',
+                      funcao: () => controller.logout(),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ButtonWidget(
+                          descricao: 'ALTERAR SENHA',
+                          funcao: () => _showDialog(),
+                          cor: AppColorScheme.backgroundColor,
+                        ),
+                        ButtonWidget(
+                          descricao: 'EXCLUIR CONTA',
+                          funcao: () => _showDialogConfirmarSenha(0),
+                          cor: Colors.red,
+                          corTexto: Colors.white,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               );
               break;
             case Status.failed:
@@ -315,7 +318,7 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
                       height: 16.h,
                     ),
                     Text(
-                      'teste',
+                      'Não foi possível carregar suas informações',
                       textAlign: TextAlign.center,
                       style: AppTextTheme.messageError,
                     ),

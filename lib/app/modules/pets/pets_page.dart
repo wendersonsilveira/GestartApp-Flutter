@@ -32,9 +32,7 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
   }
 
   _editarPet(int id) {
-    Modular.navigator
-        .pushNamed(RouteName.cadastro_pet, arguments: id)
-        .then((value) => controller.getPets());
+    Modular.navigator.pushNamed(RouteName.cadastro_pet, arguments: id).then((value) => controller.getPets());
   }
 
   void showInSnackBar(String value) {
@@ -75,116 +73,121 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
         child: Observer(
           builder: (_) => controller.pets == null
               ? Center(child: CircularProgressCustom())
-              : Container(
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: controller.pets.data.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Card(
-                              child: Dismissible(
-                                key: Key(
-                                    controller.pets.data[index].id.toString()),
-                                background: Container(
-                                  color: AppColorScheme.tagRed2,
-                                  child: Icon(
-                                    Icons.delete,
-                                    color: AppColorScheme.white,
-                                  ),
-                                ),
-                                child: ListTile(
-                                  title: Text(
-                                    '${controller.pets.data[index].tipo}  ${controller.pets.data[index].raca}',
-                                    style: TextStyle(
-                                        fontSize: 14, color: Color(0xFF8A8A8A)),
-                                  ),
-                                  subtitle: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          'Nome: ${controller.pets.data[index].nome}',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold),
-                                        ),
+              : controller.pets.data.length == 0
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.pets,
+                            size: 70,
+                            color: AppColorScheme.primaryColor,
+                          ),
+                          SizedBox(
+                            height: 30.h,
+                          ),
+                          Text('Não há pets cadastrados ainda'),
+                        ],
+                      ),
+                    )
+                  : Container(
+                      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: controller.pets.data.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Card(
+                                  child: Dismissible(
+                                    key: Key(controller.pets.data[index].id.toString()),
+                                    background: Container(
+                                      color: AppColorScheme.tagRed2,
+                                      child: Icon(
+                                        Icons.delete,
+                                        color: AppColorScheme.white,
                                       ),
-                                      Expanded(
-                                        child: Text(
-                                          '/ ${controller.pets.data[index].porte}',
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  leading: Container(
-                                    padding: EdgeInsets.only(top: 9),
-                                    child: Icon(
-                                      Icons.pets,
-                                      size: 50.h,
-                                      color: AppColorScheme.primaryColor,
                                     ),
-                                  ),
-                                  onTap: () => _editarPet(
-                                      controller.pets.data[index].id),
-                                ),
-                                onDismissed: (_) {
-                                  setState(() {
-                                    controller.removePet(index);
-                                  });
-                                },
-                                confirmDismiss:
-                                    (DismissDirection direction) async {
-                                  return await showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: const Text(
-                                          "Atenção",
-                                          style: TextStyle(
-                                            color: AppColorScheme
-                                                .feedbackWarningDefault2,
+                                    child: ListTile(
+                                      title: Text(
+                                        '${controller.pets.data[index].tipo}  ${controller.pets.data[index].raca}',
+                                        style: TextStyle(fontSize: 14, color: Color(0xFF8A8A8A)),
+                                      ),
+                                      subtitle: Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              'Nome: ${controller.pets.data[index].nome}',
+                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                            ),
                                           ),
-                                        ),
-                                        content: const Text(
-                                            "Deseja realmente excluir este pet?"),
-                                        actions: [
-                                          FlatButton(
-                                            onPressed: () => deletePet(
-                                                controller.pets.data[index].id),
-                                            child: const Text(
-                                              "Sim",
+                                          Expanded(
+                                            child: Text(
+                                              '/ ${controller.pets.data[index].porte}',
                                               style: TextStyle(
-                                                color: AppColorScheme
-                                                    .feedbackDangerBase,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           ),
-                                          FlatButton(
-                                            onPressed: () =>
-                                                Modular.navigator.pop(false),
-                                            child: const Text("Não"),
-                                          ),
                                         ],
+                                      ),
+                                      leading: Container(
+                                        padding: EdgeInsets.only(top: 9),
+                                        child: Icon(
+                                          Icons.pets,
+                                          size: 50.h,
+                                          color: AppColorScheme.primaryColor,
+                                        ),
+                                      ),
+                                      onTap: () => _editarPet(controller.pets.data[index].id),
+                                    ),
+                                    onDismissed: (_) {
+                                      setState(() {
+                                        controller.removePet(index);
+                                      });
+                                    },
+                                    confirmDismiss: (DismissDirection direction) async {
+                                      return await showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: const Text(
+                                              "Atenção",
+                                              style: TextStyle(
+                                                color: AppColorScheme.feedbackWarningDefault2,
+                                              ),
+                                            ),
+                                            content: const Text("Deseja realmente excluir este pet?"),
+                                            actions: [
+                                              FlatButton(
+                                                onPressed: () => deletePet(controller.pets.data[index].id),
+                                                child: const Text(
+                                                  "Sim",
+                                                  style: TextStyle(
+                                                    color: AppColorScheme.feedbackDangerBase,
+                                                  ),
+                                                ),
+                                              ),
+                                              FlatButton(
+                                                onPressed: () => Modular.navigator.pop(false),
+                                                child: const Text("Não"),
+                                              ),
+                                            ],
+                                          );
+                                        },
                                       );
                                     },
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                        ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
+                    ),
         ),
       ),
     );

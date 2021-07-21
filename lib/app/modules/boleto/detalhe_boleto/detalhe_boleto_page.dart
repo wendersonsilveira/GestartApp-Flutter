@@ -46,7 +46,7 @@ class _DetalheBoletoPageState
       ? await launch(_url)
       : throw 'Could not launch $_url';
 
-  bool _isOpen = false;
+  bool _isOpen = true;
 
   @override
   Widget build(BuildContext context) {

@@ -56,7 +56,7 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: Text(
-          'Regras e orientações sobre o espaço que está sendo reservando',
+          'Regras e orientações sobre o espaço que está sendo reservado',
           softWrap: true,
         ),
         content: Observer(
