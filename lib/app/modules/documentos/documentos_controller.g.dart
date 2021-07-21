@@ -19,6 +19,22 @@ final $DocumentosController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$DocumentosController on _DocumentosControllerBase, Store {
+  final _$downloadProgressAtom =
+      Atom(name: '_DocumentosControllerBase.downloadProgress');
+
+  @override
+  int get downloadProgress {
+    _$downloadProgressAtom.reportRead();
+    return super.downloadProgress;
+  }
+
+  @override
+  set downloadProgress(int value) {
+    _$downloadProgressAtom.reportWrite(value, super.downloadProgress, () {
+      super.downloadProgress = value;
+    });
+  }
+
   final _$documentosAtom = Atom(name: '_DocumentosControllerBase.documentos');
 
   @override
@@ -79,8 +95,31 @@ mixin _$DocumentosController on _DocumentosControllerBase, Store {
   }
 
   @override
+  dynamic setProgressStatus(int received, int total) {
+    final _$actionInfo = _$_DocumentosControllerBaseActionController
+        .startAction(name: '_DocumentosControllerBase.setProgressStatus');
+    try {
+      return super.setProgressStatus(received, total);
+    } finally {
+      _$_DocumentosControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic resetProgress() {
+    final _$actionInfo = _$_DocumentosControllerBaseActionController
+        .startAction(name: '_DocumentosControllerBase.resetProgress');
+    try {
+      return super.resetProgress();
+    } finally {
+      _$_DocumentosControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+downloadProgress: ${downloadProgress},
 documentos: ${documentos},
 condominios: ${condominios},
 listaView: ${listaView}

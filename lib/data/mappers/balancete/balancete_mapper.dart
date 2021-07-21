@@ -25,58 +25,34 @@ extension BalanceteMapper on BalanceteEntity {
         linkBalanceteDigital: linkBalanceteDigital ?? this.linkBalanceteDigital,
         balanceteDigital: balanceteDigital ?? this.balanceteDigital,
         balancete: balancete ?? this.balancete,
-        balanceteDigitalArquivo:
-            balanceteDigitalArquivo ?? this.balanceteDigitalArquivo);
+        balanceteDigitalArquivo: balanceteDigitalArquivo ?? this.balanceteDigitalArquivo);
   }
 
-  List<BalanceteEntity> fromMapList(List<dynamic> data) =>
-      List.from(data).map((element) => fromMap(element)).toList();
+  List<BalanceteEntity> fromMapList(List<dynamic> data) => List.from(data).map((element) => fromMap(element)).toList();
 
   BalanceteEntity fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     return BalanceteEntity(
-        id: map['ID'],
-        codcon: map['CODCON'],
-        mesAno: map['MESANO'],
-        mesAnoAnterior: map['MESANO_ANTERIOR'],
-        dt1: DateTime.parse(map['DT1']),
-        mesTxt: map['MES_TXT'],
-        dt2: DateTime.parse(map['DT2']),
-        linkBalanceteAna: map['LINK_BALANCETE_ANA'],
-        linkBalanceteSin: map['LINK_BALANCETE_SIN'],
-        apelido: map['APELIDO'],
-        logo: map['LOGO'],
-        datEmi6:
-            map['DATEMI_6'] != null ? DateTime.parse(map['DATEMI_6']) : null,
-        datEmi8:
-            map['DATEMI_8'] != null ? DateTime.parse(map['DATEMI_8']) : null,
-        contasPagar: map['CONTASPAGAR'],
-        linkBalanceteDigital: map['LINK_BALANCETE_DIGITAL'],
-        balanceteDigital: map['BALANCETE_DIGITAL'],
-        balancete: map['BALANCETE'],
-        balanceteDigitalArquivo: map['BALANCETE_DIGITAL_ARQUIVO']);
+      id: map['ID'],
+      codcon: map['CODCON'],
+      mesAno: map['MESANO'],
+      mesAnoAnterior: map['MESANO_ANTERIOR'],
+      dt1: DateTime.parse(map['DT1']),
+      mesTxt: map['MES_TXT'],
+      dt2: DateTime.parse(map['DT2']),
+      linkBalanceteAna: map['LINK_BALANCETE_ANA'],
+      linkBalanceteSin: map['LINK_BALANCETE_SIN'],
+      apelido: map['APELIDO'],
+      logo: map['LOGO'],
+      datEmi6: map['DATEMI_6'] != null ? DateTime.parse(map['DATEMI_6']) : null,
+      datEmi8: map['DATEMI_8'] != null ? DateTime.parse(map['DATEMI_8']) : null,
+      contasPagar: map['CONTASPAGAR'],
+      linkBalanceteDigital: map['LINK_BALANCETE_DIGITAL'],
+      balanceteDigital: map['BALANCETE_DIGITAL'],
+      balancete: map['BALANCETE'],
+      balanceteDigitalArquivo: map['BALANCETE_DIGITAL_ARQUIVO'],
+      versao: map['VERSAO'],
+      tipo: map['TIPO'],
+    );
   }
-
-  // Map<String, dynamic> toMap() {
-  //   return {
-  //     id,
-  //     codcon,
-  //     mesAno,
-  //     mesAnoAnterior,
-  //     dt1,
-  //     mesTxt,
-  //     dt2,
-  //     linkBalanceteAna,
-  //     linkBalanceteSin,
-  //     apelido,
-  //     logo,
-  //     dateMi6,
-  //     dateMi8,
-  //     contasPagar,
-  //     linkBalanceteDigital,
-  //     balanceteDigital,
-  //     balancete,
-  //     balanceteDigitalArquivo,
-  //   };
-  // }
 }

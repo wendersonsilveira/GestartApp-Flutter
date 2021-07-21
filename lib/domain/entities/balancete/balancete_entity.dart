@@ -20,26 +20,31 @@ class BalanceteEntity {
   final int balanceteDigital;
   final int balancete;
   final int balanceteDigitalArquivo;
+  final int versao;
+  final String tipo;
 
-  const BalanceteEntity(
-      {this.id,
-      this.codcon,
-      this.mesAno,
-      this.mesAnoAnterior,
-      this.dt1,
-      this.mesTxt,
-      this.dt2,
-      this.linkBalanceteAna,
-      this.linkBalanceteSin,
-      this.apelido,
-      this.logo,
-      this.datEmi6,
-      this.datEmi8,
-      this.contasPagar,
-      this.linkBalanceteDigital,
-      this.balanceteDigital,
-      this.balancete,
-      this.balanceteDigitalArquivo});
+  const BalanceteEntity({
+    this.id,
+    this.codcon,
+    this.mesAno,
+    this.mesAnoAnterior,
+    this.dt1,
+    this.mesTxt,
+    this.dt2,
+    this.linkBalanceteAna,
+    this.linkBalanceteSin,
+    this.apelido,
+    this.logo,
+    this.datEmi6,
+    this.datEmi8,
+    this.contasPagar,
+    this.linkBalanceteDigital,
+    this.balanceteDigital,
+    this.balancete,
+    this.balanceteDigitalArquivo,
+    this.versao,
+    this.tipo,
+  });
 
   // @override
   // String toString() {

@@ -1,9 +1,8 @@
 import 'dart:async';
-
-import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
+import 'package:Gestart/app/widgets/download/download_list_item_widget.dart';
 import 'package:Gestart/app/widgets/inputs/dropdown_button_field.widget.dart';
 import 'package:Gestart/app/widgets/inputs/dropdown_button_field3.widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
@@ -23,8 +22,7 @@ class BalancetePage extends StatefulWidget {
   _BalancetePageState createState() => _BalancetePageState();
 }
 
-class _BalancetePageState
-    extends ModularState<BalancetePage, BalanceteController> {
+class _BalancetePageState extends ModularState<BalancetePage, BalanceteController> {
   @override
   void initState() {
     controller.getBalancetes();
@@ -70,50 +68,32 @@ class _BalancetePageState
                               SizedBox(
                                 height: 30.h,
                               ),
-                              Text(
-                                  'Não existem balancetes para este condomínio'),
+                              Text('Não existem balancetes para este condomínio'),
                             ],
                           )
                         : Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 6, vertical: 5),
+                            padding: EdgeInsets.symmetric(horizontal: 6, vertical: 5),
                             child: RefreshIndicator(
                               onRefresh: refreshList,
                               child: ListView.builder(
                                   itemCount: controller.balancetes.length,
                                   shrinkWrap: true,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Card(
-                                      child: ListTile(
-                                        title: Row(
-                                          children: [
-                                            Text('Competência: '),
-                                            Text(
-                                              controller
-                                                  .balancetes[index].mesAno,
-                                              style: TextStyle(
-                                                  color: AppColorScheme
-                                                      .primaryColor),
-                                            ),
-                                          ],
-                                        ),
-                                        subtitle: Text(
-                                            'Período: ${UIHelper.formatDate(controller.balancetes[index].dt1)} - ${UIHelper.formatDate(controller.balancetes[index].dt2)}'),
-                                        onTap: () =>
-                                            Modular.navigator.pushNamed(
-                                          RouteName.view_documento,
-                                          arguments: [
-                                            controller.balancetes[index]
-                                                .linkBalanceteAna,
-                                            controller
-                                                    .balancetes[index].mesAno +
-                                                ' - ' +
-                                                controller
-                                                    .balancetes[index].apelido
-                                          ],
-                                        ),
+                                  itemBuilder: (BuildContext context, int index) {
+                                    return DownloadListItemWidget(
+                                      title: Row(
+                                        children: [
+                                          Text('Competência: '),
+                                          Text(
+                                            controller.balancetes[index].mesAno,
+                                            style: TextStyle(color: AppColorScheme.primaryColor),
+                                          ),
+                                        ],
                                       ),
+                                      subtitle:
+                                          Text('Período: ${UIHelper.formatDate(controller.balancetes[index].dt1)} - ${UIHelper.formatDate(controller.balancetes[index].dt2)}'),
+                                      fileURL: controller.balancetes[index].linkBalanceteAna,
+                                      fileName:
+                                          'Balancete_${controller.balancetes[index].apelido}_${controller.balancetes[index].mesAno}_v${controller.balancetes[index].versao}.${controller.balancetes[index].tipo}',
                                     );
                                   }),
                             ),
