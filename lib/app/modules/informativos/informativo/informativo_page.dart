@@ -1,4 +1,3 @@
-import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
@@ -48,7 +47,6 @@ class _InformativoPageState
                       children: [
                         ListTile(
                           leading: CircleAvatar(
-                            backgroundColor: AppColorScheme.backgroundGreyLight,
                             backgroundImage:
                                 NetworkImage(controller.aviso.data.logo),
                           ),

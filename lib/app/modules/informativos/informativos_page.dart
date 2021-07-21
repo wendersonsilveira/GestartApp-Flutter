@@ -65,8 +65,6 @@ class _InformativosPageState
                                       size: 30,
                                     ),
                                     leading: CircleAvatar(
-                                      backgroundColor:
-                                          AppColorScheme.backgroundGreyLight,
                                       backgroundImage: NetworkImage(
                                           controller.infor.data[index].logo),
                                     ),

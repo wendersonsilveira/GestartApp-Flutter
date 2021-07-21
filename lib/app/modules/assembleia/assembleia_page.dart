@@ -41,7 +41,6 @@ class _AssembleiaPageState
       ),
       body: Observer(
         builder: (_) => Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               height: 110.h,

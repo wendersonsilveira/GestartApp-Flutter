@@ -10,15 +10,13 @@ import 'cadastro_controller.dart';
 
 class CadastroPage extends StatefulWidget {
   final String title;
-  const CadastroPage({Key key, this.title = "Cadastro", this.reserva})
-      : super(key: key);
+  const CadastroPage({Key key, this.title = "Cadastro", this.reserva}) : super(key: key);
   final dynamic reserva;
   @override
   _CadastroPageState createState() => _CadastroPageState();
 }
 
-class _CadastroPageState
-    extends ModularState<CadastroPage, CadastroController> {
+class _CadastroPageState extends ModularState<CadastroPage, CadastroController> {
   @override
   void initState() {
     super.initState();
@@ -66,10 +64,7 @@ class _CadastroPageState
       builder: (BuildContext context) => AlertDialog(
         title: Text(
           title,
-          style: TextStyle(
-              color: success
-                  ? AppColorScheme.primaryColor
-                  : AppColorScheme.feedbackDangerBase),
+          style: TextStyle(color: success ? AppColorScheme.primaryColor : AppColorScheme.feedbackDangerBase),
         ),
         content: Container(
           height: 50,

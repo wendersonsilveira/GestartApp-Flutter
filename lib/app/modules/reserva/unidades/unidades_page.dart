@@ -9,15 +9,13 @@ import 'unidades_controller.dart';
 
 class UnidadesPage extends StatefulWidget {
   final String title;
-  const UnidadesPage({Key key, this.title = "Nova reserva - Unidades"})
-      : super(key: key);
+  const UnidadesPage({Key key, this.title = "Nova reserva - Unidades"}) : super(key: key);
 
   @override
   _UnidadesPageState createState() => _UnidadesPageState();
 }
 
-class _UnidadesPageState
-    extends ModularState<UnidadesPage, UnidadesController> {
+class _UnidadesPageState extends ModularState<UnidadesPage, UnidadesController> {
   //use 'controller' variable to access controller
   @override
   void initState() {
@@ -38,10 +36,9 @@ class _UnidadesPageState
             : Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 30),
+                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                     child: Text(
-                      'Selecione a unidade para qual deseja realizar a reserva',
+                      'Selecione a unidade para qual deseja ralizar a reserva',
                       style: TextStyle(fontSize: 18),
                       textAlign: TextAlign.center,
                     ),
@@ -53,27 +50,17 @@ class _UnidadesPageState
                         itemCount: controller.unidades.length,
                         itemBuilder: (BuildContext context, int index) => Card(
                           child: ListTile(
-                            title:
-                                Text(controller.unidades[index].apelido.trim()),
-                            subtitle: Text('Unidade: ' +
-                                controller.unidades[index].codimo),
+                            title: Text(controller.unidades[index].apelido.trim()),
+                            subtitle: Text('Unidade: ' + controller.unidades[index].codimo),
                             leading: CircleAvatar(
-                              backgroundColor:
-                                  AppColorScheme.backgroundGreyLight,
                               radius: 25,
-                              backgroundImage:
-                                  NetworkImage(controller.unidades[index].logo),
+                              backgroundImage: NetworkImage(controller.unidades[index].logo),
                             ),
                             trailing: Icon(
                               Icons.arrow_right,
                               size: 40,
                             ),
-                            onTap: () => Modular.navigator.pushNamed(
-                                RouteName.reservaEspacos,
-                                arguments: [
-                                  controller.unidades[index].codcon,
-                                  controller.unidades[index].codord
-                                ]),
+                            onTap: () => Modular.navigator.pushNamed(RouteName.reservaEspacos, arguments: [controller.unidades[index].codcon, controller.unidades[index].codord]),
                           ),
                         ),
                       ),

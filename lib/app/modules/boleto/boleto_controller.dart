@@ -8,7 +8,6 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'boleto_controller.g.dart';
 
@@ -35,24 +34,11 @@ abstract class _BoletoControllerBase with Store {
     getBoletos();
   }
 
-  int codOrd;
-
   @action
   getBoletos() async {
     boletos = await _getBoletos();
     listaView = boletos.data;
-    var storage = await SharedPreferences.getInstance();
-    int cod = storage.getInt('codord');
-    if (codOrd == null) {
-      if (cod != null) {
-        codOrd = cod;
-      } else {
-        codOrd = listaView[0].codord;
-      }
-    } else {
-      codOrd = listaView[0].codord;
-    }
-    changeDropdown(codOrd);
+    changeDropdown(unidades.data[0].codord);
   }
 
   @action

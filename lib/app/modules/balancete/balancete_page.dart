@@ -4,7 +4,10 @@ import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/download/download_list_item_widget.dart';
 import 'package:Gestart/app/widgets/inputs/dropdown_button_field.widget.dart';
+import 'package:Gestart/app/widgets/inputs/dropdown_button_field3.widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
+import 'package:Gestart/domain/entities/balancete/balancete_entity.dart';
+import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -45,6 +48,9 @@ class _BalancetePageState extends ModularState<BalancetePage, BalanceteControlle
                     label: 'Condomínios',
                     hint: 'Selecione um condomínio',
                     list: controller.condominios,
+                    value: controller.codCon != null
+                        ? controller.codCon
+                        : controller.condominios[0].codcon,
                     onChanged: (value) {
                       controller.filterBalancetes(value);
                     },

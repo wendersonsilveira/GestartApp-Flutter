@@ -37,19 +37,14 @@ abstract class _PerfilControllerBase with Store {
   @observable
   ResourceData<int> excluirContaStatus;
 
-  @observable
-  bool sendLogout = false;
-
   init() async {
     perfil = ResourceData(status: Status.loading);
     perfil = await _getPerfil();
   }
 
   Future<void> logout() async {
-    sendLogout = true;
     sharedPreferences.removeAll();
-    Future.delayed(Duration(seconds: 1))
-        .then((_) => {Modular.navigator.popAndPushNamed(RouteName.login)});
+    Modular.navigator.popAndPushNamed(RouteName.login);
   }
 
   Future<dynamic> alterarSenha(PasswordEntity pass) async {

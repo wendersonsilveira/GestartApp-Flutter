@@ -1,4 +1,3 @@
-import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/empty/empt_widget.dart';
@@ -59,8 +58,6 @@ class _NotificacoesPageState
                               subtitle: Text(UIHelper.formatDate(controller
                                   .notificacoes.data[index].createAt)),
                               leading: CircleAvatar(
-                                backgroundColor:
-                                    AppColorScheme.backgroundGreyLight,
                                 backgroundImage: NetworkImage(controller
                                     .notificacoes.data[index].linkPhoto),
                               ),

@@ -51,7 +51,6 @@ class AppColorScheme {
   static const neutralMedium2 = Color(0xff9aa5b1);
   static const neutralMedium3 = Color(0xff757575);
   static const neutralDark2 = Color(0xff1f2933);
-  static const backgroundGreyLight = Color(0xffDCDCDC);
 
   static const feedbackWarningDefault2 = Color(0xffffc300);
   static const feedbackWarningLighest2 = Color(0xfffff7de);

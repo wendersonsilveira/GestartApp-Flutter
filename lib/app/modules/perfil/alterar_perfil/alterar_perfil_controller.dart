@@ -20,7 +20,7 @@ abstract class _AlterarPerfilControllerBase with Store {
   final _getPerfil = getIt.get<GetPerfilUseCase>();
 
   @observable
-  ResourceData<bool> usuario = ResourceData(status: Status.success);
+  ResourceData<bool> usuario;
 
   @observable
   ResourceData<UserEntity> perfil;
