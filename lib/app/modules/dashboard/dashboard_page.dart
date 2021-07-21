@@ -37,12 +37,51 @@ class _DashboardPageState
 
   @override
   void initState() {
+    configNotification();
     _firebaseMessaging
         .getToken()
         .then((value) => sharedPreferences.putString('devicekey', value));
     controller.testsUseCases();
     controller.init();
     super.initState();
+  }
+
+  configNotification() {
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        print("onMessage: $message");
+        print("Status*****: ${message['data']['status']}");
+
+        Modular.navigator.pushNamed(message['data']['status'],
+            arguments: message['data']['id']);
+      },
+      // onBackgroundMessage: myBackgroundMessageHandler,
+      onLaunch: (Map<String, dynamic> message) async {
+        print("onLaunch: $message");
+      },
+      onResume: (Map<String, dynamic> message) async {
+        // print("onResumeeeeeeeeee: $message");
+        print("Status*****: ${message['data']['status']}");
+
+        Modular.navigator.pushNamed(message['data']['status'],
+            arguments: message['data']['id']);
+      },
+    );
+  }
+
+  static Future<dynamic> myBackgroundMessageHandler(
+      Map<String, dynamic> message) {
+    if (message.containsKey('data')) {
+      // Handle data message
+      final dynamic data = message['data'];
+    }
+
+    if (message.containsKey('notification')) {
+      // Handle notification message
+      final dynamic notification = message['notification'];
+    }
+
+    // Or do other work.
   }
 
   @override
