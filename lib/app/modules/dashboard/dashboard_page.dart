@@ -6,6 +6,7 @@ import 'package:Gestart/app/widgets/icons/icons_utils.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/utils/status.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -55,13 +56,17 @@ class _DashboardPageState
         Modular.navigator.pushNamed(message['data']['status'],
             arguments: message['data']['id']);
       },
-      // onBackgroundMessage: myBackgroundMessageHandler,
+      onBackgroundMessage: myBackgroundMessageHandler,
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
+        Dio().post('http://192.168.100.24:3000/log', data: {"log": "teste"});
+        Modular.navigator.pushNamed(message['data']['status'],
+            arguments: message['data']['id']);
       },
       onResume: (Map<String, dynamic> message) async {
         // print("onResumeeeeeeeeee: $message");
         print("Status*****: ${message['data']['status']}");
+        Dio().post('http://192.168.100.24:3000/log', data: {"log": "teste"});
 
         Modular.navigator.pushNamed(message['data']['status'],
             arguments: message['data']['id']);
@@ -70,18 +75,12 @@ class _DashboardPageState
   }
 
   static Future<dynamic> myBackgroundMessageHandler(
-      Map<String, dynamic> message) {
-    if (message.containsKey('data')) {
-      // Handle data message
-      final dynamic data = message['data'];
-    }
-
-    if (message.containsKey('notification')) {
-      // Handle notification message
-      final dynamic notification = message['notification'];
-    }
-
-    // Or do other work.
+      Map<String, dynamic> message) async {
+    print(message);
+    Dio().post('http://192.168.100.24:3000/log', data: {"log": "teste"});
+    Modular.navigator
+        .pushNamed(message['data']['status'], arguments: message['data']['id']);
+    return Future<void>.value();
   }
 
   @override
