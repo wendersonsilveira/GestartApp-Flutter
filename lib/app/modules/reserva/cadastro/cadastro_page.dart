@@ -1,5 +1,6 @@
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
+import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/buttons/button_submit_primary_widget.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -163,7 +164,7 @@ class _CadastroPageState extends ModularState<CadastroPage, CadastroController> 
                 style: TextStyle(fontSize: 16),
               ),
               subtitle: Text(
-                '${widget.reserva['DATINI']} | ${widget.reserva['HORINI_DESCRICAO']} - ${widget.reserva['HORFIM_DESCRICAO']}',
+                '${UIHelper.formatDateFromString(widget.reserva['DATINI'])} | ${widget.reserva['HORINI_DESCRICAO']} - ${widget.reserva['HORFIM_DESCRICAO']}',
                 style: TextStyle(fontSize: 16),
               ),
             ),

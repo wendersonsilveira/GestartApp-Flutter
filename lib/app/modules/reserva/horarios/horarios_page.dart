@@ -257,7 +257,7 @@ class _HorariosPageState extends ModularState<HorariosPage, HorariosController> 
                                               onPressed: () => print('Reservado'),
                                             )
                                           : OutlineButton(
-                                              child: Text('Disponível',
+                                              child: Text('Selecionar',
                                                   style: TextStyle(
                                                     color: AppColorScheme.primaryColor,
                                                   )),
