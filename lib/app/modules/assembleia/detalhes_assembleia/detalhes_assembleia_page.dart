@@ -1,4 +1,5 @@
 import 'package:Gestart/app/modules/assembleia/components/button_ata_widget.dart';
+import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
 import 'package:Gestart/app/widgets/buttons/flat_button_widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
@@ -15,15 +16,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class DetalhesAssembleiaPage extends StatefulWidget {
   final String title;
   final int id;
-  const DetalhesAssembleiaPage({Key key, this.title = "Assembleia", this.id})
-      : super(key: key);
+  const DetalhesAssembleiaPage({Key key, this.title = "Assembleia", this.id}) : super(key: key);
 
   @override
   _DetalhesAssembleiaPageState createState() => _DetalhesAssembleiaPageState();
 }
 
-class _DetalhesAssembleiaPageState
-    extends ModularState<DetalhesAssembleiaPage, DetalhesAssembleiaController> {
+class _DetalhesAssembleiaPageState extends ModularState<DetalhesAssembleiaPage, DetalhesAssembleiaController> {
   //use 'controller' variable to access controller
 
   @override
@@ -43,8 +42,7 @@ class _DetalhesAssembleiaPageState
       ),
       body: SingleChildScrollView(
         child: Observer(
-            builder: (_) => controller.loading == true ||
-                    controller.edital.data == null
+            builder: (_) => controller.loading == true || controller.edital.data == null
                 ? Center(child: CircularProgressCustom())
                 : Column(children: <Widget>[
                     Padding(
@@ -68,16 +66,17 @@ class _DetalhesAssembleiaPageState
                     ),
                     ButtonDocumentoWidget(
                       edital: controller.edital.data[0],
-                      tipoDocumento: 'ATA',
                       disponivel: controller.edital.data[0].idAta,
+                      tipoDocumento: 'ATA',
                       link: controller.edital.data[0].linkAta,
+                      fileName: 'ATA_${UIHelper.formatDate(controller.edital.data[0].datemi, '_')}.${controller.edital.data[0].tipoAta}',
                     ),
                     ButtonDocumentoWidget(
                       edital: controller.edital.data[0],
                       tipoDocumento: 'EDITAL',
-                      disponivel:
-                          controller.edital.data[0].linkEdital != null ? 1 : 0,
+                      disponivel: controller.edital.data[0].linkEdital != null ? 1 : 0,
                       link: controller.edital.data[0].linkEdital,
+                      fileName: 'EDITAL_${UIHelper.formatDate(controller.edital.data[0].datemi, '_')}.${controller.edital.data[0].tipoEdital}',
                     ),
                     Divider(),
                     Container(
@@ -97,20 +96,14 @@ class _DetalhesAssembleiaPageState
                                 style: TextStyle(fontSize: 20),
                               ),
                               Container(
-                                height: (130.0 *
-                                            controller.edital.data.length) >
-                                        520
-                                    ? 520.h
-                                    : (110.0 * controller.edital.data.length).h,
+                                height: (130.0 * controller.edital.data.length) > 520 ? 520.h : (110.0 * controller.edital.data.length).h,
                                 child: Expanded(
                                   child: ListView.builder(
                                     itemCount: controller.edital.data.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
+                                    itemBuilder: (BuildContext context, int index) {
                                       return Padding(
                                         padding: const EdgeInsets.all(12),
-                                        child: Text(
-                                            '${index + 1} - ${controller.edital.data[index].assunto}'),
+                                        child: Text('${index + 1} - ${controller.edital.data[index].assunto}'),
                                       );
                                     },
                                   ),
@@ -124,8 +117,7 @@ class _DetalhesAssembleiaPageState
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ListTile(
-                        leading: Image.network(
-                            controller.edital.data[0].nomsolLinkPhoto),
+                        leading: Image.network(controller.edital.data[0].nomsolLinkPhoto),
                         title: Text('Solicitante'),
                         subtitle: Text(controller.edital.data[0].nomsol),
                       ),
@@ -136,25 +128,19 @@ class _DetalhesAssembleiaPageState
                             child: Column(
                               children: [
                                 ListTile(
-                                  leading: Image.network(controller
-                                      .edital.data[0].nompreLinkPhoto),
+                                  leading: Image.network(controller.edital.data[0].nompreLinkPhoto),
                                   title: Text('PRESIDENTE DA MESA'),
-                                  subtitle:
-                                      Text(controller.edital.data[0].nompre),
+                                  subtitle: Text(controller.edital.data[0].nompre),
                                 ),
                                 ListTile(
-                                  leading: Image.network(controller
-                                      .edital.data[0].nomsecLinkPhoto),
+                                  leading: Image.network(controller.edital.data[0].nomsecLinkPhoto),
                                   title: Text('SECRETÁRIO'),
-                                  subtitle:
-                                      Text(controller.edital.data[0].nomsec),
+                                  subtitle: Text(controller.edital.data[0].nomsec),
                                 ),
                                 ListTile(
-                                  leading: Image.network(controller
-                                      .edital.data[0].nomsinLinkPhoto),
+                                  leading: Image.network(controller.edital.data[0].nomsinLinkPhoto),
                                   title: Text('SÍNDICO'),
-                                  subtitle:
-                                      Text(controller.edital.data[0].nomsin),
+                                  subtitle: Text(controller.edital.data[0].nomsin),
                                 ),
                               ],
                             ),

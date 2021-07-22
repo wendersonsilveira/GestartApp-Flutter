@@ -21,8 +21,7 @@ class AssembleiaPage extends StatefulWidget {
   _AssembleiaPageState createState() => _AssembleiaPageState();
 }
 
-class _AssembleiaPageState
-    extends ModularState<AssembleiaPage, AssembleiaController> {
+class _AssembleiaPageState extends ModularState<AssembleiaPage, AssembleiaController> {
   //use 'controller' variable to access controller
 
   @override
@@ -62,34 +61,25 @@ class _AssembleiaPageState
                         ? Observer(
                             builder: (_) => ListView.builder(
                                   itemCount: controller.listaView.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
+                                  itemBuilder: (BuildContext context, int index) {
                                     return Card(
                                         margin: EdgeInsets.all(10),
                                         child: ListTile(
                                           onTap: () {
-                                            Modular.navigator.pushNamed(
-                                                RouteName.detalhes_assembleia,
-                                                arguments: controller
-                                                    .listaView[index].id);
+                                            Modular.navigator.pushNamed(RouteName.detalhes_assembleia, arguments: controller.listaView[index].id);
                                           },
                                           leading: Icon(
                                             Icons.calendar_today,
                                             color: AppColorScheme.primaryColor,
                                           ),
                                           title: TitleWidget(
-                                            nomTip: controller
-                                                .listaView[index].nomtip,
-                                            apelido: controller
-                                                .listaView[index].apelido,
+                                            nomTip: controller.listaView[index].nomtip,
+                                            apelido: controller.listaView[index].apelido,
                                           ),
                                           subtitle: SubTitleWidget(
-                                            data: controller
-                                                .listaView[index].datreu,
-                                            hora: controller
-                                                .listaView[index].horreu_1,
-                                            local:
-                                                controller.listaView[index].loc,
+                                            data: controller.listaView[index].datreu,
+                                            hora: controller.listaView[index].horreu_1,
+                                            local: controller.listaView[index].loc,
                                           ),
                                         ));
                                   },

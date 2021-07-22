@@ -14,20 +14,25 @@ class AssembleiaEntity {
   final int status;
   final String apelido;
   final String logo;
+  final String tipoEdital;
+  final String tipoAta;
 
-  const AssembleiaEntity(
-      {this.id,
-      this.codcon,
-      this.codtip,
-      this.datreu,
-      this.horreu_1,
-      this.horreu_2,
-      this.loc,
-      this.idAta,
-      this.nomtip,
-      this.status,
-      this.apelido,
-      this.logo});
+  const AssembleiaEntity({
+    this.id,
+    this.codcon,
+    this.codtip,
+    this.datreu,
+    this.horreu_1,
+    this.horreu_2,
+    this.loc,
+    this.idAta,
+    this.nomtip,
+    this.status,
+    this.apelido,
+    this.logo,
+    this.tipoEdital,
+    this.tipoAta,
+  });
 
   @override
   String toString() {

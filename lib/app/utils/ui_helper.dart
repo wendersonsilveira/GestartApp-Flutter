@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:intl/intl.dart';
-import 'package:dio/dio.dart';
-import 'package:open_file/open_file.dart';
-import 'package:android_path_provider/android_path_provider.dart';
 
 class UIHelper {
   static String formatDateFromDateTime(DateTime dateTime) {
@@ -35,11 +31,12 @@ class UIHelper {
     return '$day/$month/$year às $hour:$minute';
   }
 
-  static String formatDate(DateTime dateTime) {
+  static String formatDate(DateTime dateTime, [String separator]) {
+    separator = separator == null ? '/' : separator;
     final day = dateTime.day.toString().padLeft(2, '0');
     final month = dateTime.month.toString().padLeft(2, '0');
     final year = dateTime.year.toString().padLeft(2, '0');
-    return '$day/$month/$year';
+    return '$day$separator$month$separator$year';
   }
 
   static String formatTime(DateTime dateTime) {

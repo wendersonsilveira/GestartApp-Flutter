@@ -1,8 +1,7 @@
 import 'package:Gestart/domain/entities/assembleia/edital_entity.dart';
 
 extension EditalMapper on EditalEntity {
-  List<EditalEntity> fromMapList(List<dynamic> data) =>
-      List.from(data).map((element) => fromMap(element)).toList();
+  List<EditalEntity> fromMapList(List<dynamic> data) => List.from(data).map((element) => fromMap(element)).toList();
 
   EditalEntity fromMap(Map<String, dynamic> map) {
     if (map == null || map.length == 0) return null;
@@ -59,6 +58,8 @@ extension EditalMapper on EditalEntity {
       // obs_9: map['OBS_9'],
       idAta: map['ID_ATA'],
       alteraAdm: map['ALTERA_ADM'],
+      tipoEdital: map['EDITAL_TIPO'],
+      tipoAta: map['ATA_TIPO'],
       // confirmacao:
     );
   }
