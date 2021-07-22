@@ -64,6 +64,21 @@ mixin _$BoletoController on _BoletoControllerBase, Store {
     });
   }
 
+  final _$codOrdAtom = Atom(name: '_BoletoControllerBase.codOrd');
+
+  @override
+  int get codOrd {
+    _$codOrdAtom.reportRead();
+    return super.codOrd;
+  }
+
+  @override
+  set codOrd(int value) {
+    _$codOrdAtom.reportWrite(value, super.codOrd, () {
+      super.codOrd = value;
+    });
+  }
+
   final _$getBoletosAsyncAction =
       AsyncAction('_BoletoControllerBase.getBoletos');
 
@@ -99,7 +114,8 @@ mixin _$BoletoController on _BoletoControllerBase, Store {
     return '''
 unidades: ${unidades},
 listaView: ${listaView},
-boletos: ${boletos}
+boletos: ${boletos},
+codOrd: ${codOrd}
     ''';
   }
 }
