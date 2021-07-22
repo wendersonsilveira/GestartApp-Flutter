@@ -1,10 +1,10 @@
 import 'dart:io';
-import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:open_file/open_file.dart';
 import 'package:android_path_provider/android_path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class DownloadListItemWidget extends StatefulWidget {
   final String fileURL;
@@ -39,44 +39,46 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
 
   downloadStart() async {
     try {
-      final dir = await AndroidPathProvider.downloadsPath;
-      final String _name = widget.fileName.replaceAll(r'/', '_');
-      final String _url = widget.fileURL;
-
-      setState(() {
-        downloadStatus = true;
-      });
-
-      String fileName = _name;
-
-      if (await File('$dir/$_name').exists()) {
-        setState(() {
-          downloadStatus = false;
-        });
-        OpenFile.open('$dir/$_name').then((v) {
-          if (v.type == ResultType.noAppToOpen) {
-            showMessage(
-                fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-          }
-        });
-      } else {
-        await Dio().download(_url, '$dir/$_name', onReceiveProgress: (int received, int total) {
-          if (total != -1) {
-            setState(() {
-              downloadProgress = (received / total * 100);
-            });
-          }
-        });
+      if (await Permission.storage.request().isGranted) {
+        final dir = await AndroidPathProvider.downloadsPath;
+        final String _name = widget.fileName.replaceAll(r'/', '_');
+        final String _url = widget.fileURL;
 
         setState(() {
-          downloadStatus = false;
+          downloadStatus = true;
         });
-        OpenFile.open('$dir/$_name').then((v) {
-          if (v.type == ResultType.noAppToOpen) {
-            showMessage(
-                fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-          }
-        });
+
+        String fileName = _name;
+
+        if (await File('$dir/$_name').exists()) {
+          setState(() {
+            downloadStatus = false;
+          });
+          OpenFile.open('$dir/$_name').then((v) {
+            if (v.type == ResultType.noAppToOpen) {
+              showMessage(
+                  fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+            }
+          });
+        } else {
+          await Dio().download(_url, '$dir/$_name', onReceiveProgress: (int received, int total) {
+            if (total != -1) {
+              setState(() {
+                downloadProgress = (received / total * 100);
+              });
+            }
+          });
+
+          setState(() {
+            downloadStatus = false;
+          });
+          OpenFile.open('$dir/$_name').then((v) {
+            if (v.type == ResultType.noAppToOpen) {
+              showMessage(
+                  fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+            }
+          });
+        }
       }
     } on DioError catch (_) {
       setState(() {

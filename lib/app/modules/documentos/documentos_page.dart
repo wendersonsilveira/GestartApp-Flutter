@@ -30,16 +30,6 @@ class _DocumentosPageState extends ModularState<DocumentosPage, DocumentosContro
     super.initState();
   }
 
-  Future<void> startDownload(String _url, String _name) async {
-    await UIHelper.downloadFiles(
-      _url,
-      _name,
-      context,
-      controller.downloadProgress.toDouble(),
-      controller.setProgressStatus,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -48,44 +48,17 @@ class UIHelper {
     return ' $hour:$minute';
   }
 
+  static String formatDateFromString(String date) {
+    DateTime d = DateTime.parse(date);
+    final f = DateFormat('dd/MM/yyyy');
+    return f.format(d);
+  }
+
   static String moneyFormat(double priceDouble) {
     return NumberFormat.simpleCurrency(locale: 'pt').format(priceDouble);
   }
 
   static String moneyFormatInt(int priceDouble) {
     return NumberFormat.simpleCurrency(locale: 'pt').format(priceDouble);
-  }
-
-  static String formaUrlImage(String enpoint) {
-    return 'http://ineedapiapp-prod.us-east-2.elasticbeanstalk.com/$enpoint';
-  }
-
-  static Future<void> downloadFiles(String _url, String _name, BuildContext context, double downloadProgress, Function setProgress) async {
-    final dir = await AndroidPathProvider.downloadsPath;
-    String fullName;
-    Dio().download(_url, (headers) {
-      var arrFil = headers.value('content-disposition').split('.');
-      String ext = arrFil[1].replaceAll(r'"', '');
-      fullName = '$dir/$_name.$ext';
-      return fullName;
-    }, onReceiveProgress: setProgress).then((value) {
-      OpenFile.open(fullName).then((v) => print(v.type));
-    });
-
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Baixando aquivo...'),
-          content: SingleChildScrollView(
-            child: Observer(
-              builder: (_) => Text(downloadProgress.toString()),
-            ),
-          ),
-          actions: [],
-        );
-      },
-    );
   }
 }
