@@ -50,6 +50,21 @@ mixin _$DocumentosController on _DocumentosControllerBase, Store {
     });
   }
 
+  final _$codConAtom = Atom(name: '_DocumentosControllerBase.codCon');
+
+  @override
+  int get codCon {
+    _$codConAtom.reportRead();
+    return super.codCon;
+  }
+
+  @override
+  set codCon(int value) {
+    _$codConAtom.reportWrite(value, super.codCon, () {
+      super.codCon = value;
+    });
+  }
+
   final _$condominiosAtom = Atom(name: '_DocumentosControllerBase.condominios');
 
   @override
@@ -121,6 +136,7 @@ mixin _$DocumentosController on _DocumentosControllerBase, Store {
     return '''
 downloadProgress: ${downloadProgress},
 documentos: ${documentos},
+codCon: ${codCon},
 condominios: ${condominios},
 listaView: ${listaView}
     ''';

@@ -45,10 +45,8 @@ class _InforCondominioPageState
                     DropdownButtonFieldWidget(
                       label: 'Condominios',
                       hint: 'Selecione',
-                      value: controller.condominios.data[0].codcon,
-                      list: controller.condominios.data != null
-                          ? controller.condominios.data
-                          : [],
+                      list: controller.condominios.data,
+                      value: controller.codCon,
                       onChanged: (value) {
                         controller.changeDropdown(value);
                       },
