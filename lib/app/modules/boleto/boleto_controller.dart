@@ -39,6 +39,7 @@ abstract class _BoletoControllerBase with Store {
     boletos = await _getBoletos();
     listaView = boletos.data;
     changeDropdown(unidades.data[0].codord);
+    listaView = [];
   }
 
   @action
