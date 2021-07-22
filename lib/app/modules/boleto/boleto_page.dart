@@ -62,19 +62,21 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
                   ),
                   Observer(
                       builder: (_) => controller.listaView.length == 0
-                          ? Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.subtitles_off,
-                                  size: 70,
-                                  color: AppColorScheme.primaryColor,
-                                ),
-                                SizedBox(
-                                  height: 30.h,
-                                ),
-                                Text('Não existe boletos para esta unidade'),
-                              ],
+                          ? Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.subtitles_off,
+                                    size: 70,
+                                    color: AppColorScheme.primaryColor,
+                                  ),
+                                  SizedBox(
+                                    height: 30.h,
+                                  ),
+                                  Text('Não existe boletos para esta unidade'),
+                                ],
+                              ),
                             )
                           : Expanded(
                               child: Container(
