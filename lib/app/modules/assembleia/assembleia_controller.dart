@@ -1,12 +1,15 @@
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/assembleia/assembleia_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
+import 'package:Gestart/domain/entities/condominio/condominios_ativos_entity.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
 import 'package:Gestart/data/mappers/condominio/condominio_mapper.dart';
+import 'package:Gestart/domain/usecases/condominio/get_condominios_ativos_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'assembleia_controller.g.dart';
 
@@ -16,32 +19,25 @@ class AssembleiaController = _AssembleiaControllerBase
 
 abstract class _AssembleiaControllerBase with Store {
   final _getEditais = getIt.get<GetEditaisUseCase>();
-
-  ResourceData<List<AssembleiaEntity>> editais;
-  ResourceData<List<AssembleiaEntity>> listaEditais;
+  final _getCondominios = getIt.get<GetCondominiosAtivosUseCase>();
 
   @observable
-  List<CondominioEntity> conds = [];
-
+  ResourceData<List<AssembleiaEntity>> editais;
   @observable
   List<AssembleiaEntity> listaView;
+  @observable
+  ResourceData<List<CondominiosAtivosEntity>> condominios;
 
   @observable
-  List<CondominioEntity> condominios = [];
+  int codCon;
 
-  init() {
+  @action
+  init() async {
     editais = ResourceData(status: Status.loading);
-    getEditais();
+    condominios = ResourceData(status: Status.loading);
+    await getEditais();
+    // listaView = [];
   }
-
-  @observable
-  int loading = 0;
-
-  @action
-  void alterarCondicao() => loading = 1;
-
-  @action
-  void alterarCond(value) => conds = value;
 
   @action
   changeDropdown(int codCond) =>
@@ -50,36 +46,30 @@ abstract class _AssembleiaControllerBase with Store {
   @action
   getEditais() async {
     editais = await _getEditais();
-    listaView = editais.data;
+    condominios = await _getCondominios();
+    var storage = await SharedPreferences.getInstance();
+    int cod = storage.getInt('codCon');
 
-    conds = CondominioEntity().fromEditaisList(editais.data);
-    ajustarCondominios();
-  }
-
-  Future<void> ajustarCondominios() {
-    int count = 0;
-    while (count < conds.length) {
-      int index = condominios
-          .indexWhere((element) => element.codcon == conds[count].codcon);
-      if (index == -1) condominios.add(conds[count]);
-
-      count++;
+    if (codCon == null) {
+      if (cod != null) {
+        codCon = cod;
+      } else {
+        codCon = condominios.data[0].codcon;
+      }
+    } else {
+      codCon = condominios.data[0].codcon;
     }
 
-    alterarCond(condominios);
-    alterarCondicao();
+    changeDropdown(codCon);
+
+    await filterAssembleias(codCon);
   }
 
   @action
-  convertEditaisToCondominios() async {
-    conds = CondominioEntity().fromEditaisList(editais.data);
-    int count = 0;
-    while (count < conds.length) {
-      int index = condominios
-          .indexWhere((element) => element.codcon == conds[count].codcon);
-      if (index == -1) condominios.add(conds[count]);
-
-      count++;
-    }
+  filterAssembleias(int id) {
+    codCon = id;
+    listaView = editais.data.where((assembleia) {
+      return assembleia.codcon == id;
+    }).toList();
   }
 }
