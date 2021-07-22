@@ -19,18 +19,18 @@ final $AssembleiaController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$AssembleiaController on _AssembleiaControllerBase, Store {
-  final _$condsAtom = Atom(name: '_AssembleiaControllerBase.conds');
+  final _$editaisAtom = Atom(name: '_AssembleiaControllerBase.editais');
 
   @override
-  List<CondominioEntity> get conds {
-    _$condsAtom.reportRead();
-    return super.conds;
+  ResourceData<List<AssembleiaEntity>> get editais {
+    _$editaisAtom.reportRead();
+    return super.editais;
   }
 
   @override
-  set conds(List<CondominioEntity> value) {
-    _$condsAtom.reportWrite(value, super.conds, () {
-      super.conds = value;
+  set editais(ResourceData<List<AssembleiaEntity>> value) {
+    _$editaisAtom.reportWrite(value, super.editais, () {
+      super.editais = value;
     });
   }
 
@@ -52,31 +52,38 @@ mixin _$AssembleiaController on _AssembleiaControllerBase, Store {
   final _$condominiosAtom = Atom(name: '_AssembleiaControllerBase.condominios');
 
   @override
-  List<CondominioEntity> get condominios {
+  ResourceData<List<CondominiosAtivosEntity>> get condominios {
     _$condominiosAtom.reportRead();
     return super.condominios;
   }
 
   @override
-  set condominios(List<CondominioEntity> value) {
+  set condominios(ResourceData<List<CondominiosAtivosEntity>> value) {
     _$condominiosAtom.reportWrite(value, super.condominios, () {
       super.condominios = value;
     });
   }
 
-  final _$loadingAtom = Atom(name: '_AssembleiaControllerBase.loading');
+  final _$codConAtom = Atom(name: '_AssembleiaControllerBase.codCon');
 
   @override
-  int get loading {
-    _$loadingAtom.reportRead();
-    return super.loading;
+  int get codCon {
+    _$codConAtom.reportRead();
+    return super.codCon;
   }
 
   @override
-  set loading(int value) {
-    _$loadingAtom.reportWrite(value, super.loading, () {
-      super.loading = value;
+  set codCon(int value) {
+    _$codConAtom.reportWrite(value, super.codCon, () {
+      super.codCon = value;
     });
+  }
+
+  final _$initAsyncAction = AsyncAction('_AssembleiaControllerBase.init');
+
+  @override
+  Future init() {
+    return _$initAsyncAction.run(() => super.init());
   }
 
   final _$getEditaisAsyncAction =
@@ -87,39 +94,8 @@ mixin _$AssembleiaController on _AssembleiaControllerBase, Store {
     return _$getEditaisAsyncAction.run(() => super.getEditais());
   }
 
-  final _$convertEditaisToCondominiosAsyncAction =
-      AsyncAction('_AssembleiaControllerBase.convertEditaisToCondominios');
-
-  @override
-  Future convertEditaisToCondominios() {
-    return _$convertEditaisToCondominiosAsyncAction
-        .run(() => super.convertEditaisToCondominios());
-  }
-
   final _$_AssembleiaControllerBaseActionController =
       ActionController(name: '_AssembleiaControllerBase');
-
-  @override
-  void alterarCondicao() {
-    final _$actionInfo = _$_AssembleiaControllerBaseActionController
-        .startAction(name: '_AssembleiaControllerBase.alterarCondicao');
-    try {
-      return super.alterarCondicao();
-    } finally {
-      _$_AssembleiaControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void alterarCond(dynamic value) {
-    final _$actionInfo = _$_AssembleiaControllerBaseActionController
-        .startAction(name: '_AssembleiaControllerBase.alterarCond');
-    try {
-      return super.alterarCond(value);
-    } finally {
-      _$_AssembleiaControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
 
   @override
   dynamic changeDropdown(int codCond) {
@@ -133,12 +109,23 @@ mixin _$AssembleiaController on _AssembleiaControllerBase, Store {
   }
 
   @override
+  dynamic filterAssembleias(int id) {
+    final _$actionInfo = _$_AssembleiaControllerBaseActionController
+        .startAction(name: '_AssembleiaControllerBase.filterAssembleias');
+    try {
+      return super.filterAssembleias(id);
+    } finally {
+      _$_AssembleiaControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-conds: ${conds},
+editais: ${editais},
 listaView: ${listaView},
 condominios: ${condominios},
-loading: ${loading}
+codCon: ${codCon}
     ''';
   }
 }

@@ -39,10 +39,11 @@ class UIHelper {
     return '$day$separator$month$separator$year';
   }
 
-  static String formatTime(DateTime dateTime) {
+  static String formatTime(DateTime dateTime, [String separator]) {
+    separator = separator == null ? ':' : separator;
     final hour = dateTime.hour.toString().padLeft(2, '0');
     final minute = dateTime.minute.toString().padLeft(2, '0');
-    return ' $hour:$minute';
+    return ' $hour$separator$minute';
   }
 
   static String formatDateFromString(String date) {

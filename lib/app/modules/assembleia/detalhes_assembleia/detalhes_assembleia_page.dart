@@ -37,7 +37,7 @@ class _DetalhesAssembleiaPageState extends ModularState<DetalhesAssembleiaPage, 
     return Scaffold(
       appBar: AppBarCustom(
         context,
-        title: Text('${widget.id}'),
+        title: Text('Asembleia ${widget.id}'),
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -69,14 +69,14 @@ class _DetalhesAssembleiaPageState extends ModularState<DetalhesAssembleiaPage, 
                       disponivel: controller.edital.data[0].idAta,
                       tipoDocumento: 'ATA',
                       link: controller.edital.data[0].linkAta,
-                      fileName: 'ATA_${UIHelper.formatDate(controller.edital.data[0].datemi, '_')}.${controller.edital.data[0].tipoAta}',
+                      fileName: 'ATA_${controller.fileName}',
                     ),
                     ButtonDocumentoWidget(
                       edital: controller.edital.data[0],
                       tipoDocumento: 'EDITAL',
                       disponivel: controller.edital.data[0].linkEdital != null ? 1 : 0,
                       link: controller.edital.data[0].linkEdital,
-                      fileName: 'EDITAL_${UIHelper.formatDate(controller.edital.data[0].datemi, '_')}.${controller.edital.data[0].tipoEdital}',
+                      fileName: 'EDITAL_${controller.fileName}',
                     ),
                     Divider(),
                     Container(
