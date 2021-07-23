@@ -35,6 +35,8 @@ abstract class _BalanceteControllerBase with Store {
   Future getBalancetes() async {
     final r = await _getBalancetes();
     final rc = await _getCondominios();
+    condominios = rc.data;
+    balancetes = r.data;
 
     var storage = await SharedPreferences.getInstance();
     int cod = storage.getInt('codCon');
