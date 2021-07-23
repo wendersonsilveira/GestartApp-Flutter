@@ -55,6 +55,7 @@ class _InforCondominioPageState
                       margin: EdgeInsets.all(10),
                       child: ListTile(
                         leading: CircleAvatar(
+                          backgroundColor: Colors.white,
                           backgroundImage:
                               NetworkImage(controller.cond[0].logo),
                         ),
