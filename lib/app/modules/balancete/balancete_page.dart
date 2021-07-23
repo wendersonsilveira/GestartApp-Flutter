@@ -22,7 +22,8 @@ class BalancetePage extends StatefulWidget {
   _BalancetePageState createState() => _BalancetePageState();
 }
 
-class _BalancetePageState extends ModularState<BalancetePage, BalanceteController> {
+class _BalancetePageState
+    extends ModularState<BalancetePage, BalanceteController> {
   @override
   void initState() {
     controller.getBalancetes();
@@ -45,12 +46,10 @@ class _BalancetePageState extends ModularState<BalancetePage, BalanceteControlle
             ? Column(
                 children: [
                   DropdownButtonFieldWidget(
-                    label: 'Condomínios',
-                    hint: 'Selecione um condomínio',
+                    label: 'Condominios',
+                    hint: 'Selecione',
                     list: controller.condominios,
-                    value: controller.codCon != null
-                        ? controller.codCon
-                        : controller.condominios[0].codcon,
+                    value: controller.codCon,
                     onChanged: (value) {
                       controller.filterBalancetes(value);
                     },
@@ -68,30 +67,36 @@ class _BalancetePageState extends ModularState<BalancetePage, BalanceteControlle
                               SizedBox(
                                 height: 30.h,
                               ),
-                              Text('Não existem balancetes para este condomínio'),
+                              Text(
+                                  'Não existem balancetes para este condomínio'),
                             ],
                           )
                         : Container(
-                            padding: EdgeInsets.symmetric(horizontal: 6, vertical: 5),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 5),
                             child: RefreshIndicator(
                               onRefresh: refreshList,
                               child: ListView.builder(
                                   itemCount: controller.balancetes.length,
                                   shrinkWrap: true,
-                                  itemBuilder: (BuildContext context, int index) {
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
                                     return DownloadListItemWidget(
                                       title: Row(
                                         children: [
                                           Text('Competência: '),
                                           Text(
                                             controller.balancetes[index].mesAno,
-                                            style: TextStyle(color: AppColorScheme.primaryColor),
+                                            style: TextStyle(
+                                                color: AppColorScheme
+                                                    .primaryColor),
                                           ),
                                         ],
                                       ),
-                                      subtitle:
-                                          Text('Período: ${UIHelper.formatDate(controller.balancetes[index].dt1)} - ${UIHelper.formatDate(controller.balancetes[index].dt2)}'),
-                                      fileURL: controller.balancetes[index].linkBalanceteAna,
+                                      subtitle: Text(
+                                          'Período: ${UIHelper.formatDate(controller.balancetes[index].dt1)} - ${UIHelper.formatDate(controller.balancetes[index].dt2)}'),
+                                      fileURL: controller
+                                          .balancetes[index].linkBalanceteAna,
                                       fileName:
                                           'Balancete_${controller.balancetes[index].apelido}_${controller.balancetes[index].mesAno}_v${controller.balancetes[index].versao}.${controller.balancetes[index].tipo}',
                                     );

@@ -65,6 +65,21 @@ mixin _$InforCondominioController on _InforCondominioControllerBase, Store {
     });
   }
 
+  final _$codConAtom = Atom(name: '_InforCondominioControllerBase.codCon');
+
+  @override
+  int get codCon {
+    _$codConAtom.reportRead();
+    return super.codCon;
+  }
+
+  @override
+  set codCon(int value) {
+    _$codConAtom.reportWrite(value, super.codCon, () {
+      super.codCon = value;
+    });
+  }
+
   final _$inforAdmCondAtom =
       Atom(name: '_InforCondominioControllerBase.inforAdmCond');
 
@@ -101,6 +116,7 @@ mixin _$InforCondominioController on _InforCondominioControllerBase, Store {
 condominios: ${condominios},
 cond: ${cond},
 listView: ${listView},
+codCon: ${codCon},
 inforAdmCond: ${inforAdmCond}
     ''';
   }

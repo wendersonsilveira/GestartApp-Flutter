@@ -50,6 +50,22 @@ mixin _$DetalhesAssembleiaController
     });
   }
 
+  final _$fileNameAtom =
+      Atom(name: '_DetalhesAssembleiaControllerBase.fileName');
+
+  @override
+  String get fileName {
+    _$fileNameAtom.reportRead();
+    return super.fileName;
+  }
+
+  @override
+  set fileName(String value) {
+    _$fileNameAtom.reportWrite(value, super.fileName, () {
+      super.fileName = value;
+    });
+  }
+
   final _$initAsyncAction =
       AsyncAction('_DetalhesAssembleiaControllerBase.init');
 
@@ -77,7 +93,8 @@ mixin _$DetalhesAssembleiaController
   String toString() {
     return '''
 edital: ${edital},
-loading: ${loading}
+loading: ${loading},
+fileName: ${fileName}
     ''';
   }
 }

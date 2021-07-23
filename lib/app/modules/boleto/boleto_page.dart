@@ -46,19 +46,15 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
                 children: <Widget>[
                   Container(
                     height: 110.h,
-                    child: controller.unidades.data == null
-                        ? CircularProgressCustom()
-                        : DropdownButtonField3Widget(
-                            label: 'Unidade',
-                            hint: 'Selecione',
-                            value: controller.unidades.data[0].codord,
-                            list: controller.unidades.data != null
-                                ? controller.unidades.data
-                                : [],
-                            onChanged: (value) {
-                              controller.changeDropdown(value);
-                            },
-                          ),
+                    child: DropdownButtonField3Widget(
+                      label: 'Unidade',
+                      hint: 'Selecione',
+                      value: controller.codOrd,
+                      list: controller.unidades.data,
+                      onChanged: (value) {
+                        controller.changeDropdown(value);
+                      },
+                    ),
                   ),
                   Observer(
                       builder: (_) => controller.listaView.length == 0
