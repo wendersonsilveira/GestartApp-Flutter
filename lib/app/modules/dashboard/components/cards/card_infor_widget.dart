@@ -21,13 +21,17 @@ class CardInfor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (statusCondominio == 0)
-      return CardNovoWidget();
-    else if (statusCondominio == 1)
-      return CardCondInativosWidget(
-        condominio: condominio,
-      );
-    else
-      return Container();
+    return Container(
+      padding: EdgeInsets.only(top: 12, left: 8, right: 8),
+      child: Card(
+        child: statusCondominio == 0
+            ? CardNovoWidget()
+            : statusCondominio == 1
+                ? CardCondInativosWidget(
+                    condominio: condominio,
+                  )
+                : Container(),
+      ),
+    );
   }
 }

@@ -5,9 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ItemServicoHabilitadoWidget extends StatelessWidget {
-  const ItemServicoHabilitadoWidget(
-      {Key key, this.icone, this.descricao, this.routeName, this.condominios})
-      : super(key: key);
+  const ItemServicoHabilitadoWidget({Key key, this.icone, this.descricao, this.routeName, this.condominios}) : super(key: key);
   final IconData icone;
   final String descricao;
   final String routeName;
@@ -20,6 +18,7 @@ class ItemServicoHabilitadoWidget extends StatelessWidget {
         Modular.navigator.pushNamed(routeName);
       },
       child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 5),
           color: Colors.white,
           height: 40,
           width: double.infinity,
@@ -36,8 +35,7 @@ class ItemServicoHabilitadoWidget extends StatelessWidget {
               ),
               Text(
                 descricao,
-                style:
-                    TextStyle(color: AppColorScheme.primaryColor, fontSize: 16),
+                style: TextStyle(color: AppColorScheme.neutralMedium4, fontSize: 16),
               )
             ],
           )),

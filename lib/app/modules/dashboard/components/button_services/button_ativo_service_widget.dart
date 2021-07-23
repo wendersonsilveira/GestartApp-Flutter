@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class ButtonServiceWidget extends StatelessWidget {
-  const ButtonServiceWidget({Key key, this.icon, this.descricao, this.route})
-      : super(key: key);
+  const ButtonServiceWidget({Key key, this.icon, this.descricao, this.route}) : super(key: key);
 
   final IconData icon;
   final String descricao;
@@ -30,7 +29,7 @@ class ButtonServiceWidget extends StatelessWidget {
         ),
         Text(
           descricao,
-          style: TextStyle(color: AppColorScheme.primaryColor),
+          style: TextStyle(color: AppColorScheme.neutralMedium4),
           textAlign: TextAlign.center,
         )
       ],
