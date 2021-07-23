@@ -1,9 +1,7 @@
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/assembleia/assembleia_entity.dart';
-import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominios_ativos_entity.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
-import 'package:Gestart/data/mappers/condominio/condominio_mapper.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominios_ativos_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -23,8 +21,19 @@ abstract class _AssembleiaControllerBase with Store {
 
   @observable
   ResourceData<List<AssembleiaEntity>> editais;
+
+  @observable
+  List<AssembleiaEntity> editaisProximos;
+
+  @observable
+  List<AssembleiaEntity> editaisAntigos;
+
   @observable
   List<AssembleiaEntity> listaView;
+
+  @observable
+  List<List<AssembleiaEntity>> allLists = [];
+
   @observable
   ResourceData<List<CondominiosAtivosEntity>> condominios;
 
@@ -40,8 +49,18 @@ abstract class _AssembleiaControllerBase with Store {
   }
 
   @action
-  changeDropdown(int codCond) =>
-      listaView = editais.data.where((i) => i.codcon == codCond).toList();
+  changeDropdown(int codCond) {
+    listaView = editais.data.where((i) => i.codcon == codCond).toList();
+    separarEditais();
+  }
+
+  @action
+  separarEditais() {
+    editaisProximos =
+        listaView.where((element) => element.status == 1).toList();
+    editaisAntigos = listaView.where((element) => element.status == 0).toList();
+    allLists = [editaisProximos, editaisAntigos];
+  }
 
   @action
   getEditais() async {
@@ -71,5 +90,7 @@ abstract class _AssembleiaControllerBase with Store {
     listaView = editais.data.where((assembleia) {
       return assembleia.codcon == id;
     }).toList();
+
+    separarEditais();
   }
 }
