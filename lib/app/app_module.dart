@@ -1,3 +1,5 @@
+import 'package:Gestart/app/modules/pesquisa_voz/pesquisa_controller.dart';
+import 'package:Gestart/app/modules/pesquisa_voz/pesquisa_page.dart';
 import 'package:Gestart/app/modules/sindico/cadastro_espaco/cadastro_espaco_page.dart';
 import 'package:Gestart/app/modules/veiculo/cadastro_veiculo/cadastro_veiculo_controller.dart';
 import 'package:Gestart/app/modules/veiculo/veiculos_controller.dart';
@@ -110,7 +112,8 @@ class AppModule extends MainModule {
         cadastroReservaController.$CadastroController,
         $DadosReservaController,
         $VeiculosController,
-        $CadastroVeiculoController
+        $CadastroVeiculoController,
+        $PesquisaController
       ];
 
   @override
@@ -149,6 +152,7 @@ class AppModule extends MainModule {
         ModularRouter(RouteName.reservaDados, child: (_, args) => DadosReservaPage(reserva: args.data)),
         ModularRouter(RouteName.veiculos, child: (_, args) => VeiculosPage()),
         ModularRouter(RouteName.cadastroVeiculo, child: (_, args) => CadastroVeiculoPage(id: args.data)),
+        ModularRouter(RouteName.pesquisaVoz, child: (_, args) => PesquisaPage()),
       ];
 
   @override

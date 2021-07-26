@@ -85,10 +85,12 @@ dependencies:
 
   mask_text_input_formatter: "1.2.1"
 
-  flutter_downloader: ^1.5.2
-  android_path_provider: ^0.1.1
-  open_file: ^3.0.3
-  permission_handler: ^5.1.0+2
+  android_path_provider: ^0.1.1 #buscar diretorio de download
+  open_file: ^3.0.3 #abrir arquivos
+  permission_handler: ^5.1.0+2 #verificar e solicitar permissoes
+  speech_to_text: ^3.2.0 #converter voz em texto
+  avatar_glow: ^1.2.0 #animações
+  string_similarity: ^1.1.0 #comparar strings
 
 dev_dependencies:
   mockito: ^4.1.3

@@ -1,9 +1,8 @@
-import 'package:Gestart/app/modules/cadastros/cadastros_page.dart';
 import 'package:Gestart/app/modules/dashboard/dashboard_page.dart';
-import 'package:Gestart/app/modules/documentos/documentos_page.dart';
 import 'package:Gestart/app/modules/informativos/informativos_page.dart';
 import 'package:Gestart/app/modules/notificacoes/notificacoes_page.dart';
 import 'package:Gestart/app/modules/perfil/perfil_page.dart';
+import 'package:Gestart/app/modules/pesquisa_voz/pesquisa_page.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -24,7 +23,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   final List<Widget> _telas = [
     DashboardPage(),
     InformativosPage(),
-    DocumentosPage(),
+    PesquisaPage(),
     NotificacoesPage(),
     PerfilPage(),
   ];
