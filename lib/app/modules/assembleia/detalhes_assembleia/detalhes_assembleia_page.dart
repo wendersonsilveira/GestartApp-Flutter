@@ -28,7 +28,6 @@ class _DetalhesAssembleiaPageState extends ModularState<DetalhesAssembleiaPage, 
   @override
   void initState() {
     controller.init(widget.id);
-    // print(controller.edital.data.length);
     super.initState();
   }
 
