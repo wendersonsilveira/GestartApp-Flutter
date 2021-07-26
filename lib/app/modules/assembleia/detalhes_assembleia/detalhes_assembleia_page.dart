@@ -97,16 +97,14 @@ class _DetalhesAssembleiaPageState extends ModularState<DetalhesAssembleiaPage, 
                               ),
                               Container(
                                 height: (130.0 * controller.edital.data.length) > 520 ? 520.h : (110.0 * controller.edital.data.length).h,
-                                child: Expanded(
-                                  child: ListView.builder(
-                                    itemCount: controller.edital.data.length,
-                                    itemBuilder: (BuildContext context, int index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.all(12),
-                                        child: Text('${index + 1} - ${controller.edital.data[index].assunto}'),
-                                      );
-                                    },
-                                  ),
+                                child: ListView.builder(
+                                  itemCount: controller.edital.data.length,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(12),
+                                      child: Text('${index + 1} - ${controller.edital.data[index].assunto}'),
+                                    );
+                                  },
                                 ),
                               ),
                             ],
