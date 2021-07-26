@@ -35,14 +35,18 @@ class QuestionDialog extends StatelessWidget {
       ),
       content: Text(message),
       actions: [
-        FlatButtonWidget(
-            text: textButtonNegative != null ? textButtonNegative : "Não",
+        TextButton(
+            child:
+                Text(textButtonNegative != null ? textButtonNegative : "Não"),
+            // cor: Colors.black,
             onPressed: () {
               Navigator.of(context).pop();
               onActionNegativeButton();
             }),
-        FlatButtonWidget(
-            text: textButtonPositive != null ? textButtonPositive : "Sim",
+        TextButton(
+            // cor: Colors.red,
+            child:
+                Text(textButtonPositive != null ? textButtonPositive : "Sim"),
             onPressed: () {
               Navigator.of(context).pop();
               onActionPositiveButton();

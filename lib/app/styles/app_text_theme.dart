@@ -255,7 +255,7 @@ class AppTextTheme {
 
   static TextStyle titleAlertQestion = TextStyle(
     fontSize: 36.sp,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.bold,
     letterSpacing: 0.15.sp,
     fontFamily: 'roboto',
     color: AppColorScheme.black,

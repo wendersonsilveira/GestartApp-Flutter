@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
@@ -5,6 +7,7 @@ import 'package:Gestart/app/widgets/inputs/dropdown_button_field.widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'assembleia_controller.dart';
@@ -22,7 +25,8 @@ class AssembleiaPage extends StatefulWidget {
   _AssembleiaPageState createState() => _AssembleiaPageState();
 }
 
-class _AssembleiaPageState extends ModularState<AssembleiaPage, AssembleiaController> {
+class _AssembleiaPageState
+    extends ModularState<AssembleiaPage, AssembleiaController> {
   //use 'controller' variable to access controller
 
   @override
@@ -44,7 +48,8 @@ class _AssembleiaPageState extends ModularState<AssembleiaPage, AssembleiaContro
         elevation: 0,
       ),
       body: Observer(
-          builder: (_) => controller.condominios.status == Status.loading && controller.condominios.data == null
+          builder: (_) => controller.condominios.status == Status.loading &&
+                  controller.condominios.data == null
               ? Center(child: CircularProgressCustom())
               : Column(
                   children: [
@@ -77,32 +82,148 @@ class _AssembleiaPageState extends ModularState<AssembleiaPage, AssembleiaContro
                               ],
                             )
                           : Container(
-                              padding: EdgeInsets.symmetric(horizontal: 6, vertical: 5),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 6, vertical: 5),
                               child: RefreshIndicator(
                                 onRefresh: refreshList,
                                 child: ListView.builder(
-                                    itemCount: controller.listaView.length,
+                                    itemCount: 1,
                                     shrinkWrap: true,
-                                    itemBuilder: (BuildContext context, int index) {
-                                      return Card(
-                                        child: ListTile(
-                                          onTap: () {
-                                            Modular.navigator.pushNamed(RouteName.detalhes_assembleia, arguments: controller.listaView[index].id);
-                                          },
-                                          leading: Icon(
-                                            Icons.calendar_today,
-                                            color: AppColorScheme.primaryColor,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Column(
+                                        children: [
+                                          controller.editaisProximos.length == 0
+                                              ? Container()
+                                              : Card(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Text(
+                                                          'PRÓXIMA',
+                                                          style: TextStyle(
+                                                            fontSize: 30.sp,
+                                                            fontFamily:
+                                                                'roboto',
+                                                            fontStyle: FontStyle
+                                                                .normal,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Divider(),
+                                                      Column(
+                                                        children: controller
+                                                            .allLists[0]
+                                                            .map((e) =>
+                                                                ListTile(
+                                                                  onTap: () {
+                                                                    Modular.navigator.pushNamed(
+                                                                        RouteName
+                                                                            .detalhes_assembleia,
+                                                                        arguments:
+                                                                            e.id);
+                                                                  },
+                                                                  leading: Icon(
+                                                                    FlutterIcons
+                                                                        .calendar_alert_mco,
+                                                                    size: 35,
+                                                                    color: AppColorScheme
+                                                                        .black,
+                                                                  ),
+                                                                  subtitle:
+                                                                      SubTitleWidget(
+                                                                    data: e
+                                                                        .datreu,
+                                                                    hora: e
+                                                                        .horreu_1,
+                                                                    local:
+                                                                        e.loc,
+                                                                  ),
+                                                                  title:
+                                                                      TitleWidget(
+                                                                    nomTip: e
+                                                                        .nomtip,
+                                                                    apelido: e
+                                                                        .apelido,
+                                                                  ),
+                                                                ))
+                                                            .toList(),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                          Card(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    'REALIZADAS',
+                                                    style: TextStyle(
+                                                      fontSize: 30.sp,
+                                                      fontFamily: 'roboto',
+                                                      fontStyle:
+                                                          FontStyle.normal,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Divider(),
+                                                Column(
+                                                  children: controller
+                                                      .allLists[1]
+                                                      .map((e) => Card(
+                                                            child: Column(
+                                                              children: [
+                                                                ListTile(
+                                                                  onTap: () {
+                                                                    Modular.navigator.pushNamed(
+                                                                        RouteName
+                                                                            .detalhes_assembleia,
+                                                                        arguments:
+                                                                            e.id);
+                                                                  },
+                                                                  leading: Icon(
+                                                                    FlutterIcons
+                                                                        .calendar_check_faw5s,
+                                                                    size: 35,
+                                                                    color: AppColorScheme
+                                                                        .primaryColor,
+                                                                  ),
+                                                                  subtitle:
+                                                                      SubTitleWidget(
+                                                                    data: e
+                                                                        .datreu,
+                                                                    hora: e
+                                                                        .horreu_1,
+                                                                    local:
+                                                                        e.loc,
+                                                                  ),
+                                                                  title:
+                                                                      TitleWidget(
+                                                                    nomTip: e
+                                                                        .nomtip,
+                                                                    apelido: e
+                                                                        .apelido,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ))
+                                                      .toList(),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                          subtitle: SubTitleWidget(
-                                            data: controller.listaView[index].datreu,
-                                            hora: controller.listaView[index].horreu_1,
-                                            local: controller.listaView[index].loc,
-                                          ),
-                                          title: TitleWidget(
-                                            nomTip: controller.listaView[index].nomtip,
-                                            apelido: controller.listaView[index].apelido,
-                                          ),
-                                        ),
+                                        ],
                                       );
                                     }),
                               ),
