@@ -32,6 +32,8 @@ class RouteName {
   static const String cadastroVeiculo = '/cadastroVeirculo';
   static const String pesquisaVoz = '/pesquisa_voz';
 
+  static const String recebimentos = '/recebimentos';
+
   static const Map allRoutesKeys = {
     'boleto': boleto,
     'fatura': boleto,
