@@ -18,17 +18,11 @@ class UnidadeRemoteDataSource {
       final result = await _dio.get('unidadesAtivas');
 
       if (result.length > 0)
-        return ResourceData<List<UnidadeEntity>>(
-            status: Status.success, data: UnidadeEntity().fromMapList(result));
+        return ResourceData<List<UnidadeEntity>>(status: Status.success, data: UnidadeEntity().fromMapList(result));
       else
-        return ResourceData<List<UnidadeEntity>>(
-            status: Status.success, data: null);
+        return ResourceData<List<UnidadeEntity>>(status: Status.success, data: null);
     } on DioError catch (e) {
-      return ResourceData(
-          status: Status.failed,
-          data: null,
-          message: "Erro ao listar as unidades ativas",
-          error: ErrorMapper.from(e));
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar as unidades ativas", error: ErrorMapper.from(e));
     }
   }
 
@@ -37,18 +31,24 @@ class UnidadeRemoteDataSource {
       final result = await _dio.get('resumo');
 
       if (result.length > 0)
-        return ResourceData<List<UnidadeEntity>>(
-            status: Status.success,
-            data: UnidadeEntity().fromMapList(result['condominiosAtivosAdm']));
+        return ResourceData<List<UnidadeEntity>>(status: Status.success, data: UnidadeEntity().fromMapList(result['condominiosAtivosAdm']));
       else
-        return ResourceData<List<UnidadeEntity>>(
-            status: Status.success, data: null);
+        return ResourceData<List<UnidadeEntity>>(status: Status.success, data: null);
     } on DioError catch (e) {
-      return ResourceData(
-          status: Status.failed,
-          data: null,
-          message: "Erro ao listar as unidades adm",
-          error: ErrorMapper.from(e));
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar as unidades adm", error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<List<UnidadeEntity>>> getAdmUnidadesProprieraios(int codCon) async {
+    try {
+      final result = await _dio.get('adm-condon/$codCon');
+
+      if (result.length > 0)
+        return ResourceData<List<UnidadeEntity>>(status: Status.success, data: UnidadeEntity().fromMapList(result));
+      else
+        return ResourceData<List<UnidadeEntity>>(status: Status.success, data: null);
+    } on DioError catch (e) {
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar as unidades ativas", error: ErrorMapper.from(e));
     }
   }
 }

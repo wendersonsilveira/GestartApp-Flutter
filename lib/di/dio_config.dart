@@ -72,6 +72,7 @@ import 'package:Gestart/domain/usecases/pet/get_all_pets_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/recebimento/get_recebimentos_use_case.dart';
 import 'package:Gestart/domain/usecases/recebimento/get_tipos_taxa_use_case.dart';
+import 'package:Gestart/domain/usecases/unidade/get_adm_unidades_prop_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_adm_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/cancelar_reserva_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/create_reserva_use_case.dart';
@@ -149,6 +150,7 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<UnidadeRemoteDataSource>(() => UnidadeRemoteDataSource(get<CustomDio>()));
   gh.factory<GetUnidadesUseCase>(() => GetUnidadesUseCase(get<UnidadeRepository>()));
   gh.factory<GetUnidadesAdmUseCase>(() => GetUnidadesAdmUseCase(get<UnidadeRepository>()));
+  gh.factory<GetAdmunidadesProprietariosUseCase>(() => GetAdmunidadesProprietariosUseCase(get<UnidadeRepository>()));
 
   //balancetes
   gh.factory<BalanceteRemoteDataSource>(() => BalanceteRemoteDataSource(get<CustomDio>()));

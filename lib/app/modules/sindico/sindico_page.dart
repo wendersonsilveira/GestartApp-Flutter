@@ -31,7 +31,7 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
 
   mudarPage(int indice) {
     setState(() {
-      controllerPages.animateToPage(indice, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+      controllerPages.animateToPage(indice, duration: Duration(milliseconds: 200), curve: Curves.easeIn);
     });
   }
 
