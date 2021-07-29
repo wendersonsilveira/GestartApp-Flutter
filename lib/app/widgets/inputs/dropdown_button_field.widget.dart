@@ -52,7 +52,7 @@ class _DropdownButtonFieldWidgetState extends State<DropdownButtonFieldWidget> {
 
   setCodConShared(int codCon) async {
     widget.onChanged(codCon);
-
+    print('entrou aqui');
     SharedPreferences.getInstance()
         .then((value) => value.setInt('codCon', codCon));
   }

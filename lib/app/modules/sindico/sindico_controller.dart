@@ -61,9 +61,9 @@ abstract class _SindicoControllerBase with Store {
 
   @action
   alterarSelecao(value) {
-    unidadeSelecionada =
-        unidades.data.firstWhere((element) => element.codord == value);
-    print(unidadeSelecionada);
+    // unidadeSelecionada =
+    //     unidades.data.firstWhere((element) => element.codord == value);
+    // print(unidadeSelecionada);
   }
 
   @action
