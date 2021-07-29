@@ -1,3 +1,4 @@
+import 'modules/sindico/listar_espacos/listar_espacos_controller.dart';
 import 'package:Gestart/app/modules/pesquisa_voz/pesquisa_controller.dart';
 import 'package:Gestart/app/modules/pesquisa_voz/pesquisa_page.dart';
 import 'package:Gestart/app/modules/sindico/cadastro_espaco/cadastro_espaco_page.dart';
@@ -66,6 +67,7 @@ import 'package:Gestart/app/modules/pets/cadastro_pet/cadastro_pet_page.dart';
 import 'package:Gestart/app/modules/pets/cadastro_pet/cadastro_pet_controller.dart';
 import 'package:Gestart/app/modules/reserva/reserva_controller.dart';
 import 'package:Gestart/app/modules/veiculo/veiculos_controller.dart';
+import 'package:Gestart/app/modules/sindico/listar_espacos/listar_espacos_page.dart';
 
 import 'constants/route_name.dart';
 import 'modules/condominio/condominio_controller.dart';
@@ -80,6 +82,7 @@ import 'package:Gestart/app/app_widget.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        $ListarEspacosController,
         $CadastroEspacoController,
         $SindicoController,
         $AlterarPerfilController,
@@ -153,6 +156,7 @@ class AppModule extends MainModule {
         ModularRouter(RouteName.reservaDados, child: (_, args) => DadosReservaPage(reserva: args.data)),
         ModularRouter(RouteName.veiculos, child: (_, args) => VeiculosPage()),
         ModularRouter(RouteName.cadastroVeiculo, child: (_, args) => CadastroVeiculoPage(id: args.data)),
+        ModularRouter(RouteName.listar_espacos, child: (_, args) => ListarEspacosPage()),
         ModularRouter(RouteName.pesquisaVoz, child: (_, args) => PesquisaPage()),
         ModularRouter(RouteName.recebimentos, child: (_, args) => RecebimentosPage()),
       ];

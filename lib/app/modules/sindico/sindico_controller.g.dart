@@ -34,6 +34,21 @@ mixin _$SindicoController on _SindicoControllerBase, Store {
     });
   }
 
+  final _$codConAtom = Atom(name: '_SindicoControllerBase.codCon');
+
+  @override
+  int get codCon {
+    _$codConAtom.reportRead();
+    return super.codCon;
+  }
+
+  @override
+  set codCon(int value) {
+    _$codConAtom.reportWrite(value, super.codCon, () {
+      super.codCon = value;
+    });
+  }
+
   final _$unidadeSelecionadaAtom =
       Atom(name: '_SindicoControllerBase.unidadeSelecionada');
 
@@ -65,9 +80,21 @@ mixin _$SindicoController on _SindicoControllerBase, Store {
   }
 
   @override
+  dynamic changeDropdown(int codCond) {
+    final _$actionInfo = _$_SindicoControllerBaseActionController.startAction(
+        name: '_SindicoControllerBase.changeDropdown');
+    try {
+      return super.changeDropdown(codCond);
+    } finally {
+      _$_SindicoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 unidades: ${unidades},
+codCon: ${codCon},
 unidadeSelecionada: ${unidadeSelecionada}
     ''';
   }

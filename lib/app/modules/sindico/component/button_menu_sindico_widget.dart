@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class ButtonMenuWidget extends StatefulWidget {
   const ButtonMenuWidget({Key key, this.icone, this.descricao, this.onPress}) : super(key: key);
+
   final IconData icone;
   final String descricao;
   final Function onPress;
