@@ -3,6 +3,7 @@ import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'espacos_controller.dart';
@@ -60,7 +61,7 @@ class _EspacosPageState extends ModularState<EspacosPage, EspacosController> {
                             subtitle: Text(
                                 'Capacidade: ${controller.espacos[index].capacidade} pessoas.\n${controller.espacos[index].aprovacao ? 'REQUER APROVAÇÃO' : 'NÃO REQUER APROVAÇÃO'}'),
                             leading: Icon(
-                              Icons.crop_square,
+                              FlutterIcons.square_faw,
                               color: AppColorScheme.primaryColor,
                             ),
                             trailing: Icon(

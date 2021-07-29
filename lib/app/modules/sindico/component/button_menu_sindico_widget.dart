@@ -2,8 +2,8 @@ import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 
 class ButtonMenuWidget extends StatefulWidget {
-  const ButtonMenuWidget({Key key, this.icone, this.descricao, this.onPress})
-      : super(key: key);
+  const ButtonMenuWidget({Key key, this.icone, this.descricao, this.onPress}) : super(key: key);
+
   final IconData icone;
   final String descricao;
   final Function onPress;

@@ -21,4 +21,11 @@ class UnidadeRepositoryImpl implements UnidadeRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData<List<UnidadeEntity>>> getAdmUnidadesProprieraios(int codCon) async {
+    final resource = await _unidadeRemoteDataSource.getAdmUnidadesProprieraios(codCon);
+
+    return resource;
+  }
 }

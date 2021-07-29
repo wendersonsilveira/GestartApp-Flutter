@@ -15,8 +15,7 @@ extension PetMapper on PetEntity {
     );
   }
 
-  List<PetEntity> fromMapList(List<dynamic> data) =>
-      List.from(data).map((element) => fromMap(element)).toList();
+  List<PetEntity> fromMapList(List<dynamic> data) => List.from(data).map((element) => fromMap(element)).toList();
 
   PetEntity fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
