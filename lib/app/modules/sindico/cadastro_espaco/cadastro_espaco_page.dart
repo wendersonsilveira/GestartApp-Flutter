@@ -37,6 +37,12 @@ class _CadastroEspacoPageState
   @override
   void initState() {
     controller.init();
+    if (widget.id != null)
+      controller.getEspaco(widget.id).then((value) {
+        _nomeController.text = value.data.descricao;
+        _capacidadeController.text = value.data.capacidade.toString();
+        _observacaoIniController.text = value.data.obs;
+      });
     super.initState();
   }
 

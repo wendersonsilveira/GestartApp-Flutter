@@ -39,6 +39,43 @@ abstract class _CadastroEspacoControllerBase with Store {
     this.cond = await UIHelper.getStorageInt('codCon');
   }
 
+  Future<ResourceData<EspacoEntity>> getEspaco(int idEspaco) async {
+    espacoEditar = await _getEspaco(idEspaco);
+    setarValores(espacoEditar.data);
+    return espacoEditar;
+  }
+
+  setarValores(EspacoEntity espaco) {
+    this.tempoMinPermanencia = espaco.perMin;
+    this.tempoMaxPermanencia = espaco.perMax;
+    this.tempoMinAntecedencia = espaco.antMin;
+    this.tempoMaxAntecedencia = espaco.antMax;
+    this.tempoIntervaloReserva = espaco.intRes;
+    this.ativarDom = espaco.dom;
+    this.domIni = espaco.domIni;
+    this.domFim = espaco.domFim;
+    this.ativarSeg = espaco.seg;
+    this.segIni = espaco.segIni;
+    this.segFim = espaco.segFim;
+    this.ativarTer = espaco.ter;
+    this.terIni = espaco.terIni;
+    this.terFim = espaco.terFim;
+    this.ativarQua = espaco.qua;
+    this.quaIni = espaco.quaIni;
+    this.quaFim = espaco.quaFim;
+    this.ativarQui = espaco.qui;
+    this.quiIni = espaco.quiIni;
+    this.quiFim = espaco.quiFim;
+    this.ativarSex = espaco.sex;
+    this.sexIni = espaco.sexIni;
+    this.sexFim = espaco.sexFim;
+    this.ativarSab = espaco.sab;
+    this.sabIni = espaco.sabIni;
+    this.sabFim = espaco.sabFim;
+    this.apenasProprietarioReserva = espaco.aprovacao;
+    this.autorizacaoResponsavel = espaco.apenasMaster;
+  }
+
   Future<ResourceData> enviarParametros(
       String nome, capacidade, obs, int id) async {
     EspacoEntity espaco = id != null
@@ -109,7 +146,6 @@ abstract class _CadastroEspacoControllerBase with Store {
             sabFim: this.sabFim,
             aprovacao: this.autorizacaoResponsavel,
             apenasMaster: this.apenasProprietarioReserva);
-    print(espaco);
     statusCriacao = await _criarEspaco(espaco);
 
     return statusCriacao;

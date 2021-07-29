@@ -39,9 +39,4 @@ abstract class _ListarEspacosControllerBase with Store {
     statusExcluirEspaco = await _excluirEspaco(idEspaco);
     return statusExcluirEspaco;
   }
-
-  @action
-  void increment() {
-    value++;
-  }
 }

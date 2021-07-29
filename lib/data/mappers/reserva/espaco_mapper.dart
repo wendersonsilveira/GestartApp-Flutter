@@ -66,6 +66,7 @@ extension EspacoMapper on EspacoEntity {
 
   Map<String, dynamic> toMap2() {
     return {
+      'ID': id ?? null,
       'CODCON': codcon,
       'DESCRICAO': descricao,
       'OBS': obs,
