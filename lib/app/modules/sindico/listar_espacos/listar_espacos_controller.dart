@@ -19,7 +19,7 @@ abstract class _ListarEspacosControllerBase with Store {
   String condcon;
 
   @observable
-  ResourceData<List<EspacoEntity>> reservas;
+  ResourceData<List<EspacoEntity>> espacos;
 
   @observable
   ResourceData statusExcluirEspaco;
@@ -28,9 +28,10 @@ abstract class _ListarEspacosControllerBase with Store {
   int value = 0;
 
   init() async {
-    reservas = ResourceData(status: Status.loading);
+    espacos = ResourceData(status: Status.loading);
     // this.condcon = await UIHelper.getStorage('cond');
-    reservas = await _getEspaco(int.parse(this.condcon));
+    espacos = await _getEspaco();
+    print(espacos);
   }
 
   @action
