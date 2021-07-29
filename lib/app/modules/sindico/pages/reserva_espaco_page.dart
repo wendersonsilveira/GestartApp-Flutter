@@ -30,7 +30,7 @@ class _InicialPageState extends State<InicialPage> {
                 title: Text('Cadastro de Espaços'),
                 trailing: Icon(Icons.arrow_right),
                 onTap: () =>
-                    Modular.navigator.pushNamed(RouteName.cadastro_espaco)),
+                    Modular.navigator.pushNamed(RouteName.listar_espacos)),
           ),
           Card(
             child: ListTile(

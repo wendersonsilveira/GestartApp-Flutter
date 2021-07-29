@@ -2,9 +2,11 @@ import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 
 class ButtonMenuWidget extends StatefulWidget {
-  const ButtonMenuWidget({Key key, this.icone, this.descricao}) : super(key: key);
+  const ButtonMenuWidget({Key key, this.icone, this.descricao, this.onPress})
+      : super(key: key);
   final IconData icone;
   final String descricao;
+  final Function onPress;
 
   @override
   ButtonMenuWidgetState createState() => ButtonMenuWidgetState();
@@ -19,7 +21,7 @@ class ButtonMenuWidgetState extends State<ButtonMenuWidget> {
           height: 60,
           width: 60,
           child: OutlinedButton(
-            onPressed: () => null, //Modular.navigator.pushNamed(route),
+            onPressed: widget.onPress, //Modular.navigator.pushNamed(route),
             child: Icon(
               widget.icone,
               color: AppColorScheme.primaryColor,

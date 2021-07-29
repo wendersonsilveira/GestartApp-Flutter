@@ -34,6 +34,38 @@ mixin _$AssembleiaController on _AssembleiaControllerBase, Store {
     });
   }
 
+  final _$editaisProximosAtom =
+      Atom(name: '_AssembleiaControllerBase.editaisProximos');
+
+  @override
+  List<AssembleiaEntity> get editaisProximos {
+    _$editaisProximosAtom.reportRead();
+    return super.editaisProximos;
+  }
+
+  @override
+  set editaisProximos(List<AssembleiaEntity> value) {
+    _$editaisProximosAtom.reportWrite(value, super.editaisProximos, () {
+      super.editaisProximos = value;
+    });
+  }
+
+  final _$editaisAntigosAtom =
+      Atom(name: '_AssembleiaControllerBase.editaisAntigos');
+
+  @override
+  List<AssembleiaEntity> get editaisAntigos {
+    _$editaisAntigosAtom.reportRead();
+    return super.editaisAntigos;
+  }
+
+  @override
+  set editaisAntigos(List<AssembleiaEntity> value) {
+    _$editaisAntigosAtom.reportWrite(value, super.editaisAntigos, () {
+      super.editaisAntigos = value;
+    });
+  }
+
   final _$listaViewAtom = Atom(name: '_AssembleiaControllerBase.listaView');
 
   @override
@@ -46,6 +78,21 @@ mixin _$AssembleiaController on _AssembleiaControllerBase, Store {
   set listaView(List<AssembleiaEntity> value) {
     _$listaViewAtom.reportWrite(value, super.listaView, () {
       super.listaView = value;
+    });
+  }
+
+  final _$allListsAtom = Atom(name: '_AssembleiaControllerBase.allLists');
+
+  @override
+  List<List<AssembleiaEntity>> get allLists {
+    _$allListsAtom.reportRead();
+    return super.allLists;
+  }
+
+  @override
+  set allLists(List<List<AssembleiaEntity>> value) {
+    _$allListsAtom.reportWrite(value, super.allLists, () {
+      super.allLists = value;
     });
   }
 
@@ -109,6 +156,17 @@ mixin _$AssembleiaController on _AssembleiaControllerBase, Store {
   }
 
   @override
+  dynamic separarEditais() {
+    final _$actionInfo = _$_AssembleiaControllerBaseActionController
+        .startAction(name: '_AssembleiaControllerBase.separarEditais');
+    try {
+      return super.separarEditais();
+    } finally {
+      _$_AssembleiaControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic filterAssembleias(int id) {
     final _$actionInfo = _$_AssembleiaControllerBaseActionController
         .startAction(name: '_AssembleiaControllerBase.filterAssembleias');
@@ -123,7 +181,10 @@ mixin _$AssembleiaController on _AssembleiaControllerBase, Store {
   String toString() {
     return '''
 editais: ${editais},
+editaisProximos: ${editaisProximos},
+editaisAntigos: ${editaisAntigos},
 listaView: ${listaView},
+allLists: ${allLists},
 condominios: ${condominios},
 codCon: ${codCon}
     ''';

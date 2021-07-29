@@ -6,6 +6,7 @@ import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'sindico_controller.g.dart';
 
@@ -17,6 +18,9 @@ abstract class _SindicoControllerBase with Store {
 
   @observable
   ResourceData<List<UnidadeEntity>> unidades;
+
+  @observable
+  int codCon;
 
   final List<dynamic> menus = [
     {
@@ -40,6 +44,19 @@ abstract class _SindicoControllerBase with Store {
   init() async {
     unidades = ResourceData(status: Status.loading);
     unidades = await _getUnidades();
+
+    var storage = await SharedPreferences.getInstance();
+    int cod = storage.getInt('codCon');
+
+    if (codCon == null) {
+      if (cod != null) {
+        codCon = cod;
+      } else {
+        codCon = unidades.data[0].codcon;
+      }
+    } else {
+      codCon = unidades.data[0].codcon;
+    }
   }
 
   @action
@@ -47,6 +64,11 @@ abstract class _SindicoControllerBase with Store {
     unidadeSelecionada =
         unidades.data.firstWhere((element) => element.codord == value);
     print(unidadeSelecionada);
+  }
+
+  @action
+  changeDropdown(int codCond) {
+    // listaView = documentos.data.where((i) => i.codCon == codCond).toList();
   }
 
   // @action

@@ -2,6 +2,7 @@ import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/dashboard/components/button_services/button_services_widget.dart';
 import 'package:Gestart/app/modules/sindico/pages/reserva_espaco_page.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
+import 'package:Gestart/app/widgets/inputs/dropdown_button_field.widget.dart';
 import 'package:Gestart/app/widgets/inputs/dropdown_button_field3.widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -62,15 +63,13 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
                 children: <Widget>[
                   Container(
                     height: 110.h,
-                    child: DropdownButtonField3Widget(
+                    child: DropdownButtonFieldWidget(
                       label: 'Condominios',
                       hint: 'Selecione',
-                      value: controller.unidades.data[0].codord,
-                      list: controller.unidades.data != null
-                          ? controller.unidades.data
-                          : [],
+                      list: controller.unidades.data,
+                      value: controller.codCon,
                       onChanged: (value) {
-                        controller.alterarSelecao(value);
+                        controller.changeDropdown(value);
                       },
                     ),
                   ),
@@ -98,14 +97,12 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
                                   childAspectRatio: 100.w / 90.h,
                                   children: List.generate(
                                       controller.menus.length, (index) {
-                                    return GestureDetector(
-                                      onTap: () => mudarPage(
+                                    return ButtonMenuWidget(
+                                      icone: controller.menus[index]['icon'],
+                                      descricao: controller.menus[index]
+                                          ['title'],
+                                      onPress: () => mudarPage(
                                           controller.menus[index]['indice']),
-                                      child: ButtonMenuWidget(
-                                        icone: controller.menus[index]['icon'],
-                                        descricao: controller.menus[index]
-                                            ['title'],
-                                      ),
                                     );
                                   })),
                             ],
