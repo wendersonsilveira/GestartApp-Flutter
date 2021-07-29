@@ -58,20 +58,4 @@ abstract class _SindicoControllerBase with Store {
       codCon = unidades.data[0].codcon;
     }
   }
-
-  @action
-  alterarSelecao(value) {
-    // unidadeSelecionada =
-    //     unidades.data.firstWhere((element) => element.codord == value);
-    // print(unidadeSelecionada);
-  }
-
-  @action
-  changeDropdown(int codCond) {
-    // listaView = documentos.data.where((i) => i.codCon == codCond).toList();
-  }
-
-  // @action
-  // changeDropdown(int codOrd) =>
-  //     listaView = boletos.data.where((i) => i.codord == codOrd).toList();
 }

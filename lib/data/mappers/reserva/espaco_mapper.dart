@@ -1,7 +1,8 @@
 import 'package:Gestart/domain/entities/reserva/espaco_entity.dart';
 
 extension EspacoMapper on EspacoEntity {
-  List<EspacoEntity> fromMapList(List<dynamic> data) => List.from(data).map((element) => fromMap(element)).toList();
+  List<EspacoEntity> fromMapList(List<dynamic> data) =>
+      List.from(data).map((element) => fromMap(element)).toList();
 
   EspacoEntity fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
@@ -52,6 +53,51 @@ extension EspacoMapper on EspacoEntity {
   }
 
   Map<String, dynamic> toMap() {
-    return {'DOM': dom, 'SEG': seg, 'TER': ter, 'QUA': qua, 'QUI': qui, 'SEX': sex, 'SAB': sab};
+    return {
+      'DOM': dom,
+      'SEG': seg,
+      'TER': ter,
+      'QUA': qua,
+      'QUI': qui,
+      'SEX': sex,
+      'SAB': sab
+    };
+  }
+
+  Map<String, dynamic> toMap2() {
+    return {
+      'CODCON': codcon,
+      'DESCRICAO': descricao,
+      'OBS': obs,
+      'CAPACIDADE': capacidade,
+      'PERMIN': perMin,
+      'PERMAX': perMax,
+      'ANTMIN': antMin,
+      'ANTMAX': antMax,
+      'INTRES': intRes,
+      'DOM': dom ? 1 : 0,
+      'DOM_INI': domIni,
+      'DOM_FIM': domFim,
+      'SEG': seg ? 1 : 0,
+      'SEG_INI': segIni,
+      'SEG_FIM': segFim,
+      'TER': ter ? 1 : 0,
+      'TER_INI': terIni,
+      'TER_FIM': terFim,
+      'QUA': qua ? 1 : 0,
+      'QUA_INI': quaIni,
+      'QUA_FIM': quaFim,
+      'QUI': qui ? 1 : 0,
+      'QUI_INI': quiIni,
+      'QUI_FIM': quiFim,
+      'SEX': sex ? 1 : 0,
+      'SEX_INI': sexIni,
+      'SEX_FIM': sexFim,
+      'SAB': sab ? 1 : 0,
+      'SAB_INI': sabIni,
+      'SAB_FIM': sabFim,
+      'APROVACAO': aprovacao ? 1 : 0,
+      'APENAS_MASTER': apenasMaster ? 1 : 0
+    };
   }
 }

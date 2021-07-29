@@ -72,7 +72,7 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
                         value: controller.codCon,
                         list: controller.unidades.data,
                         onChanged: (value) {
-                          controller.alterarSelecao(value);
+                          print('ok');
                         },
                       ),
                     ),

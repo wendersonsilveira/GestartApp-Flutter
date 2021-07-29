@@ -65,31 +65,6 @@ mixin _$SindicoController on _SindicoControllerBase, Store {
     });
   }
 
-  final _$_SindicoControllerBaseActionController =
-      ActionController(name: '_SindicoControllerBase');
-
-  @override
-  dynamic alterarSelecao(dynamic value) {
-    final _$actionInfo = _$_SindicoControllerBaseActionController.startAction(
-        name: '_SindicoControllerBase.alterarSelecao');
-    try {
-      return super.alterarSelecao(value);
-    } finally {
-      _$_SindicoControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic changeDropdown(int codCond) {
-    final _$actionInfo = _$_SindicoControllerBaseActionController.startAction(
-        name: '_SindicoControllerBase.changeDropdown');
-    try {
-      return super.changeDropdown(codCond);
-    } finally {
-      _$_SindicoControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
     return '''

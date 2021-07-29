@@ -59,7 +59,11 @@ abstract class Validators {
       return "Telefone em branco";
     }
 
-    final split = value.replaceAll(' ', '').replaceAll('(', '').replaceAll(')', '').replaceAll('-', '');
+    final split = value
+        .replaceAll(' ', '')
+        .replaceAll('(', '')
+        .replaceAll(')', '')
+        .replaceAll('-', '');
     if (split.length == 11) {
       return null;
     } else {
@@ -151,7 +155,8 @@ abstract class Validators {
     // 1. The year is in the past. In that case, we just assume that the month
     // has passed
     // 2. Card's month (plus another month) is less than current month.
-    return hasYearPassed(year) || convertYearTo4Digits(year) == now.year && (month < now.month + 1);
+    return hasYearPassed(year) ||
+        convertYearTo4Digits(year) == now.year && (month < now.month + 1);
   }
 
   static bool hasYearPassed(int year) {
@@ -189,6 +194,14 @@ abstract class Validators {
     }
 
     return 'Número inválido';
+  }
+
+  static String maxCaracteres(String value) {
+    if (value == null || value.isEmpty) {
+      return "Campo em branco";
+    } else if (value.length > 150)
+      return "Quantidade de caractere máxima é 150";
+    return null;
   }
 
   static String password(String password) {

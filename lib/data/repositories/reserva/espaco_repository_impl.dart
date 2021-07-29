@@ -21,4 +21,18 @@ class EspacoRepositoryImpl implements EspacoRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData> excluirEspaco(int espacoId) async {
+    final resource = await _espacoRemoteDataSource.excluirEspaco(espacoId);
+
+    return resource;
+  }
+
+  @override
+  Future<ResourceData> criarEspaco(EspacoEntity espaco) async {
+    final resource = await _espacoRemoteDataSource.criarEspaco(espaco);
+
+    return resource;
+  }
 }
