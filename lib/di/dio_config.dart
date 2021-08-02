@@ -14,10 +14,12 @@ import 'package:Gestart/data/datasource/reserva/reserva_remote_data_source.dart'
 import 'package:Gestart/data/datasource/unidade/unidade_remote_data_source.dart';
 import 'package:Gestart/data/datasource/user/user_remote_data_source.dart';
 import 'package:Gestart/data/datasource/veiculo/veiculo_remote_data_source.dart';
+import 'package:Gestart/data/datasource/contas/contas_remote_data_source.dart';
 import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/data/remote/custom_dio.dart';
 import 'package:Gestart/data/remote/interceptors/auth_interceptor.dart';
 import 'package:Gestart/data/repositories/assembleia/assembleia_repository_impl.dart';
+import 'package:Gestart/data/repositories/contas/contas_repository_impl.dart';
 import 'package:Gestart/data/repositories/boleto/boleto_repository_impl.dart';
 import 'package:Gestart/data/repositories/balancete/pet_repository_impl.dart';
 import 'package:Gestart/data/repositories/condominio/condominio_repository_impl.dart';
@@ -33,6 +35,7 @@ import 'package:Gestart/data/repositories/unidade/unidade_repository_impl.dart';
 import 'package:Gestart/data/repositories/user/user_repository_impl.dart';
 import 'package:Gestart/data/repositories/veiculo/veiculo_repository_impl.dart';
 import 'package:Gestart/domain/repositories/assembleia/assembleia_repository.dart';
+import 'package:Gestart/domain/repositories/contas/contas_repository.dart';
 import 'package:Gestart/domain/repositories/boleto/boleto_repository.dart';
 import 'package:Gestart/domain/repositories/balancete/balancete_repository.dart';
 import 'package:Gestart/domain/repositories/condominios/condominio_repository.dart';
@@ -48,6 +51,7 @@ import 'package:Gestart/domain/repositories/unidade/unidade_repository.dart';
 import 'package:Gestart/domain/repositories/user/user_repository.dart';
 import 'package:Gestart/domain/repositories/veiculo/veiculo_repository.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
+import 'package:Gestart/domain/usecases/contas/get_contas_use_case.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_edital_use_case.dart';
 import 'package:Gestart/domain/usecases/auth/check_user_use_case.dart';
 import 'package:Gestart/domain/repositories/auth/auth_repository.dart';
@@ -257,6 +261,11 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<GetTiposTaxaUseCase>(
       () => GetTiposTaxaUseCase(get<RecebimentoRepository>()));
 
+  // financeiro
+  gh.factory<ContasRemoteDataSource>(
+      () => ContasRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetContasUseCase>(() => GetContasUseCase(get<ContasRepository>()));
+
   //  Singleton
   gh.singleton<Dio>(dio);
   gh.singleton<SharedPreferencesManager>(SharedPreferencesManager());
@@ -295,6 +304,7 @@ Future<GetIt> initGetIt(GetIt get) async {
       ReservaRepositoryImpl(get<ReservaRemoteDataSource>()));
   gh.singleton<EspacoRepository>(
       EspacoRepositoryImpl(get<EspacoRemoteDataSource>()));
+
   gh.singleton<HorariosEspacoRepository>(
       HorariosEspacoRepositoryImpl(get<HorariosEspacoRemoteDataSource>()));
 
@@ -303,6 +313,9 @@ Future<GetIt> initGetIt(GetIt get) async {
 
   gh.singleton<RecebimentoRepository>(
       RecebimentoRepositoryImpl(get<RecebimentoRemoteDataSource>()));
+
+  gh.singleton<ContasRepository>(
+      ContasRepositoryImpl(get<ContasRemoteDataSource>()));
 
   return get;
 }

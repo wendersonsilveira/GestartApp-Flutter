@@ -1,4 +1,4 @@
-import 'package:Gestart/app/modules/sindico/cadastro_espaco/cadastro_espaco_controller.dart';
+import 'package:Gestart/app/modules/sindico/reserva_espaco/cadastro_espaco/cadastro_espaco_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
