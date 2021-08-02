@@ -611,6 +611,160 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
   }
 
   @override
+  dynamic setHorarioDomIni(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioDomIni');
+    try {
+      return super.setHorarioDomIni(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioDomFim(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioDomFim');
+    try {
+      return super.setHorarioDomFim(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioSegIni(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioSegIni');
+    try {
+      return super.setHorarioSegIni(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioSegFim(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioSegFim');
+    try {
+      return super.setHorarioSegFim(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioTerIni(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioTerIni');
+    try {
+      return super.setHorarioTerIni(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioTerFim(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioTerFim');
+    try {
+      return super.setHorarioTerFim(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioQuaIni(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioQuaIni');
+    try {
+      return super.setHorarioQuaIni(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioQuaFim(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioQuaFim');
+    try {
+      return super.setHorarioQuaFim(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioQuiIni(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioQuiIni');
+    try {
+      return super.setHorarioQuiIni(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioQuiFim(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioQuiFim');
+    try {
+      return super.setHorarioQuiFim(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioSexIni(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioSexIni');
+    try {
+      return super.setHorarioSexIni(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioSexFim(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioSexFim');
+    try {
+      return super.setHorarioSexFim(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioSabIni(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioSabIni');
+    try {
+      return super.setHorarioSabIni(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setHorarioSabFim(dynamic value) {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setHorarioSabFim');
+    try {
+      return super.setHorarioSabFim(value);
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 horarios: ${horarios},

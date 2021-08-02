@@ -91,7 +91,9 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
         actions: [
           TextButton(
             onPressed: () {
-              Modular.navigator.pushNamed(RouteName.reservaUnidades).then((value) => controller.getReservas());
+              Modular.navigator
+                  .pushNamed(RouteName.reservaUnidades)
+                  .then((value) => controller.getReservas());
             },
             child: Text(
               'Criar',
@@ -130,9 +132,11 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
                             padding: const EdgeInsets.all(8.0),
                             child: ListView.builder(
                               itemCount: controller.reservas.length,
-                              itemBuilder: (BuildContext context, int index) => Card(
+                              itemBuilder: (BuildContext context, int index) =>
+                                  Card(
                                 child: Dismissible(
-                                  key: Key(controller.reservas[index].id.toString()),
+                                  key: Key(
+                                      controller.reservas[index].id.toString()),
                                   background: Container(
                                     color: AppColorScheme.tagRed2,
                                     child: Icon(
@@ -140,24 +144,29 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
                                       color: AppColorScheme.white,
                                     ),
                                   ),
-                                  confirmDismiss: (DismissDirection direction) async {
+                                  confirmDismiss:
+                                      (DismissDirection direction) async {
                                     return showDialog(
                                       context: context,
-                                      builder: (BuildContext context) => AlertDialog(
+                                      builder: (BuildContext context) =>
+                                          AlertDialog(
                                         title: Text('Cancelar reserva'),
                                         content: Container(
-                                          child: Text('Deseja realmente cancelar sua reserva?'),
+                                          child: Text(
+                                              'Deseja realmente cancelar sua reserva?'),
                                         ),
                                         actions: [
                                           TextButton(
-                                            onPressed: () => Modular.navigator.pop(),
+                                            onPressed: () =>
+                                                Modular.navigator.pop(),
                                             child: Text(
                                               'NÃO',
                                             ),
                                           ),
                                           TextButton(
                                             onPressed: () {
-                                              cancelarReserva(controller.reservas[index].id);
+                                              cancelarReserva(controller
+                                                  .reservas[index].id);
                                             },
                                             child: Text('SIM'),
                                           ),
@@ -170,19 +179,29 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
                                       '${controller.reservas[index].espacoDescricao}\n${controller.reservas[index].apelido} - ${controller.reservas[index].codimo}\n${UIHelper.formatDate(controller.reservas[index].datIni)} | ${controller.reservas[index].horIniDescricao} - ${controller.reservas[index].horFimDescricao}',
                                       style: TextStyle(height: 1.5),
                                     ),
-                                    subtitle: controller.reservas[index].status == 0
+                                    subtitle: controller
+                                                .reservas[index].status ==
+                                            0
                                         ? Text(
                                             'AGUARDANDO APROVAÇÃO',
-                                            style: TextStyle(color: AppColorScheme.textInfo, height: 1.5),
+                                            style: TextStyle(
+                                                color: AppColorScheme.textInfo,
+                                                height: 1.5),
                                           )
                                         : controller.reservas[index].status == 1
                                             ? Text(
                                                 'APROVADA',
-                                                style: TextStyle(color: AppColorScheme.primaryColor, height: 1.5),
+                                                style: TextStyle(
+                                                    color: AppColorScheme
+                                                        .primaryColor,
+                                                    height: 1.5),
                                               )
                                             : Text(
                                                 'REJEITADA',
-                                                style: TextStyle(color: AppColorScheme.primaryColor, height: 1.5),
+                                                style: TextStyle(
+                                                    color: AppColorScheme
+                                                        .feedbackDangerDark,
+                                                    height: 1.5),
                                               ),
                                     trailing: Padding(
                                       padding: EdgeInsets.only(top: 14),
@@ -191,8 +210,12 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
                                         size: 40,
                                       ),
                                     ),
-                                    onTap: () =>
-                                        Modular.navigator.pushNamed(RouteName.reservaDados, arguments: controller.reservas[index]).then((value) => controller.getReservas()),
+                                    onTap: () => Modular.navigator
+                                        .pushNamed(RouteName.reservaDados,
+                                            arguments:
+                                                controller.reservas[index])
+                                        .then((value) =>
+                                            controller.getReservas()),
                                   ),
                                 ),
                               ),

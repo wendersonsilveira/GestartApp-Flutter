@@ -34,6 +34,8 @@ class RouteName {
   static const String pesquisaVoz = '/pesquisa_voz';
 
   static const String recebimentos = '/recebimentos';
+  static const String gerenciar_reserva = '/gerenciar_reserva';
+  static const String detalhes_reserva = '/detalhes_reserva';
 
   static const Map allRoutesKeys = {
     'boleto': boleto,

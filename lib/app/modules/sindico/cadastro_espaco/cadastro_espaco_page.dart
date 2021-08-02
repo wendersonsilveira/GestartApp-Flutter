@@ -248,7 +248,7 @@ class _CadastroEspacoPageState
                                                     controller.setMaxAnt(value),
                                                   },
                                               value: controller
-                                                  .tempoMaxPermanencia,
+                                                  .tempoMaxAntecedencia,
                                               validator: (value) {
                                                 if (controller
                                                         .tempoMinAntecedencia >=

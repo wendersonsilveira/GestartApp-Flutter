@@ -10,7 +10,9 @@ extension ReservaMapper on ReservaEntity {
       dia: map['DIA'],
       mes: map['MES'],
       ano: map['ANO'],
-      data: DateTime.parse(map['DATA']),
+      data: map['DATA'] != null
+          ? DateTime.parse(map['DATA'])
+          : DateTime.parse(map['DATRES']),
       id: map['ID'],
       codcon: map['CODCON'],
       codord: map['CODORD'],

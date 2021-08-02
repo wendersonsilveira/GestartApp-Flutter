@@ -36,4 +36,25 @@ class ReservaRepositoryImpl implements ReservaRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData<List<ReservaEntity>>> getReservasAdm(int codCon) async {
+    final resource = await _reservaRemoteDataSource.getReservasAdm(codCon);
+
+    return resource;
+  }
+
+  @override
+  Future<ResourceData> aprovarReserva(int reservaId) async {
+    final resource = await _reservaRemoteDataSource.aprovarReservar(reservaId);
+
+    return resource;
+  }
+
+  @override
+  Future<ResourceData> rejeitarReserva(int reservaId) async {
+    final resource = await _reservaRemoteDataSource.rejeitarReservar(reservaId);
+
+    return resource;
+  }
 }

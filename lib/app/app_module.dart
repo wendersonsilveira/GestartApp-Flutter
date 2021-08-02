@@ -1,3 +1,10 @@
+import 'modules/sindico/gerenciar_reserva/detalhes_reserva/detalhes_reserva_controller.dart';
+import 'modules/sindico/gerenciar_reserva/detalhes_reserva/detalhes_reserva_page.dart';
+import 'modules/sindico/gerenciar_reserva/calendario/calendario_controller.dart';
+import 'modules/sindico/gerenciar_reserva/reservas_pendentes/reservas_pendentes_controller.dart';
+import 'package:Gestart/app/modules/sindico/gerenciar_reserva/gerenciar_reserva_page.dart';
+
+import 'modules/sindico/gerenciar_reserva/gerenciar_reserva_controller.dart';
 import 'modules/sindico/listar_espacos/listar_espacos_controller.dart';
 import 'package:Gestart/app/modules/pesquisa_voz/pesquisa_controller.dart';
 import 'package:Gestart/app/modules/pesquisa_voz/pesquisa_page.dart';
@@ -83,6 +90,10 @@ import 'package:Gestart/app/app_widget.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        $DetalhesReservaController,
+        $CalendarioController,
+        $ReservasPendentesController,
+        $GerenciarReservaController,
         $ListarEspacosController,
         $CadastroEspacoController,
         $SindicoController,
@@ -187,6 +198,10 @@ class AppModule extends MainModule {
             child: (_, args) => PesquisaPage()),
         ModularRouter(RouteName.recebimentos,
             child: (_, args) => RecebimentosPage()),
+        ModularRouter(RouteName.gerenciar_reserva,
+            child: (_, args) => GerenciarReservaPage()),
+        ModularRouter(RouteName.detalhes_reserva,
+            child: (_, args) => DetalhesReservaPage(reserva: args.data)),
       ];
 
   @override
