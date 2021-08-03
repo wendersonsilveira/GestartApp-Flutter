@@ -11,9 +11,4 @@ class TipoTaxaEntity {
     this.desTax,
     this.qtde,
   });
-
-  // @override
-  // String toString() {
-  //   return 'TipoTaxaEntity(id: $id, codord: $codOrd, unidade: $unidade, valor: $valor, codimo: $codimo, nomcon: $nomcon)';
-  // }
 }

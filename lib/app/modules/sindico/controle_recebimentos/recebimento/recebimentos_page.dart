@@ -1,4 +1,5 @@
 import 'package:Gestart/app/modules/sindico/controle_recebimentos/components/filtro_widget.dart';
+import 'package:Gestart/app/modules/sindico/controle_recebimentos/recebimento/recebimento_detalhes_page.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
@@ -24,38 +25,57 @@ class _RecebimentosPageState extends State<RecebimentosPage> {
   bool isLoading = false;
   String total = '';
   Map<String, dynamic> filtro = FiltroWdget.filtro;
+  Map<String, dynamic> header = {'unidade': 'Todas', 'taxa': 'Todas'};
 
   @override
   void initState() {
-    getRecebimentos();
+    getRecebimentos(filtro);
     super.initState();
   }
 
-  getRecebimentos() async {
+  getRecebimentos(f) async {
     setState(() {
       isLoading = true;
     });
     var storage = await SharedPreferences.getInstance();
-    filtro['CODCON'] = storage.getInt('codCon');
+    f['CODCON'] = storage.getInt('codCon');
 
-    ResourceData r = await _getRecebimentos(filtro);
+    ResourceData r = await _getRecebimentos(f);
     double t = 0;
-    for (var item in r.data) {
-      t += item.valor;
+    if (r.data != null) {
+      for (var item in r.data) {
+        t += item.valor;
+      }
     }
     setState(() {
       isLoading = false;
-      recebimentos = r.data;
+      recebimentos = r.data ?? [];
       total = UIHelper.moneyFormat(t);
     });
   }
 
   Future<void> getFiltro() async {
     return showDialog(
-        context: context,
-        child: AlertDialog(
-          content: FiltroWdget(),
-        ));
+      context: context,
+      child: SimpleDialog(
+        contentPadding: EdgeInsets.all(20),
+        children: [
+          FiltroWdget(
+            onSubmit: (filtter) {
+              getRecebimentos(filtter);
+              Modular.navigator.pop();
+            },
+            getHeader: setHeader,
+          ),
+        ],
+      ),
+    );
+  }
+
+  setHeader(newHeader) {
+    setState(() {
+      header = newHeader;
+    });
   }
 
   @override
@@ -73,12 +93,6 @@ class _RecebimentosPageState extends State<RecebimentosPage> {
           ),
         ],
         title: Text(widget.title),
-        leading: new IconButton(
-          icon: new Icon(Icons.arrow_back),
-          onPressed: () {
-            Modular.navigator.pop();
-          },
-        ),
       ),
       body: Column(
         children: [
@@ -90,8 +104,28 @@ class _RecebimentosPageState extends State<RecebimentosPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Data do pagamento: '),
-                          Text('${UIHelper.formatDateFromString(filtro["DATPAG_1"])} - ${UIHelper.formatDateFromString(filtro["DATPAG_2"])}')
+                          Expanded(child: Text('Data do pagamento:')),
+                          Expanded(
+                            child: Text('${UIHelper.formatDateFromString(filtro["DATPAG_1"])} - ${UIHelper.formatDateFromString(filtro["DATPAG_2"])}'),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(child: Text('Unidade:')),
+                          Expanded(
+                            child: Text('${header['unidade']}'),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(child: Text('Taxa:')),
+                          Expanded(
+                            child: Text('${header['taxa']}'),
+                          ),
                         ],
                       ),
                     ],
@@ -104,6 +138,7 @@ class _RecebimentosPageState extends State<RecebimentosPage> {
                   ? Container(
                       child: Expanded(
                         child: ListView.builder(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
                           itemCount: recebimentos.length,
                           itemBuilder: (_, index) {
                             return Card(
@@ -114,6 +149,14 @@ class _RecebimentosPageState extends State<RecebimentosPage> {
                                 title: Text(recebimentos[index].unidade),
                                 subtitle: Text('VALOR: ${UIHelper.moneyFormat(recebimentos[index].valor)}'),
                                 trailing: Icon(Icons.chevron_right),
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => RecebimentoDetalhesPage(
+                                      filtro: filtro,
+                                      codOrd: recebimentos[index].codOrd,
+                                    ),
+                                  ));
+                                },
                               ),
                             );
                           },

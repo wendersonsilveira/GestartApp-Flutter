@@ -1,5 +1,10 @@
 import 'package:Gestart/app/constants/route_name.dart';
+import 'package:Gestart/app/modules/sindico/controle_recebimentos/acordo/acordos_page.dart';
+import 'package:Gestart/app/modules/sindico/controle_recebimentos/components/filtro_inadim_wigedt.dart';
+import 'package:Gestart/app/modules/sindico/controle_recebimentos/components/filtro_widget.dart';
+import 'package:Gestart/app/modules/sindico/controle_recebimentos/inadimplencia/inadimplencia_page.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
+import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -13,7 +18,12 @@ class ControleRecebimentosPage extends StatefulWidget {
 
 class _ControleRecebimentosPageState extends State<ControleRecebimentosPage> {
   navigateTo(String routeName) {
-    Modular.navigator.pushNamed(routeName);
+    Modular.navigator.pushNamed(routeName).then((value) {
+      FiltroWdget.filtro['CODORD'] = 0;
+      FiltroWdget.filtro['TIPTAX'] = '0';
+      FiltroWdget.filtro['DATPAG_1'] = UIHelper.formatDateFromDateTimeReverse(DateTime.utc(DateTime.now().year, DateTime.now().month, 01));
+      FiltroWdget.filtro['DATPAG_2'] = UIHelper.formatDateFromDateTimeReverse(DateTime.now());
+    });
   }
 
   @override
@@ -49,6 +59,16 @@ class _ControleRecebimentosPageState extends State<ControleRecebimentosPage> {
                       color: AppColorScheme.primaryColor,
                     ),
                     trailing: Icon(Icons.chevron_right),
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(
+                        builder: (context) => InadimplenciaPage(),
+                      ))
+                          .then((value) {
+                        FiltroInadimWdget.filtro['CODORD'] = 0;
+                        FiltroInadimWdget.filtro['TIPTAX'] = '0';
+                      });
+                    },
                   ),
                 ),
                 Card(
@@ -59,6 +79,11 @@ class _ControleRecebimentosPageState extends State<ControleRecebimentosPage> {
                       color: AppColorScheme.primaryColor,
                     ),
                     trailing: Icon(Icons.chevron_right),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => AcordosPage(),
+                      ));
+                    },
                   ),
                 )
               ],
