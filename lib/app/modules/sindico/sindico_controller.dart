@@ -23,16 +23,8 @@ abstract class _SindicoControllerBase with Store {
   int codCon;
 
   final List<dynamic> menus = [
-    {
-      'icon': FlutterIcons.calendar_account_mco,
-      'title': 'Reserva de Espaço',
-      'indice': 1
-    },
-    {
-      'icon': FlutterIcons.hand_holding_usd_faw5s,
-      'title': 'Controle de Recebimentos',
-      'indice': 2
-    },
+    {'icon': FlutterIcons.calendar_account_mco, 'title': 'Reserva de Espaço', 'indice': 1},
+    {'icon': FlutterIcons.hand_holding_usd_faw5s, 'title': 'Controle de Recebimentos', 'indice': 2},
     {'icon': FlutterIcons.usd_faw, 'title': 'Financeiro', 'indice': 3},
     {'icon': FlutterIcons.rss_ent, 'title': 'Comunicação', 'indice': 4},
     {'icon': FlutterIcons.id_card_faw, 'title': 'Cadastros', 'indice': 5},
@@ -53,25 +45,10 @@ abstract class _SindicoControllerBase with Store {
         codCon = cod;
       } else {
         codCon = unidades.data[0].codcon;
+        storage.setInt('codCon', codCon);
       }
     } else {
       codCon = unidades.data[0].codcon;
     }
   }
-
-  @action
-  alterarSelecao(value) {
-    // unidadeSelecionada =
-    //     unidades.data.firstWhere((element) => element.codord == value);
-    // print(unidadeSelecionada);
-  }
-
-  @action
-  changeDropdown(int codCond) {
-    // listaView = documentos.data.where((i) => i.codCon == codCond).toList();
-  }
-
-  // @action
-  // changeDropdown(int codOrd) =>
-  //     listaView = boletos.data.where((i) => i.codord == codOrd).toList();
 }

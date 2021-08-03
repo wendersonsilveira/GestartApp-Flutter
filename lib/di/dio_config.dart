@@ -70,6 +70,12 @@ import 'package:Gestart/domain/usecases/pet/create_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/delete_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_all_pets_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_pet_use_case.dart';
+import 'package:Gestart/domain/usecases/recebimento/get_acordo_use_case.dart';
+import 'package:Gestart/domain/usecases/recebimento/get_acordos_use_case.dart';
+import 'package:Gestart/domain/usecases/recebimento/get_historico_inadim_use_case.dart';
+import 'package:Gestart/domain/usecases/recebimento/get_inadinplencia_use_case.dart';
+import 'package:Gestart/domain/usecases/recebimento/get_inadinplencias_use_case.dart';
+import 'package:Gestart/domain/usecases/recebimento/get_pagamentos_use_case.dart';
 import 'package:Gestart/domain/usecases/recebimento/get_recebimentos_use_case.dart';
 import 'package:Gestart/domain/usecases/recebimento/get_tipos_taxa_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_adm_unidades_prop_use_case.dart';
@@ -194,6 +200,12 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<RecebimentoRemoteDataSource>(() => RecebimentoRemoteDataSource(get<CustomDio>()));
   gh.factory<GetRecebimentosUseCase>(() => GetRecebimentosUseCase(get<RecebimentoRepository>()));
   gh.factory<GetTiposTaxaUseCase>(() => GetTiposTaxaUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetPagamentosUseCase>(() => GetPagamentosUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetInadimplenciasUseCase>(() => GetInadimplenciasUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetInadimplenciaUseCase>(() => GetInadimplenciaUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetHistoricoInadimUseCase>(() => GetHistoricoInadimUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetAcordosUseCase>(() => GetAcordosUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetAcordoUseCase>(() => GetAcordoUseCase(get<RecebimentoRepository>()));
 
   //  Singleton
   gh.singleton<Dio>(dio);
