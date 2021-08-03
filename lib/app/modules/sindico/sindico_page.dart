@@ -1,3 +1,4 @@
+import 'package:Gestart/app/modules/sindico/comunicacao/comunicao_page.dart';
 import 'package:Gestart/app/modules/sindico/controle_recebimentos/controle_recebimentos_page.dart';
 import 'package:Gestart/app/modules/sindico/pages/reserva_espaco_page.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
@@ -108,7 +109,8 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
                           ),
                           InicialPage(),
                           ControleRecebimentosPage(),
-                          FinanceiroPage()
+                          FinanceiroPage(),
+                          ComunicacaoPage(),
                         ],
                       ),
                     )
