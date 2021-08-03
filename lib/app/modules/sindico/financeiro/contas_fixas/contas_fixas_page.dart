@@ -53,7 +53,13 @@ class _ContasFixasPageState
                     return Card(
                       child: Column(
                         children: [
-                          Text(controller.tipos[index].nomCla),
+                          Row(
+                            children: [
+                              Card(
+                                  color: Colors.grey[350],
+                                  child: Text(controller.tipos[index].nomCla)),
+                            ],
+                          ),
                           Column(
                               children: getContas(index)
                                   .map((e) => Text('jsdsdsd'))

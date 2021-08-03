@@ -18,7 +18,7 @@ class ContasEntity {
   final String numMins;
   final String senha;
   final String codPla;
-  final String codCed;
+  final int codCed;
   final int codHis;
   final String tipHis;
   final DateTime datIni;
@@ -28,7 +28,7 @@ class ContasEntity {
   final bool dds;
   final int id;
   final String forPag;
-  final int codFinTed;
+  final String codFinTed;
   final int idContaDeb;
   final bool gerarMedia;
   final bool considerarMedia;
