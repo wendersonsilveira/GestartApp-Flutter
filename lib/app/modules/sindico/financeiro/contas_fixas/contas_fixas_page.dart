@@ -55,14 +55,42 @@ class _ContasFixasPageState
                         children: [
                           Row(
                             children: [
-                              Card(
-                                  color: Colors.grey[350],
-                                  child: Text(controller.tipos[index].nomCla)),
+                              Expanded(
+                                child: Container(
+                                    height: 16,
+                                    color: Colors.grey[350],
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                            '${controller.tipos[index].nomCla}'),
+                                        Text('| R\$ 12.0480 '),
+                                      ],
+                                    )),
+                              ),
                             ],
                           ),
                           Column(
                               children: getContas(index)
-                                  .map((e) => Text('jsdsdsd'))
+                                  .map((e) => Card(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            ListTile(
+                                              title: e.nomFor != null
+                                                  ? Text(e.nomFor)
+                                                  : Text(e.nomPla),
+                                              subtitle: e.nomFor != null
+                                                  ? e.nomPla != null
+                                                      ? Text(e.nomPla)
+                                                      : Text('')
+                                                  : Text(''),
+                                            )
+                                          ],
+                                        ),
+                                      ))
                                   .toList())
                         ],
                       ),
