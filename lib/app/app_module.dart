@@ -1,13 +1,21 @@
-import 'modules/sindico/listar_espacos/listar_espacos_controller.dart';
+import 'modules/sindico/financeiro/contas_fixas/contas_fixas_controller.dart';
+import 'modules/sindico/reserva_espaco/gerenciar_reserva/detalhes_reserva/detalhes_reserva_controller.dart';
+import 'modules/sindico/reserva_espaco/gerenciar_reserva/detalhes_reserva/detalhes_reserva_page.dart';
+import 'modules/sindico/reserva_espaco/gerenciar_reserva/calendario/calendario_controller.dart';
+import 'modules/sindico/reserva_espaco/gerenciar_reserva/reservas_pendentes/reservas_pendentes_controller.dart';
+import 'package:Gestart/app/modules/sindico/reserva_espaco/gerenciar_reserva/gerenciar_reserva_page.dart';
+
+import 'modules/sindico/reserva_espaco/gerenciar_reserva/gerenciar_reserva_controller.dart';
+import 'modules/sindico/reserva_espaco/listar_espacos/listar_espacos_controller.dart';
 import 'package:Gestart/app/modules/pesquisa_voz/pesquisa_controller.dart';
 import 'package:Gestart/app/modules/pesquisa_voz/pesquisa_page.dart';
-import 'package:Gestart/app/modules/sindico/cadastro_espaco/cadastro_espaco_page.dart';
 import 'package:Gestart/app/modules/sindico/controle_recebimentos/recebimento/recebimentos_page.dart';
+import 'package:Gestart/app/modules/sindico/reserva_espaco/cadastro_espaco/cadastro_espaco_page.dart';
 import 'package:Gestart/app/modules/veiculo/cadastro_veiculo/cadastro_veiculo_controller.dart';
 import 'package:Gestart/app/modules/veiculo/veiculos_controller.dart';
 import 'package:Gestart/app/modules/veiculo/veiculos_page.dart';
 
-import 'modules/sindico/cadastro_espaco/cadastro_espaco_controller.dart';
+import 'modules/sindico/reserva_espaco/cadastro_espaco/cadastro_espaco_controller.dart';
 import 'package:Gestart/app/modules/sindico/sindico_page.dart';
 
 import 'modules/sindico/sindico_controller.dart';
@@ -66,7 +74,8 @@ import 'package:Gestart/app/modules/pets/pets_page.dart';
 import 'package:Gestart/app/modules/pets/cadastro_pet/cadastro_pet_page.dart';
 import 'package:Gestart/app/modules/pets/cadastro_pet/cadastro_pet_controller.dart';
 import 'package:Gestart/app/modules/reserva/reserva_controller.dart';
-import 'package:Gestart/app/modules/sindico/listar_espacos/listar_espacos_page.dart';
+import 'package:Gestart/app/modules/sindico/reserva_espaco/listar_espacos/listar_espacos_page.dart';
+import 'package:Gestart/app/modules/sindico/financeiro/contas_fixas/contas_fixas_page.dart';
 
 import 'constants/route_name.dart';
 import 'modules/condominio/condominio_controller.dart';
@@ -81,6 +90,11 @@ import 'package:Gestart/app/app_widget.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        $ContasFixasController,
+        $DetalhesReservaController,
+        $CalendarioController,
+        $ReservasPendentesController,
+        $GerenciarReservaController,
         $ListarEspacosController,
         $CadastroEspacoController,
         $SindicoController,
@@ -144,7 +158,7 @@ class AppModule extends MainModule {
         ModularRouter(RouteName.informativo, child: (_, args) => InformativoPage(id: args.data)),
         ModularRouter(RouteName.alterar_perfil, child: (_, args) => AlterarPerfilPage(usuario: args.data)),
         ModularRouter(RouteName.painel_sindico, child: (_, args) => SindicoPage()),
-        ModularRouter(RouteName.cadastro_espaco, child: (_, args) => CadastroEspacoPage()),
+        ModularRouter(RouteName.cadastro_espaco, child: (_, args) => CadastroEspacoPage(id: args.data)),
         ModularRouter(RouteName.detalhe_boleto, child: (_, args) => DetalheBoletoPage(codord: args.data)),
         ModularRouter(RouteName.balancetes, child: (_, args) => BalancetePage()),
         ModularRouter(RouteName.reservas, child: (_, args) => ReservaPage()),
@@ -158,6 +172,9 @@ class AppModule extends MainModule {
         ModularRouter(RouteName.listar_espacos, child: (_, args) => ListarEspacosPage()),
         ModularRouter(RouteName.pesquisaVoz, child: (_, args) => PesquisaPage()),
         ModularRouter(RouteName.recebimentos, child: (_, args) => RecebimentosPage()),
+        ModularRouter(RouteName.gerenciar_reserva, child: (_, args) => GerenciarReservaPage()),
+        ModularRouter(RouteName.detalhes_reserva, child: (_, args) => DetalhesReservaPage(reserva: args.data)),
+        ModularRouter(RouteName.contas_fixas, child: (_, args) => ContasFixasPage()),
       ];
 
   @override

@@ -11,6 +11,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'component/button_menu_sindico_widget.dart';
 import 'sindico_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:Gestart/app/modules/sindico/pages/financeiro_page.dart';
 
 class SindicoPage extends StatefulWidget {
   final String title;
@@ -107,6 +108,7 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
                           ),
                           InicialPage(),
                           ControleRecebimentosPage(),
+                          FinanceiroPage()
                         ],
                       ),
                     )

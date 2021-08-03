@@ -17,9 +17,16 @@ class EspacoRemoteDataSource {
     try {
       final result = await _dio.get('espacos/$codcon');
 
-      return ResourceData(status: Status.success, data: EspacoEntity().fromMapList(result), message: 'Espaços encontrados com sucesso!');
+      return ResourceData(
+          status: Status.success,
+          data: EspacoEntity().fromMapList(result),
+          message: 'Espaços encontrados com sucesso!');
     } on DioError catch (e) {
-      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar espaços", error: ErrorMapper.from(e));
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar espaços",
+          error: ErrorMapper.from(e));
     }
   }
 
@@ -27,9 +34,46 @@ class EspacoRemoteDataSource {
     try {
       final result = await _dio.get('espaco/$espacoId');
 
-      return ResourceData(status: Status.success, data: EspacoEntity().fromMap(result[0]), message: 'Espaço encontrado com sucesso!');
+      return ResourceData(
+          status: Status.success,
+          data: EspacoEntity().fromMap(result[0]),
+          message: 'Espaço encontrado com sucesso!');
     } on DioError catch (e) {
-      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar espaço", error: ErrorMapper.from(e));
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar espaço",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData> excluirEspaco(int idEspaco) async {
+    try {
+      final result = await _dio.delete('espaco/$idEspaco');
+
+      return ResourceData(
+          status: Status.success, message: 'Espaço excluido com sucesso!');
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao excluir espaço",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData> criarEspaco(EspacoEntity espaco) async {
+    try {
+      final result = await _dio.post('espacos', data: espaco.toMap2());
+
+      return ResourceData(
+          status: Status.success, message: 'Espaço criado com sucesso!');
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao criar espaço",
+          error: ErrorMapper.from(e));
     }
   }
 }

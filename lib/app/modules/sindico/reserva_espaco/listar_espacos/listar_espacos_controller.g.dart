@@ -65,20 +65,6 @@ mixin _$ListarEspacosController on _ListarEspacosControllerBase, Store {
     });
   }
 
-  final _$_ListarEspacosControllerBaseActionController =
-      ActionController(name: '_ListarEspacosControllerBase');
-
-  @override
-  void increment() {
-    final _$actionInfo = _$_ListarEspacosControllerBaseActionController
-        .startAction(name: '_ListarEspacosControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_ListarEspacosControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
     return '''

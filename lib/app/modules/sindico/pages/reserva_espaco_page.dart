@@ -34,11 +34,12 @@ class _InicialPageState extends State<InicialPage> {
           ),
           Card(
             child: ListTile(
-              leading: Icon(FlutterIcons.calendar_account_mco,
-                  color: AppColorScheme.primaryColor),
-              title: Text('Gerenciamento de Reservas'),
-              trailing: Icon(Icons.arrow_right),
-            ),
+                leading: Icon(FlutterIcons.calendar_account_mco,
+                    color: AppColorScheme.primaryColor),
+                title: Text('Gerenciamento de Reservas'),
+                trailing: Icon(Icons.arrow_right),
+                onTap: () =>
+                    Modular.navigator.pushNamed(RouteName.gerenciar_reserva)),
           ),
         ],
       ),

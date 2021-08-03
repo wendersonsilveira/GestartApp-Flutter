@@ -18,9 +18,63 @@ class ReservaRemoteDataSource {
     try {
       final result = await _dio.get('reservas');
 
-      return ResourceData(status: Status.success, data: ReservaEntity().fromMapList(result), message: 'Pet cadastrado com sucesso!');
+      return ResourceData(
+          status: Status.success,
+          data: ReservaEntity().fromMapList(result),
+          message: 'Reservas listadas com sucesso!');
     } on DioError catch (e) {
-      return ResourceData(status: Status.failed, data: null, message: "Erro ao cadastra o pets", error: ErrorMapper.from(e));
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao cadastra o pets",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<List<ReservaEntity>>> getReservasAdm(int codCon) async {
+    try {
+      final result = await _dio.get('adm-reservas/$codCon');
+
+      return ResourceData(
+          status: Status.success,
+          data: ReservaEntity().fromMapList(result),
+          message: 'Lista de reservas adm');
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar as reservas",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData> aprovarReservar(int reservaId) async {
+    try {
+      final result = await _dio.post('aprovar-reserva/$reservaId');
+
+      return ResourceData(
+          status: Status.success, message: 'Reserva aprovada com sucesso');
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao aprovar a reserva",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData> rejeitarReservar(int reservaId) async {
+    try {
+      final result = await _dio.post('rejeitar-reserva/$reservaId');
+
+      return ResourceData(
+          status: Status.success, message: 'Reserva rejeitada com sucesso');
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao rejeitar a reserva",
+          error: ErrorMapper.from(e));
     }
   }
 
@@ -28,9 +82,16 @@ class ReservaRemoteDataSource {
     try {
       final result = await _dio.get('horarios');
 
-      return ResourceData(status: Status.success, data: HoraEntity().fromMapList(result), message: 'Horários encontrados com sucesso!');
+      return ResourceData(
+          status: Status.success,
+          data: HoraEntity().fromMapList(result),
+          message: 'Horários encontrados com sucesso!');
     } on DioError catch (e) {
-      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar Horários", error: ErrorMapper.from(e));
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar Horários",
+          error: ErrorMapper.from(e));
     }
   }
 
@@ -38,9 +99,14 @@ class ReservaRemoteDataSource {
     try {
       await _dio.post('reserva', data: d);
 
-      return ResourceData(status: Status.success, data: null, message: 'Reserva realzada!');
+      return ResourceData(
+          status: Status.success, data: null, message: 'Reserva realizada!');
     } on DioError catch (e) {
-      return ResourceData(status: Status.failed, data: null, message: "Erro ao fazer reserva", error: ErrorMapper.from(e));
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao fazer reserva",
+          error: ErrorMapper.from(e));
     }
   }
 
@@ -48,9 +114,14 @@ class ReservaRemoteDataSource {
     try {
       await _dio.post('cancelar-reserva/$id');
 
-      return ResourceData(status: Status.success, data: null, message: 'Reserva cancelada!');
+      return ResourceData(
+          status: Status.success, data: null, message: 'Reserva cancelada!');
     } on DioError catch (e) {
-      return ResourceData(status: Status.failed, data: null, message: "Erro ao cancelar reserva", error: ErrorMapper.from(e));
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao cancelar reserva",
+          error: ErrorMapper.from(e));
     }
   }
 }

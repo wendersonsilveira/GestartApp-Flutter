@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'cadastro_espaco_controller.dart';
+part of 'detalhes_reserva_controller.dart';
 
 // **************************************************************************
 // InjectionGenerator
 // **************************************************************************
 
-final $CadastroEspacoController = BindInject(
-  (i) => CadastroEspacoController(),
+final $DetalhesReservaController = BindInject(
+  (i) => DetalhesReservaController(),
   singleton: true,
   lazy: true,
 );
@@ -18,8 +18,8 @@ final $CadastroEspacoController = BindInject(
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
-  final _$valueAtom = Atom(name: '_CadastroEspacoControllerBase.value');
+mixin _$DetalhesReservaController on _DetalhesReservaControllerBase, Store {
+  final _$valueAtom = Atom(name: '_DetalhesReservaControllerBase.value');
 
   @override
   int get value {
@@ -34,17 +34,17 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
     });
   }
 
-  final _$_CadastroEspacoControllerBaseActionController =
-      ActionController(name: '_CadastroEspacoControllerBase');
+  final _$_DetalhesReservaControllerBaseActionController =
+      ActionController(name: '_DetalhesReservaControllerBase');
 
   @override
   void increment() {
-    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
-        .startAction(name: '_CadastroEspacoControllerBase.increment');
+    final _$actionInfo = _$_DetalhesReservaControllerBaseActionController
+        .startAction(name: '_DetalhesReservaControllerBase.increment');
     try {
       return super.increment();
     } finally {
-      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+      _$_DetalhesReservaControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
