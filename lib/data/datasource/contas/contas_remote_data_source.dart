@@ -1,7 +1,11 @@
 import 'package:Gestart/data/helpers/error_mapper.dart';
 import 'package:Gestart/data/remote/custom_dio.dart';
 import 'package:Gestart/data/mappers/contas/contas_mapper.dart';
+import 'package:Gestart/data/mappers/contas/mov_financeiro_mapper.dart';
+import 'package:Gestart/data/mappers/contas/mov_financeiro_meses_mapper.dart';
 import 'package:Gestart/domain/entities/contas/contas_entity.dart';
+import 'package:Gestart/domain/entities/contas/mov_financeiro_entity.dart';
+import 'package:Gestart/domain/entities/contas/mov_financeiro_meses_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 
 import 'package:Gestart/domain/utils/status.dart';
@@ -23,6 +27,39 @@ class ContasRemoteDataSource {
           status: Status.failed,
           data: null,
           message: "Erro ao listar as contas",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<List<MovFinanceiroEntity>>> getMovFinanceiro(
+      MovFinanceiroEntity entity) async {
+    try {
+      final result =
+          await _dio.get('movfin-resumo/${entity.codCon}/${entity.mesAno}');
+      return ResourceData<List<MovFinanceiroEntity>>(
+          status: Status.success,
+          data: MovFinanceiroEntity().fromMapList(result));
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os movimentos financeiros",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<List<MovFinanceiroMesesEntity>>> getMovFinanceiroMeses(
+      int codCon) async {
+    try {
+      final result = await _dio.get('movfin-meses/$codCon');
+      return ResourceData<List<MovFinanceiroMesesEntity>>(
+          status: Status.success,
+          data: MovFinanceiroMesesEntity().fromMapList(result));
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar as datas dos movimentos financeiros",
           error: ErrorMapper.from(e));
     }
   }

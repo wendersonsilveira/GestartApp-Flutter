@@ -49,6 +49,22 @@ mixin _$ContasFixasController on _ContasFixasControllerBase, Store {
     });
   }
 
+  final _$totalCategoriasAtom =
+      Atom(name: '_ContasFixasControllerBase.totalCategorias');
+
+  @override
+  double get totalCategorias {
+    _$totalCategoriasAtom.reportRead();
+    return super.totalCategorias;
+  }
+
+  @override
+  set totalCategorias(double value) {
+    _$totalCategoriasAtom.reportWrite(value, super.totalCategorias, () {
+      super.totalCategorias = value;
+    });
+  }
+
   final _$initAsyncAction = AsyncAction('_ContasFixasControllerBase.init');
 
   @override
@@ -71,10 +87,22 @@ mixin _$ContasFixasController on _ContasFixasControllerBase, Store {
   }
 
   @override
+  dynamic somarTotalCategoria() {
+    final _$actionInfo = _$_ContasFixasControllerBaseActionController
+        .startAction(name: '_ContasFixasControllerBase.somarTotalCategoria');
+    try {
+      return super.somarTotalCategoria();
+    } finally {
+      _$_ContasFixasControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 contas: ${contas},
-tipos: ${tipos}
+tipos: ${tipos},
+totalCategorias: ${totalCategorias}
     ''';
   }
 }

@@ -40,8 +40,9 @@ class ContasEntity {
   final String nomCla;
   final String apelido;
   final String nomCon;
+  double totalCategoria = 0;
 
-  const ContasEntity(
+  ContasEntity(
       {this.tipo,
       this.tipFor,
       this.codCon,
@@ -51,7 +52,7 @@ class ContasEntity {
       this.diaVen,
       this.mesVencimento,
       this.tipPag,
-      this.valCon,
+      this.valCon = 0,
       this.datEmi,
       this.numMins,
       this.senha,
@@ -77,7 +78,8 @@ class ContasEntity {
       this.nomPla,
       this.nomCla,
       this.apelido,
-      this.nomCon});
+      this.nomCon,
+      this.totalCategoria = 0});
 
   @override
   String toString() {

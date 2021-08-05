@@ -37,6 +37,9 @@ class RouteName {
   static const String gerenciar_reserva = '/gerenciar_reserva';
   static const String detalhes_reserva = '/detalhes_reserva';
   static const String contas_fixas = '/contas_fixas';
+  static const String movimento_financeiro = '/movimento_financeiro';
+  static const String movimento_financeiro_detalhe =
+      '/movimento_financeiro_detalhe';
 
   static const Map allRoutesKeys = {
     'boleto': boleto,

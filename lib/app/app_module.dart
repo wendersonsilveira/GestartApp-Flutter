@@ -1,3 +1,9 @@
+import 'package:Gestart/app/modules/sindico/financeiro/movimento_financeiro/detalhe_movimento/detalhe_movimento_page.dart';
+
+import 'modules/sindico/financeiro/movimento_financeiro/detalhe_movimento/detalhe_movimento_controller.dart';
+import 'package:Gestart/app/modules/sindico/financeiro/movimento_financeiro/movimento_financeiro_page.dart';
+
+import 'modules/sindico/financeiro/movimento_financeiro/movimento_financeiro_controller.dart';
 import 'modules/sindico/comunicacao/avisos/cadastro/cadastro_aviso_page/cadastro_aviso_page_controller.dart';
 import 'modules/sindico/comunicacao/avisos/avisos_page/avisos_page_controller.dart';
 import 'modules/sindico/financeiro/contas_fixas/contas_fixas_controller.dart';
@@ -93,6 +99,8 @@ import 'package:Gestart/app/app_widget.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        $DetalheMovimentoController,
+        $MovimentoFinanceiroController,
         $CadastroAvisoPageController,
         $AvisosPageController,
         $ContasFixasController,
@@ -210,6 +218,12 @@ class AppModule extends MainModule {
             child: (_, args) => DetalhesReservaPage(reserva: args.data)),
         ModularRouter(RouteName.contas_fixas,
             child: (_, args) => ContasFixasPage()),
+        ModularRouter(RouteName.movimento_financeiro,
+            child: (_, args) => MovimentoFinanceiroPage()),
+        ModularRouter(RouteName.movimento_financeiro_detalhe,
+            child: (_, args) => DetalheMovimentoPage(
+                  movimentacao: args.data,
+                )),
       ];
 
   @override

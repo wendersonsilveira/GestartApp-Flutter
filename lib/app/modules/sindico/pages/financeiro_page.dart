@@ -37,8 +37,8 @@ class _FinanceiroPageState extends State<FinanceiroPage> {
                     color: AppColorScheme.primaryColor),
                 title: Text('Movimento Financeiro'),
                 trailing: Icon(Icons.arrow_right),
-                onTap: () =>
-                    Modular.navigator.pushNamed(RouteName.contas_fixas)),
+                onTap: () => Modular.navigator
+                    .pushNamed(RouteName.movimento_financeiro)),
           ),
         ],
       ),
