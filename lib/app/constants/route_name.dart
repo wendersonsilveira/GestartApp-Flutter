@@ -40,6 +40,7 @@ class RouteName {
   static const String movimento_financeiro = '/movimento_financeiro';
   static const String movimento_financeiro_detalhe =
       '/movimento_financeiro_detalhe';
+  static const String cadastros_sindico = '/cadastros_sindico';
 
   static const Map allRoutesKeys = {
     'boleto': boleto,

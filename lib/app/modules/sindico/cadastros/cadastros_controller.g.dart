@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'avisos_page_controller.dart';
+part of 'cadastros_controller.dart';
 
 // **************************************************************************
 // InjectionGenerator
 // **************************************************************************
 
-final $AvisosPageController = BindInject(
-  (i) => AvisosPageController(),
+final $CadastrosController = BindInject(
+  (i) => CadastrosController(),
   singleton: true,
   lazy: true,
 );
@@ -18,8 +18,8 @@ final $AvisosPageController = BindInject(
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$AvisosPageController on _AvisosPageControllerBase, Store {
-  final _$valueAtom = Atom(name: '_AvisosPageControllerBase.value');
+mixin _$CadastrosController on _CadastrosControllerBase, Store {
+  final _$valueAtom = Atom(name: '_CadastrosControllerBase.value');
 
   @override
   int get value {
@@ -34,17 +34,17 @@ mixin _$AvisosPageController on _AvisosPageControllerBase, Store {
     });
   }
 
-  final _$_AvisosPageControllerBaseActionController =
-      ActionController(name: '_AvisosPageControllerBase');
+  final _$_CadastrosControllerBaseActionController =
+      ActionController(name: '_CadastrosControllerBase');
 
   @override
   void increment() {
-    final _$actionInfo = _$_AvisosPageControllerBaseActionController
-        .startAction(name: '_AvisosPageControllerBase.increment');
+    final _$actionInfo = _$_CadastrosControllerBaseActionController.startAction(
+        name: '_CadastrosControllerBase.increment');
     try {
       return super.increment();
     } finally {
-      _$_AvisosPageControllerBaseActionController.endAction(_$actionInfo);
+      _$_CadastrosControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 

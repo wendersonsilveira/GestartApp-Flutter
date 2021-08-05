@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'cadastro_aviso_page_controller.dart';
+import 'cadastros_controller.dart';
 
-class CadastroAvisoPagePage extends StatefulWidget {
+class CadastrosPage extends StatefulWidget {
   final String title;
-  const CadastroAvisoPagePage({Key key, this.title = "CadastroAvisoPage"})
-      : super(key: key);
+  const CadastrosPage({Key key, this.title = "Cadastros"}) : super(key: key);
 
   @override
-  _CadastroAvisoPagePageState createState() => _CadastroAvisoPagePageState();
+  _CadastrosPageState createState() => _CadastrosPageState();
 }
 
-class _CadastroAvisoPagePageState
-    extends ModularState<CadastroAvisoPagePage, CadastroAvisoPageController> {
+class _CadastrosPageState
+    extends ModularState<CadastrosPage, CadastrosController> {
   //use 'controller' variable to access controller
 
   @override

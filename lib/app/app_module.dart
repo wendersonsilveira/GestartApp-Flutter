@@ -1,11 +1,13 @@
+import 'modules/sindico/cadastros/cadastros_controller.dart'
+    as cadastroSindicoController;
 import 'package:Gestart/app/modules/sindico/financeiro/movimento_financeiro/detalhe_movimento/detalhe_movimento_page.dart';
 
 import 'modules/sindico/financeiro/movimento_financeiro/detalhe_movimento/detalhe_movimento_controller.dart';
 import 'package:Gestart/app/modules/sindico/financeiro/movimento_financeiro/movimento_financeiro_page.dart';
 
 import 'modules/sindico/financeiro/movimento_financeiro/movimento_financeiro_controller.dart';
-import 'modules/sindico/comunicacao/avisos/cadastro/cadastro_aviso_page/cadastro_aviso_page_controller.dart';
-import 'modules/sindico/comunicacao/avisos/avisos_page/avisos_page_controller.dart';
+import 'modules/sindico/comunicacao/avisos/avisos_page_controller.dart';
+import 'modules/sindico/comunicacao/avisos/cadastro/cadastro_aviso_page_controller.dart';
 import 'modules/sindico/financeiro/contas_fixas/contas_fixas_controller.dart';
 import 'modules/sindico/reserva_espaco/gerenciar_reserva/detalhes_reserva/detalhes_reserva_controller.dart';
 import 'modules/sindico/reserva_espaco/gerenciar_reserva/detalhes_reserva/detalhes_reserva_page.dart';
@@ -99,6 +101,7 @@ import 'package:Gestart/app/app_widget.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        cadastroSindicoController.$CadastrosController,
         $DetalheMovimentoController,
         $MovimentoFinanceiroController,
         $CadastroAvisoPageController,
@@ -224,6 +227,20 @@ class AppModule extends MainModule {
             child: (_, args) => DetalheMovimentoPage(
                   movimentacao: args.data,
                 )),
+        ModularRouter(RouteName.cadastroVeiculo,
+            child: (_, args) => CadastroVeiculoPage(id: args.data)),
+        ModularRouter(RouteName.listar_espacos,
+            child: (_, args) => ListarEspacosPage()),
+        ModularRouter(RouteName.pesquisaVoz,
+            child: (_, args) => PesquisaPage()),
+        ModularRouter(RouteName.recebimentos,
+            child: (_, args) => RecebimentosPage()),
+        ModularRouter(RouteName.gerenciar_reserva,
+            child: (_, args) => GerenciarReservaPage()),
+        ModularRouter(RouteName.detalhes_reserva,
+            child: (_, args) => DetalhesReservaPage(reserva: args.data)),
+        ModularRouter(RouteName.contas_fixas,
+            child: (_, args) => ContasFixasPage()),
       ];
 
   @override

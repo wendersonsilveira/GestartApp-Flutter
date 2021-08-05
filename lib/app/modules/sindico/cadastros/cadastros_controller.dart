@@ -1,13 +1,12 @@
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-part 'avisos_page_controller.g.dart';
+part 'cadastros_controller.g.dart';
 
 @Injectable()
-class AvisosPageController = _AvisosPageControllerBase
-    with _$AvisosPageController;
+class CadastrosController = _CadastrosControllerBase with _$CadastrosController;
 
-abstract class _AvisosPageControllerBase with Store {
+abstract class _CadastrosControllerBase with Store {
   @observable
   int value = 0;
 

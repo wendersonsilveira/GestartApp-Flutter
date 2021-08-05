@@ -22,4 +22,23 @@ class ComunicacaoRemoteDataSource {
       return ResourceData(status: Status.failed, data: null, message: "Erro ao listar os avisos", error: ErrorMapper.from(e));
     }
   }
+
+  Future<ResourceData<AvisoEntity>> getAviso(int avisoId) async {
+    try {
+      final result = await _dio.get('adm-aviso/$avisoId');
+
+      return ResourceData(status: Status.success, data: AvisoEntity().fromMap(result[0]), message: 'Avisos listados com sucesso!');
+    } on DioError catch (e) {
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar os avisos", error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData> createAviso(AvisoEntity aviso) async {
+    try {
+      await _dio.post('adm-avisos', data: aviso.toMap());
+      return ResourceData(status: Status.success, data: null, message: 'Aviso cadastrado com sucesso!');
+    } on DioError catch (e) {
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao cadastra o aviso", error: ErrorMapper.from(e));
+    }
+  }
 }
