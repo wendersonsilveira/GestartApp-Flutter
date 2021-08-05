@@ -14,4 +14,18 @@ class ComunicacaoRepositoryImpl implements ComunicacaoRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData> createAviso(AvisoEntity aviso) async {
+    final resource = await _comunicacaoRemoteDataSource.createAviso(aviso);
+
+    return resource;
+  }
+
+  @override
+  Future<ResourceData<AvisoEntity>> getAviso(int avisoId) async {
+    final resource = await _comunicacaoRemoteDataSource.getAviso(avisoId);
+
+    return resource;
+  }
 }

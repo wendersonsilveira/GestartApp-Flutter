@@ -54,6 +54,8 @@ import 'package:Gestart/domain/repositories/unidade/unidade_repository.dart';
 import 'package:Gestart/domain/repositories/user/user_repository.dart';
 import 'package:Gestart/domain/repositories/veiculo/veiculo_repository.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
+import 'package:Gestart/domain/usecases/cominicacao/create_aviso_use_case.dart';
+import 'package:Gestart/domain/usecases/cominicacao/get_aviso_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/get_avisos_use_case.dart';
 import 'package:Gestart/domain/usecases/contas/get_contas_use_case.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_edital_use_case.dart';
@@ -232,6 +234,8 @@ Future<GetIt> initGetIt(GetIt get) async {
   // painel comunicação
   gh.factory<ComunicacaoRemoteDataSource>(() => ComunicacaoRemoteDataSource(get<CustomDio>()));
   gh.factory<GetAvisosUseCase>(() => GetAvisosUseCase(get<ComunicacaoRepository>()));
+  gh.factory<CreateAvisoUseCase>(() => CreateAvisoUseCase(get<ComunicacaoRepository>()));
+  gh.factory<GetAvisoAdmUseCase>(() => GetAvisoAdmUseCase(get<ComunicacaoRepository>()));
 
   //  Singleton
   gh.singleton<Dio>(dio);

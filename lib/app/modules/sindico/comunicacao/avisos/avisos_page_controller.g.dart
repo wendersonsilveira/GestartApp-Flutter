@@ -19,39 +19,33 @@ final $AvisosPageController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$AvisosPageController on _AvisosPageControllerBase, Store {
-  final _$valueAtom = Atom(name: '_AvisosPageControllerBase.value');
+  final _$avisosAtom = Atom(name: '_AvisosPageControllerBase.avisos');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  List<AvisoEntity> get avisos {
+    _$avisosAtom.reportRead();
+    return super.avisos;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set avisos(List<AvisoEntity> value) {
+    _$avisosAtom.reportWrite(value, super.avisos, () {
+      super.avisos = value;
     });
   }
 
-  final _$_AvisosPageControllerBaseActionController =
-      ActionController(name: '_AvisosPageControllerBase');
+  final _$getAvisosAsyncAction =
+      AsyncAction('_AvisosPageControllerBase.getAvisos');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_AvisosPageControllerBaseActionController
-        .startAction(name: '_AvisosPageControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_AvisosPageControllerBaseActionController.endAction(_$actionInfo);
-    }
+  Future getAvisos() {
+    return _$getAvisosAsyncAction.run(() => super.getAvisos());
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+avisos: ${avisos}
     ''';
   }
 }

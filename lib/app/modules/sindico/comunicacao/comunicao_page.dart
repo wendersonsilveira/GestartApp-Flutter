@@ -1,3 +1,4 @@
+import 'package:Gestart/app/modules/sindico/comunicacao/avisos/avisos_page..dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -32,7 +33,11 @@ class _ComunicacaoPageState extends State<ComunicacaoPage> {
                       color: AppColorScheme.primaryColor,
                     ),
                     trailing: Icon(Icons.chevron_right),
-                    onTap: () => null,
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => AvisosPage(),
+                      ));
+                    },
                   ),
                 ),
               ],

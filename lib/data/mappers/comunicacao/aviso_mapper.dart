@@ -9,7 +9,7 @@ extension AvisoMapper on AvisoEntity {
     return AvisoEntity(
       id: map['ID'],
       codCon: map['CODCON'],
-      datEmi: map['DATEMI'],
+      datEmi: map['DATEMI'] == null ? null : DateTime.parse(map['DATEMI']),
       att: map['ATT'],
       descri: map['DESCRI'],
       urlDigital: map['URL_DIGITAL'],
@@ -23,6 +23,9 @@ extension AvisoMapper on AvisoEntity {
   Map<String, dynamic> toMap() {
     return {
       'ID': id != null ? id : 0,
+      'ATT': att,
+      'DESCRI': descri,
+      'CODCON': codCon,
     };
   }
 }
