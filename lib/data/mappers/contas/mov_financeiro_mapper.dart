@@ -32,4 +32,12 @@ extension MovFinanceiroMapper on MovFinanceiroEntity {
       'MESANO': mesAno,
     };
   }
+
+  Map<String, dynamic> toMapExtrato() {
+    return {
+      'CODCON': codCon,
+      'MESANO': mesAno,
+      'ID_CONTA': idConta,
+    };
+  }
 }

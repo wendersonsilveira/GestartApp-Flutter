@@ -71,6 +71,7 @@ import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case
 import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominios_ativos_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_infor_adm_condominios_use_case.dart';
+import 'package:Gestart/domain/usecases/contas/get_extrato_financeiro_use_case.dart';
 import 'package:Gestart/domain/usecases/contas/get_movimento_financeiro_meses_use_case.dart';
 import 'package:Gestart/domain/usecases/contas/get_movimento_financeiro_use_case.dart';
 import 'package:Gestart/domain/usecases/documento/get_documento_use_case.dart';
@@ -295,6 +296,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => GetMovFinanceiroUseCase(get<ContasRepository>()));
   gh.factory<GetMovFinanceiroMesesUseCase>(
       () => GetMovFinanceiroMesesUseCase(get<ContasRepository>()));
+  gh.factory<GetExtratoFinanceiroUseCase>(
+      () => GetExtratoFinanceiroUseCase(get<ContasRepository>()));
 
   // painel comunicação
   gh.factory<ComunicacaoRemoteDataSource>(
