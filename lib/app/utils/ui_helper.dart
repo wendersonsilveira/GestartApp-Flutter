@@ -10,6 +10,35 @@ class UIHelper {
     return '$day/$month/$year';
   }
 
+  static String diaSemanaDate(DateTime dateTime) {
+    final day = dateTime.weekday;
+    String descricao;
+    switch (day) {
+      case 1:
+        descricao = 'Segunda';
+        break;
+      case 2:
+        descricao = 'Terça';
+        break;
+      case 3:
+        descricao = 'Quarta';
+        break;
+      case 4:
+        descricao = 'Quinta';
+        break;
+      case 5:
+        descricao = 'Sexta';
+        break;
+      case 6:
+        descricao = 'Sábado';
+        break;
+      default:
+        descricao = 'Domingo';
+    }
+
+    return descricao;
+  }
+
   static String formatDateFromDateTimeReverse(DateTime dateTime) {
     final day = dateTime.day.toString().padLeft(2, '0');
     final month = dateTime.month.toString().padLeft(2, '0');
@@ -38,6 +67,13 @@ class UIHelper {
     final month = dateTime.month.toString().padLeft(2, '0');
     final year = dateTime.year.toString().padLeft(2, '0');
     return '$day$separator$month$separator$year';
+  }
+
+  static String formatDateMesAno(DateTime dateTime, [String separator]) {
+    separator = separator == null ? '/' : separator;
+    final day = dateTime.day.toString().padLeft(2, '0');
+    final month = dateTime.month.toString().padLeft(2, '0');
+    return '$day$separator$month';
   }
 
   static String formatTime(DateTime dateTime, [String separator]) {

@@ -178,8 +178,11 @@ class _ContasFixasPageState
                 ),
               );
             default:
-              return PageError(
-                messageError: "Erro ao carregar as informações",
+              return Center(
+                child: PageError(
+                  messageError: "Erro ao carregar as informações",
+                  onPressed: controller.init,
+                ),
               );
           }
         },

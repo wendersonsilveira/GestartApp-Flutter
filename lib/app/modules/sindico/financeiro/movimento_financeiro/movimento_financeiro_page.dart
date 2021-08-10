@@ -115,66 +115,64 @@ class _MovimentoFinanceiroPageState extends ModularState<
                                 height: 5,
                               ),
                               Text('SALDO TOTAL'),
-                              GestureDetector(
-                                onTap: () => Modular.navigator.pushNamed(
-                                    RouteName.movimento_financeiro_detalhe,
-                                    arguments: controller.movimentacao),
-                                child: Card(
-                                  margin: EdgeInsets.all(10),
-                                  child: Container(
-                                    child: Column(
-                                      children:
-                                          controller.movimentacao.data.map((e) {
-                                        return Column(
-                                          children: [
-                                            ListTile(
-                                                trailing:
-                                                    Icon(Icons.arrow_right),
-                                                title: e.nomSal != null
-                                                    ? Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Container(
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width /
-                                                                  2,
-                                                              child: Text(
-                                                                  e.nomSal)),
-                                                          e.saldo < 0
-                                                              ? Text(
-                                                                  UIHelper
-                                                                      .moneyFormat(
-                                                                          e.saldo),
-                                                                  style: TextStyle(
-                                                                      color: AppColorScheme
-                                                                          .feedbackDangerDark),
-                                                                )
-                                                              : Text(
-                                                                  UIHelper
-                                                                      .moneyFormat(
-                                                                          e.saldo),
-                                                                  style: TextStyle(
-                                                                      color: AppColorScheme
-                                                                          .primaryColor),
-                                                                )
-                                                        ],
-                                                      )
-                                                    : Text(''),
-                                                subtitle: e.codAgencia !=
-                                                            null &&
-                                                        e.numConta != null
-                                                    ? Text(
-                                                        '${e.codAgencia} / ${e.numConta}')
-                                                    : null),
-                                            Divider()
-                                          ],
-                                        );
-                                      }).toList(),
-                                    ),
+                              Card(
+                                margin: EdgeInsets.all(10),
+                                child: Container(
+                                  child: Column(
+                                    children:
+                                        controller.movimentacao.data.map((e) {
+                                      return Column(
+                                        children: [
+                                          ListTile(
+                                              onTap: () => Modular.navigator
+                                                  .pushNamed(
+                                                      RouteName
+                                                          .movimento_financeiro_detalhe,
+                                                      arguments: e),
+                                              trailing: Icon(Icons.arrow_right),
+                                              title: e.nomSal != null
+                                                  ? Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Container(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width /
+                                                                2,
+                                                            child:
+                                                                Text(e.nomSal)),
+                                                        e.saldo < 0
+                                                            ? Text(
+                                                                UIHelper
+                                                                    .moneyFormat(
+                                                                        e.saldo),
+                                                                style: TextStyle(
+                                                                    color: AppColorScheme
+                                                                        .feedbackDangerDark),
+                                                              )
+                                                            : Text(
+                                                                UIHelper
+                                                                    .moneyFormat(
+                                                                        e.saldo),
+                                                                style: TextStyle(
+                                                                    color: AppColorScheme
+                                                                        .primaryColor),
+                                                              )
+                                                      ],
+                                                    )
+                                                  : Text(''),
+                                              subtitle: e.codAgencia != null &&
+                                                      e.numConta != null
+                                                  ? Text(
+                                                      '${e.codAgencia} / ${e.numConta}')
+                                                  : null),
+                                          Divider()
+                                        ],
+                                      );
+                                    }).toList(),
                                   ),
                                 ),
                               ),

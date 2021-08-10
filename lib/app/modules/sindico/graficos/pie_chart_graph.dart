@@ -17,12 +17,7 @@ class _BarChartGraphState extends State<BarChartGraph> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _barChartList = [
-      BarChartModel(descricao: "Oct"),
-      BarChartModel(descricao: "Nov"),
-    ];
   }
 
   @override
@@ -40,17 +35,19 @@ class _BarChartGraphState extends State<BarChartGraph> {
   }
 
   Widget _buildFinancialList(series) {
-    return _barChartList != null
-        ? Container(
-            height: MediaQuery.of(context).size.height / 2,
-            padding: EdgeInsets.all(10),
-            child: Expanded(
-                child: charts.PieChart(
-              series,
-              animate: true,
-              behaviors: [new charts.DatumLegend(horizontalFirst: widget.horizontalFirst)],
-            )),
-          )
-        : SizedBox();
+    return Container(
+      height: MediaQuery.of(context).size.height / 2,
+      padding: EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Expanded(
+              child: charts.PieChart(
+            series,
+            animate: true,
+            behaviors: [new charts.DatumLegend(horizontalFirst: false)],
+          )),
+        ],
+      ),
+    );
   }
 }
