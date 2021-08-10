@@ -16,7 +16,8 @@ import 'package:Gestart/app/modules/sindico/pages/financeiro_page.dart';
 
 class SindicoPage extends StatefulWidget {
   final String title;
-  const SindicoPage({Key key, this.title = "Painel do Síndico"}) : super(key: key);
+  const SindicoPage({Key key, this.title = "Painel do Síndico"})
+      : super(key: key);
 
   @override
   _SindicoPageState createState() => _SindicoPageState();
@@ -34,7 +35,8 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
 
   mudarPage(int indice) {
     setState(() {
-      controllerPages.animateToPage(indice, duration: Duration(milliseconds: 200), curve: Curves.easeIn);
+      controllerPages.animateToPage(indice,
+          duration: Duration(milliseconds: 200), curve: Curves.easeIn);
     });
   }
 
@@ -42,7 +44,11 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        mudarPage(0);
+        if (controllerPages.page != 0.0)
+          mudarPage(0);
+        else
+          Modular.navigator.pop();
+
         return false;
       },
       child: Scaffold(
@@ -82,7 +88,8 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
                         physics: new NeverScrollableScrollPhysics(),
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 10),
                             child: Column(
                               children: [
                                 Text(
@@ -97,19 +104,23 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
                                     shrinkWrap: true,
                                     crossAxisCount: 3,
                                     childAspectRatio: 100.w / 90.h,
-                                    children: List.generate(controller.menus.length, (index) {
+                                    children: List.generate(
+                                        controller.menus.length, (index) {
                                       return ButtonMenuWidget(
                                         icone: controller.menus[index]['icon'],
-                                        descricao: controller.menus[index]['title'],
+                                        descricao: controller.menus[index]
+                                            ['title'],
                                         onPress: () {
                                           if (index == 4) {
                                             Navigator.of(context).push(
                                               MaterialPageRoute(
-                                                builder: (context) => CadastrosPage(),
+                                                builder: (context) =>
+                                                    CadastrosPage(),
                                               ),
                                             );
                                           } else {
-                                            mudarPage(controller.menus[index]['indice']);
+                                            mudarPage(controller.menus[index]
+                                                ['indice']);
                                           }
                                         },
                                       );

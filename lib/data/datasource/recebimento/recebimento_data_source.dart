@@ -23,15 +23,23 @@ class RecebimentoRemoteDataSource {
 
   RecebimentoRemoteDataSource(this._dio);
 
-  Future<ResourceData<List<RecebimentoEntity>>> getRecebimentos(int codCon, Map<String, dynamic> filtro) async {
+  Future<ResourceData<List<RecebimentoEntity>>> getRecebimentos(
+      int codCon, Map<String, dynamic> filtro) async {
     try {
       final result = await _dio.post('adm-recebimentos/$codCon', data: filtro);
       if (result.length > 0)
-        return ResourceData<List<RecebimentoEntity>>(status: Status.success, data: RecebimentoEntity().fromMapList(result));
+        return ResourceData<List<RecebimentoEntity>>(
+            status: Status.success,
+            data: RecebimentoEntity().fromMapList(result));
       else
-        return ResourceData<List<RecebimentoEntity>>(status: Status.success, data: null);
+        return ResourceData<List<RecebimentoEntity>>(
+            status: Status.success, data: null);
     } on DioError catch (e) {
-      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar os recebimentos", error: ErrorMapper.from(e));
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os recebimentos",
+          error: ErrorMapper.from(e));
     }
   }
 
@@ -39,71 +47,111 @@ class RecebimentoRemoteDataSource {
     try {
       final result = await _dio.get('condom-tipos-taxas/$codCon');
       if (result.length > 0)
-        return ResourceData<List<TipoTaxaEntity>>(status: Status.success, data: TipoTaxaEntity().fromMapList(result));
+        return ResourceData<List<TipoTaxaEntity>>(
+            status: Status.success, data: TipoTaxaEntity().fromMapList(result));
       else
-        return ResourceData<List<TipoTaxaEntity>>(status: Status.success, data: null);
+        return ResourceData<List<TipoTaxaEntity>>(
+            status: Status.success, data: null);
     } on DioError catch (e) {
-      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar os recebimentos", error: ErrorMapper.from(e));
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os recebimentos",
+          error: ErrorMapper.from(e));
     }
   }
 
-  Future<ResourceData<List<PagamentoEntity>>> getPagamentos(Map<String, dynamic> filtro) async {
+  Future<ResourceData<List<PagamentoEntity>>> getPagamentos(
+      Map<String, dynamic> filtro) async {
     try {
       final result = await _dio.post('adm-recebimentos-detalhes', data: filtro);
       if (result.length > 0)
-        return ResourceData<List<PagamentoEntity>>(status: Status.success, data: PagamentoEntity().fromMapList(result));
+        return ResourceData<List<PagamentoEntity>>(
+            status: Status.success,
+            data: PagamentoEntity().fromMapList(result));
       else
-        return ResourceData<List<PagamentoEntity>>(status: Status.success, data: null);
+        return ResourceData<List<PagamentoEntity>>(
+            status: Status.success, data: null);
     } on DioError catch (e) {
-      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar os pagamentos", error: ErrorMapper.from(e));
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os pagamentos",
+          error: ErrorMapper.from(e));
     }
   }
 
-  Future<ResourceData<List<InadimplenciaEntity>>> getInadimplencias(int codCon, Map<String, dynamic> filtro) async {
+  Future<ResourceData<List<InadimplenciaEntity>>> getInadimplencias(
+      int codCon, Map<String, dynamic> filtro) async {
     try {
       final result = await _dio.post('adm-inadim/$codCon', data: filtro);
       if (result.length > 0)
-        return ResourceData<List<InadimplenciaEntity>>(status: Status.success, data: InadimplenciaEntity().fromMapList(result));
+        return ResourceData<List<InadimplenciaEntity>>(
+            status: Status.success,
+            data: InadimplenciaEntity().fromMapList(result));
       else
-        return ResourceData<List<InadimplenciaEntity>>(status: Status.success, data: null);
+        return ResourceData<List<InadimplenciaEntity>>(
+            status: Status.success, data: null);
     } on DioError catch (e) {
-      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar os recebimentos", error: ErrorMapper.from(e));
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os recebimentos",
+          error: ErrorMapper.from(e));
     }
   }
 
-  Future<ResourceData<List<InadimplenciaEntity>>> getInadimplencia(Map<String, dynamic> filtro) async {
+  Future<ResourceData<List<InadimplenciaEntity>>> getInadimplencia(
+      Map<String, dynamic> filtro) async {
     try {
       final result = await _dio.post('adm-inadim-detalhes', data: filtro);
       if (result.length > 0)
-        return ResourceData<List<InadimplenciaEntity>>(status: Status.success, data: InadimplenciaEntity().fromMapList(result));
+        return ResourceData<List<InadimplenciaEntity>>(
+            status: Status.success,
+            data: InadimplenciaEntity().fromMapList(result));
       else
-        return ResourceData<List<InadimplenciaEntity>>(status: Status.success, data: null);
+        return ResourceData<List<InadimplenciaEntity>>(
+            status: Status.success, data: null);
     } on DioError catch (e) {
-      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar as inadimplencias", error: ErrorMapper.from(e));
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar as inadimplencias",
+          error: ErrorMapper.from(e));
     }
   }
 
-  Future<ResourceData<List<HistoricoInadimEntity>>> getHistoricoInadim(int codOrd) async {
+  Future<ResourceData<List<HistoricoInadimEntity>>> getHistoricoInadim(
+      int codOrd) async {
     try {
       final result = await _dio.get('adm-inadim-detalhes-historico/$codOrd');
       if (result.length > 0)
-        return ResourceData<List<HistoricoInadimEntity>>(status: Status.success, data: HistoricoInadimEntity().fromMapList(result));
+        return ResourceData<List<HistoricoInadimEntity>>(
+            status: Status.success,
+            data: HistoricoInadimEntity().fromMapList(result));
       else
-        return ResourceData<List<HistoricoInadimEntity>>(status: Status.success, data: null);
+        return ResourceData<List<HistoricoInadimEntity>>(
+            status: Status.success, data: null);
     } on DioError catch (e) {
-      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar os historicos", error: ErrorMapper.from(e));
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os historicos",
+          error: ErrorMapper.from(e));
     }
   }
 
   Future<ResourceData<List<AcordoEntity>>> getAcordos(int codCon) async {
     try {
       final result = await _dio.get('acordos/$codCon');
-      if (result.length > 0)
-        return ResourceData<List<AcordoEntity>>(status: Status.success, data: AcordoEntity().fromMapList(result));
-      else
-        return ResourceData<List<AcordoEntity>>(status: Status.success, data: null);
+      return ResourceData<List<AcordoEntity>>(
+          status: Status.success, data: AcordoEntity().fromMapList(result));
     } on DioError catch (e) {
-      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar os acordos", error: ErrorMapper.from(e));
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os acordos",
+          error: ErrorMapper.from(e));
     }
   }
 
@@ -111,11 +159,17 @@ class RecebimentoRemoteDataSource {
     try {
       final result = await _dio.get('acordo/$numAco');
       if (result.length > 0)
-        return ResourceData<List<AcordoEntity>>(status: Status.success, data: AcordoEntity().fromMapList(result));
+        return ResourceData<List<AcordoEntity>>(
+            status: Status.success, data: AcordoEntity().fromMapList(result));
       else
-        return ResourceData<List<AcordoEntity>>(status: Status.success, data: null);
+        return ResourceData<List<AcordoEntity>>(
+            status: Status.success, data: null);
     } on DioError catch (e) {
-      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar os acordos", error: ErrorMapper.from(e));
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os acordos",
+          error: ErrorMapper.from(e));
     }
   }
 }
