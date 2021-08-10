@@ -5,4 +5,5 @@ abstract class UnidadeRepository {
   Future<ResourceData<List<UnidadeEntity>>> getUnidades();
   Future<ResourceData<List<UnidadeEntity>>> getUnidadesAdm();
   Future<ResourceData<List<UnidadeEntity>>> getAdmUnidadesProprieraios(int codCon);
+  Future<ResourceData<List<UnidadeEntity>>> getUnidadesFiltro(Map<String, dynamic> filtro);
 }

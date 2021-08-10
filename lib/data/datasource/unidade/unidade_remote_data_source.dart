@@ -51,4 +51,17 @@ class UnidadeRemoteDataSource {
       return ResourceData(status: Status.failed, data: null, message: "Erro ao listar as unidades ativas", error: ErrorMapper.from(e));
     }
   }
+
+  Future<ResourceData<List<UnidadeEntity>>> getUnidadesFiltro(int codCon, Map<String, dynamic> filtro) async {
+    try {
+      final result = await _dio.get('adm-unidades/$codCon', queryParameters: filtro);
+
+      if (result.length > 0)
+        return ResourceData<List<UnidadeEntity>>(status: Status.success, data: UnidadeEntity().fromMapList(result));
+      else
+        return ResourceData<List<UnidadeEntity>>(status: Status.success, data: null);
+    } on DioError catch (e) {
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar resumo", error: ErrorMapper.from(e));
+    }
+  }
 }

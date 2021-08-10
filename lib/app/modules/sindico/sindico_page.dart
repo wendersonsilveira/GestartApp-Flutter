@@ -1,9 +1,9 @@
+import 'package:Gestart/app/modules/sindico/cadastros/cadastros_page.dart';
 import 'package:Gestart/app/modules/sindico/comunicacao/comunicao_page.dart';
 import 'package:Gestart/app/modules/sindico/controle_recebimentos/controle_recebimentos_page.dart';
 import 'package:Gestart/app/modules/sindico/pages/reserva_espaco_page.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/inputs/dropdown_button_field.widget.dart';
-import 'package:Gestart/app/widgets/inputs/dropdown_button_field3.widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +13,10 @@ import 'component/button_menu_sindico_widget.dart';
 import 'sindico_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:Gestart/app/modules/sindico/pages/financeiro_page.dart';
-import 'package:Gestart/app/modules/sindico/graficos/chart_page.dart';
 
 class SindicoPage extends StatefulWidget {
   final String title;
-  const SindicoPage({Key key, this.title = "Painel do Síndico"})
-      : super(key: key);
+  const SindicoPage({Key key, this.title = "Painel do Síndico"}) : super(key: key);
 
   @override
   _SindicoPageState createState() => _SindicoPageState();
@@ -36,8 +34,7 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
 
   mudarPage(int indice) {
     setState(() {
-      controllerPages.animateToPage(indice,
-          duration: Duration(milliseconds: 200), curve: Curves.easeIn);
+      controllerPages.animateToPage(indice, duration: Duration(milliseconds: 200), curve: Curves.easeIn);
     });
   }
 
@@ -85,8 +82,7 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
                         physics: new NeverScrollableScrollPhysics(),
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
+                            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                             child: Column(
                               children: [
                                 Text(
@@ -101,14 +97,21 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
                                     shrinkWrap: true,
                                     crossAxisCount: 3,
                                     childAspectRatio: 100.w / 90.h,
-                                    children: List.generate(
-                                        controller.menus.length, (index) {
+                                    children: List.generate(controller.menus.length, (index) {
                                       return ButtonMenuWidget(
                                         icone: controller.menus[index]['icon'],
-                                        descricao: controller.menus[index]
-                                            ['title'],
-                                        onPress: () => mudarPage(
-                                            controller.menus[index]['indice']),
+                                        descricao: controller.menus[index]['title'],
+                                        onPress: () {
+                                          if (index == 4) {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (context) => CadastrosPage(),
+                                              ),
+                                            );
+                                          } else {
+                                            mudarPage(controller.menus[index]['indice']);
+                                          }
+                                        },
                                       );
                                     })),
                               ],

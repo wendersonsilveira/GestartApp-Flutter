@@ -5,8 +5,8 @@ import 'pie_chart_model.dart';
 
 class BarChartGraph extends StatefulWidget {
   final List<BarChartModel> data;
-
-  const BarChartGraph({Key key, this.data}) : super(key: key);
+  final bool horizontalFirst;
+  const BarChartGraph({Key key, this.data, this.horizontalFirst = false}) : super(key: key);
 
   @override
   _BarChartGraphState createState() => _BarChartGraphState();
@@ -48,7 +48,7 @@ class _BarChartGraphState extends State<BarChartGraph> {
                 child: charts.PieChart(
               series,
               animate: true,
-              behaviors: [new charts.DatumLegend(horizontalFirst: false)],
+              behaviors: [new charts.DatumLegend(horizontalFirst: widget.horizontalFirst)],
             )),
           )
         : SizedBox();

@@ -31,8 +31,7 @@ extension UnidadeMapper on UnidadeEntity {
     );
   }
 
-  List<UnidadeEntity> fromMapList(List<dynamic> data) =>
-      List.from(data).map((element) => fromMap(element)).toList();
+  List<UnidadeEntity> fromMapList(List<dynamic> data) => List.from(data).map((element) => fromMap(element)).toList();
 
   UnidadeEntity fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
@@ -50,6 +49,12 @@ extension UnidadeMapper on UnidadeEntity {
       logo: map['LOGO'],
       gestartapp: map['GESTARTAPP'],
       gestartappReserva: map['GESTARTAPP_RESERVA'],
+      propri: map['PROPRI'],
+      cgcpro: map['CGCPRO'],
+      asInquilino: map['AS_INQUILINO'],
+      isUser: map['IS_USER'],
+      veiculos: map['PETS'],
+      pets: map['VEICULOS'],
     );
   }
 }

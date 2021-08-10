@@ -15,6 +15,13 @@ class UnidadeEntity {
   final int gestartapp;
   final int gestartappReserva;
 
+  final String propri;
+  final String cgcpro;
+  final int asInquilino;
+  final int isUser;
+  final int pets;
+  final int veiculos;
+
   const UnidadeEntity({
     this.codcon,
     this.codimo,
@@ -28,6 +35,12 @@ class UnidadeEntity {
     this.gestartapp,
     this.gestartappReserva,
     this.nompro,
+    this.propri,
+    this.cgcpro,
+    this.asInquilino,
+    this.isUser,
+    this.pets,
+    this.veiculos,
   });
 
   @override

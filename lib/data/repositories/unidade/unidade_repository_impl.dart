@@ -28,4 +28,14 @@ class UnidadeRepositoryImpl implements UnidadeRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData<List<UnidadeEntity>>> getUnidadesFiltro(Map<String, dynamic> filtro) async {
+    int codCon = filtro['CODCON'];
+    filtro.remove('CODCON');
+
+    final resource = await _unidadeRemoteDataSource.getUnidadesFiltro(codCon, filtro);
+
+    return resource;
+  }
 }
