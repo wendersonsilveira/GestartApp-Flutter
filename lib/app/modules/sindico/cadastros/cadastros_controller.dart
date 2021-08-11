@@ -26,6 +26,12 @@ abstract class _CadastrosControllerBase with Store {
   @observable
   List<UnidadeEntity> unidades;
 
+  @observable
+  bool isLoadinNex = false;
+
+  @observable
+  bool finalList = false;
+
   @action
   getResumo() async {
     var storage = await SharedPreferences.getInstance();
@@ -37,8 +43,21 @@ abstract class _CadastrosControllerBase with Store {
 
   @action
   getUnidades(Map<String, dynamic> filtro) async {
+    unidades = null;
     filtro['CODCON'] = codCon;
     ResourceData r = await _getUnidade(filtro);
     unidades = r.data;
+  }
+
+  getNexFilterUnidades(Map<String, dynamic> filtro) async {
+    isLoadinNex = true;
+    filtro['CODCON'] = codCon;
+    ResourceData r = await _getUnidade(filtro);
+    if (r.data != null) {
+      unidades.addAll(r.data);
+    } else {
+      finalList = true;
+    }
+    isLoadinNex = false;
   }
 }

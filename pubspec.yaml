@@ -113,6 +113,8 @@ flutter_icons:
 flutter:
   assets:
     - assets/images/
+    - assets/images/bg-green.old.jpg
+    - assets/images/home.png
     - assets/icon/
     
   uses-material-design: true

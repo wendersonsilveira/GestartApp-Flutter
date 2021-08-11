@@ -64,4 +64,17 @@ class UnidadeRemoteDataSource {
       return ResourceData(status: Status.failed, data: null, message: "Erro ao listar resumo", error: ErrorMapper.from(e));
     }
   }
+
+  Future<ResourceData<UnidadeEntity>> getUnidadeDetalhes(int codOrd, int condonUserId) async {
+    try {
+      final result = await _dio.get('adm-unidades-detalhes/$codOrd/$condonUserId');
+
+      if (result.length > 0)
+        return ResourceData<UnidadeEntity>(status: Status.success, data: UnidadeEntity().fromMap(result));
+      else
+        return ResourceData<UnidadeEntity>(status: Status.success, data: null);
+    } on DioError catch (e) {
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar resumo", error: ErrorMapper.from(e));
+    }
+  }
 }

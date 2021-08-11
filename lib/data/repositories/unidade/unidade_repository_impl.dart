@@ -38,4 +38,14 @@ class UnidadeRepositoryImpl implements UnidadeRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData<UnidadeEntity>> getUnidadeDetalhes(Map<String, dynamic> ids) async {
+    int codOrd = ids['codOrd'];
+    int condonUser = ids['condonUserId'];
+
+    final resource = await _unidadeRemoteDataSource.getUnidadeDetalhes(codOrd, condonUser);
+
+    return resource;
+  }
 }

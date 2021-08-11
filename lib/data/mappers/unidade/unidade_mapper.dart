@@ -38,8 +38,16 @@ extension UnidadeMapper on UnidadeEntity {
 
     return UnidadeEntity(
       codcon: map['CODCON'],
-      nompro: map['NOMPRO'],
-      codimo: map['CODIMO'],
+      nompro: map['NOMPRO'] != null
+          ? map['NOMPRO']
+          : map['unidade'] != null
+              ? map['unidade']['NOMPRO']
+              : null,
+      codimo: map['CODIMO'] != null
+          ? map['CODIMO']
+          : map['unidade'] != null
+              ? map['unidade']['CODIMO']
+              : null,
       codord: map['CODORD'],
       nomcon: map['NOMCON'],
       parentCondonUserId: map['PARENT_CONDON_USER_ID'],
@@ -53,8 +61,17 @@ extension UnidadeMapper on UnidadeEntity {
       cgcpro: map['CGCPRO'],
       asInquilino: map['AS_INQUILINO'],
       isUser: map['IS_USER'],
-      veiculos: map['PETS'],
-      pets: map['VEICULOS'],
+      veiculos: map['VEICULOS'],
+      pets: map['PETS'],
+      endPro: map['ENDPRO'] != null
+          ? map['ENDPRO']
+          : map['unidade'] != null
+              ? map['unidade']['ENDPRO']
+              : null,
+      petsList: map['pets'] != null ? map['pets'] : null,
+      veiculosList: map['veiculos'] != null ? map['veiculos'] : null,
+      telefones: map['telefones'] != null ? map['telefones'] : null,
+      emails: map['emails'] != null ? map['emails'] : null,
     );
   }
 }

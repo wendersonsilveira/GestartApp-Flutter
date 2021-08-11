@@ -1,3 +1,5 @@
+import 'package:Gestart/domain/entities/pet/pet_entity.dart';
+import 'package:Gestart/domain/entities/veiculo/veiculo_entity.dart';
 import 'package:flutter/foundation.dart';
 
 @immutable
@@ -22,6 +24,12 @@ class UnidadeEntity {
   final int pets;
   final int veiculos;
 
+  final String endPro;
+  final List<dynamic> petsList;
+  final List<dynamic> veiculosList;
+  final List<dynamic> telefones;
+  final List<dynamic> emails;
+
   const UnidadeEntity({
     this.codcon,
     this.codimo,
@@ -41,6 +49,11 @@ class UnidadeEntity {
     this.isUser,
     this.pets,
     this.veiculos,
+    this.endPro,
+    this.petsList,
+    this.veiculosList,
+    this.telefones,
+    this.emails,
   });
 
   @override

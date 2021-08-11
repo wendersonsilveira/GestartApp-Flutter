@@ -1,3 +1,4 @@
+import 'package:Gestart/app/modules/sindico/cadastros/detalhes/detalhes_page.dart';
 import 'package:Gestart/app/modules/sindico/graficos/pie_chart_graph.dart';
 import 'package:Gestart/app/modules/sindico/graficos/pie_chart_model.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'cadastros_controller.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'components/filtro_unidade_widget.dart';
 
@@ -23,10 +23,7 @@ class CadastrosPage extends StatefulWidget {
 
 class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosController> {
   bool isExpanded = false;
-  List<Map<String, dynamic>> items = [
-    {'title': 'Teste'},
-    {'title': 'Teste'}
-  ];
+  List<Map<String, dynamic>> items = [];
 
   Map<String, dynamic> filtro = {
     "FILTER_IS_USER": null,
@@ -34,13 +31,38 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
     "FILTER_HAS_PETS": null,
     "FILTER_HAS_VEICULOS": null,
     "FILTER_ARGUMENTO": null,
+    "FILTER_OFFSET": 0,
+    "FILTER_LIMIT": 10,
   };
+
+  ScrollController _scrollController = new ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
     controller.getResumo().then((value) {
       controller.getUnidades(filtro);
+    });
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+        if (!controller.finalList) {
+          filtro['FILTER_OFFSET'] += 10;
+          controller.getNexFilterUnidades(filtro);
+        }
+      }
+    });
+  }
+
+  getTagFilter(List<Map<String, dynamic>> filter) {
+    setState(() {
+      items = filter;
     });
   }
 
@@ -64,14 +86,31 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
         contentPadding: EdgeInsets.all(20),
         children: [
           FiltroUnidadeWdget(
+            getHeader: getTagFilter,
+            filtro: filtro,
             onSubmit: (filtter) {
-              print(filtter);
+              controller.getUnidades(filtro);
               Modular.navigator.pop();
             },
           ),
         ],
       ),
     );
+  }
+
+  cleanFilter() {
+    filtro = {
+      "FILTER_IS_USER": null,
+      "FILTER_HAS_INQUILINO": null,
+      "FILTER_HAS_PETS": null,
+      "FILTER_HAS_VEICULOS": null,
+      "FILTER_ARGUMENTO": null,
+      "FILTER_OFFSET": 0,
+      "FILTER_LIMIT": 10,
+    };
+    items = [];
+
+    controller.getUnidades(filtro);
   }
 
   @override
@@ -82,7 +121,6 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
         backgroundColor: Colors.white,
         appBar: AppBarCustom(
           context,
-          actions: [TextButton(onPressed: getFiltro, child: Text('FILTRO'))],
           title: Text('Detalhes inadimplência'),
           bottom: PreferredSize(
             preferredSize: _tabBar.preferredSize,
@@ -292,41 +330,181 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
                         ),
                       ),
                     ),
-              SingleChildScrollView(
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      items.length > 0
-                          ? Card(
-                              child: Container(
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: GridView.count(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 2,
-                                        childAspectRatio: 5,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        children: List.generate(
-                                            items.length,
-                                            (index) => Chip(
-                                                  label: Text(items[index]['title']),
-                                                  onDeleted: () => {print('Deleted')},
-                                                )),
-                                      ),
-                                    ),
-                                  ],
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                child: Column(
+                  children: [
+                    Card(
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Container(padding: EdgeInsets.only(left: 8), child: Text('Filtros')),
                                 ),
-                              ),
-                            )
-                          : Container(),
-                      Card(
-                        child: Column(),
+                                Container(
+                                  child: IconButton(
+                                    icon: Icon(
+                                      Icons.delete,
+                                      color: Colors.red,
+                                    ),
+                                    onPressed: cleanFilter,
+                                  ),
+                                ),
+                                Container(
+                                  child: IconButton(
+                                    icon: Icon(
+                                      Icons.filter_list,
+                                      color: AppColorScheme.primaryColor,
+                                    ),
+                                    onPressed: getFiltro,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: items.length > 0
+                                      ? GridView.count(
+                                          crossAxisCount: 2,
+                                          crossAxisSpacing: 2,
+                                          childAspectRatio: 5,
+                                          physics: NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          children: List.generate(
+                                              items.length,
+                                              (index) => Chip(
+                                                    label: Text(items[index]['title']),
+                                                    onDeleted: () => {print('Deleted')},
+                                                  )),
+                                        )
+                                      : Container(),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
-                  ),
+                    ),
+                    controller.unidades != null
+                        ? Expanded(
+                            child: RefreshIndicator(
+                              onRefresh: () async {
+                                filtro['FILTER_OFFSET'] = 0;
+                                controller.getUnidades(filtro);
+                              },
+                              child: ListView.builder(
+                                controller: _scrollController,
+                                itemCount: controller.isLoadinNex && !controller.finalList ? controller.unidades.length + 1 : controller.unidades.length,
+                                itemBuilder: (_, index) {
+                                  return index == controller.unidades.length && !controller.finalList
+                                      ? Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: CircularProgressCustom(),
+                                        )
+                                      : GestureDetector(
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (context) => DetalhesPage(
+                                                  codOrd: controller.unidades[index].codord,
+                                                  condonUserId: controller.unidades[index].condonUserId,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          child: Card(
+                                            margin: EdgeInsets.only(top: 8),
+                                            child: Container(
+                                              padding: EdgeInsets.all(10),
+                                              child: Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text('Unidade: ${controller.unidades[index].codimo}'),
+                                                        Text('Proprietário: ${controller.unidades[index].nompro}'),
+                                                        Padding(
+                                                          padding: EdgeInsets.symmetric(vertical: 12),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              controller.unidades[index].isUser != 0
+                                                                  ? Text('USUÁRIO ATIVO', style: TextStyle(color: AppColorScheme.primaryColor))
+                                                                  : Text('NÃO É USUÁRIO', style: TextStyle(color: Colors.red)),
+                                                              controller.unidades[index].asInquilino > 0
+                                                                  ? Text(
+                                                                      'TEM INQUILINO',
+                                                                      style: TextStyle(
+                                                                        color: AppColorScheme.primaryColor,
+                                                                      ),
+                                                                    )
+                                                                  : Text(
+                                                                      'NÂO TEM INQUILO',
+                                                                      style: TextStyle(color: Colors.red),
+                                                                    ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Container(
+                                                                child: Row(
+                                                                  children: [
+                                                                    Container(
+                                                                      padding: EdgeInsets.only(right: 8),
+                                                                      child: Icon(Icons.pets, color: AppColorScheme.primaryColor),
+                                                                    ),
+                                                                    Text(
+                                                                      '${controller.unidades[index].pets} PETS',
+                                                                      style: TextStyle(fontSize: 13),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Expanded(
+                                                              child: Container(
+                                                                child: Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                                  children: [
+                                                                    Container(
+                                                                      padding: EdgeInsets.only(right: 8),
+                                                                      child: Icon(FlutterIcons.car_alt_faw5s, color: AppColorScheme.primaryColor),
+                                                                    ),
+                                                                    Text(
+                                                                      '${controller.unidades[index].veiculos} VEÍCULOS',
+                                                                      style: TextStyle(fontSize: 13, color: Colors.black54),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding: EdgeInsets.only(left: 5),
+                                                    child: Icon(Icons.chevron_right),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                },
+                              ),
+                            ),
+                          )
+                        : CircularProgressCustom(),
+                  ],
                 ),
               ),
             ],

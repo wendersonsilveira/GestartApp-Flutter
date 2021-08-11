@@ -26,6 +26,15 @@ class _FiltroUnidadeWdgetState extends State<FiltroUnidadeWdget> {
     "FILTER_HAS_PETS": null,
     "FILTER_HAS_VEICULOS": null,
     "FILTER_ARGUMENTO": null,
+    "FILTER_OFFSET": null,
+    "FILTER_LIMIT": null,
+  };
+
+  Map<String, dynamic> headerTpl = {
+    "FILTER_IS_USER": {1: 'Usuários ativos', 0: 'Usuários potenciais'},
+    "FILTER_HAS_INQUILINO": {1: 'Tem inquilino', 0: 'Não tem inquilino'},
+    "FILTER_HAS_PETS": {1: 'Tem pet', 0: 'Não tem pet'},
+    "FILTER_HAS_VEICULOS": {1: 'Tem veículo', 0: 'Não tem veículo'}
   };
 
   List<Map<String, dynamic>> items = [
@@ -38,15 +47,25 @@ class _FiltroUnidadeWdgetState extends State<FiltroUnidadeWdget> {
   void initState() {
     if (widget.filtro != null) {
       filtro = widget.filtro;
+      filtro.remove('FILTER_OFFSET');
+      filtro.remove('FILTER_LIMIT');
     }
     super.initState();
   }
 
   getHeader() {
-    print('======================');
+    List<Map<String, dynamic>> headers = [];
+
     filtro.entries.forEach((element) {
-      print(element);
+      if (filtro[element.key] != null) {
+        headers.add({
+          'title': headerTpl[element.key][element.value],
+          'key': element.key,
+        });
+      }
     });
+
+    return headers;
   }
 
   @override

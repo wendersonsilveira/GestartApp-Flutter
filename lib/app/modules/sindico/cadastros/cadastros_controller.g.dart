@@ -64,6 +64,36 @@ mixin _$CadastrosController on _CadastrosControllerBase, Store {
     });
   }
 
+  final _$isLoadinNexAtom = Atom(name: '_CadastrosControllerBase.isLoadinNex');
+
+  @override
+  bool get isLoadinNex {
+    _$isLoadinNexAtom.reportRead();
+    return super.isLoadinNex;
+  }
+
+  @override
+  set isLoadinNex(bool value) {
+    _$isLoadinNexAtom.reportWrite(value, super.isLoadinNex, () {
+      super.isLoadinNex = value;
+    });
+  }
+
+  final _$finalListAtom = Atom(name: '_CadastrosControllerBase.finalList');
+
+  @override
+  bool get finalList {
+    _$finalListAtom.reportRead();
+    return super.finalList;
+  }
+
+  @override
+  set finalList(bool value) {
+    _$finalListAtom.reportWrite(value, super.finalList, () {
+      super.finalList = value;
+    });
+  }
+
   final _$getResumoAsyncAction =
       AsyncAction('_CadastrosControllerBase.getResumo');
 
@@ -85,7 +115,9 @@ mixin _$CadastrosController on _CadastrosControllerBase, Store {
     return '''
 codCon: ${codCon},
 resumo: ${resumo},
-unidades: ${unidades}
+unidades: ${unidades},
+isLoadinNex: ${isLoadinNex},
+finalList: ${finalList}
     ''';
   }
 }
