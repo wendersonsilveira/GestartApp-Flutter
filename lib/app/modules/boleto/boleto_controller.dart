@@ -61,6 +61,5 @@ abstract class _BoletoControllerBase with Store {
   @action
   Future<void> getUnidades() async {
     unidades = await _getUnidades();
-    print('teste');
   }
 }
