@@ -23,6 +23,8 @@ abstract class _BoletoControllerBase with Store {
 
   @observable
   List<BoletoEntity> listaView;
+  @observable
+  int status = 0;
 
   @observable
   ResourceData<List<BoletoEntity>> boletos;
@@ -35,6 +37,9 @@ abstract class _BoletoControllerBase with Store {
     await getUnidades();
     getBoletos();
   }
+
+  @action
+  setarStatus(value) => status = value;
 
   @action
   getBoletos() async {
@@ -55,8 +60,10 @@ abstract class _BoletoControllerBase with Store {
   }
 
   @action
-  changeDropdown(int codOrd) =>
-      listaView = boletos.data.where((i) => i.codord == codOrd).toList();
+  changeDropdown(int codOrd) {
+    listaView = boletos.data.where((i) => i.codord == codOrd).toList();
+    setarStatus(1);
+  }
 
   @action
   Future<void> getUnidades() async {

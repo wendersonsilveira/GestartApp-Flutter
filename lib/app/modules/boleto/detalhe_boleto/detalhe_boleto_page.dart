@@ -1,10 +1,8 @@
 import 'package:Gestart/app/modules/boleto/component/button_expanded_widget.dart';
 import 'package:Gestart/app/modules/boleto/component/texto_infor_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
-import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
-import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
 import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -198,14 +196,10 @@ class _DetalheBoletoPageState
               );
               break;
             case Status.failed:
-              return controller.boleto.status == Status.failed
-                  ? Center(
-                      child: PageError(
-                        messageError: 'Erro ao carregar o boleto',
-                        onPressed: controller.init,
-                      ),
-                    )
-                  : Container();
+              return PageError(
+                messageError: "Erro ao carregar as informações",
+                onPressed: () => controller.init(idBoleto: widget.codord),
+              );
               break;
             default:
               return Center(child: CircularProgressCustom());

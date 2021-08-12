@@ -2,6 +2,7 @@ import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/veiculo/veiculo_entity.dart';
 import 'package:Gestart/domain/usecases/veiculo/delete_veiculo_use_case.dart';
 import 'package:Gestart/domain/usecases/veiculo/get_veiculos_use_case.dart';
+import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
@@ -20,6 +21,7 @@ abstract class _VeiculosControllerBase with Store {
 
   @action
   getVeiculos() async {
+    veiculos = ResourceData(status: Status.loading);
     veiculos = await _getVeiculos();
   }
 

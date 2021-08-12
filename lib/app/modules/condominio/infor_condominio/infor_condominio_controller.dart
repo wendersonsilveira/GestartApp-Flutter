@@ -36,6 +36,7 @@ abstract class _InforCondominioControllerBase with Store {
 
   init() async {
     condominios = ResourceData(status: Status.loading);
+    inforAdmCond = ResourceData(status: Status.loading);
     condominios = await _getCondominios();
     inforAdmCond = await _getInforCondominios();
 

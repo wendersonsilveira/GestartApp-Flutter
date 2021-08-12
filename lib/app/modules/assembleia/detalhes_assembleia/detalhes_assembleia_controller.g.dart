@@ -38,13 +38,13 @@ mixin _$DetalhesAssembleiaController
   final _$loadingAtom = Atom(name: '_DetalhesAssembleiaControllerBase.loading');
 
   @override
-  bool get loading {
+  int get loading {
     _$loadingAtom.reportRead();
     return super.loading;
   }
 
   @override
-  set loading(bool value) {
+  set loading(int value) {
     _$loadingAtom.reportWrite(value, super.loading, () {
       super.loading = value;
     });
@@ -78,7 +78,7 @@ mixin _$DetalhesAssembleiaController
       ActionController(name: '_DetalhesAssembleiaControllerBase');
 
   @override
-  void carregado(bool status) {
+  void carregado(int status) {
     final _$actionInfo = _$_DetalhesAssembleiaControllerBaseActionController
         .startAction(name: '_DetalhesAssembleiaControllerBase.carregado');
     try {
