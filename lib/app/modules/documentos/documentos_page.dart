@@ -44,7 +44,7 @@ class _DocumentosPageState
               return Column(
                 children: [
                   DropdownButtonFieldWidget(
-                    label: 'Condominios',
+                    label: 'Condomínios',
                     hint: 'Selecione',
                     list: controller.condominios.data,
                     value: controller.codCon,

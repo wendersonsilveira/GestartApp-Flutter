@@ -5,7 +5,6 @@ import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/inputs/underline_text_field_widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
-import 'package:Gestart/domain/entities/comunicacao/aviso_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +15,19 @@ class CadastroAvisoPagePage extends StatefulWidget {
   final String title;
   final int condCon;
   final int id;
-  const CadastroAvisoPagePage({Key key, this.title = "Adicionar aviso", @required this.condCon, this.id = 0}) : super(key: key);
+  const CadastroAvisoPagePage(
+      {Key key,
+      this.title = "Adicionar aviso",
+      @required this.condCon,
+      this.id = 0})
+      : super(key: key);
 
   @override
   _CadastroAvisoPagePageState createState() => _CadastroAvisoPagePageState();
 }
 
-class _CadastroAvisoPagePageState extends ModularState<CadastroAvisoPagePage, CadastroAvisoPageController> {
+class _CadastroAvisoPagePageState
+    extends ModularState<CadastroAvisoPagePage, CadastroAvisoPageController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -79,7 +84,8 @@ class _CadastroAvisoPagePageState extends ModularState<CadastroAvisoPagePage, Ca
   }
 
   void showInSnackBar(String msg) {
-    _scaffoldKey.currentState.showSnackBar(new SnackBar(content: new Text(msg)));
+    _scaffoldKey.currentState
+        .showSnackBar(new SnackBar(content: new Text(msg)));
   }
 
   @override
@@ -108,7 +114,7 @@ class _CadastroAvisoPagePageState extends ModularState<CadastroAvisoPagePage, Ca
                   Container(
                     padding: EdgeInsets.all(20),
                     child: UnderlineTextFieldWidget(
-                      labelText: 'TITÚLO',
+                      labelText: 'TÍTULO',
                       hint: 'exemplo: Elevador em manutenção...',
                       validator: Validators.empty,
                       controller: _titleController,
@@ -119,7 +125,8 @@ class _CadastroAvisoPagePageState extends ModularState<CadastroAvisoPagePage, Ca
                     padding: EdgeInsets.all(20),
                     child: UnderlineTextFieldWidget(
                       labelText: 'MENSAGEM',
-                      hint: 'exemplo: Prezados(as), o elevador estará em manutenção...',
+                      hint:
+                          'exemplo: Prezados(as), o elevador estará em manutenção...',
                       maxLines: 4,
                       validator: Validators.empty,
                       controller: _msgController,

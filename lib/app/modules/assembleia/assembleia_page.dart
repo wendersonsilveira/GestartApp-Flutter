@@ -59,7 +59,7 @@ class _AssembleiaPageState
                 Container(
                   height: 110.h,
                   child: DropdownButtonFieldWidget(
-                    label: 'Condominios',
+                    label: 'Condomínios',
                     hint: 'Selecione',
                     list: controller.condominios.data,
                     value: controller.codCon,

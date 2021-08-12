@@ -40,7 +40,7 @@ class _CadastrosPageState
               indent: 50,
             ),
             ItemCadastroWidget(
-              descricao: 'Veiculos',
+              descricao: 'Veículos',
               icone: FlutterIcons.car_alt_faw5s,
               routeName: RouteName.veiculos,
             ),

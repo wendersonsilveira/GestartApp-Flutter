@@ -6,12 +6,14 @@ import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidade_detalhes_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class DetalhesPage extends StatefulWidget {
   final int codOrd;
   final int condonUserId;
 
-  const DetalhesPage({Key key, this.codOrd, this.condonUserId}) : super(key: key);
+  const DetalhesPage({Key key, this.codOrd, this.condonUserId})
+      : super(key: key);
 
   @override
   _DetalhesPageState createState() => _DetalhesPageState();
@@ -29,7 +31,10 @@ class _DetalhesPageState extends State<DetalhesPage> {
   }
 
   getUnidadeDetalhes() async {
-    Map<String, dynamic> ids = {"codOrd": widget.codOrd, "condonUserId": widget.condonUserId};
+    Map<String, dynamic> ids = {
+      "codOrd": widget.codOrd,
+      "condonUserId": widget.condonUserId
+    };
     ResourceData r = await _getUnidadeDetalhes(ids);
     setState(() {
       unidade = r.data;
@@ -132,7 +137,8 @@ class _DetalhesPageState extends State<DetalhesPage> {
                                     .map(
                                       (e) => Text(
                                         e['FONE'],
-                                        style: TextStyle(color: AppColorScheme.primaryColor),
+                                        style: TextStyle(
+                                            color: AppColorScheme.primaryColor),
                                       ),
                                     )
                                     .toList(),
@@ -168,7 +174,8 @@ class _DetalhesPageState extends State<DetalhesPage> {
                                     .map(
                                       (e) => Text(
                                         e['EMAIL'],
-                                        style: TextStyle(color: AppColorScheme.primaryColor),
+                                        style: TextStyle(
+                                            color: AppColorScheme.primaryColor),
                                       ),
                                     )
                                     .toList(),
@@ -205,11 +212,19 @@ class _DetalhesPageState extends State<DetalhesPage> {
                                   children: unidade.petsList
                                       .map(
                                         (e) => Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Text('Nome: ${e['NOME']}', style: TextStyle(fontWeight: FontWeight.bold)),
-                                            Text('Porte: ${e['PORTE']}', style: TextStyle(fontWeight: FontWeight.bold)),
-                                            Text('${e['TIPO']}, Raça: ${e['RACA']}'),
+                                            Text('Nome: ${e['NOME']}',
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                            Text('Porte: ${e['PORTE']}',
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                            Text(
+                                                '${e['TIPO']}, Raça: ${e['RACA']}'),
                                           ],
                                         ),
                                       )
@@ -230,12 +245,12 @@ class _DetalhesPageState extends State<DetalhesPage> {
                             Padding(
                               padding: const EdgeInsets.all(5),
                               child: Icon(
-                                Icons.pets,
+                                FlutterIcons.car_alt_faw5s,
                                 color: AppColorScheme.primaryColor,
                               ),
                             ),
                             Expanded(
-                              child: Text('Veívulos:'),
+                              child: Text('Veículos:'),
                             )
                           ],
                         ),
@@ -247,9 +262,14 @@ class _DetalhesPageState extends State<DetalhesPage> {
                                   children: unidade.veiculosList
                                       .map(
                                         (e) => Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Text('${e['PLACA']} - ${e['MODELO']}', style: TextStyle(fontWeight: FontWeight.bold)),
+                                            Text(
+                                                '${e['PLACA']} - ${e['MODELO']}',
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold)),
                                             Text('${e['COR']} -  ${e['ANO']}'),
                                           ],
                                         ),
