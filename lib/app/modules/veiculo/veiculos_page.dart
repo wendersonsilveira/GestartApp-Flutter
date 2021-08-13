@@ -16,7 +16,7 @@ import 'package:Gestart/app/styles/app_text_theme.dart';
 
 class VeiculosPage extends StatefulWidget {
   final String title;
-  const VeiculosPage({Key key, this.title = "Veiculos"}) : super(key: key);
+  const VeiculosPage({Key key, this.title = "Veículos"}) : super(key: key);
 
   @override
   _VeiculosPageState createState() => _VeiculosPageState();

@@ -11,13 +11,16 @@ class DadosReservaPage extends StatefulWidget {
   final String title;
   final ReservaEntity reserva;
 
-  const DadosReservaPage({Key key, this.title = "Dados da reserva", this.reserva}) : super(key: key);
+  const DadosReservaPage(
+      {Key key, this.title = "Dados da reserva", this.reserva})
+      : super(key: key);
 
   @override
   _DadosReservaPageState createState() => _DadosReservaPageState();
 }
 
-class _DadosReservaPageState extends ModularState<DadosReservaPage, DadosReservaController> {
+class _DadosReservaPageState
+    extends ModularState<DadosReservaPage, DadosReservaController> {
   //use 'controller' variable to access controller
   cancelarReserva() async {
     final r = await controller.cancelarReserva(widget.reserva.id);
@@ -26,7 +29,8 @@ class _DadosReservaPageState extends ModularState<DadosReservaPage, DadosReserva
       openDialogInf(
           [
             TextButton(
-              onPressed: () => Navigator.popUntil(context, ModalRoute.withName(RouteName.reservas)),
+              onPressed: () => Navigator.popUntil(
+                  context, ModalRoute.withName(RouteName.reservas)),
               child: const Text(
                 'OK',
               ),
@@ -103,7 +107,8 @@ class _DadosReservaPageState extends ModularState<DadosReservaPage, DadosReserva
         children: [
           ListTile(
             title: Text('Unidade'),
-            subtitle: Text('${widget.reserva.apelido} - ${widget.reserva.codord}'),
+            subtitle:
+                Text('${widget.reserva.apelido} - ${widget.reserva.codimo}'),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
@@ -125,7 +130,8 @@ class _DadosReservaPageState extends ModularState<DadosReservaPage, DadosReserva
           ),
           ListTile(
             title: Text('Data/Hora'),
-            subtitle: Text('${widget.reserva.datIni} | ${widget.reserva.horIniDescricao} - ${widget.reserva.horFimDescricao}'),
+            subtitle: Text(
+                '${widget.reserva.datIni} | ${widget.reserva.horIniDescricao} - ${widget.reserva.horFimDescricao}'),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
@@ -139,16 +145,19 @@ class _DadosReservaPageState extends ModularState<DadosReservaPage, DadosReserva
             child: widget.reserva.status == 0
                 ? Text(
                     'AGUARDANDO APROVAÇÃO',
-                    style: TextStyle(color: AppColorScheme.textInfo, height: 1.5),
+                    style:
+                        TextStyle(color: AppColorScheme.textInfo, height: 1.5),
                   )
                 : widget.reserva.status == 1
                     ? Text(
                         'APROVADA',
-                        style: TextStyle(color: AppColorScheme.primaryColor, height: 1.5),
+                        style: TextStyle(
+                            color: AppColorScheme.primaryColor, height: 1.5),
                       )
                     : Text(
                         'REJEITADA',
-                        style: TextStyle(color: AppColorScheme.primaryColor, height: 1.5),
+                        style: TextStyle(
+                            color: AppColorScheme.primaryColor, height: 1.5),
                       ),
           ),
           Row(
