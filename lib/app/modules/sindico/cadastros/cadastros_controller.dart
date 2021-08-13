@@ -27,10 +27,13 @@ abstract class _CadastrosControllerBase with Store {
   List<UnidadeEntity> unidades;
 
   @observable
-  bool isLoadinNex = false;
+  bool isLoadingNex = false;
 
   @observable
   bool finalList = false;
+
+  @observable
+  bool isLoading = false;
 
   @action
   getResumo() async {
@@ -43,14 +46,15 @@ abstract class _CadastrosControllerBase with Store {
 
   @action
   getUnidades(Map<String, dynamic> filtro) async {
-    unidades = null;
+    isLoading = false;
     filtro['CODCON'] = codCon;
     ResourceData r = await _getUnidade(filtro);
     unidades = r.data;
+    isLoading = true;
   }
 
   getNexFilterUnidades(Map<String, dynamic> filtro) async {
-    isLoadinNex = true;
+    isLoadingNex = true;
     filtro['CODCON'] = codCon;
     ResourceData r = await _getUnidade(filtro);
     if (r.data != null) {
@@ -58,6 +62,6 @@ abstract class _CadastrosControllerBase with Store {
     } else {
       finalList = true;
     }
-    isLoadinNex = false;
+    isLoadingNex = false;
   }
 }

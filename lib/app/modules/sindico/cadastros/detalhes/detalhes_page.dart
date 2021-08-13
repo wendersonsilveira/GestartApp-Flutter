@@ -12,8 +12,7 @@ class DetalhesPage extends StatefulWidget {
   final int codOrd;
   final int condonUserId;
 
-  const DetalhesPage({Key key, this.codOrd, this.condonUserId})
-      : super(key: key);
+  const DetalhesPage({Key key, this.codOrd, this.condonUserId}) : super(key: key);
 
   @override
   _DetalhesPageState createState() => _DetalhesPageState();
@@ -31,10 +30,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
   }
 
   getUnidadeDetalhes() async {
-    Map<String, dynamic> ids = {
-      "codOrd": widget.codOrd,
-      "condonUserId": widget.condonUserId
-    };
+    Map<String, dynamic> ids = {"codOrd": widget.codOrd, "condonUserId": widget.condonUserId};
     ResourceData r = await _getUnidadeDetalhes(ids);
     setState(() {
       unidade = r.data;
@@ -137,8 +133,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
                                     .map(
                                       (e) => Text(
                                         e['FONE'],
-                                        style: TextStyle(
-                                            color: AppColorScheme.primaryColor),
+                                        style: TextStyle(color: AppColorScheme.primaryColor),
                                       ),
                                     )
                                     .toList(),
@@ -174,8 +169,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
                                     .map(
                                       (e) => Text(
                                         e['EMAIL'],
-                                        style: TextStyle(
-                                            color: AppColorScheme.primaryColor),
+                                        style: TextStyle(color: AppColorScheme.primaryColor),
                                       ),
                                     )
                                     .toList(),
@@ -206,25 +200,17 @@ class _DetalhesPageState extends State<DetalhesPage> {
                           ],
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          padding: EdgeInsets.only(left: 34),
                           child: unidade.petsList.length > 0
                               ? Column(
                                   children: unidade.petsList
                                       .map(
                                         (e) => Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text('Nome: ${e['NOME']}',
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            Text('Porte: ${e['PORTE']}',
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            Text(
-                                                '${e['TIPO']}, Raça: ${e['RACA']}'),
+                                            Text('Nome: ${e['NOME']}', style: TextStyle(fontWeight: FontWeight.bold)),
+                                            Text('Porte: ${e['PORTE']}', style: TextStyle(fontWeight: FontWeight.bold)),
+                                            Text('${e['TIPO']}, Raça: ${e['RACA']}'),
                                           ],
                                         ),
                                       )
@@ -255,27 +241,56 @@ class _DetalhesPageState extends State<DetalhesPage> {
                           ],
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          padding: EdgeInsets.only(left: 34),
                           child: unidade.veiculosList.length > 0
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: unidade.veiculosList
                                       .map(
                                         (e) => Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                                '${e['PLACA']} - ${e['MODELO']}',
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold)),
+                                            Text('${e['PLACA']} - ${e['MODELO']}', style: TextStyle(fontWeight: FontWeight.bold)),
                                             Text('${e['COR']} -  ${e['ANO']}'),
                                           ],
                                         ),
                                       )
                                       .toList(),
                                 )
+                              : Text('Não possui'),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Icon(
+                                Icons.person,
+                                color: AppColorScheme.primaryColor,
+                              ),
+                            ),
+                            Expanded(
+                              child: Text('Inquilino:'),
+                            )
+                          ],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 34),
+                          child: unidade.propri != null
+                              ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                  Text(unidade.propri, style: TextStyle(fontWeight: FontWeight.bold)),
+                                  unidade.endinq != null && unidade.baiinq != null ? Text('${unidade.endinq} - ${unidade.baiinq}') : Container(),
+                                  unidade.foninq1 != null ? Text(unidade.foninq1) : Container(),
+                                  unidade.foninq2 != null ? Text(unidade.foninq2) : Container(),
+                                  unidade.foninq3 != null ? Text(unidade.foninq3) : Container(),
+                                ])
                               : Text('Não possui'),
                         )
                       ],

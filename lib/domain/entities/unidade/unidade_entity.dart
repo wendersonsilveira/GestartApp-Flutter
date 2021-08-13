@@ -29,6 +29,12 @@ class UnidadeEntity {
   final List<dynamic> veiculosList;
   final List<dynamic> telefones;
   final List<dynamic> emails;
+  final String endinq;
+  final String cidinq;
+  final String baiinq;
+  final String foninq1;
+  final String foninq2;
+  final String foninq3;
 
   const UnidadeEntity({
     this.codcon,
@@ -54,6 +60,12 @@ class UnidadeEntity {
     this.veiculosList,
     this.telefones,
     this.emails,
+    this.endinq,
+    this.cidinq,
+    this.baiinq,
+    this.foninq1,
+    this.foninq2,
+    this.foninq3,
   });
 
   @override

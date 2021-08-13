@@ -57,7 +57,11 @@ extension UnidadeMapper on UnidadeEntity {
       logo: map['LOGO'],
       gestartapp: map['GESTARTAPP'],
       gestartappReserva: map['GESTARTAPP_RESERVA'],
-      propri: map['PROPRI'],
+      propri: map['PROPRI'] != null
+          ? map['PROPRI']
+          : map['unidade'] != null
+              ? map['unidade']['PROPRI']
+              : null,
       cgcpro: map['CGCPRO'],
       asInquilino: map['AS_INQUILINO'],
       isUser: map['IS_USER'],
@@ -72,6 +76,12 @@ extension UnidadeMapper on UnidadeEntity {
       veiculosList: map['veiculos'] != null ? map['veiculos'] : null,
       telefones: map['telefones'] != null ? map['telefones'] : null,
       emails: map['emails'] != null ? map['emails'] : null,
+      endinq: map['unidade'] != null ? map['unidade']['ENDINQ'] : null,
+      cidinq: map['unidade'] != null ? map['unidade']['CIDINQ'] : null,
+      baiinq: map['unidade'] != null ? map['unidade']['BAIINQ'] : null,
+      foninq1: map['unidade'] != null ? map['unidade']['FONINQ_1'] : null,
+      foninq2: map['unidade'] != null ? map['unidade']['FONINQ_2'] : null,
+      foninq3: map['unidade'] != null ? map['unidade']['FONINQ_3'] : null,
     );
   }
 }
