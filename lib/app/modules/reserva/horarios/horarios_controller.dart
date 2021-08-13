@@ -135,11 +135,13 @@ abstract class _HorariosControllerBase with Store {
         return Future(() => 'Atecedência mínima é de ${antMin.descricao}');
       }
 
-      ant = antMax.descricao.replaceAll(r'hr', '').trim().split(':');
-      final timeMax = DateTime.now().add(Duration(hours: int.parse(ant[0]), minutes: int.parse(ant[1])));
+      if (antMax.descricao.contains(':')) {
+        ant = antMax.descricao.replaceAll(r'hr', '').trim().split(':');
+        final timeMax = DateTime.now().add(Duration(hours: int.parse(ant[0]), minutes: int.parse(ant[1])));
 
-      if (dateIn.isAfter(timeMax)) {
-        return Future(() => 'Atecedência máxima é de ${antMax.descricao}');
+        if (dateIn.isAfter(timeMax)) {
+          return Future(() => 'Atecedência máxima é de ${antMax.descricao}');
+        }
       }
     }
 

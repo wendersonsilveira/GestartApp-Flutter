@@ -50,6 +50,21 @@ mixin _$ListarEspacosController on _ListarEspacosControllerBase, Store {
     });
   }
 
+  final _$reservasAtom = Atom(name: '_ListarEspacosControllerBase.reservas');
+
+  @override
+  ResourceData<List<ReservaEntity>> get reservas {
+    _$reservasAtom.reportRead();
+    return super.reservas;
+  }
+
+  @override
+  set reservas(ResourceData<List<ReservaEntity>> value) {
+    _$reservasAtom.reportWrite(value, super.reservas, () {
+      super.reservas = value;
+    });
+  }
+
   final _$valueAtom = Atom(name: '_ListarEspacosControllerBase.value');
 
   @override
@@ -70,6 +85,7 @@ mixin _$ListarEspacosController on _ListarEspacosControllerBase, Store {
     return '''
 espacos: ${espacos},
 statusExcluirEspaco: ${statusExcluirEspaco},
+reservas: ${reservas},
 value: ${value}
     ''';
   }
