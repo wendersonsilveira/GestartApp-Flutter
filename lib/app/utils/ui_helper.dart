@@ -98,22 +98,18 @@ class UIHelper {
   }
 
   static void saveStorage(key, value1) {
-    SharedPreferences.getInstance()
-        .then((value) => value.setString(key, value1.toString()));
+    SharedPreferences.getInstance().then((value) => value.setString(key, value1.toString()));
   }
 
   static Future<String> getStorage(key) {
-    return SharedPreferences.getInstance()
-        .then((value) => value.getString(key));
+    return SharedPreferences.getInstance().then((value) => value.getString(key));
   }
 
   static Future<int> getStorageInt(key) {
     return SharedPreferences.getInstance().then((value) => value.getInt(key));
   }
 
-  static void showInSnackBar(
-      String value, GlobalKey<ScaffoldState> _scaffoldKey) {
-    _scaffoldKey.currentState
-        .showSnackBar(new SnackBar(content: new Text(value)));
+  static void showInSnackBar(String value, GlobalKey<ScaffoldState> _scaffoldKey) {
+    _scaffoldKey.currentState.showSnackBar(new SnackBar(content: new Text(value)));
   }
 }

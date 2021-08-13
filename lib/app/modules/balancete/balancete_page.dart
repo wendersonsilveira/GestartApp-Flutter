@@ -46,7 +46,7 @@ class _BalancetePageState
             ? Column(
                 children: [
                   DropdownButtonFieldWidget(
-                    label: 'Condominios',
+                    label: 'Condomínios',
                     hint: 'Selecione',
                     list: controller.condominios,
                     value: controller.codCon,

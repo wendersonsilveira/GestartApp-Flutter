@@ -28,7 +28,7 @@ class _GerenciarReservaPageState
             text: 'PENDENTES',
           ),
           Tab(
-            text: 'CALENDARIO',
+            text: 'CALENDÁRIO',
           ),
         ],
       );

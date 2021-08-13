@@ -73,7 +73,7 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
                     Container(
                       height: 110.h,
                       child: DropdownButtonFieldWidget(
-                        label: 'Condominios',
+                        label: 'Condomínios',
                         hint: 'Selecione',
                         value: controller.codCon,
                         list: controller.unidades.data,

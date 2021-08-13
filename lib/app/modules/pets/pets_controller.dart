@@ -2,6 +2,7 @@ import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/pet/pet_entity.dart';
 import 'package:Gestart/domain/usecases/pet/delete_pet_use_case.dart';
 import 'package:Gestart/domain/usecases/pet/get_all_pets_use_case.dart';
+import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
@@ -23,6 +24,7 @@ abstract class _PetsControllerBase with Store {
 
   @action
   getPets() async {
+    pets = ResourceData(status: Status.loading);
     pets = await _getAllPets();
   }
 

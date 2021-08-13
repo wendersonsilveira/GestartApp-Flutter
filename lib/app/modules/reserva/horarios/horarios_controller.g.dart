@@ -280,11 +280,11 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
   }
 
   @override
-  dynamic setLoaginPerm(bool per) {
+  dynamic setLoadingPerm(bool per) {
     final _$actionInfo = _$_HorariosControllerBaseActionController.startAction(
-        name: '_HorariosControllerBase.setLoaginPerm');
+        name: '_HorariosControllerBase.setLoadingPerm');
     try {
-      return super.setLoaginPerm(per);
+      return super.setLoadingPerm(per);
     } finally {
       _$_HorariosControllerBaseActionController.endAction(_$actionInfo);
     }

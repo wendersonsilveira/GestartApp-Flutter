@@ -6,6 +6,7 @@ import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidade_detalhes_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class DetalhesPage extends StatefulWidget {
   final int codOrd;
@@ -199,7 +200,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
                           ],
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          padding: EdgeInsets.only(left: 34),
                           child: unidade.petsList.length > 0
                               ? Column(
                                   children: unidade.petsList
@@ -230,17 +231,17 @@ class _DetalhesPageState extends State<DetalhesPage> {
                             Padding(
                               padding: const EdgeInsets.all(5),
                               child: Icon(
-                                Icons.pets,
+                                FlutterIcons.car_alt_faw5s,
                                 color: AppColorScheme.primaryColor,
                               ),
                             ),
                             Expanded(
-                              child: Text('Veívulos:'),
+                              child: Text('Veículos:'),
                             )
                           ],
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          padding: EdgeInsets.only(left: 34),
                           child: unidade.veiculosList.length > 0
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -256,6 +257,40 @@ class _DetalhesPageState extends State<DetalhesPage> {
                                       )
                                       .toList(),
                                 )
+                              : Text('Não possui'),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Icon(
+                                Icons.person,
+                                color: AppColorScheme.primaryColor,
+                              ),
+                            ),
+                            Expanded(
+                              child: Text('Inquilino:'),
+                            )
+                          ],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 34),
+                          child: unidade.propri != null
+                              ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                  Text(unidade.propri, style: TextStyle(fontWeight: FontWeight.bold)),
+                                  unidade.endinq != null && unidade.baiinq != null ? Text('${unidade.endinq} - ${unidade.baiinq}') : Container(),
+                                  unidade.foninq1 != null ? Text(unidade.foninq1) : Container(),
+                                  unidade.foninq2 != null ? Text(unidade.foninq2) : Container(),
+                                  unidade.foninq3 != null ? Text(unidade.foninq3) : Container(),
+                                ])
                               : Text('Não possui'),
                         )
                       ],

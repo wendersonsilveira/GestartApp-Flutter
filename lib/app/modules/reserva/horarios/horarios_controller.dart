@@ -44,6 +44,8 @@ abstract class _HorariosControllerBase with Store {
   @observable
   Map<String, dynamic> espacoJSON;
 
+  DateTime dia;
+
   var reserva = {
     'CODCON': '',
     'CODORD': '',
@@ -60,6 +62,7 @@ abstract class _HorariosControllerBase with Store {
 
   @action
   getHorariosEspaco(DateTime data) async {
+    dia = data;
     isLoading = true;
     String d = UIHelper.formatDateFromDateTimeReverse(data);
     reserva['DATINI'] = d;
@@ -108,14 +111,36 @@ abstract class _HorariosControllerBase with Store {
 
   @action
   Future<String> salvarHorario() {
+    final permMim = horariosTotais.firstWhere((element) => element.id == espaco.perMin);
+    final permMax = horariosTotais.firstWhere((element) => element.id == espaco.perMax);
+    final antMax = horariosTotais.firstWhere((element) => element.id == espaco.antMax);
+    final antMin = horariosTotais.firstWhere((element) => element.id == espaco.antMin);
+    final horInSelect = horariosTotais.firstWhere((element) => element.id == horaIn);
+
     if ((horaFi - horaIn) > espaco.perMax) {
-      final permMax = horariosTotais.firstWhere((element) => element.id == espaco.perMax);
       return Future(() => 'A permanência máxima é de ${permMax.descricao}');
     }
 
     if ((horaFi - horaIn) < espaco.perMin) {
-      final permMim = horariosTotais.firstWhere((element) => element.id == espaco.perMin);
       return Future(() => 'A permanência mínima é de ${permMim.descricao}');
+    }
+
+    if (UIHelper.formatDate(dia) == UIHelper.formatDate(DateTime.now())) {
+      var ant = antMin.descricao.replaceAll(r'hr', '').trim().split(':');
+      final time = UIHelper.formatDateFromDateTimeReverse(dia).trim();
+      final timeMin = DateTime.now().add(Duration(hours: int.parse(ant[0]), minutes: int.parse(ant[1])));
+      var dateIn = DateTime.parse(time + ' ' + horInSelect.descricao.replaceAll(r'hr', '').trim() + ':00');
+
+      if (dateIn.isBefore(timeMin)) {
+        return Future(() => 'Atecedência mínima é de ${antMin.descricao}');
+      }
+
+      ant = antMax.descricao.replaceAll(r'hr', '').trim().split(':');
+      final timeMax = DateTime.now().add(Duration(hours: int.parse(ant[0]), minutes: int.parse(ant[1])));
+
+      if (dateIn.isAfter(timeMax)) {
+        return Future(() => 'Atecedência máxima é de ${antMax.descricao}');
+      }
     }
 
     return null;
@@ -137,7 +162,7 @@ abstract class _HorariosControllerBase with Store {
   }
 
   @action
-  setLoaginPerm(bool per) {
+  setLoadingPerm(bool per) {
     checkingPerm = per;
   }
 

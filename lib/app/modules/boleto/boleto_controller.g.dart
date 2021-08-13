@@ -49,6 +49,21 @@ mixin _$BoletoController on _BoletoControllerBase, Store {
     });
   }
 
+  final _$statusAtom = Atom(name: '_BoletoControllerBase.status');
+
+  @override
+  int get status {
+    _$statusAtom.reportRead();
+    return super.status;
+  }
+
+  @override
+  set status(int value) {
+    _$statusAtom.reportWrite(value, super.status, () {
+      super.status = value;
+    });
+  }
+
   final _$boletosAtom = Atom(name: '_BoletoControllerBase.boletos');
 
   @override
@@ -99,6 +114,17 @@ mixin _$BoletoController on _BoletoControllerBase, Store {
       ActionController(name: '_BoletoControllerBase');
 
   @override
+  dynamic setarStatus(dynamic value) {
+    final _$actionInfo = _$_BoletoControllerBaseActionController.startAction(
+        name: '_BoletoControllerBase.setarStatus');
+    try {
+      return super.setarStatus(value);
+    } finally {
+      _$_BoletoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic changeDropdown(int codOrd) {
     final _$actionInfo = _$_BoletoControllerBaseActionController.startAction(
         name: '_BoletoControllerBase.changeDropdown');
@@ -114,6 +140,7 @@ mixin _$BoletoController on _BoletoControllerBase, Store {
     return '''
 unidades: ${unidades},
 listaView: ${listaView},
+status: ${status},
 boletos: ${boletos},
 codOrd: ${codOrd}
     ''';
