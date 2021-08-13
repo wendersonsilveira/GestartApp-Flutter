@@ -174,49 +174,103 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
                                       ),
                                     );
                                   },
-                                  child: ListTile(
-                                    title: Text(
-                                      '${controller.reservas[index].espacoDescricao}\n${controller.reservas[index].apelido} - ${controller.reservas[index].codimo}\n${UIHelper.formatDate(controller.reservas[index].datIni)} | ${controller.reservas[index].horIniDescricao} - ${controller.reservas[index].horFimDescricao}',
-                                      style: TextStyle(height: 1.5),
-                                    ),
-                                    subtitle: controller
-                                                .reservas[index].status ==
-                                            0
-                                        ? Text(
-                                            'AGUARDANDO APROVAÇÃO',
-                                            style: TextStyle(
-                                                color: AppColorScheme.textInfo,
-                                                height: 1.5),
-                                          )
-                                        : controller.reservas[index].status == 1
-                                            ? Text(
-                                                'APROVADA',
-                                                style: TextStyle(
-                                                    color: AppColorScheme
-                                                        .primaryColor,
-                                                    height: 1.5),
-                                              )
-                                            : Text(
-                                                'REJEITADA',
-                                                style: TextStyle(
-                                                    color: AppColorScheme
-                                                        .feedbackDangerDark,
-                                                    height: 1.5),
+                                  child: controller.reservas[index]
+                                              .espacoDescricao !=
+                                          null
+                                      ? ListTile(
+                                          title: Text(
+                                            '${controller.reservas[index].espacoDescricao}\n${controller.reservas[index].apelido} - ${controller.reservas[index].codimo}\n${UIHelper.formatDate(controller.reservas[index].datIni)} | ${controller.reservas[index].horIniDescricao} - ${controller.reservas[index].horFimDescricao}',
+                                            style: TextStyle(height: 1.5),
+                                          ),
+                                          subtitle: controller
+                                                      .reservas[index].status ==
+                                                  0
+                                              ? Text(
+                                                  'AGUARDANDO APROVAÇÃO',
+                                                  style: TextStyle(
+                                                      color: AppColorScheme
+                                                          .textInfo,
+                                                      height: 1.5),
+                                                )
+                                              : controller.reservas[index]
+                                                          .status ==
+                                                      1
+                                                  ? Text(
+                                                      'APROVADA',
+                                                      style: TextStyle(
+                                                          color: AppColorScheme
+                                                              .primaryColor,
+                                                          height: 1.5),
+                                                    )
+                                                  : Text(
+                                                      'REJEITADA',
+                                                      style: TextStyle(
+                                                          color: AppColorScheme
+                                                              .feedbackDangerDark,
+                                                          height: 1.5),
+                                                    ),
+                                          trailing: Padding(
+                                            padding: EdgeInsets.only(top: 14),
+                                            child: Icon(
+                                              Icons.arrow_right,
+                                              size: 40,
+                                            ),
+                                          ),
+                                          onTap: () => Modular.navigator
+                                              .pushNamed(RouteName.reservaDados,
+                                                  arguments: controller
+                                                      .reservas[index])
+                                              .then((value) =>
+                                                  controller.getReservas()),
+                                        )
+                                      : ListTile(
+                                          title: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                  'Espaço excluido, entre em contato com seu síndico para mais informações',
+                                                  style: TextStyle(
+                                                      height: 1,
+                                                      color: AppColorScheme
+                                                          .feedbackDangerBase)),
+                                              SizedBox(
+                                                height: 10,
                                               ),
-                                    trailing: Padding(
-                                      padding: EdgeInsets.only(top: 14),
-                                      child: Icon(
-                                        Icons.arrow_right,
-                                        size: 40,
-                                      ),
-                                    ),
-                                    onTap: () => Modular.navigator
-                                        .pushNamed(RouteName.reservaDados,
-                                            arguments:
-                                                controller.reservas[index])
-                                        .then((value) =>
-                                            controller.getReservas()),
-                                  ),
+                                              Text(
+                                                '${controller.reservas[index].apelido} - ${controller.reservas[index].codimo}\n${UIHelper.formatDate(controller.reservas[index].datIni)} | ${controller.reservas[index].horIniDescricao} - ${controller.reservas[index].horFimDescricao}',
+                                                style: TextStyle(height: 1.5),
+                                              ),
+                                            ],
+                                          ),
+                                          subtitle: controller
+                                                      .reservas[index].status ==
+                                                  0
+                                              ? Text(
+                                                  'AGUARDANDO APROVAÇÃO',
+                                                  style: TextStyle(
+                                                      color: AppColorScheme
+                                                          .textInfo,
+                                                      height: 1.5),
+                                                )
+                                              : controller.reservas[index]
+                                                          .status ==
+                                                      1
+                                                  ? Text(
+                                                      'APROVADA',
+                                                      style: TextStyle(
+                                                          color: AppColorScheme
+                                                              .primaryColor,
+                                                          height: 1.5),
+                                                    )
+                                                  : Text(
+                                                      'REJEITADA',
+                                                      style: TextStyle(
+                                                          color: AppColorScheme
+                                                              .feedbackDangerDark,
+                                                          height: 1.5),
+                                                    ),
+                                        ),
                                 ),
                               ),
                             ),

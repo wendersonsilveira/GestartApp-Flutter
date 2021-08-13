@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/sindico/component/config_horario_widget.dart';
 import 'package:Gestart/app/modules/sindico/component/drop_validator_widget.dart';
-import 'package:Gestart/app/modules/sindico/component/teste.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
@@ -297,6 +296,31 @@ class _CadastroEspacoPageState
                                         children: [
                                           ConfigHorarioDiaWidget(
                                             controller: controller,
+                                            dia: 'DOM',
+                                            status: controller.ativarDom,
+                                            valorInicial: controller.domIni,
+                                            valorFim: controller.domFim,
+                                            acaoIni:
+                                                controller.setHorarioDomIni,
+                                            acaoFim:
+                                                controller.setHorarioDomFim,
+                                          ),
+                                          Switch(
+                                              value: controller.ativarDom,
+                                              activeColor:
+                                                  AppColorScheme.primaryColor,
+                                              onChanged: (_) =>
+                                                  controller.statusDom())
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          ConfigHorarioDiaWidget(
+                                            controller: controller,
                                             dia: 'SEG',
                                             status: controller.ativarSeg,
                                             valorInicial: controller.segIni,
@@ -422,7 +446,7 @@ class _CadastroEspacoPageState
                                       children: [
                                         ConfigHorarioDiaWidget(
                                           controller: controller,
-                                          dia: 'SAB',
+                                          dia: 'SÁB',
                                           status: controller.ativarSab,
                                           valorInicial: controller.sabIni,
                                           valorFim: controller.sabFim,

@@ -38,7 +38,8 @@ class _ListarEspacosPageState
   excluirEspaco(idEspaco) async {
     final r = await controller.excluirEspaco(idEspaco);
     if (r.status == Status.success) {
-      Modular.navigator.pop(true);
+      controller.init();
+
       UIHelper.showInSnackBar(r.message, _scaffoldKey);
     } else {
       UIHelper.showInSnackBar(r.message, _scaffoldKey);
@@ -46,6 +47,45 @@ class _ListarEspacosPageState
         CustomAlertDialog.error(context, r.error.message);
       });
     }
+  }
+
+  Future<bool> checarSeExisteReservas(idEspaco) async {
+    final result = await controller.checarSeExisteReservas(idEspaco);
+    bool retorno;
+    if (result == 0) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        CustomAlertDialog.question(context,
+            message: "Deseja realmente excluir este espaço?",
+            colorPositive: AppColorScheme.feedbackDangerDark,
+            colorNegative: Colors.blue, onActionPositiveButton: () {
+          excluirEspaco(idEspaco);
+          retorno = true;
+        }, onActionNegativeButton: () {
+          retorno = false;
+        },
+            textButtonNegative: "Não",
+            textButtonPositive: "Sim",
+            title: "Atenção");
+      });
+    } else {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        CustomAlertDialog.question(context,
+            colorPositive: AppColorScheme.feedbackDangerDark,
+            colorNegative: Colors.blue,
+            message:
+                "Existem reservas vinculadas a este espaço, deseja mesmo excluir?",
+            onActionPositiveButton: () {
+          excluirEspaco(idEspaco);
+          retorno = true;
+        }, onActionNegativeButton: () {
+          retorno = false;
+        },
+            textButtonNegative: "Não",
+            textButtonPositive: "Sim",
+            title: "Atenção");
+      });
+    }
+    return retorno;
   }
 
   @override
@@ -82,78 +122,43 @@ class _ListarEspacosPageState
                               itemCount: controller.espacos.data.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Card(
-                                  child: Dismissible(
-                                    key: Key(controller.espacos.data[index].id
-                                        .toString()),
-                                    background: Container(
-                                      color: AppColorScheme.tagRed2,
-                                      child: Icon(
-                                        Icons.delete,
-                                        color: AppColorScheme.white,
-                                      ),
-                                    ),
-                                    child: ListTile(
-                                      title: Text(
-                                        '${controller.espacos.data[index].descricao}',
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            color: Color(0xFF8A8A8A)),
-                                      ),
-                                      trailing: Icon(Icons.arrow_right),
-                                      leading: Container(
-                                        padding: EdgeInsets.only(top: 9),
-                                        child: Icon(
-                                          FlutterIcons.square_faw,
-                                          size: 50.h,
-                                          color: AppColorScheme.primaryColor,
+                                    child: Dismissible(
+                                        key: Key(controller
+                                            .espacos.data[index].id
+                                            .toString()),
+                                        background: Container(
+                                          color: AppColorScheme.tagRed2,
+                                          child: Icon(
+                                            Icons.delete,
+                                            color: AppColorScheme.white,
+                                          ),
                                         ),
-                                      ),
-                                      onTap: () => Modular.navigator.pushNamed(
-                                          RouteName.cadastro_espaco,
-                                          arguments: controller
-                                              .espacos.data[index].id),
-                                    ),
-                                    confirmDismiss:
-                                        (DismissDirection direction) async {
-                                      return await showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: const Text(
-                                              "Atenção",
-                                              style: TextStyle(
-                                                color: AppColorScheme
-                                                    .feedbackWarningDefault2,
-                                              ),
+                                        child: ListTile(
+                                          title: Text(
+                                            '${controller.espacos.data[index].descricao}',
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xFF8A8A8A)),
+                                          ),
+                                          trailing: Icon(Icons.arrow_right),
+                                          leading: Container(
+                                            padding: EdgeInsets.only(top: 9),
+                                            child: Icon(
+                                              FlutterIcons.square_faw,
+                                              size: 50.h,
+                                              color:
+                                                  AppColorScheme.primaryColor,
                                             ),
-                                            content: const Text(
-                                                "Deseja realmente excluir este espaço?"),
-                                            actions: [
-                                              FlatButton(
-                                                onPressed: () => excluirEspaco(
-                                                    controller.espacos
-                                                        .data[index].id),
-                                                child: const Text(
-                                                  "Sim",
-                                                  style: TextStyle(
-                                                    color: AppColorScheme
-                                                        .feedbackDangerBase,
-                                                  ),
-                                                ),
-                                              ),
-                                              FlatButton(
-                                                onPressed: () => Modular
-                                                    .navigator
-                                                    .pop(false),
-                                                child: const Text("Não"),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    },
-                                  ),
-                                );
+                                          ),
+                                          onTap: () => Modular.navigator
+                                              .pushNamed(
+                                                  RouteName.cadastro_espaco,
+                                                  arguments: controller
+                                                      .espacos.data[index].id),
+                                        ),
+                                        confirmDismiss: (_) =>
+                                            checarSeExisteReservas(controller
+                                                .espacos.data[index].id)));
                               },
                             ),
                           ),

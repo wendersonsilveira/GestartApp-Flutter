@@ -1,10 +1,5 @@
-import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/styles/app_text_theme.dart';
-import 'package:Gestart/app/widgets/buttons/flat_button_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class QuestionDialog extends StatelessWidget {
   final String message;
@@ -13,6 +8,9 @@ class QuestionDialog extends StatelessWidget {
   final Function onActionNegativeButton;
   final String textButtonNegative;
   final String textButtonPositive;
+  final Color colorPositive;
+  final Color colorNegative;
+
   const QuestionDialog(
       {Key key,
       @required this.title,
@@ -20,7 +18,9 @@ class QuestionDialog extends StatelessWidget {
       @required this.onActionPositiveButton,
       @required this.onActionNegativeButton,
       this.textButtonNegative,
-      this.textButtonPositive})
+      this.textButtonPositive,
+      this.colorPositive,
+      this.colorNegative})
       : super(key: key);
 
   @override
@@ -30,26 +30,27 @@ class QuestionDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       title: Text(
-        title,
+        title != null ? title : "",
         style: AppTextTheme.titleAlertQestion,
       ),
-      content: Text(message),
+      content: message != null ? Text(message) : Text('aaaaa'),
       actions: [
         TextButton(
-            child:
-                Text(textButtonNegative != null ? textButtonNegative : "Não"),
+            child: Text(
+              textButtonPositive != null ? textButtonPositive : "Sim",
+              style: TextStyle(color: colorPositive ?? Colors.black),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop(true);
+              onActionPositiveButton();
+            }),
+        TextButton(
+            child: Text(textButtonNegative != null ? textButtonNegative : "Não",
+                style: TextStyle(color: colorNegative ?? Colors.black)),
             // cor: Colors.black,
             onPressed: () {
               Navigator.of(context).pop();
               onActionNegativeButton();
-            }),
-        TextButton(
-            // cor: Colors.red,
-            child:
-                Text(textButtonPositive != null ? textButtonPositive : "Sim"),
-            onPressed: () {
-              Navigator.of(context).pop();
-              onActionPositiveButton();
             }),
       ],
     );

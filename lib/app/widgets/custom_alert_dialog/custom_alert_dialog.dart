@@ -26,6 +26,8 @@ class CustomAlertDialog {
   static Future<void> question(BuildContext context,
       {String title,
       String message,
+      Color colorPositive,
+      Color colorNegative,
       Function onActionPositiveButton,
       Function onActionNegativeButton,
       String textButtonPositive,
@@ -39,6 +41,8 @@ class CustomAlertDialog {
         onActionNegativeButton: onActionNegativeButton,
         textButtonPositive: textButtonPositive,
         textButtonNegative: textButtonNegative,
+        colorPositive: colorPositive,
+        colorNegative: colorNegative,
       ),
     );
   }
