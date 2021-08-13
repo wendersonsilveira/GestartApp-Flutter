@@ -115,7 +115,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
                         Padding(
                           padding: const EdgeInsets.all(5),
                           child: Icon(
-                            Icons.place,
+                            Icons.phone,
                             color: AppColorScheme.primaryColor,
                           ),
                         ),
@@ -151,7 +151,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
                         Padding(
                           padding: const EdgeInsets.all(5),
                           child: Icon(
-                            Icons.place,
+                            Icons.mail,
                             color: AppColorScheme.primaryColor,
                           ),
                         ),
