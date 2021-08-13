@@ -83,9 +83,9 @@ abstract class _MovimentoFinanceiroControllerBase with Store {
     movimentacao = ResourceData(status: Status.loading);
     codCon = await UIHelper.getStorageInt('codCon');
     meses = await _getMovFinanceiroMeses(codCon);
-    meses.data != null
-        ? meses.data.sort((a, b) => a.datSal.isAfter(b.datSal) ? -1 : 1)
-        : null;
+    if (meses.data != null)
+      meses.data.sort((a, b) => a.datSal.isAfter(b.datSal) ? -1 : 1);
+
     mesAtual = meses.data[mesIndex];
     await getMovimentacao(mesAtual.mesAno);
   }

@@ -35,9 +35,8 @@ class NotificacaoRemoteDataSource {
 
   Future<ResourceData> sendLog(String log) async {
     try {
-      final result =
-          await _di.post('http://192.168.100.24:3000/log', data: {'log': log});
-      return ResourceData(status: Status.success, data: null);
+      await _di.post('http://192.168.100.24:3000/log', data: {'log': log});
+      return ResourceData(status: Status.success);
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,

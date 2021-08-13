@@ -1,7 +1,6 @@
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

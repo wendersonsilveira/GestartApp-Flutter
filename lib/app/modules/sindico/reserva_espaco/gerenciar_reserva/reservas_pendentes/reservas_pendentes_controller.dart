@@ -1,6 +1,5 @@
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/di/di.dart';
-import 'package:Gestart/domain/entities/reserva/espaco_entity.dart';
 import 'package:Gestart/domain/entities/reserva/reserva_entity.dart';
 import 'package:Gestart/domain/usecases/reserva/aprovar_reserva_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_adm_use_case.dart';

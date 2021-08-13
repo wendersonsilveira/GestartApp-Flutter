@@ -8,7 +8,6 @@ import 'package:Gestart/di/di.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:injectable/injectable.dart';
-import 'package:Gestart/data/local/shared_preferences.dart';
 
 @injectable
 class AuthInterceptor extends Interceptor {

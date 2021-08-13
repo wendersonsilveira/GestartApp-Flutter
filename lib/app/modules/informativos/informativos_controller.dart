@@ -1,5 +1,4 @@
 import 'package:Gestart/di/di.dart';
-import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:Gestart/domain/entities/feed/feed_entity.dart';
 import 'package:Gestart/domain/usecases/feed/get_informacoes_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';

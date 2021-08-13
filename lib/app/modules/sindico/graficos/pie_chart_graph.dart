@@ -6,15 +6,14 @@ import 'pie_chart_model.dart';
 class BarChartGraph extends StatefulWidget {
   final List<BarChartModel> data;
   final bool horizontalFirst;
-  const BarChartGraph({Key key, this.data, this.horizontalFirst = false}) : super(key: key);
+  const BarChartGraph({Key key, this.data, this.horizontalFirst = false})
+      : super(key: key);
 
   @override
   _BarChartGraphState createState() => _BarChartGraphState();
 }
 
 class _BarChartGraphState extends State<BarChartGraph> {
-  List<BarChartModel> _barChartList;
-
   @override
   void initState() {
     super.initState();

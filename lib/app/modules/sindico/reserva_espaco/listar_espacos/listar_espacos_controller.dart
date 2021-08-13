@@ -5,7 +5,6 @@ import 'package:Gestart/domain/entities/reserva/reserva_entity.dart';
 import 'package:Gestart/domain/usecases/reserva/excluir_espaco_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_espacos_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_adm_use_case.dart';
-import 'package:Gestart/domain/usecases/reserva/get_reservas_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';

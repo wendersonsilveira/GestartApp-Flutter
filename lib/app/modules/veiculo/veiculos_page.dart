@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';

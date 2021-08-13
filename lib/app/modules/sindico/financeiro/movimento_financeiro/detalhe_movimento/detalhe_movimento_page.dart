@@ -1,5 +1,4 @@
 import 'package:Gestart/app/modules/sindico/financeiro/movimento_financeiro/component/destacar_valor_C_D.dart';
-import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/page_error/page_error.dart';
@@ -7,7 +6,6 @@ import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/entities/contas/mov_financeiro_entity.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'detalhe_movimento_controller.dart';

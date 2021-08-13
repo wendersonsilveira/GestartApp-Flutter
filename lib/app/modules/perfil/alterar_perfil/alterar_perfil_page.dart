@@ -3,7 +3,6 @@ import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/inputs/underline_text_field_widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
-import 'package:Gestart/domain/entities/user/create_user_entity.dart';
 import 'package:Gestart/domain/entities/user/user_entity.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +37,7 @@ class _AlterarPerfilPageState
       controller.alterar().then((value) {
         if (value) Modular.navigator.pop();
       });
-    } else
-      null;
+    }
   }
 
   final _formKey = GlobalKey<FormState>();

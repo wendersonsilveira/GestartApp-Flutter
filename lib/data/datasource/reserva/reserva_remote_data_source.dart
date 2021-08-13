@@ -50,7 +50,7 @@ class ReservaRemoteDataSource {
 
   Future<ResourceData> aprovarReservar(int reservaId) async {
     try {
-      final result = await _dio.post('aprovar-reserva/$reservaId');
+      await _dio.post('aprovar-reserva/$reservaId');
 
       return ResourceData(
           status: Status.success, message: 'Reserva aprovada com sucesso');
@@ -65,7 +65,7 @@ class ReservaRemoteDataSource {
 
   Future<ResourceData> rejeitarReservar(int reservaId) async {
     try {
-      final result = await _dio.post('rejeitar-reserva/$reservaId');
+      await _dio.post('rejeitar-reserva/$reservaId');
 
       return ResourceData(
           status: Status.success, message: 'Reserva rejeitada com sucesso');

@@ -1,5 +1,4 @@
 import 'package:Gestart/di/di.dart';
-import 'package:Gestart/domain/entities/assembleia/assembleia_entity.dart';
 import 'package:Gestart/domain/entities/assembleia/edital_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:mobx/mobx.dart';

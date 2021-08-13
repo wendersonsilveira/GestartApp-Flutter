@@ -1,4 +1,3 @@
-import 'package:Gestart/domain/entities/assembleia/assembleia_entity.dart';
 import 'package:Gestart/domain/entities/boleto/boleto_entity.dart';
 
 extension BoletoMapper on BoletoEntity {

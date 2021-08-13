@@ -31,7 +31,7 @@ class BoletoRemoteDataSource {
 
   Future<ResourceData<DetalheBoletoEntity>> getBoleto(int codord) async {
     try {
-      final result = await _dio.get('fatura/${codord}');
+      final result = await _dio.get('fatura/$codord');
       if (result.length > 0)
         return ResourceData<DetalheBoletoEntity>(
             status: Status.success,

@@ -10,13 +10,12 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:Gestart/app/utils/ui_helper.dart';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 
 part 'dashboard_controller.g.dart';
 
-final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+// final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
 @Injectable()
 class DashboardController = _DashboardControllerBase with _$DashboardController;
@@ -87,7 +86,7 @@ abstract class _DashboardControllerBase with Store {
     status 3 = condominios Ativos!
   */
 
-  Future<void> verificarStatusCondominios() {
+  verificarStatusCondominios() {
     if (condominios.data == null && condominiosAtivos.data == null)
       mudarStatusCondominio(0);
     else if (condominios.data != null)

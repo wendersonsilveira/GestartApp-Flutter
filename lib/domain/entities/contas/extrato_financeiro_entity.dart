@@ -1,6 +1,3 @@
-import 'package:flutter/foundation.dart';
-
-@immutable
 class ExtratoFinanceiroEntity {
   final int diaId;
   final int idSisPag;

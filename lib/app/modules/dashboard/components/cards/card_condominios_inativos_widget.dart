@@ -1,6 +1,5 @@
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
-import 'package:Gestart/app/styles/app_images.dart';
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:flutter/material.dart';

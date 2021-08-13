@@ -1,5 +1,4 @@
 import 'package:Gestart/app/styles/app_color_scheme.dart';
-import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,7 +10,7 @@ class TextoInforWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('${titulo}: '),
+        Text('$titulo: '),
         SizedBox(
           height: 30.h,
         ),

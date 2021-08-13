@@ -9,7 +9,6 @@ import 'package:Gestart/domain/usecases/user/excluir_conta_use_case.dart';
 import 'package:Gestart/domain/usecases/user/get_perfil_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

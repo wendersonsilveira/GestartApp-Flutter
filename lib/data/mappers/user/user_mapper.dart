@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:Gestart/domain/entities/auth/login_entity.dart';
 import 'package:Gestart/domain/entities/user/user_entity.dart';
 
 extension UserMapper on UserEntity {

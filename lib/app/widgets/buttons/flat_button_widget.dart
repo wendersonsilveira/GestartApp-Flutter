@@ -1,4 +1,3 @@
-import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

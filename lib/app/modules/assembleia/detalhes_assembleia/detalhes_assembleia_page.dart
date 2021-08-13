@@ -1,11 +1,7 @@
 import 'package:Gestart/app/modules/assembleia/components/button_ata_widget.dart';
-import 'package:Gestart/app/utils/ui_helper.dart';
-import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
-import 'package:Gestart/app/widgets/buttons/flat_button_widget.dart';
 import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'detalhes_assembleia_controller.dart';

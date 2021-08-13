@@ -14,7 +14,7 @@ class TitleWidget extends StatelessWidget {
         style: TextStyle(fontSize: 25.h, color: Colors.grey),
       ),
       Text(
-        '- ${apelido}',
+        '- $apelido',
         style: TextStyle(fontSize: 23.h, color: Colors.grey),
       )
     ]);

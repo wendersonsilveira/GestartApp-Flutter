@@ -1,8 +1,3 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
-
-@immutable
 class ContasEntity {
   final String tipo;
   final int tipFor;

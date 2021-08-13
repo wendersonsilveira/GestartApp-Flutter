@@ -1,5 +1,4 @@
 import 'package:Gestart/app/styles/app_color_scheme.dart';
-import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';

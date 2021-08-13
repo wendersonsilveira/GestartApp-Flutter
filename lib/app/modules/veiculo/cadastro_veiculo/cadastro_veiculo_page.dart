@@ -18,13 +18,16 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 class CadastroVeiculoPage extends StatefulWidget {
   final String title;
   final int id;
-  const CadastroVeiculoPage({Key key, this.title = "Cadastro de veiculo", this.id}) : super(key: key);
+  const CadastroVeiculoPage(
+      {Key key, this.title = "Cadastro de veiculo", this.id})
+      : super(key: key);
 
   @override
   _CadastroVeiculoPageState createState() => _CadastroVeiculoPageState();
 }
 
-class _CadastroVeiculoPageState extends ModularState<CadastroVeiculoPage, CadastroVeiculoController> {
+class _CadastroVeiculoPageState
+    extends ModularState<CadastroVeiculoPage, CadastroVeiculoController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final _modeloController = TextEditingController();
@@ -32,7 +35,7 @@ class _CadastroVeiculoPageState extends ModularState<CadastroVeiculoPage, Cadast
   final _anoController = TextEditingController();
   final FocusNode _anoFocus = FocusNode();
   final _placaController = TextEditingController();
-  final FocusNode _placaFocus = FocusNode();
+
   String cor;
 
   String textButton = 'SALVAR';
@@ -45,19 +48,41 @@ class _CadastroVeiculoPageState extends ModularState<CadastroVeiculoPage, Cadast
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  List<String> cores = ['Amarelo', 'Azul', 'Branco', 'Cinza', 'Marrom', 'Vermelho', 'Preto', 'Rosa', 'Verde', 'Roxo'];
+  List<String> cores = [
+    'Amarelo',
+    'Azul',
+    'Branco',
+    'Cinza',
+    'Marrom',
+    'Vermelho',
+    'Preto',
+    'Rosa',
+    'Verde',
+    'Roxo'
+  ];
 
   void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(new SnackBar(content: new Text(value)));
+    _scaffoldKey.currentState
+        .showSnackBar(new SnackBar(content: new Text(value)));
   }
 
   Future<void> handleSubmit() async {
     if (_formKey.currentState.validate()) {
       VeiculoEntity veiculo;
       if (widget.id != null) {
-        veiculo = VeiculoEntity(id: widget.id, modelo: _modeloController.text, ano: _anoController.text, placa: _placaController.text, cor: cor);
+        veiculo = VeiculoEntity(
+            id: widget.id,
+            modelo: _modeloController.text,
+            ano: _anoController.text,
+            placa: _placaController.text,
+            cor: cor);
       } else {
-        veiculo = VeiculoEntity(id: widget.id, modelo: _modeloController.text, ano: _anoController.text, placa: _placaController.text, cor: cor);
+        veiculo = VeiculoEntity(
+            id: widget.id,
+            modelo: _modeloController.text,
+            ano: _anoController.text,
+            placa: _placaController.text,
+            cor: cor);
       }
 
       final r = await controller.createVeiculo(veiculo);
@@ -136,7 +161,8 @@ class _CadastroVeiculoPageState extends ModularState<CadastroVeiculoPage, Cadast
                   Form(
                     key: _formKey,
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                       child: Column(
                         children: [
                           Container(
@@ -186,7 +212,8 @@ class _CadastroVeiculoPageState extends ModularState<CadastroVeiculoPage, Cadast
                               value: cor,
                               hint: Text('Selecione a cor'),
                               items: cores.map((e) {
-                                return DropdownMenuItem(child: Text(e), value: e);
+                                return DropdownMenuItem(
+                                    child: Text(e), value: e);
                               }).toList(),
                               onChanged: (value) {
                                 setState(() {

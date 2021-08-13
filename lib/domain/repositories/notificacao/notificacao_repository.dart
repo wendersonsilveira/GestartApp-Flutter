@@ -1,4 +1,3 @@
-import 'package:Gestart/domain/entities/feed/feed_entity.dart';
 import 'package:Gestart/domain/entities/notificacao/notificacao_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 

@@ -2,15 +2,11 @@ import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
-import 'package:Gestart/di/di.dart';
-import 'package:Gestart/domain/usecases/feed/get_aviso_use_case.dart';
-import 'package:Gestart/domain/usecases/feed/get_informacoes_use_case.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'informativo_controller.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InformativoPage extends StatefulWidget {
   final String title;

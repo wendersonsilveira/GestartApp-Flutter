@@ -15,11 +15,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:Gestart/app/styles/app_images.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'sign_in_controller.dart';
-
-final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
 class SignInPage extends StatefulWidget {
   final String title;

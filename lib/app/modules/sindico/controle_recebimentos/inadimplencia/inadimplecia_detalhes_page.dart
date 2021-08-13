@@ -1,4 +1,3 @@
-import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
@@ -13,10 +12,12 @@ import 'package:flutter/material.dart';
 class InadimplenciaDetalhesPage extends StatefulWidget {
   final Map<String, dynamic> filtro;
   final int codOrd;
-  const InadimplenciaDetalhesPage({Key key, this.filtro, this.codOrd}) : super(key: key);
+  const InadimplenciaDetalhesPage({Key key, this.filtro, this.codOrd})
+      : super(key: key);
 
   @override
-  _InadimplenciaDetalhesPageState createState() => _InadimplenciaDetalhesPageState();
+  _InadimplenciaDetalhesPageState createState() =>
+      _InadimplenciaDetalhesPageState();
 }
 
 class _InadimplenciaDetalhesPageState extends State<InadimplenciaDetalhesPage> {
@@ -92,7 +93,8 @@ class _InadimplenciaDetalhesPageState extends State<InadimplenciaDetalhesPage> {
                     child: Column(
                       children: [
                         Container(
-                          padding: EdgeInsets.only(left: 5, bottom: 10, top: 20),
+                          padding:
+                              EdgeInsets.only(left: 5, bottom: 10, top: 20),
                           child: Text(
                             'Unidade: ${inadimplencia[0].unidade}',
                             overflow: TextOverflow.ellipsis,
@@ -105,14 +107,17 @@ class _InadimplenciaDetalhesPageState extends State<InadimplenciaDetalhesPage> {
                                 .map(
                                   (e) => Container(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Divider(height: 22, color: Colors.grey),
                                         Text(e.histor),
-                                        Text('Vencimento: ${UIHelper.formatDate(e.datVen)}'),
+                                        Text(
+                                            'Vencimento: ${UIHelper.formatDate(e.datVen)}'),
                                         Text(
                                           'Valor: ${UIHelper.moneyFormat(e.total)}',
-                                          style: TextStyle(fontWeight: FontWeight.bold),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
                                         ),
                                       ],
                                     ),
@@ -122,7 +127,8 @@ class _InadimplenciaDetalhesPageState extends State<InadimplenciaDetalhesPage> {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 15),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -152,7 +158,12 @@ class _InadimplenciaDetalhesPageState extends State<InadimplenciaDetalhesPage> {
                                     Row(
                                       children: [
                                         Icon(Icons.event),
-                                        Text(e.datemi != null ? UIHelper.formatDate(e.datemi) : 'Sem data', style: TextStyle(fontWeight: FontWeight.bold))
+                                        Text(
+                                            e.datemi != null
+                                                ? UIHelper.formatDate(e.datemi)
+                                                : 'Sem data',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold))
                                       ],
                                     ),
                                     Text(

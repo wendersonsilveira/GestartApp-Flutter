@@ -49,7 +49,7 @@ class EspacoRemoteDataSource {
 
   Future<ResourceData> excluirEspaco(int idEspaco) async {
     try {
-      final result = await _dio.delete('espaco/$idEspaco');
+      await _dio.delete('espaco/$idEspaco');
 
       return ResourceData(
           status: Status.success, message: 'Espaço excluido com sucesso!');
@@ -64,7 +64,7 @@ class EspacoRemoteDataSource {
 
   Future<ResourceData> criarEspaco(EspacoEntity espaco) async {
     try {
-      final result = await _dio.post('espacos', data: espaco.toMap2());
+      await _dio.post('espacos', data: espaco.toMap2());
 
       return ResourceData(
           status: Status.success, message: 'Espaço criado com sucesso!');

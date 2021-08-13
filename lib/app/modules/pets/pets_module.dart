@@ -1,4 +1,3 @@
-import 'cadastro_pet/cadastro_pet_controller.dart';
 import 'package:Gestart/app/modules/pets/pets_page.dart';
 
 import 'pets_controller.dart';

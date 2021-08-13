@@ -7,7 +7,6 @@ import 'package:Gestart/domain/entities/user/update_password_return_entity.dart'
 import 'package:Gestart/domain/entities/user/user_entity.dart';
 import 'package:Gestart/data/mappers/user/user_mapper.dart';
 import 'package:Gestart/data/mappers/user/password_mapper.dart';
-import 'package:Gestart/domain/entities/user_adm/user_adm_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:Gestart/data/mappers/user/create_user_mapper.dart';

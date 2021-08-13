@@ -3,7 +3,6 @@ import 'package:Gestart/domain/entities/auth/login_entity.dart';
 import 'package:Gestart/domain/entities/user/user_entity.dart';
 import 'package:Gestart/domain/usecases/auth/check_user_use_case.dart';
 import 'package:Gestart/domain/usecases/auth/login_use_case.dart';
-import 'package:Gestart/domain/usecases/notificacao/send_log_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
@@ -18,7 +17,6 @@ class SignInController = _SignInControllerBase with _$SignInController;
 abstract class _SignInControllerBase with Store {
   final _checkUser = getIt.get<CheckUserUseCase>();
   final _login = getIt.get<LoginUseCase>();
-  final _senLog = getIt.get<SendLogUseCase>();
 
   @observable
   ResourceData<int> loadingCheck = ResourceData(status: Status.success);

@@ -1,5 +1,3 @@
-import 'package:Gestart/domain/entities/pet/pet_entity.dart';
-import 'package:Gestart/domain/entities/veiculo/veiculo_entity.dart';
 import 'package:flutter/foundation.dart';
 
 @immutable

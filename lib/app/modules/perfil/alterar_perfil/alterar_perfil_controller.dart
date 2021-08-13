@@ -53,6 +53,9 @@ abstract class _AlterarPerfilControllerBase with Store {
         email: emailController.text,
         telefone: telefoneController.text,
         cpfCnpj: cpfCnpjController.text));
-    if (usuario.status == Status.success) return true;
+    if (usuario.status == Status.success)
+      return true;
+    else
+      return false;
   }
 }

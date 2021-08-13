@@ -1,5 +1,4 @@
 import 'package:Gestart/app/constants/route_name.dart';
-import 'package:Gestart/app/modules/boleto/component/texto_infor_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
