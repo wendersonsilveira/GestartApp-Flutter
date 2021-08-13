@@ -55,9 +55,15 @@ class _FiltroUnidadeWdgetState extends State<FiltroUnidadeWdget> {
 
   getHeader() {
     List<Map<String, dynamic>> headers = [];
+    if (filtro['FILTER_ARGUMENTO'] != null && filtro['FILTER_ARGUMENTO'] != '') {
+      headers.add({
+        'title': filtro['FILTER_ARGUMENTO'],
+        'key': 'FILTER_ARGUMENTO',
+      });
+    }
 
     filtro.entries.forEach((element) {
-      if (filtro[element.key] != null) {
+      if (filtro[element.key] != null && element.key != 'FILTER_ARGUMENTO') {
         headers.add({
           'title': headerTpl[element.key][element.value],
           'key': element.key,
@@ -78,6 +84,7 @@ class _FiltroUnidadeWdgetState extends State<FiltroUnidadeWdget> {
                 children: [
                   Container(
                     child: TextFormField(
+                      initialValue: filtro['FILTER_ARGUMENTO'],
                       onChanged: (value) {
                         setState(() {
                           filtro['FILTER_ARGUMENTO'] = value;

@@ -64,18 +64,19 @@ mixin _$CadastrosController on _CadastrosControllerBase, Store {
     });
   }
 
-  final _$isLoadinNexAtom = Atom(name: '_CadastrosControllerBase.isLoadinNex');
+  final _$isLoadingNexAtom =
+      Atom(name: '_CadastrosControllerBase.isLoadingNex');
 
   @override
-  bool get isLoadinNex {
-    _$isLoadinNexAtom.reportRead();
-    return super.isLoadinNex;
+  bool get isLoadingNex {
+    _$isLoadingNexAtom.reportRead();
+    return super.isLoadingNex;
   }
 
   @override
-  set isLoadinNex(bool value) {
-    _$isLoadinNexAtom.reportWrite(value, super.isLoadinNex, () {
-      super.isLoadinNex = value;
+  set isLoadingNex(bool value) {
+    _$isLoadingNexAtom.reportWrite(value, super.isLoadingNex, () {
+      super.isLoadingNex = value;
     });
   }
 
@@ -91,6 +92,21 @@ mixin _$CadastrosController on _CadastrosControllerBase, Store {
   set finalList(bool value) {
     _$finalListAtom.reportWrite(value, super.finalList, () {
       super.finalList = value;
+    });
+  }
+
+  final _$isLoadingAtom = Atom(name: '_CadastrosControllerBase.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
     });
   }
 
@@ -116,8 +132,9 @@ mixin _$CadastrosController on _CadastrosControllerBase, Store {
 codCon: ${codCon},
 resumo: ${resumo},
 unidades: ${unidades},
-isLoadinNex: ${isLoadinNex},
-finalList: ${finalList}
+isLoadingNex: ${isLoadingNex},
+finalList: ${finalList},
+isLoading: ${isLoading}
     ''';
   }
 }
