@@ -22,7 +22,9 @@ class CadastrosPage extends StatefulWidget {
   _CadastrosPageState createState() => _CadastrosPageState();
 }
 
-class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosController> with SingleTickerProviderStateMixin {
+class _CadastrosPageState
+    extends ModularState<CadastrosPage, CadastrosController>
+    with SingleTickerProviderStateMixin {
   bool isExpanded = false;
   List<Map<String, dynamic>> items = [];
   TabController _tabController;
@@ -54,7 +56,8 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
     });
 
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
         if (!controller.finalList) {
           filtro['FILTER_OFFSET'] += 10;
           controller.getNexFilterUnidades(filtro);
@@ -127,7 +130,8 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
 
   mudarPage(int index) {
     setState(() {
-      _tabController.animateTo(index, duration: Duration(milliseconds: 200), curve: Curves.easeIn);
+      _tabController.animateTo(index,
+          duration: Duration(milliseconds: 200), curve: Curves.easeIn);
     });
     controller.getUnidades(filtro);
   }
@@ -140,7 +144,7 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
         backgroundColor: Colors.white,
         appBar: AppBarCustom(
           context,
-          title: Text('Detalhes inadimplência'),
+          title: Text('Cadastros de unidades'),
           bottom: PreferredSize(
             preferredSize: _tabBar.preferredSize,
             child: ColoredBox(
@@ -157,44 +161,58 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
                   ? CircularProgressCustom()
                   : SingleChildScrollView(
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Card(
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
                                     child: Container(
-                                      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 5, vertical: 10),
                                       child: Column(
                                         children: [
                                           Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
                                               Icon(
                                                 FlutterIcons.users_fea,
-                                                color: AppColorScheme.primaryColor,
+                                                color:
+                                                    AppColorScheme.primaryColor,
                                                 size: 15,
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.only(left: 3),
-                                                child: Text('Total de unidades'),
+                                                padding: const EdgeInsets.only(
+                                                    left: 3),
+                                                child:
+                                                    Text('Total de unidades'),
                                               ),
                                             ],
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.symmetric(vertical: 5),
-                                            child: Text(controller.resumo.unidade.toString()),
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 5),
+                                            child: Text(controller
+                                                .resumo.unidade
+                                                .toString()),
                                           ),
-                                          Text('Correspondente ao condomínio ${controller.resumo.nomcon}', style: TextStyle(color: Colors.black54)),
+                                          Text(
+                                              'Correspondente ao condomínio ${controller.resumo.nomcon}',
+                                              style: TextStyle(
+                                                  color: Colors.black54)),
                                         ],
                                       ),
                                     ),
                                   ),
                                   Container(
-                                    padding: EdgeInsets.symmetric(horizontal: 5),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5),
                                     child: Icon(Icons.chevron_right),
                                   ),
                                 ],
@@ -204,7 +222,8 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
                               children: [
                                 Expanded(
                                   child: Container(
-                                    padding: EdgeInsets.only(top: 5, right: 5, bottom: 5),
+                                    padding: EdgeInsets.only(
+                                        top: 5, right: 5, bottom: 5),
                                     child: Card(
                                       child: Container(
                                         padding: EdgeInsets.all(10),
@@ -212,11 +231,19 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
                                           children: [
                                             Icon(
                                               Icons.check_circle,
-                                              color: AppColorScheme.primaryColor,
+                                              color:
+                                                  AppColorScheme.primaryColor,
                                             ),
                                             Text('Ativos:'),
-                                            Text(controller.resumo.isUser.toString(), style: TextStyle(color: Colors.black54)),
-                                            Text('Usuários do GestartApp', style: TextStyle(color: Colors.black54), textAlign: TextAlign.center)
+                                            Text(
+                                                controller.resumo.isUser
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    color: Colors.black54)),
+                                            Text('Usuários do GestartApp',
+                                                style: TextStyle(
+                                                    color: Colors.black54),
+                                                textAlign: TextAlign.center)
                                           ],
                                         ),
                                       ),
@@ -233,11 +260,21 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
                                           children: [
                                             Icon(
                                               Icons.close,
-                                              color: AppColorScheme.feedbackDangerDark,
+                                              color: AppColorScheme
+                                                  .feedbackDangerDark,
                                             ),
                                             Text('Potencial:'),
-                                            Text((controller.resumo.unidade - controller.resumo.isUser).toString(), style: TextStyle(color: Colors.black54)),
-                                            Text('Não usam o GestartApp', style: TextStyle(color: Colors.black54), textAlign: TextAlign.center)
+                                            Text(
+                                                (controller.resumo.unidade -
+                                                        controller
+                                                            .resumo.isUser)
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    color: Colors.black54)),
+                                            Text('Não usam o GestartApp',
+                                                style: TextStyle(
+                                                    color: Colors.black54),
+                                                textAlign: TextAlign.center)
                                           ],
                                         ),
                                       ),
@@ -246,7 +283,8 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
                                 ),
                                 Expanded(
                                   child: Container(
-                                    padding: EdgeInsets.only(top: 5, left: 5, bottom: 5),
+                                    padding: EdgeInsets.only(
+                                        top: 5, left: 5, bottom: 5),
                                     child: Card(
                                       child: Container(
                                         padding: EdgeInsets.all(10),
@@ -254,11 +292,19 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
                                           children: [
                                             Icon(
                                               Icons.person,
-                                              color: AppColorScheme.primaryColor,
+                                              color:
+                                                  AppColorScheme.primaryColor,
                                             ),
                                             Text('Inquilinos:'),
-                                            Text(controller.resumo.asInquilino.toString(), style: TextStyle(color: Colors.black54)),
-                                            Text('Total de inquilinos', style: TextStyle(color: Colors.black54), textAlign: TextAlign.center)
+                                            Text(
+                                                controller.resumo.asInquilino
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    color: Colors.black54)),
+                                            Text('Total de inquilinos',
+                                                style: TextStyle(
+                                                    color: Colors.black54),
+                                                textAlign: TextAlign.center)
                                           ],
                                         ),
                                       ),
@@ -279,25 +325,34 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
                                     },
                                     leading: Icon(Icons.pets),
                                     title: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Expanded(child: Text('Pets')),
                                         Container(
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(4),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
                                             color: AppColorScheme.primaryColor,
                                           ),
-                                          padding: EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 2, horizontal: 4),
                                           child: Text(
                                             controller.resumo.pets.toString(),
-                                            style: TextStyle(fontSize: 12, color: Colors.white),
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.white),
                                           ),
                                         ),
                                       ],
                                     ),
                                     trailing: Icon(Icons.chevron_right),
                                   ),
-                                  Container(padding: EdgeInsets.symmetric(horizontal: 20), child: Divider(height: 5, color: Colors.grey)),
+                                  Container(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 20),
+                                      child: Divider(
+                                          height: 5, color: Colors.grey)),
                                   ListTile(
                                     onTap: () {
                                       filtro['FILTER_HAS_VEICULOS'] = 1;
@@ -305,18 +360,24 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
                                     },
                                     leading: Icon(FlutterIcons.car_alt_faw5s),
                                     title: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Expanded(child: Text('Veículos')),
                                         Container(
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(4),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
                                             color: AppColorScheme.primaryColor,
                                           ),
-                                          padding: EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 2, horizontal: 4),
                                           child: Text(
-                                            controller.resumo.veiculos.toString(),
-                                            style: TextStyle(fontSize: 12, color: Colors.white),
+                                            controller.resumo.veiculos
+                                                .toString(),
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.white),
                                           ),
                                         ),
                                       ],
@@ -327,7 +388,8 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                              padding:
+                                  EdgeInsets.only(top: 10, left: 10, right: 10),
                               child: Text('Taxa de impacto:'),
                             ),
                             Container(
@@ -344,12 +406,16 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
                                   BarChartModel(
                                     descricao: 'Usuários tivos',
                                     valor: controller.resumo.isUser.toDouble(),
-                                    color: charts.ColorUtil.fromDartColor(AppColorScheme.primaryColor),
+                                    color: charts.ColorUtil.fromDartColor(
+                                        AppColorScheme.primaryColor),
                                   ),
                                   BarChartModel(
                                     descricao: 'Potenciais usuários',
-                                    valor: (controller.resumo.unidade - controller.resumo.isUser).toDouble(),
-                                    color: charts.ColorUtil.fromDartColor(AppColorScheme.feedbackDangerDark),
+                                    valor: (controller.resumo.unidade -
+                                            controller.resumo.isUser)
+                                        .toDouble(),
+                                    color: charts.ColorUtil.fromDartColor(
+                                        AppColorScheme.feedbackDangerDark),
                                   ),
                                 ],
                               ),
@@ -369,7 +435,9 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
                             Row(
                               children: [
                                 Expanded(
-                                  child: Container(padding: EdgeInsets.only(left: 8), child: Text('Filtros')),
+                                  child: Container(
+                                      padding: EdgeInsets.only(left: 8),
+                                      child: Text('Filtros')),
                                 ),
                                 Container(
                                   child: IconButton(
@@ -399,13 +467,18 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
                                           crossAxisCount: 2,
                                           crossAxisSpacing: 2,
                                           childAspectRatio: 5,
-                                          physics: NeverScrollableScrollPhysics(),
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
                                           children: List.generate(
                                               items.length,
                                               (index) => Chip(
-                                                    label: Text(items[index]['title']),
-                                                    onDeleted: () => removeFilterItem(items[index]['key']),
+                                                    label: Text(
+                                                        items[index]['title']),
+                                                    onDeleted: () =>
+                                                        removeFilterItem(
+                                                            items[index]
+                                                                ['key']),
                                                   )),
                                         )
                                       : Container(),
@@ -423,116 +496,159 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
                                 filtro['FILTER_OFFSET'] = 0;
                                 controller.getUnidades(filtro);
                               },
-                              child: controller.unidades != null && controller.unidades.length > 0
-                                  ? ListView.builder(
-                                      controller: _scrollController,
-                                      itemCount: controller.isLoadingNex && !controller.finalList ? controller.unidades.length + 1 : controller.unidades.length,
-                                      itemBuilder: (_, index) {
-                                        return index == controller.unidades.length && !controller.finalList
-                                            ? Padding(
-                                                padding: const EdgeInsets.all(10),
-                                                child: CircularProgressCustom(),
-                                              )
-                                            : GestureDetector(
-                                                onTap: () {
-                                                  Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                      builder: (context) => DetalhesPage(
-                                                        codOrd: controller.unidades[index].codord,
-                                                        condonUserId: controller.unidades[index].condonUserId,
+                              child:
+                                  controller.unidades != null &&
+                                          controller.unidades.length > 0
+                                      ? ListView.builder(
+                                          controller: _scrollController,
+                                          itemCount: controller.isLoadingNex &&
+                                                  !controller.finalList
+                                              ? controller.unidades.length + 1
+                                              : controller.unidades.length,
+                                          itemBuilder: (_, index) {
+                                            return index ==
+                                                        controller
+                                                            .unidades.length &&
+                                                    !controller.finalList
+                                                ? Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            10),
+                                                    child:
+                                                        CircularProgressCustom(),
+                                                  )
+                                                : GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.of(context)
+                                                          .push(
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              DetalhesPage(
+                                                            codOrd: controller
+                                                                .unidades[index]
+                                                                .codord,
+                                                            condonUserId:
+                                                                controller
+                                                                    .unidades[
+                                                                        index]
+                                                                    .condonUserId,
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                    child: Card(
+                                                      margin: EdgeInsets.only(
+                                                          top: 8),
+                                                      child: Container(
+                                                        padding:
+                                                            EdgeInsets.all(10),
+                                                        child: Row(
+                                                          children: [
+                                                            Expanded(
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                      'Unidade: ${controller.unidades[index].codimo}'),
+                                                                  Text(
+                                                                      'Proprietário: ${controller.unidades[index].nompro}'),
+                                                                  Padding(
+                                                                    padding: EdgeInsets.symmetric(
+                                                                        vertical:
+                                                                            12),
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        controller.unidades[index].isUser !=
+                                                                                0
+                                                                            ? Text('USUÁRIO ATIVO',
+                                                                                style: TextStyle(color: AppColorScheme.primaryColor))
+                                                                            : Text('NÃO É USUÁRIO', style: TextStyle(color: Colors.red)),
+                                                                        controller.unidades[index].asInquilino >
+                                                                                0
+                                                                            ? Text(
+                                                                                'TEM INQUILINO',
+                                                                                style: TextStyle(
+                                                                                  color: AppColorScheme.primaryColor,
+                                                                                ),
+                                                                              )
+                                                                            : Text(
+                                                                                'NÂO TEM INQUILO',
+                                                                                style: TextStyle(color: Colors.red),
+                                                                              ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      Expanded(
+                                                                        child:
+                                                                            Container(
+                                                                          child:
+                                                                              Row(
+                                                                            children: [
+                                                                              Container(
+                                                                                padding: EdgeInsets.only(right: 8),
+                                                                                child: Icon(Icons.pets, color: AppColorScheme.primaryColor),
+                                                                              ),
+                                                                              Text(
+                                                                                '${controller.unidades[index].pets} PETS',
+                                                                                style: TextStyle(fontSize: 13),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      Expanded(
+                                                                        child:
+                                                                            Container(
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.end,
+                                                                            children: [
+                                                                              Container(
+                                                                                padding: EdgeInsets.only(right: 8),
+                                                                                child: Icon(FlutterIcons.car_alt_faw5s, color: AppColorScheme.primaryColor),
+                                                                              ),
+                                                                              Text(
+                                                                                '${controller.unidades[index].veiculos} VEÍCULOS',
+                                                                                style: TextStyle(fontSize: 13, color: Colors.black54),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      )
+                                                                    ],
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left: 5),
+                                                              child: Icon(Icons
+                                                                  .chevron_right),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   );
-                                                },
-                                                child: Card(
-                                                  margin: EdgeInsets.only(top: 8),
-                                                  child: Container(
-                                                    padding: EdgeInsets.all(10),
-                                                    child: Row(
-                                                      children: [
-                                                        Expanded(
-                                                          child: Column(
-                                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                                            children: [
-                                                              Text('Unidade: ${controller.unidades[index].codimo}'),
-                                                              Text('Proprietário: ${controller.unidades[index].nompro}'),
-                                                              Padding(
-                                                                padding: EdgeInsets.symmetric(vertical: 12),
-                                                                child: Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                  children: [
-                                                                    controller.unidades[index].isUser != 0
-                                                                        ? Text('USUÁRIO ATIVO', style: TextStyle(color: AppColorScheme.primaryColor))
-                                                                        : Text('NÃO É USUÁRIO', style: TextStyle(color: Colors.red)),
-                                                                    controller.unidades[index].asInquilino > 0
-                                                                        ? Text(
-                                                                            'TEM INQUILINO',
-                                                                            style: TextStyle(
-                                                                              color: AppColorScheme.primaryColor,
-                                                                            ),
-                                                                          )
-                                                                        : Text(
-                                                                            'NÂO TEM INQUILO',
-                                                                            style: TextStyle(color: Colors.red),
-                                                                          ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              Row(
-                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                children: [
-                                                                  Expanded(
-                                                                    child: Container(
-                                                                      child: Row(
-                                                                        children: [
-                                                                          Container(
-                                                                            padding: EdgeInsets.only(right: 8),
-                                                                            child: Icon(Icons.pets, color: AppColorScheme.primaryColor),
-                                                                          ),
-                                                                          Text(
-                                                                            '${controller.unidades[index].pets} PETS',
-                                                                            style: TextStyle(fontSize: 13),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  Expanded(
-                                                                    child: Container(
-                                                                      child: Row(
-                                                                        mainAxisAlignment: MainAxisAlignment.end,
-                                                                        children: [
-                                                                          Container(
-                                                                            padding: EdgeInsets.only(right: 8),
-                                                                            child: Icon(FlutterIcons.car_alt_faw5s, color: AppColorScheme.primaryColor),
-                                                                          ),
-                                                                          Text(
-                                                                            '${controller.unidades[index].veiculos} VEÍCULOS',
-                                                                            style: TextStyle(fontSize: 13, color: Colors.black54),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  )
-                                                                ],
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Container(
-                                                          padding: EdgeInsets.only(left: 5),
-                                                          child: Icon(Icons.chevron_right),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                      },
-                                    )
-                                  : EmptyWidget(
-                                      descricao: "Nem um resultado correspondente ao filtro.",
-                                    ),
+                                          },
+                                        )
+                                      : EmptyWidget(
+                                          descricao:
+                                              "Nem um resultado correspondente ao filtro.",
+                                        ),
                             ),
                           )
                         : Expanded(child: CircularProgressCustom()),
