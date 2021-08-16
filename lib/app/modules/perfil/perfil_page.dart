@@ -236,103 +236,101 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
         ],
         title: Text(widget.title),
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Observer(builder: (_) {
-            switch (controller.perfil.status) {
-              case Status.success:
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Text(
-                        'Seus Dados',
-                        style: TextStyle(
-                          fontSize: 30.sp,
-                          fontFamily: 'roboto',
-                          fontStyle: FontStyle.normal,
-                        ),
+      body: Observer(builder: (_) {
+        switch (controller.perfil.status) {
+          case Status.success:
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Text(
+                      'Seus Dados',
+                      style: TextStyle(
+                        fontSize: 30.sp,
+                        fontFamily: 'roboto',
+                        fontStyle: FontStyle.normal,
                       ),
                     ),
-                    ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        backgroundImage:
-                            NetworkImage(controller.perfil.data.linkPhoto),
-                      ),
-                      title: Text('Nome'),
-                      subtitle: Text('${controller.perfil.data.nome} ' +
-                          '${controller.perfil.data.sobreNome}'),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      backgroundImage:
+                          NetworkImage(controller.perfil.data.linkPhoto),
                     ),
-                    Divider(),
-                    ListTile(
-                      title: Text('Email'),
-                      subtitle: Text(controller.perfil.data.email),
-                    ),
-                    Divider(),
-                    ListTile(
-                      title: Text('CPF/CNPJ'),
-                      subtitle: Text(controller.perfil.data.cpfCnpj),
-                    ),
-                    Divider(),
-                    ListTile(
-                      title: Text('Telefone'),
-                      subtitle: Text(controller.perfil.data.telefone),
-                    ),
-                    Divider(),
-                    ButtonExpandedWidget(
-                      descricao: 'SAIR',
-                      funcao: () => controller.logout(),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        ButtonWidget(
-                          descricao: 'ALTERAR SENHA',
-                          funcao: () => _showDialog(),
-                          cor: AppColorScheme.backgroundColor,
-                        ),
-                        ButtonWidget(
-                          descricao: 'EXCLUIR CONTA',
-                          funcao: () => _showDialogConfirmarSenha(0),
-                          cor: Colors.red,
-                          corTexto: Colors.white,
-                        )
-                      ],
-                    ),
-                  ],
-                );
-                break;
-              case Status.failed:
-                return Container(
-                  padding: const EdgeInsets.only(
-                      top: 16, left: 32, right: 32, bottom: 16),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    title: Text('Nome'),
+                    subtitle: Text('${controller.perfil.data.nome} ' +
+                        '${controller.perfil.data.sobreNome}'),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text('Email'),
+                    subtitle: Text(controller.perfil.data.email),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text('CPF/CNPJ'),
+                    subtitle: Text(controller.perfil.data.cpfCnpj),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text('Telefone'),
+                    subtitle: Text(controller.perfil.data.telefone),
+                  ),
+                  Divider(),
+                  ButtonExpandedWidget(
+                    descricao: 'SAIR',
+                    funcao: () => controller.logout(),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Image.asset(
-                        'assets/images/error.png',
-                        height: 60,
+                      ButtonWidget(
+                        descricao: 'ALTERAR SENHA',
+                        funcao: () => _showDialog(),
+                        cor: AppColorScheme.backgroundColor,
                       ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      Text(
-                        'teste',
-                        textAlign: TextAlign.center,
-                        style: AppTextTheme.messageError,
-                      ),
+                      ButtonWidget(
+                        descricao: 'EXCLUIR CONTA',
+                        funcao: () => _showDialogConfirmarSenha(0),
+                        cor: Colors.red,
+                        corTexto: Colors.white,
+                      )
                     ],
                   ),
-                );
-                break;
-              default:
-                return CircularProgressCustom();
-            }
-          }),
-        ),
-      ),
+                ],
+              ),
+            );
+            break;
+          case Status.failed:
+            return Container(
+              padding: const EdgeInsets.only(
+                  top: 16, left: 32, right: 32, bottom: 16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/error.png',
+                    height: 60,
+                  ),
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                  Text(
+                    'teste',
+                    textAlign: TextAlign.center,
+                    style: AppTextTheme.messageError,
+                  ),
+                ],
+              ),
+            );
+            break;
+          default:
+            return CircularProgressCustom();
+        }
+      }),
     );
   }
 }

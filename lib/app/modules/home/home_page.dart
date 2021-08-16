@@ -53,7 +53,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             onActionPositiveButton: () =>
                 SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
             onActionNegativeButton: () => Modular.navigator.pop,
-            textButtonPositive: "Sair",
+            textButtonPositive: "Sim",
+            colorPositive: AppColorScheme.feedbackDangerDark,
             textButtonNegative: "Cancelar",
             title: "Sair");
 
