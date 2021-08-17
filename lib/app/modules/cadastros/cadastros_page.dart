@@ -14,8 +14,7 @@ class CadastrosPage extends StatefulWidget {
   _CadastrosPageState createState() => _CadastrosPageState();
 }
 
-class _CadastrosPageState
-    extends ModularState<CadastrosPage, CadastrosController> {
+class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosController> {
   //use 'controller' variable to access controller
 
   @override
@@ -27,17 +26,10 @@ class _CadastrosPageState
         ),
         body: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: ItemCadastroWidget(
-                descricao: 'Pets',
-                icone: Icons.pets,
-                routeName: RouteName.pets,
-              ),
-            ),
-            Divider(
-              color: Colors.black,
-              indent: 50,
+            ItemCadastroWidget(
+              descricao: 'Pets',
+              icone: Icons.pets,
+              routeName: RouteName.pets,
             ),
             ItemCadastroWidget(
               descricao: 'Veículos',
