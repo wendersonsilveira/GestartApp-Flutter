@@ -12,8 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 part 'documentos_controller.g.dart';
 
 @Injectable()
-class DocumentosController = _DocumentosControllerBase
-    with _$DocumentosController;
+class DocumentosController = _DocumentosControllerBase with _$DocumentosController;
 
 abstract class _DocumentosControllerBase with Store {
   final _getDocumentos = getIt.get<GetDocumentoUseCase>();

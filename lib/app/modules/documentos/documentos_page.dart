@@ -20,8 +20,7 @@ class DocumentosPage extends StatefulWidget {
   _DocumentosPageState createState() => _DocumentosPageState();
 }
 
-class _DocumentosPageState
-    extends ModularState<DocumentosPage, DocumentosController> {
+class _DocumentosPageState extends ModularState<DocumentosPage, DocumentosController> {
   @override
   void initState() {
     controller.init();
@@ -67,8 +66,7 @@ class _DocumentosPageState
                                     SizedBox(
                                       height: 30.h,
                                     ),
-                                    Text(
-                                        'Não existe documentos para este condomínio'),
+                                    Text('Não existe documentos para este condomínio'),
                                   ],
                                 ),
                               )
@@ -84,13 +82,10 @@ class _DocumentosPageState
                                       '${controller.listaView[index].pasta}',
                                       overflow: TextOverflow.ellipsis,
                                     ),
-                                    subtitle: Text(
-                                        ' ${controller.listaView[index].descricao}'),
+                                    subtitle: Text(' ${controller.listaView[index].descricao}'),
                                     trailing: Icon(FlutterIcons.download_faw),
-                                    fileURL: controller
-                                        .documentos.data[index].linkDocumento,
-                                    fileName:
-                                        '${controller.documentos.data[index].descricao}.${controller.documentos.data[index].tipo}',
+                                    fileURL: controller.listaView[index].linkDocumento,
+                                    fileName: '${controller.listaView[index].descricao}.${controller.listaView[index].tipo}',
                                   );
                                 },
                               )
