@@ -8,7 +8,7 @@ extension AcordoMapper on AcordoEntity {
     return AcordoEntity(
       numAco: map['NUMACO'],
       unidade: map['UNIDADE'],
-      valTax: map['VALTAX'],
+      valTax: map['VALTAX'].toDouble(),
       totPar: map['TOTPAR'],
       datAco: DateTime.parse(map['DATACO']),
       tipAco: map['TIPACO'],
