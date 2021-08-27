@@ -54,6 +54,7 @@ dependencies:
 
   #notificações
   firebase_messaging: ^7.0.3
+  
 
   # Validators
   cpfcnpj: ^1.0.3
@@ -100,6 +101,7 @@ dev_dependencies:
   modular_codegen: ^2.0.1
   mobx_codegen: ^1.1.2
   build_runner: ^1.10.1
+  firebase_core: ^0.5.0
   flutter_launcher_icons: ^0.8.1
   flutter_test:
     sdk: flutter
