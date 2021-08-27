@@ -74,8 +74,8 @@ class _PesquisaPageState extends ModularState<PesquisaPage, PesquisaController> 
   stopAndSearch() {
     if (resultado != null && resultado.isNotEmpty) {
       buscarRota();
-      stopListern();
     }
+      stopListern();
   }
 
   setListening(bool status) {
