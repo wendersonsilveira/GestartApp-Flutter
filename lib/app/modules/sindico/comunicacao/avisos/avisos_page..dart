@@ -66,8 +66,20 @@ class _AvisosPageState extends ModularState<AvisosPage, AvisosPageController> {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               ListTile(
-                                                leading: CircleAvatar(
-                                                  backgroundImage: NetworkImage(e.logo),
+                                                leading: Container(
+                                                  height: 45,
+                                                  width: 45,
+                                                  clipBehavior: Clip.hardEdge,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.all(
+                                                      Radius.circular(45),
+                                                    ),
+                                                  ),
+                                                  child: FadeInImage(
+                                                    width: 25,
+                                                    image: NetworkImage(e.logo),
+                                                    placeholder: AssetImage('assets/images/logo.png'),
+                                                  ),
                                                 ),
                                                 title: Text(e.apelido),
                                                 subtitle: Text(UIHelper.formatDate(e.datEmi)),
