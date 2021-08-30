@@ -4,7 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:open_file/open_file.dart';
 import 'package:android_path_provider/android_path_provider.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'dart:io' show Platform;
 
 class DownloadListItemWidget extends StatefulWidget {
   final String fileURL;
@@ -36,8 +38,7 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
     String ext = arrFil.last.replaceAll(r'"', '');
     return ext;
   }
-
-  downloadStart() async {
+  downloadAndroid() async{
     try {
       if (await Permission.storage.request().isGranted) {
         final dir = await AndroidPathProvider.downloadsPath;
@@ -85,6 +86,64 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
         downloadStatus = false;
       });
       showMessage("inacessível", 'Falha ao realizar download. Verifique sua conexão com a internet.');
+    }
+  }
+
+  downloadStart() async {
+    if(Platform.isAndroid) downloadAndroid();
+    else
+    downloadIOS();
+  }
+
+
+  downloadIOS() async {
+    try {
+      final dir = await getApplicationDocumentsDirectory();
+      final String _name = widget.fileName.replaceAll(r'/','_');
+      final String _url = widget.fileURL;
+      setState(() {
+        downloadStatus = true;
+      });
+
+      String fileName = _name;
+
+      if(await File(dir.path+'/$_name').exists()){
+        setState(() {
+          downloadStatus = false;
+        });
+        OpenFile.open(dir.path+'/$_name').then((value) {
+          if(value.type == ResultType.noAppToOpen){
+            showMessage(fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+          }
+        });
+      }
+      else{
+        await Dio().download(_url, dir.path+'/$_name', onReceiveProgress: (int received, int total){
+          if(total != -1){
+            setState(() {
+              downloadProgress = (received / total * 100);
+            });
+            OpenFile.open(dir.path+'/$_name').then((value) {
+          if(value.type == ResultType.noAppToOpen){
+            showMessage(fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+          }
+        });
+          }
+        });
+        setState(() {
+          downloadStatus = false;
+        });
+        OpenFile.open('$dir/$_name').then((value) {
+          if(value.type == ResultType.noAppToOpen){
+            showMessage(fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+          }
+        });
+      }
+    } on DioError catch(_){
+      setState(() {
+        downloadStatus = false;
+      });
+      showMessage('inacessível', 'Falha ao realizar download. Verifique sua conexão com a internet');
     }
   }
 

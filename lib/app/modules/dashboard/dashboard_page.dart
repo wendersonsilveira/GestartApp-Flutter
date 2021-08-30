@@ -33,7 +33,6 @@ class _DashboardPageState
   //use 'controller' variable to access controller
   PDFDocument document;
   bool isNotifyConfig = false;
-
   @override
   void initState() {
     configNotification();
@@ -44,6 +43,8 @@ class _DashboardPageState
     controller.init();
     super.initState();
   }
+
+  
 
   configNotification() {
     _firebaseMessaging.configure(
