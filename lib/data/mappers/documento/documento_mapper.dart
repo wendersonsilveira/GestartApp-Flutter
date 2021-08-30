@@ -7,6 +7,7 @@ extension DocumentoMapper on DocumentoEntity {
     if (map == null || map.length == 0) return null;
 
     return DocumentoEntity(
+      id: map['ID'],
       codCon: map['CODCON'],
       pasta: map['PASTA'],
       linkDocumento: map['LINK_DOCUMENTO'],

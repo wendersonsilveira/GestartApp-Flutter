@@ -20,17 +20,20 @@ class ButtonDocumentoWidget extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return disponivel == null || disponivel == 0
-        ? FlatButtonWidget(
-            text: "$tipoDocumento AINDA NÃO DISPONIVEL",
-            onPressed: () => null,
-            cor: Colors.grey,
-          )
-        : DownloadButtonWidget(
-            title: "VISUALIZAR $tipoDocumento",
-            color: AppColorScheme.primaryColor,
-            fileName: fileName,
-            fileURL: link,
-          );
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      child: disponivel == null || disponivel == 0
+          ? FlatButtonWidget(
+              text: "$tipoDocumento AINDA NÃO DISPONIVEL",
+              onPressed: () => null,
+              cor: Colors.grey,
+            )
+          : DownloadButtonWidget(
+              title: "VISUALIZAR $tipoDocumento",
+              color: AppColorScheme.primaryColor,
+              fileName: fileName,
+              fileURL: link,
+            ),
+    );
   }
 }

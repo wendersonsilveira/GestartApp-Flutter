@@ -85,7 +85,8 @@ class _DocumentosPageState extends ModularState<DocumentosPage, DocumentosContro
                                     subtitle: Text(' ${controller.listaView[index].descricao}'),
                                     trailing: Icon(FlutterIcons.download_faw),
                                     fileURL: controller.listaView[index].linkDocumento,
-                                    fileName: '${controller.listaView[index].descricao}.${controller.listaView[index].tipo}',
+                                    fileName:
+                                        '${controller.listaView[index].descricao}_${controller.listaView[index].apelido.substring(0, 4)}_${controller.listaView[index].id}.${controller.listaView[index].tipo}',
                                   );
                                 },
                               )
