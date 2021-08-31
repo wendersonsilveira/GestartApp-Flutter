@@ -9,8 +9,7 @@ import 'package:Gestart/app/utils/ui_helper.dart';
 part 'detalhes_assembleia_controller.g.dart';
 
 @Injectable()
-class DetalhesAssembleiaController = _DetalhesAssembleiaControllerBase
-    with _$DetalhesAssembleiaController;
+class DetalhesAssembleiaController = _DetalhesAssembleiaControllerBase with _$DetalhesAssembleiaController;
 
 abstract class _DetalhesAssembleiaControllerBase with Store {
   final _getEdital = getIt.get<GetEditalUseCase>();
@@ -32,6 +31,6 @@ abstract class _DetalhesAssembleiaControllerBase with Store {
     edital = await _getEdital(id);
     carregado(1);
     fileName =
-        '${edital.data[0].apelido.length > 5 ? edital.data[0].apelido.substring(1, 6).trim().toUpperCase() : edital.data[0].apelido.trim().toUpperCase()}_${UIHelper.formatDate(edital.data[0].datemi, '_')}_COD_$id.${edital.data[0].tipoEdital}';
+        '${edital.data[0].apelido.length > 5 ? edital.data[0].apelido.trim().substring(0, 6).toUpperCase() : edital.data[0].apelido.trim().toUpperCase()}_${UIHelper.formatDate(edital.data[0].datemi, '_')}_COD_$id.${edital.data[0].tipoEdital}';
   }
 }

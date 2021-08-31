@@ -96,21 +96,22 @@ class _DetalheBoletoPageState extends ModularState<DetalheBoletoPage, DetalheBol
                     margin: EdgeInsets.all(8),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Expanded(
-                          child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(
-                            FlutterIcons.barcode_ant,
-                            size: 80,
-                          ),
-                          SizedBox(height: 30.h),
-                          Text(
-                            controller.boleto.data.linhaDigitavel,
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      )),
+                      child: Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              FlutterIcons.barcode_ant,
+                              size: 80,
+                            ),
+                            SizedBox(height: 30.h),
+                            Text(
+                              controller.boleto.data.linhaDigitavel,
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                   Container(

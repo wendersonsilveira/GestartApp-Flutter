@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
@@ -37,12 +39,17 @@ class _PesquisaPageState extends ModularState<PesquisaPage, PesquisaController> 
   listeningVoice() async {
     resultado = null;
     emptyMesg = null;
+    // var locales = await speech.locales();
+    // locales.forEach((element) {
+    //   print(element.localeId);
+    // });
 
     if (await Permission.microphone.request().isGranted) {
       setListening(true);
       bool available = await speech.initialize(onStatus: statusListener, onError: errorListener);
       if (available) {
-        await speech.listen(onResult: pesquisarVoz);
+        await speech.listen(onResult: pesquisarVoz, localeId: 'pt_BR');
+        Timer(Duration(seconds: 4), stopAndSearch);
       } else {
         print("The user has denied the use of speech recognition.");
       }
@@ -75,7 +82,7 @@ class _PesquisaPageState extends ModularState<PesquisaPage, PesquisaController> 
     if (resultado != null && resultado.isNotEmpty) {
       buscarRota();
     }
-      stopListern();
+    stopListern();
   }
 
   setListening(bool status) {
