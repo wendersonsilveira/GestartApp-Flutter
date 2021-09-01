@@ -3,6 +3,7 @@ import 'package:Gestart/app/modules/boleto/component/texto_infor_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
+import 'package:Gestart/app/widgets/download/download_button_widget.dart';
 import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -38,6 +39,19 @@ class _DetalheBoletoPageState
 
   void _shareContent(String value) {
     Share.share(value);
+  }
+
+  void _shareContentFile(List<String> caminho) {
+    Share.shareFiles(caminho);
+  }
+
+  copiarCodigoBarras(String codigoBarras) {
+    codigoBarras = codigoBarras.replaceAll(r'.', '');
+    codigoBarras = codigoBarras.replaceAll(' ', '');
+    Clipboard.setData(new ClipboardData(text: codigoBarras));
+    key.currentState.showSnackBar(new SnackBar(
+      content: new Text("Código copiado com sucesso"),
+    ));
   }
 
   void _launchURL(_url) async => await canLaunch(_url)
@@ -105,8 +119,7 @@ class _DetalheBoletoPageState
                         margin: EdgeInsets.all(8),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Expanded(
-                              child: Column(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Icon(
@@ -119,7 +132,7 @@ class _DetalheBoletoPageState
                                 textAlign: TextAlign.center,
                               ),
                             ],
-                          )),
+                          ),
                         ),
                       ),
                       Container(
@@ -133,15 +146,8 @@ class _DetalheBoletoPageState
                             ),
                             ButtonExpandedWidget(
                               descricao: 'COPIAR CODIGO',
-                              funcao: () {
-                                Clipboard.setData(new ClipboardData(
-                                    text:
-                                        controller.boleto.data.linhaDigitavel));
-                                key.currentState.showSnackBar(new SnackBar(
-                                  content:
-                                      new Text("Código copiado com sucesso"),
-                                ));
-                              },
+                              funcao: () => copiarCodigoBarras(
+                                  controller.boleto.data.linhaDigitavel),
                             ),
                             ButtonExpandedWidget(
                               descricao: 'COMPARTILHAR',

@@ -11,6 +11,7 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 part 'perfil_controller.g.dart';
 
@@ -41,9 +42,16 @@ abstract class _PerfilControllerBase with Store {
     perfil = await _getPerfil();
   }
 
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
   Future<void> logout() async {
     sharedPreferences.removeAll();
+    destruirKeyFB();
     Modular.navigator.popAndPushNamed(RouteName.login);
+  }
+
+  destruirKeyFB() async {
+    await _firebaseMessaging.deleteInstanceID();
   }
 
   Future<dynamic> alterarSenha(PasswordEntity pass) async {
