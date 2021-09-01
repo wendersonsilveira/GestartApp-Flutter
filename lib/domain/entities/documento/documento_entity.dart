@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 @immutable
 class DocumentoEntity {
   final int codCon;
+  final int id;
   final String logo;
   final String apelido;
   final String pasta;
@@ -18,6 +19,7 @@ class DocumentoEntity {
     this.descricao,
     this.linkDocumento,
     this.tipo,
+    this.id,
   });
 
   @override

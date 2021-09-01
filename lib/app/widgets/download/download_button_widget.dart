@@ -13,8 +13,20 @@ class DownloadButtonWidget extends StatefulWidget {
   final String fileName;
   final String title;
   final Color color;
+  final ShapeBorder shap;
+  final double fontSize;
+  final EdgeInsetsGeometry padding;
 
-  const DownloadButtonWidget({Key key, this.fileURL, this.fileName, this.title, this.color}) : super(key: key);
+  const DownloadButtonWidget({
+    Key key,
+    this.fileURL,
+    this.fileName,
+    this.title,
+    this.color,
+    this.shap,
+    this.fontSize = 12,
+    this.padding,
+  }) : super(key: key);
 
   @override
   _DownloadButtonWidgetState createState() => _DownloadButtonWidgetState();
@@ -186,6 +198,9 @@ class _DownloadButtonWidgetState extends State<DownloadButtonWidget> {
       onPressed: downloadStart,
       cor: widget.color,
       loading: downloadStatus,
+      shap: widget.shap,
+      fontSize: widget.fontSize,
+      padding: widget.padding,
     );
   }
 }
