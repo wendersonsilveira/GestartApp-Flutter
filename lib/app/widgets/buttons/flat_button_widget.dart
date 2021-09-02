@@ -36,10 +36,16 @@ class FlatButtonWidget extends StatelessWidget {
               child: Text(
                 text,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: fontSize, color: shap != null ? AppColorScheme.primaryColor : Colors.white),
+                style: TextStyle(
+                    fontSize: fontSize,
+                    color: shap != null
+                        ? AppColorScheme.primaryColor
+                        : Colors.white),
               ),
             ),
-      shape: shap != null ? shap : RoundedRectangleBorder(side: BorderSide(color: cor)),
+      shape: shap != null
+          ? shap
+          : RoundedRectangleBorder(side: BorderSide(color: cor)),
     );
   }
 }

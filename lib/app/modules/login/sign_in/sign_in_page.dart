@@ -181,16 +181,20 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                               ),
                             ],
                           ),
-                          const Spacer(flex: 1),
+                          SizedBox(
+                            height: 26.h,
+                          ),
                           Observer(builder: (_) {
                             return controller.usuarioCadastrado == true
-                                ? FlatButtonWidget(
-                                    text: "Esqueci minha senha",
-                                    onPressed: () => {
-                                      Modular.navigator
-                                          .pushNamed(RouteName.forgot_password),
-                                    },
-                                  )
+                                ? GestureDetector(
+                                    child: Text(
+                                      "Esqueci minha senha",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    onTap: () => {
+                                          Modular.navigator.pushNamed(
+                                              RouteName.forgot_password),
+                                        })
                                 : Text("");
                           }),
                         ],
