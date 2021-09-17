@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/dashboard/components/cards/card_infor_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
@@ -35,18 +37,48 @@ class _DashboardPageState
   bool isNotifyConfig = false;
   @override
   void initState() {
-    configNotification();
+    
+
     _firebaseMessaging
         .getToken()
-        .then((value) => sharedPreferences.putString('devicekey', value));
+        .then((value) { 
+          sharedPreferences.putString('devicekey', value);});
+    Platform.isIOS ?  configNotificationIOS() : configNotificationAndroid();
+
     controller.testsUseCases();
     controller.init();
     super.initState();
   }
 
-  
+  configNotificationIOS(){
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        
+        print("onMessage: $message");
+      },
+      onLaunch: (Map<String, dynamic> message) async {
+        
+        print("onLaunch: $message");
+      },
+      onResume: (Map<String, dynamic> message) async {
+        
+        print("onResume: $message");
+      },
+    );
+    _firebaseMessaging.requestNotificationPermissions(
+        const IosNotificationSettings(sound: true, badge: true, alert: true));
+    _firebaseMessaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings settings) {
+      print("Settings registered: $settings");
+    });
+    _firebaseMessaging.getToken().then((String token) {
+      assert(token != null);
+      
+      print('token: $token');
+    });
+  }
 
-  configNotification() {
+  configNotificationAndroid() {
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
@@ -55,7 +87,7 @@ class _DashboardPageState
         Modular.navigator.pushNamed(message['data']['status'],
             arguments: message['data']['id']);
       },
-      onBackgroundMessage: myBackgroundMessageHandler,
+      onBackgroundMessage:  myBackgroundMessageHandler,
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
         Future.delayed(Duration(seconds: 5)).then((value) {
@@ -71,6 +103,10 @@ class _DashboardPageState
             arguments: message['data']['id']);
       },
     );
+    _firebaseMessaging.requestNotificationPermissions(const IosNotificationSettings(sound: true, badge:true, alert: true));
+    _firebaseMessaging.onIosSettingsRegistered.listen((IosNotificationSettings settings) {
+      print('registered: $settings');
+     });
   }
 
   static Future<dynamic> myBackgroundMessageHandler(
