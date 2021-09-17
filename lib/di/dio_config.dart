@@ -61,6 +61,7 @@ import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/create_aviso_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/get_aviso_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/get_avisos_use_case.dart';
+import 'package:Gestart/domain/usecases/condominio/send_codigo_ativacao_use_case.dart';
 import 'package:Gestart/domain/usecases/contas/get_contas_use_case.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_edital_use_case.dart';
 import 'package:Gestart/domain/usecases/auth/check_user_use_case.dart';
@@ -136,33 +137,51 @@ Future<GetIt> initGetIt(GetIt get) async {
 
   // Auth
   gh.factory<AuthInterceptor>(() => AuthInterceptor(get<Dio>()));
-  gh.factory<AuthRemoteDataSource>(() => AuthRemoteDataSource(get<CustomDio>()));
-  gh.factory<AuthLocalDataSource>(() => AuthLocalDataSource(get<SharedPreferencesManager>()));
+  gh.factory<AuthRemoteDataSource>(
+      () => AuthRemoteDataSource(get<CustomDio>()));
+  gh.factory<AuthLocalDataSource>(
+      () => AuthLocalDataSource(get<SharedPreferencesManager>()));
   gh.factory<CheckUserUseCase>(() => CheckUserUseCase(get<AuthRepository>()));
   gh.factory<LoginUseCase>(() => LoginUseCase(get<AuthRepository>()));
 
   // User
-  gh.factory<UserRemoteDataSource>(() => UserRemoteDataSource(get<CustomDio>()));
+  gh.factory<UserRemoteDataSource>(
+      () => UserRemoteDataSource(get<CustomDio>()));
   gh.factory<CreateUserUseCase>(() => CreateUserUseCase(get<UserRepository>()));
-  gh.factory<UpdatePasswordUseCase>(() => UpdatePasswordUseCase(get<UserRepository>()));
+  gh.factory<UpdatePasswordUseCase>(
+      () => UpdatePasswordUseCase(get<UserRepository>()));
   gh.factory<GetPerfilUseCase>(() => GetPerfilUseCase(get<UserRepository>()));
-  gh.factory<AlterarSenhaUseCase>(() => AlterarSenhaUseCase(get<UserRepository>()));
-  gh.factory<ChecarSenhaUseCase>(() => ChecarSenhaUseCase(get<UserRepository>()));
-  gh.factory<ExcluirContaUseCase>(() => ExcluirContaUseCase(get<UserRepository>()));
+  gh.factory<AlterarSenhaUseCase>(
+      () => AlterarSenhaUseCase(get<UserRepository>()));
+  gh.factory<ChecarSenhaUseCase>(
+      () => ChecarSenhaUseCase(get<UserRepository>()));
+  gh.factory<ExcluirContaUseCase>(
+      () => ExcluirContaUseCase(get<UserRepository>()));
 
-  gh.factory<EditarUsuarioUseCase>(() => EditarUsuarioUseCase(get<UserRepository>()));
+  gh.factory<EditarUsuarioUseCase>(
+      () => EditarUsuarioUseCase(get<UserRepository>()));
 
   //condominio
-  gh.factory<CondominioRemoteDataSource>(() => CondominioRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetCondominioPorCpfUseCase>(() => GetCondominioPorCpfUseCase(get<CondominioRepository>()));
-  gh.factory<GetCondominioAtivoUseCase>(() => GetCondominioAtivoUseCase(get<CondominioRepository>()));
-  gh.factory<GetCondominiosAtivosUseCase>(() => GetCondominiosAtivosUseCase(get<CondominioRepository>()));
-  gh.factory<GetInforAdmCondominiosUseCase>(() => GetInforAdmCondominiosUseCase(get<CondominioRepository>()));
+  gh.factory<CondominioRemoteDataSource>(
+      () => CondominioRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetCondominioPorCpfUseCase>(
+      () => GetCondominioPorCpfUseCase(get<CondominioRepository>()));
+  gh.factory<GetCondominioAtivoUseCase>(
+      () => GetCondominioAtivoUseCase(get<CondominioRepository>()));
+  gh.factory<GetCondominiosAtivosUseCase>(
+      () => GetCondominiosAtivosUseCase(get<CondominioRepository>()));
+  gh.factory<GetInforAdmCondominiosUseCase>(
+      () => GetInforAdmCondominiosUseCase(get<CondominioRepository>()));
+  gh.factory<SendCodigoAtivacao>(
+      () => SendCodigoAtivacao(get<CondominioRepository>()));
 
   //assembleia
-  gh.factory<AssembleiaRemoteDataSource>(() => AssembleiaRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetEditaisUseCase>(() => GetEditaisUseCase(get<AssembleiaRepository>()));
-  gh.factory<GetEditalUseCase>(() => GetEditalUseCase(get<AssembleiaRepository>()));
+  gh.factory<AssembleiaRemoteDataSource>(
+      () => AssembleiaRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetEditaisUseCase>(
+      () => GetEditaisUseCase(get<AssembleiaRepository>()));
+  gh.factory<GetEditalUseCase>(
+      () => GetEditalUseCase(get<AssembleiaRepository>()));
 
   //pet
   gh.factory<PetRemoteDataSource>(() => PetRemoteDataSource(get<CustomDio>()));
@@ -172,88 +191,142 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<DeletePetUseCase>(() => DeletePetUseCase(get<PetRepository>()));
 
   //boleto
-  gh.factory<BoletoRemoteDataSource>(() => BoletoRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetBoletosUseCase>(() => GetBoletosUseCase(get<BoletoRepository>()));
+  gh.factory<BoletoRemoteDataSource>(
+      () => BoletoRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetBoletosUseCase>(
+      () => GetBoletosUseCase(get<BoletoRepository>()));
   gh.factory<GetBoletoUseCase>(() => GetBoletoUseCase(get<BoletoRepository>()));
 
   //unidade
-  gh.factory<UnidadeRemoteDataSource>(() => UnidadeRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetUnidadesUseCase>(() => GetUnidadesUseCase(get<UnidadeRepository>()));
-  gh.factory<GetUnidadesAdmUseCase>(() => GetUnidadesAdmUseCase(get<UnidadeRepository>()));
-  gh.factory<GetAdmunidadesProprietariosUseCase>(() => GetAdmunidadesProprietariosUseCase(get<UnidadeRepository>()));
-  gh.factory<GetUnidadesFiltroUseCase>(() => GetUnidadesFiltroUseCase(get<UnidadeRepository>()));
-  gh.factory<GetUnidadeDetalhesUseCase>(() => GetUnidadeDetalhesUseCase(get<UnidadeRepository>()));
+  gh.factory<UnidadeRemoteDataSource>(
+      () => UnidadeRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetUnidadesUseCase>(
+      () => GetUnidadesUseCase(get<UnidadeRepository>()));
+  gh.factory<GetUnidadesAdmUseCase>(
+      () => GetUnidadesAdmUseCase(get<UnidadeRepository>()));
+  gh.factory<GetAdmunidadesProprietariosUseCase>(
+      () => GetAdmunidadesProprietariosUseCase(get<UnidadeRepository>()));
+  gh.factory<GetUnidadesFiltroUseCase>(
+      () => GetUnidadesFiltroUseCase(get<UnidadeRepository>()));
+  gh.factory<GetUnidadeDetalhesUseCase>(
+      () => GetUnidadeDetalhesUseCase(get<UnidadeRepository>()));
 
   //balancetes
-  gh.factory<BalanceteRemoteDataSource>(() => BalanceteRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetBalancetesUseCase>(() => GetBalancetesUseCase(get<BalanceteRepository>()));
+  gh.factory<BalanceteRemoteDataSource>(
+      () => BalanceteRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetBalancetesUseCase>(
+      () => GetBalancetesUseCase(get<BalanceteRepository>()));
 
   //documentos
-  gh.factory<DocumentoRemoteDataSource>(() => DocumentoRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetDocumentoUseCase>(() => GetDocumentoUseCase(get<DocumentoRepository>()));
+  gh.factory<DocumentoRemoteDataSource>(
+      () => DocumentoRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetDocumentoUseCase>(
+      () => GetDocumentoUseCase(get<DocumentoRepository>()));
 
   //feed
-  gh.factory<FeedRemoteDataSource>(() => FeedRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetInformacoesUseCase>(() => GetInformacoesUseCase(get<FeedRepository>()));
+  gh.factory<FeedRemoteDataSource>(
+      () => FeedRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetInformacoesUseCase>(
+      () => GetInformacoesUseCase(get<FeedRepository>()));
   gh.factory<GetAvisoUseCase>(() => GetAvisoUseCase(get<FeedRepository>()));
 
   //notifricacao
-  gh.factory<NotificacaoRemoteDataSource>(() => NotificacaoRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetNotificacaoUseCase>(() => GetNotificacaoUseCase(get<NotificacaoRepository>()));
-  gh.factory<SendLogUseCase>(() => SendLogUseCase(get<NotificacaoRepository>()));
+  gh.factory<NotificacaoRemoteDataSource>(
+      () => NotificacaoRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetNotificacaoUseCase>(
+      () => GetNotificacaoUseCase(get<NotificacaoRepository>()));
+  gh.factory<SendLogUseCase>(
+      () => SendLogUseCase(get<NotificacaoRepository>()));
   //reservas
-  gh.factory<ReservaRemoteDataSource>(() => ReservaRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetReservasUseCase>(() => GetReservasUseCase(get<ReservaRepository>()));
-  gh.factory<CreateReservaUseCase>(() => CreateReservaUseCase(get<ReservaRepository>()));
+  gh.factory<ReservaRemoteDataSource>(
+      () => ReservaRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetReservasUseCase>(
+      () => GetReservasUseCase(get<ReservaRepository>()));
+  gh.factory<CreateReservaUseCase>(
+      () => CreateReservaUseCase(get<ReservaRepository>()));
   gh.factory<GetHorasUseCase>(() => GetHorasUseCase(get<ReservaRepository>()));
-  gh.factory<AprovarReservaUseCase>(() => AprovarReservaUseCase(get<ReservaRepository>()));
-  gh.factory<RejeitarReservaUseCase>(() => RejeitarReservaUseCase(get<ReservaRepository>()));
-  gh.factory<GetReservasAdmUseCase>(() => GetReservasAdmUseCase(get<ReservaRepository>()));
-  gh.factory<CancelarReservaUseCase>(() => CancelarReservaUseCase(get<ReservaRepository>()));
+  gh.factory<AprovarReservaUseCase>(
+      () => AprovarReservaUseCase(get<ReservaRepository>()));
+  gh.factory<RejeitarReservaUseCase>(
+      () => RejeitarReservaUseCase(get<ReservaRepository>()));
+  gh.factory<GetReservasAdmUseCase>(
+      () => GetReservasAdmUseCase(get<ReservaRepository>()));
+  gh.factory<CancelarReservaUseCase>(
+      () => CancelarReservaUseCase(get<ReservaRepository>()));
   //espacos
-  gh.factory<EspacoRemoteDataSource>(() => EspacoRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetEspacosUseCase>(() => GetEspacosUseCase(get<EspacoRepository>()));
+  gh.factory<EspacoRemoteDataSource>(
+      () => EspacoRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetEspacosUseCase>(
+      () => GetEspacosUseCase(get<EspacoRepository>()));
   gh.factory<GetEspacoUseCase>(() => GetEspacoUseCase(get<EspacoRepository>()));
-  gh.factory<CriarEspacoUseCase>(() => CriarEspacoUseCase(get<EspacoRepository>()));
-  gh.factory<ExcluirEspacoUseCase>(() => ExcluirEspacoUseCase(get<EspacoRepository>()));
+  gh.factory<CriarEspacoUseCase>(
+      () => CriarEspacoUseCase(get<EspacoRepository>()));
+  gh.factory<ExcluirEspacoUseCase>(
+      () => ExcluirEspacoUseCase(get<EspacoRepository>()));
   //espacos horarios
-  gh.factory<HorariosEspacoRemoteDataSource>(() => HorariosEspacoRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetHorariosEspacosUseCase>(() => GetHorariosEspacosUseCase(get<HorariosEspacoRepository>()));
+  gh.factory<HorariosEspacoRemoteDataSource>(
+      () => HorariosEspacoRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetHorariosEspacosUseCase>(
+      () => GetHorariosEspacosUseCase(get<HorariosEspacoRepository>()));
 
   //veiculo
-  gh.factory<VeiculoRemoteDataSource>(() => VeiculoRemoteDataSource(get<CustomDio>()));
-  gh.factory<CreateVeiculoUseCase>(() => CreateVeiculoUseCase(get<VeiculoRepository>()));
-  gh.factory<GetVeiculosUseCase>(() => GetVeiculosUseCase(get<VeiculoRepository>()));
-  gh.factory<GetVeiculoUseCase>(() => GetVeiculoUseCase(get<VeiculoRepository>()));
-  gh.factory<DeleteVeiculoUseCase>(() => DeleteVeiculoUseCase(get<VeiculoRepository>()));
+  gh.factory<VeiculoRemoteDataSource>(
+      () => VeiculoRemoteDataSource(get<CustomDio>()));
+  gh.factory<CreateVeiculoUseCase>(
+      () => CreateVeiculoUseCase(get<VeiculoRepository>()));
+  gh.factory<GetVeiculosUseCase>(
+      () => GetVeiculosUseCase(get<VeiculoRepository>()));
+  gh.factory<GetVeiculoUseCase>(
+      () => GetVeiculoUseCase(get<VeiculoRepository>()));
+  gh.factory<DeleteVeiculoUseCase>(
+      () => DeleteVeiculoUseCase(get<VeiculoRepository>()));
 
   // painel recebimentos
-  gh.factory<RecebimentoRemoteDataSource>(() => RecebimentoRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetRecebimentosUseCase>(() => GetRecebimentosUseCase(get<RecebimentoRepository>()));
-  gh.factory<GetTiposTaxaUseCase>(() => GetTiposTaxaUseCase(get<RecebimentoRepository>()));
-  gh.factory<GetPagamentosUseCase>(() => GetPagamentosUseCase(get<RecebimentoRepository>()));
-  gh.factory<GetInadimplenciasUseCase>(() => GetInadimplenciasUseCase(get<RecebimentoRepository>()));
-  gh.factory<GetInadimplenciaUseCase>(() => GetInadimplenciaUseCase(get<RecebimentoRepository>()));
-  gh.factory<GetHistoricoInadimUseCase>(() => GetHistoricoInadimUseCase(get<RecebimentoRepository>()));
-  gh.factory<GetAcordosUseCase>(() => GetAcordosUseCase(get<RecebimentoRepository>()));
-  gh.factory<GetAcordoUseCase>(() => GetAcordoUseCase(get<RecebimentoRepository>()));
+  gh.factory<RecebimentoRemoteDataSource>(
+      () => RecebimentoRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetRecebimentosUseCase>(
+      () => GetRecebimentosUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetTiposTaxaUseCase>(
+      () => GetTiposTaxaUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetPagamentosUseCase>(
+      () => GetPagamentosUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetInadimplenciasUseCase>(
+      () => GetInadimplenciasUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetInadimplenciaUseCase>(
+      () => GetInadimplenciaUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetHistoricoInadimUseCase>(
+      () => GetHistoricoInadimUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetAcordosUseCase>(
+      () => GetAcordosUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetAcordoUseCase>(
+      () => GetAcordoUseCase(get<RecebimentoRepository>()));
 
   // financeiro
-  gh.factory<ContasRemoteDataSource>(() => ContasRemoteDataSource(get<CustomDio>()));
+  gh.factory<ContasRemoteDataSource>(
+      () => ContasRemoteDataSource(get<CustomDio>()));
   gh.factory<GetContasUseCase>(() => GetContasUseCase(get<ContasRepository>()));
-  gh.factory<GetMovFinanceiroUseCase>(() => GetMovFinanceiroUseCase(get<ContasRepository>()));
-  gh.factory<GetMovFinanceiroMesesUseCase>(() => GetMovFinanceiroMesesUseCase(get<ContasRepository>()));
-  gh.factory<GetExtratoFinanceiroUseCase>(() => GetExtratoFinanceiroUseCase(get<ContasRepository>()));
+  gh.factory<GetMovFinanceiroUseCase>(
+      () => GetMovFinanceiroUseCase(get<ContasRepository>()));
+  gh.factory<GetMovFinanceiroMesesUseCase>(
+      () => GetMovFinanceiroMesesUseCase(get<ContasRepository>()));
+  gh.factory<GetExtratoFinanceiroUseCase>(
+      () => GetExtratoFinanceiroUseCase(get<ContasRepository>()));
 
   // painel comunicação
-  gh.factory<ComunicacaoRemoteDataSource>(() => ComunicacaoRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetAvisosUseCase>(() => GetAvisosUseCase(get<ComunicacaoRepository>()));
-  gh.factory<CreateAvisoUseCase>(() => CreateAvisoUseCase(get<ComunicacaoRepository>()));
-  gh.factory<GetAvisoAdmUseCase>(() => GetAvisoAdmUseCase(get<ComunicacaoRepository>()));
+  gh.factory<ComunicacaoRemoteDataSource>(
+      () => ComunicacaoRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetAvisosUseCase>(
+      () => GetAvisosUseCase(get<ComunicacaoRepository>()));
+  gh.factory<CreateAvisoUseCase>(
+      () => CreateAvisoUseCase(get<ComunicacaoRepository>()));
+  gh.factory<GetAvisoAdmUseCase>(
+      () => GetAvisoAdmUseCase(get<ComunicacaoRepository>()));
 
   // painel cadastros
-  gh.factory<ResumoUnidadeRemoteDataSource>(() => ResumoUnidadeRemoteDataSource(get<CustomDio>()));
-  gh.factory<GetResumoUnidadeUseCase>(() => GetResumoUnidadeUseCase(get<ResumoUnidadeRepository>()));
+  gh.factory<ResumoUnidadeRemoteDataSource>(
+      () => ResumoUnidadeRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetResumoUnidadeUseCase>(
+      () => GetResumoUnidadeUseCase(get<ResumoUnidadeRepository>()));
 
   //  Singleton
   gh.singleton<Dio>(dio);
@@ -261,40 +334,56 @@ Future<GetIt> initGetIt(GetIt get) async {
 
   gh.singleton<CustomDio>(CustomDio(get<Dio>(), get<AuthInterceptor>()));
 
-  gh.singleton<AuthRepository>(AuthRepositoryImpl(get<AuthRemoteDataSource>(), get<AuthLocalDataSource>()));
+  gh.singleton<AuthRepository>(AuthRepositoryImpl(
+      get<AuthRemoteDataSource>(), get<AuthLocalDataSource>()));
 
-  gh.singleton<BoletoRepository>(BoletoRepositoryImpl(get<BoletoRemoteDataSource>()));
-  gh.singleton<UnidadeRepository>(UnidadeRepositoryImpl(get<UnidadeRemoteDataSource>()));
+  gh.singleton<BoletoRepository>(
+      BoletoRepositoryImpl(get<BoletoRemoteDataSource>()));
+  gh.singleton<UnidadeRepository>(
+      UnidadeRepositoryImpl(get<UnidadeRemoteDataSource>()));
 
   gh.singleton<FeedRepository>(FeedRepositoryImpl(get<FeedRemoteDataSource>()));
 
-  gh.singleton<NotificacaoRepository>(NotificacaoRepositoryImpl(get<NotificacaoRemoteDataSource>()));
+  gh.singleton<NotificacaoRepository>(
+      NotificacaoRepositoryImpl(get<NotificacaoRemoteDataSource>()));
 
   gh.singleton<UserRepository>(UserRepositoryImpl(get<UserRemoteDataSource>()));
-  gh.singleton<AssembleiaRepository>(AssembleiaRepositoryImpl(get<AssembleiaRemoteDataSource>()));
+  gh.singleton<AssembleiaRepository>(
+      AssembleiaRepositoryImpl(get<AssembleiaRemoteDataSource>()));
 
-  gh.singleton<CondominioRepository>(CondominioRepositoryImpl(get<CondominioRemoteDataSource>()));
+  gh.singleton<CondominioRepository>(
+      CondominioRepositoryImpl(get<CondominioRemoteDataSource>()));
 
   gh.singleton<PetRepository>(PetRepositoryImpl(get<PetRemoteDataSource>()));
 
-  gh.singleton<BalanceteRepository>(BalanceteRepositoryImpl(get<BalanceteRemoteDataSource>()));
+  gh.singleton<BalanceteRepository>(
+      BalanceteRepositoryImpl(get<BalanceteRemoteDataSource>()));
 
-  gh.singleton<DocumentoRepository>(DocumentoRepositoryImpl(get<DocumentoRemoteDataSource>()));
+  gh.singleton<DocumentoRepository>(
+      DocumentoRepositoryImpl(get<DocumentoRemoteDataSource>()));
 
-  gh.singleton<ReservaRepository>(ReservaRepositoryImpl(get<ReservaRemoteDataSource>()));
-  gh.singleton<EspacoRepository>(EspacoRepositoryImpl(get<EspacoRemoteDataSource>()));
+  gh.singleton<ReservaRepository>(
+      ReservaRepositoryImpl(get<ReservaRemoteDataSource>()));
+  gh.singleton<EspacoRepository>(
+      EspacoRepositoryImpl(get<EspacoRemoteDataSource>()));
 
-  gh.singleton<HorariosEspacoRepository>(HorariosEspacoRepositoryImpl(get<HorariosEspacoRemoteDataSource>()));
+  gh.singleton<HorariosEspacoRepository>(
+      HorariosEspacoRepositoryImpl(get<HorariosEspacoRemoteDataSource>()));
 
-  gh.singleton<VeiculoRepository>(VeiculoRepositoryImpl(get<VeiculoRemoteDataSource>()));
+  gh.singleton<VeiculoRepository>(
+      VeiculoRepositoryImpl(get<VeiculoRemoteDataSource>()));
 
-  gh.singleton<RecebimentoRepository>(RecebimentoRepositoryImpl(get<RecebimentoRemoteDataSource>()));
+  gh.singleton<RecebimentoRepository>(
+      RecebimentoRepositoryImpl(get<RecebimentoRemoteDataSource>()));
 
-  gh.singleton<ContasRepository>(ContasRepositoryImpl(get<ContasRemoteDataSource>()));
+  gh.singleton<ContasRepository>(
+      ContasRepositoryImpl(get<ContasRemoteDataSource>()));
 
-  gh.singleton<ComunicacaoRepository>(ComunicacaoRepositoryImpl(get<ComunicacaoRemoteDataSource>()));
+  gh.singleton<ComunicacaoRepository>(
+      ComunicacaoRepositoryImpl(get<ComunicacaoRemoteDataSource>()));
 
-  gh.singleton<ResumoUnidadeRepository>(ResumoUnidadeRepositoryImpl(get<ResumoUnidadeRemoteDataSource>()));
+  gh.singleton<ResumoUnidadeRepository>(
+      ResumoUnidadeRepositoryImpl(get<ResumoUnidadeRemoteDataSource>()));
 
   return get;
 }

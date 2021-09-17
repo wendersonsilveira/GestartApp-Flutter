@@ -87,7 +87,7 @@ class AppTextTheme {
       fontSize: 11.sp, fontFamily: 'roboto', fontStyle: FontStyle.normal);
 
   static TextStyle negritoInformativo = TextStyle(
-      fontSize: 24.sp,
+      fontSize: 30.sp,
       fontFamily: 'roboto',
       fontWeight: FontWeight.bold,
       fontStyle: FontStyle.normal);

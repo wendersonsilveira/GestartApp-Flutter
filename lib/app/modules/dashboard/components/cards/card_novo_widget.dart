@@ -10,7 +10,7 @@ class CardNovoWidget extends StatelessWidget {
       color: AppColorScheme.white,
       padding: EdgeInsets.all(10),
       child: Text(
-        'Caro usuário, não encontramos nem um condomínio vinculado ao seu CPF ou CNPJ. Verifique seu cadastro junto á Gestart Condomínios.',
+        'Caro usuário, não encontramos nem um condomínio vinculado ao seu CPF ou CNPJ. Verifique seu cadastro junto à Gestart Condomínios.',
         style: TextStyle(
           color: Color(0xFFBD750A),
         ),

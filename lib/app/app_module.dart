@@ -1,3 +1,8 @@
+import 'package:Gestart/app/modules/condominio/ativar_condominio/codigo_ativacao/codigo_ativacao_controller.dart';
+import 'package:Gestart/app/modules/condominio/ativar_condominio/codigo_ativacao/codigo_ativacao_page.dart';
+import 'package:Gestart/app/modules/condominio/ativar_condominio/condominio_online/condominio_online_controller.dart';
+import 'package:Gestart/app/modules/condominio/ativar_condominio/condominio_online/condominio_online_page.dart';
+
 import 'modules/sindico/cadastros/cadastros_controller.dart'
     as cadastroSindicoController;
 import 'package:Gestart/app/modules/sindico/financeiro/movimento_financeiro/detalhe_movimento/detalhe_movimento_page.dart';
@@ -146,7 +151,9 @@ class AppModule extends MainModule {
         $DadosReservaController,
         $VeiculosController,
         $CadastroVeiculoController,
-        $PesquisaController
+        $PesquisaController,
+        $CondominioOnlineController,
+        $CodigoAtivacaoController
       ];
 
   @override
@@ -241,6 +248,10 @@ class AppModule extends MainModule {
             child: (_, args) => DetalhesReservaPage(reserva: args.data)),
         ModularRouter(RouteName.contas_fixas,
             child: (_, args) => ContasFixasPage()),
+        ModularRouter(RouteName.condominio_online_ativar,
+            child: (_, args) => CondominioOnlinePage()),
+        ModularRouter(RouteName.ativar_codigo_email,
+            child: (_, args) => CodigoAtivacaoPage())
       ];
 
   @override

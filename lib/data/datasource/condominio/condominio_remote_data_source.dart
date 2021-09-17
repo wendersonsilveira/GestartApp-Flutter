@@ -1,5 +1,6 @@
 import 'package:Gestart/data/helpers/error_mapper.dart';
 import 'package:Gestart/data/remote/custom_dio.dart';
+import 'package:Gestart/domain/entities/auth/login_entity.dart';
 import 'package:Gestart/domain/entities/condominio/unidades_ativa_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominios_ativos_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
@@ -82,6 +83,43 @@ class CondominioRemoteDataSource {
   Future<ResourceData<List<UserAdmEntity>>> inforCondominios() async {
     try {
       final result = await _dio.get('condominios');
+
+      if (result.length > 0)
+        return ResourceData<List<UserAdmEntity>>(
+            status: Status.success, data: UserAdmEntity().fromMapList(result));
+      else
+        return ResourceData<List<UserAdmEntity>>(
+            status: Status.success, data: null);
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao checar as informações dos condominios",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData> sendCodigoAtivacao(String codigo) async {
+    try {
+      final result = await _dio.post('validar-codigo-ativacao/$codigo');
+
+      return ResourceData(
+          status: Status.success,
+          data: result['status'],
+          message: "'Não foi possível, tente gerar novamente'");
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao ativar o código",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<List<UserAdmEntity>>> ativarCondominio(
+      LoginAuthEntity credencial) async {
+    try {
+      final result = await _dio.post('loginConline');
 
       if (result.length > 0)
         return ResourceData<List<UserAdmEntity>>(

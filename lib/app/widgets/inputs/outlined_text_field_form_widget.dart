@@ -13,6 +13,7 @@ class OutlinedTextFieldFormWidget extends StatelessWidget {
   final int maxLines;
   final bool autofocus;
   final int maxLength;
+  final bool isWhite;
   final TextEditingController controller;
   final TextInputType keyboardType;
   final Function validator;
@@ -40,7 +41,8 @@ class OutlinedTextFieldFormWidget extends StatelessWidget {
       this.focusNode,
       this.textError,
       this.leftIcon,
-      this.onPressLeftIcon});
+      this.onPressLeftIcon,
+      this.isWhite: false});
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -61,7 +63,7 @@ class OutlinedTextFieldFormWidget extends StatelessWidget {
       focusNode: focusNode,
       validator: validator,
       style: TextStyle(
-        color: Colors.white,
+        color: !isWhite ? Colors.white : Colors.black,
       ),
       decoration: InputDecoration(
         labelStyle: TextStyle(
@@ -84,7 +86,9 @@ class OutlinedTextFieldFormWidget extends StatelessWidget {
         hintText: hint,
         hintStyle: TextStyle(fontSize: 14.0, color: Colors.grey[400]),
         fillColor: textError == null
-            ? AppColorScheme.black
+            ? isWhite
+                ? AppColorScheme.white
+                : AppColorScheme.black
             : AppColorScheme.feedbackDangerLight,
         filled: true,
       ),

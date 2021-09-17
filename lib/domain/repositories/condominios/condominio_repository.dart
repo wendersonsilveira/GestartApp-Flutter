@@ -9,4 +9,5 @@ abstract class CondominioRepository {
   Future<ResourceData<UnidadeAtivaEntity>> getCondominiosAtivos();
   Future<ResourceData<List<CondominiosAtivosEntity>>> getAllCondominiosAtivos();
   Future<ResourceData<List<UserAdmEntity>>> getInforAdmCondominios();
+  Future<ResourceData> sendCodigoAtivacao(String codigo);
 }

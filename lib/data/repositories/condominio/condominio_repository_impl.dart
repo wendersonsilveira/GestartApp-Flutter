@@ -36,4 +36,11 @@ class CondominioRepositoryImpl implements CondominioRepository {
     final resource = await _condominioRemoteDataSource.inforCondominios();
     return resource;
   }
+
+  @override
+  Future<ResourceData> sendCodigoAtivacao(String codigo) async {
+    final resource =
+        await _condominioRemoteDataSource.sendCodigoAtivacao(codigo);
+    return resource;
+  }
 }
