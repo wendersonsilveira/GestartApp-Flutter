@@ -19,8 +19,9 @@ import 'package:share/share.dart';
 
 class DetalheBoletoPage extends StatefulWidget {
   final String title;
-  final int codord;
-  const DetalheBoletoPage({Key key, this.title = "Boleto Digital", this.codord})
+  final int idBoleto;
+  const DetalheBoletoPage(
+      {Key key, this.title = "Boleto Digital", this.idBoleto})
       : super(key: key);
 
   @override
@@ -33,7 +34,7 @@ class _DetalheBoletoPageState
   final key = new GlobalKey<ScaffoldState>();
   @override
   void initState() {
-    controller.init(idBoleto: widget.codord);
+    controller.init(idBoleto: widget.idBoleto);
     super.initState();
   }
 
@@ -212,7 +213,7 @@ class _DetalheBoletoPageState
             case Status.failed:
               return PageError(
                 messageError: "Erro ao carregar as informações",
-                onPressed: () => controller.init(idBoleto: widget.codord),
+                onPressed: () => controller.init(idBoleto: widget.idBoleto),
               );
               break;
             default:

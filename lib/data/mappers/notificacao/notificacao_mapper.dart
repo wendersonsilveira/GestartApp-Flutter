@@ -21,7 +21,7 @@ extension NotificacaoMapper on NotificacaoEntity {
       datClick:
           map['DATCLICK'] != null ? DateTime.parse(map['DATCLICK']) : null,
       datSend: map['DATSEND'] != null ? DateTime.parse(map['DATSEND']) : null,
-      messageId: map['MESSAGE_ID'],
+      messageId: int.parse(map['MESSAGE_ID']),
       itemId: map['ITEM_ID'],
       linkPhoto: map['LINK_PHOTO'],
     );

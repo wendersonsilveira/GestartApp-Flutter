@@ -95,6 +95,7 @@ dependencies:
   speech_to_text: ^3.2.0 #converter voz em texto
   avatar_glow: ^1.2.0 #animações
   string_similarity: ^1.1.0 #comparar strings
+  flutter_local_notifications: 4.0.1+2
 
 dev_dependencies:
   mockito: ^4.1.3

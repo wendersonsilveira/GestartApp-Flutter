@@ -18,6 +18,7 @@ import 'dashboard_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:Gestart/data/local/shared_preferences.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class DashboardPage extends StatefulWidget {
   final String title;
@@ -29,6 +30,8 @@ class DashboardPage extends StatefulWidget {
 
 final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 final sharedPreferences = getIt.get<SharedPreferencesManager>();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 class _DashboardPageState
     extends ModularState<DashboardPage, DashboardController> {
@@ -37,31 +40,34 @@ class _DashboardPageState
   bool isNotifyConfig = false;
   @override
   void initState() {
-    
+    _firebaseMessaging.getToken().then((value) {
+      sharedPreferences.putString('devicekey', value);
+    });
 
-    _firebaseMessaging
-        .getToken()
-        .then((value) { 
-          sharedPreferences.putString('devicekey', value);});
-    Platform.isIOS ?  configNotificationIOS() : configNotificationAndroid();
+    Platform.isIOS ? configNotificationIOS() : configNotificationAndroid();
 
     controller.testsUseCases();
+    initNotificationLocal();
     controller.init();
     super.initState();
   }
 
-  configNotificationIOS(){
+  initNotificationLocal() {
+    var android = new AndroidInitializationSettings('icon');
+    var iOS = new IOSInitializationSettings();
+    var initSettings = new InitializationSettings(android: android, iOS: iOS);
+    flutterLocalNotificationsPlugin.initialize(initSettings);
+  }
+
+  configNotificationIOS() {
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
-        
         print("onMessage: $message");
       },
       onLaunch: (Map<String, dynamic> message) async {
-        
         print("onLaunch: $message");
       },
       onResume: (Map<String, dynamic> message) async {
-        
         print("onResume: $message");
       },
     );
@@ -73,7 +79,7 @@ class _DashboardPageState
     });
     _firebaseMessaging.getToken().then((String token) {
       assert(token != null);
-      
+
       print('token: $token');
     });
   }
@@ -82,31 +88,28 @@ class _DashboardPageState
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
-        print("Status*****: ${message['data']['status']}");
-
-        Modular.navigator.pushNamed(message['data']['status'],
-            arguments: message['data']['id']);
+        sendNotificationLocal(
+            '${message['data']['title']}', '${message['data']['body']}');
       },
-      onBackgroundMessage:  myBackgroundMessageHandler,
+      onBackgroundMessage: myBackgroundMessageHandler,
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
-        Future.delayed(Duration(seconds: 5)).then((value) {
-          Modular.navigator.pushNamed(message['data']['status'],
-              arguments: message['data']['id']);
-        });
       },
       onResume: (Map<String, dynamic> message) async {
-        // print("onResumeeeeeeeeee: $message");
-        print("Status*****: ${message['data']['status']}");
+        print("Status*****: ${message['data']['servico']}");
 
-        Modular.navigator.pushNamed(message['data']['status'],
-            arguments: message['data']['id']);
+        int idBoleto = int.parse(message['data']['item_id']);
+        print("ID Boleto*****: $idBoleto");
+        Modular.navigator
+            .pushNamed('${message['data']['servico']}', arguments: idBoleto);
       },
     );
-    _firebaseMessaging.requestNotificationPermissions(const IosNotificationSettings(sound: true, badge:true, alert: true));
-    _firebaseMessaging.onIosSettingsRegistered.listen((IosNotificationSettings settings) {
+    _firebaseMessaging.requestNotificationPermissions(
+        const IosNotificationSettings(sound: true, badge: true, alert: true));
+    _firebaseMessaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings settings) {
       print('registered: $settings');
-     });
+    });
   }
 
   static Future<dynamic> myBackgroundMessageHandler(
@@ -115,6 +118,21 @@ class _DashboardPageState
     // Modular.navigator
     //     .pushNamed(message['data']['status'], arguments: message['data']['id']);
     return Future<void>.value();
+  }
+
+  sendNotificationLocal(String titulo, message) async {
+    var android = new AndroidNotificationDetails(
+        'channelId', 'channelName', 'channelDescription');
+
+    var iOS = new IOSNotificationDetails();
+
+    var platform = new NotificationDetails(android: android, iOS: iOS);
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      titulo,
+      message,
+      platform,
+    );
   }
 
   @override
@@ -127,10 +145,11 @@ class _DashboardPageState
         leading: Padding(
           padding: const EdgeInsets.all(5),
           child: IconButton(
-              icon: Image.asset(
-                IconsUtils.logo,
-              ),
-              onPressed: () async {}),
+            icon: Image.asset(
+              IconsUtils.logo,
+            ),
+            onPressed: () => {},
+          ),
         ),
       ),
 
