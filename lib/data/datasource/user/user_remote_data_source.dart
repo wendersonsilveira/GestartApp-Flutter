@@ -35,11 +35,7 @@ class UserRemoteDataSource {
       else
         return ResourceData(status: Status.success, message: 'Foi');
     } on DioError catch (e) {
-      return ResourceData(
-          status: Status.failed,
-          data: null,
-          message: "Erro ao criar o usuario",
-          error: ErrorMapper.from(e));
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao criar o usuario", error: ErrorMapper.from(e));
     }
   }
 
@@ -48,16 +44,11 @@ class UserRemoteDataSource {
       final result = await _dio.get('perfil');
 
       if (result.length > 0)
-        return ResourceData<UserEntity>(
-            status: Status.success, data: UserEntity().fromMap(result[0]));
+        return ResourceData<UserEntity>(status: Status.success, data: UserEntity().fromMap(result[0]));
       else
         return ResourceData<UserEntity>(status: Status.success, data: null);
     } on DioError catch (e) {
-      return ResourceData(
-          status: Status.failed,
-          data: null,
-          message: "Erro ao listar o usuario",
-          error: ErrorMapper.from(e));
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar o usuario", error: ErrorMapper.from(e));
     }
   }
 
@@ -67,19 +58,11 @@ class UserRemoteDataSource {
 
       if (result[0]['status'] != null) print(result[0]['status']);
       if (result[0]['status'] == null)
-        return ResourceData<bool>(
-            status: Status.success,
-            data: true,
-            message: 'Senha alterada com sucesso!');
+        return ResourceData<bool>(status: Status.success, data: true, message: 'Senha alterada com sucesso!');
       else
-        return ResourceData<bool>(
-            status: Status.success, data: false, message: result[0]['status']);
+        return ResourceData<bool>(status: Status.success, data: false, message: result[0]['status']);
     } on DioError catch (e) {
-      return ResourceData(
-          status: Status.failed,
-          data: null,
-          message: "Erro ao alterar a senha",
-          error: ErrorMapper.from(e));
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao alterar a senha", error: ErrorMapper.from(e));
     }
   }
 
@@ -87,14 +70,9 @@ class UserRemoteDataSource {
     try {
       final result = await _dio.post('validaSenha/', data: {"SENHA": pass});
 
-      return ResourceData<bool>(
-          status: Status.success, data: result['success']);
+      return ResourceData<bool>(status: Status.success, data: result['success']);
     } on DioError catch (e) {
-      return ResourceData(
-          status: Status.failed,
-          data: null,
-          message: "Erro ao alterar a senha",
-          error: ErrorMapper.from(e));
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao alterar a senha", error: ErrorMapper.from(e));
     }
   }
 
@@ -104,11 +82,7 @@ class UserRemoteDataSource {
 
       return ResourceData<bool>(status: Status.success, data: result);
     } on DioError catch (e) {
-      return ResourceData(
-          status: Status.failed,
-          data: null,
-          message: "Erro ao alterar a senha",
-          error: ErrorMapper.from(e));
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao alterar a senha", error: ErrorMapper.from(e));
     }
   }
 
@@ -118,16 +92,11 @@ class UserRemoteDataSource {
 
       return ResourceData<int>(status: Status.success, data: result['success']);
     } on DioError catch (e) {
-      return ResourceData(
-          status: Status.failed,
-          data: null,
-          message: "Erro ao excluir a conta",
-          error: ErrorMapper.from(e));
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao excluir a conta", error: ErrorMapper.from(e));
     }
   }
 
-  Future<ResourceData<UpdatePasswordReturnEntity>> esqueciMinhaSenha(
-      UpdatePasswordEntity entity) async {
+  Future<ResourceData<UpdatePasswordReturnEntity>> esqueciMinhaSenha(UpdatePasswordEntity entity) async {
     try {
       final result = await _dio.post('recuperar-senha', data: entity.toMap());
 
@@ -135,18 +104,12 @@ class UserRemoteDataSource {
         return ResourceData(
           status: Status.failed,
           data: null,
-          message: result[0]['ERRO'],
+          message: 'Usuário não encontrado!',
         );
       else
-        return ResourceData(
-            status: Status.success,
-            data: UpdatePasswordReturnEntity().fromMap(result));
+        return ResourceData(status: Status.success, data: UpdatePasswordReturnEntity().fromMap(result));
     } on DioError catch (e) {
-      return ResourceData(
-          status: Status.failed,
-          data: null,
-          message: "Erro ao criar o usuario",
-          error: ErrorMapper.from(e));
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao criar o usuario", error: ErrorMapper.from(e));
     }
   }
 }

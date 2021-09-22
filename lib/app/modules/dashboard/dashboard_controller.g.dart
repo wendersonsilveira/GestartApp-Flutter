@@ -114,6 +114,22 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
     });
   }
 
+  final _$chekedSindicoAtom =
+      Atom(name: '_DashboardControllerBase.chekedSindico');
+
+  @override
+  bool get chekedSindico {
+    _$chekedSindicoAtom.reportRead();
+    return super.chekedSindico;
+  }
+
+  @override
+  set chekedSindico(bool value) {
+    _$chekedSindicoAtom.reportWrite(value, super.chekedSindico, () {
+      super.chekedSindico = value;
+    });
+  }
+
   final _$getInforCondominiosAsyncAction =
       AsyncAction('_DashboardControllerBase.getInforCondominios');
 
@@ -156,6 +172,7 @@ condominiosAtivos: ${condominiosAtivos},
 unidadesAtivasAdm: ${unidadesAtivasAdm},
 statusCondominio: ${statusCondominio},
 existeCondominiosAtivos: ${existeCondominiosAtivos},
+chekedSindico: ${chekedSindico},
 statusLoading: ${statusLoading},
 isSindico: ${isSindico}
     ''';

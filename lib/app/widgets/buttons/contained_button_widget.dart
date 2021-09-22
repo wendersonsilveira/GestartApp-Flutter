@@ -9,8 +9,7 @@ class ContainedButtonWidget extends StatelessWidget {
   final Function onPressed;
   final String text;
   final bool loading;
-  ContainedButtonWidget(
-      {@required this.text, @required this.onPressed, this.loading: false});
+  ContainedButtonWidget({@required this.text, @required this.onPressed, this.loading: false});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,6 +18,7 @@ class ContainedButtonWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10.0),
       child: RaisedButton(
         color: AppColorScheme.primaryColor,
+        disabledColor: Colors.green,
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
         child: loading
             ? CircularProgressCustom(color: AppColorScheme.white)

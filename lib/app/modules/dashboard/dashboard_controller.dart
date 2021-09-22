@@ -41,6 +41,9 @@ abstract class _DashboardControllerBase with Store {
   @observable
   bool existeCondominiosAtivos;
 
+  @observable
+  bool chekedSindico = false;
+
   init() {
     condominios = ResourceData(status: Status.loading);
     condominiosAtivos = ResourceData(status: Status.loading);
@@ -63,22 +66,20 @@ abstract class _DashboardControllerBase with Store {
 
   @action
   getInforCondominios() async {
+    chekedSindico = false;
     condominios = await _getCondominios();
     condominiosAtivos = await _getCondominioAtivo();
     unidadesAtivasAdm = await _getUnidadesAtivas();
-
     checkCondominiosAtivos(condominiosAtivos.data != null ? true : false);
     verificarStatusCondominios();
+    chekedSindico = true;
   }
 
   @computed
-  bool get statusLoading =>
-      condominiosAtivos.status == Status.loading &&
-      unidadesAtivasAdm.status == Status.loading;
+  bool get statusLoading => condominiosAtivos.status == Status.loading && unidadesAtivasAdm.status == Status.loading;
 
   @computed
-  bool get isSindico =>
-      unidadesAtivasAdm.data != null && unidadesAtivasAdm.data.length > 0;
+  bool get isSindico => unidadesAtivasAdm.data != null && unidadesAtivasAdm.data.length > 0;
 
   /*
     status 0 = nenhum condominio vinculado
