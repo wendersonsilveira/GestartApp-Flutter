@@ -7,6 +7,8 @@ import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/di/di.dart';
+import 'package:flushbar/flushbar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -19,7 +21,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
 class DashboardPage extends StatefulWidget {
   final String title;
   const DashboardPage({Key key, this.title = "Dashboard"}) : super(key: key);
@@ -30,6 +31,8 @@ class DashboardPage extends StatefulWidget {
 
 final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 final sharedPreferences = getIt.get<SharedPreferencesManager>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
@@ -54,21 +57,68 @@ class _DashboardPageState
 
   initNotificationLocal() {
     var android = new AndroidInitializationSettings('icon');
-    var iOS = new IOSInitializationSettings();
-    var initSettings = new InitializationSettings(android: android, iOS: iOS);
+    
+    final IOSInitializationSettings initializationSettingsIOS =
+      IOSInitializationSettings(onDidReceiveLocalNotification: onDidReceiveLocalNotification);
+          flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin>();
+          
+    var initSettings = new InitializationSettings(android: android, iOS: initializationSettingsIOS);
     flutterLocalNotificationsPlugin.initialize(initSettings);
   }
+
+  Future onDidReceiveLocalNotification(int id, String title, String body, String payload) async {
+    showDialog(context: null, builder: (BuildContext context) => CupertinoAlertDialog(
+      title: Text(title),
+      content: Text(body),
+      actions: [
+        CupertinoDialogAction(isDefaultAction: true,child: Text('Ok'),onPressed: () async {
+          Navigator.of(context, rootNavigator: true).pop();
+          await Navigator.push(context, MaterialPageRoute(builder: (context) => Text('')));
+        },)
+      ]
+    ));
+  }
+
+
+  void showTopSnackBar(BuildContext context, String message,String titulo, {String page = '', String id = ''}) { 
+    int iD = id != '' ? int.parse(id) : null;
+    String toPage = page.trim();
+    Flushbar(
+    icon: Icon(FlutterIcons.alert_box_mco),
+    shouldIconPulse: true,
+    message: message,
+    title: titulo,
+    onTap: (_) {
+      if(toPage.isNotEmpty && iD != null)Modular.navigator.pushNamed('$toPage', arguments: int.parse(id));
+      else if(toPage.isNotEmpty && iD == null) Modular.navigator.pushNamed('$toPage');
+      else print('Apenas notificação');
+    },
+    duration: Duration(seconds: 2),
+    flushbarPosition: FlushbarPosition.TOP,
+
+  )..show(context);}
 
   configNotificationIOS() {
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
-        print("onMessage: $message");
+        var texto = message['body'];
+        var titulo = message['title'];
+        showTopSnackBar(context, texto,titulo,page: '/${message['servico']}', id: '${message['item_id']}' );
       },
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
       },
-      onResume: (Map<String, dynamic> message) async {
-        print("onResume: $message");
+      onResume: (Map<String, dynamic> message) async {       
+        String toPage =  message['servico'] != null ? '/'+message['servico'].toString().trim() : null;
+        int id = message['item_id'] != null ? int.parse(message['item_id']) : null;
+        if(toPage != null && id != null)
+          Modular.navigator.pushNamed(toPage, arguments: id);
+        else if(toPage != null && id == null)
+          Modular.navigator.pushNamed(toPage);
+        else
+          print('apenas notificacao');
       },
     );
     _firebaseMessaging.requestNotificationPermissions(
@@ -120,7 +170,11 @@ class _DashboardPageState
     return Future<void>.value();
   }
 
+
+
+
   sendNotificationLocal(String titulo, message) async {
+
     var android = new AndroidNotificationDetails(
         'channelId', 'channelName', 'channelDescription');
 
@@ -138,6 +192,7 @@ class _DashboardPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBarCustom(
         context,
         center: false,
