@@ -36,8 +36,7 @@ final sharedPreferences = getIt.get<SharedPreferencesManager>();
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
-class _DashboardPageState
-    extends ModularState<DashboardPage, DashboardController> {
+class _DashboardPageState extends ModularState<DashboardPage, DashboardController> {
   //use 'controller' variable to access controller
   PDFDocument document;
   bool isNotifyConfig = false;
@@ -121,10 +120,8 @@ class _DashboardPageState
           print('apenas notificacao');
       },
     );
-    _firebaseMessaging.requestNotificationPermissions(
-        const IosNotificationSettings(sound: true, badge: true, alert: true));
-    _firebaseMessaging.onIosSettingsRegistered
-        .listen((IosNotificationSettings settings) {
+    _firebaseMessaging.requestNotificationPermissions(const IosNotificationSettings(sound: true, badge: true, alert: true));
+    _firebaseMessaging.onIosSettingsRegistered.listen((IosNotificationSettings settings) {
       print("Settings registered: $settings");
     });
     _firebaseMessaging.getToken().then((String token) {
@@ -138,8 +135,7 @@ class _DashboardPageState
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
-        sendNotificationLocal(
-            '${message['data']['title']}', '${message['data']['body']}');
+        sendNotificationLocal('${message['data']['title']}', '${message['data']['body']}');
       },
       onBackgroundMessage: myBackgroundMessageHandler,
       onLaunch: (Map<String, dynamic> message) async {
@@ -150,20 +146,16 @@ class _DashboardPageState
 
         int idBoleto = int.parse(message['data']['item_id']);
         print("ID Boleto*****: $idBoleto");
-        Modular.navigator
-            .pushNamed('${message['data']['servico']}', arguments: idBoleto);
+        Modular.navigator.pushNamed('${message['data']['servico']}', arguments: idBoleto);
       },
     );
-    _firebaseMessaging.requestNotificationPermissions(
-        const IosNotificationSettings(sound: true, badge: true, alert: true));
-    _firebaseMessaging.onIosSettingsRegistered
-        .listen((IosNotificationSettings settings) {
+    _firebaseMessaging.requestNotificationPermissions(const IosNotificationSettings(sound: true, badge: true, alert: true));
+    _firebaseMessaging.onIosSettingsRegistered.listen((IosNotificationSettings settings) {
       print('registered: $settings');
     });
   }
 
-  static Future<dynamic> myBackgroundMessageHandler(
-      Map<String, dynamic> message) async {
+  static Future<dynamic> myBackgroundMessageHandler(Map<String, dynamic> message) async {
     // print(message);
     // Modular.navigator
     //     .pushNamed(message['data']['status'], arguments: message['data']['id']);
@@ -209,7 +201,7 @@ class _DashboardPageState
       ),
 
       body: Observer(
-        builder: (_) => controller.statusLoading
+        builder: (_) => controller.statusLoading || !controller.chekedSindico
             ? Center(child: CircularProgressCustom())
             : SingleChildScrollView(
                 child: Container(
@@ -230,21 +222,15 @@ class _DashboardPageState
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 ButtonSercicesWidget(
-                                    condominioAtivo:
-                                        controller.existeCondominiosAtivos,
-                                    icon: FlutterIcons.barcode_ant,
-                                    descricao: 'Boleto Digital',
-                                    route: RouteName.boleto),
+                                    condominioAtivo: controller.existeCondominiosAtivos, icon: FlutterIcons.barcode_ant, descricao: 'Boleto Digital', route: RouteName.boleto),
                                 ButtonSercicesWidget(
-                                  condominioAtivo:
-                                      controller.existeCondominiosAtivos,
+                                  condominioAtivo: controller.existeCondominiosAtivos,
                                   icon: FlutterIcons.md_paper_ion,
                                   descricao: 'Prestação de Contas',
                                   route: RouteName.balancetes,
                                 ),
                                 ButtonSercicesWidget(
-                                  condominioAtivo:
-                                      controller.existeCondominiosAtivos,
+                                  condominioAtivo: controller.existeCondominiosAtivos,
                                   icon: Icons.event_available,
                                   descricao: 'Reservas',
                                   route: RouteName.reservas,
@@ -261,8 +247,7 @@ class _DashboardPageState
                               children: [
                                 Card(
                                   child: ItemServicoWidget(
-                                    condominioAtivo:
-                                        controller.existeCondominiosAtivos,
+                                    condominioAtivo: controller.existeCondominiosAtivos,
                                     descricao: 'Assembleia',
                                     icone: FlutterIcons.gavel_faw5s,
                                     routeName: RouteName.assembleia,
@@ -271,8 +256,7 @@ class _DashboardPageState
                                 ),
                                 Card(
                                   child: ItemServicoWidget(
-                                    condominioAtivo:
-                                        controller.existeCondominiosAtivos,
+                                    condominioAtivo: controller.existeCondominiosAtivos,
                                     descricao: 'Documentos',
                                     icone: FlutterIcons.file1_ant,
                                     routeName: RouteName.documentos,
@@ -280,8 +264,7 @@ class _DashboardPageState
                                 ),
                                 Card(
                                   child: ItemServicoWidget(
-                                    condominioAtivo:
-                                        controller.existeCondominiosAtivos,
+                                    condominioAtivo: controller.existeCondominiosAtivos,
                                     descricao: 'Seu Condomínio',
                                     icone: FlutterIcons.building_faw,
                                     routeName: RouteName.infor_condominio,
@@ -295,15 +278,16 @@ class _DashboardPageState
                                     routeName: RouteName.cadastros,
                                   ),
                                 ),
-                                if (controller.isSindico)
-                                  Card(
-                                    child: ItemServicoWidget(
-                                      condominioAtivo: true,
-                                      descricao: 'Painel do Síndico',
-                                      icone: FlutterIcons.md_analytics_ion,
-                                      routeName: RouteName.painel_sindico,
-                                    ),
-                                  ),
+                                controller.isSindico
+                                    ? Card(
+                                        child: ItemServicoWidget(
+                                          condominioAtivo: true,
+                                          descricao: 'Painel do Síndico',
+                                          icone: FlutterIcons.md_analytics_ion,
+                                          routeName: RouteName.painel_sindico,
+                                        ),
+                                      )
+                                    : Container(),
                               ],
                             ),
                           ),

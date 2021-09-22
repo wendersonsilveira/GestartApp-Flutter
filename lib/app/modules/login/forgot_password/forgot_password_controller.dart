@@ -9,18 +9,26 @@ import 'package:flutter_modular/flutter_modular.dart';
 part 'forgot_password_controller.g.dart';
 
 @Injectable()
-class ForgotPasswordController = _ForgotPasswordControllerBase
-    with _$ForgotPasswordController;
+class ForgotPasswordController = _ForgotPasswordControllerBase with _$ForgotPasswordController;
 
 abstract class _ForgotPasswordControllerBase with Store {
   final _updatePassword = getIt.get<UpdatePasswordUseCase>();
   ResourceData updatePassord;
 
+  @observable
+  bool loading = false;
+
   @action
   Future<ResourceData> updatePassword(UpdatePasswordEntity usuario) async {
+    loading = true;
     updatePassord = ResourceData(status: Status.loading);
     updatePassord = await _updatePassword(usuario);
-
+    loading = false;
     return updatePassord;
+  }
+
+  @action
+  stopLoading() {
+    loading = false;
   }
 }
