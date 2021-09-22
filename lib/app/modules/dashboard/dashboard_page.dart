@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/dashboard/components/cards/card_infor_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
+import 'package:Gestart/app/styles/app_images.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
@@ -85,9 +86,11 @@ class _DashboardPageState extends ModularState<DashboardPage, DashboardControlle
     int iD = id != '' ? int.parse(id) : null;
     String toPage = page.trim();
     Flushbar(
-    icon: Icon(FlutterIcons.alert_box_mco),
+    icon: Image.asset(AppImages.icon, height: 30,width: 30,),
     shouldIconPulse: true,
     message: message,
+    
+    backgroundColor: Color.fromRGBO(60,60,60,20),
     title: titulo,
     onTap: (_) {
       if(toPage.isNotEmpty && iD != null)Modular.navigator.pushNamed('$toPage', arguments: int.parse(id));
