@@ -17,8 +17,10 @@ class DownloadListItemWidget extends StatefulWidget {
   final Icon trailing;
   final Function onTap;
   final bool download;
+  final List links;
 
-  const DownloadListItemWidget({Key key, this.fileURL, this.fileName, this.title, this.subtitle, this.leading, this.trailing, this.onTap, this.download = true}) : super(key: key);
+  const DownloadListItemWidget({Key key, this.fileURL, this.fileName, this.title, this.subtitle, this.leading, this.trailing, this.onTap, this.download = true, this.links})
+      : super(key: key);
 
   @override
   _DownloadListItemWidgetState createState() => _DownloadListItemWidgetState();
@@ -30,6 +32,7 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
 
   @override
   void initState() {
+    print(widget.links.length);
     super.initState();
   }
 
@@ -38,7 +41,8 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
     String ext = arrFil.last.replaceAll(r'"', '');
     return ext;
   }
-  downloadAndroid() async{
+
+  downloadAndroid() async {
     try {
       if (await Permission.storage.request().isGranted) {
         final dir = await AndroidPathProvider.downloadsPath;
@@ -90,16 +94,16 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
   }
 
   downloadStart() async {
-    if(Platform.isAndroid) downloadAndroid();
+    if (Platform.isAndroid)
+      downloadAndroid();
     else
-    downloadIOS();
+      downloadIOS();
   }
-
 
   downloadIOS() async {
     try {
       final dir = await getApplicationDocumentsDirectory();
-      final String _name = widget.fileName.replaceAll(r'/','_');
+      final String _name = widget.fileName.replaceAll(r'/', '_');
       final String _url = widget.fileURL;
       setState(() {
         downloadStatus = true;
@@ -107,39 +111,41 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
 
       String fileName = _name;
 
-      if(await File(dir.path+'/$_name').exists()){
+      if (await File(dir.path + '/$_name').exists()) {
         setState(() {
           downloadStatus = false;
         });
-        OpenFile.open(dir.path+'/$_name').then((value) {
-          if(value.type == ResultType.noAppToOpen){
-            showMessage(fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+        OpenFile.open(dir.path + '/$_name').then((value) {
+          if (value.type == ResultType.noAppToOpen) {
+            showMessage(
+                fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
           }
         });
-      }
-      else{
-        await Dio().download(_url, dir.path+'/$_name', onReceiveProgress: (int received, int total){
-          if(total != -1){
+      } else {
+        await Dio().download(_url, dir.path + '/$_name', onReceiveProgress: (int received, int total) {
+          if (total != -1) {
             setState(() {
               downloadProgress = (received / total * 100);
             });
-            OpenFile.open(dir.path+'/$_name').then((value) {
-          if(value.type == ResultType.noAppToOpen){
-            showMessage(fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-          }
-        });
+            OpenFile.open(dir.path + '/$_name').then((value) {
+              if (value.type == ResultType.noAppToOpen) {
+                showMessage(fileName,
+                    'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+              }
+            });
           }
         });
         setState(() {
           downloadStatus = false;
         });
         OpenFile.open('$dir/$_name').then((value) {
-          if(value.type == ResultType.noAppToOpen){
-            showMessage(fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+          if (value.type == ResultType.noAppToOpen) {
+            showMessage(
+                fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
           }
         });
       }
-    } on DioError catch(_){
+    } on DioError catch (_) {
       setState(() {
         downloadStatus = false;
       });

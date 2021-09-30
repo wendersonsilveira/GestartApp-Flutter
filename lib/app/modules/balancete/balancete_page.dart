@@ -6,6 +6,7 @@ import 'package:Gestart/app/widgets/download/download_list_item_widget.dart';
 import 'package:Gestart/app/widgets/inputs/dropdown_button_field.widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'balancete_controller.dart';
@@ -19,8 +20,7 @@ class BalancetePage extends StatefulWidget {
   _BalancetePageState createState() => _BalancetePageState();
 }
 
-class _BalancetePageState
-    extends ModularState<BalancetePage, BalanceteController> {
+class _BalancetePageState extends ModularState<BalancetePage, BalanceteController> {
   @override
   void initState() {
     controller.getBalancetes();
@@ -64,36 +64,31 @@ class _BalancetePageState
                               SizedBox(
                                 height: 30.h,
                               ),
-                              Text(
-                                  'Não existem balancetes para este condomínio'),
+                              Text('Não existem balancetes para este condomínio'),
                             ],
                           )
                         : Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 6, vertical: 5),
+                            padding: EdgeInsets.symmetric(horizontal: 6, vertical: 5),
                             child: RefreshIndicator(
                               onRefresh: refreshList,
                               child: ListView.builder(
                                   itemCount: controller.balancetes.length,
                                   shrinkWrap: true,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
+                                  itemBuilder: (BuildContext context, int index) {
                                     return DownloadListItemWidget(
                                       title: Row(
                                         children: [
                                           Text('Competência: '),
                                           Text(
                                             controller.balancetes[index].mesAno,
-                                            style: TextStyle(
-                                                color: AppColorScheme
-                                                    .primaryColor),
+                                            style: TextStyle(color: AppColorScheme.primaryColor),
                                           ),
                                         ],
                                       ),
-                                      subtitle: Text(
-                                          'Período: ${UIHelper.formatDate(controller.balancetes[index].dt1)} - ${UIHelper.formatDate(controller.balancetes[index].dt2)}'),
-                                      fileURL: controller
-                                          .balancetes[index].linkBalanceteAna,
+                                      trailing: Icon(FlutterIcons.download_faw),
+                                      subtitle:
+                                          Text('Período: ${UIHelper.formatDate(controller.balancetes[index].dt1)} - ${UIHelper.formatDate(controller.balancetes[index].dt2)}'),
+                                      fileURL: controller.balancetes[index].linkBalanceteAna,
                                       fileName:
                                           'Balancete_${controller.balancetes[index].apelido}_${controller.balancetes[index].mesAno}_v${controller.balancetes[index].versao}.${controller.balancetes[index].tipo}',
                                     );
