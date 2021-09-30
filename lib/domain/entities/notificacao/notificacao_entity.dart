@@ -16,7 +16,7 @@ class NotificacaoEntity {
   final String carga;
   final DateTime datClick;
   final DateTime datSend;
-  final int messageId;
+  final String messageId;
   final int itemId;
   final String linkPhoto;
 

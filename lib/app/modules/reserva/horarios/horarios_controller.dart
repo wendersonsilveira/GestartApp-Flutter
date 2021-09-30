@@ -140,7 +140,7 @@ abstract class _HorariosControllerBase with Store {
         final timeMax = DateTime.now().add(Duration(hours: int.parse(ant[0]), minutes: int.parse(ant[1])));
 
         if (dateIn.isAfter(timeMax)) {
-          return Future(() => 'Atecedência máxima é de ${antMax.descricao}');
+          return Future(() => 'Antecedência máxima é de ${antMax.descricao}');
         }
       }
     }
