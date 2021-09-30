@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:Gestart/app/modules/condominio/ativar_condominio/gerar_codigo/gerar_codigo_page.dart';
+import 'package:Gestart/app/modules/condominio/ativar_condominio/enviar_codigo/enviar_codigo_page.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/utils/validators.dart';
@@ -25,7 +25,6 @@ class CodigoAtivacaoPage extends StatefulWidget {
 
 class _CodigoAtivacaoPageState
     extends ModularState<CodigoAtivacaoPage, CodigoAtivacaoController> {
-  //use 'controller' variable to access controller
   PageController controllerPages = PageController(initialPage: 0);
   final _codigoAtivacaoController = TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -127,11 +126,9 @@ class _CodigoAtivacaoPageState
               ),
             ),
           ),
-          Gerar_Codigo()
+          EnviarCodigoPage()
         ],
       ),
     );
   }
 }
-
-

@@ -1,4 +1,5 @@
 import 'package:Gestart/data/datasource/condominio/condominio_remote_data_source.dart';
+import 'package:Gestart/domain/entities/condominio/emails_ativacao_entity.dart';
 import 'package:Gestart/domain/entities/condominio/unidades_ativa_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominios_ativos_entity.dart';
@@ -41,6 +42,19 @@ class CondominioRepositoryImpl implements CondominioRepository {
   Future<ResourceData> sendCodigoAtivacao(String codigo) async {
     final resource =
         await _condominioRemoteDataSource.sendCodigoAtivacao(codigo);
+    return resource;
+  }
+
+  @override
+  Future<ResourceData<List<EmailAtivacaoEntity>>> getEmailsAtivacao() async {
+    final resource = await _condominioRemoteDataSource.getEmailsVinculados();
+    return resource;
+  }
+
+  @override
+  Future<ResourceData<int>> gerarCodigoAtivacao(int idEmail) async {
+    final resource =
+        await _condominioRemoteDataSource.gerarCodigoAtivacao(idEmail);
     return resource;
   }
 }

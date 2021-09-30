@@ -2,6 +2,7 @@ import 'package:Gestart/app/modules/condominio/ativar_condominio/codigo_ativacao
 import 'package:Gestart/app/modules/condominio/ativar_condominio/codigo_ativacao/codigo_ativacao_page.dart';
 import 'package:Gestart/app/modules/condominio/ativar_condominio/condominio_online/condominio_online_controller.dart';
 import 'package:Gestart/app/modules/condominio/ativar_condominio/condominio_online/condominio_online_page.dart';
+import 'package:Gestart/app/modules/condominio/ativar_condominio/enviar_codigo/enviar_codigo_controller.dart';
 
 import 'modules/sindico/cadastros/cadastros_controller.dart'
     as cadastroSindicoController;
@@ -153,7 +154,8 @@ class AppModule extends MainModule {
         $CadastroVeiculoController,
         $PesquisaController,
         $CondominioOnlineController,
-        $CodigoAtivacaoController
+        $CodigoAtivacaoController,
+        $EnviarCodigoController
       ];
 
   @override

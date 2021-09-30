@@ -1,6 +1,7 @@
 import 'package:Gestart/data/helpers/error_mapper.dart';
 import 'package:Gestart/data/remote/custom_dio.dart';
 import 'package:Gestart/domain/entities/auth/login_entity.dart';
+import 'package:Gestart/domain/entities/condominio/emails_ativacao_entity.dart';
 import 'package:Gestart/domain/entities/condominio/unidades_ativa_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominios_ativos_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
@@ -8,6 +9,7 @@ import 'package:Gestart/data/mappers/condominio/condominio_mapper.dart';
 import 'package:Gestart/data/mappers/user_adm/user_adm_mapper.dart';
 import 'package:Gestart/data/mappers/condominio/condominio_ativo_mapper.dart';
 import 'package:Gestart/data/mappers/condominio/condominios_ativos_mapper.dart';
+import 'package:Gestart/data/mappers/condominio/emails_ativacao_mapper.dart';
 import 'package:Gestart/domain/entities/user_adm/user_adm_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 
@@ -112,6 +114,40 @@ class CondominioRemoteDataSource {
           status: Status.failed,
           data: null,
           message: "Erro ao ativar o código",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<List<EmailAtivacaoEntity>>> getEmailsVinculados() async {
+    try {
+      final result = await _dio.get('login-emails');
+
+      return ResourceData(
+        status: Status.success,
+        data: EmailAtivacaoEntity().fromMapList(result),
+      );
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao gerar um novo Código",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<int>> gerarCodigoAtivacao(int idEmail) async {
+    try {
+      final result = await _dio.post('gerar-codigo-ativacao/$idEmail');
+
+      return ResourceData(
+        status: Status.success,
+        data: result['status'],
+      );
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao gerar um novo Código",
           error: ErrorMapper.from(e));
     }
   }
