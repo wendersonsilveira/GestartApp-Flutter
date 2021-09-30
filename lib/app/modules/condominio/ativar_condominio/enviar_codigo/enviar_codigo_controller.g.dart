@@ -34,6 +34,22 @@ mixin _$EnviarCodigoController on _EnviarCodigoControllerBase, Store {
     });
   }
 
+  final _$statusGeracaoCodigoAtom =
+      Atom(name: '_EnviarCodigoControllerBase.statusGeracaoCodigo');
+
+  @override
+  ResourceData<int> get statusGeracaoCodigo {
+    _$statusGeracaoCodigoAtom.reportRead();
+    return super.statusGeracaoCodigo;
+  }
+
+  @override
+  set statusGeracaoCodigo(ResourceData<int> value) {
+    _$statusGeracaoCodigoAtom.reportWrite(value, super.statusGeracaoCodigo, () {
+      super.statusGeracaoCodigo = value;
+    });
+  }
+
   final _$getEmailsAsyncAction =
       AsyncAction('_EnviarCodigoControllerBase.getEmails');
 
@@ -42,10 +58,19 @@ mixin _$EnviarCodigoController on _EnviarCodigoControllerBase, Store {
     return _$getEmailsAsyncAction.run(() => super.getEmails());
   }
 
+  final _$gerarCodigoAsyncAction =
+      AsyncAction('_EnviarCodigoControllerBase.gerarCodigo');
+
+  @override
+  Future<int> gerarCodigo(int idEmail) {
+    return _$gerarCodigoAsyncAction.run(() => super.gerarCodigo(idEmail));
+  }
+
   @override
   String toString() {
     return '''
-emails: ${emails}
+emails: ${emails},
+statusGeracaoCodigo: ${statusGeracaoCodigo}
     ''';
   }
 }

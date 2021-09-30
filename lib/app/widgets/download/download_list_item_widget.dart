@@ -17,10 +17,8 @@ class DownloadListItemWidget extends StatefulWidget {
   final Icon trailing;
   final Function onTap;
   final bool download;
-  final List links;
 
-  const DownloadListItemWidget({Key key, this.fileURL, this.fileName, this.title, this.subtitle, this.leading, this.trailing, this.onTap, this.download = true, this.links})
-      : super(key: key);
+  const DownloadListItemWidget({Key key, this.fileURL, this.fileName, this.title, this.subtitle, this.leading, this.trailing, this.onTap, this.download = true}) : super(key: key);
 
   @override
   _DownloadListItemWidgetState createState() => _DownloadListItemWidgetState();
@@ -32,7 +30,6 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
 
   @override
   void initState() {
-    print(widget.links.length);
     super.initState();
   }
 
