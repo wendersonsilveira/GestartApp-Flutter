@@ -1,3 +1,4 @@
+import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/empty/empt_widget.dart';
 import 'package:flutter/material.dart';
@@ -77,82 +78,95 @@ class _ReservasPendentesPageState
                               child: ListView.builder(
                                 itemCount: controller.reservasPendentes.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  return Card(
-                                      child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '${controller.reservasPendentes[index].apelido} - ${controller.reservasPendentes[index].codimo}',
-                                          style: TextStyle(fontSize: 17),
-                                        ),
-                                        Text(
-                                            '${UIHelper.formatDate(controller.reservasPendentes[index].data)} | ${controller.reservasPendentes[index].horIniDescricao} - ${controller.reservasPendentes[index].horFimDescricao}'),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 10),
-                                          child: Row(
-                                            children: [
-                                              FlatButton(
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 0,
-                                                    horizontal: 10),
-                                                onPressed: () {
-                                                  aprovarReserva(controller
-                                                      .reservasPendentes[index]
-                                                      .id);
-                                                },
-                                                child: Text(
-                                                  'APROVAR',
-                                                  style: TextStyle(
-                                                    color: AppColorScheme
-                                                        .primaryColor,
-                                                  ),
-                                                ),
-                                                color: Colors.white,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(20)),
-                                                  side: BorderSide(
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Modular.navigator.pushNamed(
+                                          RouteName.detalhes_reserva,
+                                          arguments: controller
+                                              .reservasPendentes[index].id);
+                                    },
+                                    child: Card(
+                                        child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            '${controller.reservasPendentes[index].apelido} - ${controller.reservasPendentes[index].codimo}',
+                                            style: TextStyle(fontSize: 17),
+                                          ),
+                                          Text(
+                                              '${UIHelper.formatDate(controller.reservasPendentes[index].data)} | ${controller.reservasPendentes[index].horIniDescricao} - ${controller.reservasPendentes[index].horFimDescricao}'),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 10),
+                                            child: Row(
+                                              children: [
+                                                FlatButton(
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 0,
+                                                      horizontal: 10),
+                                                  onPressed: () {
+                                                    aprovarReserva(controller
+                                                        .reservasPendentes[
+                                                            index]
+                                                        .id);
+                                                  },
+                                                  child: Text(
+                                                    'APROVAR',
+                                                    style: TextStyle(
                                                       color: AppColorScheme
                                                           .primaryColor,
-                                                      width: 1),
-                                                ),
-                                              ),
-                                              SizedBox(width: 15),
-                                              FlatButton(
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 0, horizontal: 5),
-                                                onPressed: () {
-                                                  rejeitarReserva(controller
-                                                      .reservasPendentes[index]
-                                                      .id);
-                                                },
-                                                child: Text(
-                                                  'REJEITAR',
-                                                  style: TextStyle(
-                                                    color: Colors.red,
+                                                    ),
+                                                  ),
+                                                  color: Colors.white,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                20)),
+                                                    side: BorderSide(
+                                                        color: AppColorScheme
+                                                            .primaryColor,
+                                                        width: 1),
                                                   ),
                                                 ),
-                                                color: Colors.white,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(20)),
-                                                  side: BorderSide(
+                                                SizedBox(width: 15),
+                                                FlatButton(
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 0,
+                                                      horizontal: 5),
+                                                  onPressed: () {
+                                                    rejeitarReserva(controller
+                                                        .reservasPendentes[
+                                                            index]
+                                                        .id);
+                                                  },
+                                                  child: Text(
+                                                    'REJEITAR',
+                                                    style: TextStyle(
                                                       color: Colors.red,
-                                                      width: 1),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ));
+                                                    ),
+                                                  ),
+                                                  color: Colors.white,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                20)),
+                                                    side: BorderSide(
+                                                        color: Colors.red,
+                                                        width: 1),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    )),
+                                  );
                                 },
                               ),
                             )

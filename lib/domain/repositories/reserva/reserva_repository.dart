@@ -8,6 +8,7 @@ abstract class ReservaRepository {
   Future<ResourceData> criarReserva(var data);
   Future<ResourceData> cancelarReserva(int id);
   Future<ResourceData<List<ReservaEntity>>> getReservasAdm(int codCon);
+  Future<ResourceData<ReservaEntity>> getReservaAdm(int idReserva);
   Future<ResourceData> aprovarReserva(int reservaId);
   Future<ResourceData> rejeitarReserva(int reservaId);
 }
