@@ -70,22 +70,50 @@ class _EnviarCodigoPageState
                   case Status.loading:
                     return CircularProgressCustom();
                   case Status.success:
-                    return Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: controller.emails.data.length > 0
-                          ? DropdownButtonFormField<EmailAtivacaoEntity>(
-                              hint: Text('Email'),
-                              items: controller.emails.data.map(
-                                  (EmailAtivacaoEntity dropDownStringItem) {
-                                return DropdownMenuItem<EmailAtivacaoEntity>(
-                                  value: dropDownStringItem,
-                                  child: Text(dropDownStringItem.email),
-                                );
-                              }).toList(),
-                              onChanged: (value) => idEmail = value.id,
-                            )
-                          : Text(
-                              'Você não possui E-mail, ligue para 3133-0001'),
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: controller.emails.data.length > 0
+                              ? DropdownButtonFormField<EmailAtivacaoEntity>(
+                                  hint: Text('Email'),
+                                  items: controller.emails.data.map(
+                                      (EmailAtivacaoEntity dropDownStringItem) {
+                                    return DropdownMenuItem<
+                                        EmailAtivacaoEntity>(
+                                      value: dropDownStringItem,
+                                      child: Text(dropDownStringItem.email),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) => idEmail = value.id,
+                                )
+                              : Text(
+                                  'Você não possui nenhum e-mail cadastrado, ligue para 3133-0001'),
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                                child: controller.emails.data.length > 0
+                                    ? ContainedButtonWidget(
+                                        text: "Gerar Código",
+                                        onPressed: () => gerarCodigo(),
+                                        loading: controller.statusGeracaoCodigo
+                                                    .status ==
+                                                Status.loading
+                                            ? true
+                                            : false,
+                                      )
+                                    : ContainedButtonWidget(
+                                        text: "Gerar Código",
+                                      ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
                     );
                     break;
                   default:
@@ -96,25 +124,6 @@ class _EnviarCodigoPageState
                       ),
                     );
                 }
-              }),
-              Observer(builder: (_) {
-                return Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: ContainedButtonWidget(
-                          text: "Gerar Código",
-                          onPressed: () => gerarCodigo(),
-                          loading: controller.statusGeracaoCodigo.status ==
-                                  Status.loading
-                              ? true
-                              : false,
-                        ),
-                      ),
-                    ),
-                  ],
-                );
               }),
               GestureDetector(
                   onTap: () => Modular.navigator.pop(),

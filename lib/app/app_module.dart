@@ -197,8 +197,6 @@ class AppModule extends MainModule {
             child: (_, args) => SindicoPage()),
         ModularRouter(RouteName.cadastro_espaco,
             child: (_, args) => CadastroEspacoPage(id: args.data)),
-        // ModularRouter(RouteName.detalhe_boleto,
-        //     child: (_, args) => DetalheBoletoPage(codord: args.data)),
         ModularRouter(RouteName.balancetes,
             child: (_, args) => BalancetePage()),
         ModularRouter(RouteName.reservas, child: (_, args) => ReservaPage()),

@@ -105,10 +105,7 @@ class CondominioRemoteDataSource {
     try {
       final result = await _dio.post('validar-codigo-ativacao/$codigo');
 
-      return ResourceData(
-          status: Status.success,
-          data: result['status'],
-          message: "'Não foi possível, tente gerar novamente'");
+      return ResourceData(status: Status.success, data: result['status']);
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,
