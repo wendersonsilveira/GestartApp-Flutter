@@ -19,39 +19,77 @@ final $DetalhesReservaController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$DetalhesReservaController on _DetalhesReservaControllerBase, Store {
-  final _$valueAtom = Atom(name: '_DetalhesReservaControllerBase.value');
+  final _$reservaAtom = Atom(name: '_DetalhesReservaControllerBase.reserva');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  ResourceData<ReservaEntity> get reserva {
+    _$reservaAtom.reportRead();
+    return super.reserva;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set reserva(ResourceData<ReservaEntity> value) {
+    _$reservaAtom.reportWrite(value, super.reserva, () {
+      super.reserva = value;
     });
   }
 
-  final _$_DetalhesReservaControllerBaseActionController =
-      ActionController(name: '_DetalhesReservaControllerBase');
+  final _$statusAprovarAtom =
+      Atom(name: '_DetalhesReservaControllerBase.statusAprovar');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_DetalhesReservaControllerBaseActionController
-        .startAction(name: '_DetalhesReservaControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_DetalhesReservaControllerBaseActionController.endAction(_$actionInfo);
-    }
+  ResourceData<dynamic> get statusAprovar {
+    _$statusAprovarAtom.reportRead();
+    return super.statusAprovar;
+  }
+
+  @override
+  set statusAprovar(ResourceData<dynamic> value) {
+    _$statusAprovarAtom.reportWrite(value, super.statusAprovar, () {
+      super.statusAprovar = value;
+    });
+  }
+
+  final _$statusRejeitarAtom =
+      Atom(name: '_DetalhesReservaControllerBase.statusRejeitar');
+
+  @override
+  ResourceData<dynamic> get statusRejeitar {
+    _$statusRejeitarAtom.reportRead();
+    return super.statusRejeitar;
+  }
+
+  @override
+  set statusRejeitar(ResourceData<dynamic> value) {
+    _$statusRejeitarAtom.reportWrite(value, super.statusRejeitar, () {
+      super.statusRejeitar = value;
+    });
+  }
+
+  final _$aprovarReservaAsyncAction =
+      AsyncAction('_DetalhesReservaControllerBase.aprovarReserva');
+
+  @override
+  Future<ResourceData<dynamic>> aprovarReserva(int reservaId) {
+    return _$aprovarReservaAsyncAction
+        .run(() => super.aprovarReserva(reservaId));
+  }
+
+  final _$rejeitarReservaAsyncAction =
+      AsyncAction('_DetalhesReservaControllerBase.rejeitarReserva');
+
+  @override
+  Future<ResourceData<dynamic>> rejeitarReserva(int reservaId) {
+    return _$rejeitarReservaAsyncAction
+        .run(() => super.rejeitarReserva(reservaId));
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+reserva: ${reserva},
+statusAprovar: ${statusAprovar},
+statusRejeitar: ${statusRejeitar}
     ''';
   }
 }

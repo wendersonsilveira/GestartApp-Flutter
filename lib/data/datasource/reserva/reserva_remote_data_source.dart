@@ -48,6 +48,26 @@ class ReservaRemoteDataSource {
     }
   }
 
+  Future<ResourceData<ReservaEntity>> getReservaAdm(int idReserva) async {
+    try {
+      final result = await _dio.get('adm-reserva/$idReserva');
+      if (result.length > 0)
+        return ResourceData(
+            status: Status.success,
+            data: ReservaEntity().fromMap(result[0]),
+            message: 'Reserva Adm');
+      else
+        return ResourceData(
+            status: Status.success, data: null, message: 'Reserva Adm');
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar a reserva",
+          error: ErrorMapper.from(e));
+    }
+  }
+
   Future<ResourceData> aprovarReservar(int reservaId) async {
     try {
       await _dio.post('aprovar-reserva/$reservaId');

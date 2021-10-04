@@ -101,6 +101,7 @@ import 'package:Gestart/domain/usecases/recebimento/get_tipos_taxa_use_case.dart
 import 'package:Gestart/domain/usecases/reserva/aprovar_reserva_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/criar_espaco_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/excluir_espaco_use_case.dart';
+import 'package:Gestart/domain/usecases/reserva/get_reserva_adm_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_adm_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/rejeitar_reserva_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_adm_unidades_prop_use_case.dart';
@@ -257,8 +258,11 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => RejeitarReservaUseCase(get<ReservaRepository>()));
   gh.factory<GetReservasAdmUseCase>(
       () => GetReservasAdmUseCase(get<ReservaRepository>()));
+  gh.factory<GetReservaAdmUseCase>(
+      () => GetReservaAdmUseCase(get<ReservaRepository>()));
   gh.factory<CancelarReservaUseCase>(
       () => CancelarReservaUseCase(get<ReservaRepository>()));
+
   //espacos
   gh.factory<EspacoRemoteDataSource>(
       () => EspacoRemoteDataSource(get<CustomDio>()));
