@@ -6,7 +6,6 @@ import 'package:Gestart/app/widgets/download/download_list_item_widget.dart';
 import 'package:Gestart/app/widgets/inputs/dropdown_button_field.widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'balancete_controller.dart';
@@ -85,7 +84,6 @@ class _BalancetePageState extends ModularState<BalancetePage, BalanceteControlle
                                           ),
                                         ],
                                       ),
-                                      trailing: Icon(FlutterIcons.download_faw),
                                       subtitle:
                                           Text('Período: ${UIHelper.formatDate(controller.balancetes[index].dt1)} - ${UIHelper.formatDate(controller.balancetes[index].dt2)}'),
                                       fileURL: controller.balancetes[index].linkBalanceteAna,
