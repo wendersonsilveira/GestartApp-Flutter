@@ -16,16 +16,9 @@ class BalanceteRemoteDataSource {
     try {
       final result = await _dio.get('balancetes');
 
-      return ResourceData(
-          status: Status.success,
-          data: BalanceteEntity().fromMapList(result),
-          message: 'Balancete listados com sucesso!');
+      return ResourceData(status: Status.success, data: BalanceteEntity().fromMapList(result), message: 'Balancete listados com sucesso!');
     } on DioError catch (e) {
-      return ResourceData(
-          status: Status.failed,
-          data: null,
-          message: "Erro ao listar balancetes",
-          error: ErrorMapper.from(e));
+      return ResourceData(status: Status.failed, data: null, message: "Erro ao listar balancetes", error: ErrorMapper.from(e));
     }
   }
 }

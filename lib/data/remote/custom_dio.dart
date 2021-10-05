@@ -11,12 +11,10 @@ class CustomDio {
     _dio.options.receiveTimeout = 30000;
 
     _dio.interceptors.add(_authInterceptor);
-    _dio.interceptors.add(LogInterceptor(
-        requestBody: true, responseBody: true, requestHeader: true));
+    _dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true, requestHeader: true));
 
     // _dio.options.baseUrl = "http://api.gestartapp.com.br:8080/gestartapp/";
-    _dio.options.baseUrl =
-        "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/";
+    _dio.options.baseUrl = "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/";
     // _dio.options.baseUrl = "localhost:";
   }
 
@@ -46,16 +44,21 @@ class CustomDio {
     Map<String, dynamic> extra,
     onReceiveProgress,
   }) async {
-    final res = await _dio.get<T>(
-      path,
-      onReceiveProgress: onReceiveProgress,
-      queryParameters: queryParameters,
-      options: Options(
-        headers: headers,
-        extra: extra,
-      ),
-    );
-    return res.data;
+    try {
+      final res = await _dio.get<T>(
+        path,
+        onReceiveProgress: onReceiveProgress,
+        queryParameters: queryParameters,
+        options: Options(
+          headers: headers,
+          extra: extra,
+        ),
+      );
+      return res.data;
+    } catch (error) {
+      if (error.response == null) {}
+      return null;
+    }
   }
 
   Future<T> patch<T>(
@@ -97,11 +100,7 @@ class CustomDio {
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
       queryParameters: queryParameters,
-      options: Options(
-          headers: headers,
-          extra: extra,
-          contentType:
-              contentType != null ? contentType : Headers.jsonContentType),
+      options: Options(headers: headers, extra: extra, contentType: contentType != null ? contentType : Headers.jsonContentType),
     );
     return res.data;
   }
