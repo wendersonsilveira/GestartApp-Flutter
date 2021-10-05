@@ -69,6 +69,13 @@ class AppTextTheme {
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold);
 
+  static TextStyle negrito = TextStyle(
+      // color: Colors.black,
+      fontSize: 40.sp,
+      fontFamily: 'roboto',
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold);
+
   static TextStyle white = TextStyle(
     color: Colors.white,
     fontSize: 5,
@@ -78,6 +85,12 @@ class AppTextTheme {
 
   static TextStyle smallIconEmoji = TextStyle(
       fontSize: 11.sp, fontFamily: 'roboto', fontStyle: FontStyle.normal);
+
+  static TextStyle negritoInformativo = TextStyle(
+      fontSize: 30.sp,
+      fontFamily: 'roboto',
+      fontWeight: FontWeight.bold,
+      fontStyle: FontStyle.normal);
 
   static TextStyle headingH4Regular2 = TextStyle(
       fontSize: 32.sp,
@@ -122,7 +135,7 @@ class AppTextTheme {
       fontStyle: FontStyle.normal);
 
   static TextStyle bodySemibold4 = TextStyle(
-      fontSize: 19.sp,
+      fontSize: 24.sp,
       fontFamily: 'roboto',
       fontWeight: FontWeight.w600,
       fontStyle: FontStyle.normal);
@@ -242,7 +255,7 @@ class AppTextTheme {
 
   static TextStyle titleAlertQestion = TextStyle(
     fontSize: 36.sp,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.bold,
     letterSpacing: 0.15.sp,
     fontFamily: 'roboto',
     color: AppColorScheme.black,
@@ -294,7 +307,7 @@ class AppTextTheme {
   // -------- novos ------------------------------
 
   static TextStyle textActionButton = TextStyle(
-    fontSize: 32.sp,
+    fontSize: 30.sp,
     color: Color(0xFFffffff),
   );
 }

@@ -1,7 +1,7 @@
-import 'package:Gestart/domain/entities/condominio/condominio_ativo_entity.dart';
+import 'package:Gestart/domain/entities/condominio/unidades_ativa_entity.dart';
 
-extension CondominioAtivoMapper on CondominioAtivoEntity {
-  CondominioAtivoEntity copyWith({
+extension CondominioAtivoMapper on UnidadeAtivaEntity {
+  UnidadeAtivaEntity copyWith({
     int codcon,
     String nompro,
     String codimo,
@@ -15,7 +15,7 @@ extension CondominioAtivoMapper on CondominioAtivoEntity {
     int gestartapp,
     int gestartappReserva,
   }) {
-    return CondominioAtivoEntity(
+    return UnidadeAtivaEntity(
       codcon: codcon ?? this.codcon,
       nompro: nompro ?? this.nompro,
       codimo: codimo ?? this.codimo,
@@ -31,10 +31,10 @@ extension CondominioAtivoMapper on CondominioAtivoEntity {
     );
   }
 
-  CondominioAtivoEntity fromMap(Map<String, dynamic> map) {
+  UnidadeAtivaEntity fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
 
-    return CondominioAtivoEntity(
+    return UnidadeAtivaEntity(
       codcon: map['CODCON'],
       nompro: map['NOMPRO'],
       codimo: map['CODIMO'],

@@ -38,7 +38,10 @@ class _ViewDocumentosPageState
     return Scaffold(
       appBar: AppBarCustom(
         context,
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
       body: Center(child: PDFViewer(document: document)),
     );

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "443705811741",
+    "firebase_url": "https://gestartapp.firebaseio.com",
+    "project_id": "gestartapp",
+    "storage_bucket": "gestartapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:443705811741:android:d093719041925c2c",
+        "android_client_info": {
+          "package_name": "com.gestart.gestartapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "443705811741-8o5g1k874qj7nhsnce5iaius8viia5ek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIZe4825-6iq_5X2RRcZPYhotveXYeEdw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "443705811741-8o5g1k874qj7nhsnce5iaius8viia5ek.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "443705811741-dmohnje4badfjhnr7hokh1dhlbk3eknr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gestart.gestartapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

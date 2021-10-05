@@ -12,6 +12,7 @@ class PasswordOutlinedTextFieldWidget extends StatefulWidget {
   final void Function(String) onSubmitted;
   final TextInputAction textInputAction;
   final bool loading;
+  final bool isWhite;
 
   const PasswordOutlinedTextFieldWidget(
       {Key key,
@@ -23,7 +24,8 @@ class PasswordOutlinedTextFieldWidget extends StatefulWidget {
       this.focusNode,
       this.onSubmitted,
       this.textInputAction,
-      this.loading})
+      this.loading,
+      this.isWhite: false})
       : super(key: key);
 
   @override
@@ -55,6 +57,7 @@ class _PasswordOutlinedTextFieldWidgetState
       focusNode: widget.focusNode,
       onSubmitted: widget.onSubmitted,
       inputAction: widget.textInputAction,
+      isWhite: widget.isWhite,
     );
   }
 }

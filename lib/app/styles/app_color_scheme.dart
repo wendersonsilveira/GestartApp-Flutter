@@ -9,8 +9,7 @@ class AppColorScheme {
   ).copyWith(onPrimary: white);
 
   /// http://mcg.mbitson.com/
-  static const MaterialColor primaryswatch =
-      MaterialColor(_primaryswatchPrimaryValue, <int, Color>{
+  static const MaterialColor primaryswatch = MaterialColor(_primaryswatchPrimaryValue, <int, Color>{
     50: Color(0xFFEBF4EA),
     100: Color(0xFFCCE4C9),
     200: Color(0xFFAAD3A6),
@@ -24,8 +23,7 @@ class AppColorScheme {
   });
   static const int _primaryswatchPrimaryValue = 0xFF55A64C;
 
-  static const MaterialColor primaryswatchAccent =
-      MaterialColor(_primaryswatchAccentValue, <int, Color>{
+  static const MaterialColor primaryswatchAccent = MaterialColor(_primaryswatchAccentValue, <int, Color>{
     100: Color(0xFFC0FFBB),
     200: Color(_primaryswatchAccentValue),
     400: Color(0xFF61FF55),
@@ -40,6 +38,7 @@ class AppColorScheme {
   static const backgroundColor = Color(0xFFf4f4f4);
   static const primaryColor = Color(0xFF008001);
   static const primaryColor50 = Color(0xFFFFEBE3);
+  static const secondaryColor = Color(0x70008000);
 
   static const corMenuBotton = Color(0xFFe8e8e8);
 
@@ -49,6 +48,7 @@ class AppColorScheme {
   static const neutralLighest2 = Color(0xfff2f4f7);
   static const neutralMedium2 = Color(0xff9aa5b1);
   static const neutralMedium3 = Color(0xff757575);
+  static const neutralMedium4 = Color(0xFF414141);
   static const neutralDark2 = Color(0xff1f2933);
 
   static const feedbackWarningDefault2 = Color(0xffffc300);
@@ -80,4 +80,6 @@ class AppColorScheme {
   static const appleButton = Color.fromRGBO(0, 0, 0, 1);
 
   static const itemOptionCardShadow = Color(0xFFDCDCDC);
+
+  static const textInfo = Color(0xFF0975BD);
 }

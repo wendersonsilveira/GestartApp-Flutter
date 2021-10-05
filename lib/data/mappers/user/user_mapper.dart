@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:Gestart/domain/entities/auth/login_entity.dart';
 import 'package:Gestart/domain/entities/user/user_entity.dart';
 
 extension UserMapper on UserEntity {
@@ -13,6 +10,7 @@ extension UserMapper on UserEntity {
     String email,
     String telefone,
     String cpfCnpj,
+    String linkPhoto,
   }) {
     return UserEntity(
       status: status ?? this.status,
@@ -23,6 +21,7 @@ extension UserMapper on UserEntity {
       email: email ?? this.email,
       telefone: telefone ?? this.telefone,
       cpfCnpj: cpfCnpj ?? this.cpfCnpj,
+      linkPhoto: linkPhoto ?? this.linkPhoto,
     );
   }
 
@@ -32,12 +31,23 @@ extension UserMapper on UserEntity {
     return UserEntity(
       status: map['status'],
       cpfCnpj: map['CPFCNPJ'],
-      email: map['email'],
+      email: map['EMAIL'],
       id: map['ID'],
       nome: map['NOME'],
       sobreNome: map['SOBRENOME'],
       telefone: map['TELEFONE'],
       token: map['TOKEN'],
+      linkPhoto: map['LINK_PHOTO'],
     );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'NOME': nome,
+      'SOBRENOME': sobreNome,
+      'EMAIL': email,
+      'TELEFONE': telefone,
+      'CPFCNPJ': cpfCnpj,
+    };
   }
 }

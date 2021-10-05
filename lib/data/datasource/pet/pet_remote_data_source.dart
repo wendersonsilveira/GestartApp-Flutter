@@ -15,11 +15,9 @@ class PetRemoteDataSource {
 
   Future<ResourceData> createPet(PetEntity pet) async {
     try {
-      final result = await _dio.post('pets', data: pet.toMap());
+      await _dio.post('pets', data: pet.toMap());
       return ResourceData(
-          status: Status.success,
-          data: null,
-          message: 'Pet cadastrado com sucesso!');
+          status: Status.success, message: 'Pet cadastrado com sucesso!');
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,
@@ -36,7 +34,7 @@ class PetRemoteDataSource {
       return ResourceData(
           status: Status.success,
           data: PetEntity().fromMapList(result),
-          message: 'Pet cadastrado com sucesso!');
+          message: 'Pets listados com sucesso!');
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,
@@ -48,7 +46,7 @@ class PetRemoteDataSource {
 
   Future<ResourceData<PetEntity>> getPet(int id) async {
     try {
-      final result = await _dio.get('pet/${id}');
+      final result = await _dio.get('pet/$id');
 
       return ResourceData(
           status: Status.success,
@@ -59,6 +57,20 @@ class PetRemoteDataSource {
           status: Status.failed,
           data: null,
           message: "Erro ao listar o pets",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData> deletePet(int id) async {
+    try {
+      await _dio.delete('pet/$id');
+
+      return ResourceData(status: Status.success, message: 'Pet deletado!');
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao deletar o pets",
           error: ErrorMapper.from(e));
     }
   }

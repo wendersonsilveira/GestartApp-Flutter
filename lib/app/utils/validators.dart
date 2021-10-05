@@ -196,6 +196,14 @@ abstract class Validators {
     return 'Número inválido';
   }
 
+  static String maxCaracteres(String value) {
+    if (value == null || value.isEmpty) {
+      return "Campo em branco";
+    } else if (value.length > 150)
+      return "Quantidade de caractere máxima é 150";
+    return null;
+  }
+
   static String password(String password) {
     if (password == null || password.isEmpty) {
       return "Senha em branco";
@@ -219,6 +227,22 @@ abstract class Validators {
     if (password != repeatPassword) {
       return "Senhas diferentes";
     }
+    return null;
+  }
+
+  static String yearNotEmptyValid(String year) {
+    if (year == null || year.isEmpty) {
+      return "O ano não pode ser vazio.";
+    }
+
+    var now = DateTime.now();
+    if (int.parse(year) < 1800) {
+      return 'Ano inválido.';
+    }
+    if (int.parse(year) > now.year + 1) {
+      return 'Ano não pode ter 2 anos a mais que o atual.';
+    }
+
     return null;
   }
 }

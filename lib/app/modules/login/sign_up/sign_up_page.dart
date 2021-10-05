@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:Gestart/app/constants/route_name.dart';
-import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
@@ -198,6 +196,9 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                     ContainedButtonWidget(
                       text: "Criar Conta",
                       onPressed: _onactionCreateUser,
+                      loading: controller.loadingUser.status == Status.loading
+                          ? true
+                          : false,
                     )
                   ],
                 ),

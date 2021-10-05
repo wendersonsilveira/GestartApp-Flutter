@@ -31,7 +31,7 @@ class AssembleiaRemoteDataSource {
 
   Future<ResourceData<List<EditalEntity>>> getEdital(int id) async {
     try {
-      final result = await _dio.get('edital/${id}');
+      final result = await _dio.get('edital/$id');
       return ResourceData<List<EditalEntity>>(
           status: Status.success, data: EditalEntity().fromMapList(result));
     } on DioError catch (e) {

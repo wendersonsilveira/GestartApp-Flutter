@@ -1,9 +1,7 @@
 import 'package:Gestart/app/modules/assembleia/components/button_ata_widget.dart';
-import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
-import 'package:Gestart/app/widgets/buttons/flat_button_widget.dart';
+import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'detalhes_assembleia_controller.dart';
@@ -29,7 +27,6 @@ class _DetalhesAssembleiaPageState
   @override
   void initState() {
     controller.init(widget.id);
-    // print(controller.edital.data.length);
     super.initState();
   }
 
@@ -38,15 +35,17 @@ class _DetalhesAssembleiaPageState
     return Scaffold(
       appBar: AppBarCustom(
         context,
-        title: Text('${widget.id}'),
+        title: Text('Asembleia ${widget.id}'),
         elevation: 0,
       ),
-      body: Observer(
-        builder: (_) => controller.loading == true ||
-                controller.edital.data == null
-            ? Center(child: CircularProgressCustom())
-            : SingleChildScrollView(
-                child: Column(children: <Widget>[
+      body: Observer(builder: (_) {
+        switch (controller.loading) {
+          case 0:
+            return CircularProgressCustom();
+            break;
+          case 1:
+            return SingleChildScrollView(
+              child: Column(children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(20),
                   child: ListTile(
@@ -68,9 +67,10 @@ class _DetalhesAssembleiaPageState
                 ),
                 ButtonDocumentoWidget(
                   edital: controller.edital.data[0],
-                  tipoDocumento: 'ATA',
                   disponivel: controller.edital.data[0].idAta,
+                  tipoDocumento: 'ATA',
                   link: controller.edital.data[0].linkAta,
+                  fileName: 'ATA_${controller.fileName}',
                 ),
                 ButtonDocumentoWidget(
                   edital: controller.edital.data[0],
@@ -78,6 +78,7 @@ class _DetalhesAssembleiaPageState
                   disponivel:
                       controller.edital.data[0].linkEdital != null ? 1 : 0,
                   link: controller.edital.data[0].linkEdital,
+                  fileName: 'EDITAL_${controller.fileName}',
                 ),
                 Divider(),
                 Container(
@@ -101,17 +102,15 @@ class _DetalhesAssembleiaPageState
                                 (130.0 * controller.edital.data.length) > 520
                                     ? 520.h
                                     : (110.0 * controller.edital.data.length).h,
-                            child: Expanded(
-                              child: ListView.builder(
-                                itemCount: controller.edital.data.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(12),
-                                    child: Text(
-                                        '${index + 1} - ${controller.edital.data[index].assunto}'),
-                                  );
-                                },
-                              ),
+                            child: ListView.builder(
+                              itemCount: controller.edital.data.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(12),
+                                  child: Text(
+                                      '${index + 1} - ${controller.edital.data[index].assunto}'),
+                                );
+                              },
                             ),
                           ),
                         ],
@@ -155,8 +154,15 @@ class _DetalhesAssembleiaPageState
                         ),
                       )
                     : Container()
-              ])),
-      ),
+              ]),
+            );
+          default:
+            return PageError(
+              messageError: "Erro ao carregar as informções",
+              onPressed: (_) => controller.init(widget.id),
+            );
+        }
+      }),
     );
   }
 }

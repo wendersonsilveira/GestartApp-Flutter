@@ -1,4 +1,4 @@
-package com.example.Gestart
+package com.gestart.gestartapp
 
 import io.flutter.embedding.android.FlutterActivity
 

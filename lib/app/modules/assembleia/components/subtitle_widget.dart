@@ -16,7 +16,7 @@ class SubTitleWidget extends StatelessWidget {
             UIHelper.formatDate(data) +
             '-' +
             UIHelper.formatTime(hora)),
-        Text('Local: ${local}'),
+        Text('Local: $local'),
       ],
     );
   }

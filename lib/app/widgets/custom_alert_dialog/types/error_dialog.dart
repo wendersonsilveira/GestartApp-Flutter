@@ -34,6 +34,7 @@ class ErrorDialog extends StatelessWidget {
       content: Text(error),
       actions: [
         FlatButtonWidget(
+            cor: Colors.red,
             text: "Ok",
             onPressed: () {
               Navigator.of(context).pop();

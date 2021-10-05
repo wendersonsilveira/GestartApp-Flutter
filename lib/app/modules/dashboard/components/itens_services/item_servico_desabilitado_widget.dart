@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ItemServicoDesabilitadoWidget extends StatelessWidget {
-  const ItemServicoDesabilitadoWidget({Key key, this.icone, this.descricao})
-      : super(key: key);
+  const ItemServicoDesabilitadoWidget({Key key, this.icone, this.descricao}) : super(key: key);
   final IconData icone;
   final String descricao;
   @override
   Widget build(BuildContext context) {
     return Container(
+        padding: const EdgeInsets.symmetric(vertical: 5),
         color: AppColorScheme.grey,
         height: 40,
         width: double.infinity,
@@ -26,8 +26,7 @@ class ItemServicoDesabilitadoWidget extends StatelessWidget {
             ),
             Text(
               descricao,
-              style:
-                  TextStyle(color: AppColorScheme.primaryColor, fontSize: 16),
+              style: TextStyle(color: AppColorScheme.neutralMedium4, fontSize: 16),
             )
           ],
         ));

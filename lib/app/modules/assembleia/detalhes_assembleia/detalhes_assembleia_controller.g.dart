@@ -38,15 +38,31 @@ mixin _$DetalhesAssembleiaController
   final _$loadingAtom = Atom(name: '_DetalhesAssembleiaControllerBase.loading');
 
   @override
-  bool get loading {
+  int get loading {
     _$loadingAtom.reportRead();
     return super.loading;
   }
 
   @override
-  set loading(bool value) {
+  set loading(int value) {
     _$loadingAtom.reportWrite(value, super.loading, () {
       super.loading = value;
+    });
+  }
+
+  final _$fileNameAtom =
+      Atom(name: '_DetalhesAssembleiaControllerBase.fileName');
+
+  @override
+  String get fileName {
+    _$fileNameAtom.reportRead();
+    return super.fileName;
+  }
+
+  @override
+  set fileName(String value) {
+    _$fileNameAtom.reportWrite(value, super.fileName, () {
+      super.fileName = value;
     });
   }
 
@@ -62,7 +78,7 @@ mixin _$DetalhesAssembleiaController
       ActionController(name: '_DetalhesAssembleiaControllerBase');
 
   @override
-  void carregado(bool status) {
+  void carregado(int status) {
     final _$actionInfo = _$_DetalhesAssembleiaControllerBaseActionController
         .startAction(name: '_DetalhesAssembleiaControllerBase.carregado');
     try {
@@ -77,7 +93,8 @@ mixin _$DetalhesAssembleiaController
   String toString() {
     return '''
 edital: ${edital},
-loading: ${loading}
+loading: ${loading},
+fileName: ${fileName}
     ''';
   }
 }

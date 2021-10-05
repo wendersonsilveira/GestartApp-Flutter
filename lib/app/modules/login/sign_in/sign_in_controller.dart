@@ -18,15 +18,17 @@ abstract class _SignInControllerBase with Store {
   final _checkUser = getIt.get<CheckUserUseCase>();
   final _login = getIt.get<LoginUseCase>();
 
-  ResourceData<int> loadingCheck;
-  ResourceData<UserEntity> userLogin;
+  @observable
+  ResourceData<int> loadingCheck = ResourceData(status: Status.success);
+
+  @observable
+  ResourceData<UserEntity> userLogin = ResourceData(status: Status.success);
 
   // TODO: REMOVER DEPOIS
   testsUseCases() async {
-    //   var result =
-    //       await _login(LoginAuthEntity(usuario: '04008224319', senha: '090815'));
+    // var result = await _senLog("teste");
 
-    //   print("Result Check: \n ${result.data.toString()}");
+    // print("Result Check: \n ${result.data.toString()}");
   }
 
   @action

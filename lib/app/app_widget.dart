@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:Gestart/app/app_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class AppWidget extends StatefulWidget {
   @override
@@ -11,6 +12,11 @@ class AppWidget extends StatefulWidget {
 }
 
 class _AppWidgetState extends ModularState<AppWidget, AppController> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -22,6 +28,12 @@ class _AppWidgetState extends ModularState<AppWidget, AppController> {
       return controller.loading
           ? Container(child: Center(child: CircularProgressCustom()))
           : MaterialApp(
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: <Locale>[Locale.fromSubtags(languageCode: 'en')],
               navigatorKey: Modular.navigatorKey,
               title: 'Gestart App',
               theme: ThemeData(

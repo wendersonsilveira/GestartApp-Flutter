@@ -9,33 +9,30 @@ class ButtonServicesInativoWidget extends StatelessWidget {
   final String descricao;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        print('teste');
-      },
-      child: Column(
-        children: [
-          Container(
-            height: 60,
-            width: 60,
-            child: OutlinedButton(
-              onPressed: () {},
-              child: Icon(
-                icon,
-                color: AppColorScheme.primaryColor,
-              ),
-              style: OutlinedButton.styleFrom(
-                backgroundColor: Colors.grey[400],
-                shape: CircleBorder(),
-              ),
+    return Column(
+      children: [
+        Container(
+          height: 60,
+          width: 60,
+          child: OutlinedButton(
+            onPressed: () {
+              print('teste');
+            },
+            child: Icon(
+              icon,
+              color: AppColorScheme.primaryColor,
+            ),
+            style: OutlinedButton.styleFrom(
+              backgroundColor: Colors.grey[400],
+              shape: CircleBorder(),
             ),
           ),
-          Text(
-            descricao,
-            style: TextStyle(color: AppColorScheme.primaryColor),
-          )
-        ],
-      ),
+        ),
+        Text(
+          descricao,
+          style: TextStyle(color: AppColorScheme.primaryColor),
+        )
+      ],
     );
   }
 }

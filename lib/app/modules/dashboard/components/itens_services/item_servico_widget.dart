@@ -4,14 +4,7 @@ import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:flutter/material.dart';
 
 class ItemServicoWidget extends StatelessWidget {
-  const ItemServicoWidget(
-      {Key key,
-      this.condominioAtivo,
-      this.descricao,
-      this.icone,
-      this.routeName,
-      this.condominios})
-      : super(key: key);
+  const ItemServicoWidget({Key key, this.condominioAtivo, this.descricao, this.icone, this.routeName, this.condominios}) : super(key: key);
 
   final bool condominioAtivo;
   final String descricao;
@@ -20,20 +13,17 @@ class ItemServicoWidget extends StatelessWidget {
   final List<CondominioEntity> condominios;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 1),
-        child: Column(
-          children: [
-            condominioAtivo == false
-                ? ItemServicoDesabilitadoWidget(
-                    descricao: descricao, icone: icone)
-                : ItemServicoHabilitadoWidget(
-                    descricao: descricao,
-                    icone: icone,
-                    routeName: routeName,
-                    condominios: condominios,
-                  ),
-          ],
-        ));
+    return Column(
+      children: [
+        condominioAtivo == false
+            ? ItemServicoDesabilitadoWidget(descricao: descricao, icone: icone)
+            : ItemServicoHabilitadoWidget(
+                descricao: descricao,
+                icone: icone,
+                routeName: routeName,
+                condominios: condominios,
+              ),
+      ],
+    );
   }
 }

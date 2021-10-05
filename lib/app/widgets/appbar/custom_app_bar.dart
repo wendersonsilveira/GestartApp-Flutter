@@ -16,6 +16,7 @@ class AppBarCustom extends AppBar {
       bool automaticallyImplyLeading = true,
       double titleSpacing = 0.0,
       Widget leading,
+      bool center = true,
       PreferredSizeWidget bottom,
       Widget flexibleSpace})
       : super(
@@ -28,7 +29,7 @@ class AppBarCustom extends AppBar {
                     style: AppTextTheme.titleAppBar,
                   )
                 : title,
-            centerTitle: false,
+            centerTitle: center,
             actions: actions,
             backgroundColor: AppColorScheme.primaryColor,
             elevation: elevation,

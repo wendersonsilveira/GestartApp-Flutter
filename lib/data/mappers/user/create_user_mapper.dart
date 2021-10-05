@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:Gestart/domain/entities/auth/check_auth_entity.dart';
 import 'package:Gestart/domain/entities/user/create_user_entity.dart';
 
 extension CreateUserMapper on CreateUserEntity {

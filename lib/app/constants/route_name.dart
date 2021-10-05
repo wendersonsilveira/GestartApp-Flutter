@@ -11,4 +11,78 @@ class RouteName {
   static const String detalhes_assembleia = '/detalhes_assembleia';
   static const String view_documento = '/view_documento';
   static const String cadastro_pet = '/cadastro_pet';
+  static const String boleto = '/boleto';
+  static const String detalhe_boleto = '/detalhe_boleto';
+  static const String balancetes = '/balancetes';
+  static const String documentos = '/documentos';
+  static const String infor_condominio = '/infor_condominio';
+  static const String home = '/home';
+  static const String informativos = '/informativos';
+  static const String informativo = '/informativo';
+  static const String alterar_perfil = '/alterar_perfil';
+  static const String painel_sindico = '/painel_sindico';
+  static const String cadastro_espaco = '/cadastro_espaco';
+  static const String reservas = '/reservas';
+  static const String reservaUnidades = '/reserva_unidades';
+  static const String reservaEspacos = '/reserva_espacos';
+  static const String reservaHorarios = '/reserva_horarios';
+  static const String reservaCadastro = '/reserva_cadastro';
+  static const String reservaDados = '/reserva_dados';
+  static const String veiculos = '/veiculos';
+  static const String listar_espacos = '/listar_espacos';
+  static const String cadastroVeiculo = '/cadastroVeirculo';
+  static const String pesquisaVoz = '/pesquisa_voz';
+
+  static const String recebimentos = '/recebimentos';
+  static const String gerenciar_reserva = '/gerenciar_reserva';
+  static const String detalhes_reserva = '/detalhes_reserva';
+  static const String contas_fixas = '/contas_fixas';
+  static const String movimento_financeiro = '/movimento_financeiro';
+  static const String movimento_financeiro_detalhe =
+      '/movimento_financeiro_detalhe';
+  static const String cadastros_sindico = '/cadastros_sindico';
+  static const String condominio_online_ativar = '/condominio_online_ativar';
+  static const String ativar_codigo_email = '/ativar_codigo_email';
+  static const String detalhe_balancete = '/detalhe_balancete';
+
+  static const Map allRoutesKeys = {
+    'boleto': boleto,
+    'fatura': boleto,
+    'taxa': boleto,
+    'cota': boleto,
+    'taxa_condominio': boleto,
+    'vencimento': boleto,
+    'valor': boleto,
+    'codigo_de_barras': boleto,
+    'contas': balancetes,
+    'prestacao': balancetes,
+    'prestacao_contas': balancetes,
+    'balancete': balancetes,
+    'livro': balancetes,
+    'documento': documentos,
+    'regimento': documentos,
+    'regimento_interno': documentos,
+    'convencao': documentos,
+    'perfil': 'perfil',
+    'cadastro': cadastros,
+    'pet': pets,
+    'animal': pets,
+    'cachorro': pets,
+    'gato': pets,
+    'veiculo': veiculos,
+    'carro': veiculos,
+    'moto': veiculos,
+    'reserva': reservas,
+    'espaco': reservas,
+    'reserva_de_espaco': reservas,
+    'reserva de espaco': reservas,
+    'piscina': reservas,
+    'deck': reservas,
+    'churrasqueira': reservas,
+    'churrasco': reservas,
+    'assembleia': assembleia,
+    'edital': assembleia,
+    'ata': assembleia,
+    'painel': painel_sindico, //acrescentar as demais do sindico
+  };
 }
