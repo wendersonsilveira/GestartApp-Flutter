@@ -1,11 +1,13 @@
+import 'package:Gestart/app/modules/error/erro/component/button_expanded_widget.dart';
+import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'erro_controller.dart';
 
 class ErroPage extends StatefulWidget {
   final String title;
-  final int codeErro;
-  const ErroPage({Key key, this.title = "Erro", this.codeErro})
+  final String msgErro;
+  const ErroPage({Key key, this.title = "Erro", this.msgErro})
       : super(key: key);
 
   @override
@@ -16,22 +18,48 @@ class _ErroPageState extends ModularState<ErroPage, ErroController> {
   //use 'controller' variable to access controller
   @override
   void initState() {
-    print(widget.codeErro);
+    print(Modular.navigator.path);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Expanded(
+      body: Center(
         child: Container(
-          color: Color.fromRGBO(00, 80, 00, 20),
-          height: 150,
-          child: Column(
-            children: <Widget>[Text('testeste')],
+          margin: EdgeInsets.all(15),
+          height: 350,
+          width: MediaQuery.of(context).size.width,
+          child: Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  child: Icon(
+                    Icons.warning_amber_rounded,
+                    size: 100,
+                    color: Colors.red,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Text(
+                    'Atenção!',
+                    style: TextStyle(
+                      fontSize: 22,
+                    ),
+                  ),
+                ),
+                Text(widget.msgErro),
+                ButtonExpandedWidget(
+                  descricao: 'Recarregar',
+                  funcao: () {
+                    Modular.navigator.pop();
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

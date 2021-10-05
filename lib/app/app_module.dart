@@ -263,7 +263,7 @@ class AppModule extends MainModule {
                 )),
         ModularRouter(RouteName.error_page,
             child: (_, args) => ErroPage(
-                  codeErro: args.data,
+                  msgErro: args.data,
                 )),
       ];
 
