@@ -11,6 +11,7 @@ class FlatButtonWidget extends StatelessWidget {
   final ShapeBorder shap;
   final double fontSize;
   final EdgeInsetsGeometry padding;
+  final Color focusColor;
 
   FlatButtonWidget({
     @required this.text,
@@ -20,14 +21,17 @@ class FlatButtonWidget extends StatelessWidget {
     this.shap,
     this.fontSize = 12,
     this.padding,
+    this.focusColor,
   });
   @override
   Widget build(BuildContext context) {
     return FlatButton(
       height: 60.h,
       color: cor,
+      focusColor: focusColor != null ? focusColor : Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 50),
       onPressed: loading ? null : onPressed,
+      disabledColor: Colors.grey[600],
       child: loading
           ? CircularProgressCustom()
           : Container(
