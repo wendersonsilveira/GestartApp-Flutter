@@ -44,6 +44,7 @@ class RouteName {
   static const String condominio_online_ativar = '/condominio_online_ativar';
   static const String ativar_codigo_email = '/ativar_codigo_email';
   static const String detalhe_balancete = '/detalhe_balancete';
+  static const String error_page = '/error_page';
 
   static const Map allRoutesKeys = {
     'boleto': boleto,
