@@ -65,7 +65,7 @@ class _DetalheBalancetePageState
                           Divider(),
                           DownloadButtonWidget(
                             title: 'Analítico',
-                            fileURL: null,
+                            fileURL: balancete.linkBalanceteAna,
                             color: AppColorScheme.primaryColor,
                             fileName:
                                 'Balancete_Analitico_${balancete.apelido}_${balancete.mesAno}_v${balancete.versao}.${balancete.tipo}',
@@ -84,7 +84,7 @@ class _DetalheBalancetePageState
                             height: 5,
                           ),
                           DownloadButtonWidget(
-                            title: 'Dígital',
+                            title: 'Digital',
                             fileURL: balancete.linkBalanceteDigital,
                             color: AppColorScheme.primaryColor,
                             fileName:

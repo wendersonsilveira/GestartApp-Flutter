@@ -1,3 +1,4 @@
+import 'modules/error/erro/erro_controller.dart';
 import 'package:Gestart/app/modules/balancete/detalhe_balancete/detalhe_balancete_controller.dart';
 import 'package:Gestart/app/modules/balancete/detalhe_balancete/detalhe_balancete_page.dart';
 import 'package:Gestart/app/modules/condominio/ativar_condominio/codigo_ativacao/codigo_ativacao_controller.dart';
@@ -6,6 +7,7 @@ import 'package:Gestart/app/modules/condominio/ativar_condominio/condominio_onli
 import 'package:Gestart/app/modules/condominio/ativar_condominio/condominio_online/condominio_online_page.dart';
 import 'package:Gestart/app/modules/condominio/ativar_condominio/enviar_codigo/enviar_codigo_controller.dart';
 
+import 'modules/error/erro/erro_page.dart';
 import 'modules/sindico/cadastros/cadastros_controller.dart'
     as cadastroSindicoController;
 import 'package:Gestart/app/modules/sindico/financeiro/movimento_financeiro/detalhe_movimento/detalhe_movimento_page.dart';
@@ -109,6 +111,7 @@ import 'package:Gestart/app/app_widget.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        $ErroController,
         cadastroSindicoController.$CadastrosController,
         $DetalheMovimentoController,
         $MovimentoFinanceiroController,
@@ -158,7 +161,8 @@ class AppModule extends MainModule {
         $CondominioOnlineController,
         $CodigoAtivacaoController,
         $EnviarCodigoController,
-        $DetalheBalanceteController
+        $DetalheBalanceteController,
+        $ErroController
       ];
 
   @override
@@ -256,7 +260,11 @@ class AppModule extends MainModule {
         ModularRouter(RouteName.detalhe_balancete,
             child: (_, args) => DetalheBalancetePage(
                   balancete: args.data,
-                ))
+                )),
+        ModularRouter(RouteName.error_page,
+            child: (_, args) => ErroPage(
+                  codeErro: args.data,
+                )),
       ];
 
   @override
