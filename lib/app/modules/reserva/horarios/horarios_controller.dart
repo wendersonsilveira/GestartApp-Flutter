@@ -44,6 +44,9 @@ abstract class _HorariosControllerBase with Store {
   @observable
   Map<String, dynamic> espacoJSON;
 
+  @observable
+  bool showConfigEspaco = true;
+
   DateTime dia;
 
   var reserva = {
@@ -61,6 +64,11 @@ abstract class _HorariosControllerBase with Store {
   };
 
   @action
+  statusShowConfig() {
+    showConfigEspaco = !showConfigEspaco;
+  }
+
+  @action
   getHorariosEspaco(DateTime data) async {
     dia = data;
     isLoading = true;
@@ -69,8 +77,12 @@ abstract class _HorariosControllerBase with Store {
 
     final r = await _getHorariosEspaco(espaco.id, d);
     horarios = r.data;
+
     isLoading = false;
   }
+
+  @computed
+  bool get carregado => isLoading != true;
 
   @action
   setCodOrd(int codord) {
@@ -101,21 +113,29 @@ abstract class _HorariosControllerBase with Store {
   criarHorariosDisponiveis() async {
     final r = await _getHoras();
     horariosTotais = r.data;
-    horariosDisponiveis = r.data.where((element) => element.id >= horaIn && element.id <= horaFi).toList();
+    horariosDisponiveis = r.data
+        .where((element) => element.id >= horaIn && element.id <= horaFi)
+        .toList();
   }
 
   @action
   setHorariosFinal() {
-    horariosFinal = horariosDisponiveis.where((element) => element.id > horaIn).toList();
+    horariosFinal =
+        horariosDisponiveis.where((element) => element.id > horaIn).toList();
   }
 
   @action
   Future<String> salvarHorario() {
-    final permMim = horariosTotais.firstWhere((element) => element.id == espaco.perMin);
-    final permMax = horariosTotais.firstWhere((element) => element.id == espaco.perMax);
-    final antMax = horariosTotais.firstWhere((element) => element.id == espaco.antMax);
-    final antMin = horariosTotais.firstWhere((element) => element.id == espaco.antMin);
-    final horInSelect = horariosTotais.firstWhere((element) => element.id == horaIn);
+    final permMim =
+        horariosTotais.firstWhere((element) => element.id == espaco.perMin);
+    final permMax =
+        horariosTotais.firstWhere((element) => element.id == espaco.perMax);
+    final antMax =
+        horariosTotais.firstWhere((element) => element.id == espaco.antMax);
+    final antMin =
+        horariosTotais.firstWhere((element) => element.id == espaco.antMin);
+    final horInSelect =
+        horariosTotais.firstWhere((element) => element.id == horaIn);
 
     if ((horaFi - horaIn) > espaco.perMax) {
       return Future(() => 'A permanência máxima é de ${permMax.descricao}');
@@ -128,8 +148,12 @@ abstract class _HorariosControllerBase with Store {
     if (UIHelper.formatDate(dia) == UIHelper.formatDate(DateTime.now())) {
       var ant = antMin.descricao.replaceAll(r'hr', '').trim().split(':');
       final time = UIHelper.formatDateFromDateTimeReverse(dia).trim();
-      final timeMin = DateTime.now().add(Duration(hours: int.parse(ant[0]), minutes: int.parse(ant[1])));
-      var dateIn = DateTime.parse(time + ' ' + horInSelect.descricao.replaceAll(r'hr', '').trim() + ':00');
+      final timeMin = DateTime.now()
+          .add(Duration(hours: int.parse(ant[0]), minutes: int.parse(ant[1])));
+      var dateIn = DateTime.parse(time +
+          ' ' +
+          horInSelect.descricao.replaceAll(r'hr', '').trim() +
+          ':00');
 
       if (dateIn.isBefore(timeMin)) {
         return Future(() => 'Atecedência mínima é de ${antMin.descricao}');
@@ -137,7 +161,8 @@ abstract class _HorariosControllerBase with Store {
 
       if (antMax.descricao.contains(':')) {
         ant = antMax.descricao.replaceAll(r'hr', '').trim().split(':');
-        final timeMax = DateTime.now().add(Duration(hours: int.parse(ant[0]), minutes: int.parse(ant[1])));
+        final timeMax = DateTime.now().add(
+            Duration(hours: int.parse(ant[0]), minutes: int.parse(ant[1])));
 
         if (dateIn.isAfter(timeMax)) {
           return Future(() => 'Antecedência máxima é de ${antMax.descricao}');
@@ -150,8 +175,10 @@ abstract class _HorariosControllerBase with Store {
 
   @action
   criarJSONReserva() async {
-    final horaInId = horariosTotais.firstWhere((element) => element.id == horaIn);
-    final horaFiId = horariosTotais.firstWhere((element) => element.id == horaFi);
+    final horaInId =
+        horariosTotais.firstWhere((element) => element.id == horaIn);
+    final horaFiId =
+        horariosTotais.firstWhere((element) => element.id == horaFi);
 
     reserva['CODCON'] = espaco.codcon;
     reserva['ESPACO_ID'] = espaco.id;

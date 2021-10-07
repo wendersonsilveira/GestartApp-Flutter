@@ -219,7 +219,7 @@ class AppModule extends MainModule {
             child: (_, args) =>
                 cadastroReserva.CadastroPage(reserva: args.data)),
         ModularRouter(RouteName.reservaDados,
-            child: (_, args) => DadosReservaPage(reserva: args.data)),
+            child: (_, args) => DadosReservaPage(idReserva: args.data)),
         ModularRouter(RouteName.veiculos, child: (_, args) => VeiculosPage()),
         ModularRouter(RouteName.cadastroVeiculo,
             child: (_, args) => CadastroVeiculoPage(id: args.data)),

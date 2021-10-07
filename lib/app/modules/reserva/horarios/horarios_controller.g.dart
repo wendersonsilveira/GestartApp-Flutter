@@ -19,6 +19,14 @@ final $HorariosController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HorariosController on _HorariosControllerBase, Store {
+  Computed<bool> _$carregadoComputed;
+
+  @override
+  bool get carregado =>
+      (_$carregadoComputed ??= Computed<bool>(() => super.carregado,
+              name: '_HorariosControllerBase.carregado'))
+          .value;
+
   final _$horariosAtom = Atom(name: '_HorariosControllerBase.horarios');
 
   @override
@@ -187,6 +195,22 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
     });
   }
 
+  final _$showConfigEspacoAtom =
+      Atom(name: '_HorariosControllerBase.showConfigEspaco');
+
+  @override
+  bool get showConfigEspaco {
+    _$showConfigEspacoAtom.reportRead();
+    return super.showConfigEspaco;
+  }
+
+  @override
+  set showConfigEspaco(bool value) {
+    _$showConfigEspacoAtom.reportWrite(value, super.showConfigEspaco, () {
+      super.showConfigEspaco = value;
+    });
+  }
+
   final _$getHorariosEspacoAsyncAction =
       AsyncAction('_HorariosControllerBase.getHorariosEspaco');
 
@@ -223,6 +247,17 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
 
   final _$_HorariosControllerBaseActionController =
       ActionController(name: '_HorariosControllerBase');
+
+  @override
+  dynamic statusShowConfig() {
+    final _$actionInfo = _$_HorariosControllerBaseActionController.startAction(
+        name: '_HorariosControllerBase.statusShowConfig');
+    try {
+      return super.statusShowConfig();
+    } finally {
+      _$_HorariosControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setCodOrd(int codord) {
@@ -314,7 +349,9 @@ horaFi: ${horaFi},
 horariosTotais: ${horariosTotais},
 horariosDisponiveis: ${horariosDisponiveis},
 horariosFinal: ${horariosFinal},
-espacoJSON: ${espacoJSON}
+espacoJSON: ${espacoJSON},
+showConfigEspaco: ${showConfigEspaco},
+carregado: ${carregado}
     ''';
   }
 }

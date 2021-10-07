@@ -14,7 +14,7 @@ class BalanceteRemoteDataSource {
 
   Future<ResourceData<List<BalanceteEntity>>> getBalancetes() async {
     try {
-      final result = await _dio.get('balancetessssss');
+      final result = await _dio.get('balancetes');
 
       return ResourceData(
           status: Status.success,

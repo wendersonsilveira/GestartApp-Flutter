@@ -64,4 +64,11 @@ class ReservaRepositoryImpl implements ReservaRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData<ReservaEntity>> getReserva(int idReserva) async {
+    final resource = await _reservaRemoteDataSource.getReserva(idReserva);
+
+    return resource;
+  }
 }

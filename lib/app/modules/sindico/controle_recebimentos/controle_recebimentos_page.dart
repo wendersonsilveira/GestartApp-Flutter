@@ -13,7 +13,8 @@ class ControleRecebimentosPage extends StatefulWidget {
   const ControleRecebimentosPage({Key key}) : super(key: key);
 
   @override
-  _ControleRecebimentosPageState createState() => _ControleRecebimentosPageState();
+  _ControleRecebimentosPageState createState() =>
+      _ControleRecebimentosPageState();
 }
 
 class _ControleRecebimentosPageState extends State<ControleRecebimentosPage> {
@@ -21,8 +22,10 @@ class _ControleRecebimentosPageState extends State<ControleRecebimentosPage> {
     Modular.navigator.pushNamed(routeName).then((value) {
       FiltroWdget.filtro['CODORD'] = 0;
       FiltroWdget.filtro['TIPTAX'] = '0';
-      FiltroWdget.filtro['DATPAG_1'] = UIHelper.formatDateFromDateTimeReverse(DateTime.utc(DateTime.now().year, DateTime.now().month, 01));
-      FiltroWdget.filtro['DATPAG_2'] = UIHelper.formatDateFromDateTimeReverse(DateTime.now());
+      FiltroWdget.filtro['DATPAG_1'] = UIHelper.formatDateFromDateTimeReverse(
+          DateTime.utc(DateTime.now().year, DateTime.now().month, 01));
+      FiltroWdget.filtro['DATPAG_2'] =
+          UIHelper.formatDateFromDateTimeReverse(DateTime.now());
     });
   }
 
@@ -53,7 +56,7 @@ class _ControleRecebimentosPageState extends State<ControleRecebimentosPage> {
                 ),
                 Card(
                   child: ListTile(
-                    title: Text('Inadiplência'),
+                    title: Text('Inadimplência'),
                     leading: Icon(
                       FlutterIcons.square_faw,
                       color: AppColorScheme.primaryColor,
