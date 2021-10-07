@@ -240,7 +240,7 @@ class _CadastrosPageState
                                                     .toString(),
                                                 style: TextStyle(
                                                     color: Colors.black54)),
-                                            Text('Usuários do GestartApp',
+                                            Text('Usuários',
                                                 style: TextStyle(
                                                     color: Colors.black54),
                                                 textAlign: TextAlign.center)
@@ -271,7 +271,7 @@ class _CadastrosPageState
                                                     .toString(),
                                                 style: TextStyle(
                                                     color: Colors.black54)),
-                                            Text('Não usam o GestartApp',
+                                            Text('Não utilizam',
                                                 style: TextStyle(
                                                     color: Colors.black54),
                                                 textAlign: TextAlign.center)
@@ -395,7 +395,7 @@ class _CadastrosPageState
                             Container(
                               padding: EdgeInsets.symmetric(horizontal: 10),
                               child: Text(
-                                'Sua taxa de impacto pelo GestartApp. Quanto mais usuários melhor.',
+                                'Sua taxa de impacto. Quanto mais usuários melhor.',
                                 style: TextStyle(color: Colors.black54),
                               ),
                             ),

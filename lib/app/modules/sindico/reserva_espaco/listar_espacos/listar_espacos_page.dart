@@ -68,20 +68,12 @@ class _ListarEspacosPageState
       });
     } else {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        CustomAlertDialog.question(context,
-            colorPositive: AppColorScheme.feedbackDangerDark,
-            colorNegative: Colors.blue,
-            message:
-                "Existem reservas vinculadas a este espaço, deseja mesmo excluir?",
-            onActionPositiveButton: () {
-          excluirEspaco(idEspaco);
-          retorno = true;
-        }, onActionNegativeButton: () {
-          retorno = false;
-        },
-            textButtonNegative: "Não",
-            textButtonPositive: "Sim",
-            title: "Atenção");
+        CustomAlertDialog.info(
+          context,
+          "Atenção",
+          "Existem reservas vinculadas a este espaço. Não é possível excluir.",
+          () {},
+        );
       });
     }
     return retorno;

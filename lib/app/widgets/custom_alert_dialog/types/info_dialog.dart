@@ -33,11 +33,12 @@ class InfoDialog extends StatelessWidget {
       ),
       content: Text(message),
       actions: [
-        FlatButtonWidget(
-            text: "Ok",
-            onPressed: () {
-              Navigator.of(context).pop();
-            }),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text("OK"),
+        )
       ],
     );
   }
