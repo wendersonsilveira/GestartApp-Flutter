@@ -10,18 +10,24 @@ import 'notificacoes_controller.dart';
 
 class NotificacoesPage extends StatefulWidget {
   final String title;
-  const NotificacoesPage({Key key, this.title = "Notificações"}) : super(key: key);
+  const NotificacoesPage({Key key, this.title = "Notificações"})
+      : super(key: key);
 
   @override
   _NotificacoesPageState createState() => _NotificacoesPageState();
 }
 
-class _NotificacoesPageState extends ModularState<NotificacoesPage, NotificacoesController> {
+class _NotificacoesPageState
+    extends ModularState<NotificacoesPage, NotificacoesController> {
   //use 'controller' variable to access controller
   @override
   void initState() {
     controller.init();
     super.initState();
+  }
+
+  sendToDetail(int id, String page) {
+    Modular.navigator.pushNamed(page, arguments: id);
   }
 
   @override
@@ -47,13 +53,23 @@ class _NotificacoesPageState extends ModularState<NotificacoesPage, Notificacoes
                                 child: ListTile(
                               title: Column(
                                 children: [
-                                  Text(controller.notificacoes.data[index].titulo),
-                                  Text(controller.notificacoes.data[index].mensagem),
+                                  Text(controller
+                                      .notificacoes.data[index].titulo),
+                                  Text(controller
+                                      .notificacoes.data[index].mensagem),
                                 ],
                               ),
-                              subtitle: Text(UIHelper.formatDate(controller.notificacoes.data[index].createAt)),
+                              onTap: () {
+                                sendToDetail(
+                                    controller.notificacoes.data[index].itemId,
+                                    controller.notificacoes.data[index].openPage
+                                        .trim());
+                              },
+                              subtitle: Text(UIHelper.formatDate(controller
+                                  .notificacoes.data[index].createAt)),
                               leading: CircleAvatar(
-                                backgroundImage: NetworkImage(controller.notificacoes.data[index].linkPhoto),
+                                backgroundImage: NetworkImage(controller
+                                    .notificacoes.data[index].linkPhoto),
                               ),
                             ));
                           },

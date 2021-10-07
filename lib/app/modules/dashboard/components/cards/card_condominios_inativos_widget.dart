@@ -40,7 +40,7 @@ class CardCondInativosWidget extends StatelessWidget {
                 height: 26.h,
               ),
               Text(
-                  'Identificamos que seu CPF ou CNPJ está relacionado à condomínio(s):'),
+                  'Identificamos que seu CPF ou CNPJ está relacionado ao(s) condomínio(s):'),
               SizedBox(
                 height: 26.h,
               ),

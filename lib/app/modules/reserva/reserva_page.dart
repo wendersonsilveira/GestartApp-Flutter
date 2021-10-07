@@ -219,7 +219,7 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
                                           onTap: () => Modular.navigator
                                               .pushNamed(RouteName.reservaDados,
                                                   arguments: controller
-                                                      .reservas[index])
+                                                      .reservas[index].id)
                                               .then((value) =>
                                                   controller.getReservas()),
                                         )

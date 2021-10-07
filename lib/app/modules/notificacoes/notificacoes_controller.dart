@@ -21,5 +21,6 @@ abstract class _NotificacoesControllerBase with Store {
   init() async {
     notificacoes = ResourceData(status: Status.loading);
     notificacoes = await _getNotificacao();
+    print(notificacoes.data);
   }
 }

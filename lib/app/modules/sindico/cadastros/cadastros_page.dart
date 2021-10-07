@@ -210,11 +210,6 @@ class _CadastrosPageState
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 5),
-                                    child: Icon(Icons.chevron_right),
-                                  ),
                                 ],
                               ),
                             ),
@@ -404,7 +399,7 @@ class _CadastrosPageState
                                 horizontalFirst: true,
                                 data: [
                                   BarChartModel(
-                                    descricao: 'Usuários tivos',
+                                    descricao: 'Usuários ativos',
                                     valor: controller.resumo.isUser.toDouble(),
                                     color: charts.ColorUtil.fromDartColor(
                                         AppColorScheme.primaryColor),

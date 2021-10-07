@@ -67,8 +67,9 @@ class _CalendarioPageState
                               itemBuilder: (con, index) => Card(
                                   child: ListTile(
                                 onTap: () => Modular.navigator.pushNamed(
-                                    RouteName.detalhes_reserva,
-                                    arguments: controller.reservaAdmDia[index]),
+                                  RouteName.detalhes_reserva,
+                                  arguments: controller.reservaAdmDia[index].id,
+                                ),
                                 leading: Icon(
                                   Icons.alarm,
                                   color: AppColorScheme.primaryColor,
