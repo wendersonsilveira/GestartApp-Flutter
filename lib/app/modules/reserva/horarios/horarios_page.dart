@@ -86,7 +86,7 @@ class _HorariosPageState
                                     horario: controller.espaco.antMin,
                                   ),
                                   InforConfigWidget(
-                                      descricao: 'Antecedência Maxima:',
+                                      descricao: 'Antecedência máxima:',
                                       horario: controller.espaco.antMax),
                                   InforConfigWidget(
                                     descricao: 'Intervalo entre reservas:',
@@ -176,9 +176,9 @@ class _HorariosPageState
                         }).toList(),
                         onChanged: (int value) {
                           controller.setHorarioIn(value);
-                          controller.setHorarioFi(value >= controller.horaFi
-                              ? controller.horariosDisponiveis.last.id
-                              : controller.horaFi);
+                          // controller.setHorarioFi(value >= controller.horaFi
+                          //     ? controller.horariosDisponiveis.last.id
+                          //     : controller.horaFi);
                           controller.setHorariosFinal();
                           controller.setMsgErro(null);
                         },
@@ -242,6 +242,7 @@ class _HorariosPageState
           TextButton(
             onPressed: () {
               controller.setMsgErro(null);
+              controller.zerarHorarioFinal();
               Modular.navigator.pop();
             },
             child: const Text('Cancelar'),

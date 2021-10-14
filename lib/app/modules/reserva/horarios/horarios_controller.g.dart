@@ -293,6 +293,17 @@ mixin _$HorariosController on _HorariosControllerBase, Store {
   }
 
   @override
+  dynamic zerarHorarioFinal() {
+    final _$actionInfo = _$_HorariosControllerBaseActionController.startAction(
+        name: '_HorariosControllerBase.zerarHorarioFinal');
+    try {
+      return super.zerarHorarioFinal();
+    } finally {
+      _$_HorariosControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setHorariosFinal() {
     final _$actionInfo = _$_HorariosControllerBaseActionController.startAction(
         name: '_HorariosControllerBase.setHorariosFinal');

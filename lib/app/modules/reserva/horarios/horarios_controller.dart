@@ -119,9 +119,20 @@ abstract class _HorariosControllerBase with Store {
   }
 
   @action
+  zerarHorarioFinal() {
+    horariosFinal.clear();
+  }
+
+  @action
   setHorariosFinal() {
-    horariosFinal =
-        horariosDisponiveis.where((element) => element.id > horaIn).toList();
+    print('teste');
+    horariosFinal = horariosDisponiveis
+        .where((element) =>
+            element.id >= (horaIn + espaco.perMin) &&
+            element.id <= (horaIn + espaco.perMax))
+        .toList();
+    setHorarioFi(horariosFinal.last.id);
+    print(horariosFinal);
   }
 
   @action
@@ -156,7 +167,7 @@ abstract class _HorariosControllerBase with Store {
           ':00');
 
       if (dateIn.isBefore(timeMin)) {
-        return Future(() => 'Atecedência mínima é de ${antMin.descricao}');
+        return Future(() => 'Antecedência mínima é de ${antMin.descricao}');
       }
 
       if (antMax.descricao.contains(':')) {
