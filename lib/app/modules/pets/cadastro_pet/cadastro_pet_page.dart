@@ -29,7 +29,7 @@ class _CadastroPetPageState
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final List<String> tipos = ['', 'Cachorro', 'Gato', 'Pássaro', 'Outro'];
-  final List<String> portes = ['', 'Pequeno', 'Médio', 'Grange'];
+  final List<String> portes = ['', 'Pequeno', 'Médio', 'Grande'];
 
   final _nomeController = TextEditingController();
   final FocusNode _nomeFocus = FocusNode();
