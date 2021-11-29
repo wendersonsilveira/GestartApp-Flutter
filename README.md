@@ -49,3 +49,4 @@ Camada responsável por obter os dados, sejam eles remotos ou do database local 
 6. Criar o Use Case (domain/usecases)
 7. Registrar o Use Case, Repository, DataSources no GetIt (/di/dio_config)
 8. Fazer a chamada na view/pages
+ 

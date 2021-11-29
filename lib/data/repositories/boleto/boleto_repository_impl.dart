@@ -22,4 +22,12 @@ class BoletoRepositoryImpl implements BoletoRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData<String>> getLinkParcelamento(String identificador) async {
+    final resource =
+        await _boletoRemoteDataSource.getLinkParcelamento(identificador);
+
+    return resource;
+  }
 }

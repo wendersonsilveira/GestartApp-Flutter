@@ -24,6 +24,7 @@ extension DetalheBoletoMapper on DetalheBoletoEntity {
 
     return DetalheBoletoEntity(
       id: map['ID'],
+      identificador: map['IDENTIFICADOR'],
       datVen: DateTime.parse(map['DATVEN']),
       datEmi: DateTime.parse(map['DATEMI']),
       valTot: (map['VALTOT']).toDouble(),

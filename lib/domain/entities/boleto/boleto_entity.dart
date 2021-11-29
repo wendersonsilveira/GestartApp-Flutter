@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 @immutable
 class BoletoEntity {
   final int id;
+  final String identificador;
   final DateTime datven;
   final DateTime datemi;
   final double valtot;
@@ -18,6 +19,7 @@ class BoletoEntity {
 
   const BoletoEntity(
       {this.id,
+      this.identificador,
       this.datven,
       this.datemi,
       this.valtot,

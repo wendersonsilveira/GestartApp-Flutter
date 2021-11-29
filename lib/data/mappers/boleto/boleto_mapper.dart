@@ -4,6 +4,7 @@ extension BoletoMapper on BoletoEntity {
   BoletoEntity copyWith() {
     return BoletoEntity(
       id: id ?? this.id,
+      identificador: identificador ?? this.identificador,
       datven: datven ?? this.datven,
       datemi: datemi ?? this.datemi,
       valtot: valtot ?? this.valtot,
@@ -27,6 +28,7 @@ extension BoletoMapper on BoletoEntity {
 
     return BoletoEntity(
       id: map['ID'],
+      identificador: map['IDENTIFICADOR'],
       datven: DateTime.parse(map['DATVEN']),
       datemi: DateTime.parse(map['DATEMI']),
       valtot: (map['VALTOT']).toDouble(),

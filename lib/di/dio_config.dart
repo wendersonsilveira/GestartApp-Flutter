@@ -8,6 +8,7 @@ import 'package:Gestart/data/datasource/condominio/condominio_remote_data_source
 import 'package:Gestart/data/datasource/documento/documento_remote_data_source.dart';
 import 'package:Gestart/data/datasource/feed/feed_data_source.dart';
 import 'package:Gestart/data/datasource/notificacao/notificacao_data_source.dart';
+import 'package:Gestart/data/datasource/parcelamento/parelamento_boleto_remote_data_source.dart';
 import 'package:Gestart/data/datasource/pet/pet_remote_data_source.dart';
 import 'package:Gestart/data/datasource/recebimento/recebimento_data_source.dart';
 import 'package:Gestart/data/datasource/reserva/espaco_remote_data_source.dart';
@@ -128,6 +129,8 @@ import 'package:Gestart/domain/usecases/veiculo/create_veiculo_use_case.dart';
 import 'package:Gestart/domain/usecases/veiculo/delete_veiculo_use_case.dart';
 import 'package:Gestart/domain/usecases/veiculo/get_veiculo_use_case.dart';
 import 'package:Gestart/domain/usecases/veiculo/get_veiculos_use_case.dart';
+import 'package:Gestart/domain/usecases/parcelamento/get_link_parcelamento_use_case.dart';
+import 'package:Gestart/domain/repositories/parcelamento/parcelamento_boleto_repository.dart';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -204,6 +207,12 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<GetBoletosUseCase>(
       () => GetBoletosUseCase(get<BoletoRepository>()));
   gh.factory<GetBoletoUseCase>(() => GetBoletoUseCase(get<BoletoRepository>()));
+
+  //parcelamento
+  gh.factory<ParcelamentoBoletoRemoteDataSource>(
+      () => ParcelamentoBoletoRemoteDataSource(get<Dio>()));
+  gh.factory<GetLinkParcelamentoUseCase>(
+      () => GetLinkParcelamentoUseCase(get<ParcelamentoBoletoRepository>()));
 
   //unidade
   gh.factory<UnidadeRemoteDataSource>(
