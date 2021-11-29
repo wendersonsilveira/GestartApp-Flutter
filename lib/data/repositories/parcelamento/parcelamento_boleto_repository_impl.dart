@@ -7,20 +7,6 @@ class ParcelamentoBoletoRepositoryImpl implements ParcelamentoBoletoRepository {
 
   ParcelamentoBoletoRepositoryImpl(this._parcelamentoboletoRemoteDataSource);
 
-  // @override
-  // Future<ResourceData<List<BoletoEntity>>> getBoletos() async {
-  //   final resource = await _parcelamentoboletoRemoteDataSource.getBoletos();
-
-  //   return resource;
-  // }
-
-  // @override
-  // Future<ResourceData<DetalheBoletoEntity>> getBoleto(int codord) async {
-  //   final resource = await _parcelamentoboletoRemoteDataSource.getBoleto(codord);
-
-  //   return resource;
-  // }
-
   @override
   Future<ResourceData<String>> getLinkParcelamento(String identificador) async {
     final resource = await _parcelamentoboletoRemoteDataSource

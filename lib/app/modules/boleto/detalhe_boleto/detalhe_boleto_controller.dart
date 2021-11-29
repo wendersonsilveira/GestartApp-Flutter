@@ -1,7 +1,7 @@
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/boleto/detalhe_boleto_entity.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boleto_use_case.dart';
-import 'package:Gestart/domain/usecases/boleto/get_link_parcelamento_use_case.dart';
+import 'package:Gestart/domain/usecases/parcelamento/get_link_parcelamento_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
