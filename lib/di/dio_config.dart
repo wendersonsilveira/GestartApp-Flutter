@@ -31,6 +31,7 @@ import 'package:Gestart/data/repositories/condominio/condominio_repository_impl.
 import 'package:Gestart/data/repositories/documento/boleto_repository_impl.dart';
 import 'package:Gestart/data/repositories/feed/feed_repository_impl.dart';
 import 'package:Gestart/data/repositories/notificacao/notificacao_repository_impl.dart';
+import 'package:Gestart/data/repositories/parcelamento/parcelamento_boleto_repository_impl.dart';
 import 'package:Gestart/data/repositories/pet/pet_repository_impl.dart';
 import 'package:Gestart/data/repositories/recebimento/recebimento_repositoty_impl.dart';
 import 'package:Gestart/data/repositories/reserva/espaco_repository_impl.dart';
@@ -361,6 +362,10 @@ Future<GetIt> initGetIt(GetIt get) async {
 
   gh.singleton<BoletoRepository>(
       BoletoRepositoryImpl(get<BoletoRemoteDataSource>()));
+
+  gh.singleton<ParcelamentoBoletoRepository>(ParcelamentoBoletoRepositoryImpl(
+      get<ParcelamentoBoletoRemoteDataSource>()));
+
   gh.singleton<UnidadeRepository>(
       UnidadeRepositoryImpl(get<UnidadeRemoteDataSource>()));
 
