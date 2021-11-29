@@ -34,6 +34,22 @@ mixin _$DetalheBoletoController on _DetalheBoletoControllerBase, Store {
     });
   }
 
+  final _$urlConsultaAtom =
+      Atom(name: '_DetalheBoletoControllerBase.urlConsulta');
+
+  @override
+  ResourceData<String> get urlConsulta {
+    _$urlConsultaAtom.reportRead();
+    return super.urlConsulta;
+  }
+
+  @override
+  set urlConsulta(ResourceData<String> value) {
+    _$urlConsultaAtom.reportWrite(value, super.urlConsulta, () {
+      super.urlConsulta = value;
+    });
+  }
+
   final _$valueAtom = Atom(name: '_DetalheBoletoControllerBase.value');
 
   @override
@@ -56,6 +72,15 @@ mixin _$DetalheBoletoController on _DetalheBoletoControllerBase, Store {
     return _$initAsyncAction.run(() => super.init(idBoleto: idBoleto));
   }
 
+  final _$buscarLinkParcelamentoAsyncAction =
+      AsyncAction('_DetalheBoletoControllerBase.buscarLinkParcelamento');
+
+  @override
+  Future<dynamic> buscarLinkParcelamento(String identificador) {
+    return _$buscarLinkParcelamentoAsyncAction
+        .run(() => super.buscarLinkParcelamento(identificador));
+  }
+
   final _$_DetalheBoletoControllerBaseActionController =
       ActionController(name: '_DetalheBoletoControllerBase');
 
@@ -74,6 +99,7 @@ mixin _$DetalheBoletoController on _DetalheBoletoControllerBase, Store {
   String toString() {
     return '''
 boleto: ${boleto},
+urlConsulta: ${urlConsulta},
 value: ${value}
     ''';
   }

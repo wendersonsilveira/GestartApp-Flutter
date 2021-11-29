@@ -168,10 +168,12 @@ class _DetalheBoletoPageState
                               funcao: () => _shareContent('Boleto Bancário ' +
                                   controller.boleto.data.linkBoleto),
                             ),
-                            ButtonExpandedWidget(
-                                descricao: 'PARCELAR',
-                                funcao: () => getUrlParcelamento(
-                                    controller.boleto.data.identificador)),
+                            controller.urlConsulta.status == Status.loading
+                                ? Container(child: CircularProgressCustom())
+                                : ButtonExpandedWidget(
+                                    descricao: 'PARCELAR',
+                                    funcao: () => getUrlParcelamento(
+                                        controller.boleto.data.identificador)),
                           ],
                         ),
                       ),
