@@ -60,7 +60,13 @@ abstract class _DetalheBoletoControllerBase with Store {
   @action
   Future buscarLinkParcelamento(String identificador) async {
     urlConsulta = ResourceData(status: Status.loading);
+
+    // add
+    boleto = ResourceData(status: Status.loading);
     urlConsulta = await _getLinkParcelamento(identificador);
+
+    // add
+    boleto = ResourceData(status: urlConsulta.status);
 
     print(urlConsulta);
     return urlConsulta;
