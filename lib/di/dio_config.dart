@@ -8,7 +8,7 @@ import 'package:Gestart/data/datasource/condominio/condominio_remote_data_source
 import 'package:Gestart/data/datasource/documento/documento_remote_data_source.dart';
 import 'package:Gestart/data/datasource/feed/feed_data_source.dart';
 import 'package:Gestart/data/datasource/notificacao/notificacao_data_source.dart';
-import 'package:Gestart/data/datasource/parcelamento/parelamento_boleto_remote_data_source.dart';
+import 'package:Gestart/data/datasource/parcelamento/parcelamento_boleto_remote_data_source.dart';
 import 'package:Gestart/data/datasource/pet/pet_remote_data_source.dart';
 import 'package:Gestart/data/datasource/recebimento/recebimento_data_source.dart';
 import 'package:Gestart/data/datasource/reserva/espaco_remote_data_source.dart';

@@ -42,6 +42,11 @@ class _DetalheBoletoPageState
     Share.share(value);
   }
 
+  void getUrlParcelamento(String identificador) async {
+    var urlConsulta = await controller.buscarLinkParcelamento(identificador);
+    _launchURL(urlConsulta.data);
+  }
+
   void _launchURL(_url) async => await canLaunch(_url)
       ? await launch(_url)
       : throw 'Could not launch $_url';
@@ -164,11 +169,9 @@ class _DetalheBoletoPageState
                                   controller.boleto.data.linkBoleto),
                             ),
                             ButtonExpandedWidget(
-                              descricao: 'PARCELAR',
-                              funcao: () => print(">>>> " +
-                                  controller.buscarLinkParcelamento(
-                                      controller.boleto.data.identificador)),
-                            ),
+                                descricao: 'PARCELAR',
+                                funcao: () => getUrlParcelamento(
+                                    controller.boleto.data.identificador)),
                           ],
                         ),
                       ),
