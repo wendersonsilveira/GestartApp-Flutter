@@ -43,5 +43,8 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
+# vsconfig
+.vscode/settings.json
+
 # fvm
 .fvm/

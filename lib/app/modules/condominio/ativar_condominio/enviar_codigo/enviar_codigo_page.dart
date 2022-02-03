@@ -107,6 +107,7 @@ class _EnviarCodigoPageState
                                             : false,
                                       )
                                     : ContainedButtonWidget(
+                                      onPressed: (){},
                                         text: "Gerar Código",
                                       ),
                               ),

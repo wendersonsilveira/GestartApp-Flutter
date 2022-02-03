@@ -22,7 +22,8 @@ class PesquisaPage extends StatefulWidget {
   _PesquisaPageState createState() => _PesquisaPageState();
 }
 
-class _PesquisaPageState extends ModularState<PesquisaPage, PesquisaController> {
+class _PesquisaPageState
+    extends ModularState<PesquisaPage, PesquisaController> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   stt.SpeechToText speech = stt.SpeechToText();
@@ -32,7 +33,7 @@ class _PesquisaPageState extends ModularState<PesquisaPage, PesquisaController> 
 
   @override
   void initState() {
-    listeningVoice();
+    // listeningVoice();
     super.initState();
   }
 
@@ -46,10 +47,11 @@ class _PesquisaPageState extends ModularState<PesquisaPage, PesquisaController> 
 
     if (await Permission.microphone.request().isGranted) {
       setListening(true);
-      bool available = await speech.initialize(onStatus: statusListener, onError: errorListener);
+      bool available = await speech.initialize(
+          onStatus: statusListener, onError: errorListener);
       if (available) {
         await speech.listen(onResult: pesquisarVoz, localeId: 'pt_BR');
-        Timer(Duration(seconds: 4), stopAndSearch);
+        Timer(Duration(seconds: 4), stopListern);
       } else {
         print("The user has denied the use of speech recognition.");
       }
@@ -111,7 +113,8 @@ class _PesquisaPageState extends ModularState<PesquisaPage, PesquisaController> 
       }
 
       if (!match) {
-        emptyMesg = 'Nem um recurso correspondente para: $resultado. \n Tente novamente.';
+        emptyMesg =
+            'Nem um recurso correspondente para: $resultado. \n Tente novamente.';
         stopListern();
       }
     }
@@ -142,11 +145,13 @@ class _PesquisaPageState extends ModularState<PesquisaPage, PesquisaController> 
               child: _isListing
                   ? Text(
                       'Fale agora..',
-                      style: TextStyle(color: AppColorScheme.primaryColor, fontSize: 18),
+                      style: TextStyle(
+                          color: AppColorScheme.primaryColor, fontSize: 18),
                     )
                   : Text(
                       'Clique no botão abaixo para iniciar',
-                      style: TextStyle(color: AppColorScheme.primaryColor, fontSize: 18),
+                      style: TextStyle(
+                          color: AppColorScheme.primaryColor, fontSize: 18),
                     ),
             ),
             Container(
