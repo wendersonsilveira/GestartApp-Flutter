@@ -63,6 +63,7 @@ import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/create_aviso_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/get_aviso_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/get_avisos_use_case.dart';
+import 'package:Gestart/domain/usecases/condominio/ativar_condominio_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/gerar_codigo_ativacao_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_emails_ativacao_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/send_codigo_ativacao_use_case.dart';
@@ -186,6 +187,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => GetEmailAtivacaoUseCase(get<CondominioRepository>()));
   gh.factory<GerarCodigoAtivacaoUseCase>(
       () => GerarCodigoAtivacaoUseCase(get<CondominioRepository>()));
+  gh.factory<AtivarCondominioUseCase>(
+      () => AtivarCondominioUseCase(get<CondominioRepository>()));
 
   //assembleia
   gh.factory<AssembleiaRemoteDataSource>(

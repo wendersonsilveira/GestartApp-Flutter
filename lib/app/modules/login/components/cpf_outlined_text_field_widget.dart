@@ -14,6 +14,7 @@ class OutlinedTextFieldWidget extends StatelessWidget {
   final bool loading;
   final IconData rightIcon;
   final bool isWhite;
+  final bool isText;
 
   const OutlinedTextFieldWidget(
       {Key key,
@@ -28,13 +29,14 @@ class OutlinedTextFieldWidget extends StatelessWidget {
       this.textInputAction,
       this.loading,
       this.rightIcon,
+      this.isText: false,
       this.isWhite: false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return OutlinedTextFieldFormWidget(
-      keyboardType: TextInputType.number,
+      keyboardType: isText ? TextInputType.name : TextInputType.number,
       validator: validator,
       textError: errorText,
       controller: controller,

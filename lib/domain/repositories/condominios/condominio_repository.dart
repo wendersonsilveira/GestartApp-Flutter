@@ -1,3 +1,4 @@
+import 'package:Gestart/domain/entities/auth/login_entity.dart';
 import 'package:Gestart/domain/entities/condominio/emails_ativacao_entity.dart';
 import 'package:Gestart/domain/entities/condominio/unidades_ativa_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
@@ -13,4 +14,5 @@ abstract class CondominioRepository {
   Future<ResourceData<List<EmailAtivacaoEntity>>> getEmailsAtivacao();
   Future<ResourceData> sendCodigoAtivacao(String codigo);
   Future<ResourceData<int>> gerarCodigoAtivacao(int idEmail);
+  Future<ResourceData<int>> ativarCondominio(LoginAuthEntity credenciais);
 }

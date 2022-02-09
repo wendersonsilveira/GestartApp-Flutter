@@ -12,6 +12,7 @@ import 'package:Gestart/data/mappers/condominio/condominios_ativos_mapper.dart';
 import 'package:Gestart/data/mappers/condominio/emails_ativacao_mapper.dart';
 import 'package:Gestart/domain/entities/user_adm/user_adm_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
+import 'package:Gestart/data/mappers/auth/login_mapper.dart';
 
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:dio/dio.dart';
@@ -149,17 +150,11 @@ class CondominioRemoteDataSource {
     }
   }
 
-  Future<ResourceData<List<UserAdmEntity>>> ativarCondominio(
-      LoginAuthEntity credencial) async {
+  Future<ResourceData<int>> ativarCondominio(LoginAuthEntity credencial) async {
     try {
-      final result = await _dio.post('loginConline');
+      final result = await _dio.post('loginConline', data: credencial.toMap());
 
-      if (result.length > 0)
-        return ResourceData<List<UserAdmEntity>>(
-            status: Status.success, data: UserAdmEntity().fromMapList(result));
-      else
-        return ResourceData<List<UserAdmEntity>>(
-            status: Status.success, data: null);
+      return ResourceData<int>(status: Status.success, data: result['status']);
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,

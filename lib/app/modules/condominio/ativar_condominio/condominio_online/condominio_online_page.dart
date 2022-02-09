@@ -1,9 +1,15 @@
+import 'dart:async';
+
+import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/login/components/cpf_outlined_text_field_widget.dart';
 import 'package:Gestart/app/modules/login/components/password_outlined_text_field_widget.dart';
 import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
+import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
+import 'package:Gestart/domain/entities/auth/login_entity.dart';
+import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -23,29 +29,41 @@ class _CondominioOnlinePageState
   //use 'controller' variable to access controller
 
   final _formKey = GlobalKey<FormState>();
-  final _cpfCnpjController = TextEditingController();
+  final _usuarioController = TextEditingController();
   final _senhaController = TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  void showInSnackBar(String value) {
+    _scaffoldKey.currentState
+        .showSnackBar(new SnackBar(content: new Text(value)));
+  }
 
   Future<void> _onactionLogin() async {
     if (!_formKey.currentState.validate()) return;
     if (_formKey.currentState.validate()) {
       FocusScope.of(context).unfocus();
-      // final login = await controller.login(LoginAuthEntity(
-      //     usuario: _cpfCnpjController.text, senha: _senhaController.text));
+      final login = await controller.ativarCondominio(LoginAuthEntity(
+          usuario: _usuarioController.text, senha: _senhaController.text));
 
-      // if (login.status == Status.failed) {
-      //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      //     CustomAlertDialog.error(context, login.message);
-      //   });
-      // } else if (login.data.status == 1) {
-      //   Modular.navigator.popAndPushNamed(RouteName.home);
-      // }
+      if (login.status == Status.failed) {
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+          CustomAlertDialog.error(context, login.message);
+        });
+      } else if (login.data == 1) {
+        showInSnackBar('Condomínio ativado com sucesso');
+        Timer(Duration(seconds: 1), () {
+          Modular.navigator.popAndPushNamed(RouteName.home);
+        });
+      } else {
+        showInSnackBar('Credenciais incorretas');
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBarCustom(
         context,
         title: Text(widget.title),
@@ -105,9 +123,10 @@ class _CondominioOnlinePageState
                           Observer(
                             builder: (_) => OutlinedTextFieldWidget(
                               placeholder: "Usuário",
-                              validator: Validators.cpfOrCnpj,
+                              validator: Validators.empty,
+                              isText: true,
                               isWhite: true,
-                              controller: _cpfCnpjController,
+                              controller: _usuarioController,
                             ),
                           ),
                           PasswordOutlinedTextFieldWidget(

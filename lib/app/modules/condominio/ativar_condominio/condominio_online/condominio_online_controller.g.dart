@@ -19,39 +19,51 @@ final $CondominioOnlineController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$CondominioOnlineController on _CondominioOnlineControllerBase, Store {
-  final _$valueAtom = Atom(name: '_CondominioOnlineControllerBase.value');
+  final _$statusAtivacaoAtom =
+      Atom(name: '_CondominioOnlineControllerBase.statusAtivacao');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  ResourceData<int> get statusAtivacao {
+    _$statusAtivacaoAtom.reportRead();
+    return super.statusAtivacao;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set statusAtivacao(ResourceData<int> value) {
+    _$statusAtivacaoAtom.reportWrite(value, super.statusAtivacao, () {
+      super.statusAtivacao = value;
     });
   }
 
-  final _$_CondominioOnlineControllerBaseActionController =
-      ActionController(name: '_CondominioOnlineControllerBase');
+  final _$statusAtom = Atom(name: '_CondominioOnlineControllerBase.status');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_CondominioOnlineControllerBaseActionController
-        .startAction(name: '_CondominioOnlineControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_CondominioOnlineControllerBaseActionController.endAction(_$actionInfo);
-    }
+  ResourceData<int> get status {
+    _$statusAtom.reportRead();
+    return super.status;
+  }
+
+  @override
+  set status(ResourceData<int> value) {
+    _$statusAtom.reportWrite(value, super.status, () {
+      super.status = value;
+    });
+  }
+
+  final _$ativarCondominioAsyncAction =
+      AsyncAction('_CondominioOnlineControllerBase.ativarCondominio');
+
+  @override
+  Future<ResourceData<int>> ativarCondominio(LoginAuthEntity credenciais) {
+    return _$ativarCondominioAsyncAction
+        .run(() => super.ativarCondominio(credenciais));
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+statusAtivacao: ${statusAtivacao},
+status: ${status}
     ''';
   }
 }
