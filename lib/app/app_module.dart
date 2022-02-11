@@ -72,7 +72,6 @@ import 'package:Gestart/app/modules/reserva/horarios/horarios_controller.dart';
 import 'package:Gestart/app/modules/reserva/horarios/horarios_page.dart';
 import 'package:Gestart/app/modules/reserva/unidades/unidades_controller.dart';
 
-import 'package:Gestart/app/modules/view_documentos/view_documentos_page.dart';
 import 'modules/documentos/documentos_page.dart';
 
 import 'modules/reserva/cadastro/cadastro_page.dart' as cadastroReserva;
@@ -80,7 +79,6 @@ import 'modules/reserva/reserva_controller.dart';
 import 'modules/reserva/reserva_page.dart';
 import 'modules/reserva/unidades/unidades_page.dart';
 import 'modules/veiculo/cadastro_veiculo/cadastro_veiculo_page.dart';
-import 'modules/view_documentos/view_documentos_controller.dart';
 import 'package:Gestart/app/modules/assembleia/assembleia_controller.dart';
 import 'package:Gestart/app/modules/assembleia/assembleia_page.dart';
 import 'package:Gestart/app/modules/assembleia/detalhes_assembleia/detalhes_assembleia_page.dart';
@@ -131,7 +129,6 @@ class AppModule extends MainModule {
         $InformativoController,
         $InformativoController,
         $InformativosController,
-        $ViewDocumentosController,
         $DashboardController,
         $AppController,
         $CondominioController,
@@ -179,11 +176,11 @@ class AppModule extends MainModule {
             child: (_, args) => AssembleiaPage()),
         ModularRouter(RouteName.detalhes_assembleia,
             child: (_, args) => DetalhesAssembleiaPage(id: args.data)),
-        ModularRouter(RouteName.view_documento,
-            child: (_, args) => ViewDocumentosPage(
-                  url: args.data[0],
-                  title: args.data[1],
-                )),
+        // ModularRouter(RouteName.view_documento,
+        //     child: (_, args) => ViewDocumentosPage(
+        //           url: args.data[0],
+        //           title: args.data[1],
+        //         )),
         ModularRouter(RouteName.cadastro_pet,
             child: (_, args) => CadastroPetPage(id: args.data)),
         ModularRouter(RouteName.boleto, child: (_, args) => BoletoPage()),

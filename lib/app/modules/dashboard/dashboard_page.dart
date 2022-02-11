@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/dashboard/components/cards/card_infor_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
-import 'package:Gestart/app/styles/app_images.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
@@ -13,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'components/button_services/button_services_widget.dart';
 import 'components/itens_services/item_servico_widget.dart';
 import 'dashboard_controller.dart';
@@ -40,7 +38,6 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 class _DashboardPageState
     extends ModularState<DashboardPage, DashboardController> {
   //use 'controller' variable to access controller
-  PDFDocument document;
   bool isNotifyConfig = false;
   @override
   void initState() {
