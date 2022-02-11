@@ -6,13 +6,13 @@ import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'veiculos_controller.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:Gestart/app/styles/app_text_theme.dart';
+import 'package:line_icons/line_icons.dart';
 
 class VeiculosPage extends StatefulWidget {
   final String title;
@@ -39,10 +39,8 @@ class _VeiculosPageState
   }
 
   void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(new SnackBar(
-      content: new Text(value),
-      duration: Duration(seconds: 1),
-    ));
+    final snackBar = SnackBar(content: Text(value));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   deleteVeiculo(int id) async {
@@ -85,7 +83,7 @@ class _VeiculosPageState
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            FlutterIcons.car_alt_faw5s,
+                            LineIcons.car,
                             size: 70,
                             color: AppColorScheme.primaryColor,
                           ),
@@ -132,7 +130,7 @@ class _VeiculosPageState
                                       leading: Container(
                                         padding: EdgeInsets.only(top: 9),
                                         child: Icon(
-                                          FlutterIcons.car_alt_faw5s,
+                                          LineIcons.car,
                                           size: 50.h,
                                           color: AppColorScheme.primaryColor,
                                         ),

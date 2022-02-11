@@ -3,9 +3,9 @@ import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:line_icons/line_icons.dart';
 import 'espacos_controller.dart';
 
 class EspacosPage extends StatefulWidget {
@@ -43,7 +43,8 @@ class _EspacosPageState extends ModularState<EspacosPage, EspacosController> {
             : Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 30),
                     child: Text(
                       'Selecione o espaço a ser reservado',
                       style: TextStyle(fontSize: 18),
@@ -57,18 +58,24 @@ class _EspacosPageState extends ModularState<EspacosPage, EspacosController> {
                         itemCount: controller.espacos.length,
                         itemBuilder: (BuildContext context, int index) => Card(
                           child: ListTile(
-                            title: Text(controller.espacos[index].descricao.trim()),
+                            title: Text(
+                                controller.espacos[index].descricao.trim()),
                             subtitle: Text(
                                 'Capacidade: ${controller.espacos[index].capacidade} pessoas.\n${controller.espacos[index].aprovacao ? 'REQUER APROVAÇÃO' : 'NÃO REQUER APROVAÇÃO'}'),
                             leading: Icon(
-                              FlutterIcons.square_faw,
+                              LineIcons.stop,
                               color: AppColorScheme.primaryColor,
                             ),
                             trailing: Icon(
                               Icons.arrow_right,
                               size: 40,
                             ),
-                            onTap: () => Modular.navigator.pushNamed(RouteName.reservaHorarios, arguments: [controller.espacos[index].id, widget.codord]),
+                            onTap: () => Modular.navigator.pushNamed(
+                                RouteName.reservaHorarios,
+                                arguments: [
+                                  controller.espacos[index].id,
+                                  widget.codord
+                                ]),
                           ),
                         ),
                       ),

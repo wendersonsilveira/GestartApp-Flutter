@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:line_icons/line_icons.dart';
 
 class FinanceiroPage extends StatefulWidget {
   const FinanceiroPage({Key key}) : super(key: key);
@@ -24,8 +24,8 @@ class _FinanceiroPageState extends State<FinanceiroPage> {
           ),
           Card(
             child: ListTile(
-                leading: Icon(FlutterIcons.square_faw,
-                    color: AppColorScheme.primaryColor),
+                leading:
+                    Icon(LineIcons.stop, color: AppColorScheme.primaryColor),
                 title: Text('Contas Fixas'),
                 trailing: Icon(Icons.arrow_right),
                 onTap: () =>
@@ -33,8 +33,8 @@ class _FinanceiroPageState extends State<FinanceiroPage> {
           ),
           Card(
             child: ListTile(
-                leading: Icon(FlutterIcons.square_faw,
-                    color: AppColorScheme.primaryColor),
+                leading:
+                    Icon(LineIcons.stop, color: AppColorScheme.primaryColor),
                 title: Text('Movimento Financeiro'),
                 trailing: Icon(Icons.arrow_right),
                 onTap: () => Modular.navigator

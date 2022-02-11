@@ -3,7 +3,8 @@ import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:line_icons/line_icons.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -66,7 +67,7 @@ class CardCondInativosWidget extends StatelessWidget {
                         child: Row(
                           children: [
                             Icon(
-                              FlutterIcons.check_circle_outline_mco,
+                              LineIcons.checkCircle,
                               size: 40.h,
                               color: AppColorScheme.primaryColor,
                             ),
@@ -78,7 +79,7 @@ class CardCondInativosWidget extends StatelessWidget {
                         ),
                       ),
                       Icon(
-                        FlutterIcons.md_arrow_round_forward_ion,
+                        LineIcons.arrowRight,
                         size: 40.h,
                         color: AppColorScheme.primaryColor,
                       ),

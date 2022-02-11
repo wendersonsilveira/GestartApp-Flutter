@@ -8,9 +8,9 @@ import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:line_icons/line_icons.dart';
 import 'listar_espacos_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -135,7 +135,7 @@ class _ListarEspacosPageState
                                           leading: Container(
                                             padding: EdgeInsets.only(top: 9),
                                             child: Icon(
-                                              FlutterIcons.square_faw,
+                                              LineIcons.stop,
                                               size: 50.h,
                                               color:
                                                   AppColorScheme.primaryColor,
@@ -161,7 +161,7 @@ class _ListarEspacosPageState
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            FlutterIcons.exclamation_triangle_faw,
+                            LineIcons.exclamationCircle,
                             size: 70,
                             color: AppColorScheme.primaryColor,
                           ),

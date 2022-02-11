@@ -7,7 +7,7 @@ import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'home_controller.dart';
 
@@ -85,7 +85,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(
-                  FlutterIcons.mic_mdi,
+                  Icons.mic,
                   color: Colors.grey,
                 ),
                 backgroundColor: AppColorScheme.corMenuBotton,
@@ -93,7 +93,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(
-                  FlutterIcons.bell_mco,
+                  LineIcons.bell,
                   color: Colors.grey,
                 ),
                 backgroundColor: AppColorScheme.corMenuBotton,
@@ -101,7 +101,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(
-                  FlutterIcons.person_mdi,
+                  LineIcons.user,
                   color: Colors.grey,
                 ),
                 backgroundColor: AppColorScheme.corMenuBotton,

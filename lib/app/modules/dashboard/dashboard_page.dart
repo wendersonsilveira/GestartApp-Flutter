@@ -8,10 +8,9 @@ import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/di/di.dart';
-import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
@@ -99,40 +98,43 @@ class _DashboardPageState
                 ]));
   }
 
-  void showTopSnackBar(BuildContext context, String message, String titulo,
-      {String page = '', String id = ''}) {
-    int iD = id != '' ? int.parse(id) : null;
-    String toPage = page.trim();
-    Flushbar(
-      icon: Image.asset(
-        AppImages.icon,
-        height: 30,
-        width: 30,
-      ),
-      shouldIconPulse: true,
-      message: message,
-      backgroundColor: Color.fromRGBO(60, 60, 60, 20),
-      title: titulo,
-      onTap: (_) {
-        if (toPage.isNotEmpty && iD != null)
-          Modular.navigator.pushNamed('$toPage', arguments: int.parse(id));
-        else if (toPage.isNotEmpty && iD == null)
-          Modular.navigator.pushNamed('$toPage');
-        else
-          print('Apenas notificação');
-      },
-      duration: Duration(seconds: 2),
-      flushbarPosition: FlushbarPosition.TOP,
-    )..show(context);
-  }
+  // void showTopSnackBar(BuildContext context, String message, String titulo,
+  //     {String page = '', String id = ''}) {
+  //   int iD = id != '' ? int.parse(id) : null;
+  //   String toPage = page.trim();
+  //   Flushbar(
+  //     icon: Image.asset(
+  //       AppImages.icon,
+  //       height: 30,
+  //       width: 30,
+  //     ),
+  //     shouldIconPulse: true,
+  //     message: message,
+  //     backgroundColor: Color.fromRGBO(60, 60, 60, 20),
+  //     title: titulo,
+  //     onTap: (_) {
+  //       if (toPage.isNotEmpty && iD != null)
+  //         Modular.navigator.pushNamed('$toPage', arguments: int.parse(id));
+  //       else if (toPage.isNotEmpty && iD == null)
+  //         Modular.navigator.pushNamed('$toPage');
+  //       else
+  //         print('Apenas notificação');
+  //     },
+  //     duration: Duration(seconds: 2),
+  //     flushbarPosition: FlushbarPosition.TOP,
+  //   )..show(context);
+  // }
 
   configNotificationIOS() {
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         var texto = message['body'];
         var titulo = message['title'];
-        showTopSnackBar(context, texto, titulo,
-            page: '/${message['servico']}', id: '${message['item_id']}');
+        print({texto});
+        print({titulo});
+        //flushbar descontinuado -
+        // showTopSnackBar(context, texto, titulo,
+        //     page: '/${message['servico']}', id: '${message['item_id']}');
       },
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
@@ -249,13 +251,13 @@ class _DashboardPageState
                                 ButtonSercicesWidget(
                                     condominioAtivo:
                                         controller.existeCondominiosAtivos,
-                                    icon: FlutterIcons.barcode_ant,
+                                    icon: LineIcons.barcode,
                                     descricao: 'Boleto Digital',
                                     route: RouteName.boleto),
                                 ButtonSercicesWidget(
                                   condominioAtivo:
                                       controller.existeCondominiosAtivos,
-                                  icon: FlutterIcons.md_paper_ion,
+                                  icon: LineIcons.newspaper,
                                   descricao: 'Prestação de Contas',
                                   route: RouteName.balancetes,
                                 ),
@@ -281,7 +283,7 @@ class _DashboardPageState
                                     condominioAtivo:
                                         controller.existeCondominiosAtivos,
                                     descricao: 'Assembleia',
-                                    icone: FlutterIcons.gavel_faw5s,
+                                    icone: LineIcons.gavel,
                                     routeName: RouteName.assembleia,
                                     condominios: controller.condominios.data,
                                   ),
@@ -291,7 +293,7 @@ class _DashboardPageState
                                     condominioAtivo:
                                         controller.existeCondominiosAtivos,
                                     descricao: 'Documentos',
-                                    icone: FlutterIcons.file1_ant,
+                                    icone: LineIcons.file,
                                     routeName: RouteName.documentos,
                                   ),
                                 ),
@@ -300,7 +302,7 @@ class _DashboardPageState
                                     condominioAtivo:
                                         controller.existeCondominiosAtivos,
                                     descricao: 'Seu Condomínio',
-                                    icone: FlutterIcons.building_faw,
+                                    icone: LineIcons.building,
                                     routeName: RouteName.infor_condominio,
                                   ),
                                 ),
@@ -308,7 +310,7 @@ class _DashboardPageState
                                   child: ItemServicoWidget(
                                     condominioAtivo: true,
                                     descricao: 'Cadastro',
-                                    icone: FlutterIcons.id_card_mco,
+                                    icone: LineIcons.creditCard,
                                     routeName: RouteName.cadastros,
                                   ),
                                 ),
@@ -317,7 +319,7 @@ class _DashboardPageState
                                         child: ItemServicoWidget(
                                           condominioAtivo: true,
                                           descricao: 'Painel do Síndico',
-                                          icone: FlutterIcons.md_analytics_ion,
+                                          icone: LineIcons.barChart,
                                           routeName: RouteName.painel_sindico,
                                         ),
                                       )

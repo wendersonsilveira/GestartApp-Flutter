@@ -1,5 +1,5 @@
 import 'package:string_validator/string_validator.dart';
-import 'package:cpfcnpj/cpfcnpj.dart';
+import 'package:Gestart/app/utils/cpfcnpj_validators.dart';
 
 abstract class Validators {
   static String string({String value, String message}) {

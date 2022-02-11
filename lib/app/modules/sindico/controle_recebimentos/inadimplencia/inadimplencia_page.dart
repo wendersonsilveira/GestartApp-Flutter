@@ -63,7 +63,7 @@ class _InadimplenciaPageState extends State<InadimplenciaPage> {
   Future<void> getFiltro() async {
     return showDialog(
       context: context,
-      child: SimpleDialog(
+      builder: (context) => SimpleDialog(
         contentPadding: EdgeInsets.all(20),
         children: [
           FiltroInadimWdget(
@@ -135,21 +135,25 @@ class _InadimplenciaPageState extends State<InadimplenciaPage> {
                             return Card(
                               child: ListTile(
                                 leading: CircleAvatar(
-                                  backgroundImage: NetworkImage(inadimplencias[index].linkPhoto),
+                                  backgroundImage: NetworkImage(
+                                      inadimplencias[index].linkPhoto),
                                 ),
                                 title: Text(inadimplencias[index].unidade),
                                 subtitle: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Tipo Cobrança: ${inadimplencias[index].tipcobDescri}'),
-                                    Text('TOTAL: ${UIHelper.moneyFormat(inadimplencias[index].total)}'),
+                                    Text(
+                                        'Tipo Cobrança: ${inadimplencias[index].tipcobDescri}'),
+                                    Text(
+                                        'TOTAL: ${UIHelper.moneyFormat(inadimplencias[index].total)}'),
                                   ],
                                 ),
                                 trailing: Icon(Icons.chevron_right),
                                 onTap: () {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (context) => InadimplenciaDetalhesPage(
+                                      builder: (context) =>
+                                          InadimplenciaDetalhesPage(
                                         filtro: filtro,
                                         codOrd: inadimplencias[index].codOrd,
                                       ),

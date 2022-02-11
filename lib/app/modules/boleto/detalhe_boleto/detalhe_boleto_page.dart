@@ -8,7 +8,7 @@ import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -117,7 +117,7 @@ class _DetalheBoletoPageState
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Icon(
-                                  FlutterIcons.barcode_ant,
+                                  LineIcons.barcode,
                                   size: 80,
                                 ),
                                 SizedBox(height: 30.h),

@@ -1,6 +1,6 @@
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:line_icons/line_icons.dart';
 
 class DropdownSearchButtonWidget extends StatefulWidget {
   final String hintText;
@@ -80,7 +80,7 @@ class _DropdownSearchButtonWidgetState
                               color: Colors.green,
                             )
                           : Icon(
-                              FlutterIcons.circle_outline_mco,
+                              LineIcons.circle,
                               color: Colors.green,
                             ),
                       onTap: () {

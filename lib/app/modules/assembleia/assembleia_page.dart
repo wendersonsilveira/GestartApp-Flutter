@@ -6,11 +6,11 @@ import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'assembleia_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:line_icons/line_icons.dart';
 
 import 'components/subtitle_widget.dart';
 import 'components/title_widget.dart';
@@ -129,8 +129,8 @@ class _AssembleiaPageState
                                                                             e.id);
                                                               },
                                                               leading: Icon(
-                                                                FlutterIcons
-                                                                    .calendar_alert_mco,
+                                                                LineIcons
+                                                                    .calendarCheck,
                                                                 size: 35,
                                                                 color:
                                                                     AppColorScheme
@@ -190,8 +190,8 @@ class _AssembleiaPageState
                                                                             e.id);
                                                               },
                                                               leading: Icon(
-                                                                FlutterIcons
-                                                                    .calendar_check_faw5s,
+                                                                LineIcons
+                                                                    .calendarCheck,
                                                                 size: 35,
                                                                 color: AppColorScheme
                                                                     .primaryColor,

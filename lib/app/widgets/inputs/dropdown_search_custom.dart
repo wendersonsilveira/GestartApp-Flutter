@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:line_icons/line_icons.dart';
 
 class DropdownSearchWidget extends StatefulWidget {
   final String hintText;
   final dynamic value;
   final Function onSelected;
   final List<DropdownSearchItem> items;
-  const DropdownSearchWidget({Key key, this.hintText, this.items, this.value, this.onSelected}) : super(key: key);
+  const DropdownSearchWidget(
+      {Key key, this.hintText, this.items, this.value, this.onSelected})
+      : super(key: key);
 
   @override
   _DropdownSearchWidgetState createState() => _DropdownSearchWidgetState();
@@ -21,12 +23,22 @@ class _DropdownSearchWidgetState extends State<DropdownSearchWidget> {
     super.initState();
     items = widget.items;
     itemsOld = widget.items;
-    title =
-        widget.value != 0 && widget.value != '0' && widget.value != '' && widget.value != null ? itemsOld.firstWhere((element) => element.value == widget.value).title.data : null;
+    title = widget.value != 0 &&
+            widget.value != '0' &&
+            widget.value != '' &&
+            widget.value != null
+        ? itemsOld
+            .firstWhere((element) => element.value == widget.value)
+            .title
+            .data
+        : null;
   }
 
   List<DropdownSearchItem> searchItems(String value) {
-    return itemsOld.where((element) => element.title.data.toLowerCase().contains(value.toLowerCase())).toList();
+    return itemsOld
+        .where((element) =>
+            element.title.data.toLowerCase().contains(value.toLowerCase()))
+        .toList();
   }
 
   _showOptionsList() {
@@ -68,7 +80,7 @@ class _DropdownSearchWidgetState extends State<DropdownSearchWidget> {
                               color: Colors.green,
                             )
                           : Icon(
-                              FlutterIcons.circle_outline_mco,
+                              LineIcons.circle,
                               color: Colors.green,
                             ),
                       onTap: () {
@@ -101,7 +113,9 @@ class _DropdownSearchWidgetState extends State<DropdownSearchWidget> {
       onTap: _showOptionsList,
       child: Container(
         padding: EdgeInsets.only(bottom: 5),
-        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey[500], width: 1))),
+        decoration: BoxDecoration(
+            border:
+                Border(bottom: BorderSide(color: Colors.grey[500], width: 1))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
