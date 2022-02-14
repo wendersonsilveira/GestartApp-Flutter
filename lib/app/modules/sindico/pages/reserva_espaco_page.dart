@@ -28,8 +28,7 @@ class _InicialPageState extends State<InicialPage> {
                     Icon(LineIcons.stop, color: AppColorScheme.primaryColor),
                 title: Text('Cadastro de Espaços'),
                 trailing: Icon(Icons.arrow_right),
-                onTap: () =>
-                    Modular.navigator.pushNamed(RouteName.listar_espacos)),
+                onTap: () => Modular.to.pushNamed(RouteName.listar_espacos)),
           ),
           Card(
             child: ListTile(
@@ -37,8 +36,7 @@ class _InicialPageState extends State<InicialPage> {
                     color: AppColorScheme.primaryColor),
                 title: Text('Gerenciamento de Reservas'),
                 trailing: Icon(Icons.arrow_right),
-                onTap: () =>
-                    Modular.navigator.pushNamed(RouteName.gerenciar_reserva)),
+                onTap: () => Modular.to.pushNamed(RouteName.gerenciar_reserva)),
           ),
         ],
       ),

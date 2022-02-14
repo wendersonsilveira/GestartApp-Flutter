@@ -31,7 +31,7 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
   }
 
   _editarPet(int id) {
-    Modular.navigator
+    Modular.to
         .pushNamed(RouteName.cadastro_pet, arguments: id)
         .then((value) => controller.getPets());
   }
@@ -46,7 +46,7 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
   deletePet(int id) async {
     final ResourceData r = await controller.deletePet(id);
     if (r.status == Status.success) {
-      Modular.navigator.pop(true);
+      Modular.to.pop(true);
       showInSnackBar("Pet excluído com sucesso");
     } else {
       showInSnackBar(r.message);
@@ -191,9 +191,8 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
                                                 ),
                                               ),
                                               FlatButton(
-                                                onPressed: () => Modular
-                                                    .navigator
-                                                    .pop(false),
+                                                onPressed: () =>
+                                                    Modular.to.pop(false),
                                                 child: const Text("Não"),
                                               ),
                                             ],

@@ -55,7 +55,7 @@ class CardCondInativosWidget extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Modular.navigator.pushNamed(RouteName.ativar_condominio);
+                  Modular.to.pushNamed(RouteName.ativar_condominio);
                 },
                 child: Container(
                   color: Colors.white,

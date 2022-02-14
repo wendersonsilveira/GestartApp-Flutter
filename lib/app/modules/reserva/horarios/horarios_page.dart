@@ -98,7 +98,7 @@ class _HorariosPageState
                                 FlatButton(
                                   child: Text("OK"),
                                   onPressed: () {
-                                    Modular.navigator.pop();
+                                    Modular.to.pop();
                                   },
                                 ),
                               ],
@@ -127,7 +127,7 @@ class _HorariosPageState
         ),
         actions: <Widget>[
           TextButton(
-            onPressed: () => Modular.navigator.pop(),
+            onPressed: () => Modular.to.pop(),
             child: const Text(
               'CANCELAR',
               style: TextStyle(color: AppColorScheme.feedbackDangerBase),
@@ -135,7 +135,7 @@ class _HorariosPageState
           ),
           TextButton(
             onPressed: () {
-              Modular.navigator.pushNamed(RouteName.reservaCadastro,
+              Modular.to.pushNamed(RouteName.reservaCadastro,
                   arguments: controller.reserva);
             },
             child: const Text('CONCORDO'),
@@ -243,7 +243,7 @@ class _HorariosPageState
             onPressed: () {
               controller.setMsgErro(null);
               controller.zerarHorarioFinal();
-              Modular.navigator.pop();
+              Modular.to.pop();
             },
             child: const Text('Cancelar'),
           ),

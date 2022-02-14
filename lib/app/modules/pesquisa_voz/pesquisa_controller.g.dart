@@ -8,8 +8,8 @@ part of 'pesquisa_controller.dart';
 
 final $PesquisaController = BindInject(
   (i) => PesquisaController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

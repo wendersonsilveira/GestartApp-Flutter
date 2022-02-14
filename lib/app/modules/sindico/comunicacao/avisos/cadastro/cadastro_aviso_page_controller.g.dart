@@ -8,8 +8,8 @@ part of 'cadastro_aviso_page_controller.dart';
 
 final $CadastroAvisoPageController = BindInject(
   (i) => CadastroAvisoPageController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

@@ -45,8 +45,7 @@ class _AtivarCondominioPageState
                 subtitle:
                     Text('Coloque o Usuário e Senha que vem no seu boleto'),
                 onTap: () {
-                  Modular.navigator
-                      .pushNamed(RouteName.condominio_online_ativar);
+                  Modular.to.pushNamed(RouteName.condominio_online_ativar);
                 }),
             Divider(),
             ListTile(
@@ -62,7 +61,7 @@ class _AtivarCondominioPageState
               title: Text('Por código de ativação'),
               subtitle: Text('Você receberá um Email com o código de ativação'),
               onTap: () {
-                Modular.navigator.pushNamed(RouteName.ativar_codigo_email);
+                Modular.to.pushNamed(RouteName.ativar_codigo_email);
               },
             ),
           ],

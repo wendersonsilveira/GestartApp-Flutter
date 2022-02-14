@@ -88,7 +88,7 @@ class _ListarEspacosPageState
           center: false,
           actions: [
             TextButton(
-              onPressed: () => Modular.navigator
+              onPressed: () => Modular.to
                   .pushNamed(RouteName.cadastro_espaco, arguments: null)
                   .then((value) => controller.init()),
               child: Text('ADICIONAR', style: AppTextTheme.textActionButton),
@@ -141,11 +141,10 @@ class _ListarEspacosPageState
                                                   AppColorScheme.primaryColor,
                                             ),
                                           ),
-                                          onTap: () => Modular.navigator
-                                              .pushNamed(
-                                                  RouteName.cadastro_espaco,
-                                                  arguments: controller
-                                                      .espacos.data[index].id),
+                                          onTap: () => Modular.to.pushNamed(
+                                              RouteName.cadastro_espaco,
+                                              arguments: controller
+                                                  .espacos.data[index].id),
                                         ),
                                         confirmDismiss: (_) =>
                                             checarSeExisteReservas(controller

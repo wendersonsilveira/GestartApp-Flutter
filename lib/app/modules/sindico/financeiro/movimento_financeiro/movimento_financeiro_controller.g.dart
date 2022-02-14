@@ -8,8 +8,8 @@ part of 'movimento_financeiro_controller.dart';
 
 final $MovimentoFinanceiroController = BindInject(
   (i) => MovimentoFinanceiroController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

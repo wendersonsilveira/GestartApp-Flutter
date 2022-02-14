@@ -69,7 +69,7 @@ class _InadimplenciaPageState extends State<InadimplenciaPage> {
           FiltroInadimWdget(
             onSubmit: (filtter) {
               getInadimplencias(filtter);
-              Modular.navigator.pop();
+              Modular.to.pop();
             },
             getHeader: setHeader,
           ),

@@ -53,7 +53,7 @@ class _InformativosPageState
                                 children: [
                                   ListTile(
                                     onTap: () {
-                                      Modular.navigator.pushNamed(
+                                      Modular.to.pushNamed(
                                           RouteName.informativo,
                                           arguments:
                                               controller.infor.data[index].id);

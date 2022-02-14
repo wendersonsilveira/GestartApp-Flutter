@@ -52,7 +52,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             message: "Deseja sair do GestartApp?",
             onActionPositiveButton: () =>
                 SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
-            onActionNegativeButton: () => Modular.navigator.pop,
+            onActionNegativeButton: () => Modular.to.pop,
             textButtonPositive: "Sim",
             colorPositive: AppColorScheme.feedbackDangerDark,
             textButtonNegative: "Cancelar",

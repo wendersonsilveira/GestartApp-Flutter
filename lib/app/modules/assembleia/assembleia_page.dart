@@ -120,13 +120,11 @@ class _AssembleiaPageState
                                                         .allLists[0]
                                                         .map((e) => ListTile(
                                                               onTap: () {
-                                                                Modular
-                                                                    .navigator
-                                                                    .pushNamed(
-                                                                        RouteName
-                                                                            .detalhes_assembleia,
-                                                                        arguments:
-                                                                            e.id);
+                                                                Modular.to.pushNamed(
+                                                                    RouteName
+                                                                        .detalhes_assembleia,
+                                                                    arguments:
+                                                                        e.id);
                                                               },
                                                               leading: Icon(
                                                                 LineIcons
@@ -181,13 +179,11 @@ class _AssembleiaPageState
                                                           children: [
                                                             ListTile(
                                                               onTap: () {
-                                                                Modular
-                                                                    .navigator
-                                                                    .pushNamed(
-                                                                        RouteName
-                                                                            .detalhes_assembleia,
-                                                                        arguments:
-                                                                            e.id);
+                                                                Modular.to.pushNamed(
+                                                                    RouteName
+                                                                        .detalhes_assembleia,
+                                                                    arguments:
+                                                                        e.id);
                                                               },
                                                               leading: Icon(
                                                                 LineIcons

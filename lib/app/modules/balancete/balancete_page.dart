@@ -94,7 +94,7 @@ class _BalancetePageState
                                           ],
                                         ),
                                         onTap: () {
-                                          Modular.navigator.pushNamed(
+                                          Modular.to.pushNamed(
                                               RouteName.detalhe_balancete,
                                               arguments:
                                                   controller.balancetes[index]);

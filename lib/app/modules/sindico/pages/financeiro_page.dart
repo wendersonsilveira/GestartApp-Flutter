@@ -28,8 +28,7 @@ class _FinanceiroPageState extends State<FinanceiroPage> {
                     Icon(LineIcons.stop, color: AppColorScheme.primaryColor),
                 title: Text('Contas Fixas'),
                 trailing: Icon(Icons.arrow_right),
-                onTap: () =>
-                    Modular.navigator.pushNamed(RouteName.contas_fixas)),
+                onTap: () => Modular.to.pushNamed(RouteName.contas_fixas)),
           ),
           Card(
             child: ListTile(

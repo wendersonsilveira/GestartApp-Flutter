@@ -66,7 +66,7 @@ class _CadastroEspacoPageState
           _scaffoldKey,
         );
         Timer(Duration(seconds: 1), () {
-          // Modular.navigator.pop();
+          // Modular.to.pop();
           Navigator.popUntil(
               context, ModalRoute.withName(RouteName.listar_espacos));
         });

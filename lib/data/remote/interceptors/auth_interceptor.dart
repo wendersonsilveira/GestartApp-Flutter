@@ -25,7 +25,7 @@ class AuthInterceptor extends Interceptor {
 
   goToLogin() {
     getIt.get<SharedPreferencesManager>().removeAll();
-    Modular.navigator.pushReplacementNamed(RouteName.login,
+    Modular.to.pushReplacementNamed(RouteName.login,
         arguments: 'Sua sessão expirou, logue–se novamente.');
   }
 

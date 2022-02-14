@@ -66,7 +66,7 @@ class _CalendarioPageState
                               itemCount: controller.reservaAdmDia.length,
                               itemBuilder: (con, index) => Card(
                                   child: ListTile(
-                                onTap: () => Modular.navigator.pushNamed(
+                                onTap: () => Modular.to.pushNamed(
                                   RouteName.detalhes_reserva,
                                   arguments: controller.reservaAdmDia[index].id,
                                 ),

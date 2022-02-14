@@ -18,7 +18,17 @@ class DownloadListItemWidget extends StatefulWidget {
   final Function onTap;
   final bool download;
 
-  const DownloadListItemWidget({Key key, this.fileURL, this.fileName, this.title, this.subtitle, this.leading, this.trailing, this.onTap, this.download = true}) : super(key: key);
+  const DownloadListItemWidget(
+      {Key key,
+      this.fileURL,
+      this.fileName,
+      this.title,
+      this.subtitle,
+      this.leading,
+      this.trailing,
+      this.onTap,
+      this.download = true})
+      : super(key: key);
 
   @override
   _DownloadListItemWidgetState createState() => _DownloadListItemWidgetState();
@@ -58,12 +68,13 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
           });
           OpenFile.open('$dir/$_name').then((v) {
             if (v.type == ResultType.noAppToOpen) {
-              showMessage(
-                  fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+              showMessage(fileName,
+                  'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
             }
           });
         } else {
-          await Dio().download(_url, '$dir/$_name', onReceiveProgress: (int received, int total) {
+          await Dio().download(_url, '$dir/$_name',
+              onReceiveProgress: (int received, int total) {
             if (total != -1) {
               setState(() {
                 downloadProgress = (received / total * 100);
@@ -76,8 +87,8 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
           });
           OpenFile.open('$dir/$_name').then((v) {
             if (v.type == ResultType.noAppToOpen) {
-              showMessage(
-                  fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+              showMessage(fileName,
+                  'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
             }
           });
         }
@@ -86,7 +97,8 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
       setState(() {
         downloadStatus = false;
       });
-      showMessage("inacessível", 'Falha ao realizar download. Verifique sua conexão com a internet.');
+      showMessage("inacessível",
+          'Falha ao realizar download. Verifique sua conexão com a internet.');
     }
   }
 
@@ -114,12 +126,13 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
         });
         OpenFile.open(dir.path + '/$_name').then((value) {
           if (value.type == ResultType.noAppToOpen) {
-            showMessage(
-                fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+            showMessage(fileName,
+                'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
           }
         });
       } else {
-        await Dio().download(_url, dir.path + '/$_name', onReceiveProgress: (int received, int total) {
+        await Dio().download(_url, dir.path + '/$_name',
+            onReceiveProgress: (int received, int total) {
           if (total != -1) {
             setState(() {
               downloadProgress = (received / total * 100);
@@ -137,8 +150,8 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
         });
         OpenFile.open('$dir/$_name').then((value) {
           if (value.type == ResultType.noAppToOpen) {
-            showMessage(
-                fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+            showMessage(fileName,
+                'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
           }
         });
       }
@@ -146,7 +159,8 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
       setState(() {
         downloadStatus = false;
       });
-      showMessage('inacessível', 'Falha ao realizar download. Verifique sua conexão com a internet');
+      showMessage('inacessível',
+          'Falha ao realizar download. Verifique sua conexão com a internet');
     }
   }
 
@@ -182,7 +196,7 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
             actions: [
               TextButton(
                 child: Text('OK'),
-                onPressed: () => Modular.navigator.pop(),
+                onPressed: () => Modular.to.pop(),
               )
             ],
           );
@@ -197,7 +211,8 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
         leading: widget.leading,
         title: widget.title,
         subtitle: widget.subtitle,
-        trailing: downloadStatus ? CircularProgressIndicator() : widget.trailing,
+        trailing:
+            downloadStatus ? CircularProgressIndicator() : widget.trailing,
         onTap: widget.onTap != null
             ? () {
                 widget.onTap();

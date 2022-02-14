@@ -8,8 +8,8 @@ part of 'detalhe_boleto_controller.dart';
 
 final $DetalheBoletoController = BindInject(
   (i) => DetalheBoletoController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

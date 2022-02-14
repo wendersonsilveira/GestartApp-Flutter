@@ -52,7 +52,7 @@ class _CondominioOnlinePageState
       } else if (login.data == 1) {
         showInSnackBar('Condomínio ativado com sucesso');
         Timer(Duration(seconds: 1), () {
-          Modular.navigator.popAndPushNamed(RouteName.home);
+          Modular.to.popAndPushNamed(RouteName.home);
         });
       } else {
         showInSnackBar('Credenciais incorretas');

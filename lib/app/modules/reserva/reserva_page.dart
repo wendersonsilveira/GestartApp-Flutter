@@ -30,14 +30,14 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
   cancelarReserva(int id) async {
     final r = await controller.cancelarReserva(id);
     if (r.status == Status.success) {
-      Modular.navigator.pop(true);
+      Modular.to.pop(true);
 
       openDialogInf(
           [
             TextButton(
               onPressed: () {
                 controller.getReservas();
-                Modular.navigator.pop();
+                Modular.to.pop();
               },
               child: const Text(
                 'OK',
@@ -51,12 +51,12 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
             'Sucesso',
           ));
     } else {
-      Modular.navigator.pop(false);
+      Modular.to.pop(false);
 
       openDialogInf(
           [
             TextButton(
-              onPressed: () => Modular.navigator.pop(),
+              onPressed: () => Modular.to.pop(),
               child: const Text(
                 'OK',
               ),
@@ -91,7 +91,7 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
         actions: [
           TextButton(
             onPressed: () {
-              Modular.navigator
+              Modular.to
                   .pushNamed(RouteName.reservaUnidades)
                   .then((value) => controller.getReservas());
             },
@@ -157,8 +157,7 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
                                         ),
                                         actions: [
                                           TextButton(
-                                            onPressed: () =>
-                                                Modular.navigator.pop(),
+                                            onPressed: () => Modular.to.pop(),
                                             child: Text(
                                               'NÃO',
                                             ),
@@ -216,7 +215,7 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
                                               size: 40,
                                             ),
                                           ),
-                                          onTap: () => Modular.navigator
+                                          onTap: () => Modular.to
                                               .pushNamed(RouteName.reservaDados,
                                                   arguments: controller
                                                       .reservas[index].id)

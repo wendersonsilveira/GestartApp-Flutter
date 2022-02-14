@@ -5,7 +5,7 @@ import 'unidades/unidades_controller.dart';
 import 'reserva_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class ReservaModule extends ChildModule {
+class ReservaModule extends Module {
   @override
   List<Bind> get binds => [
         $DadosReservaController,
@@ -16,7 +16,7 @@ class ReservaModule extends ChildModule {
       ];
 
   @override
-  List<ModularRouter> get routers => [];
+  List<ModularRoute> get routers => [];
 
-  static Inject get to => Inject<ReservaModule>.of();
+  //static Inject get to => Inject<ReservaModule>.of();
 }

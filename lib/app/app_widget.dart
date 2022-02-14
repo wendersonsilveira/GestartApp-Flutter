@@ -33,16 +33,18 @@ class _AppWidgetState extends ModularState<AppWidget, AppController> {
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
               ],
-              supportedLocales: <Locale>[Locale.fromSubtags(languageCode: 'en')],
-              navigatorKey: Modular.navigatorKey,
+              supportedLocales: <Locale>[
+                Locale.fromSubtags(languageCode: 'en')
+              ],
+              // navigatorKey: Modular.navigatorKey,
               title: 'Gestart App',
               theme: ThemeData(
                 primarySwatch: Colors.blue,
               ),
               initialRoute: controller.initRouter,
               debugShowCheckedModeBanner: false,
-              onGenerateRoute: Modular.generateRoute,
-            );
+              // onGenerateRoute: Modular.generateRoute,
+            ).modular();
     });
   }
 }

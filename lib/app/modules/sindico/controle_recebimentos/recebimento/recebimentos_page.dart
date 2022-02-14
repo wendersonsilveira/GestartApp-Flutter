@@ -64,7 +64,7 @@ class _RecebimentosPageState extends State<RecebimentosPage> {
           FiltroWdget(
             onSubmit: (filtter) {
               getRecebimentos(filtter);
-              Modular.navigator.pop();
+              Modular.to.pop();
             },
             getHeader: setHeader,
           ),

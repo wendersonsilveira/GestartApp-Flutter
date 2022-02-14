@@ -47,7 +47,7 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
         if (controllerPages.page != 0.0)
           mudarPage(0);
         else
-          Modular.navigator.pop();
+          Modular.to.pop();
 
         return false;
       },
@@ -59,7 +59,7 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
             icon: new Icon(Icons.arrow_back),
             onPressed: () {
               if (controllerPages.page == 0.0)
-                Modular.navigator.pop();
+                Modular.to.pop();
               else
                 mudarPage(0);
             },

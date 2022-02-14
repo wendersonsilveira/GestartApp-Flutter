@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class ButtonServiceWidget extends StatelessWidget {
-  const ButtonServiceWidget({Key key, this.icon, this.descricao, this.route}) : super(key: key);
+  const ButtonServiceWidget({Key key, this.icon, this.descricao, this.route})
+      : super(key: key);
 
   final IconData icon;
   final String descricao;
@@ -16,7 +17,7 @@ class ButtonServiceWidget extends StatelessWidget {
           height: 60,
           width: 60,
           child: OutlinedButton(
-            onPressed: () => Modular.navigator.pushNamed(route),
+            onPressed: () => Modular.to.pushNamed(route),
             child: Icon(
               icon,
               color: AppColorScheme.primaryColor,

@@ -61,9 +61,9 @@ class CustomDio {
       return res.data;
     } catch (error) {
       if (error.response == null) {
-        Modular.navigator.popAndPushNamed(RouteName.error_page, arguments: 0);
+        Modular.to.popAndPushNamed(RouteName.error_page, arguments: 0);
       }
-      Modular.navigator.popAndPushNamed(RouteName.error_page, arguments: 1);
+      Modular.to.popAndPushNamed(RouteName.error_page, arguments: 1);
 
       return null;
     }

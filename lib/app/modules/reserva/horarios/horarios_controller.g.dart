@@ -8,8 +8,8 @@ part of 'horarios_controller.dart';
 
 final $HorariosController = BindInject(
   (i) => HorariosController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

@@ -97,7 +97,7 @@ class _CadastrosPageState
             filtro: filtro,
             onSubmit: (filtter) {
               controller.getUnidades(filtro);
-              Modular.navigator.pop();
+              Modular.to.pop();
             },
           ),
         ],

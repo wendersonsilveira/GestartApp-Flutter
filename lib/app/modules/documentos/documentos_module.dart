@@ -1,14 +1,14 @@
 import 'documentos_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class DocumentosModule extends ChildModule {
+class DocumentosModule extends Module {
   @override
   List<Bind> get binds => [
         $DocumentosController,
       ];
 
   @override
-  List<ModularRouter> get routers => [];
+  List<ModularRoute> get routers => [];
 
-  static Inject get to => Inject<DocumentosModule>.of();
+  //static Inject get to => Inject<DocumentosModule>.of();
 }

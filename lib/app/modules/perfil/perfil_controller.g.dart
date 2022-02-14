@@ -8,8 +8,8 @@ part of 'perfil_controller.dart';
 
 final $PerfilController = BindInject(
   (i) => PerfilController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

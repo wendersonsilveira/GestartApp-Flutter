@@ -30,7 +30,7 @@ class _DadosReservaPageState
   ReservaEntity reserva;
   cancelarReserva() async {
     final r = await controller.cancelarReserva(reserva.id);
-    Modular.navigator.pop();
+    Modular.to.pop();
     if (r.status == Status.success) {
       openDialogInf(
           [
@@ -52,7 +52,7 @@ class _DadosReservaPageState
       openDialogInf(
           [
             TextButton(
-              onPressed: () => Modular.navigator.pop(),
+              onPressed: () => Modular.to.pop(),
               child: const Text(
                 'OK',
               ),
@@ -71,7 +71,7 @@ class _DadosReservaPageState
     openDialogInf(
         [
           TextButton(
-            onPressed: () => Modular.navigator.pop(),
+            onPressed: () => Modular.to.pop(),
             child: const Text(
               'NÃO',
             ),
