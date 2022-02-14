@@ -70,7 +70,7 @@ class _DashboardPageState
         var arrayString = payload.split('**');
         String page = arrayString[0].trim();
         int id = int.parse(arrayString[1]);
-        Modular.navigator.pushNamed('$page', arguments: id);
+        Modular.to.pushNamed('$page', arguments: id);
       },
     );
   }
@@ -143,9 +143,9 @@ class _DashboardPageState
         int id =
             message['item_id'] != null ? int.parse(message['item_id']) : null;
         if (toPage != null && id != null)
-          Modular.navigator.pushNamed(toPage, arguments: id);
+          Modular.to.pushNamed(toPage, arguments: id);
         else if (toPage != null && id == null)
-          Modular.navigator.pushNamed(toPage);
+          Modular.to.pushNamed(toPage);
         else
           print('apenas notificacao');
       },
@@ -179,7 +179,7 @@ class _DashboardPageState
       onResume: (Map<String, dynamic> message) async {
         String page = '/${message['data']['servico']}';
         int idItem = int.parse(message['data']['item_id']);
-        Modular.navigator.pushNamed(page.trim(), arguments: idItem);
+        Modular.to.pushNamed(page.trim(), arguments: idItem);
       },
     );
     _firebaseMessaging.requestNotificationPermissions(

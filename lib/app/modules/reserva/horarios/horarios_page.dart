@@ -30,7 +30,8 @@ class HorariosPage extends StatefulWidget {
 
 class _HorariosPageState
     extends ModularState<HorariosPage, HorariosController> {
-  CalendarController _calendarController = CalendarController();
+  // CalendarController _calendarController = CalendarController();
+  CalendarFormat _calendarFormat = CalendarFormat.month;
 
   DateTime now = DateTime.now();
   var r;
@@ -292,21 +293,38 @@ class _HorariosPageState
           children: <Widget>[
             controller.espacoJSON != null
                 ? TableCalendar(
-                    calendarController: _calendarController,
+                    focusedDay: DateTime.now(),
+                    firstDay: null,
+                    lastDay: null,
                     locale: 'pt_BR',
-                    initialCalendarFormat: CalendarFormat.month,
                     enabledDayPredicate: checkDay,
                     headerStyle: HeaderStyle(
-                      formatButtonVisible: false,
-                      centerHeaderTitle: true,
-                    ),
+                        formatButtonVisible: false, titleCentered: true),
                     calendarStyle: CalendarStyle(
-                      todayColor: AppColorScheme.secondaryColor,
-                      selectedColor: AppColorScheme.primaryColor,
+                      todayDecoration:
+                          BoxDecoration(color: AppColorScheme.secondaryColor),
+                      selectedDecoration:
+                          BoxDecoration(color: AppColorScheme.primaryColor),
                     ),
-                    onDaySelected: (data, b, c) =>
+                    onDaySelected: (data, focusedDay) =>
                         controller.getHorariosEspaco(data),
                   )
+                // TableCalendar(
+                //     calendarController: _calendarController,
+                //     locale: 'pt_BR',
+                //     initialCalendarFormat: CalendarFormat.month,
+                //     enabledDayPredicate: checkDay,
+                //     headerStyle: HeaderStyle(
+                //       formatButtonVisible: false,
+                //       centerHeaderTitle: true,
+                //     ),
+                //     calendarStyle: CalendarStyle(
+                //       todayColor: AppColorScheme.secondaryColor,
+                //       selectedColor: AppColorScheme.primaryColor,
+                //     ),
+                //     onDaySelected: (data, b, c) =>
+                //         controller.getHorariosEspaco(data),
+                //   )
                 : CircularProgressCustom(),
             Observer(
                 builder: (_) => controller.horarios == null

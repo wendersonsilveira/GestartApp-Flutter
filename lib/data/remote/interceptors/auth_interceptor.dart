@@ -17,10 +17,10 @@ class AuthInterceptor extends Interceptor {
   AuthInterceptor(this._dio);
 
   @override
-  Future onError(DioError error) async {
-    if (error.response?.statusCode == 401 && error.request.path != 'login')
-      goToLogin();
-    return super.onError(error);
+  Future onError(DioError error, handler) async {
+    if (error.response?.statusCode == 401 &&
+        error.requestOptions.path != 'login') goToLogin();
+    return super.onError(error, handler);
   }
 
   goToLogin() {
@@ -30,11 +30,12 @@ class AuthInterceptor extends Interceptor {
   }
 
   @override
-  Future onRequest(RequestOptions options) async {
+  Future onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
     var tokenFcm = await sharedPreferences.getString('devicekey');
     var token = await getIt<AuthLocalDataSource>().getToken();
     if (token != null) options.headers['accesstoken'] = token;
     if (tokenFcm != null) options.headers['devicekey'] = tokenFcm;
-    return super.onRequest(options);
+    return super.onRequest(options, handler);
   }
 }

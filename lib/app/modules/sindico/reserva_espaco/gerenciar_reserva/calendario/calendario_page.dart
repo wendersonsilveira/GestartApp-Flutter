@@ -20,7 +20,7 @@ class CalendarioPage extends StatefulWidget {
 class _CalendarioPageState
     extends ModularState<CalendarioPage, CalendarioController> {
   //use 'controller' variable to access controller
-  CalendarController _calendarController = CalendarController();
+  // CalendarController _calendarController = CalendarController();
   DateTime now = DateTime.now();
   @override
   void initState() {
@@ -41,23 +41,38 @@ class _CalendarioPageState
             : Column(
                 children: [
                   TableCalendar(
-                    calendarController: _calendarController,
+                    focusedDay: DateTime.now(),
+                    firstDay: null,
+                    lastDay: null,
                     locale: 'pt_BR',
-                    initialCalendarFormat: CalendarFormat.month,
-                    events: controller.eventos,
                     headerStyle: HeaderStyle(
-                      formatButtonVisible: false,
-                      centerHeaderTitle: true,
-                    ),
+                        formatButtonVisible: false, titleCentered: true),
                     calendarStyle: CalendarStyle(
-                      todayColor: AppColorScheme.secondaryColor,
-                      eventDayStyle: TextStyle(
-                        color: Colors.indigoAccent[400],
-                      ),
-                      selectedColor: AppColorScheme.primaryColor,
+                      todayDecoration:
+                          BoxDecoration(color: AppColorScheme.secondaryColor),
+                      selectedDecoration:
+                          BoxDecoration(color: AppColorScheme.primaryColor),
                     ),
-                    onDaySelected: (data, b, c) => selecionarDia(data),
+                    onDaySelected: (data, focusedDay) => selecionarDia(data),
                   ),
+                  // TableCalendar(
+                  //   calendarController: _calendarController,
+                  //   locale: 'pt_BR',
+                  //   initialCalendarFormat: CalendarFormat.month,
+                  //   events: controller.eventos,
+                  //   headerStyle: HeaderStyle(
+                  //     formatButtonVisible: false,
+                  //     centerHeaderTitle: true,
+                  //   ),
+                  //   calendarStyle: CalendarStyle(
+                  //     todayColor: AppColorScheme.secondaryColor,
+                  //     eventDayStyle: TextStyle(
+                  //       color: Colors.indigoAccent[400],
+                  //     ),
+                  //     selectedColor: AppColorScheme.primaryColor,
+                  //   ),
+                  //   onDaySelected: (data, b, c) => selecionarDia(data),
+                  // ),
                   controller.reservaAdmDia.length == 0
                       ? Container()
                       : Container(
