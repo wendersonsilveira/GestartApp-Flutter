@@ -8,7 +8,6 @@ import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mobx/mobx.dart';
 import 'forgot_password_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

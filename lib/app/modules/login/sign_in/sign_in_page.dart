@@ -4,7 +4,6 @@ import 'package:Gestart/app/modules/login/components/password_outlined_text_fiel
 import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
-import 'package:Gestart/app/widgets/buttons/flat_button_widget.dart';
 import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
 import 'package:Gestart/domain/entities/auth/check_auth_entity.dart';
 import 'package:Gestart/domain/entities/auth/login_entity.dart';

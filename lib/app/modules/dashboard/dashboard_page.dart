@@ -28,7 +28,7 @@ class DashboardPage extends StatefulWidget {
   _DashboardPageState createState() => _DashboardPageState();
 }
 
-final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 final sharedPreferences = getIt.get<SharedPreferencesManager>();
 final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -46,7 +46,6 @@ class _DashboardPageState
     });
 
     Platform.isIOS ? configNotificationIOS() : configNotificationAndroid();
-
     controller.testsUseCases();
     initNotificationLocal();
     controller.init();
@@ -123,81 +122,97 @@ class _DashboardPageState
   // }
 
   configNotificationIOS() {
-    _firebaseMessaging.configure(
-      onMessage: (Map<String, dynamic> message) async {
-        var texto = message['body'];
-        var titulo = message['title'];
-        print({texto});
-        print({titulo});
-        //flushbar descontinuado -
-        // showTopSnackBar(context, texto, titulo,
-        //     page: '/${message['servico']}', id: '${message['item_id']}');
-      },
-      onLaunch: (Map<String, dynamic> message) async {
-        print("onLaunch: $message");
-      },
-      onResume: (Map<String, dynamic> message) async {
-        String toPage = message['servico'] != null
-            ? '/' + message['servico'].toString().trim()
-            : null;
-        int id =
-            message['item_id'] != null ? int.parse(message['item_id']) : null;
-        if (toPage != null && id != null)
-          Modular.to.pushNamed(toPage, arguments: id);
-        else if (toPage != null && id == null)
-          Modular.to.pushNamed(toPage);
-        else
-          print('apenas notificacao');
-      },
-    );
-    _firebaseMessaging.requestNotificationPermissions(
-        const IosNotificationSettings(sound: true, badge: true, alert: true));
-    _firebaseMessaging.onIosSettingsRegistered
-        .listen((IosNotificationSettings settings) {
-      print("Settings registered: $settings");
-    });
-    _firebaseMessaging.getToken().then((String token) {
-      assert(token != null);
+    // _firebaseMessaging.configure(
+    //   onMessage: (Map<String, dynamic> message) async {
+    //     var texto = message['body'];
+    //     var titulo = message['title'];
+    //     print({texto});
+    //     print({titulo});
+    //     //flushbar descontinuado -
+    //     // showTopSnackBar(context, texto, titulo,
+    //     //     page: '/${message['servico']}', id: '${message['item_id']}');
+    //   },
+    //   onLaunch: (Map<String, dynamic> message) async {
+    //     print("onLaunch: $message");
+    //   },
+    //   onResume: (Map<String, dynamic> message) async {
+    //     String toPage = message['servico'] != null
+    //         ? '/' + message['servico'].toString().trim()
+    //         : null;
+    //     int id =
+    //         message['item_id'] != null ? int.parse(message['item_id']) : null;
+    //     if (toPage != null && id != null)
+    //       Modular.to.pushNamed(toPage, arguments: id);
+    //     else if (toPage != null && id == null)
+    //       Modular.to.pushNamed(toPage);
+    //     else
+    //       print('apenas notificacao');
+    //   },
+    // );
+    // _firebaseMessaging.requestNotificationPermissions(
+    //     const IosNotificationSettings(sound: true, badge: true, alert: true));
+    // _firebaseMessaging.onIosSettingsRegistered
+    //     .listen((IosNotificationSettings settings) {
+    //   print("Settings registered: $settings");
+    // });
+    // _firebaseMessaging.getToken().then((String token) {
+    //   assert(token != null);
 
-      print('token: $token');
-    });
+    //   print('token: $token');
+    // });
   }
 
   configNotificationAndroid() {
-    _firebaseMessaging.configure(
-      onMessage: (Map<String, dynamic> message) async {
-        print("onMessage: $message");
-        sendNotificationLocal(
-            '${message['data']['title']}', '${message['data']['body']}',
-            page: '/${message['data']['servico']}',
-            id: int.parse(message['data']['item_id']));
-      },
-      onBackgroundMessage: myBackgroundMessageHandler,
-      onLaunch: (Map<String, dynamic> message) async {
-        print("onLaunch: $message");
-      },
-      onResume: (Map<String, dynamic> message) async {
-        String page = '/${message['data']['servico']}';
-        int idItem = int.parse(message['data']['item_id']);
-        Modular.to.pushNamed(page.trim(), arguments: idItem);
-      },
-    );
-    _firebaseMessaging.requestNotificationPermissions(
-        const IosNotificationSettings(sound: true, badge: true, alert: true));
-    _firebaseMessaging.onIosSettingsRegistered
-        .listen((IosNotificationSettings settings) {
-      print('registered: $settings');
-    });
-  }
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      AndroidNotificationChannel channel;
 
-  static Future<dynamic> myBackgroundMessageHandler(
-      Map<String, dynamic> message) async {
-    return Future<void>.value();
+      RemoteNotification notification = message.notification;
+      AndroidNotification android = message.notification?.android;
+      if (notification != null && android != null) {
+        flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id,
+              channel.name,
+              // TODO add a proper drawable resource to android, for now using
+              //      one that already exists in example app.
+              icon: 'launch_background',
+            ),
+          ),
+        );
+      }
+    });
+    // _firebaseMessaging.configure(
+    //   onMessage: (Map<String, dynamic> message) async {
+    //     print("onMessage: $message");
+    //     sendNotificationLocal(
+    //         '${message['data']['title']}', '${message['data']['body']}',
+    //         page: '/${message['data']['servico']}',
+    //         id: int.parse(message['data']['item_id']));
+    //   },
+    //   onBackgroundMessage: myBackgroundMessageHandler,
+    //   onLaunch: (Map<String, dynamic> message) async {
+    //     print("onLaunch: $message");
+    //   },
+    //   onResume: (Map<String, dynamic> message) async {
+    //     String page = '/${message['data']['servico']}';
+    //     int idItem = int.parse(message['data']['item_id']);
+    //     Modular.to.pushNamed(page.trim(), arguments: idItem);
+    //   },
+    // );
+    // _firebaseMessaging.requestNotificationPermissions(
+    //     const IosNotificationSettings(sound: true, badge: true, alert: true));
+    // _firebaseMessaging.onIosSettingsRegistered
+    //     .listen((IosNotificationSettings settings) {
+    //   print('registered: $settings');
+    // });
   }
 
   sendNotificationLocal(String titulo, message, {String page, int id}) async {
-    var android = new AndroidNotificationDetails(
-        'channelId', 'channelName', 'channelDescription');
+    var android = new AndroidNotificationDetails('channelId', 'channelName');
 
     var iOS = new IOSNotificationDetails();
 

@@ -103,9 +103,6 @@ import 'modules/dashboard/dashboard_controller.dart';
 import 'package:Gestart/app/modules/login/login_module.dart';
 import 'app_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter/material.dart';
-import 'package:Gestart/app/app_widget.dart';
-import 'package:flutter/cupertino.dart';
 
 class AppModule extends Module {
   @override

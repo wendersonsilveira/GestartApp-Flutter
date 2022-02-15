@@ -31,7 +31,6 @@ class HorariosPage extends StatefulWidget {
 class _HorariosPageState
     extends ModularState<HorariosPage, HorariosController> {
   // CalendarController _calendarController = CalendarController();
-  CalendarFormat _calendarFormat = CalendarFormat.month;
 
   DateTime now = DateTime.now();
   var r;

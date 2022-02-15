@@ -1,4 +1,3 @@
-import 'package:Gestart/domain/repositories/boleto/boleto_repository.dart';
 import 'package:Gestart/domain/repositories/parcelamento/parcelamento_boleto_repository.dart';
 import 'package:Gestart/domain/usecases/base/base_future_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';

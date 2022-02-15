@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
-import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
 import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';

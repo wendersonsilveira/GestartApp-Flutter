@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'detalhes_reserva_controller.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
-import 'package:Gestart/domain/entities/reserva/reserva_entity.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';

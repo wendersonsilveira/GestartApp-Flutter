@@ -24,7 +24,6 @@ abstract class _SignInControllerBase with Store {
   @observable
   ResourceData<UserEntity> userLogin = ResourceData(status: Status.success);
 
-  // TODO: REMOVER DEPOIS
   testsUseCases() async {
     // var result = await _senLog("teste");
 

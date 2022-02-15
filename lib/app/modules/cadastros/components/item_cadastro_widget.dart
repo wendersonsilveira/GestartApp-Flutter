@@ -1,7 +1,6 @@
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ItemCadastroWidget extends StatelessWidget {
   const ItemCadastroWidget(
