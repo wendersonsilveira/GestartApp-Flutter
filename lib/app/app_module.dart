@@ -161,7 +161,7 @@ class AppModule extends Module {
       ];
 
   @override
-  List<ModularRoute> get routers => [
+  List<ModularRoute> get routes => [
         ModuleRoute(RouteName.login, module: LoginModule()),
         ChildRoute(RouteName.condominio, child: (_, args) => CondominioPage()),
         ChildRoute(RouteName.dashboard, child: (_, args) => DashboardPage()),
@@ -172,11 +172,6 @@ class AppModule extends Module {
         ChildRoute(RouteName.assembleia, child: (_, args) => AssembleiaPage()),
         ChildRoute(RouteName.detalhes_assembleia,
             child: (_, args) => DetalhesAssembleiaPage(id: args.data)),
-        // ChildRoute(RouteName.view_documento,
-        //     child: (_, args) => ViewDocumentosPage(
-        //           url: args.data[0],
-        //           title: args.data[1],
-        //         )),
         ChildRoute(RouteName.cadastro_pet,
             child: (_, args) => CadastroPetPage(id: args.data)),
         ChildRoute(RouteName.boleto, child: (_, args) => BoletoPage()),
@@ -194,7 +189,6 @@ class AppModule extends Module {
         ChildRoute(RouteName.painel_sindico, child: (_, args) => SindicoPage()),
         ChildRoute(RouteName.cadastro_espaco,
             child: (_, args) => CadastroEspacoPage(id: args.data)),
-        ChildRoute(RouteName.balancetes, child: (_, args) => BalancetePage()),
         ChildRoute(RouteName.reservas, child: (_, args) => ReservaPage()),
         ChildRoute(RouteName.reservaUnidades,
             child: (_, args) => UnidadesPage()),

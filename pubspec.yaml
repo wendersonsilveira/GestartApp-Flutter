@@ -64,7 +64,7 @@ dependencies:
   time_picker_widget: ^1.0.0+10 
 
   # Routes, Dependence Injection, Service Locator
-  flutter_modular: ^4.4.0+1 
+  flutter_modular: 3.2.0 
   injectable: ^1.5.3 
   get_it: ^7.2.0 
 

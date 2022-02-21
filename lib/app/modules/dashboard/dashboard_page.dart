@@ -41,9 +41,9 @@ class _DashboardPageState
   bool isNotifyConfig = false;
   @override
   void initState() {
-    _firebaseMessaging.getToken().then((value) {
-      sharedPreferences.putString('devicekey', value);
-    });
+    // _firebaseMessaging.getToken().then((value) {
+    //   sharedPreferences.putString('devicekey', value);
+    // });
 
     Platform.isIOS ? configNotificationIOS() : configNotificationAndroid();
     controller.testsUseCases();

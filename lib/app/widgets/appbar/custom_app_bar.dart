@@ -39,7 +39,7 @@ class AppBarCustom extends AppBar {
                     ? const SizedBox()
                     : IconButton(
                         icon: Icon(
-                          LineIcons.arrowRight,
+                          LineIcons.arrowLeft,
                           size: 60.h,
                         ),
                         onPressed: () => Modular.to.pop(),

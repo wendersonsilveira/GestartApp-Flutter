@@ -4,6 +4,8 @@ import 'package:Gestart/app/app_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'app/app_widget.dart';
+
 void main() {
   // Stetho.initialize();
 
@@ -12,6 +14,6 @@ void main() {
   runApp(
     ScreenUtilInit(
         designSize: Size(750, 1334),
-        builder: () => ModularApp(module: AppModule())),
+        builder: () => ModularApp(module: AppModule(), child: AppWidget())),
   );
 }

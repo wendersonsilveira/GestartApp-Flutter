@@ -18,7 +18,7 @@ class LoginModule extends Module {
       ];
 
   @override
-  List<ModularRoute> get routers => [
+  List<ModularRoute> get routes => [
         ChildRoute(Modular.initialRoute, child: (_, args) => SignInPage()),
         ChildRoute(RouteName.signup,
             child: (_, args) => SignUpPage(cpfCnpj: args.data)),
