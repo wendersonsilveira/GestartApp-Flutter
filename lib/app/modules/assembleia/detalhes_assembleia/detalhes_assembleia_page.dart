@@ -4,6 +4,7 @@ import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:line_icons/line_icons.dart';
 import 'detalhes_assembleia_controller.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/modules/assembleia/components/title_widget.dart';
@@ -49,11 +50,15 @@ class _DetalhesAssembleiaPageState
                 Padding(
                   padding: const EdgeInsets.all(20),
                   child: ListTile(
-                    leading: Image.network(
-                      controller.edital.data[0].logo,
-                      height: 150.h,
-                      width: 150.h,
+                    leading: Icon(
+                      LineIcons.building,
+                      size: 100.h,
                     ),
+                    // Image.network(
+                    //   controller.edital.data[0].logo,
+                    //   height: 150.h,
+                    //   width: 150.h,
+                    // ),
                     title: TitleWidget(
                       nomTip: controller.edital.data[0].nomTip,
                       apelido: controller.edital.data[0].apelido,

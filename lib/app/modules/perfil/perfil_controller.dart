@@ -11,7 +11,7 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 
 part 'perfil_controller.g.dart';
 
@@ -42,7 +42,7 @@ abstract class _PerfilControllerBase with Store {
     perfil = await _getPerfil();
   }
 
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+  // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
   Future<void> logout() async {
     sharedPreferences.removeAll();
@@ -51,7 +51,7 @@ abstract class _PerfilControllerBase with Store {
   }
 
   destruirKeyFB() async {
-    await _firebaseMessaging.deleteToken();
+    // await _firebaseMessaging.deleteToken();
   }
 
   Future<dynamic> alterarSenha(PasswordEntity pass) async {

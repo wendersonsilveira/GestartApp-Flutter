@@ -270,6 +270,7 @@ class _HorariosPageState
     }
   }
 
+  DateTime _selectedDay;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -292,11 +293,28 @@ class _HorariosPageState
           children: <Widget>[
             controller.espacoJSON != null
                 ? TableCalendar(
-                    focusedDay: DateTime.now(),
-                    firstDay: null,
-                    lastDay: null,
+                    firstDay: now,
+                    lastDay: DateTime.utc(2099, 3, 14),
                     locale: 'pt_BR',
                     enabledDayPredicate: checkDay,
+                    selectedDayPredicate: (day) {
+                      // Use `selectedDayPredicate` to determine which day is currently selected.
+                      // If this returns true, then `day` will be marked as selected.
+
+                      // Using `isSameDay` is recommended to disregard
+                      // the time-part of compared DateTime objects.
+                      return isSameDay(_selectedDay, day);
+                    },
+                    onDaySelected: (selectedDay, focusedDay) {
+                      controller.getHorariosEspaco(selectedDay);
+                      if (!isSameDay(_selectedDay, selectedDay)) {
+                        // Call `setState()` when updating the selected day
+                        setState(() {
+                          _selectedDay = selectedDay;
+                          focusedDay = now;
+                        });
+                      }
+                    },
                     headerStyle: HeaderStyle(
                         formatButtonVisible: false, titleCentered: true),
                     calendarStyle: CalendarStyle(
@@ -305,9 +323,31 @@ class _HorariosPageState
                       selectedDecoration:
                           BoxDecoration(color: AppColorScheme.primaryColor),
                     ),
-                    onDaySelected: (data, focusedDay) =>
-                        controller.getHorariosEspaco(data),
-                  )
+                    focusedDay: DateTime.now())
+                // onDaySelected: (data, focusedDay) {
+                //   controller.getHorariosEspaco(data);
+                //   setState(() {
+                //     _selectedDay = data;
+                //     now = focusedDay;
+                //   });
+                // })
+                // ? TableCalendar(
+                //     focusedDay: DateTime.now(),
+                //     firstDay: null,
+                //     lastDay: null,
+                //     locale: 'pt_BR',
+                //     enabledDayPredicate: checkDay,
+                //     headerStyle: HeaderStyle(
+                //         formatButtonVisible: false, titleCentered: true),
+                //     calendarStyle: CalendarStyle(
+                //       todayDecoration:
+                //           BoxDecoration(color: AppColorScheme.secondaryColor),
+                //       selectedDecoration:
+                //           BoxDecoration(color: AppColorScheme.primaryColor),
+                //     ),
+                //     onDaySelected: (data, focusedDay) =>
+                //         controller.getHorariosEspaco(data),
+                //   )
                 // TableCalendar(
                 //     calendarController: _calendarController,
                 //     locale: 'pt_BR',
