@@ -37,7 +37,7 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
   }
 
   void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(new SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
       content: new Text(value),
       duration: Duration(seconds: 1),
     ));
@@ -178,7 +178,7 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
                                             content: const Text(
                                                 "Deseja realmente excluir este pet?"),
                                             actions: [
-                                              FlatButton(
+                                              OutlinedButton(
                                                 onPressed: () => deletePet(
                                                     controller
                                                         .pets.data[index].id),
@@ -190,7 +190,7 @@ class _PetsPageState extends ModularState<PetsPage, PetsController> {
                                                   ),
                                                 ),
                                               ),
-                                              FlatButton(
+                                              OutlinedButton(
                                                 onPressed: () =>
                                                     Modular.to.pop(false),
                                                 child: const Text("Não"),

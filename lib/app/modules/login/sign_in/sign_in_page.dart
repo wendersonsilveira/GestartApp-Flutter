@@ -79,13 +79,14 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
               backgroundColor: Colors.black,
               titleTextStyle: TextStyle(color: Colors.grey),
               actions: [
-                FlatButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      Modular.to.pushNamed(RouteName.signup,
-                          arguments: _cpfCnpjController.text);
-                    },
-                    child: Text('Ok'))
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Modular.to.pushNamed(RouteName.signup,
+                        arguments: _cpfCnpjController.text);
+                  },
+                  child: const Text('OK'),
+                )
               ],
             ),
             barrierDismissible: false,

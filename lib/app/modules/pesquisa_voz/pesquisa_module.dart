@@ -10,7 +10,7 @@ class PesquisaModule extends Module {
       ];
 
   @override
-  List<ModularRoute> get routers => [
+  List<ModularRoute> get routes => [
         ChildRoute(Modular.initialRoute, child: (_, args) => PesquisaPage()),
       ];
 

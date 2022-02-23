@@ -62,7 +62,7 @@ class _CadastroVeiculoPageState
   ];
 
   void showInSnackBar(String value) {
-    _scaffoldKey.currentState
+    ScaffoldMessenger.of(context)
         .showSnackBar(new SnackBar(content: new Text(value)));
   }
 

@@ -95,7 +95,7 @@ class _HorariosPageState
                                 ]),
                               ),
                               actions: [
-                                FlatButton(
+                                OutlinedButton(
                                   child: Text("OK"),
                                   onPressed: () {
                                     Modular.to.pop();

@@ -50,12 +50,13 @@ class _ForgotPasswordPageState
               backgroundColor: Colors.black,
               titleTextStyle: TextStyle(color: Colors.grey),
               actions: [
-                FlatButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      Modular.to.pop();
-                    },
-                    child: Text('Ok'))
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                )
               ],
             ),
             barrierDismissible: false,

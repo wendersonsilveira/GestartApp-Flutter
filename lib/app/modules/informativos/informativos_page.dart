@@ -1,4 +1,5 @@
 import 'package:Gestart/app/constants/route_name.dart';
+import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/empty/empt_widget.dart';
@@ -7,6 +8,7 @@ import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:line_icons/line_icons.dart';
 import 'informativos_controller.dart';
 
 class InformativosPage extends StatefulWidget {
@@ -62,11 +64,17 @@ class _InformativosPageState
                                       Icons.arrow_right,
                                       size: 30,
                                     ),
-                                    leading: CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      backgroundImage: NetworkImage(
-                                          controller.infor.data[index].logo),
+                                    leading: Icon(
+                                      LineIcons.exclamationCircle,
+                                      size: 40,
+                                      color: AppColorScheme.primaryColor,
                                     ),
+                                    // : CircleAvatar(
+                                    //     backgroundColor: Colors.white,
+                                    //     backgroundImage: NetworkImage(
+                                    //         controller.infor.data[index]
+                                    //             .logo),
+                                    //   ),
                                     title: Text(
                                         controller.infor.data[index].apelido),
                                     subtitle: Text(UIHelper.formatDate(

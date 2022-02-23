@@ -84,7 +84,7 @@ class _CadastroAvisoPagePageState
   }
 
   void showInSnackBar(String msg) {
-    _scaffoldKey.currentState
+    ScaffoldMessenger.of(context)
         .showSnackBar(new SnackBar(content: new Text(msg)));
   }
 

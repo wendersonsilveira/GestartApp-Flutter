@@ -5,7 +5,7 @@ class DetalhesAssembleiaModule extends Module {
   List<Bind> get binds => [];
 
   @override
-  List<ModularRoute> get routers => [];
+  List<ModularRoute> get routes => [];
 
   // //static Inject get to => Inject<DetalhesAssembleiaModule>.of();
 }

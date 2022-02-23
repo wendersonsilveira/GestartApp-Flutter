@@ -331,8 +331,9 @@ class UIHelper {
   }
 
   static void showInSnackBar(
-      String value, GlobalKey<ScaffoldState> _scaffoldKey) {
-    _scaffoldKey.currentState
+      String value, GlobalKey<ScaffoldState> _scaffoldKey,
+      {context}) {
+    ScaffoldMessenger.of(context)
         .showSnackBar(new SnackBar(content: new Text(value)));
   }
 }

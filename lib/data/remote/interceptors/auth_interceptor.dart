@@ -11,10 +11,10 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class AuthInterceptor extends Interceptor {
-  final Dio _dio;
+  final Dio dio;
   final sharedPreferences = getIt.get<SharedPreferencesManager>();
 
-  AuthInterceptor(this._dio);
+  AuthInterceptor(this.dio);
 
   @override
   Future onError(DioError error, handler) async {

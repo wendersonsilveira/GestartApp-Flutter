@@ -40,7 +40,7 @@ class _VeiculosPageState
 
   void showInSnackBar(String value) {
     final snackBar = SnackBar(content: Text(value));
-    Scaffold.of(context).showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   deleteVeiculo(int id) async {
@@ -159,7 +159,7 @@ class _VeiculosPageState
                                             content: const Text(
                                                 "Deseja realmente excluir este veiculo?"),
                                             actions: [
-                                              FlatButton(
+                                              OutlinedButton(
                                                 onPressed: () => deleteVeiculo(
                                                     controller.veiculos
                                                         .data[index].id),
@@ -171,7 +171,7 @@ class _VeiculosPageState
                                                   ),
                                                 ),
                                               ),
-                                              FlatButton(
+                                              OutlinedButton(
                                                 onPressed: () =>
                                                     Modular.to.pop(false),
                                                 child: const Text("Não"),
