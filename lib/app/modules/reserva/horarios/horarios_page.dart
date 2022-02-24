@@ -33,6 +33,7 @@ class _HorariosPageState
   // CalendarController _calendarController = CalendarController();
 
   DateTime now = DateTime.now();
+  DateTime _focusedDay = DateTime.now();
   var r;
   @override
   void initState() {
@@ -311,7 +312,7 @@ class _HorariosPageState
                         // Call `setState()` when updating the selected day
                         setState(() {
                           _selectedDay = selectedDay;
-                          focusedDay = now;
+                          _focusedDay = focusedDay;
                         });
                       }
                     },
@@ -323,7 +324,8 @@ class _HorariosPageState
                       selectedDecoration:
                           BoxDecoration(color: AppColorScheme.primaryColor),
                     ),
-                    focusedDay: DateTime.now())
+                    focusedDay:
+                        _focusedDay == null ? DateTime.now() : _focusedDay)
                 // onDaySelected: (data, focusedDay) {
                 //   controller.getHorariosEspaco(data);
                 //   setState(() {
