@@ -27,6 +27,7 @@ class _EnviarCodigoPageState
   @override
   void initState() {
     controller.getEmails();
+    super.initState();
   }
 
   int idEmail = 0;

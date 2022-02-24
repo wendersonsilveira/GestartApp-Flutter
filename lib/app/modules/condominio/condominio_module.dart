@@ -24,7 +24,7 @@ class CondominioModule extends Module {
       ];
 
   @override
-  List<ModularRoute> get routers => [
+  List<ModularRoute> get routes => [
         ChildRoute(Modular.initialRoute, child: (_, args) => CondominioPage()),
         ChildRoute(RouteName.ativar_condominio,
             child: (_, args) => AtivarCondominioPage()),

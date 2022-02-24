@@ -157,7 +157,8 @@ class _DetalheBoletoPageState
                                 Clipboard.setData(new ClipboardData(
                                     text:
                                         controller.boleto.data.linhaDigitavel));
-                                key.currentState.showSnackBar(new SnackBar(
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(new SnackBar(
                                   content:
                                       new Text("Código copiado com sucesso"),
                                 ));

@@ -1,12 +1,11 @@
-import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
 import 'package:Gestart/domain/entities/condominio/emails_ativacao_entity.dart';
 
 extension EmailAtivacaoMapper on EmailAtivacaoEntity {
-  CondominioEntity copyWith({
+  EmailAtivacaoEntity copyWith({
     int id,
     String email,
   }) {
-    EmailAtivacaoEntity(
+    return EmailAtivacaoEntity(
       id: id ?? this.id,
       email: email ?? this.email,
     );

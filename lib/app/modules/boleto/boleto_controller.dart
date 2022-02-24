@@ -34,7 +34,7 @@ abstract class _BoletoControllerBase with Store {
 
   init() async {
     unidades = ResourceData(status: Status.loading);
-    getBoletos();
+    getUnidades();
   }
 
   @action
@@ -67,5 +67,6 @@ abstract class _BoletoControllerBase with Store {
   @action
   Future<void> getUnidades() async {
     unidades = await _getUnidades();
+    getBoletos();
   }
 }

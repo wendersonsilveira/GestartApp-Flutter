@@ -34,7 +34,7 @@ class _CondominioOnlinePageState
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   void showInSnackBar(String value) {
-    _scaffoldKey.currentState
+    ScaffoldMessenger.of(context)
         .showSnackBar(new SnackBar(content: new Text(value)));
   }
 

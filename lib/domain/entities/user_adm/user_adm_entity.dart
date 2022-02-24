@@ -22,6 +22,7 @@ class UserAdmEntity {
   int codOrdAdm;
   String logo;
   String linkPhoto;
+
   UserAdmEntity({
     this.nomAdm,
     this.datIni,

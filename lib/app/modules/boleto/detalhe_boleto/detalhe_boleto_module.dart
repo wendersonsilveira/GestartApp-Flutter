@@ -8,7 +8,7 @@ class DetalheBoletoModule extends Module {
       ];
 
   @override
-  List<ModularRoute> get routers => [];
+  List<ModularRoute> get routes => [];
 
   //static Inject get to => Inject<DetalheBoletoModule>.of();
 }
