@@ -49,6 +49,7 @@ extension EspacoMapper on EspacoEntity {
       maxResTempo: map['MAXRES_TEMPO'],
       apelido: map['APELIDO'],
       logo: map['LOGO'],
+      statusEspaco: map['STATUS'] == 1 ? true : false,
     );
   }
 
@@ -98,7 +99,8 @@ extension EspacoMapper on EspacoEntity {
       'SAB_INI': sabIni,
       'SAB_FIM': sabFim,
       'APROVACAO': aprovacao ? 1 : 0,
-      'APENAS_MASTER': apenasMaster ? 1 : 0
+      'APENAS_MASTER': apenasMaster ? 1 : 0,
+      'STATUS': statusEspaco ? 1 : 0,
     };
   }
 }

@@ -271,6 +271,22 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
     });
   }
 
+  final _$statusEspacoAtom =
+      Atom(name: '_CadastroEspacoControllerBase.statusEspaco');
+
+  @override
+  bool get statusEspaco {
+    _$statusEspacoAtom.reportRead();
+    return super.statusEspaco;
+  }
+
+  @override
+  set statusEspaco(bool value) {
+    _$statusEspacoAtom.reportWrite(value, super.statusEspaco, () {
+      super.statusEspaco = value;
+    });
+  }
+
   final _$apenasProprietarioReservaAtom =
       Atom(name: '_CadastroEspacoControllerBase.apenasProprietarioReserva');
 
@@ -515,6 +531,17 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
             name: '_CadastroEspacoControllerBase.statusAutorizacaoResponsavel');
     try {
       return super.statusAutorizacaoResponsavel();
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic changeStatusEspaco() {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.changeStatusEspaco');
+    try {
+      return super.changeStatusEspaco();
     } finally {
       _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -783,6 +810,7 @@ ativarQui: ${ativarQui},
 ativarSex: ${ativarSex},
 ativarSab: ${ativarSab},
 autorizacaoResponsavel: ${autorizacaoResponsavel},
+statusEspaco: ${statusEspaco},
 apenasProprietarioReserva: ${apenasProprietarioReserva},
 domIni: ${domIni},
 domFim: ${domFim},

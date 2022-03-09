@@ -137,8 +137,10 @@ class _ListarEspacosPageState
                                             child: Icon(
                                               FlutterIcons.square_faw,
                                               size: 50.h,
-                                              color:
-                                                  AppColorScheme.primaryColor,
+                                              color: controller.espacos
+                                                      .data[index].statusEspaco
+                                                  ? AppColorScheme.primaryColor
+                                                  : Colors.grey[400],
                                             ),
                                           ),
                                           onTap: () => Modular.navigator

@@ -74,6 +74,7 @@ abstract class _CadastroEspacoControllerBase with Store {
     this.sabFim = espaco.sabFim;
     this.apenasProprietarioReserva = espaco.aprovacao;
     this.autorizacaoResponsavel = espaco.apenasMaster;
+    this.statusEspaco = espaco.statusEspaco;
   }
 
   Future<ResourceData> enviarParametros(
@@ -112,7 +113,9 @@ abstract class _CadastroEspacoControllerBase with Store {
             sabIni: this.sabIni,
             sabFim: this.sabFim,
             aprovacao: this.autorizacaoResponsavel,
-            apenasMaster: this.apenasProprietarioReserva)
+            statusEspaco: this.statusEspaco,
+            apenasMaster: this.apenasProprietarioReserva,
+          )
         : EspacoEntity(
             codcon: this.cond,
             descricao: nome,
@@ -145,7 +148,9 @@ abstract class _CadastroEspacoControllerBase with Store {
             sabIni: this.sabIni,
             sabFim: this.sabFim,
             aprovacao: this.autorizacaoResponsavel,
-            apenasMaster: this.apenasProprietarioReserva);
+            statusEspaco: this.statusEspaco,
+            apenasMaster: this.apenasProprietarioReserva,
+          );
     statusCriacao = await _criarEspaco(espaco);
 
     return statusCriacao;
@@ -203,11 +208,18 @@ abstract class _CadastroEspacoControllerBase with Store {
   @observable
   bool autorizacaoResponsavel = true;
   @observable
+  bool statusEspaco = true;
+  @observable
   bool apenasProprietarioReserva = true;
 
   @action
   statusAutorizacaoResponsavel() {
     autorizacaoResponsavel = !autorizacaoResponsavel;
+  }
+
+  @action
+  changeStatusEspaco() {
+    statusEspaco = !statusEspaco;
   }
 
   @action

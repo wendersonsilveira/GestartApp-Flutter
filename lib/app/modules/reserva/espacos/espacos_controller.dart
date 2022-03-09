@@ -18,6 +18,6 @@ abstract class _EspacosControllerBase with Store {
   @action
   getEspacos(int codcon) async {
     final r = await _getEspacos(codcon);
-    espacos = r.data;
+    espacos = r.data.where((element) => element.statusEspaco == true).toList();
   }
 }

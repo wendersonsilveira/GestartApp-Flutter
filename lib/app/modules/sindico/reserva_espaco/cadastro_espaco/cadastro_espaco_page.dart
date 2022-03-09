@@ -469,6 +469,20 @@ class _CadastroEspacoPageState
                             child: Column(children: [
                               Row(
                                 children: [
+                                  Expanded(child: Text('Manter ativo')),
+                                  Switch(
+                                    value: controller.statusEspaco,
+                                    activeColor: AppColorScheme.primaryColor,
+                                    onChanged: (_) =>
+                                        controller.changeStatusEspaco(),
+                                  ),
+                                ],
+                              ),
+                              Divider(
+                                color: AppColorScheme.black,
+                              ),
+                              Row(
+                                children: [
                                   Expanded(
                                       child: Text(
                                           'É necessária aprovação do responsavel para eventos que ocorrerão neste espaço?*')),
