@@ -44,6 +44,7 @@ class EspacoEntity {
   final int maxResTempo;
   final String apelido;
   final String logo;
+  final bool statusEspaco;
 
   const EspacoEntity({
     this.id,
@@ -88,5 +89,6 @@ class EspacoEntity {
     this.maxResTempo,
     this.apelido,
     this.logo,
+    this.statusEspaco,
   });
 }
