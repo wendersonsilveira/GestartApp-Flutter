@@ -25,10 +25,12 @@ extension BalanceteMapper on BalanceteEntity {
         linkBalanceteDigital: linkBalanceteDigital ?? this.linkBalanceteDigital,
         balanceteDigital: balanceteDigital ?? this.balanceteDigital,
         balancete: balancete ?? this.balancete,
-        balanceteDigitalArquivo: balanceteDigitalArquivo ?? this.balanceteDigitalArquivo);
+        balanceteDigitalArquivo:
+            balanceteDigitalArquivo ?? this.balanceteDigitalArquivo);
   }
 
-  List<BalanceteEntity> fromMapList(List<dynamic> data) => List.from(data).map((element) => fromMap(element)).toList();
+  List<BalanceteEntity> fromMapList(List<dynamic> data) =>
+      List.from(data).map((element) => fromMap(element)).toList();
 
   BalanceteEntity fromMap(Map<String, dynamic> map) {
     if (map == null) return null;

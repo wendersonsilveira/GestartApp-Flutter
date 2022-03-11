@@ -1,6 +1,7 @@
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/data/remote/interceptors/auth_interceptor.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class CustomDio {
@@ -61,9 +62,15 @@ class CustomDio {
       return res.data;
     } catch (error) {
       if (error.response == null) {
-        Modular.navigator.popAndPushNamed(RouteName.error_page, arguments: 0);
+        Modular.navigator.pushNamed(RouteName.error_page,
+            arguments: 'Serviço indisponível. Verifique sua conexão.');
+      } else if (error.response.statusCode == 404) {
+        Modular.navigator.popAndPushNamed(RouteName.error_page,
+            arguments: 'Recurso não encontrado.');
+      } else {
+        Modular.navigator.pushNamed(RouteName.error_page,
+            arguments: 'Houve um erro inesperado.');
       }
-      Modular.navigator.popAndPushNamed(RouteName.error_page, arguments: 1);
 
       return null;
     }
