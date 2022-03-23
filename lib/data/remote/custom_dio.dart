@@ -1,7 +1,6 @@
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/data/remote/interceptors/auth_interceptor.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class CustomDio {
@@ -20,6 +19,7 @@ class CustomDio {
     // _dio.options.baseUrl = "http://api.gestartapp.com.br:8080/gestartapp/";
     _dio.options.baseUrl =
         "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/";
+
     // _dio.options.baseUrl = "localhost:";
   }
 
