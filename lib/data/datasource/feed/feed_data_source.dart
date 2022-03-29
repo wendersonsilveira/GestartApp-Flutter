@@ -20,8 +20,7 @@ class FeedRemoteDataSource {
         return ResourceData<List<FeedEntity>>(
             status: Status.success, data: FeedEntity().fromMapList(result));
       else
-        return ResourceData<List<FeedEntity>>(
-            status: Status.success, data: null);
+        return ResourceData<List<FeedEntity>>(status: Status.success, data: []);
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,
