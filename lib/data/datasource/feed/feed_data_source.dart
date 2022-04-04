@@ -27,6 +27,7 @@ class FeedRemoteDataSource {
           data: null,
           message: "Erro ao listar as informações",
           error: ErrorMapper.from(e));
+      //
     }
   }
 
