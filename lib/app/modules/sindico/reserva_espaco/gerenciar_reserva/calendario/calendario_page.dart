@@ -79,8 +79,9 @@ class _CalendarioPageState
                                 subtitle: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                        'Uni: ${controller.reservaAdmDia[index].codimo}'),
+                                    Text('Uni: ${controller.reservaAdmDia[index].codimo}' +
+                                        ' - Espaço: ' +
+                                        '${controller.reservaAdmDia[index].espacoDescricao}'),
                                     Text(
                                         '${UIHelper.formatDate(controller.reservaAdmDia[index].data)} | ${controller.reservaAdmDia[index].horIniDescricao} - ${controller.reservaAdmDia[index].horFimDescricao}')
                                   ],
