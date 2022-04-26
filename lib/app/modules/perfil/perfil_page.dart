@@ -17,6 +17,7 @@ import 'component/button_expanded_widget.dart';
 import 'component/button_widget.dart';
 import 'perfil_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:Gestart/app/widgets/divider/divider_custom_widget.dart';
 
 class PerfilPage extends StatefulWidget {
   final String title;
@@ -269,15 +270,41 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
                     title: Text('Email'),
                     subtitle: Text(controller.perfil.data.email),
                   ),
-                  Divider(),
-                  ListTile(
-                    title: Text('CPF/CNPJ'),
-                    subtitle: Text(controller.perfil.data.cpfCnpj),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text('CPF/CNPJ: ' + controller.perfil.data.cpfCnpj),
+                        SizedBox(width: 15),
+                        Text('Telefone: ' + controller.perfil.data.telefone),
+                      ],
+                    ),
                   ),
-                  Divider(),
-                  ListTile(
-                    title: Text('Telefone'),
-                    subtitle: Text(controller.perfil.data.telefone),
+                  SizedBox(height: 15),
+                  HorizontalOrLine(
+                    label: 'Unidades',
+                  ),
+                  Container(
+                    height: 160,
+                    child: Expanded(
+                        child: ListView.builder(
+                            itemCount: controller.unidades.data.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Card(
+                                child: ListTile(
+                                  leading: CircleAvatar(
+                                    backgroundImage: NetworkImage(
+                                        controller.unidades.data[index].logo),
+                                  ),
+                                  title: Text(
+                                      controller.unidades.data[index].apelido),
+                                  subtitle: Text(
+                                      'Unidade: ${controller.unidades.data[index].codimo}'),
+                                ),
+                              );
+                            })),
                   ),
                   Divider(),
                   ButtonExpandedWidget(

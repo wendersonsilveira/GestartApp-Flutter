@@ -85,7 +85,7 @@ class _CalendarioPageState
                                     Text(
                                         '${UIHelper.formatDate(controller.reservaAdmDia[index].data)} | ${controller.reservaAdmDia[index].horIniDescricao} - ${controller.reservaAdmDia[index].horFimDescricao}')
                                   ],
-                                ), //
+                                ),
                               )),
                             ),
                           ),

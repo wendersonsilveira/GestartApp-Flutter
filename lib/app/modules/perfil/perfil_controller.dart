@@ -1,8 +1,10 @@
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/di/di.dart';
+import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/entities/user/password_entity.dart';
 import 'package:Gestart/domain/entities/user/user_entity.dart';
+import 'package:Gestart/domain/usecases/unidade/get_unidades_use_case.dart';
 import 'package:Gestart/domain/usecases/user/alterar_senha_use_case.dart';
 import 'package:Gestart/domain/usecases/user/checar_senha_use_case.dart';
 import 'package:Gestart/domain/usecases/user/excluir_conta_use_case.dart';
@@ -24,6 +26,7 @@ abstract class _PerfilControllerBase with Store {
   final sharedPreferences = getIt.get<SharedPreferencesManager>();
   final _checarSenha = getIt.get<ChecarSenhaUseCase>();
   final _excluirConta = getIt.get<ExcluirContaUseCase>();
+  final _getUnidades = getIt.get<GetUnidadesUseCase>();
 
   @observable
   ResourceData<UserEntity> perfil;
@@ -37,8 +40,13 @@ abstract class _PerfilControllerBase with Store {
   @observable
   ResourceData<int> excluirContaStatus;
 
+  @observable
+  ResourceData<List<UnidadeEntity>> unidades;
+
   init() async {
     perfil = ResourceData(status: Status.loading);
+    unidades = await _getUnidades();
+
     perfil = await _getPerfil();
   }
 
