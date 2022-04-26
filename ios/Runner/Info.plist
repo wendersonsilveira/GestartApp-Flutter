@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>${PRODUCT_NAME} use media</string>
+	<key>NSMotionUsageDescription</key>
+	<string>${PRODUCT_NAME} use motion</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>${PRODUCT_NAME} use galery</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>${PRODUCT_NAME} use calendar</string>
+	<key>NSContactsUsageDescription</key>
+	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
