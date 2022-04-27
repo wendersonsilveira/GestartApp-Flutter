@@ -288,23 +288,22 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
                   ),
                   Container(
                     height: 160,
-                    child: Expanded(
-                        child: ListView.builder(
-                            itemCount: controller.unidades.data.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Card(
-                                child: ListTile(
-                                  leading: CircleAvatar(
-                                    backgroundImage: NetworkImage(
-                                        controller.unidades.data[index].logo),
-                                  ),
-                                  title: Text(
-                                      controller.unidades.data[index].apelido),
-                                  subtitle: Text(
-                                      'Unidade: ${controller.unidades.data[index].codimo}'),
-                                ),
-                              );
-                            })),
+                    child: ListView.builder(
+                        itemCount: controller.unidades.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Card(
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                backgroundImage: NetworkImage(
+                                    controller.unidades.data[index].logo),
+                              ),
+                              title:
+                                  Text(controller.unidades.data[index].apelido),
+                              subtitle: Text(
+                                  'Unidade: ${controller.unidades.data[index].codimo}'),
+                            ),
+                          );
+                        }),
                   ),
                   Divider(),
                   ButtonExpandedWidget(
