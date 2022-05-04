@@ -24,10 +24,6 @@ abstract class _DadosReservaControllerBase with Store {
   @action
   init(int idReserva) async {
     reserva = await _getReserva(idReserva);
-    print("reserva.data: ");
-    print(reserva.data);
-
-    print("reserva.data: ");
   }
 
   @action
