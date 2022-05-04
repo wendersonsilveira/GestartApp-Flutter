@@ -34,6 +34,21 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
     });
   }
 
+  final _$setupAtom = Atom(name: '_CadastroEspacoControllerBase.setup');
+
+  @override
+  ResourceData<SetupEntity> get setup {
+    _$setupAtom.reportRead();
+    return super.setup;
+  }
+
+  @override
+  set setup(ResourceData<SetupEntity> value) {
+    _$setupAtom.reportWrite(value, super.setup, () {
+      super.setup = value;
+    });
+  }
+
   final _$statusCriacaoAtom =
       Atom(name: '_CadastroEspacoControllerBase.statusCriacao');
 
@@ -63,6 +78,22 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
   set espacoEditar(ResourceData<EspacoEntity> value) {
     _$espacoEditarAtom.reportWrite(value, super.espacoEditar, () {
       super.espacoEditar = value;
+    });
+  }
+
+  final _$horariosIntResAtom =
+      Atom(name: '_CadastroEspacoControllerBase.horariosIntRes');
+
+  @override
+  List<HoraEntity> get horariosIntRes {
+    _$horariosIntResAtom.reportRead();
+    return super.horariosIntRes;
+  }
+
+  @override
+  set horariosIntRes(List<HoraEntity> value) {
+    _$horariosIntResAtom.reportWrite(value, super.horariosIntRes, () {
+      super.horariosIntRes = value;
     });
   }
 
@@ -525,6 +556,17 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
       ActionController(name: '_CadastroEspacoControllerBase');
 
   @override
+  dynamic setarValoresIntRes() {
+    final _$actionInfo = _$_CadastroEspacoControllerBaseActionController
+        .startAction(name: '_CadastroEspacoControllerBase.setarValoresIntRes');
+    try {
+      return super.setarValoresIntRes();
+    } finally {
+      _$_CadastroEspacoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic statusAutorizacaoResponsavel() {
     final _$actionInfo =
         _$_CadastroEspacoControllerBaseActionController.startAction(
@@ -795,8 +837,10 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
   String toString() {
     return '''
 horarios: ${horarios},
+setup: ${setup},
 statusCriacao: ${statusCriacao},
 espacoEditar: ${espacoEditar},
+horariosIntRes: ${horariosIntRes},
 tempoMinPermanencia: ${tempoMinPermanencia},
 tempoMaxPermanencia: ${tempoMaxPermanencia},
 tempoMinAntecedencia: ${tempoMinAntecedencia},

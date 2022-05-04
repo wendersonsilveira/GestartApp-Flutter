@@ -35,7 +35,7 @@ class _CadastroEspacoPageState
 
   @override
   void initState() {
-    controller.init();
+    controller.init().then((value) => controller.setarValoresIntRes());
     if (widget.id != null)
       controller.getEspaco(widget.id).then((value) {
         _nomeController.text = value.data.descricao;
@@ -272,7 +272,7 @@ class _CadastroEspacoPageState
                                       ),
                                       Expanded(
                                           child: DropDownValidator(
-                                        lista: controller.horarios.data,
+                                        lista: controller.horariosIntRes,
                                         onChange: (value) => {
                                           controller.setIntRes(value),
                                         },

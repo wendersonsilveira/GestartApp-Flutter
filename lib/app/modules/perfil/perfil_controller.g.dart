@@ -82,13 +82,29 @@ mixin _$PerfilController on _PerfilControllerBase, Store {
     });
   }
 
+  final _$unidadesAtom = Atom(name: '_PerfilControllerBase.unidades');
+
+  @override
+  ResourceData<List<UnidadeEntity>> get unidades {
+    _$unidadesAtom.reportRead();
+    return super.unidades;
+  }
+
+  @override
+  set unidades(ResourceData<List<UnidadeEntity>> value) {
+    _$unidadesAtom.reportWrite(value, super.unidades, () {
+      super.unidades = value;
+    });
+  }
+
   @override
   String toString() {
     return '''
 perfil: ${perfil},
 statusAlterarSenha: ${statusAlterarSenha},
 checarSenhaStatus: ${checarSenhaStatus},
-excluirContaStatus: ${excluirContaStatus}
+excluirContaStatus: ${excluirContaStatus},
+unidades: ${unidades}
     ''';
   }
 }

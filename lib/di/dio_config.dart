@@ -14,6 +14,7 @@ import 'package:Gestart/data/datasource/recebimento/recebimento_data_source.dart
 import 'package:Gestart/data/datasource/reserva/espaco_remote_data_source.dart';
 import 'package:Gestart/data/datasource/reserva/horarios_espaco_remote_data_source.dart';
 import 'package:Gestart/data/datasource/reserva/reserva_remote_data_source.dart';
+import 'package:Gestart/data/datasource/setup/unidade_remote_data_source.dart';
 import 'package:Gestart/data/datasource/unidade/unidade_remote_data_source.dart';
 import 'package:Gestart/data/datasource/user/user_remote_data_source.dart';
 import 'package:Gestart/data/datasource/veiculo/veiculo_remote_data_source.dart';
@@ -37,6 +38,7 @@ import 'package:Gestart/data/repositories/recebimento/recebimento_repositoty_imp
 import 'package:Gestart/data/repositories/reserva/espaco_repository_impl.dart';
 import 'package:Gestart/data/repositories/reserva/horarios_espaco_repository_impl.dart';
 import 'package:Gestart/data/repositories/reserva/reserva_repository_impl.dart';
+import 'package:Gestart/data/repositories/setup/setup_repository_impl.dart';
 import 'package:Gestart/data/repositories/unidade/unidade_repository_impl.dart';
 import 'package:Gestart/data/repositories/user/user_repository_impl.dart';
 import 'package:Gestart/data/repositories/veiculo/veiculo_repository_impl.dart';
@@ -55,6 +57,7 @@ import 'package:Gestart/domain/repositories/recebimento/recebimento_repository.d
 import 'package:Gestart/domain/repositories/reserva/espaco_repository.dart';
 import 'package:Gestart/domain/repositories/reserva/horarios_espaco_repository.dart';
 import 'package:Gestart/domain/repositories/reserva/reserva_repository.dart';
+import 'package:Gestart/domain/repositories/setup/setup_repository.dart';
 import 'package:Gestart/domain/repositories/unidade/unidade_repository.dart';
 import 'package:Gestart/domain/repositories/user/user_repository.dart';
 import 'package:Gestart/domain/repositories/veiculo/veiculo_repository.dart';
@@ -108,6 +111,7 @@ import 'package:Gestart/domain/usecases/reserva/get_reserva_adm_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reserva_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_adm_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/rejeitar_reserva_use_case.dart';
+import 'package:Gestart/domain/usecases/setup/get_setup_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_adm_unidades_prop_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidade_detalhes_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_adm_use_case.dart';
@@ -354,6 +358,11 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<GetResumoUnidadeUseCase>(
       () => GetResumoUnidadeUseCase(get<ResumoUnidadeRepository>()));
 
+  // setup
+  gh.factory<SetupRemoteDataSource>(
+      () => SetupRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetSetupUseCase>(() => GetSetupUseCase(get<SetupRepository>()));
+
   //  Singleton
   gh.singleton<Dio>(dio);
   gh.singleton<SharedPreferencesManager>(SharedPreferencesManager());
@@ -414,6 +423,9 @@ Future<GetIt> initGetIt(GetIt get) async {
 
   gh.singleton<ResumoUnidadeRepository>(
       ResumoUnidadeRepositoryImpl(get<ResumoUnidadeRemoteDataSource>()));
+
+  gh.singleton<SetupRepository>(
+      SetupRepositoryImpl(get<SetupRemoteDataSource>()));
 
   return get;
 }

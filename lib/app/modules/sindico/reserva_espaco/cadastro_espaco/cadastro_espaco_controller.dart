@@ -2,9 +2,11 @@ import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/reserva/espaco_entity.dart';
 import 'package:Gestart/domain/entities/reserva/hora_entity.dart';
+import 'package:Gestart/domain/entities/setup/setup_entity.dart';
 import 'package:Gestart/domain/usecases/reserva/criar_espaco_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_espaco_use_id.dart';
 import 'package:Gestart/domain/usecases/reserva/get_horas_use_case.dart';
+import 'package:Gestart/domain/usecases/setup/get_setup_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
@@ -20,9 +22,13 @@ abstract class _CadastroEspacoControllerBase with Store {
   final _getHorarios = getIt.get<GetHorasUseCase>();
   final _criarEspaco = getIt.get<CriarEspacoUseCase>();
   final _getEspaco = getIt.get<GetEspacoUseCase>();
+  final _getSetup = getIt.get<GetSetupUseCase>();
 
   @observable
   ResourceData<List<HoraEntity>> horarios;
+
+  @observable
+  ResourceData<SetupEntity> setup;
 
   @observable
   ResourceData statusCriacao;
@@ -31,11 +37,15 @@ abstract class _CadastroEspacoControllerBase with Store {
   ResourceData<EspacoEntity> espacoEditar;
 
   int cond;
+  @observable
+  List<HoraEntity> horariosIntRes = [];
 
   @action
   init() async {
     horarios = ResourceData(status: Status.loading);
     horarios = await _getHorarios();
+    setup = await _getSetup(0);
+
     this.cond = await UIHelper.getStorageInt('codCon');
   }
 
@@ -44,6 +54,12 @@ abstract class _CadastroEspacoControllerBase with Store {
     setarValores(espacoEditar.data);
     return espacoEditar;
   }
+
+  // setarValoresIntRes() {
+  //   horariosIntRes = horarios.data
+  //       .where((element) => element.id <= setup.data.setupReserva.maxIntRes)
+  //       .toList();
+  // }
 
   setarValores(EspacoEntity espaco) {
     this.tempoMinPermanencia = espaco.perMin;
@@ -211,6 +227,13 @@ abstract class _CadastroEspacoControllerBase with Store {
   bool statusEspaco = true;
   @observable
   bool apenasProprietarioReserva = true;
+
+  @action
+  setarValoresIntRes() {
+    horariosIntRes = horarios.data
+        .where((element) => element.id <= setup.data.setupReserva.maxIntRes)
+        .toList();
+  }
 
   @action
   statusAutorizacaoResponsavel() {
