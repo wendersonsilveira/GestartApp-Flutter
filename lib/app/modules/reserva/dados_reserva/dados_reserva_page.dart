@@ -29,7 +29,7 @@ class _DadosReservaPageState
   //use 'controller' variable to access controller
   ReservaEntity reserva;
   cancelarReserva() async {
-    final r = await controller.cancelarReserva(reserva.id);
+    final r = await controller.cancelarReserva(widget.idReserva);
     Modular.navigator.pop();
     if (r.status == Status.success) {
       openDialogInf(
