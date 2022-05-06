@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:Gestart/app/constants/route_name.dart';
@@ -15,6 +16,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'components/button_services/button_services_widget.dart';
 import 'components/itens_services/item_servico_widget.dart';
 import 'dashboard_controller.dart';
@@ -22,6 +24,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class DashboardPage extends StatefulWidget {
   final String title;
@@ -43,12 +46,18 @@ class _DashboardPageState
   //use 'controller' variable to access controller
   PDFDocument document;
   bool isNotifyConfig = false;
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+  );
   @override
   void initState() {
     _firebaseMessaging.getToken().then((value) {
       sharedPreferences.putString('devicekey', value);
     });
-
+    _initPackageInfo();
     Platform.isIOS ? configNotificationIOS() : configNotificationAndroid();
 
     controller.testsUseCases();
@@ -77,6 +86,13 @@ class _DashboardPageState
         Modular.navigator.pushNamed('$page', arguments: id);
       },
     );
+  }
+
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
   }
 
   Future onDidReceiveLocalNotification(
@@ -207,6 +223,59 @@ class _DashboardPageState
         payload: '$page**$id');
   }
 
+  Widget _infoTile(String title, String subtitle, String v) {
+    return ListTile(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title),
+            Text(v,
+                style:
+                    TextStyle(color: AppColorScheme.tagGreen2, fontSize: 15)),
+          ],
+        ),
+        onTap: () {
+          _launchURL(Platform.isIOS
+              ? 'https://apps.apple.com/br/app/gestartapp/id1444521402'
+              : 'https://play.google.com/store/apps/details?id=com.gestart.gestartapp');
+        },
+        subtitle: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(subtitle ?? 'Not set'),
+            Icon(
+              FlutterIcons.refresh_mdi,
+              color: AppColorScheme.tagGreen2,
+            )
+          ],
+        ));
+  }
+
+  void _launchURL(_url) async => await canLaunch(_url)
+      ? await launch(_url)
+      : throw 'Could not launch $_url';
+  showInfor(BuildContext context) {
+    Timer(
+        Duration(seconds: 1),
+        () => {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Center(child: Text('Sobre - GestartApp ')),
+                    content: Container(
+                      height: 100,
+                      child: Column(children: [
+                        _infoTile('Versão do aplicativo: ',
+                            'Atualize seu app pela loja', _packageInfo.version),
+                      ]),
+                    ),
+                  );
+                },
+              )
+            });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -215,6 +284,18 @@ class _DashboardPageState
         context,
         center: false,
         title: Text('GestartApp'),
+        actions: [
+          IconButton(
+            icon: Icon(
+              FlutterIcons.exclamation_evi,
+              color: AppColorScheme.white,
+              size: 30,
+            ),
+            onPressed: () {
+              showInfor(context);
+            },
+          )
+        ],
         leading: Padding(
           padding: const EdgeInsets.all(5),
           child: IconButton(

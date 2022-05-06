@@ -44,6 +44,7 @@ dependencies:
   mobx: ^1.2.1+4
   flutter_plugin_pdf_viewer: ^1.0.7
   barcode: ^1.17.1
+  package_info_plus: ^0.6.4
 
   flutter:
     sdk: flutter
