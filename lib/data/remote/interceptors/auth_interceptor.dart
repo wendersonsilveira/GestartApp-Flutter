@@ -51,7 +51,7 @@ class AuthInterceptor extends Interceptor {
     return <String, dynamic>{
       'version.securityPatch': build.version.securityPatch,
       'version.sdkInt': build.version.sdkInt,
-      'version.release': build.version.release,
+      'systemVersion': build.version.release,
       'version.previewSdkInt': build.version.previewSdkInt,
       'version.incremental': build.version.incremental,
       'version.codename': build.version.codename,
@@ -90,7 +90,7 @@ class AuthInterceptor extends Interceptor {
 
     return {
       "version": info.version,
-      "versionPlatform": deviceData['version.release']
+      "versionPlatform": deviceData['systemVersion']
     };
   }
 
