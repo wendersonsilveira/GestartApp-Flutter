@@ -2,6 +2,7 @@ import 'package:Gestart/app/modules/sindico/comunicacao/avisos/cadastro/cadastro
 import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
+import 'package:Gestart/app/widgets/empty/empt_widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -34,7 +35,8 @@ class _AvisosPageState extends ModularState<AvisosPage, AvisosPageController> {
             onPressed: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(
-                    builder: (context) => CadastroAvisoPagePage(condCon: controller.codCon),
+                    builder: (context) =>
+                        CadastroAvisoPagePage(condCon: controller.codCon),
                   ))
                   .then((value) => controller.getAvisos());
             },
@@ -59,11 +61,13 @@ class _AvisosPageState extends ModularState<AvisosPage, AvisosPageController> {
                                   child: Container(
                                     padding: EdgeInsets.symmetric(vertical: 10),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Expanded(
                                           child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               ListTile(
                                                 leading: Container(
@@ -71,31 +75,48 @@ class _AvisosPageState extends ModularState<AvisosPage, AvisosPageController> {
                                                   width: 45,
                                                   clipBehavior: Clip.hardEdge,
                                                   decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.all(
+                                                    borderRadius:
+                                                        BorderRadius.all(
                                                       Radius.circular(45),
                                                     ),
                                                   ),
                                                   child: FadeInImage(
                                                     width: 25,
                                                     image: NetworkImage(e.logo),
-                                                    placeholder: AssetImage('assets/images/logo.png'),
+                                                    placeholder: AssetImage(
+                                                        'assets/images/logo.png'),
                                                   ),
                                                 ),
                                                 title: Text(e.apelido),
-                                                subtitle: Text(UIHelper.formatDate(e.datEmi)),
+                                                subtitle: Text(
+                                                    UIHelper.formatDate(
+                                                        e.datEmi)),
                                                 onTap: () {
                                                   Navigator.of(context)
                                                       .push(MaterialPageRoute(
-                                                        builder: (context) => CadastroAvisoPagePage(condCon: controller.codCon, id: e.id),
+                                                        builder: (context) =>
+                                                            CadastroAvisoPagePage(
+                                                                condCon:
+                                                                    controller
+                                                                        .codCon,
+                                                                id: e.id),
                                                       ))
-                                                      .then((value) => controller.getAvisos());
+                                                      .then((value) =>
+                                                          controller
+                                                              .getAvisos());
                                                 },
                                               ),
-                                              Container(padding: EdgeInsets.symmetric(horizontal: 15), child: Text(e.att)),
+                                              Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 15),
+                                                  child: Text(e.att)),
                                             ],
                                           ),
                                         ),
-                                        Container(padding: EdgeInsets.symmetric(horizontal: 10), child: Icon(Icons.chevron_right)),
+                                        Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 10),
+                                            child: Icon(Icons.chevron_right)),
                                       ],
                                     ),
                                   ),
@@ -104,7 +125,9 @@ class _AvisosPageState extends ModularState<AvisosPage, AvisosPageController> {
                       ),
                     ),
                   )
-                : Text('Nenhum aviso!', textAlign: TextAlign.center),
+                : EmptyWidget(
+                    descricao: 'Sem informativos!',
+                  ),
       ),
     );
   }
