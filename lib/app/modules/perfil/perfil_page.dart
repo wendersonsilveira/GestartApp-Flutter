@@ -244,17 +244,6 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Text(
-                      'Seus Dados',
-                      style: TextStyle(
-                        fontSize: 30.sp,
-                        fontFamily: 'roboto',
-                        fontStyle: FontStyle.normal,
-                      ),
-                    ),
-                  ),
                   ListTile(
                     leading: CircleAvatar(
                       backgroundColor: Colors.white,
@@ -270,19 +259,14 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
                     title: Text('Email'),
                     subtitle: Text(controller.perfil.data.email),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.symmetric(horizontal: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text('CPF/CNPJ: ' + controller.perfil.data.cpfCnpj),
-                        SizedBox(width: 15),
-                        Text('Telefone: ' + controller.perfil.data.telefone),
-                      ],
-                    ),
+                  ListTile(
+                    title: Text('CPF/CNPJ: '),
+                    subtitle: Text(controller.perfil.data.cpfCnpj),
                   ),
-                  SizedBox(height: 15),
+                  ListTile(
+                    title: Text('Telefone: '),
+                    subtitle: Text(controller.perfil.data.telefone),
+                  ),
                   HorizontalOrLine(
                     label: 'Unidades',
                   ),

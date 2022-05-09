@@ -25,7 +25,6 @@ extension BoletoMapper on BoletoEntity {
 
   BoletoEntity fromMap(Map<String, dynamic> map) {
     if (map == null || map.length == 0) return null;
-
     return BoletoEntity(
       id: map['ID'],
       identificador: map['IDENTIFICADOR'],

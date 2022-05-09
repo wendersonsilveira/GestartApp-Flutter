@@ -41,7 +41,7 @@ Camada responsável por obter os dados, sejam eles remotos ou do database local 
 
 ### Passos para construção
 
-1. Criar o Entity (/domain/entities)
+1. Criar o Entity (/domain/entities) 
 2. Criar o Mapper (/data/mappers)
 3. Criar o Data Source (/data/datasource)
 4. Criar o Repositorio (/domain/repositories)

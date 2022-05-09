@@ -26,11 +26,11 @@ class DetalheBoletoEntity {
   final String especieDoc;
   final String carteira;
   final String despesa1;
-  final double despesa2;
-  final double despesa3;
-  final double despesa4;
-  final double despesa5;
-  final double despesa6;
+  final String despesa2;
+  final String despesa3;
+  final String despesa4;
+  final String despesa5;
+  final String despesa6;
   final double valor1;
   final double valor2;
   final double valor3;

@@ -29,6 +29,7 @@ class _BarChartGraphState extends State<BarChartGraph> {
           measureFn: (BarChartModel series, _) => series.valor,
           colorFn: (BarChartModel series, _) => series.color),
     ];
+    print(series);
 
     return _buildFinancialList(series);
   }

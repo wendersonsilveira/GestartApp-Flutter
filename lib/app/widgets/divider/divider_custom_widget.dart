@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class HorizontalOrLine extends StatelessWidget {
   const HorizontalOrLine({
@@ -21,7 +22,9 @@ class HorizontalOrLine extends StatelessWidget {
               height: height,
             )),
       ),
+      Icon(FlutterIcons.up_ant),
       Text(label),
+      Icon(FlutterIcons.down_ant),
       Expanded(
         child: new Container(
             margin: const EdgeInsets.only(left: 15.0, right: 10.0),

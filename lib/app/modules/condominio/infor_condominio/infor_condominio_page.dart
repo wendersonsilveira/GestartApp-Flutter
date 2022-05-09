@@ -81,10 +81,26 @@ class _InforCondominioPageState
                                       children: [
                                         Card(
                                           child: ListTile(
-                                            title: Text('Endereço'),
-                                            subtitle: Text(
-                                                controller.listView[0].endCon),
-                                          ),
+                                              title: Text('Endereço'),
+                                              subtitle: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(controller
+                                                          .listView[0].endCon +
+                                                      ' ' +
+                                                      controller
+                                                          .listView[0].baiCon),
+                                                  Text(controller
+                                                          .listView[0].cidade +
+                                                      ' ' +
+                                                      controller
+                                                          .listView[0].estado +
+                                                      ' - ' +
+                                                      controller
+                                                          .listView[0].cep)
+                                                ],
+                                              )),
                                         ),
                                         Card(
                                           child: ListTile(
