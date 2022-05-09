@@ -255,25 +255,21 @@ class _DashboardPageState
       ? await launch(_url)
       : throw 'Could not launch $_url';
   showInfor(BuildContext context) {
-    Timer(
-        Duration(seconds: 1),
-        () => {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Center(child: Text('Sobre - GestartApp ')),
-                    content: Container(
-                      height: 100,
-                      child: Column(children: [
-                        _infoTile('Versão do aplicativo: ',
-                            'Atualize seu app pela loja', _packageInfo.version),
-                      ]),
-                    ),
-                  );
-                },
-              )
-            });
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Center(child: Text('Sobre - GestartApp ')),
+          content: Container(
+            height: 100,
+            child: Column(children: [
+              _infoTile('Versão do aplicativo: ', 'Atualize seu app pela loja',
+                  _packageInfo.version),
+            ]),
+          ),
+        );
+      },
+    );
   }
 
   @override
