@@ -77,6 +77,14 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(
+                  Icons.info,
+                  color: Colors.grey,
+                ),
+                label: '',
+                backgroundColor: AppColorScheme.corMenuBotton,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
                   FlutterIcons.mic_mdi,
                   color: Colors.grey,
                 ),
