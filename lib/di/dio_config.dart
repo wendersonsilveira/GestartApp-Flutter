@@ -14,7 +14,7 @@ import 'package:Gestart/data/datasource/recebimento/recebimento_data_source.dart
 import 'package:Gestart/data/datasource/reserva/espaco_remote_data_source.dart';
 import 'package:Gestart/data/datasource/reserva/horarios_espaco_remote_data_source.dart';
 import 'package:Gestart/data/datasource/reserva/reserva_remote_data_source.dart';
-import 'package:Gestart/data/datasource/setup/unidade_remote_data_source.dart';
+import 'package:Gestart/data/datasource/setup/setup_remote_data_source.dart';
 import 'package:Gestart/data/datasource/unidade/unidade_remote_data_source.dart';
 import 'package:Gestart/data/datasource/user/user_remote_data_source.dart';
 import 'package:Gestart/data/datasource/veiculo/veiculo_remote_data_source.dart';

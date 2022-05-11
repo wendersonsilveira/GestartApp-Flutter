@@ -12,7 +12,7 @@ class GetSetupUseCase
   GetSetupUseCase(this._setupRepository);
 
   @override
-  Future<ResourceData<SetupEntity>> call([int codCon]) {
+  Future<ResourceData<SetupEntity>> call([int codCon = 0]) {
     return _setupRepository.getSetup(codCon);
   }
 }

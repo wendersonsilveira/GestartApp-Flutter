@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:Gestart/domain/entities/setup/setup_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesManager {
@@ -44,6 +45,26 @@ class SharedPreferencesManager {
       return true;
     } catch (e) {
       return false;
+    }
+  }
+
+  Future<bool> putInt(String key, int setup) async {
+    try {
+      SharedPreferences share = await instance.future;
+      share.setInt(key, setup);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<int> getInt(String key) async {
+    try {
+      SharedPreferences share = await instance.future;
+      int value = share.getInt(key);
+      return value;
+    } catch (e) {
+      return null;
     }
   }
 

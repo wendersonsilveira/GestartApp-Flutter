@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:Gestart/data/local/shared_preferences.dart';
+import 'package:Gestart/di/di.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -18,7 +20,17 @@ class DownloadListItemWidget extends StatefulWidget {
   final Function onTap;
   final bool download;
 
-  const DownloadListItemWidget({Key key, this.fileURL, this.fileName, this.title, this.subtitle, this.leading, this.trailing, this.onTap, this.download = true}) : super(key: key);
+  const DownloadListItemWidget(
+      {Key key,
+      this.fileURL,
+      this.fileName,
+      this.title,
+      this.subtitle,
+      this.leading,
+      this.trailing,
+      this.onTap,
+      this.download = true})
+      : super(key: key);
 
   @override
   _DownloadListItemWidgetState createState() => _DownloadListItemWidgetState();
@@ -27,6 +39,7 @@ class DownloadListItemWidget extends StatefulWidget {
 class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
   double downloadProgress = 0;
   bool downloadStatus = false;
+  final sharedPreferences = getIt.get<SharedPreferencesManager>();
 
   @override
   void initState() {
@@ -43,8 +56,11 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
     try {
       if (await Permission.storage.request().isGranted) {
         final dir = await AndroidPathProvider.downloadsPath;
-        final String _name = widget.fileName.replaceAll(r'/', '_');
+        String _name = widget.fileName.replaceAll(r'/', '_');
         final String _url = widget.fileURL;
+
+        int version = await sharedPreferences.getInt('versaoArquivos');
+        _name = 'v_${version}_$_name';
 
         setState(() {
           downloadStatus = true;
@@ -58,12 +74,13 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
           });
           OpenFile.open('$dir/$_name').then((v) {
             if (v.type == ResultType.noAppToOpen) {
-              showMessage(
-                  fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+              showMessage(fileName,
+                  'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
             }
           });
         } else {
-          await Dio().download(_url, '$dir/$_name', onReceiveProgress: (int received, int total) {
+          await Dio().download(_url, '$dir/$_name',
+              onReceiveProgress: (int received, int total) {
             if (total != -1) {
               setState(() {
                 downloadProgress = (received / total * 100);
@@ -76,8 +93,8 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
           });
           OpenFile.open('$dir/$_name').then((v) {
             if (v.type == ResultType.noAppToOpen) {
-              showMessage(
-                  fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+              showMessage(fileName,
+                  'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
             }
           });
         }
@@ -86,7 +103,8 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
       setState(() {
         downloadStatus = false;
       });
-      showMessage("inacessível", 'Falha ao realizar download. Verifique sua conexão com a internet.');
+      showMessage("inacessível",
+          'Falha ao realizar download. Verifique sua conexão com a internet.');
     }
   }
 
@@ -100,8 +118,12 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
   downloadIOS() async {
     try {
       final dir = await getApplicationDocumentsDirectory();
-      final String _name = widget.fileName.replaceAll(r'/', '_');
+      String _name = widget.fileName.replaceAll(r'/', '_');
       final String _url = widget.fileURL;
+
+      int version = await sharedPreferences.getInt('versaoArquivos');
+      _name = 'v_${version}_$_name';
+
       setState(() {
         downloadStatus = true;
       });
@@ -114,12 +136,13 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
         });
         OpenFile.open(dir.path + '/$_name').then((value) {
           if (value.type == ResultType.noAppToOpen) {
-            showMessage(
-                fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+            showMessage(fileName,
+                'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
           }
         });
       } else {
-        await Dio().download(_url, dir.path + '/$_name', onReceiveProgress: (int received, int total) {
+        await Dio().download(_url, dir.path + '/$_name',
+            onReceiveProgress: (int received, int total) {
           if (total != -1) {
             setState(() {
               downloadProgress = (received / total * 100);
@@ -137,8 +160,8 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
         });
         OpenFile.open('$dir/$_name').then((value) {
           if (value.type == ResultType.noAppToOpen) {
-            showMessage(
-                fileName, 'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+            showMessage(fileName,
+                'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
           }
         });
       }
@@ -146,7 +169,8 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
       setState(() {
         downloadStatus = false;
       });
-      showMessage('inacessível', 'Falha ao realizar download. Verifique sua conexão com a internet');
+      showMessage('inacessível',
+          'Falha ao realizar download. Verifique sua conexão com a internet');
     }
   }
 
@@ -197,7 +221,8 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
         leading: widget.leading,
         title: widget.title,
         subtitle: widget.subtitle,
-        trailing: downloadStatus ? CircularProgressIndicator() : widget.trailing,
+        trailing:
+            downloadStatus ? CircularProgressIndicator() : widget.trailing,
         onTap: widget.onTap != null
             ? () {
                 widget.onTap();
