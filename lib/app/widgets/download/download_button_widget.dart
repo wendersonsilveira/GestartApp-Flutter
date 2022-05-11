@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:Gestart/app/widgets/buttons/flat_button_widget.dart';
+import 'package:Gestart/data/local/shared_preferences.dart';
+import 'package:Gestart/di/di.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -37,6 +39,7 @@ class DownloadButtonWidget extends StatefulWidget {
 class _DownloadButtonWidgetState extends State<DownloadButtonWidget> {
   double downloadProgress = 0;
   bool downloadStatus = false;
+  final sharedPreferences = getIt.get<SharedPreferencesManager>();
 
   @override
   void initState() {
@@ -53,7 +56,12 @@ class _DownloadButtonWidgetState extends State<DownloadButtonWidget> {
     try {
       if (await Permission.storage.request().isGranted) {
         final dir = await AndroidPathProvider.downloadsPath;
-        final String _name = widget.fileName.replaceAll(r'/', '_');
+        String _name = widget.fileName.replaceAll(r'/', '_');
+
+        int version = await sharedPreferences.getInt('versaoArquivos');
+
+        _name = 'v_${version}_$_name';
+
         final String _url = widget.fileURL;
 
         setState(() {
@@ -111,7 +119,12 @@ class _DownloadButtonWidgetState extends State<DownloadButtonWidget> {
   downloadIOS() async {
     try {
       final dir = await getApplicationDocumentsDirectory();
-      final String _name = widget.fileName.replaceAll(r'/', '_');
+      String _name = widget.fileName.replaceAll(r'/', '_');
+
+      int version = await sharedPreferences.getInt('versaoArquivos');
+
+      _name = 'v_${version}_$_name';
+
       final String _url = widget.fileURL;
       setState(() {
         downloadStatus = true;
@@ -125,13 +138,11 @@ class _DownloadButtonWidgetState extends State<DownloadButtonWidget> {
         });
 
         OpenFile.open(dir.path + '/$_name').then((value) {
-            if (value.type == ResultType.noAppToOpen) {
-              showMessage(fileName,
-                  'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-            }
-          });
-          
-
+          if (value.type == ResultType.noAppToOpen) {
+            showMessage(fileName,
+                'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+          }
+        });
       } else {
         await Dio().download(_url, dir.path + '/$_name',
             onReceiveProgress: (int received, int total) {
@@ -139,7 +150,6 @@ class _DownloadButtonWidgetState extends State<DownloadButtonWidget> {
             setState(() {
               downloadProgress = (received / total * 100);
             });
-            
           }
         });
         setState(() {
@@ -147,12 +157,11 @@ class _DownloadButtonWidgetState extends State<DownloadButtonWidget> {
         });
 
         OpenFile.open(dir.path + '/$_name').then((value) {
-            if (value.type == ResultType.noAppToOpen) {
-              showMessage(fileName,
-                  'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-            }
-          });
-        
+          if (value.type == ResultType.noAppToOpen) {
+            showMessage(fileName,
+                'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+          }
+        });
       }
     } on DioError catch (_) {
       setState(() {

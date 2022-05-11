@@ -2,9 +2,11 @@ import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/condominio/unidades_ativa_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
+import 'package:Gestart/domain/entities/setup/setup_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_case.dart';
+import 'package:Gestart/domain/usecases/setup/get_setup_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_adm_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -25,6 +27,7 @@ abstract class _DashboardControllerBase with Store {
   final _getCondominios = getIt.get<GetCondominioPorCpfUseCase>();
   final _getCondominioAtivo = getIt.get<GetCondominioAtivoUseCase>();
   final _getUnidadesAtivas = getIt.get<GetUnidadesAdmUseCase>();
+  final _getSetup = getIt.get<GetSetupUseCase>();
 
   @observable
   ResourceData<List<CondominioEntity>> condominios;
@@ -73,13 +76,19 @@ abstract class _DashboardControllerBase with Store {
     checkCondominiosAtivos(condominiosAtivos.data != null ? true : false);
     verificarStatusCondominios();
     chekedSindico = true;
+    ResourceData<SetupEntity> setup = await _getSetup();
+
+    sharedPreferences.putInt('versaoArquivos', setup.data.versaoArquivos);
   }
 
   @computed
-  bool get statusLoading => condominiosAtivos.status == Status.loading && unidadesAtivasAdm.status == Status.loading;
+  bool get statusLoading =>
+      condominiosAtivos.status == Status.loading &&
+      unidadesAtivasAdm.status == Status.loading;
 
   @computed
-  bool get isSindico => unidadesAtivasAdm.data != null && unidadesAtivasAdm.data.length > 0;
+  bool get isSindico =>
+      unidadesAtivasAdm.data != null && unidadesAtivasAdm.data.length > 0;
 
   /*
     status 0 = nenhum condominio vinculado
