@@ -6,6 +6,7 @@ import 'package:Gestart/app/modules/dashboard/components/cards/card_infor_widget
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/styles/app_images.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
+import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/di/di.dart';
@@ -224,52 +225,49 @@ class _DashboardPageState
   }
 
   Widget _infoTile(String title, String subtitle, String v) {
-    return ListTile(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(title),
-            Text(v,
-                style:
-                    TextStyle(color: AppColorScheme.tagGreen2, fontSize: 15)),
-          ],
-        ),
-        onTap: () {
-          _launchURL(Platform.isIOS
-              ? 'https://apps.apple.com/br/app/gestartapp/id1444521402'
-              : 'https://play.google.com/store/apps/details?id=com.gestart.gestartapp');
-        },
-        subtitle: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(subtitle ?? 'Not set'),
-            Icon(
-              FlutterIcons.refresh_mdi,
-              color: AppColorScheme.tagGreen2,
-            )
-          ],
-        ));
+    // return ListTile(
+    //     title: Row(
+    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //       children: [
+    //         Text(title),
+    //         Text(v,
+    //             style:
+    //                 TextStyle(color: AppColorScheme.tagGreen2, fontSize: 15)),
+    //       ],
+    //     ),
+    //     onTap: () {
+    //       _launchURL(Platform.isIOS
+    //           ? 'https://apps.apple.com/br/app/gestartapp/id1444521402'
+    //           : 'https://play.google.com/store/apps/details?id=com.gestart.gestartapp');
+    //     },
+    //     subtitle: Row(
+    //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+    //       children: [
+    //         Text(subtitle ?? 'Not set'),
+    //         Icon(
+    //           FlutterIcons.refresh_mdi,
+    //           color: AppColorScheme.tagGreen2,
+    //         )
+    //       ],
+    //     ));
   }
 
   void _launchURL(_url) async => await canLaunch(_url)
       ? await launch(_url)
       : throw 'Could not launch $_url';
+
   showInfor(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Center(child: Text('Sobre - GestartApp ')),
-          content: Container(
-            height: 100,
-            child: Column(children: [
-              _infoTile('Versão do aplicativo: ', 'Atualize seu app pela loja',
-                  _packageInfo.version),
-            ]),
-          ),
-        );
-      },
-    );
+    CustomAlertDialog.question(context,
+        title: "GestartApp:  ${_packageInfo.version}",
+        message: "Atualize seu app pela loja ",
+        colorNegative: AppColorScheme.tagRed2,
+        colorPositive: AppColorScheme.tagBlue2,
+        textButtonNegative: "Sair",
+        textButtonPositive: "Atualizar",
+        onActionNegativeButton: () => {Navigator.pop(context)},
+        onActionPositiveButton: () => _launchURL(Platform.isIOS
+            ? 'https://apps.apple.com/br/app/gestartapp/id1444521402'
+            : 'https://play.google.com/store/apps/details?id=com.gestart.gestartapp'));
   }
 
   @override
@@ -342,6 +340,8 @@ class _DashboardPageState
                                   icon: Icons.event_available,
                                   descricao: 'Reservas',
                                   route: RouteName.reservas,
+                                  statusReserva: controller
+                                      .condominiosAtivos.data.gestartappReserva,
                                 ),
                               ],
                             ),
