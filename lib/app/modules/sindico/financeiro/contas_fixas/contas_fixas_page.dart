@@ -172,6 +172,7 @@ class _ContasFixasPageState
                     controller.data.length > 0
                         ? BarChartGraph(
                             data: controller.data,
+                            horizontalFirst: true,
                           )
                         : CircularProgressCustom(),
                   ],

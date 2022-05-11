@@ -264,7 +264,7 @@ class _DashboardPageState
         colorPositive: AppColorScheme.tagBlue2,
         textButtonNegative: "Sair",
         textButtonPositive: "Atualizar",
-        onActionNegativeButton: () => {Navigator.pop(context)},
+        onActionNegativeButton: () => {print('fechar tela')},
         onActionPositiveButton: () => _launchURL(Platform.isIOS
             ? 'https://apps.apple.com/br/app/gestartapp/id1444521402'
             : 'https://play.google.com/store/apps/details?id=com.gestart.gestartapp'));

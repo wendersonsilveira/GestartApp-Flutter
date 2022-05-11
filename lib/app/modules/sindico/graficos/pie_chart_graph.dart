@@ -29,7 +29,6 @@ class _BarChartGraphState extends State<BarChartGraph> {
           measureFn: (BarChartModel series, _) => series.valor,
           colorFn: (BarChartModel series, _) => series.color),
     ];
-    print(series);
 
     return _buildFinancialList(series);
   }
@@ -37,7 +36,7 @@ class _BarChartGraphState extends State<BarChartGraph> {
   Widget _buildFinancialList(series) {
     return Container(
       height: MediaQuery.of(context).size.height / 2,
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(2),
       child: Column(
         children: [
           Expanded(
