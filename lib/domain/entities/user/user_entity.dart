@@ -11,6 +11,7 @@ class UserEntity {
   final String telefone;
   final String cpfCnpj;
   final String linkPhoto;
+  final int forceUpdate;
 
   const UserEntity({
     this.status,
@@ -22,7 +23,9 @@ class UserEntity {
     this.telefone,
     this.cpfCnpj,
     this.linkPhoto,
+    this.forceUpdate
   });
+  
 
   @override
   String toString() {

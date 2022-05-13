@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/condominio/unidades_ativa_entity.dart';
@@ -30,6 +32,12 @@ abstract class _DashboardControllerBase with Store {
   final _getSetup = getIt.get<GetSetupUseCase>();
 
   @observable
+  String versionInfo = '';
+
+  @observable
+  String storeVersion = '';
+
+  @observable
   ResourceData<List<CondominioEntity>> condominios;
 
   @observable
@@ -47,6 +55,9 @@ abstract class _DashboardControllerBase with Store {
   @observable
   bool chekedSindico = false;
 
+  @observable
+  ResourceData<SetupEntity> setup;
+
   init() {
     condominios = ResourceData(status: Status.loading);
     condominiosAtivos = ResourceData(status: Status.loading);
@@ -59,6 +70,37 @@ abstract class _DashboardControllerBase with Store {
     // var result = await _getUnidadesAtivas();
 
     // print("Result unidades adm ***: \n ${result.data.toString()}");
+  }
+
+  Future<dynamic> checkStorageVersionDiff() async {
+    setup = await _getSetup();
+    int forceUpdate = setup.data.forceUpdate;
+    bool isAndroid = Platform.isAndroid ? true : false;
+    bool isVisible = false;
+
+    bool isForceUpdate = forceUpdate == 1 ? true : false;
+
+    String deviceVersion = await sharedPreferences.getString('version').then((value) => value);
+
+    storeVersion = isAndroid
+        ? setup.data.androidStoreVersion.trim()
+        : setup.data.iosStoreVersion.trim();
+
+    if (isAndroid && deviceVersion == setup.data.androidStoreVersion.trim()) {
+      isVisible = false;
+    } else if (!isAndroid && deviceVersion == setup.data.iosStoreVersion.trim()) {
+      isVisible = false;
+    } else
+      isVisible = true;
+
+    return new Future<dynamic>(() {
+      return {
+        'isVisible': isVisible,
+        'storeVersion': storeVersion,
+        'deviceVersion': deviceVersion,
+        'forceUpdate': isForceUpdate
+      };
+    });
   }
 
   @action
