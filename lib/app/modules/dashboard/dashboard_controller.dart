@@ -78,7 +78,7 @@ abstract class _DashboardControllerBase with Store {
     bool isAndroid = Platform.isAndroid ? true : false;
     bool isVisible = false;
 
-    bool isForceUpdate = forceUpdate == 1 ? false : true;
+    bool isForceUpdate = forceUpdate == 1 ? true : false;
 
     String deviceVersion = await sharedPreferences.getString('version').then((value) => value);
 
@@ -86,9 +86,9 @@ abstract class _DashboardControllerBase with Store {
         ? setup.data.androidStoreVersion.trim()
         : setup.data.iosStoreVersion.trim();
 
-    if (isAndroid && versionInfo == setup.data.androidStoreVersion.trim()) {
+    if (isAndroid && deviceVersion == setup.data.androidStoreVersion.trim()) {
       isVisible = false;
-    } else if (!isAndroid && versionInfo == setup.data.iosStoreVersion.trim()) {
+    } else if (!isAndroid && deviceVersion == setup.data.iosStoreVersion.trim()) {
       isVisible = false;
     } else
       isVisible = true;
