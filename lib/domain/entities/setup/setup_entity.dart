@@ -5,7 +5,16 @@ import 'package:flutter/foundation.dart';
 class SetupEntity {
   final int versaoArquivos;
   final SetupReservaEntity setupReserva;
-  const SetupEntity({this.versaoArquivos, this.setupReserva});
+  final String iosStoreVersion;
+  final String androidStoreVersion;
+  final int forceUpdate;
+
+  const SetupEntity(
+      {this.versaoArquivos,
+      this.setupReserva,
+      this.androidStoreVersion,
+      this.iosStoreVersion,
+      this.forceUpdate});
 
   @override
   String toString() {

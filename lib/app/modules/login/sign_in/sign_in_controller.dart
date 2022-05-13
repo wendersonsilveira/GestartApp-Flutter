@@ -1,3 +1,4 @@
+import 'package:Gestart/app/modules/dashboard/dashboard_page.dart';
 import 'package:Gestart/domain/entities/auth/check_auth_entity.dart';
 import 'package:Gestart/domain/entities/auth/login_entity.dart';
 import 'package:Gestart/domain/entities/user/user_entity.dart';
@@ -43,6 +44,7 @@ abstract class _SignInControllerBase with Store {
   Future<ResourceData<UserEntity>> login(LoginAuthEntity entity) async {
     userLogin = ResourceData(status: Status.loading);
     userLogin = await _login(entity);
+    // sharedPreferences.putInt('forceUpdate', userLogin.data.forceUpdate);
 
     return userLogin;
   }

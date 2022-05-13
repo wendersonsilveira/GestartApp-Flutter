@@ -26,6 +26,7 @@ class CustomAlertDialog {
   static Future<void> question(BuildContext context,
       {String title,
       String message,
+      bool barrierDismissible = true,
       Color colorPositive,
       Color colorNegative,
       Function onActionPositiveButton,
@@ -33,6 +34,7 @@ class CustomAlertDialog {
       String textButtonPositive,
       String textButtonNegative}) {
     return showDialog(
+      barrierDismissible: barrierDismissible,
       context: context,
       builder: (context) => QuestionDialog(
         title: title,
@@ -54,4 +56,15 @@ class CustomAlertDialog {
       builder: (context) => InfoDialog(title: title, message: message),
     );
   }
+
+  static Future<void> uploadInfo(BuildContext context, {String title, String textButton, String message, bool barrierDismissible = true,
+      Function onActionButton}) {
+    return showDialog(
+      barrierDismissible: barrierDismissible,
+      context: context,
+      builder: (context) => InfoDialog(title: title, textButton: textButton, message: message, onClickButton: onActionButton,),
+    );
+  }
+
 }
+

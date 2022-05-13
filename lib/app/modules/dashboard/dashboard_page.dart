@@ -42,6 +42,8 @@ final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
+final Map<String, dynamic> infoDevice = {};
+
 class _DashboardPageState
     extends ModularState<DashboardPage, DashboardController> {
   //use 'controller' variable to access controller
@@ -64,6 +66,17 @@ class _DashboardPageState
     controller.testsUseCases();
     initNotificationLocal();
     controller.init();
+
+    controller.checkStorageVersionDiff().then((value) async {
+      if (value['isVisible']) {
+        await showInforOnLoad(context, 
+          value['deviceVersion'], 
+          value['storeVersion'], 
+          value['forceUpdate']
+        );
+      }
+    });
+
     super.initState();
   }
 
@@ -266,6 +279,17 @@ class _DashboardPageState
         textButtonPositive: "Atualizar",
         onActionNegativeButton: () => {print('fechar tela')},
         onActionPositiveButton: () => _launchURL(Platform.isIOS
+            ? 'https://apps.apple.com/br/app/gestartapp/id1444521402'
+            : 'https://play.google.com/store/apps/details?id=com.gestart.gestartapp'));
+  }
+
+  showInforOnLoad(BuildContext context, deviceVersion, storeVersion, forceUpdate) {
+    CustomAlertDialog.uploadInfo(context, 
+      textButton: 'Atualizar',
+      barrierDismissible: forceUpdate,
+      title: "GestartApp:  ${storeVersion}", 
+      message: "Seu app está na versão ${deviceVersion}, Atualize pela loja ", 
+      onActionButton: () => _launchURL(Platform.isIOS
             ? 'https://apps.apple.com/br/app/gestartapp/id1444521402'
             : 'https://play.google.com/store/apps/details?id=com.gestart.gestartapp'));
   }

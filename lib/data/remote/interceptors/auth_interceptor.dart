@@ -10,6 +10,7 @@ import 'package:Gestart/di/di.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:injectable/injectable.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -87,6 +88,9 @@ class AuthInterceptor extends Interceptor {
       deviceData = _readIosDeviceInfo(await deviceInfoPlugin.iosInfo);
 
     final info = await PackageInfo.fromPlatform();
+
+    await sharedPreferences.putString('version', info.version);
+    await sharedPreferences.putString('versionPlatform', deviceData['systemVersion']);
 
     return {
       "version": info.version,

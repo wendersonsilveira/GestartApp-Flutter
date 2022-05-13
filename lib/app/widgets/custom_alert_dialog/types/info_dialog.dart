@@ -8,7 +8,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class InfoDialog extends StatelessWidget {
   final String title;
   final String message;
-  const InfoDialog({Key key, this.title, this.message}) : super(key: key);
+  final Function onClickButton;
+  final String textButton;
+  const InfoDialog({Key key, this.title, this.message, this.textButton = 'OK', this.onClickButton})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +39,9 @@ class InfoDialog extends StatelessWidget {
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
+            onClickButton != null ? onClickButton() : null;
           },
-          child: Text("OK"),
+          child: Text(textButton),
         )
       ],
     );

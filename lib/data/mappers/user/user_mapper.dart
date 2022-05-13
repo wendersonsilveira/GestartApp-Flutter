@@ -11,6 +11,7 @@ extension UserMapper on UserEntity {
     String telefone,
     String cpfCnpj,
     String linkPhoto,
+    int forceUpdate
   }) {
     return UserEntity(
       status: status ?? this.status,
@@ -22,6 +23,7 @@ extension UserMapper on UserEntity {
       telefone: telefone ?? this.telefone,
       cpfCnpj: cpfCnpj ?? this.cpfCnpj,
       linkPhoto: linkPhoto ?? this.linkPhoto,
+      forceUpdate: forceUpdate ?? this.forceUpdate
     );
   }
 
@@ -38,6 +40,7 @@ extension UserMapper on UserEntity {
       telefone: map['TELEFONE'],
       token: map['TOKEN'],
       linkPhoto: map['LINK_PHOTO'],
+      forceUpdate: map['FORCAR_ATUALIZACAO']
     );
   }
 
