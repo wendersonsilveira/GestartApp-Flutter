@@ -42,8 +42,6 @@ final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
-final Map<String, dynamic> infoDevice = {};
-
 class _DashboardPageState
     extends ModularState<DashboardPage, DashboardController> {
   //use 'controller' variable to access controller
@@ -74,7 +72,7 @@ class _DashboardPageState
       } else if (value['isVisible']) {
         String message = 'Clique aqui para atualizar';
         String title = 'Nova versão Gestart app disponível';
-        showTopSnackBar(context, message, title, duration: 3, toStore: true);
+        showTopSnackBar(context, message, title);
       }
     });
 
@@ -131,7 +129,7 @@ class _DashboardPageState
   }
 
   void showTopSnackBar(BuildContext context, String message, String titulo,
-      {String page = '', String id = '', int duration = 2, bool toStore}) {
+      {String page = '', String id = ''}) {
     int iD = id != '' ? int.parse(id) : null;
     String toPage = page.trim();
     Flushbar(
@@ -149,14 +147,10 @@ class _DashboardPageState
           Modular.navigator.pushNamed('$toPage', arguments: int.parse(id));
         else if (toPage.isNotEmpty && iD == null)
           Modular.navigator.pushNamed('$toPage');
-        else if (toStore)
-          _launchURL(Platform.isIOS
-              ? 'https://apps.apple.com/br/app/gestartapp/id1444521402'
-              : 'https://play.google.com/store/apps/details?id=com.gestart.gestartapp');
         else
           print('Apenas notificação');
       },
-      duration: Duration(seconds: duration),
+      duration: Duration(seconds: 2),
       flushbarPosition: FlushbarPosition.TOP,
     )..show(context);
   }

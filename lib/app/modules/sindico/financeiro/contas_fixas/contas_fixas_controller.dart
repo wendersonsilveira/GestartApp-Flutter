@@ -73,7 +73,6 @@ abstract class _ContasFixasControllerBase with Store {
         color: charts.ColorUtil.fromDartColor(cores[index]),
       ));
     }
-    debugPrint('Lista Data: ***' + data.length.toString());
   }
 
   @action
