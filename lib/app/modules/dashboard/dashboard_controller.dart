@@ -32,6 +32,9 @@ abstract class _DashboardControllerBase with Store {
   final _getSetup = getIt.get<GetSetupUseCase>();
 
   @observable
+  bool isVisible = false;
+
+  @observable
   String versionInfo = '';
 
   @observable
@@ -74,10 +77,10 @@ abstract class _DashboardControllerBase with Store {
 
   Future<dynamic> checkStorageVersionDiff() async {
     setup = await _getSetup();
+
     int forceUpdate = setup.data.forceUpdate;
     bool isAndroid = Platform.isAndroid ? true : false;
-    bool isVisible = false;
-
+    
     bool isForceUpdate = forceUpdate == 1 ? true : false;
 
     String deviceVersion = await sharedPreferences.getString('version').then((value) => value);

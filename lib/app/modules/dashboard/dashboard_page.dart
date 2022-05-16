@@ -68,15 +68,13 @@ class _DashboardPageState
     controller.init();
 
     controller.checkStorageVersionDiff().then((value) async {
-      if (value['forceUpdate'] && value[['isVisible']]) {
+      if (value['forceUpdate'] && value['isVisible']) {
         await showInforOnLoad(context, value['deviceVersion'],
             value['storeVersion'], value['forceUpdate']);
       } else if (value['isVisible']) {
-        String message =
-            'Clique aqui para atualizar';
+        String message = 'Clique aqui para atualizar';
         String title = 'Nova versão Gestart app disponível';
-        showTopSnackBar(context, message, title,
-            duration: 3, toStore: true);
+        showTopSnackBar(context, message, title, duration: 3, toStore: true);
       }
     });
 
@@ -302,6 +300,14 @@ class _DashboardPageState
             : 'https://play.google.com/store/apps/details?id=com.gestart.gestartapp'));
   }
 
+  showUpToDate(BuildContext context) {
+    CustomAlertDialog.uploadInfo(context,
+        textButton: 'Ok',
+        title: "GestartApp:  ${controller.storeVersion}",
+        message: "Seu app está atualizado!",
+        onActionButton: () => (print('teste')));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -318,7 +324,11 @@ class _DashboardPageState
               size: 30,
             ),
             onPressed: () {
-              showInfor(context);
+              if (controller.isVisible) {
+                showInfor(context);
+              } else {
+                showUpToDate(context);
+              }
             },
           )
         ],
