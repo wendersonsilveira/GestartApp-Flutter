@@ -56,6 +56,12 @@ abstract class _DashboardControllerBase with Store {
   bool existeCondominiosAtivos;
 
   @observable
+  int servicoReservaDisponivel;
+
+  @observable
+  bool servicoReserva;
+
+  @observable
   bool chekedSindico = false;
 
   @observable
@@ -83,7 +89,8 @@ abstract class _DashboardControllerBase with Store {
     
     bool isForceUpdate = forceUpdate == 1 ? true : false;
 
-    String deviceVersion = await sharedPreferences.getString('version').then((value) => value);
+    String deviceVersion =
+        await sharedPreferences.getString('version').then((value) => value);
 
     storeVersion = isAndroid
         ? setup.data.androidStoreVersion.trim()
@@ -91,7 +98,8 @@ abstract class _DashboardControllerBase with Store {
 
     if (isAndroid && deviceVersion == setup.data.androidStoreVersion.trim()) {
       isVisible = false;
-    } else if (!isAndroid && deviceVersion == setup.data.iosStoreVersion.trim()) {
+    } else if (!isAndroid &&
+        deviceVersion == setup.data.iosStoreVersion.trim()) {
       isVisible = false;
     } else
       isVisible = true;
@@ -113,12 +121,19 @@ abstract class _DashboardControllerBase with Store {
   void checkCondominiosAtivos(value) => existeCondominiosAtivos = value;
 
   @action
+  void checkServicoReservasActive(value) => servicoReservaDisponivel = value;
+
+  @action
   getInforCondominios() async {
     chekedSindico = false;
     condominios = await _getCondominios();
     condominiosAtivos = await _getCondominioAtivo();
     unidadesAtivasAdm = await _getUnidadesAtivas();
     checkCondominiosAtivos(condominiosAtivos.data != null ? true : false);
+    checkServicoReservasActive(condominiosAtivos.data != null &&
+            condominiosAtivos.data.gestartappReserva == 1
+        ? 1
+        : 0);
     verificarStatusCondominios();
     chekedSindico = true;
     ResourceData<SetupEntity> setup = await _getSetup();

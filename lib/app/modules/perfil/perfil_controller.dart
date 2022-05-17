@@ -43,10 +43,16 @@ abstract class _PerfilControllerBase with Store {
   @observable
   ResourceData<List<UnidadeEntity>> unidades;
 
+  @observable
+  bool statusUnidades;
+
+  @action
+  void checkUnidades(value) => statusUnidades = value;
+
   init() async {
     perfil = ResourceData(status: Status.loading);
     unidades = await _getUnidades();
-
+    checkUnidades(unidades.data != null ? true : false);
     perfil = await _getPerfil();
   }
 

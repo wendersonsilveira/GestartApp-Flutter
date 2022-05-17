@@ -7,6 +7,7 @@ import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/custom_alert_dialog/types/error_dialog.dart';
+import 'package:Gestart/app/widgets/empty/empt_widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/entities/user/password_entity.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -270,25 +271,31 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
                   HorizontalOrLine(
                     label: 'Unidades',
                   ),
-                  Container(
-                    height: 160,
-                    child: ListView.builder(
-                        itemCount: controller.unidades.data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Card(
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                    controller.unidades.data[index].logo),
-                              ),
-                              title:
-                                  Text(controller.unidades.data[index].apelido),
-                              subtitle: Text(
-                                  'Unidade: ${controller.unidades.data[index].codimo}'),
-                            ),
-                          );
-                        }),
-                  ),
+                  controller.statusUnidades
+                      ? Container(
+                          height: 160,
+                          child: ListView.builder(
+                              itemCount: controller.unidades.data.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Card(
+                                  child: ListTile(
+                                    leading: CircleAvatar(
+                                      backgroundImage: NetworkImage(
+                                          controller.unidades.data[index].logo),
+                                    ),
+                                    title: Text(controller
+                                        .unidades.data[index].apelido),
+                                    subtitle: Text(
+                                        'Unidade: ${controller.unidades.data[index].codimo}'),
+                                  ),
+                                );
+                              }),
+                        )
+                      : Center(
+                          child: Text(
+                            'Não existe nenhuma unidade vinculada ao seu perfil',
+                          ),
+                        ),
                   Divider(),
                   ButtonExpandedWidget(
                     descricao: 'SAIR',

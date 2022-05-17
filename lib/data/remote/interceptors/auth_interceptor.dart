@@ -90,7 +90,8 @@ class AuthInterceptor extends Interceptor {
     final info = await PackageInfo.fromPlatform();
 
     await sharedPreferences.putString('version', info.version);
-    await sharedPreferences.putString('versionPlatform', deviceData['systemVersion']);
+    await sharedPreferences.putString(
+        'versionPlatform', deviceData['systemVersion']);
 
     return {
       "version": info.version,
@@ -100,7 +101,7 @@ class AuthInterceptor extends Interceptor {
 
   goToLogin() {
     getIt.get<SharedPreferencesManager>().removeAll();
-    Modular.navigator.pushReplacementNamed(RouteName.login,
+    Modular.navigator.popAndPushNamed(RouteName.login,
         arguments: 'Sua sessão expirou, logue–se novamente.');
   }
 

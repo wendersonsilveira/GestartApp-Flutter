@@ -24,7 +24,7 @@ class FeedRemoteDataSource {
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,
-          data: null,
+          data: [],
           message: "Erro ao listar as informações",
           error: ErrorMapper.from(e));
       //

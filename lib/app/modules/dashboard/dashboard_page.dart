@@ -376,8 +376,8 @@ class _DashboardPageState
                                   icon: Icons.event_available,
                                   descricao: 'Reservas',
                                   route: RouteName.reservas,
-                                  statusReserva: controller
-                                      .condominiosAtivos.data.gestartappReserva,
+                                  statusReserva:
+                                      controller.servicoReservaDisponivel,
                                 ),
                               ],
                             ),
