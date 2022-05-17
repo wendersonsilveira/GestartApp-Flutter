@@ -79,6 +79,10 @@ class _DashboardPageState
     super.initState();
   }
 
+  Future refreshList() {
+    return controller.getInforCondominios();
+  }
+
   initNotificationLocal() {
     var android = new AndroidInitializationSettings('icon');
 
@@ -339,111 +343,115 @@ class _DashboardPageState
       body: Observer(
         builder: (_) => controller.statusLoading || !controller.chekedSindico
             ? Center(child: CircularProgressCustom())
-            : SingleChildScrollView(
-                child: Container(
-                  color: AppColorScheme.backgroundColor,
-                  child: Column(
-                    children: <Widget>[
-                      Observer(
-                        builder: (_) => CardInfor(
-                          statusCondominio: controller.statusCondominio,
-                          condominio: controller.condominios.data,
+            : RefreshIndicator(
+                onRefresh: refreshList,
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Container(
+                    color: AppColorScheme.backgroundColor,
+                    child: Column(
+                      children: <Widget>[
+                        Observer(
+                          builder: (_) => CardInfor(
+                            statusCondominio: controller.statusCondominio,
+                            condominio: controller.condominios.data,
+                          ),
                         ),
-                      ),
-                      Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 30),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                ButtonSercicesWidget(
+                        Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 30),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  ButtonSercicesWidget(
+                                      condominioAtivo:
+                                          controller.existeCondominiosAtivos,
+                                      icon: FlutterIcons.barcode_ant,
+                                      descricao: 'Boleto Digital',
+                                      route: RouteName.boleto),
+                                  ButtonSercicesWidget(
                                     condominioAtivo:
                                         controller.existeCondominiosAtivos,
-                                    icon: FlutterIcons.barcode_ant,
-                                    descricao: 'Boleto Digital',
-                                    route: RouteName.boleto),
-                                ButtonSercicesWidget(
-                                  condominioAtivo:
-                                      controller.existeCondominiosAtivos,
-                                  icon: FlutterIcons.md_paper_ion,
-                                  descricao: 'Prestação de Contas',
-                                  route: RouteName.balancetes,
-                                ),
-                                ButtonSercicesWidget(
-                                  condominioAtivo:
-                                      controller.existeCondominiosAtivos,
-                                  icon: Icons.event_available,
-                                  descricao: 'Reservas',
-                                  route: RouteName.reservas,
-                                  statusReserva:
-                                      controller.servicoReservaDisponivel,
-                                ),
-                              ],
+                                    icon: FlutterIcons.md_paper_ion,
+                                    descricao: 'Prestação de Contas',
+                                    route: RouteName.balancetes,
+                                  ),
+                                  ButtonSercicesWidget(
+                                    condominioAtivo:
+                                        controller.existeCondominiosAtivos,
+                                    icon: Icons.event_available,
+                                    descricao: 'Reservas',
+                                    route: RouteName.reservas,
+                                    statusReserva:
+                                        controller.servicoReservaDisponivel,
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 46.h,
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: Column(
-                              children: [
-                                Card(
-                                  child: ItemServicoWidget(
-                                    condominioAtivo:
-                                        controller.existeCondominiosAtivos,
-                                    descricao: 'Assembleia',
-                                    icone: FlutterIcons.gavel_faw5s,
-                                    routeName: RouteName.assembleia,
-                                    condominios: controller.condominios.data,
-                                  ),
-                                ),
-                                Card(
-                                  child: ItemServicoWidget(
-                                    condominioAtivo:
-                                        controller.existeCondominiosAtivos,
-                                    descricao: 'Documentos',
-                                    icone: FlutterIcons.file1_ant,
-                                    routeName: RouteName.documentos,
-                                  ),
-                                ),
-                                Card(
-                                  child: ItemServicoWidget(
-                                    condominioAtivo:
-                                        controller.existeCondominiosAtivos,
-                                    descricao: 'Seu Condomínio',
-                                    icone: FlutterIcons.building_faw,
-                                    routeName: RouteName.infor_condominio,
-                                  ),
-                                ),
-                                Card(
-                                  child: ItemServicoWidget(
-                                    condominioAtivo: true,
-                                    descricao: 'Cadastro',
-                                    icone: FlutterIcons.id_card_mco,
-                                    routeName: RouteName.cadastros,
-                                  ),
-                                ),
-                                controller.isSindico
-                                    ? Card(
-                                        child: ItemServicoWidget(
-                                          condominioAtivo: true,
-                                          descricao: 'Painel do Síndico',
-                                          icone: FlutterIcons.md_analytics_ion,
-                                          routeName: RouteName.painel_sindico,
-                                        ),
-                                      )
-                                    : Container(),
-                              ],
+                            SizedBox(
+                              height: 46.h,
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Column(
+                                children: [
+                                  Card(
+                                    child: ItemServicoWidget(
+                                      condominioAtivo:
+                                          controller.existeCondominiosAtivos,
+                                      descricao: 'Assembleia',
+                                      icone: FlutterIcons.gavel_faw5s,
+                                      routeName: RouteName.assembleia,
+                                      condominios: controller.condominios.data,
+                                    ),
+                                  ),
+                                  Card(
+                                    child: ItemServicoWidget(
+                                      condominioAtivo:
+                                          controller.existeCondominiosAtivos,
+                                      descricao: 'Documentos',
+                                      icone: FlutterIcons.file1_ant,
+                                      routeName: RouteName.documentos,
+                                    ),
+                                  ),
+                                  Card(
+                                    child: ItemServicoWidget(
+                                      condominioAtivo:
+                                          controller.existeCondominiosAtivos,
+                                      descricao: 'Seu Condomínio',
+                                      icone: FlutterIcons.building_faw,
+                                      routeName: RouteName.infor_condominio,
+                                    ),
+                                  ),
+                                  Card(
+                                    child: ItemServicoWidget(
+                                      condominioAtivo: true,
+                                      descricao: 'Cadastro',
+                                      icone: FlutterIcons.id_card_mco,
+                                      routeName: RouteName.cadastros,
+                                    ),
+                                  ),
+                                  controller.isSindico
+                                      ? Card(
+                                          child: ItemServicoWidget(
+                                            condominioAtivo: true,
+                                            descricao: 'Painel do Síndico',
+                                            icone: FlutterIcons.md_analytics_ion,
+                                            routeName: RouteName.painel_sindico,
+                                          ),
+                                        )
+                                      : Container(),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
+            ),
       ),
     );
   }
