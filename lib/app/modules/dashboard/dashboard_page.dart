@@ -270,7 +270,7 @@ class _DashboardPageState
 
   showInfor(BuildContext context) {
     CustomAlertDialog.question(context,
-        title: "GestartApp:  ${_packageInfo.version}",
+        title: "GestartApp:  ${controller.storeVersion}",
         message: "Atualize seu app pela loja ",
         colorNegative: AppColorScheme.tagRed2,
         colorPositive: AppColorScheme.tagBlue2,
