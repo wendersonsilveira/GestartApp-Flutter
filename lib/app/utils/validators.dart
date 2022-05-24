@@ -199,8 +199,8 @@ abstract class Validators {
   static String maxCaracteres(String value) {
     if (value == null || value.isEmpty) {
       return "Campo em branco";
-    } else if (value.length > 150)
-      return "Quantidade de caractere máxima é 150";
+    } else if (value.length > 300)
+      return "Quantidade de caractere máxima é 300";
     return null;
   }
 
