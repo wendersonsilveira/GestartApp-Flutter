@@ -65,7 +65,10 @@ class _DropdownButtonField3WidgetState
       items: widget.list
           .map((element) => DropdownMenuItem(
                 value: element.codord,
-                child: Text("${element.apelido} - ${element.codimo}"),
+                child: Text(
+                  "${element.codimo} - ${element.apelido.toString().substring(0, 30)}",
+                  overflow: TextOverflow.ellipsis,
+                ),
               ))
           .toList(),
       focusNode: widget.focusNode,

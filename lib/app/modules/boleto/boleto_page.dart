@@ -85,19 +85,30 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
                                 child: Container(
                                   child: ListTile(
                                     onTap: () {
-                                      Modular.navigator.pushNamed(RouteName.detalhe_boleto, arguments: controller.boletos.data[index].id);
+                                      Modular.navigator.pushNamed(
+                                          RouteName.detalhe_boleto,
+                                          arguments:
+                                              controller.listaView[index].id);
                                     },
                                     trailing: Icon(Icons.arrow_right),
                                     title: Column(
                                       children: [
                                         TextoInforWidget(
                                           titulo: 'Vencimento',
-                                          valor: UIHelper.formatDateFromDateTime(controller.listaView[index].datven),
+                                          valor:
+                                              UIHelper.formatDateFromDateTime(
+                                                  controller
+                                                      .listaView[index].datven),
                                         ),
-                                        TextoInforWidget(titulo: 'Valor', valor: UIHelper.moneyFormat(controller.listaView[index].valtot)),
+                                        TextoInforWidget(
+                                            titulo: 'Valor',
+                                            valor: UIHelper.moneyFormat(
+                                                controller
+                                                    .listaView[index].valtot)),
                                         TextoInforWidget(
                                           titulo: 'Unidade',
-                                          valor: controller.listaView[index].codimo,
+                                          valor: controller
+                                              .listaView[index].codimo,
                                         ),
                                       ],
                                     ),

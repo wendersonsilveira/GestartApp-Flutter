@@ -51,8 +51,9 @@ abstract class _DetalheMovimentoControllerBase with Store {
 
     if (extrato.length > 0) {
       saldoAnterior = extrato[0];
-      saldo = extrato[0].saldoAnterior;
-      var saldoE = extrato[0].saldoAnterior;
+      saldo = extrato[0].saldoAnterior != null ? extrato[0].saldoAnterior : 0;
+      var saldoE =
+          extrato[0].saldoAnterior != null ? extrato[0].saldoAnterior : 0;
 
       for (var lan in extrato) {
         if (lan.idSisPagDetail == 0) {
@@ -78,7 +79,8 @@ abstract class _DetalheMovimentoControllerBase with Store {
           }
         }
       });
-      var saldoDiaParcial = saldoAnterior.saldoAnterior;
+      var saldoDiaParcial =
+          saldoAnterior.saldoAnterior != null ? saldoAnterior.saldoAnterior : 0;
       extratoDia.forEach((dia) {
         saldoDiaParcial += dia['SALDO_DIA'];
         dia['SALDO_DIA'] = saldoDiaParcial;
