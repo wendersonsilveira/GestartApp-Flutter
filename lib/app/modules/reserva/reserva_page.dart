@@ -202,13 +202,23 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
                                                               .primaryColor,
                                                           height: 1.5),
                                                     )
-                                                  : Text(
-                                                      'REJEITADA',
-                                                      style: TextStyle(
-                                                          color: AppColorScheme
-                                                              .feedbackDangerDark,
-                                                          height: 1.5),
-                                                    ),
+                                                  : controller.reservas[index]
+                                                              .status ==
+                                                          2
+                                                      ? Text(
+                                                          'REJEITADA',
+                                                          style: TextStyle(
+                                                              color: AppColorScheme
+                                                                  .feedbackDangerDark,
+                                                              height: 1.5),
+                                                        )
+                                                      : Text(
+                                                          'CANCELADA',
+                                                          style: TextStyle(
+                                                              color: AppColorScheme
+                                                                  .feedbackDangerDark,
+                                                              height: 1.5),
+                                                        ),
                                           trailing: Padding(
                                             padding: EdgeInsets.only(top: 14),
                                             child: Icon(
