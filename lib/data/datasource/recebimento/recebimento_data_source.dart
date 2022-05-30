@@ -131,7 +131,7 @@ class RecebimentoRemoteDataSource {
             data: HistoricoInadimEntity().fromMapList(result));
       else
         return ResourceData<List<HistoricoInadimEntity>>(
-            status: Status.success, data: null);
+            status: Status.success, data: []);
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,

@@ -1,5 +1,6 @@
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
+import 'package:Gestart/app/widgets/empty/empt_widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_entity.dart';
@@ -178,7 +179,13 @@ class _InadimplenciaDetalhesPageState extends State<InadimplenciaDetalhesPage> {
                             .toList(),
                       ),
                     )
-                  : CircularProgressCustom(),
+                  : Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: MediaQuery.of(context).size.height * 0.2),
+                      child: EmptyWidget(
+                        descricao: "Sem histórico",
+                      ),
+                    ),
             ),
           ],
         ),

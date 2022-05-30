@@ -30,36 +30,34 @@ class _ErroPageState extends ModularState<ErroPage, ErroController> {
           margin: EdgeInsets.all(15),
           height: 350,
           width: MediaQuery.of(context).size.width,
-          child: Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  child: Icon(
-                    Icons.warning_amber_rounded,
-                    size: 100,
-                    color: Colors.red,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                child: Icon(
+                  Icons.warning_amber_rounded,
+                  size: 100,
+                  color: Colors.red,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Text(
+                  'Atenção!',
+                  style: TextStyle(
+                    fontSize: 22,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Text(
-                    'Atenção!',
-                    style: TextStyle(
-                      fontSize: 22,
-                    ),
-                  ),
-                ),
-                Text(widget.msgErro),
-                ButtonExpandedWidget(
-                  descricao: 'Recarregar',
-                  funcao: () {
-                    Modular.navigator.pop();
-                  },
-                ),
-              ],
-            ),
+              ),
+              Text(widget.msgErro),
+              ButtonExpandedWidget(
+                descricao: 'Recarregar',
+                funcao: () {
+                  Modular.navigator.pop();
+                },
+              ),
+            ],
           ),
         ),
       ),
