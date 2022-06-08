@@ -66,7 +66,7 @@ class _DropdownButtonField3WidgetState
           .map((element) => DropdownMenuItem(
                 value: element.codord,
                 child: Text(
-                  "${element.codimo} - ${element.apelido.toString().substring(0, 30)}",
+                  "${element.codimo} - ${element.apelido}",
                   overflow: TextOverflow.ellipsis,
                 ),
               ))

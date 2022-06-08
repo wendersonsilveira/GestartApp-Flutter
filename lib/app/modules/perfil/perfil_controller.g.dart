@@ -97,6 +97,36 @@ mixin _$PerfilController on _PerfilControllerBase, Store {
     });
   }
 
+  final _$statusUnidadesAtom =
+      Atom(name: '_PerfilControllerBase.statusUnidades');
+
+  @override
+  bool get statusUnidades {
+    _$statusUnidadesAtom.reportRead();
+    return super.statusUnidades;
+  }
+
+  @override
+  set statusUnidades(bool value) {
+    _$statusUnidadesAtom.reportWrite(value, super.statusUnidades, () {
+      super.statusUnidades = value;
+    });
+  }
+
+  final _$_PerfilControllerBaseActionController =
+      ActionController(name: '_PerfilControllerBase');
+
+  @override
+  void checkUnidades(dynamic value) {
+    final _$actionInfo = _$_PerfilControllerBaseActionController.startAction(
+        name: '_PerfilControllerBase.checkUnidades');
+    try {
+      return super.checkUnidades(value);
+    } finally {
+      _$_PerfilControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
@@ -104,7 +134,8 @@ perfil: ${perfil},
 statusAlterarSenha: ${statusAlterarSenha},
 checarSenhaStatus: ${checarSenhaStatus},
 excluirContaStatus: ${excluirContaStatus},
-unidades: ${unidades}
+unidades: ${unidades},
+statusUnidades: ${statusUnidades}
     ''';
   }
 }

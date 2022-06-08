@@ -34,6 +34,52 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
               name: '_DashboardControllerBase.isSindico'))
           .value;
 
+  final _$isVisibleAtom = Atom(name: '_DashboardControllerBase.isVisible');
+
+  @override
+  bool get isVisible {
+    _$isVisibleAtom.reportRead();
+    return super.isVisible;
+  }
+
+  @override
+  set isVisible(bool value) {
+    _$isVisibleAtom.reportWrite(value, super.isVisible, () {
+      super.isVisible = value;
+    });
+  }
+
+  final _$versionInfoAtom = Atom(name: '_DashboardControllerBase.versionInfo');
+
+  @override
+  String get versionInfo {
+    _$versionInfoAtom.reportRead();
+    return super.versionInfo;
+  }
+
+  @override
+  set versionInfo(String value) {
+    _$versionInfoAtom.reportWrite(value, super.versionInfo, () {
+      super.versionInfo = value;
+    });
+  }
+
+  final _$storeVersionAtom =
+      Atom(name: '_DashboardControllerBase.storeVersion');
+
+  @override
+  String get storeVersion {
+    _$storeVersionAtom.reportRead();
+    return super.storeVersion;
+  }
+
+  @override
+  set storeVersion(String value) {
+    _$storeVersionAtom.reportWrite(value, super.storeVersion, () {
+      super.storeVersion = value;
+    });
+  }
+
   final _$condominiosAtom = Atom(name: '_DashboardControllerBase.condominios');
 
   @override
@@ -114,6 +160,39 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
     });
   }
 
+  final _$servicoReservaDisponivelAtom =
+      Atom(name: '_DashboardControllerBase.servicoReservaDisponivel');
+
+  @override
+  int get servicoReservaDisponivel {
+    _$servicoReservaDisponivelAtom.reportRead();
+    return super.servicoReservaDisponivel;
+  }
+
+  @override
+  set servicoReservaDisponivel(int value) {
+    _$servicoReservaDisponivelAtom
+        .reportWrite(value, super.servicoReservaDisponivel, () {
+      super.servicoReservaDisponivel = value;
+    });
+  }
+
+  final _$servicoReservaAtom =
+      Atom(name: '_DashboardControllerBase.servicoReserva');
+
+  @override
+  bool get servicoReserva {
+    _$servicoReservaAtom.reportRead();
+    return super.servicoReserva;
+  }
+
+  @override
+  set servicoReserva(bool value) {
+    _$servicoReservaAtom.reportWrite(value, super.servicoReserva, () {
+      super.servicoReserva = value;
+    });
+  }
+
   final _$chekedSindicoAtom =
       Atom(name: '_DashboardControllerBase.chekedSindico');
 
@@ -127,6 +206,21 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
   set chekedSindico(bool value) {
     _$chekedSindicoAtom.reportWrite(value, super.chekedSindico, () {
       super.chekedSindico = value;
+    });
+  }
+
+  final _$setupAtom = Atom(name: '_DashboardControllerBase.setup');
+
+  @override
+  ResourceData<SetupEntity> get setup {
+    _$setupAtom.reportRead();
+    return super.setup;
+  }
+
+  @override
+  set setup(ResourceData<SetupEntity> value) {
+    _$setupAtom.reportWrite(value, super.setup, () {
+      super.setup = value;
     });
   }
 
@@ -165,14 +259,31 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
   }
 
   @override
+  void checkServicoReservasActive(dynamic value) {
+    final _$actionInfo = _$_DashboardControllerBaseActionController.startAction(
+        name: '_DashboardControllerBase.checkServicoReservasActive');
+    try {
+      return super.checkServicoReservasActive(value);
+    } finally {
+      _$_DashboardControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+isVisible: ${isVisible},
+versionInfo: ${versionInfo},
+storeVersion: ${storeVersion},
 condominios: ${condominios},
 condominiosAtivos: ${condominiosAtivos},
 unidadesAtivasAdm: ${unidadesAtivasAdm},
 statusCondominio: ${statusCondominio},
 existeCondominiosAtivos: ${existeCondominiosAtivos},
+servicoReservaDisponivel: ${servicoReservaDisponivel},
+servicoReserva: ${servicoReserva},
 chekedSindico: ${chekedSindico},
+setup: ${setup},
 statusLoading: ${statusLoading},
 isSindico: ${isSindico}
     ''';
