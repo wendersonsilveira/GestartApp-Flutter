@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/login/components/password_text_field_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
+import 'package:Gestart/app/styles/app_images.dart';
 import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/custom_alert_dialog/types/error_dialog.dart';
 import 'package:Gestart/app/widgets/empty/empt_widget.dart';
+import 'package:Gestart/app/widgets/list/icon_list_item.widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/entities/user/password_entity.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -246,10 +248,9 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      backgroundImage:
-                          NetworkImage(controller.perfil.data.linkPhoto),
+                    leading: IconListItemWidget(
+                      link: controller.perfil.data.linkPhoto,
+                      icon: AppImages.userIcon,
                     ),
                     title: Text('Nome'),
                     subtitle: Text('${controller.perfil.data.nome} ' +
@@ -279,9 +280,10 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
                               itemBuilder: (BuildContext context, int index) {
                                 return Card(
                                   child: ListTile(
-                                    leading: CircleAvatar(
-                                      backgroundImage: NetworkImage(
-                                          controller.unidades.data[index].logo),
+                                    leading: IconListItemWidget(
+                                      link:
+                                          controller.unidades.data[index].logo,
+                                      icon: AppImages.iconCondominio,
                                     ),
                                     title: Text(controller
                                         .unidades.data[index].apelido),

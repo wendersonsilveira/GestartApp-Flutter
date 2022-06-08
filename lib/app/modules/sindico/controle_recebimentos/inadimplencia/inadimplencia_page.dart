@@ -1,6 +1,9 @@
 import 'package:Gestart/app/modules/sindico/controle_recebimentos/components/filtro_inadim_wigedt.dart';
+import 'package:Gestart/app/styles/app_color_scheme.dart';
+import 'package:Gestart/app/styles/app_images.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
+import 'package:Gestart/app/widgets/list/icon_list_item.widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_entity.dart';
@@ -134,22 +137,26 @@ class _InadimplenciaPageState extends State<InadimplenciaPage> {
                           itemBuilder: (_, index) {
                             return Card(
                               child: ListTile(
-                                leading: CircleAvatar(
-                                  backgroundImage: NetworkImage(inadimplencias[index].linkPhoto),
+                                leading: IconListItemWidget(
+                                  link: inadimplencias[index].linkPhoto,
+                                  icon: AppImages.iconCondominio,
                                 ),
                                 title: Text(inadimplencias[index].unidade),
                                 subtitle: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Tipo Cobrança: ${inadimplencias[index].tipcobDescri}'),
-                                    Text('TOTAL: ${UIHelper.moneyFormat(inadimplencias[index].total)}'),
+                                    Text(
+                                        'Tipo Cobrança: ${inadimplencias[index].tipcobDescri}'),
+                                    Text(
+                                        'TOTAL: ${UIHelper.moneyFormat(inadimplencias[index].total)}'),
                                   ],
                                 ),
                                 trailing: Icon(Icons.chevron_right),
                                 onTap: () {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (context) => InadimplenciaDetalhesPage(
+                                      builder: (context) =>
+                                          InadimplenciaDetalhesPage(
                                         filtro: filtro,
                                         codOrd: inadimplencias[index].codOrd,
                                       ),
