@@ -11,7 +11,7 @@ import 'informativos_controller.dart';
 
 class InformativosPage extends StatefulWidget {
   final String title;
-  const InformativosPage({Key key, this.title = "Informativos"})
+  const InformativosPage({Key key, this.title = "Comunicados"})
       : super(key: key);
 
   @override
@@ -61,11 +61,6 @@ class _InformativosPageState
                                     trailing: Icon(
                                       Icons.arrow_right,
                                       size: 30,
-                                    ),
-                                    leading: CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      backgroundImage: NetworkImage(
-                                          controller.infor.data[index].logo),
                                     ),
                                     title: Text(
                                         controller.infor.data[index].apelido),

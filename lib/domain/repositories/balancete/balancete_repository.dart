@@ -3,4 +3,5 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 
 abstract class BalanceteRepository {
   Future<ResourceData<List<BalanceteEntity>>> getBalancetes();
+  Future<ResourceData<BalanceteEntity>> getBalancete(int id);
 }

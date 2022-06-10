@@ -18,7 +18,7 @@ import 'components/title_widget.dart';
 class AssembleiaPage extends StatefulWidget {
   final String title;
 
-  const AssembleiaPage({Key key, this.title = "Assembleia"}) : super(key: key);
+  const AssembleiaPage({Key key, this.title = "Assembleias"}) : super(key: key);
 
   @override
   _AssembleiaPageState createState() => _AssembleiaPageState();

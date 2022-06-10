@@ -28,4 +28,21 @@ class BalanceteRemoteDataSource {
           error: ErrorMapper.from(e));
     }
   }
+
+  Future<ResourceData<BalanceteEntity>> getBalancete(int id) async {
+    try {
+      final result = await _dio.get('balancete/$id');
+
+      return ResourceData(
+          status: Status.success,
+          data: BalanceteEntity().fromMap(result),
+          message: 'Balancete listados com sucesso!');
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar o balancete",
+          error: ErrorMapper.from(e));
+    }
+  }
 }

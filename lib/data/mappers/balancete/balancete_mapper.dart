@@ -35,7 +35,7 @@ extension BalanceteMapper on BalanceteEntity {
   BalanceteEntity fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     return BalanceteEntity(
-      id: map['ID'],
+      id: int.parse(map['ID']),
       codcon: map['CODCON'],
       mesAno: map['MESANO'],
       mesAnoAnterior: map['MESANO_ANTERIOR'],

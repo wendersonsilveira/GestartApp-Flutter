@@ -11,7 +11,7 @@ import 'informativo_controller.dart';
 class InformativoPage extends StatefulWidget {
   final String title;
   final int id;
-  const InformativoPage({Key key, this.title = "Informativo", this.id})
+  const InformativoPage({Key key, this.title = "Comunicado", this.id})
       : super(key: key);
 
   @override
@@ -42,10 +42,6 @@ class _InformativoPageState
                     child: Column(
                       children: [
                         ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage:
-                                NetworkImage(controller.aviso.data.logo),
-                          ),
                           title: Text(controller.aviso.data.apelido),
                           subtitle: Text(UIHelper.formatDate(
                               controller.aviso.data.datEmi)),

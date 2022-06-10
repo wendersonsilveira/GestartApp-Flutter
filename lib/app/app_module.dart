@@ -259,7 +259,7 @@ class AppModule extends MainModule {
             child: (_, args) => CodigoAtivacaoPage()),
         ModularRouter(RouteName.detalhe_balancete,
             child: (_, args) => DetalheBalancetePage(
-                  balancete: args.data,
+                  idBalancete: args.data,
                 )),
         ModularRouter(RouteName.error_page,
             child: (_, args) => ErroPage(

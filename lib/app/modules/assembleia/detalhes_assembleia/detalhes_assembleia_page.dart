@@ -35,7 +35,7 @@ class _DetalhesAssembleiaPageState
     return Scaffold(
       appBar: AppBarCustom(
         context,
-        title: Text('Asembleia ${widget.id}'),
+        title: Text('Assembleia'),
         elevation: 0,
       ),
       body: Observer(builder: (_) {

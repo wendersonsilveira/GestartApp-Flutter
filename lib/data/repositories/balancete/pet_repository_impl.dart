@@ -14,4 +14,11 @@ class BalanceteRepositoryImpl implements BalanceteRepository {
 
     return resource;
   }
+
+  @override
+  Future<ResourceData<BalanceteEntity>> getBalancete(int id) async {
+    final resource = await _balanceteRemoteDataSource.getBalancete(id);
+
+    return resource;
+  }
 }

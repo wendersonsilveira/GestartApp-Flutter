@@ -19,39 +19,26 @@ final $DetalheBalanceteController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$DetalheBalanceteController on _DetalheBalanceteControllerBase, Store {
-  final _$valueAtom = Atom(name: '_DetalheBalanceteControllerBase.value');
+  final _$balanceteAtom =
+      Atom(name: '_DetalheBalanceteControllerBase.balancete');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  ResourceData<BalanceteEntity> get balancete {
+    _$balanceteAtom.reportRead();
+    return super.balancete;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set balancete(ResourceData<BalanceteEntity> value) {
+    _$balanceteAtom.reportWrite(value, super.balancete, () {
+      super.balancete = value;
     });
-  }
-
-  final _$_DetalheBalanceteControllerBaseActionController =
-      ActionController(name: '_DetalheBalanceteControllerBase');
-
-  @override
-  void increment() {
-    final _$actionInfo = _$_DetalheBalanceteControllerBaseActionController
-        .startAction(name: '_DetalheBalanceteControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_DetalheBalanceteControllerBaseActionController.endAction(_$actionInfo);
-    }
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+balancete: ${balancete}
     ''';
   }
 }

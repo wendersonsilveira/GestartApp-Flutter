@@ -63,6 +63,7 @@ import 'package:Gestart/domain/repositories/user/user_repository.dart';
 import 'package:Gestart/domain/repositories/veiculo/veiculo_repository.dart';
 import 'package:Gestart/domain/usecases/adm-cadastros/get_resumo_unidade_use_case.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
+import 'package:Gestart/domain/usecases/balancete/get_balancete_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/create_aviso_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/get_aviso_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/get_avisos_use_case.dart';
@@ -79,7 +80,7 @@ import 'package:Gestart/data/datasource/auth/auth_remote_data_source.dart';
 import 'package:Gestart/domain/usecases/auth/login_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boleto_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boletos_use_case.dart';
-import 'package:Gestart/domain/usecases/balancete/get_all_pets_use_case.dart';
+import 'package:Gestart/domain/usecases/balancete/get_balancetes_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominios_ativos_use_case.dart';
@@ -241,6 +242,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => BalanceteRemoteDataSource(get<CustomDio>()));
   gh.factory<GetBalancetesUseCase>(
       () => GetBalancetesUseCase(get<BalanceteRepository>()));
+  gh.factory<GetBalanceteUseCase>(
+      () => GetBalanceteUseCase(get<BalanceteRepository>()));
 
   //documentos
   gh.factory<DocumentoRemoteDataSource>(

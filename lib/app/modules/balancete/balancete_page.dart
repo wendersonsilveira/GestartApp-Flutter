@@ -14,7 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BalancetePage extends StatefulWidget {
   final String title;
-  const BalancetePage({Key key, this.title = "Balancete"}) : super(key: key);
+  const BalancetePage({Key key, this.title = "Balancetes"}) : super(key: key);
 
   @override
   _BalancetePageState createState() => _BalancetePageState();
@@ -96,8 +96,8 @@ class _BalancetePageState
                                         onTap: () {
                                           Modular.navigator.pushNamed(
                                               RouteName.detalhe_balancete,
-                                              arguments:
-                                                  controller.balancetes[index]);
+                                              arguments: controller
+                                                  .balancetes[index].id);
                                         },
                                         trailing:
                                             Icon(Icons.chevron_right_sharp),
