@@ -4,6 +4,7 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 
 abstract class ReservaRepository {
   Future<ResourceData<List<ReservaEntity>>> getReservas();
+  Future<ResourceData<List<ReservaEntity>>> getReservasRelatorio(params);
   Future<ResourceData<ReservaEntity>> getReserva(int idReserva);
   Future<ResourceData<List<HoraEntity>>> getHoras();
   Future<ResourceData> criarReserva(var data);

@@ -14,6 +14,24 @@ import 'package:injectable/injectable.dart';
 class ReservaRemoteDataSource {
   CustomDio _dio;
   ReservaRemoteDataSource(this._dio);
+
+  Future<ResourceData<List<ReservaEntity>>> getReservasRelatorio(params) async {
+    try {
+      final result = await _dio.post('get_reservas', data: params);
+
+      return ResourceData(
+          status: Status.success,
+          data: ReservaEntity().fromMapList(result),
+          message: 'Reservas listadas com sucesso!');
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao buscar as reservas",
+          error: ErrorMapper.from(e));
+    }
+  }
+
   Future<ResourceData<List<ReservaEntity>>> getReservas() async {
     try {
       final result = await _dio.get('reservas');

@@ -362,7 +362,8 @@ class _DashboardPageState
                             Padding(
                               padding: const EdgeInsets.only(top: 30),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   ButtonSercicesWidget(
                                       condominioAtivo:
@@ -437,7 +438,8 @@ class _DashboardPageState
                                           child: ItemServicoWidget(
                                             condominioAtivo: true,
                                             descricao: 'Painel do Síndico',
-                                            icone: FlutterIcons.md_analytics_ion,
+                                            icone:
+                                                FlutterIcons.md_analytics_ion,
                                             routeName: RouteName.painel_sindico,
                                           ),
                                         )
@@ -451,7 +453,7 @@ class _DashboardPageState
                     ),
                   ),
                 ),
-            ),
+              ),
       ),
     );
   }
