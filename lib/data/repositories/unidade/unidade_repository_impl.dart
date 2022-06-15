@@ -16,6 +16,15 @@ class UnidadeRepositoryImpl implements UnidadeRepository {
   }
 
   @override
+  Future<ResourceData<List<UnidadeEntity>>> getUnidadesCondominio(
+      filtros) async {
+    final resource =
+        await _unidadeRemoteDataSource.getUnidadesCondominio(filtros);
+
+    return resource;
+  }
+
+  @override
   Future<ResourceData<List<UnidadeEntity>>> getUnidadesAdm() async {
     final resource = await _unidadeRemoteDataSource.getUnidadesAdm();
 
@@ -23,28 +32,34 @@ class UnidadeRepositoryImpl implements UnidadeRepository {
   }
 
   @override
-  Future<ResourceData<List<UnidadeEntity>>> getAdmUnidadesProprieraios(int codCon) async {
-    final resource = await _unidadeRemoteDataSource.getAdmUnidadesProprieraios(codCon);
+  Future<ResourceData<List<UnidadeEntity>>> getAdmUnidadesProprieraios(
+      int codCon) async {
+    final resource =
+        await _unidadeRemoteDataSource.getAdmUnidadesProprieraios(codCon);
 
     return resource;
   }
 
   @override
-  Future<ResourceData<List<UnidadeEntity>>> getUnidadesFiltro(Map<String, dynamic> filtro) async {
+  Future<ResourceData<List<UnidadeEntity>>> getUnidadesFiltro(
+      Map<String, dynamic> filtro) async {
     int codCon = filtro['CODCON'];
     filtro.remove('CODCON');
 
-    final resource = await _unidadeRemoteDataSource.getUnidadesFiltro(codCon, filtro);
+    final resource =
+        await _unidadeRemoteDataSource.getUnidadesFiltro(codCon, filtro);
 
     return resource;
   }
 
   @override
-  Future<ResourceData<UnidadeEntity>> getUnidadeDetalhes(Map<String, dynamic> ids) async {
+  Future<ResourceData<UnidadeEntity>> getUnidadeDetalhes(
+      Map<String, dynamic> ids) async {
     int codOrd = ids['codOrd'];
     int condonUser = ids['condonUserId'];
 
-    final resource = await _unidadeRemoteDataSource.getUnidadeDetalhes(codOrd, condonUser);
+    final resource =
+        await _unidadeRemoteDataSource.getUnidadeDetalhes(codOrd, condonUser);
 
     return resource;
   }

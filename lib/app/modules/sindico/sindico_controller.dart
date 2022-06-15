@@ -23,11 +23,20 @@ abstract class _SindicoControllerBase with Store {
   int codCon;
 
   final List<dynamic> menus = [
-    {'icon': FlutterIcons.calendar_account_mco, 'title': 'Reserva de Espaço', 'indice': 1},
-    {'icon': FlutterIcons.hand_holding_usd_faw5s, 'title': 'Controle de Recebimentos', 'indice': 2},
+    {
+      'icon': FlutterIcons.calendar_account_mco,
+      'title': 'Reserva de Espaço',
+      'indice': 1
+    },
+    {
+      'icon': FlutterIcons.hand_holding_usd_faw5s,
+      'title': 'Controle de Recebimentos',
+      'indice': 2
+    },
     {'icon': FlutterIcons.usd_faw, 'title': 'Financeiro', 'indice': 3},
     {'icon': FlutterIcons.rss_ent, 'title': 'Comunicação', 'indice': 4},
     {'icon': FlutterIcons.id_card_faw, 'title': 'Cadastros', 'indice': 5},
+    {'icon': FlutterIcons.md_analytics_ion, 'title': 'Relatorios', 'indice': 6}
   ];
 
   @observable

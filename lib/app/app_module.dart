@@ -95,8 +95,10 @@ import 'package:Gestart/app/modules/pets/pets_page.dart';
 import 'package:Gestart/app/modules/pets/cadastro_pet/cadastro_pet_page.dart';
 import 'package:Gestart/app/modules/pets/cadastro_pet/cadastro_pet_controller.dart';
 import 'package:Gestart/app/modules/reserva/reserva_controller.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/reservas/relatorio_reservas_controller.dart';
 import 'package:Gestart/app/modules/sindico/reserva_espaco/listar_espacos/listar_espacos_page.dart';
 import 'package:Gestart/app/modules/sindico/financeiro/contas_fixas/contas_fixas_page.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/reservas/relatorio_reservas_page.dart';
 
 import 'constants/route_name.dart';
 import 'modules/condominio/condominio_controller.dart';
@@ -162,6 +164,7 @@ class AppModule extends MainModule {
         $CodigoAtivacaoController,
         $EnviarCodigoController,
         $DetalheBalanceteController,
+        $RelatorioReservasController,
         $ErroController
       ];
 
@@ -261,6 +264,8 @@ class AppModule extends MainModule {
             child: (_, args) => DetalheBalancetePage(
                   idBalancete: args.data,
                 )),
+        ModularRouter(RouteName.relatorioReservas,
+            child: (_, args) => RelatorioReservasPage()),
         ModularRouter(RouteName.error_page,
             child: (_, args) => ErroPage(
                   msgErro: args.data,

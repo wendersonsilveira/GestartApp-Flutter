@@ -52,6 +52,26 @@ class UnidadeRemoteDataSource {
     }
   }
 
+  Future<ResourceData<List<UnidadeEntity>>> getUnidadesCondominio(
+      filtros) async {
+    try {
+      final result = await _dio.post('get-unidades-condominio', data: filtros);
+
+      if (result.length > 0)
+        return ResourceData<List<UnidadeEntity>>(
+            status: Status.success, data: UnidadeEntity().fromMapList(result));
+      else
+        return ResourceData<List<UnidadeEntity>>(
+            status: Status.success, data: null);
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar as unidades adm",
+          error: ErrorMapper.from(e));
+    }
+  }
+
   Future<ResourceData<List<UnidadeEntity>>> getAdmUnidadesProprieraios(
       int codCon) async {
     try {

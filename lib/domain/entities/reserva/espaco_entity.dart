@@ -91,4 +91,8 @@ class EspacoEntity {
     this.logo,
     this.statusEspaco,
   });
+
+  String espacoAsString() {
+    return '${this.descricao}';
+  }
 }

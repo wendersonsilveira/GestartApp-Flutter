@@ -141,18 +141,11 @@ class _CadastrosPageState
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBarCustom(
           context,
-          title: Text('Cadastros de unidades'),
-          bottom: PreferredSize(
-            preferredSize: _tabBar.preferredSize,
-            child: ColoredBox(
-              color: Colors.white,
-              child: _tabBar,
-            ),
-          ),
+          title: Text(widget.title),
         ),
+        backgroundColor: Colors.white,
         body: Observer(
           builder: (_) => TabBarView(
             controller: _tabController,

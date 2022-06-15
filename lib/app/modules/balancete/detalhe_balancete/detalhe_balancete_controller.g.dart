@@ -35,6 +35,13 @@ mixin _$DetalheBalanceteController on _DetalheBalanceteControllerBase, Store {
     });
   }
 
+  final _$initAsyncAction = AsyncAction('_DetalheBalanceteControllerBase.init');
+
+  @override
+  Future init({dynamic idBalancete}) {
+    return _$initAsyncAction.run(() => super.init(idBalancete: idBalancete));
+  }
+
   @override
   String toString() {
     return '''

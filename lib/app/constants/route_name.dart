@@ -28,6 +28,7 @@ class RouteName {
   static const String reservaHorarios = '/reserva_horarios';
   static const String reservaCadastro = '/reserva_cadastro';
   static const String reservaDados = '/reserva_dados';
+  static const String relatorioReservas = '/relatorio_reservas';
   static const String veiculos = '/veiculos';
   static const String listar_espacos = '/listar_espacos';
   static const String cadastroVeiculo = '/cadastroVeirculo';
