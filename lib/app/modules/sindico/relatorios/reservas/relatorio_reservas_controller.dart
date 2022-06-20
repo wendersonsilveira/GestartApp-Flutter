@@ -1,13 +1,18 @@
+import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/reserva/espaco_entity.dart';
+import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/usecases/reserva/get_espacos_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_condominio_use_case.dart';
 import 'package:Gestart/domain/utils/status.dart';
+
+import 'lista-reservas/lista_reservas_page.dart';
 
 part 'relatorio_reservas_controller.g.dart';
 
@@ -34,8 +39,6 @@ abstract class _RelatorioReservasControllerBase with Store {
   String dataFim;
   int statusSelecionado;
 
-  dynamic filtros = {};
-
   @action
   setUnidade(value) => unidadeSelecionada = value;
   @action
@@ -48,11 +51,32 @@ abstract class _RelatorioReservasControllerBase with Store {
   setDataFinal(value) => dataFim = value;
 
   @action
-  setStatus(value) => statusSelecionado = value;
+  setStatus(value) {
+    switch (value) {
+      case "Aguardando aprovação":
+        statusSelecionado = 0;
+        break;
+      case "Ativo":
+        statusSelecionado = 1;
+        break;
+      case "Rejeitado":
+        statusSelecionado = 2;
+        break;
+      default:
+        statusSelecionado = 3;
+    }
+  }
 
   setFiltros() {
-    filtros["CODCON"] = codCon;
-    filtros["TESTE"] = null;
+    SendParamsRelReservaEntity params = SendParamsRelReservaEntity(
+        codCon: codCon,
+        codimo: unidadeSelecionada,
+        status: statusSelecionado,
+        espaco: espacoSelecionado,
+        dataIni: dataIni,
+        dataFim: dataFim);
+
+    Modular.navigator.pushNamed(RouteName.listaReservas, arguments: params);
   }
 
   init() async {
@@ -60,14 +84,13 @@ abstract class _RelatorioReservasControllerBase with Store {
     codCon = storage.getInt('codCon');
     await getUnidades();
     await getEspacos();
-    setFiltros();
-    print(filtros);
+    // setFiltros();
+    // print(filtros);
   }
 
   @action
   Future<void> getUnidades() async {
-    filtros = {"CODCON": codCon};
-    unidades = await _getUnidades(filtros);
+    unidades = await _getUnidades({"CODCON": codCon});
     print(unidades.data);
   }
 
