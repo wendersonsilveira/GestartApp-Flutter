@@ -13,9 +13,13 @@ class UnidadeRemoteDataSource {
   CustomDio _dio;
   UnidadeRemoteDataSource(this._dio);
 
-  Future<ResourceData<List<UnidadeEntity>>> getUnidades() async {
+  Future<ResourceData<List<UnidadeEntity>>> getUnidades(
+      {int reservaAtiva}) async {
     try {
-      final result = await _dio.get('v2/unidadesAtivas/?RESERVA_ATIVA=1');
+      String url = reservaAtiva == null
+          ? 'v2/unidadesAtivas'
+          : 'v2/unidadesAtivas/?RESERVA_ATIVA=1';
+      final result = await _dio.get(url);
 
       if (result.length > 0)
         return ResourceData<List<UnidadeEntity>>(

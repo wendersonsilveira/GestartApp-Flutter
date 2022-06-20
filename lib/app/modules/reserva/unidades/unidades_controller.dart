@@ -17,8 +17,7 @@ abstract class _UnidadesControllerBase with Store {
   List<UnidadeEntity> unidades = [];
 
   getUnidades() async {
-    final r = await _getUnidades();
-
+    final r = await _getUnidades(1);
     unidades = r.data;
   }
 }
