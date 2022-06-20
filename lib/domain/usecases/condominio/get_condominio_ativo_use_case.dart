@@ -6,13 +6,13 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class GetCondominioAtivoUseCase
-    extends BaseFutureUseCase<void, ResourceData<UnidadeAtivaEntity>> {
+    extends BaseFutureUseCase<void, ResourceData<List<UnidadeAtivaEntity>>> {
   CondominioRepository _condominioRepository;
 
   GetCondominioAtivoUseCase(this._condominioRepository);
 
   @override
-  Future<ResourceData<UnidadeAtivaEntity>> call([void entity]) {
+  Future<ResourceData<List<UnidadeAtivaEntity>>> call([void entity]) {
     return _condominioRepository.getCondominiosAtivos();
   }
 }

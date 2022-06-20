@@ -21,7 +21,7 @@ class CondominioRepositoryImpl implements CondominioRepository {
   }
 
   @override
-  Future<ResourceData<UnidadeAtivaEntity>> getCondominiosAtivos() async {
+  Future<ResourceData<List<UnidadeAtivaEntity>>> getCondominiosAtivos() async {
     final resource = await _condominioRemoteDataSource.condominioAtivo();
     return resource;
   }

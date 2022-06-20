@@ -15,7 +15,7 @@ class UnidadeRemoteDataSource {
 
   Future<ResourceData<List<UnidadeEntity>>> getUnidades() async {
     try {
-      final result = await _dio.get('v2/unidadesAtivas');
+      final result = await _dio.get('v2/unidadesAtivas/?RESERVA_ATIVA=1');
 
       if (result.length > 0)
         return ResourceData<List<UnidadeEntity>>(

@@ -31,6 +31,9 @@ extension CondominioAtivoMapper on UnidadeAtivaEntity {
     );
   }
 
+  List<UnidadeAtivaEntity> fromMapList(List<dynamic> data) =>
+      List.from(data).map((element) => fromMap(element)).toList();
+
   UnidadeAtivaEntity fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
 

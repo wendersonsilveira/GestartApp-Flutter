@@ -99,13 +99,13 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
       Atom(name: '_DashboardControllerBase.condominiosAtivos');
 
   @override
-  ResourceData<UnidadeAtivaEntity> get condominiosAtivos {
+  ResourceData<List<UnidadeAtivaEntity>> get condominiosAtivos {
     _$condominiosAtivosAtom.reportRead();
     return super.condominiosAtivos;
   }
 
   @override
-  set condominiosAtivos(ResourceData<UnidadeAtivaEntity> value) {
+  set condominiosAtivos(ResourceData<List<UnidadeAtivaEntity>> value) {
     _$condominiosAtivosAtom.reportWrite(value, super.condominiosAtivos, () {
       super.condominiosAtivos = value;
     });
@@ -259,11 +259,11 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
   }
 
   @override
-  void checkServicoReservasActive(dynamic value) {
+  void checkServicoReservasActive() {
     final _$actionInfo = _$_DashboardControllerBaseActionController.startAction(
         name: '_DashboardControllerBase.checkServicoReservasActive');
     try {
-      return super.checkServicoReservasActive(value);
+      return super.checkServicoReservasActive();
     } finally {
       _$_DashboardControllerBaseActionController.endAction(_$actionInfo);
     }

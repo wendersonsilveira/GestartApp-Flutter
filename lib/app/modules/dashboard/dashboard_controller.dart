@@ -44,13 +44,13 @@ abstract class _DashboardControllerBase with Store {
   ResourceData<List<CondominioEntity>> condominios;
 
   @observable
-  ResourceData<UnidadeAtivaEntity> condominiosAtivos;
+  ResourceData<List<UnidadeAtivaEntity>> condominiosAtivos;
 
   @observable
   ResourceData<List<UnidadeEntity>> unidadesAtivasAdm;
 
   @observable
-  int statusCondominio;
+  int statusCondominio = 0;
 
   @observable
   bool existeCondominiosAtivos;
@@ -86,7 +86,7 @@ abstract class _DashboardControllerBase with Store {
 
     int forceUpdate = setup.data.forceUpdate;
     bool isAndroid = Platform.isAndroid ? true : false;
-    
+
     bool isForceUpdate = forceUpdate == 1 ? true : false;
 
     String deviceVersion =
@@ -121,7 +121,11 @@ abstract class _DashboardControllerBase with Store {
   void checkCondominiosAtivos(value) => existeCondominiosAtivos = value;
 
   @action
-  void checkServicoReservasActive(value) => servicoReservaDisponivel = value;
+  void checkServicoReservasActive() {
+    condominiosAtivos.data.map((e) => e.gestartappReserva == 1
+        ? servicoReservaDisponivel = 1
+        : servicoReservaDisponivel);
+  }
 
   @action
   getInforCondominios() async {
@@ -130,10 +134,8 @@ abstract class _DashboardControllerBase with Store {
     condominiosAtivos = await _getCondominioAtivo();
     unidadesAtivasAdm = await _getUnidadesAtivas();
     checkCondominiosAtivos(condominiosAtivos.data != null ? true : false);
-    checkServicoReservasActive(condominiosAtivos.data != null &&
-            condominiosAtivos.data.gestartappReserva == 1
-        ? 1
-        : 0);
+    checkServicoReservasActive();
+
     verificarStatusCondominios();
     chekedSindico = true;
     ResourceData<SetupEntity> setup = await _getSetup();

@@ -8,7 +8,7 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 
 abstract class CondominioRepository {
   Future<ResourceData<List<CondominioEntity>>> getCondominiosPorCpf();
-  Future<ResourceData<UnidadeAtivaEntity>> getCondominiosAtivos();
+  Future<ResourceData<List<UnidadeAtivaEntity>>> getCondominiosAtivos();
   Future<ResourceData<List<CondominiosAtivosEntity>>> getAllCondominiosAtivos();
   Future<ResourceData<List<UserAdmEntity>>> getInforAdmCondominios();
   Future<ResourceData<List<EmailAtivacaoEntity>>> getEmailsAtivacao();

@@ -42,16 +42,16 @@ class CondominioRemoteDataSource {
     }
   }
 
-  Future<ResourceData<UnidadeAtivaEntity>> condominioAtivo() async {
+  Future<ResourceData<List<UnidadeAtivaEntity>>> condominioAtivo() async {
     try {
       final result = await _dio.get('condominiosAtivos');
 
       if (result.length > 0)
-        return ResourceData<UnidadeAtivaEntity>(
+        return ResourceData<List<UnidadeAtivaEntity>>(
             status: Status.success,
-            data: UnidadeAtivaEntity().fromMap(result[0]));
+            data: UnidadeAtivaEntity().fromMapList(result));
       else
-        return ResourceData<UnidadeAtivaEntity>(
+        return ResourceData<List<UnidadeAtivaEntity>>(
             status: Status.success, data: null);
     } on DioError catch (e) {
       return ResourceData(
