@@ -49,7 +49,6 @@ class _RelatorioReservasPageState
           onTap: () {},
           child: Container(
             height: 50,
-            width: 325,
             color: AppColorScheme.primaryColor,
             child: Center(
               child: Text(
