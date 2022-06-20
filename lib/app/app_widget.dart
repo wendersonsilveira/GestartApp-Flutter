@@ -33,7 +33,9 @@ class _AppWidgetState extends ModularState<AppWidget, AppController> {
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
               ],
-              supportedLocales: <Locale>[Locale.fromSubtags(languageCode: 'en')],
+              supportedLocales: <Locale>[
+                Locale.fromSubtags(languageCode: 'pt')
+              ],
               navigatorKey: Modular.navigatorKey,
               title: 'Gestart App',
               theme: ThemeData(
