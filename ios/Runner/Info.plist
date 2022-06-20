@@ -37,9 +37,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Escutar voz</string>
+	<string>Reconhecimento de voz para buscar funcionalidades dentro do app</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Entender voz</string>
+	<string>Reconhecimento de voz para buscar funcionalidades dentro do app</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
