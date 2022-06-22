@@ -30,6 +30,7 @@ class ReservaEntity {
   final String apelido;
   final String logo;
   final DateTime datIniOriginal;
+  final String proprietario;
 
   const ReservaEntity({
     this.dia,
@@ -60,5 +61,6 @@ class ReservaEntity {
     this.apelido,
     this.logo,
     this.datIniOriginal,
+    this.proprietario
   });
 }

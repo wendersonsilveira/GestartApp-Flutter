@@ -4,6 +4,8 @@ import 'package:Gestart/data/mappers/reserva/reserva_mapper.dart';
 import 'package:Gestart/data/mappers/reserva/hora_mapper.dart';
 import 'package:Gestart/domain/entities/reserva/hora_entity.dart';
 import 'package:Gestart/domain/entities/reserva/reserva_entity.dart';
+import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
+import 'package:Gestart/data/mappers/reserva/send_params_rel_reserva_mapper.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 
 import 'package:Gestart/domain/utils/status.dart';
@@ -15,9 +17,9 @@ class ReservaRemoteDataSource {
   CustomDio _dio;
   ReservaRemoteDataSource(this._dio);
 
-  Future<ResourceData<List<ReservaEntity>>> getReservasRelatorio(params) async {
+  Future<ResourceData<List<ReservaEntity>>> getReservasRelatorio( SendParamsRelReservaEntity params ) async {
     try {
-      final result = await _dio.post('get_reservas', data: params);
+      final result = await _dio.post('get_reservas', data: params.toMap());
 
       return ResourceData(
           status: Status.success,

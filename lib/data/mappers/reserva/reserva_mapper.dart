@@ -37,6 +37,7 @@ extension ReservaMapper on ReservaEntity {
       codimo: map['CODIMO'],
       apelido: map['APELIDO'],
       logo: map['LOGO'],
+      proprietario: map['NOME']
     );
   }
 

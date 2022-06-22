@@ -4,11 +4,11 @@ import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/condominio/unidades_ativa_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
+import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
 import 'package:Gestart/domain/entities/setup/setup_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_por_cpf_use_case.dart';
-import 'package:Gestart/domain/usecases/reserva/get_reservas_relatorio_use_case.dart';
 import 'package:Gestart/domain/usecases/setup/get_setup_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_adm_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
@@ -31,7 +31,6 @@ abstract class _DashboardControllerBase with Store {
   final _getCondominioAtivo = getIt.get<GetCondominioAtivoUseCase>();
   final _getUnidadesAtivas = getIt.get<GetUnidadesAdmUseCase>();
   final _getSetup = getIt.get<GetSetupUseCase>();
-  final _getReservasRelatorio = getIt.get<GetReservasRelatorioUseCase>();
 
   @observable
   bool isVisible = false;
@@ -78,10 +77,9 @@ abstract class _DashboardControllerBase with Store {
   }
 
   testsUseCases() async {
-    var result = await _getReservasRelatorio(
-        {"CODCON": 1005, "DATINI": '01/10/2021', "DATFIM": '30/10/2021'});
+    // var result = await _getReservasRelatorio(SendParamsRelReservaEntity(codCon: 47));
 
-    print("Result unidades adm ***: \n ${result.data.toString()}");
+    // print("Result unidades adm ***: \n ${result.data.toString()}");
   }
 
   Future<dynamic> checkStorageVersionDiff() async {
