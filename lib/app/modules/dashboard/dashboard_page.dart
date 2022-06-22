@@ -433,6 +433,14 @@ class _DashboardPageState
                                       routeName: RouteName.cadastros,
                                     ),
                                   ),
+                                  Card(
+                                    child: ItemServicoWidget(
+                                      condominioAtivo: true,
+                                      descricao: 'Notificações',
+                                      icone: FlutterIcons.error_outline_mdi,
+                                      routeName: RouteName.informativos_page,
+                                    ),
+                                  ),
                                   controller.isSindico
                                       ? Card(
                                           child: ItemServicoWidget(

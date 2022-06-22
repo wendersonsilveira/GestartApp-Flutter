@@ -24,7 +24,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   int _indiceAtual = 0;
   final List<Widget> _telas = [
     DashboardPage(),
-    InformativosPage(),
     PesquisaPage(),
     NotificacoesPage(),
     PerfilPage(),
@@ -74,14 +73,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                 ),
                 backgroundColor: AppColorScheme.corMenuBotton,
                 label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.info,
-                  color: Colors.grey,
-                ),
-                label: '',
-                backgroundColor: AppColorScheme.corMenuBotton,
               ),
               BottomNavigationBarItem(
                 icon: Icon(

@@ -32,8 +32,14 @@ class _InformativosPageState
     return Scaffold(
         appBar: AppBarCustom(
           context,
-          leading: Container(),
           title: Text(widget.title),
+          leading: new IconButton(
+            icon: new Icon(Icons.arrow_back),
+            onPressed: () {
+                Modular.navigator.pop();
+            },
+          ),
+          
         ),
         body: Observer(
             builder: (_) => controller.infor.status == Status.loading

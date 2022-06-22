@@ -1,3 +1,5 @@
+import 'package:Gestart/app/modules/informativos/informativos_page.dart';
+
 import 'modules/error/erro/erro_controller.dart';
 import 'package:Gestart/app/modules/balancete/detalhe_balancete/detalhe_balancete_controller.dart';
 import 'package:Gestart/app/modules/balancete/detalhe_balancete/detalhe_balancete_page.dart';
@@ -168,7 +170,8 @@ class AppModule extends MainModule {
         $DetalheBalanceteController,
         $RelatorioReservasController,
         $ListaReservasController,
-        $ErroController
+        $ErroController,
+        $InformativosController
       ];
 
   @override
@@ -273,6 +276,8 @@ class AppModule extends MainModule {
             child: (_, args) => ListaReservasPage(
                   params: args.data,
                 )),
+        ModularRouter(RouteName.informativos_page,
+            child: (_, args) => InformativosPage()),
         ModularRouter(RouteName.error_page,
             child: (_, args) => ErroPage(
                   msgErro: args.data,
