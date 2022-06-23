@@ -42,7 +42,9 @@ class _ListaReservasPageState
         ),
         body: Observer(
           builder: (_) => controller.reservas.status == Status.loading
-              ? CircularProgressCustom
+              ? Container(
+                child: Center(child: CircularProgressCustom())
+              )
               : Container(
                   child: ListView.builder(
                       itemCount: controller.reservas.data.length,
