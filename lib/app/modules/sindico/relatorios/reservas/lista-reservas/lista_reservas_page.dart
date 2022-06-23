@@ -1,14 +1,10 @@
-import 'package:Gestart/app/modules/error/erro/component/texto_infor_widget.dart';
-import 'package:Gestart/app/modules/reserva/horarios/components/infor_config_wiget.dart';
 import 'package:Gestart/app/modules/sindico/component/icon_status_helper_widget.dart';
-import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'lista_reservas_controller.dart';
@@ -100,6 +96,7 @@ class _ListaReservasPageState
                               leading: IconStatusHelperWidget(
                                 status: controller.reservas.data[index].status,
                               ),
+                              
                               title: Text('Unidade: ' +
                                   controller.reservas.data[index].codimo
                                       .toString()),
@@ -110,7 +107,7 @@ class _ListaReservasPageState
                                       .reservas.data[index].espacoDescricao),
                                   Text('Data: ' +
                                       UIHelper.formatDateFromDateTime(
-                                          controller.reservas.data[index].data))
+                                          controller.reservas.data[index].data)),
                                 ],
                               )),
                         );
