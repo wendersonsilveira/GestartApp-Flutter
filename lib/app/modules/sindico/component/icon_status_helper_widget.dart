@@ -68,36 +68,3 @@ class IconStatusHelperWidgetState extends State<IconStatusHelperWidget> {
     }
   }
 }
-
-class StatusHelperWidget extends StatefulWidget {
-  const StatusHelperWidget({Key key, this.status}) : super(key: key);
-  final int status;
-
-  @override
-  StatusHelperWidgetState createState() => StatusHelperWidgetState();
-}
-
-class StatusHelperWidgetState extends State<StatusHelperWidget> {
-  @override
-  Widget build(BuildContext context) {
-    switch (widget.status) {
-      case 0:
-        return Text('AGUARDANDO APROVAÇÃO',
-            style: TextStyle(color: AppColorScheme.tagYellow2));
-        break;
-      case 1:
-        return Text('APROVADA',
-            style: TextStyle(color: AppColorScheme.primaryColor));
-        break;
-      case 2:
-        return Text('REJEITADA',
-            style: TextStyle(color: AppColorScheme.tagRed2));
-        break;
-      case 3:
-        return Text('CANCELADA',
-            style: TextStyle(color: AppColorScheme.tagRed2));
-        break;
-      default:
-    }
-  }
-}
