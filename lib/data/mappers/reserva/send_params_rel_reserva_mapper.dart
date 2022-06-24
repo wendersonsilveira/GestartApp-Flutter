@@ -22,8 +22,8 @@ extension SendParamsRelReserva on SendParamsRelReservaEntity {
   Map<String, dynamic> toMap() {
     return {
       "CODCON": codCon,
-      "UNIDADE": codimo,
-      "ESPACO": espaco,
+      "CODIMO": codimo,
+      "ESPACO_ID": espaco,
       "STATUS": status,
       "DATINI": dataIni,
       "DATFIM": dataFim
