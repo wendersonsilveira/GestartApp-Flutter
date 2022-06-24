@@ -23,11 +23,12 @@ extension ReservaMapper on ReservaEntity {
       status: map['STATUS'],
       statusDescricao: map['STATUS_DESCRICAO'],
       motivoRecusa: map['MOTIVO_RECUSA'],
-      datIni: DateTime.parse(map['DATINI']),
+      datIni: map['DATINI'] != null ? DateTime.parse(map['DATINI']) : null,
       datFim: map['DATFIM'] != null ? DateTime.parse(map['DATFIM']) : null,
       horIniId: map['HORINI_ID'],
       horFimId: map['HORFIM_ID'],
-      createat: DateTime.parse(map['CREATEAT']),
+      createat:
+          map['CREATEAT'] != null ? DateTime.parse(map['CREATEAT']) : null,
       rejeitarMotivo: map['REJEITAR_MOTIVO'],
       canceladoCondonUserId: map['CANCELADO_CONDON_USER_ID'],
       espacoDescricao: map['ESPACO_DESCRICAO'],
@@ -36,6 +37,7 @@ extension ReservaMapper on ReservaEntity {
       codimo: map['CODIMO'],
       apelido: map['APELIDO'],
       logo: map['LOGO'],
+      proprietario: map['NOME']
     );
   }
 

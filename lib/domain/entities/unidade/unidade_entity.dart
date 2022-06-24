@@ -71,6 +71,10 @@ class UnidadeEntity {
     return 'UnidadeEntity(codcon: $codcon,codimo: $codimo, codord: $codord,nomcon: $nomcon,parentCondonUserId: $parentCondonUserId,condonUserId: $condonUserId,perfil: $perfil,apelido: $apelido,logo: $logo,gestartapp: $gestartapp,gestartappReserva: $gestartappReserva,nompro: $nompro)';
   }
 
+  String unidadeAsString() {
+    return '${this.codimo} - ${this.nompro}';
+  }
+
   // @override
   // bool operator ==(Object o) {
   //   if (identical(this, o)) return true;

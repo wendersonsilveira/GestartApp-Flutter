@@ -1,3 +1,5 @@
+import 'package:Gestart/app/modules/informativos/informativos_page.dart';
+
 import 'modules/error/erro/erro_controller.dart';
 import 'package:Gestart/app/modules/balancete/detalhe_balancete/detalhe_balancete_controller.dart';
 import 'package:Gestart/app/modules/balancete/detalhe_balancete/detalhe_balancete_page.dart';
@@ -19,6 +21,7 @@ import 'modules/sindico/financeiro/movimento_financeiro/movimento_financeiro_con
 import 'modules/sindico/comunicacao/avisos/avisos_page_controller.dart';
 import 'modules/sindico/comunicacao/avisos/cadastro/cadastro_aviso_page_controller.dart';
 import 'modules/sindico/financeiro/contas_fixas/contas_fixas_controller.dart';
+import 'modules/sindico/relatorios/reservas/lista-reservas/lista_reservas_controller.dart';
 import 'modules/sindico/reserva_espaco/gerenciar_reserva/detalhes_reserva/detalhes_reserva_controller.dart';
 import 'modules/sindico/reserva_espaco/gerenciar_reserva/detalhes_reserva/detalhes_reserva_page.dart';
 import 'modules/sindico/reserva_espaco/gerenciar_reserva/calendario/calendario_controller.dart';
@@ -95,8 +98,11 @@ import 'package:Gestart/app/modules/pets/pets_page.dart';
 import 'package:Gestart/app/modules/pets/cadastro_pet/cadastro_pet_page.dart';
 import 'package:Gestart/app/modules/pets/cadastro_pet/cadastro_pet_controller.dart';
 import 'package:Gestart/app/modules/reserva/reserva_controller.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/reservas/relatorio_reservas_controller.dart';
 import 'package:Gestart/app/modules/sindico/reserva_espaco/listar_espacos/listar_espacos_page.dart';
 import 'package:Gestart/app/modules/sindico/financeiro/contas_fixas/contas_fixas_page.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/reservas/relatorio_reservas_page.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/reservas/lista-reservas/lista_reservas_page.dart';
 
 import 'constants/route_name.dart';
 import 'modules/condominio/condominio_controller.dart';
@@ -162,7 +168,10 @@ class AppModule extends MainModule {
         $CodigoAtivacaoController,
         $EnviarCodigoController,
         $DetalheBalanceteController,
-        $ErroController
+        $RelatorioReservasController,
+        $ListaReservasController,
+        $ErroController,
+        $InformativosController
       ];
 
   @override
@@ -261,6 +270,14 @@ class AppModule extends MainModule {
             child: (_, args) => DetalheBalancetePage(
                   idBalancete: args.data,
                 )),
+        ModularRouter(RouteName.relatorioReservas,
+            child: (_, args) => RelatorioReservasPage()),
+        ModularRouter(RouteName.listaReservas,
+            child: (_, args) => ListaReservasPage(
+                  params: args.data,
+                )),
+        ModularRouter(RouteName.informativos_page,
+            child: (_, args) => InformativosPage()),
         ModularRouter(RouteName.error_page,
             child: (_, args) => ErroPage(
                   msgErro: args.data,

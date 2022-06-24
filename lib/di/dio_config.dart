@@ -79,6 +79,7 @@ import 'package:Gestart/data/repositories/auth/auth_repository_impl.dart';
 import 'package:Gestart/data/datasource/auth/auth_remote_data_source.dart';
 import 'package:Gestart/domain/usecases/auth/login_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boleto_use_case.dart';
+import 'package:Gestart/domain/usecases/unidade/get_unidades_condominio_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boletos_use_case.dart';
 import 'package:Gestart/domain/usecases/balancete/get_balancetes_use_case.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case.dart';
@@ -111,6 +112,7 @@ import 'package:Gestart/domain/usecases/reserva/excluir_espaco_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reserva_adm_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reserva_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_adm_use_case.dart';
+import 'package:Gestart/domain/usecases/reserva/get_reservas_relatorio_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/rejeitar_reserva_use_case.dart';
 import 'package:Gestart/domain/usecases/setup/get_setup_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_adm_unidades_prop_use_case.dart';
@@ -236,6 +238,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => GetUnidadesFiltroUseCase(get<UnidadeRepository>()));
   gh.factory<GetUnidadeDetalhesUseCase>(
       () => GetUnidadeDetalhesUseCase(get<UnidadeRepository>()));
+  gh.factory<GetUnidadesCondominioUseCase>(
+      () => GetUnidadesCondominioUseCase(get<UnidadeRepository>()));
 
   //balancetes
   gh.factory<BalanceteRemoteDataSource>(
@@ -270,6 +274,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => ReservaRemoteDataSource(get<CustomDio>()));
   gh.factory<GetReservasUseCase>(
       () => GetReservasUseCase(get<ReservaRepository>()));
+  gh.factory<GetReservasRelatorioUseCase>(
+      () => GetReservasRelatorioUseCase(get<ReservaRepository>()));
   gh.factory<GetReservaUseCase>(
       () => GetReservaUseCase(get<ReservaRepository>()));
   gh.factory<CreateReservaUseCase>(

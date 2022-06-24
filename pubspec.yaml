@@ -46,6 +46,8 @@ dependencies:
   barcode: ^1.17.1
   package_info_plus: ^0.6.4
   device_info_plus: ^0.7.2
+  dropdown_search: ^0.4.9
+  syncfusion_flutter_datepicker: ^18.4.49-beta
 
   flutter:
     sdk: flutter

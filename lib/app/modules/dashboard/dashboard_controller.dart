@@ -4,6 +4,7 @@ import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/condominio/unidades_ativa_entity.dart';
 import 'package:Gestart/domain/entities/condominio/condominio_entity.dart';
+import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
 import 'package:Gestart/domain/entities/setup/setup_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/usecases/condominio/get_condominio_ativo_use_case.dart';
@@ -76,7 +77,7 @@ abstract class _DashboardControllerBase with Store {
   }
 
   testsUseCases() async {
-    // var result = await _getUnidadesAtivas();
+    // var result = await _getReservasRelatorio(SendParamsRelReservaEntity(codCon: 47));
 
     // print("Result unidades adm ***: \n ${result.data.toString()}");
   }

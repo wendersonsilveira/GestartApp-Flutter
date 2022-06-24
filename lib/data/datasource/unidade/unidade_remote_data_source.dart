@@ -13,13 +13,9 @@ class UnidadeRemoteDataSource {
   CustomDio _dio;
   UnidadeRemoteDataSource(this._dio);
 
-  Future<ResourceData<List<UnidadeEntity>>> getUnidades(
-      {int reservaAtiva}) async {
+  Future<ResourceData<List<UnidadeEntity>>> getUnidades() async {
     try {
-      String url = reservaAtiva == null
-          ? 'v2/unidadesAtivas'
-          : 'v2/unidadesAtivas/?RESERVA_ATIVA=1';
-      final result = await _dio.get(url);
+      final result = await _dio.get('v2/unidadesAtivas');
 
       if (result.length > 0)
         return ResourceData<List<UnidadeEntity>>(
@@ -44,6 +40,26 @@ class UnidadeRemoteDataSource {
         return ResourceData<List<UnidadeEntity>>(
             status: Status.success,
             data: UnidadeEntity().fromMapList(result['condominiosAtivosAdm']));
+      else
+        return ResourceData<List<UnidadeEntity>>(
+            status: Status.success, data: null);
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar as unidades adm",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<List<UnidadeEntity>>> getUnidadesCondominio(
+      filtros) async {
+    try {
+      final result = await _dio.post('get-unidades-condominio', data: filtros);
+
+      if (result.length > 0)
+        return ResourceData<List<UnidadeEntity>>(
+            status: Status.success, data: UnidadeEntity().fromMapList(result));
       else
         return ResourceData<List<UnidadeEntity>>(
             status: Status.success, data: null);

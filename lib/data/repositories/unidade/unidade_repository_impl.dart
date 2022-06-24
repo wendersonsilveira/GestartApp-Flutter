@@ -9,9 +9,17 @@ class UnidadeRepositoryImpl implements UnidadeRepository {
   UnidadeRepositoryImpl(this._unidadeRemoteDataSource);
 
   @override
-  Future<ResourceData<List<UnidadeEntity>>> getUnidades(reservaAtiva) async {
+  Future<ResourceData<List<UnidadeEntity>>> getUnidades() async {
+    final resource = await _unidadeRemoteDataSource.getUnidades();
+
+    return resource;
+  }
+
+  @override
+  Future<ResourceData<List<UnidadeEntity>>> getUnidadesCondominio(
+      filtros) async {
     final resource =
-        await _unidadeRemoteDataSource.getUnidades(reservaAtiva: reservaAtiva);
+        await _unidadeRemoteDataSource.getUnidadesCondominio(filtros);
 
     return resource;
   }
