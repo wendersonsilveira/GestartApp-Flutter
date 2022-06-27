@@ -12,7 +12,7 @@ class GetUnidadesUseCase
   GetUnidadesUseCase(this._unidadeRepository);
 
   @override
-  Future<ResourceData<List<UnidadeEntity>>> call([int reservaAtiva]) {
-    return _unidadeRepository.getUnidades(reservaAtiva);
+  Future<ResourceData<List<UnidadeEntity>>> call([int entity]) {
+    return _unidadeRepository.getUnidades();
   }
 }
