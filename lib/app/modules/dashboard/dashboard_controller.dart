@@ -123,7 +123,7 @@ abstract class _DashboardControllerBase with Store {
 
   @action
   void checkServicoReservasActive() {
-    condominiosAtivos.data.map((e) => e.gestartappReserva == 1
+    if (condominiosAtivos.data != null) condominiosAtivos.data.map((e) => e.gestartappReserva == 1
         ? servicoReservaDisponivel = 1
         : servicoReservaDisponivel);
   }
