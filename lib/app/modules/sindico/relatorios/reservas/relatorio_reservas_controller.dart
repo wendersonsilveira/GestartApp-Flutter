@@ -37,6 +37,7 @@ abstract class _RelatorioReservasControllerBase with Store {
   String espacoSelecionado;
   String dataIni;
   String dataFim;
+  String tipo = null;
   int statusSelecionado;
 
   @action
@@ -74,7 +75,8 @@ abstract class _RelatorioReservasControllerBase with Store {
         status: statusSelecionado,
         espaco: espacoSelecionado,
         dataIni: dataIni,
-        dataFim: dataFim);
+        dataFim: dataFim,
+        tipo: tipo);
 
     Modular.navigator.pushNamed(RouteName.listaReservas, arguments: params);
   }

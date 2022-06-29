@@ -1,3 +1,4 @@
+import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/data/helpers/error_mapper.dart';
 import 'package:Gestart/data/remote/custom_dio.dart';
 import 'package:Gestart/data/mappers/reserva/reserva_mapper.dart';
@@ -10,6 +11,9 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -17,13 +21,32 @@ class ReservaRemoteDataSource {
   CustomDio _dio;
   ReservaRemoteDataSource(this._dio);
 
-  Future<ResourceData<List<ReservaEntity>>> getReservasRelatorio( SendParamsRelReservaEntity params ) async {
+  Future<ResourceData<List<ReservaEntity>>> getReservasRelatorio(
+      SendParamsRelReservaEntity params) async {
     try {
       final result = await _dio.post('get_reservas', data: params.toMap());
 
       return ResourceData(
           status: Status.success,
           data: ReservaEntity().fromMapList(result),
+          message: 'Reservas listadas com sucesso!');
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao buscar as reservas",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<dynamic>> getReservasRelatorioPDF(
+      SendParamsRelReservaEntity params) async {
+    try {
+      final result = await _dio.post('get_reservas', data: params.toMap());
+
+      return ResourceData(
+          status: Status.success,
+          data: result,
           message: 'Reservas listadas com sucesso!');
     } on DioError catch (e) {
       return ResourceData(
