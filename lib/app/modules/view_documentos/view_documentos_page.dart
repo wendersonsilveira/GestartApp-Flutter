@@ -7,8 +7,9 @@ import 'view_documentos_controller.dart';
 class ViewDocumentosPage extends StatefulWidget {
   final String title;
   final String url;
+  final PDFDocument document;
 
-  const ViewDocumentosPage({Key key, this.title = "", this.url})
+  const ViewDocumentosPage({Key key, this.title = "", this.url, this.document})
       : super(key: key);
 
   @override
@@ -24,7 +25,16 @@ class _ViewDocumentosPageState
   @override
   void initState() {
     super.initState();
-    loadDocument();
+    if (widget.url != null) {
+      loadDocument();
+    } else
+      setDocument();
+  }
+
+  setDocument() async {
+    document = widget.document;
+
+    setState(() => _isLoading = false);
   }
 
   loadDocument() async {

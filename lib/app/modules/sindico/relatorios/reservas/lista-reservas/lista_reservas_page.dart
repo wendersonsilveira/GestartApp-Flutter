@@ -7,6 +7,7 @@ import 'package:Gestart/app/widgets/empty/empt_widget.dart';
 import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'lista_reservas_controller.dart';
@@ -31,12 +32,33 @@ class _ListaReservasPageState
     controller.init(widget.params);
   }
 
+  SendParamsRelReservaEntity params2;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBarCustom(
           context,
           title: Text(widget.title),
+          actions: [
+            GestureDetector(
+              onTap: () => {
+                params2 = SendParamsRelReservaEntity(
+                codCon: widget.params.codCon,
+                codimo: widget.params.codimo,
+                status: widget.params.status,
+                espaco: widget.params.espaco,
+                dataIni: widget.params.dataIni,
+                dataFim: widget.params.dataFim,
+                tipo: 'PDF'),
+                controller.getReservasPDF(params2)
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Icon(FlutterIcons.download_ant),
+              ),
+            )
+          ],
         ),
         body: Observer(
           builder: (_) {

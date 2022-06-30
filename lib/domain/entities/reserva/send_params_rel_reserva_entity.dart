@@ -8,11 +8,13 @@ class SendParamsRelReservaEntity {
   final int status;
   final String dataIni;
   final String dataFim;
+  final String tipo;
   const SendParamsRelReservaEntity(
       {this.codCon,
       this.codimo,
       this.espaco,
       this.status,
       this.dataIni,
+      this.tipo = null,
       this.dataFim});
 }
