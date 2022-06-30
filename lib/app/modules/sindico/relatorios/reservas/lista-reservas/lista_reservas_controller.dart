@@ -13,6 +13,7 @@ import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Gestart/domain/utils/status.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 part 'lista_reservas_controller.g.dart';
 
@@ -28,7 +29,7 @@ abstract class _ListaReservasControllerBase with Store {
   int codCon;
 
   final _getReservas = getIt.get<GetReservasRelatorioUseCase>();
-  final _getReservasPDF = getIt.get<GetReservasRelatorioPDFUseCase>();
+  // final _getReservasPDF = getIt.get<GetReservasRelatorioPDFUseCase>();
 
   @observable
   ResourceData<List<ReservaEntity>> reservas =
@@ -41,10 +42,10 @@ abstract class _ListaReservasControllerBase with Store {
   }
 
   @action
-  Future<void> getReservasPDF(params) async {
-    documentPDF = await _getReservasPDF(params);
-    print(documentPDF);
-    Modular.navigator.pushNamed(RouteName.view_documento, arguments: ['Relatório de reservas', null, documentPDF.data]);
+  Future<void> getReservasPDF(SendParamsRelReservaEntity params) async {
+    String url =
+        "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/get_reservas?CODCON=${params.codCon}&DATINI=${params.dataIni}&DATFIM=${params.dataFim}&TIPO=${params.tipo}";
+    _launchURL(url);
   }
 
   init(params) async {
@@ -53,4 +54,8 @@ abstract class _ListaReservasControllerBase with Store {
 
     await getReservas(params);
   }
+
+  void _launchURL(_url) async => await canLaunch(_url)
+      ? await launch(_url)
+      : throw 'Could not launch $_url';
 }
