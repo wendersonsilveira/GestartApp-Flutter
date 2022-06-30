@@ -68,6 +68,9 @@ abstract class _DashboardControllerBase with Store {
   @observable
   ResourceData<SetupEntity> setup;
 
+  @observable
+  String deviceVersion = '';
+
   init() {
     condominios = ResourceData(status: Status.loading);
     condominiosAtivos = ResourceData(status: Status.loading);
@@ -90,7 +93,7 @@ abstract class _DashboardControllerBase with Store {
 
     bool isForceUpdate = forceUpdate == 1 ? true : false;
 
-    String deviceVersion =
+    this.deviceVersion =
         await sharedPreferences.getString('version').then((value) => value);
 
     storeVersion = isAndroid
@@ -123,9 +126,10 @@ abstract class _DashboardControllerBase with Store {
 
   @action
   void checkServicoReservasActive() {
-    condominiosAtivos.data.map((e) => e.gestartappReserva == 1
-        ? servicoReservaDisponivel = 1
-        : servicoReservaDisponivel);
+    if (condominiosAtivos.data != null)
+      condominiosAtivos.data.map((e) => e.gestartappReserva == 1
+          ? servicoReservaDisponivel = 1
+          : servicoReservaDisponivel);
   }
 
   @action
