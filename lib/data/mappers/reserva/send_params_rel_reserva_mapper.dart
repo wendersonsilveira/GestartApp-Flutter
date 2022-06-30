@@ -26,7 +26,8 @@ extension SendParamsRelReserva on SendParamsRelReservaEntity {
       "ESPACO_ID": espaco,
       "STATUS": status,
       "DATINI": dataIni,
-      "DATFIM": dataFim
+      "DATFIM": dataFim,
+      "TIPO": tipo,
     };
   }
 }

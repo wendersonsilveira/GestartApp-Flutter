@@ -4,6 +4,7 @@ import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.d
 import 'package:Gestart/domain/repositories/reserva/reserva_repository.dart';
 import 'package:Gestart/data/datasource/reserva/reserva_remote_data_source.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
+import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
 class ReservaRepositoryImpl implements ReservaRepository {
   ReservaRemoteDataSource _reservaRemoteDataSource;
@@ -18,10 +19,19 @@ class ReservaRepositoryImpl implements ReservaRepository {
   }
 
   @override
-  Future<ResourceData<List<ReservaEntity>>> getReservasRelatorio(SendParamsRelReservaEntity params) async {
+  Future<ResourceData<List<ReservaEntity>>> getReservasRelatorio(
+      SendParamsRelReservaEntity params) async {
     final resource =
         await _reservaRemoteDataSource.getReservasRelatorio(params);
 
+    return resource;
+  }
+
+  @override
+  Future<ResourceData<dynamic>> getReservasRelatorioPDF(
+      SendParamsRelReservaEntity params) async {
+    final resource =
+        await _reservaRemoteDataSource.getReservasRelatorioPDF(params);
     return resource;
   }
 
