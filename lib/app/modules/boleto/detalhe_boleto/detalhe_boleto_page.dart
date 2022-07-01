@@ -143,7 +143,7 @@ class _DetalheBoletoPageState
                                 title: 'BAIXAR PDF',
                                 color: AppColorScheme.backgroundColor,
                                 fileName:
-                                    'Boleto_${controller.boleto.data.apelido}_${UIHelper.formatDate(controller.boleto.data.datVen)}.pdf',
+                                    'Boleto_${controller.boleto.data.apelido}_${controller.boleto.data.codImo}_${UIHelper.formatDate(controller.boleto.data.datVen)}.pdf',
                                 fileURL: controller.boleto.data.linkBoleto,
                                 shap: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
