@@ -36,7 +36,7 @@ abstract class _SindicoControllerBase with Store {
     {'icon': FlutterIcons.usd_faw, 'title': 'Financeiro', 'indice': 3},
     {'icon': FlutterIcons.rss_ent, 'title': 'Comunicação', 'indice': 4},
     {'icon': FlutterIcons.id_card_faw, 'title': 'Cadastros', 'indice': 5},
-    {'icon': FlutterIcons.md_analytics_ion, 'title': 'Relatorios', 'indice': 6}
+    {'icon': FlutterIcons.md_analytics_ion, 'title': 'Relatórios', 'indice': 6}
   ];
 
   @observable

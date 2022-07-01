@@ -15,7 +15,7 @@ import 'relatorio_reservas_controller.dart';
 
 class RelatorioReservasPage extends StatefulWidget {
   final String title;
-  const RelatorioReservasPage({Key key, this.title = "Relatorio de reservas"})
+  const RelatorioReservasPage({Key key, this.title = "Relatório de reservas"})
       : super(key: key);
 
   @override
@@ -71,7 +71,7 @@ class _RelatorioReservasPageState
                                         Container(
                                           padding: EdgeInsets.all(20),
                                           child: Text(
-                                              "Insira os filtros para configurar seu relatorio"),
+                                              "Insira os filtros para configurar seu relatório"),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
@@ -97,8 +97,8 @@ class _RelatorioReservasPageState
                                             showClearButton: true,
                                             itemAsString: (EspacoEntity u) =>
                                                 u.espacoAsString(),
-                                            label: "Espaco",
-                                            hint: "Espaco",
+                                            label: "Espaço",
+                                            hint: "Espaço",
                                             onChanged: (espaco) =>
                                                 controller.setEspaco(espaco.id),
                                           ),
@@ -110,7 +110,7 @@ class _RelatorioReservasPageState
                                               showClearButton: true,
                                               items: [
                                                 "Aguardando aprovação",
-                                                "Ativo",
+                                                "Aprovado",
                                                 "Rejeitado",
                                                 "Cancelado"
                                               ],
@@ -128,7 +128,7 @@ class _RelatorioReservasPageState
                                                 padding: const EdgeInsets.only(
                                                   bottom: 10,
                                                 ),
-                                                child: Text('Periodo'),
+                                                child: Text('Período'),
                                               ),
                                               Row(
                                                 mainAxisAlignment:

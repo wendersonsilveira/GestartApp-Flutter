@@ -18,7 +18,7 @@ class _RelatoriosPageState extends State<RelatoriosPage> {
       child: Column(
         children: [
           Text(
-            'Relatorios',
+            'Relatórios',
             style: TextStyle(fontSize: 18),
           ),
           Container(

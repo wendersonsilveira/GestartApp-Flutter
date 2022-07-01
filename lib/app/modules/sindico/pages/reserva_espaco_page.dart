@@ -40,6 +40,15 @@ class _InicialPageState extends State<InicialPage> {
                 onTap: () =>
                     Modular.navigator.pushNamed(RouteName.gerenciar_reserva)),
           ),
+          Card(
+            child: ListTile(
+                leading: Icon(FlutterIcons.calendar_account_outline_mco,
+                    color: AppColorScheme.primaryColor),
+                title: Text('Relatório de reservas'),
+                trailing: Icon(Icons.arrow_right),
+                onTap: () =>
+                    Modular.navigator.pushNamed(RouteName.relatorioReservas)),
+          ),
         ],
       ),
     );
