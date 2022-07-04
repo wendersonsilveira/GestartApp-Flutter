@@ -67,6 +67,9 @@ class CustomDio {
       } else if (error.response.statusCode == 404) {
         Modular.navigator.popAndPushNamed(RouteName.error_page,
             arguments: 'Recurso não encontrado.');
+      } else if (error.response.statusCode == 401) {
+        Modular.navigator.popAndPushNamed(RouteName.error_page,
+            arguments: 'Usuário desconectado! Favor efetuar login.');
       } else {
         Modular.navigator.pushNamed(RouteName.error_page,
             arguments: 'Houve um erro inesperado.');
