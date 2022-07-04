@@ -50,7 +50,10 @@ class _ListaReservasPageState
                 espaco: widget.params.espaco,
                 dataIni: widget.params.dataIni,
                 dataFim: widget.params.dataFim,
-                tipo: 'PDF'),
+                tipo: 'PDF',
+                usr_name: controller.perfil.data.nome,
+                usr_lastname: controller.perfil.data.sobreNome
+                ),
                 controller.getReservasPDF(params2)
               },
               child: Padding(
