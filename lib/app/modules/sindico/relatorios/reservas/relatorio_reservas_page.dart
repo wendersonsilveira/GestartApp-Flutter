@@ -2,6 +2,7 @@ import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
+import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
 import 'package:Gestart/app/widgets/empty/empt_widget.dart';
 import 'package:Gestart/domain/entities/reserva/espaco_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
@@ -34,11 +35,28 @@ class _RelatorioReservasPageState
     controller.init();
   }
 
+  _setFiltros() {
+    if (controller.dataIni == null || controller.dataFim == null)
+      CustomAlertDialog.info(
+          context,
+          'Periodo obrigatorio',
+          'Favor inserir Data Inicial e Data Final para consulta do relatório',
+          (_) => Modular.navigator.pop());
+    else if (controller.dataIni == null && controller.dataFim == null)
+      CustomAlertDialog.info(
+          context,
+          'Periodo obrigatorio',
+          'Favor inserir periodo para consulta do relatório',
+          (_) => Modular.navigator.pop());
+    else
+      controller.setFiltros();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: GestureDetector(
-          onTap: () => controller.setFiltros(),
+          onTap: () => _setFiltros(),
           child: Container(
             height: 50,
             color: AppColorScheme.primaryColor,
@@ -84,8 +102,11 @@ class _RelatorioReservasPageState
                                                 u.unidadeAsString(),
                                             label: "Unidade",
                                             hint: "Unidade",
-                                            onChanged: (unidade) => controller
-                                                .setUnidade(unidade.codimo),
+                                            onChanged: (unidade) => unidade !=
+                                                    null
+                                                ? controller
+                                                    .setUnidade(unidade.codimo)
+                                                : controller.setUnidade(null),
                                           ),
                                         ),
                                         Padding(
@@ -99,8 +120,11 @@ class _RelatorioReservasPageState
                                                 u.espacoAsString(),
                                             label: "Espaço",
                                             hint: "Espaço",
-                                            onChanged: (espaco) =>
-                                                controller.setEspaco(espaco.id),
+                                            onChanged: (espaco) => espaco !=
+                                                    null
+                                                ? controller
+                                                    .setEspaco(espaco.id)
+                                                : controller.setEspaco(null),
                                           ),
                                         ),
                                         Padding(

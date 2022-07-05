@@ -1,18 +1,16 @@
 import 'package:Gestart/app/constants/route_name.dart';
+import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/reserva/espaco_entity.dart';
 import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/usecases/reserva/get_espacos_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_condominio_use_case.dart';
 import 'package:Gestart/domain/utils/status.dart';
-
-import 'lista-reservas/lista_reservas_page.dart';
 
 part 'relatorio_reservas_controller.g.dart';
 
@@ -34,11 +32,11 @@ abstract class _RelatorioReservasControllerBase with Store {
 
   int codCon = 0;
   String unidadeSelecionada;
-  String espacoSelecionado;
+  int espacoSelecionado;
   String dataIni;
   String dataFim;
   String tipo = null;
-  int statusSelecionado;
+  String statusSelecionado;
 
   @action
   setUnidade(value) => unidadeSelecionada = value;
@@ -55,16 +53,19 @@ abstract class _RelatorioReservasControllerBase with Store {
   setStatus(value) {
     switch (value) {
       case "Aguardando aprovação":
-        statusSelecionado = 0;
+        statusSelecionado = '0';
         break;
-      case "Ativo":
-        statusSelecionado = 1;
+      case "Aprovado":
+        statusSelecionado = '1';
         break;
       case "Rejeitado":
-        statusSelecionado = 2;
+        statusSelecionado = '2';
+        break;
+      case "Cancelado":
+        statusSelecionado = '3';
         break;
       default:
-        statusSelecionado = 3;
+        statusSelecionado = null;
     }
   }
 
