@@ -39,25 +39,6 @@ class ReservaRemoteDataSource {
     }
   }
 
-  Future<ResourceData<dynamic>> getReservasRelatorioPDF(
-      SendParamsRelReservaEntity params) async {
-    try {
-      final result =
-          await _dio.get('get_reservas', queryParameters: params.toMap());
-
-      return ResourceData(
-          status: Status.success,
-          data: result,
-          message: 'Reservas listadas com sucesso!');
-    } on DioError catch (e) {
-      return ResourceData(
-          status: Status.failed,
-          data: null,
-          message: "Erro ao buscar as reservas",
-          error: ErrorMapper.from(e));
-    }
-  }
-
   Future<ResourceData<List<ReservaEntity>>> getReservas() async {
     try {
       final result = await _dio.get('reservas');

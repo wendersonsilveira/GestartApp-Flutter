@@ -28,14 +28,6 @@ class ReservaRepositoryImpl implements ReservaRepository {
   }
 
   @override
-  Future<ResourceData<dynamic>> getReservasRelatorioPDF(
-      SendParamsRelReservaEntity params) async {
-    final resource =
-        await _reservaRemoteDataSource.getReservasRelatorioPDF(params);
-    return resource;
-  }
-
-  @override
   Future<ResourceData> criarReserva(data) async {
     final resource = await _reservaRemoteDataSource.criarReserva(data);
 

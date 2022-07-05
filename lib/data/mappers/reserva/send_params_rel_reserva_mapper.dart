@@ -3,10 +3,10 @@ import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.d
 
 extension SendParamsRelReserva on SendParamsRelReservaEntity {
   SendParamsRelReservaEntity copyWith(
-      {int status,
+      {String status,
       int codCon,
       String codimo,
-      String espaco,
+      int espaco,
       String dataIni,
       String dataFim}) {
     return SendParamsRelReservaEntity(

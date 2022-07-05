@@ -32,35 +32,52 @@ class ReservaEntity {
   final DateTime datIniOriginal;
   final String proprietario;
 
-  const ReservaEntity({
-    this.dia,
-    this.mes,
-    this.ano,
-    this.data,
-    this.id,
-    this.codcon,
-    this.codord,
-    this.titulo,
-    this.descricao,
-    this.espacoId,
-    this.condonUserId,
-    this.status,
-    this.statusDescricao,
-    this.motivoRecusa,
-    this.datIni,
-    this.datFim,
-    this.horIniId,
-    this.horFimId,
-    this.createat,
-    this.rejeitarMotivo,
-    this.canceladoCondonUserId,
-    this.espacoDescricao,
-    this.horIniDescricao,
-    this.horFimDescricao,
-    this.codimo,
-    this.apelido,
-    this.logo,
-    this.datIniOriginal,
-    this.proprietario
-  });
+  const ReservaEntity(
+      {this.dia,
+      this.mes,
+      this.ano,
+      this.data,
+      this.id,
+      this.codcon,
+      this.codord,
+      this.titulo,
+      this.descricao,
+      this.espacoId,
+      this.condonUserId,
+      this.status,
+      this.statusDescricao,
+      this.motivoRecusa,
+      this.datIni,
+      this.datFim,
+      this.horIniId,
+      this.horFimId,
+      this.createat,
+      this.rejeitarMotivo,
+      this.canceladoCondonUserId,
+      this.espacoDescricao,
+      this.horIniDescricao,
+      this.horFimDescricao,
+      this.codimo,
+      this.apelido,
+      this.logo,
+      this.datIniOriginal,
+      this.proprietario});
+
+  String statusAsString() {
+    switch (this.status) {
+      case 0:
+        return 'Aguardando Aprovação';
+        break;
+      case 1:
+        return 'Aprovado';
+        break;
+      case 2:
+        return 'Cancelado';
+        break;
+      case 3:
+        return 'Rejeitado';
+        break;
+    }
+    ;
+  }
 }
