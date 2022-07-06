@@ -5,6 +5,7 @@ import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/dashboard/components/cards/card_infor_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/styles/app_images.dart';
+import 'package:Gestart/app/utils/Icons.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
@@ -16,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+// import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'components/button_services/button_services_widget.dart';
 import 'components/itens_services/item_servico_widget.dart';
@@ -45,7 +46,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 class _DashboardPageState
     extends ModularState<DashboardPage, DashboardController> {
   //use 'controller' variable to access controller
-  PDFDocument document;
+
   bool isNotifyConfig = false;
   PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
@@ -362,7 +363,8 @@ class _DashboardPageState
                             Padding(
                               padding: const EdgeInsets.only(top: 30),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   ButtonSercicesWidget(
                                       condominioAtivo:
@@ -401,7 +403,7 @@ class _DashboardPageState
                                       condominioAtivo:
                                           controller.existeCondominiosAtivos,
                                       descricao: 'Assembleia',
-                                      icone: FlutterIcons.gavel_faw5s,
+                                      icone: IconsTeste.arrow_curved,
                                       routeName: RouteName.assembleia,
                                       condominios: controller.condominios.data,
                                     ),
@@ -437,7 +439,8 @@ class _DashboardPageState
                                           child: ItemServicoWidget(
                                             condominioAtivo: true,
                                             descricao: 'Painel do Síndico',
-                                            icone: FlutterIcons.md_analytics_ion,
+                                            icone:
+                                                FlutterIcons.md_analytics_ion,
                                             routeName: RouteName.painel_sindico,
                                           ),
                                         )
@@ -451,7 +454,7 @@ class _DashboardPageState
                     ),
                   ),
                 ),
-            ),
+              ),
       ),
     );
   }

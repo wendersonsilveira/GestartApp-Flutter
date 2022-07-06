@@ -1,7 +1,7 @@
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+// import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'view_documentos_controller.dart';
 
 class ViewDocumentosPage extends StatefulWidget {
@@ -19,7 +19,7 @@ class _ViewDocumentosPageState
     extends ModularState<ViewDocumentosPage, ViewDocumentosController> {
   //use 'controller' variable to access controller
   bool _isLoading = true;
-  PDFDocument document;
+  // PDFDocument document;
 
   @override
   void initState() {
@@ -28,7 +28,7 @@ class _ViewDocumentosPageState
   }
 
   loadDocument() async {
-    document = await PDFDocument.fromURL(widget.url);
+    // document = await PDFDocument.fromURL(widget.url);
 
     setState(() => _isLoading = false);
   }
@@ -43,7 +43,7 @@ class _ViewDocumentosPageState
           overflow: TextOverflow.ellipsis,
         ),
       ),
-      body: Center(child: PDFViewer(document: document)),
+      body: Center(child: Text('substituindo view pdf')),
     );
   }
 }

@@ -42,7 +42,7 @@ dependencies:
   dio: ^3.0.10
   flutter_mobx: ^1.1.0+2
   mobx: ^1.2.1+4
-  flutter_plugin_pdf_viewer: ^1.0.7
+  # flutter_plugin_pdf_viewer: ^1.0.7
   barcode: ^1.17.1
   package_info_plus: ^0.6.4
   device_info_plus: ^0.7.2
@@ -59,7 +59,7 @@ dependencies:
   
 
   # Validators
-  cpfcnpj: ^1.0.3
+  # cpfcnpj: ^1.0.3
 
   # Mask
   easy_mask: ^1.1.5
@@ -111,10 +111,10 @@ dev_dependencies:
     sdk: flutter
 
 
-flutter_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/icon/_icon.png"
+# flutter_icons:
+#   android: "launcher_icon"
+#   ios: true
+#   image_path: "assets/icon/_icon.png"
 
 flutter:
   assets:

@@ -1,6 +1,7 @@
 import 'package:Gestart/app/modules/boleto/component/button_expanded_widget.dart';
 import 'package:Gestart/app/modules/boleto/component/texto_infor_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
+import 'package:Gestart/app/utils/Icons.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/download/download_button_widget.dart';
@@ -117,7 +118,7 @@ class _DetalheBoletoPageState
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Icon(
-                                  FlutterIcons.barcode_ant,
+                                  IconsTeste.arrow_curved,
                                   size: 80,
                                 ),
                                 SizedBox(height: 30.h),
