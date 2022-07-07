@@ -1,12 +1,15 @@
 import 'package:Gestart/app/constants/route_name.dart';
+import 'package:Gestart/app/modules/perfil/perfil_controller.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/reserva/espaco_entity.dart';
 import 'package:Gestart/domain/entities/reserva/reserva_entity.dart';
 import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
+import 'package:Gestart/domain/entities/user/user_entity.dart';
 import 'package:Gestart/domain/usecases/reserva/get_espacos_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_relatorio_pdf_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_relatorio_use_case.dart';
+import 'package:Gestart/domain/usecases/user/get_perfil_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:mobx/mobx.dart';
@@ -29,11 +32,20 @@ abstract class _ListaReservasControllerBase with Store {
   int codCon;
 
   final _getReservas = getIt.get<GetReservasRelatorioUseCase>();
+  final _getReservasRelatorioPDF = getIt.get<GetReservasRelatorioUseCase>();
   // final _getReservasPDF = getIt.get<GetReservasRelatorioPDFUseCase>();
+  final _getPerfil = getIt.get<GetPerfilUseCase>();
 
   @observable
   ResourceData<List<ReservaEntity>> reservas =
       ResourceData(status: Status.loading);
+
+  @observable
+  ResourceData<List<ReservaEntity>> reservasPDF =
+      ResourceData(status: Status.loading);
+
+  @observable
+  ResourceData<UserEntity> perfil;
 
   @action
   Future<void> getReservas(params) async {
@@ -43,12 +55,14 @@ abstract class _ListaReservasControllerBase with Store {
 
   @action
   Future<void> getReservasPDF(SendParamsRelReservaEntity params) async {
+    String lastname = perfil.data.sobreNome.replaceAll(' ', '');
     String url =
-        "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/get_reservas?CODCON=${params.codCon}&DATINI=${params.dataIni}&DATFIM=${params.dataFim}&TIPO=${params.tipo}";
+        "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/get_reservas?CODCON=${params.codCon}&DATINI=${params.dataIni}&DATFIM=${params.dataFim}&TIPO=${params.tipo}&USER_NAME=${params.usr_name}&USER_LASTNAME=${lastname}";
     _launchURL(url);
   }
 
   init(params) async {
+    perfil = await _getPerfil();
     var storage = await SharedPreferences.getInstance();
     codCon = storage.getInt('codCon');
 
