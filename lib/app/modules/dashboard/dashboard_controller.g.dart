@@ -224,6 +224,22 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
     });
   }
 
+  final _$deviceVersionAtom =
+      Atom(name: '_DashboardControllerBase.deviceVersion');
+
+  @override
+  String get deviceVersion {
+    _$deviceVersionAtom.reportRead();
+    return super.deviceVersion;
+  }
+
+  @override
+  set deviceVersion(String value) {
+    _$deviceVersionAtom.reportWrite(value, super.deviceVersion, () {
+      super.deviceVersion = value;
+    });
+  }
+
   final _$getInforCondominiosAsyncAction =
       AsyncAction('_DashboardControllerBase.getInforCondominios');
 
@@ -284,6 +300,7 @@ servicoReservaDisponivel: ${servicoReservaDisponivel},
 servicoReserva: ${servicoReserva},
 chekedSindico: ${chekedSindico},
 setup: ${setup},
+deviceVersion: ${deviceVersion},
 statusLoading: ${statusLoading},
 isSindico: ${isSindico}
     ''';

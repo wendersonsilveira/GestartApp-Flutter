@@ -19,6 +19,21 @@ final $ListaReservasController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ListaReservasController on _ListaReservasControllerBase, Store {
+  final _$codConAtom = Atom(name: '_ListaReservasControllerBase.codCon');
+
+  @override
+  int get codCon {
+    _$codConAtom.reportRead();
+    return super.codCon;
+  }
+
+  @override
+  set codCon(int value) {
+    _$codConAtom.reportWrite(value, super.codCon, () {
+      super.codCon = value;
+    });
+  }
+
   final _$reservasAtom = Atom(name: '_ListaReservasControllerBase.reservas');
 
   @override
@@ -34,6 +49,37 @@ mixin _$ListaReservasController on _ListaReservasControllerBase, Store {
     });
   }
 
+  final _$reservasPDFAtom =
+      Atom(name: '_ListaReservasControllerBase.reservasPDF');
+
+  @override
+  ResourceData<List<ReservaEntity>> get reservasPDF {
+    _$reservasPDFAtom.reportRead();
+    return super.reservasPDF;
+  }
+
+  @override
+  set reservasPDF(ResourceData<List<ReservaEntity>> value) {
+    _$reservasPDFAtom.reportWrite(value, super.reservasPDF, () {
+      super.reservasPDF = value;
+    });
+  }
+
+  final _$perfilAtom = Atom(name: '_ListaReservasControllerBase.perfil');
+
+  @override
+  ResourceData<UserEntity> get perfil {
+    _$perfilAtom.reportRead();
+    return super.perfil;
+  }
+
+  @override
+  set perfil(ResourceData<UserEntity> value) {
+    _$perfilAtom.reportWrite(value, super.perfil, () {
+      super.perfil = value;
+    });
+  }
+
   final _$getReservasAsyncAction =
       AsyncAction('_ListaReservasControllerBase.getReservas');
 
@@ -42,10 +88,21 @@ mixin _$ListaReservasController on _ListaReservasControllerBase, Store {
     return _$getReservasAsyncAction.run(() => super.getReservas(params));
   }
 
+  final _$getReservasPDFAsyncAction =
+      AsyncAction('_ListaReservasControllerBase.getReservasPDF');
+
+  @override
+  Future<void> getReservasPDF(SendParamsRelReservaEntity params) {
+    return _$getReservasPDFAsyncAction.run(() => super.getReservasPDF(params));
+  }
+
   @override
   String toString() {
     return '''
-reservas: ${reservas}
+codCon: ${codCon},
+reservas: ${reservas},
+reservasPDF: ${reservasPDF},
+perfil: ${perfil}
     ''';
   }
 }
