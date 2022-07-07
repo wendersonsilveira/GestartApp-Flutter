@@ -7,14 +7,14 @@ import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GetReservasRelatorioPDFUseCase
-    extends BaseFutureUseCase<SendParamsRelReservaEntity, ResourceData<dynamic>> {
+class GetReservasRelatorioPDFUseCase extends BaseFutureUseCase<
+    SendParamsRelReservaEntity, ResourceData<dynamic>> {
   ReservaRepository _reservaRepository;
 
   GetReservasRelatorioPDFUseCase(this._reservaRepository);
 
   @override
   Future<ResourceData<PDFDocument>> call([SendParamsRelReservaEntity params]) {
-    return _reservaRepository.getReservasRelatorioPDF(params);
+    // return _reservaRepository.getReservasRelatorioPDF(params);
   }
 }
