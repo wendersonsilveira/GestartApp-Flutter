@@ -46,7 +46,57 @@ class _RelatorioInadimplenciaPageState extends ModularState<
           builder: (_) => Center(
                 child: SingleChildScrollView(
                   child: Container(
-                    child: Text('Teste'),
+                    child: Column(
+                      children: [
+                        controller.unidades.status == Status.loading
+                            ? CircularProgressIndicator()
+                            : Column(
+                                children: [
+                                  Card(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.all(20),
+                                          child: Text(
+                                              "Insira os filtros para configurar seu relatório"),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: DropdownSearch<UnidadeEntity>(
+                                            mode: Mode.BOTTOM_SHEET,
+                                            showSearchBox: true,
+                                            items: controller.unidades.data,
+                                            showClearButton: true,
+                                            itemAsString: (UnidadeEntity u) =>
+                                                u.unidadeAsString(),
+                                            label: 'Unidade',
+                                            hint: 'Unidade',
+                                            onChanged: (_) => print('Teste'),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: DropdownSearch<UnidadeEntity>(
+                                            mode: Mode.BOTTOM_SHEET,
+                                            showSearchBox: true,
+                                            items: controller.unidades.data,
+                                            showClearButton: true,
+                                            itemAsString: (UnidadeEntity u) =>
+                                                u.unidadeAsString(),
+                                            label: 'Unidade',
+                                            hint: 'Unidade',
+                                            onChanged: (_) => print('Teste'),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              )
+                      ],
+                    ),
                   ),
                 ),
               )),

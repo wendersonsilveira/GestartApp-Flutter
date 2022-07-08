@@ -15,6 +15,7 @@ import 'package:Gestart/data/datasource/reserva/espaco_remote_data_source.dart';
 import 'package:Gestart/data/datasource/reserva/horarios_espaco_remote_data_source.dart';
 import 'package:Gestart/data/datasource/reserva/reserva_remote_data_source.dart';
 import 'package:Gestart/data/datasource/setup/setup_remote_data_source.dart';
+import 'package:Gestart/data/datasource/taxa/taxa_remote_data_source.dart';
 import 'package:Gestart/data/datasource/unidade/unidade_remote_data_source.dart';
 import 'package:Gestart/data/datasource/user/user_remote_data_source.dart';
 import 'package:Gestart/data/datasource/veiculo/veiculo_remote_data_source.dart';
@@ -39,6 +40,7 @@ import 'package:Gestart/data/repositories/reserva/espaco_repository_impl.dart';
 import 'package:Gestart/data/repositories/reserva/horarios_espaco_repository_impl.dart';
 import 'package:Gestart/data/repositories/reserva/reserva_repository_impl.dart';
 import 'package:Gestart/data/repositories/setup/setup_repository_impl.dart';
+import 'package:Gestart/data/repositories/taxa/taxa_repository_impl.dart';
 import 'package:Gestart/data/repositories/unidade/unidade_repository_impl.dart';
 import 'package:Gestart/data/repositories/user/user_repository_impl.dart';
 import 'package:Gestart/data/repositories/veiculo/veiculo_repository_impl.dart';
@@ -58,6 +60,7 @@ import 'package:Gestart/domain/repositories/reserva/espaco_repository.dart';
 import 'package:Gestart/domain/repositories/reserva/horarios_espaco_repository.dart';
 import 'package:Gestart/domain/repositories/reserva/reserva_repository.dart';
 import 'package:Gestart/domain/repositories/setup/setup_repository.dart';
+import 'package:Gestart/domain/repositories/taxa/taxa_repository.dart';
 import 'package:Gestart/domain/repositories/unidade/unidade_repository.dart';
 import 'package:Gestart/domain/repositories/user/user_repository.dart';
 import 'package:Gestart/domain/repositories/veiculo/veiculo_repository.dart';
@@ -80,6 +83,7 @@ import 'package:Gestart/data/datasource/auth/auth_remote_data_source.dart';
 import 'package:Gestart/domain/usecases/auth/login_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boleto_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_relatorio_pdf_use_case.dart';
+import 'package:Gestart/domain/usecases/taxa/get_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_condominio_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boletos_use_case.dart';
 import 'package:Gestart/domain/usecases/balancete/get_balancetes_use_case.dart';
@@ -364,6 +368,11 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<GetAvisoAdmUseCase>(
       () => GetAvisoAdmUseCase(get<ComunicacaoRepository>()));
 
+  //taxas
+  gh.factory<TaxaRemoteDataSource>(
+      () => TaxaRemoteDataSource(get<CustomDio>()));
+  gh.factory<GetTaxasUseCase>(() => GetTaxasUseCase(get<TaxaRepository>()));
+
   // painel cadastros
   gh.factory<ResumoUnidadeRemoteDataSource>(
       () => ResumoUnidadeRemoteDataSource(get<CustomDio>()));
@@ -386,6 +395,8 @@ Future<GetIt> initGetIt(GetIt get) async {
 
   gh.singleton<BoletoRepository>(
       BoletoRepositoryImpl(get<BoletoRemoteDataSource>()));
+
+  gh.singleton<TaxaRepository>(TaxaRepositoryImpl(get<TaxaRemoteDataSource>()));
 
   gh.singleton<ParcelamentoBoletoRepository>(ParcelamentoBoletoRepositoryImpl(
       get<ParcelamentoBoletoRemoteDataSource>()));
