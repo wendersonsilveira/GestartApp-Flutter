@@ -82,6 +82,7 @@ import 'package:Gestart/data/repositories/auth/auth_repository_impl.dart';
 import 'package:Gestart/data/datasource/auth/auth_remote_data_source.dart';
 import 'package:Gestart/domain/usecases/auth/login_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boleto_use_case.dart';
+import 'package:Gestart/domain/usecases/recebimento/get_inadinplencias_adm_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_relatorio_pdf_use_case.dart';
 import 'package:Gestart/domain/usecases/taxa/get_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_condominio_use_case.dart';
@@ -336,6 +337,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => GetTiposTaxaUseCase(get<RecebimentoRepository>()));
   gh.factory<GetPagamentosUseCase>(
       () => GetPagamentosUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetInadimplenciasAdmUseCase>(
+      () => GetInadimplenciasAdmUseCase(get<RecebimentoRepository>()));
   gh.factory<GetInadimplenciasUseCase>(
       () => GetInadimplenciasUseCase(get<RecebimentoRepository>()));
   gh.factory<GetInadimplenciaUseCase>(

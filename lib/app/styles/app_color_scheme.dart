@@ -9,7 +9,8 @@ class AppColorScheme {
   ).copyWith(onPrimary: white);
 
   /// http://mcg.mbitson.com/
-  static const MaterialColor primaryswatch = MaterialColor(_primaryswatchPrimaryValue, <int, Color>{
+  static const MaterialColor primaryswatch =
+      MaterialColor(_primaryswatchPrimaryValue, <int, Color>{
     50: Color(0xFFEBF4EA),
     100: Color(0xFFCCE4C9),
     200: Color(0xFFAAD3A6),
@@ -23,7 +24,8 @@ class AppColorScheme {
   });
   static const int _primaryswatchPrimaryValue = 0xFF55A64C;
 
-  static const MaterialColor primaryswatchAccent = MaterialColor(_primaryswatchAccentValue, <int, Color>{
+  static const MaterialColor primaryswatchAccent =
+      MaterialColor(_primaryswatchAccentValue, <int, Color>{
     100: Color(0xFFC0FFBB),
     200: Color(_primaryswatchAccentValue),
     400: Color(0xFF61FF55),
@@ -39,6 +41,7 @@ class AppColorScheme {
   static const primaryColor = Color(0xFF008001);
   static const primaryColor50 = Color(0xFFFFEBE3);
   static const secondaryColor = Color(0x70008000);
+  static const corTagJuridico = Color(0xFFFFF7E6);
 
   static const corMenuBotton = Color(0xFFe8e8e8);
 

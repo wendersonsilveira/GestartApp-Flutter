@@ -138,7 +138,7 @@ class _RelatorioReservasPageState
                                                 "Rejeitado",
                                                 "Cancelado"
                                               ],
-                                              smallSheet: true,
+                                              // smallSheet: true,
                                               label: "Status",
                                               hint: "Status",
                                               onChanged: (v) =>

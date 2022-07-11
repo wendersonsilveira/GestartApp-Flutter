@@ -68,6 +68,71 @@ mixin _$RelatorioInadimplenciaController
     return _$getTiposTaxaAsyncAction.run(() => super.getTiposTaxa());
   }
 
+  final _$_RelatorioInadimplenciaControllerBaseActionController =
+      ActionController(name: '_RelatorioInadimplenciaControllerBase');
+
+  @override
+  dynamic setDataInicial(dynamic value) {
+    final _$actionInfo =
+        _$_RelatorioInadimplenciaControllerBaseActionController.startAction(
+            name: '_RelatorioInadimplenciaControllerBase.setDataInicial');
+    try {
+      return super.setDataInicial(value);
+    } finally {
+      _$_RelatorioInadimplenciaControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setCodImo(dynamic value) {
+    final _$actionInfo = _$_RelatorioInadimplenciaControllerBaseActionController
+        .startAction(name: '_RelatorioInadimplenciaControllerBase.setCodImo');
+    try {
+      return super.setCodImo(value);
+    } finally {
+      _$_RelatorioInadimplenciaControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setDataFinal(dynamic value) {
+    final _$actionInfo =
+        _$_RelatorioInadimplenciaControllerBaseActionController.startAction(
+            name: '_RelatorioInadimplenciaControllerBase.setDataFinal');
+    try {
+      return super.setDataFinal(value);
+    } finally {
+      _$_RelatorioInadimplenciaControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setTipCob(dynamic value) {
+    final _$actionInfo = _$_RelatorioInadimplenciaControllerBaseActionController
+        .startAction(name: '_RelatorioInadimplenciaControllerBase.setTipCob');
+    try {
+      return super.setTipCob(value);
+    } finally {
+      _$_RelatorioInadimplenciaControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setTipTax(dynamic value) {
+    final _$actionInfo = _$_RelatorioInadimplenciaControllerBaseActionController
+        .startAction(name: '_RelatorioInadimplenciaControllerBase.setTipTax');
+    try {
+      return super.setTipTax(value);
+    } finally {
+      _$_RelatorioInadimplenciaControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

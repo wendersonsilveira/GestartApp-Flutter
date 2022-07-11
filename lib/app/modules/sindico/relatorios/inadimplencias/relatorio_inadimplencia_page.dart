@@ -3,6 +3,7 @@ import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
 import 'package:Gestart/domain/entities/reserva/espaco_entity.dart';
+import 'package:Gestart/domain/entities/taxa/taxa_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -15,7 +16,7 @@ import 'relatorio_inadimplencia_controller.dart';
 class RelatorioInadimplenciaPage extends StatefulWidget {
   final String title;
   const RelatorioInadimplenciaPage(
-      {Key key, this.title = "Relatório de reservas"})
+      {Key key, this.title = "Relatório de inadimplência"})
       : super(key: key);
 
   @override
@@ -35,9 +36,38 @@ class _RelatorioInadimplenciaPageState extends ModularState<
     controller.init();
   }
 
+  _setFiltros() {
+    if (controller.dataIni == null || controller.dataFim == null)
+      CustomAlertDialog.info(
+          context,
+          'Periodo obrigatorio',
+          'Favor inserir Data Inicial e Data Final para consulta do relatório',
+          (_) => Modular.navigator.pop());
+    else if (controller.dataIni == null && controller.dataFim == null)
+      CustomAlertDialog.info(
+          context,
+          'Periodo obrigatorio',
+          'Favor inserir periodo para consulta do relatório',
+          (_) => Modular.navigator.pop());
+    else
+      controller.setFiltros();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: GestureDetector(
+          onTap: () => _setFiltros(),
+          child: Container(
+            height: 50,
+            color: AppColorScheme.primaryColor,
+            child: Center(
+              child: Text(
+                "Pesquisar",
+                style: TextStyle(color: AppColorScheme.white),
+              ),
+            ),
+          )),
       appBar: AppBarCustom(
         context,
         title: Text(widget.title),
@@ -73,22 +103,99 @@ class _RelatorioInadimplenciaPageState extends ModularState<
                                                 u.unidadeAsString(),
                                             label: 'Unidade',
                                             hint: 'Unidade',
-                                            onChanged: (_) => print('Teste'),
+                                            onChanged: (v) => v != null
+                                                ? controller.setCodImo(v.codimo)
+                                                : controller.setCodImo(null),
                                           ),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: DropdownSearch<UnidadeEntity>(
+                                          child: DropdownSearch<TaxaEntity>(
                                             mode: Mode.BOTTOM_SHEET,
                                             showSearchBox: true,
-                                            items: controller.unidades.data,
+                                            items: controller.tiposTaxa.data,
                                             showClearButton: true,
-                                            itemAsString: (UnidadeEntity u) =>
-                                                u.unidadeAsString(),
-                                            label: 'Unidade',
-                                            hint: 'Unidade',
-                                            onChanged: (_) => print('Teste'),
+                                            itemAsString: (TaxaEntity t) =>
+                                                t.taxaAsString(),
+                                            label: 'Taxa',
+                                            hint: 'Taxa',
+                                            onChanged: (value) => value != null
+                                                ? controller
+                                                    .setTipTax(value.tiptax)
+                                                : controller.setTipTax(null),
                                           ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: DropdownSearch<dynamic>(
+                                            mode: Mode.BOTTOM_SHEET,
+                                            items: [
+                                              "Administrativo",
+                                              "Jurídico",
+                                            ],
+                                            showClearButton: true,
+                                            // smallSheet: true,
+                                            label: 'Tipo de cobrança',
+                                            hint: 'Tipo de cobrança',
+                                            onChanged: (tipC) => tipC != null
+                                                ? controller.setTipCob(tipC)
+                                                : controller.setTipCob(null),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                  bottom: 10,
+                                                ),
+                                                child: Text('Período'),
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  startDate != null
+                                                      ? Text(
+                                                          UIHelper.formatDate(
+                                                              startDate))
+                                                      : Text('Data Inicial'),
+                                                  Text('-'),
+                                                  endDate != null
+                                                      ? Text(
+                                                          UIHelper.formatDate(
+                                                              endDate))
+                                                      : Text('Data Final'),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        SfDateRangePicker(
+                                          view: DateRangePickerView.month,
+                                          headerStyle:
+                                              DateRangePickerHeaderStyle(
+                                                  textAlign: TextAlign.center),
+                                          selectionMode:
+                                              DateRangePickerSelectionMode
+                                                  .range,
+                                          onSelectionChanged: (v) => {
+                                            setState(() {
+                                              startDate = v.value.startDate;
+                                              endDate = v.value.endDate;
+                                              if (v.value.endDate != null) {
+                                                enableButton = !enableButton;
+                                                controller.setDataInicial(
+                                                    UIHelper.formatDate(
+                                                        startDate));
+                                                controller.setDataFinal(
+                                                    UIHelper.formatDate(
+                                                        endDate));
+                                              }
+                                            })
+                                          },
                                         ),
                                       ],
                                     ),

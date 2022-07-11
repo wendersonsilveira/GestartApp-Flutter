@@ -1,4 +1,6 @@
+import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/di/di.dart';
+import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplencia_entity.dart';
 import 'package:Gestart/domain/entities/taxa/taxa_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/usecases/taxa/get_use_case.dart';
@@ -20,6 +22,11 @@ abstract class _RelatorioInadimplenciaControllerBase with Store {
   final _getAllTiposTaxa = getIt.get<GetTaxasUseCase>();
 
   int codCon;
+  String codImo;
+  String dataIni;
+  String dataFim;
+  String tipTax;
+  String tipCob;
 
   @observable
   ResourceData<List<UnidadeEntity>> unidades =
@@ -28,6 +35,47 @@ abstract class _RelatorioInadimplenciaControllerBase with Store {
   @observable
   ResourceData<List<TaxaEntity>> tiposTaxa =
       ResourceData(status: Status.loading);
+
+  @action
+  setDataInicial(value) => dataIni = value;
+
+  @action
+  setCodImo(value) => codImo = value;
+
+  @action
+  setDataFinal(value) => dataFim = value;
+
+  @action
+  setTipCob(value) {
+    switch (value) {
+      case "Administrativo":
+        tipCob = 'A';
+        break;
+      case "Jurídico":
+        tipCob = 'J';
+        break;
+      default:
+        tipCob = null;
+    }
+  }
+
+  @action
+  setTipTax(value) => tipTax = value;
+
+  setFiltros() {
+    SendParamsRelInadimplenciaEntity params = SendParamsRelInadimplenciaEntity(
+        codCon: codCon,
+        codImo: codImo,
+        datIni: dataIni,
+        datFim: dataFim,
+        tipCob: tipCob,
+        tipTax: tipTax);
+
+    print(params);
+
+    Modular.navigator
+        .pushNamed(RouteName.listarInadimplencia, arguments: params);
+  }
 
   init() async {
     var storage = await SharedPreferences.getInstance();
