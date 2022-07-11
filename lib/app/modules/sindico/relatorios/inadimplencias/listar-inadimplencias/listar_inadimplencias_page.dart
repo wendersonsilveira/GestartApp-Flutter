@@ -6,6 +6,7 @@ import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/app/widgets/empty/empt_widget.dart';
+import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplencia_entity.dart';
 import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -34,6 +35,16 @@ class _ListaInadimplenciasPageState extends ModularState<
   void initState() {
     super.initState();
     controller.init(widget.params);
+  }
+
+  getPageDetalhe(int codOrd) {
+    SendParamsRelInadimplenciaEntity params2 = SendParamsRelInadimplenciaEntity(
+        codCon: widget.params.codCon,
+        codOrd: codOrd,
+        datFim: widget.params.datFim,
+        datIni: widget.params.datIni);
+    Modular.navigator
+        .pushNamed(RouteName.detalharInadimplenciasUnidade, arguments: params2);
   }
 
   // SendParamsRelReservaEntity params2;
@@ -93,30 +104,8 @@ class _ListaInadimplenciasPageState extends ModularState<
                                 margin: const EdgeInsets.only(
                                     top: 8, left: 4, right: 4),
                                 child: ListTile(
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: Center(
-                                                child: Text(
-                                                    'Dados da inadimplência')),
-                                            content: Container(
-                                              height: 250,
-                                              child: Text('Tetstestee'),
-                                            ),
-                                            actions: [
-                                              FlatButton(
-                                                child: Text("OK"),
-                                                onPressed: () {
-                                                  Modular.navigator.pop();
-                                                },
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    },
+                                    onTap: () => getPageDetalhe(controller
+                                        .inadimplenciasAdm.data[index].codOrd),
                                     trailing: Icon(Icons.chevron_right),
                                     leading: LeadingStatusCobrancaWidget(
                                         tipoCobranca: controller

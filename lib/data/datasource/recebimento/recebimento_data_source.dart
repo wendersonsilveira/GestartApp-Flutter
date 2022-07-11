@@ -8,6 +8,7 @@ import 'package:Gestart/data/mappers/recebimento/inadimplencia_mapper.dart';
 import 'package:Gestart/data/mappers/recebimento/acordo_mapper.dart';
 import 'package:Gestart/domain/entities/recebimento/acrodo_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_adm_entity.dart';
+import 'package:Gestart/domain/entities/recebimento/inadimplencia_adm_detalhe_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_historico_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/pagamento_entity.dart';
@@ -15,6 +16,7 @@ import 'package:Gestart/domain/entities/recebimento/recebimento_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplencia_entity.dart';
 import 'package:Gestart/data/mappers/recebimento/inadimplencia_adm_mapper.dart';
 import 'package:Gestart/data/mappers/recebimento/send_params_rel_inadimplencia_mapper.dart';
+import 'package:Gestart/data/mappers/recebimento/inadimplencia_adm_detalhe_mapper.dart';
 import 'package:Gestart/domain/entities/recebimento/tipo_taxa_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -103,6 +105,27 @@ class RecebimentoRemoteDataSource {
           status: Status.failed,
           data: null,
           message: "Erro ao listar os inadimplências",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<List<InadimplenciaAdmDetalheEntity>>>
+      getInadimplenciasUnidade(SendParamsRelInadimplenciaEntity params) async {
+    try {
+      final result = await _dio.post('detalhar-inadimplencias-unidade',
+          data: params.toMap());
+      if (result.length > 0)
+        return ResourceData<List<InadimplenciaAdmDetalheEntity>>(
+            status: Status.success,
+            data: InadimplenciaAdmDetalheEntity().fromMapList(result));
+      else
+        return ResourceData<List<InadimplenciaAdmDetalheEntity>>(
+            status: Status.success, data: null);
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os recebimentos",
           error: ErrorMapper.from(e));
     }
   }

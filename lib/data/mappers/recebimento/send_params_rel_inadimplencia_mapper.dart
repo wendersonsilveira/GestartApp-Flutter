@@ -3,6 +3,7 @@ import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplenci
 extension SendParamsRelInadimplencia on SendParamsRelInadimplenciaEntity {
   SendParamsRelInadimplenciaEntity copyWith({
     int codCon,
+    int codOrd,
     String codImo,
     String tipTax,
     String tipCob,
@@ -11,6 +12,7 @@ extension SendParamsRelInadimplencia on SendParamsRelInadimplenciaEntity {
   }) {
     return SendParamsRelInadimplenciaEntity(
       codCon: codCon ?? this.codCon,
+      codOrd: codOrd ?? this.codOrd,
       codImo: codImo ?? this.codImo,
       tipTax: tipTax ?? this.tipTax,
       tipCob: tipCob ?? this.tipCob,
@@ -22,6 +24,7 @@ extension SendParamsRelInadimplencia on SendParamsRelInadimplenciaEntity {
   Map<String, dynamic> toMap() {
     return {
       "CODCON": codCon,
+      "CODORD": codOrd,
       "CODIMO": codImo,
       "TIPTAX": tipTax,
       "TIPCOB": tipCob,

@@ -116,6 +116,7 @@ import 'package:Gestart/domain/usecases/reserva/aprovar_reserva_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/criar_espaco_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/excluir_espaco_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reserva_adm_use_case.dart';
+import 'package:Gestart/domain/usecases/recebimento/get_inadinplencias_adm_detalhe_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reserva_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_adm_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_relatorio_use_case.dart';
@@ -337,6 +338,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => GetTiposTaxaUseCase(get<RecebimentoRepository>()));
   gh.factory<GetPagamentosUseCase>(
       () => GetPagamentosUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetInadimplenciasAdmUseDetalheUseCase>(() =>
+      GetInadimplenciasAdmUseDetalheUseCase(get<RecebimentoRepository>()));
   gh.factory<GetInadimplenciasAdmUseCase>(
       () => GetInadimplenciasAdmUseCase(get<RecebimentoRepository>()));
   gh.factory<GetInadimplenciasUseCase>(

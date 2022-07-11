@@ -6,6 +6,7 @@ import 'package:Gestart/domain/entities/recebimento/recebimento_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplencia_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/tipo_taxa_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_adm_entity.dart';
+import 'package:Gestart/domain/entities/recebimento/inadimplencia_adm_detalhe_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 
 abstract class RecebimentoRepository {
@@ -24,4 +25,6 @@ abstract class RecebimentoRepository {
   Future<ResourceData<List<AcordoEntity>>> getAcordo(int numAco);
   Future<ResourceData<List<InadimplenciaAdmEntity>>> getInadimplenciasAdm(
       SendParamsRelInadimplenciaEntity params);
+  Future<ResourceData<List<InadimplenciaAdmDetalheEntity>>>
+      getInadimplenciasUnidade(SendParamsRelInadimplenciaEntity params);
 }

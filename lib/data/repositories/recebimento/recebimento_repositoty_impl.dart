@@ -1,5 +1,6 @@
 import 'package:Gestart/data/datasource/recebimento/recebimento_data_source.dart';
 import 'package:Gestart/domain/entities/recebimento/acrodo_entity.dart';
+import 'package:Gestart/domain/entities/recebimento/inadimplencia_adm_detalhe_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_adm_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_historico_entity.dart';
@@ -89,6 +90,15 @@ class RecebimentoRepositoryImpl implements RecebimentoRepository {
       SendParamsRelInadimplenciaEntity params) async {
     final resource =
         await _recebimentoRemoteDataSource.getInadimplenciasAdm(params);
+
+    return resource;
+  }
+
+  @override
+  Future<ResourceData<List<InadimplenciaAdmDetalheEntity>>>
+      getInadimplenciasUnidade(SendParamsRelInadimplenciaEntity params) async {
+    final resource =
+        await _recebimentoRemoteDataSource.getInadimplenciasUnidade(params);
 
     return resource;
   }

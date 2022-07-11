@@ -107,6 +107,8 @@ import 'package:Gestart/app/modules/sindico/relatorios/inadimplencias/relatorio_
 import 'package:Gestart/app/modules/sindico/relatorios/inadimplencias/relatorio_inadimplencia_page.dart';
 import 'package:Gestart/app/modules/sindico/relatorios/inadimplencias/listar-inadimplencias/listar_inadimplencias_controller.dart';
 import 'package:Gestart/app/modules/sindico/relatorios/inadimplencias/listar-inadimplencias/listar_inadimplencias_page.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/inadimplencias/listar-inadimplencias/detalhar-unidade/detalhar_unidade_controller.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/inadimplencias/listar-inadimplencias/detalhar-unidade/detalhar_unidade_page.dart';
 
 import 'constants/route_name.dart';
 import 'modules/condominio/condominio_controller.dart';
@@ -178,6 +180,7 @@ class AppModule extends MainModule {
         $ErroController,
         $InformativosController,
         $ListaInadimplenciasController,
+        $DetalharUnidadeController,
       ];
 
   @override
@@ -285,6 +288,10 @@ class AppModule extends MainModule {
                 )),
         ModularRouter(RouteName.listarInadimplencia,
             child: (_, args) => ListaInadimplenciasPage(
+                  params: args.data,
+                )),
+        ModularRouter(RouteName.detalharInadimplenciasUnidade,
+            child: (_, args) => DetalharUnidadePage(
                   params: args.data,
                 )),
         ModularRouter(RouteName.relatorioInadimplencia,
