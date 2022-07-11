@@ -28,6 +28,15 @@ mixin _$DetalharUnidadeController on _DetalharUnidadeControllerBase, Store {
         .run(() => super.getInadimplenciasUnidade(params));
   }
 
+  final _$getHistoricoInadimplenciasUnidadeAsyncAction = AsyncAction(
+      '_DetalharUnidadeControllerBase.getHistoricoInadimplenciasUnidade');
+
+  @override
+  Future getHistoricoInadimplenciasUnidade(int codOrd) {
+    return _$getHistoricoInadimplenciasUnidadeAsyncAction
+        .run(() => super.getHistoricoInadimplenciasUnidade(codOrd));
+  }
+
   @override
   String toString() {
     return '''
