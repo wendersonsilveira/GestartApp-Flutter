@@ -8,19 +8,20 @@ import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mobx/mobx.dart';
 import 'forgot_password_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   final String title;
-  const ForgotPasswordPage({Key key, this.title = "ForgotPassword"}) : super(key: key);
+  const ForgotPasswordPage({Key key, this.title = "ForgotPassword"})
+      : super(key: key);
 
   @override
   _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
 }
 
-class _ForgotPasswordPageState extends ModularState<ForgotPasswordPage, ForgotPasswordController> {
+class _ForgotPasswordPageState
+    extends ModularState<ForgotPasswordPage, ForgotPasswordController> {
   //use 'controller' variable to access controller
   final _formKey = GlobalKey<FormState>();
   final _idController = TextEditingController();
@@ -30,7 +31,8 @@ class _ForgotPasswordPageState extends ModularState<ForgotPasswordPage, ForgotPa
     if (!_formKey.currentState.validate()) return;
     if (_formKey.currentState.validate()) {
       FocusScope.of(context).unfocus();
-      final updatePassword = await controller.updatePassword(UpdatePasswordEntity(identificador: _idController.text));
+      final updatePassword = await controller.updatePassword(
+          UpdatePasswordEntity(identificador: _idController.text));
 
       if (updatePassword.status == Status.failed) {
         if (updatePassword.error == null) {
@@ -43,7 +45,8 @@ class _ForgotPasswordPageState extends ModularState<ForgotPasswordPage, ForgotPa
           showDialog(
             context: context,
             builder: (_) => AlertDialog(
-              title: Text('Senha recuperada, Foi enviado um e-mail para ' + updatePassword.data.email),
+              title: Text('Senha recuperada, Foi enviado um e-mail para ' +
+                  updatePassword.data.email),
               backgroundColor: Colors.black,
               titleTextStyle: TextStyle(color: Colors.grey),
               actions: [
@@ -72,7 +75,8 @@ class _ForgotPasswordPageState extends ModularState<ForgotPasswordPage, ForgotPa
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Text("Informe seu e-mail, CPF ou CNPJ abaixo e você recebá um e-mail com orientações para recuperar sua senha."),
+            child: Text(
+                "Informe seu e-mail, CPF ou CNPJ abaixo e você recebá um e-mail com orientações para recuperar sua senha."),
           ),
           Container(
             padding: EdgeInsets.all(20),

@@ -6,9 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplencia_entity.dart';
-import 'package:Gestart/domain/entities/reserva/reserva_entity.dart';
 import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
-import 'package:Gestart/domain/entities/user/user_entity.dart';
 import 'package:Gestart/domain/usecases/recebimento/get_inadinplencias_adm_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';

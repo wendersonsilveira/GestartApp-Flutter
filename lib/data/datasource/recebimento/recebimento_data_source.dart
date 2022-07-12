@@ -17,7 +17,9 @@ import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplenci
 import 'package:Gestart/data/mappers/recebimento/inadimplencia_adm_mapper.dart';
 import 'package:Gestart/data/mappers/recebimento/send_params_rel_inadimplencia_mapper.dart';
 import 'package:Gestart/data/mappers/recebimento/inadimplencia_adm_detalhe_mapper.dart';
+import 'package:Gestart/data/mappers/recebimento/inadimplencia_incidencia_mapper.dart';
 import 'package:Gestart/domain/entities/recebimento/tipo_taxa_entity.dart';
+import 'package:Gestart/domain/entities/recebimento/inadimplencia_incidencias_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:dio/dio.dart';
@@ -166,6 +168,26 @@ class RecebimentoRemoteDataSource {
           status: Status.failed,
           data: null,
           message: "Erro ao listar as inadimplencias",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<List<IncidenciaInadimplenciasEntity>>>
+      getIncidenciasInadimplencias(int codOrd) async {
+    try {
+      final result = await _dio.get('adm-inadim-detalhes-incidencias/$codOrd');
+      if (result.length > 0)
+        return ResourceData<List<IncidenciaInadimplenciasEntity>>(
+            status: Status.success,
+            data: IncidenciaInadimplenciasEntity().fromMapList(result));
+      else
+        return ResourceData<List<IncidenciaInadimplenciasEntity>>(
+            status: Status.success, data: []);
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os incidências",
           error: ErrorMapper.from(e));
     }
   }

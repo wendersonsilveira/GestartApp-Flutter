@@ -112,6 +112,7 @@ import 'package:Gestart/domain/usecases/recebimento/get_inadinplencias_use_case.
 import 'package:Gestart/domain/usecases/recebimento/get_pagamentos_use_case.dart';
 import 'package:Gestart/domain/usecases/recebimento/get_recebimentos_use_case.dart';
 import 'package:Gestart/domain/usecases/recebimento/get_tipos_taxa_use_case.dart';
+import 'package:Gestart/domain/usecases/recebimento/get_inadinplencias_adm_incidencias_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/aprovar_reserva_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/criar_espaco_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/excluir_espaco_use_case.dart';
@@ -344,6 +345,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => GetInadimplenciasAdmUseCase(get<RecebimentoRepository>()));
   gh.factory<GetInadimplenciasUseCase>(
       () => GetInadimplenciasUseCase(get<RecebimentoRepository>()));
+  gh.factory<GetInadimplenciasAdmIncidenciasUseCase>(() =>
+      GetInadimplenciasAdmIncidenciasUseCase(get<RecebimentoRepository>()));
   gh.factory<GetInadimplenciaUseCase>(
       () => GetInadimplenciaUseCase(get<RecebimentoRepository>()));
   gh.factory<GetHistoricoInadimUseCase>(

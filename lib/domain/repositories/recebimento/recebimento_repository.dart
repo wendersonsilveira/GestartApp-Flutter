@@ -7,6 +7,7 @@ import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplenci
 import 'package:Gestart/domain/entities/recebimento/tipo_taxa_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_adm_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_adm_detalhe_entity.dart';
+import 'package:Gestart/domain/entities/recebimento/inadimplencia_incidencias_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 
 abstract class RecebimentoRepository {
@@ -27,4 +28,6 @@ abstract class RecebimentoRepository {
       SendParamsRelInadimplenciaEntity params);
   Future<ResourceData<List<InadimplenciaAdmDetalheEntity>>>
       getInadimplenciasUnidade(SendParamsRelInadimplenciaEntity params);
+  Future<ResourceData<List<IncidenciaInadimplenciasEntity>>>
+      getIncidenciasInadimplenciasUnidade(int codOrd);
 }

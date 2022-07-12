@@ -4,7 +4,6 @@ import 'package:Gestart/app/modules/login/components/password_outlined_text_fiel
 import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
-import 'package:Gestart/app/widgets/buttons/flat_button_widget.dart';
 import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
 import 'package:Gestart/domain/entities/auth/check_auth_entity.dart';
 import 'package:Gestart/domain/entities/auth/login_entity.dart';
@@ -44,7 +43,8 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
     if (!_formKey.currentState.validate()) return;
     if (_formKey.currentState.validate()) {
       FocusScope.of(context).unfocus();
-      final login = await controller.login(LoginAuthEntity(usuario: _cpfCnpjController.text, senha: _senhaController.text));
+      final login = await controller.login(LoginAuthEntity(
+          usuario: _cpfCnpjController.text, senha: _senhaController.text));
 
       if (login.status == Status.failed) {
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -60,7 +60,8 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
     if (!_formKey.currentState.validate()) return;
     if (_formKey.currentState.validate()) {
       FocusScope.of(context).unfocus();
-      final check = await controller.checkUser(IdUserEntity(cpfCnpj: _cpfCnpjController.text));
+      final check = await controller
+          .checkUser(IdUserEntity(cpfCnpj: _cpfCnpjController.text));
 
       if (check.status == Status.failed) {
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -73,14 +74,16 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
           showDialog(
             context: context,
             builder: (_) => AlertDialog(
-              title: Text('Bem Vindo, você é novo no GestartApp, por isso precisamos de algumas informações'),
+              title: Text(
+                  'Bem Vindo, você é novo no GestartApp, por isso precisamos de algumas informações'),
               backgroundColor: Colors.black,
               titleTextStyle: TextStyle(color: Colors.grey),
               actions: [
                 FlatButton(
                     onPressed: () {
                       Navigator.of(context).pop();
-                      Modular.navigator.pushNamed(RouteName.signup, arguments: _cpfCnpjController.text);
+                      Modular.navigator.pushNamed(RouteName.signup,
+                          arguments: _cpfCnpjController.text);
                     },
                     child: Text('Ok'))
               ],
@@ -108,7 +111,8 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
           child: Container(
             margin: EdgeInsets.only(top: 60.0),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -142,7 +146,8 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                               if (_formKey.currentState.validate()) {
                                 _onactionCheckUser();
                               }
-                              if (!_formKey.currentState.validate()) controller.mudarStatusUsuario(false);
+                              if (!_formKey.currentState.validate())
+                                controller.mudarStatusUsuario(false);
                             },
                           ),
                           SizedBox(
@@ -164,7 +169,12 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                                   return ContainedButtonWidget(
                                     text: "CONTINUAR",
                                     onPressed: _onactionLogin,
-                                    loading: (controller.loadingCheck.status == Status.loading || controller.userLogin.status == Status.loading) ? true : false,
+                                    loading: (controller.loadingCheck.status ==
+                                                Status.loading ||
+                                            controller.userLogin.status ==
+                                                Status.loading)
+                                        ? true
+                                        : false,
                                   );
                                 }),
                               ),
@@ -179,7 +189,8 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                                 style: TextStyle(color: Colors.white),
                               ),
                               onTap: () => {
-                                    Modular.navigator.pushNamed(RouteName.forgot_password),
+                                    Modular.navigator
+                                        .pushNamed(RouteName.forgot_password),
                                   }),
                         ],
                       ),

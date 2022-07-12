@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
-import 'package:Gestart/app/utils/validators.dart';
 import 'package:Gestart/app/widgets/buttons/contained_button_widget.dart';
 import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
@@ -26,9 +25,7 @@ class _EnviarCodigoPageState
     extends ModularState<EnviarCodigoPage, EnviarCodigoController> {
   //use 'controller' variable to access controller
   @override
-  void initState() {
-    controller.getEmails();
-  }
+  void initState() => controller.getEmails();
 
   int idEmail = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -107,7 +104,7 @@ class _EnviarCodigoPageState
                                             : false,
                                       )
                                     : ContainedButtonWidget(
-                                      onPressed: (){},
+                                        onPressed: () {},
                                         text: "Gerar Código",
                                       ),
                               ),
