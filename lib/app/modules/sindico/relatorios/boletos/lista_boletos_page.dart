@@ -11,7 +11,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 class ListaBoletosPage extends StatefulWidget {
   final String title;
-  const ListaBoletosPage({Key key, this.title = "Boletos"}) : super(key: key);
+  const ListaBoletosPage({Key key, this.title = "Faturas"}) : super(key: key);
 
   @override
   _ListaBoletosPageState createState() => _ListaBoletosPageState();

@@ -44,7 +44,7 @@ class _FinanceiroPageState extends State<FinanceiroPage> {
             child: ListTile(
                 leading: Icon(FlutterIcons.square_faw,
                     color: AppColorScheme.primaryColor),
-                title: Text('Boletos'),
+                title: Text('Faturas'),
                 trailing: Icon(Icons.arrow_right),
                 onTap: () => Modular.navigator
                     .pushNamed(RouteName.listaBoletos)),

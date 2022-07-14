@@ -50,8 +50,10 @@ abstract class _ListaBoletosControllerBase with Store {
     } else {
       if (query.length >= 3) {
         filteredUnidades = unidades.data
-            .where((e) =>
-                e.nompro.toLowerCase().contains(query.toLowerCase())) 
+            .where((e) => (e.nompro.toLowerCase() +                    
+                    e.codimo.toLowerCase() +
+                    (e.propri != null ? e.propri.toLowerCase() : ''))
+                .contains(query.toLowerCase()))
             .toList();
       }
     }
@@ -62,4 +64,3 @@ abstract class _ListaBoletosControllerBase with Store {
     boletos = await _getBoletos({"CODCON": codCon});
   }
 }
-
