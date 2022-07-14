@@ -40,6 +40,15 @@ class _FinanceiroPageState extends State<FinanceiroPage> {
                 onTap: () => Modular.navigator
                     .pushNamed(RouteName.movimento_financeiro)),
           ),
+          Card(
+            child: ListTile(
+                leading: Icon(FlutterIcons.square_faw,
+                    color: AppColorScheme.primaryColor),
+                title: Text('Boletos'),
+                trailing: Icon(Icons.arrow_right),
+                onTap: () => Modular.navigator
+                    .pushNamed(RouteName.listaBoletos)),
+          ),
         ],
       ),
     );

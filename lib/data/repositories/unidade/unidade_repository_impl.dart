@@ -25,6 +25,12 @@ class UnidadeRepositoryImpl implements UnidadeRepository {
   }
 
   @override
+  Future<ResourceData<List<UnidadeEntity>>> getUnidadesComplemento(codcon) async {
+    final resource = await _unidadeRemoteDataSource.getUnidadesComplemento(codcon);
+    return resource;
+  }
+
+  @override
   Future<ResourceData<List<UnidadeEntity>>> getUnidadesAdm() async {
     final resource = await _unidadeRemoteDataSource.getUnidadesAdm();
 

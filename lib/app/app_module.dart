@@ -1,4 +1,6 @@
 import 'package:Gestart/app/modules/informativos/informativos_page.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/boletos/lista_boletos_controller.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/boletos/lista_boletos_page.dart';
 
 import 'modules/error/erro/erro_controller.dart';
 import 'package:Gestart/app/modules/balancete/detalhe_balancete/detalhe_balancete_controller.dart';
@@ -171,7 +173,8 @@ class AppModule extends MainModule {
         $RelatorioReservasController,
         $ListaReservasController,
         $ErroController,
-        $InformativosController
+        $InformativosController,
+        $ListaBoletosController,
       ];
 
   @override
@@ -279,6 +282,8 @@ class AppModule extends MainModule {
                 )),
         ModularRouter(RouteName.informativos_page,
             child: (_, args) => InformativosPage()),
+        ModularRouter(RouteName.listaBoletos,
+            child: (_, args) => ListaBoletosPage()),
         ModularRouter(RouteName.error_page,
             child: (_, args) => ErroPage(
                   msgErro: args.data,
