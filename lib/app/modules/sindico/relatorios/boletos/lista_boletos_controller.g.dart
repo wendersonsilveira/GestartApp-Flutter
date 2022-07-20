@@ -77,8 +77,8 @@ mixin _$ListaBoletosController on _ListaBoletosControllerBase, Store {
       AsyncAction('_ListaBoletosControllerBase.getBoletos');
 
   @override
-  Future<void> getBoletos(dynamic codCon) {
-    return _$getBoletosAsyncAction.run(() => super.getBoletos(codCon));
+  Future<void> getBoletos(dynamic codord) {
+    return _$getBoletosAsyncAction.run(() => super.getBoletos(codord));
   }
 
   @override

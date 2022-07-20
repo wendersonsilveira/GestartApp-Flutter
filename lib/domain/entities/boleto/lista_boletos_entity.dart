@@ -15,6 +15,7 @@ class ListaBoletosEntity {
   final String titcob;
   final String endcob;
   final String apelido;
+  final String conts;
   final String logo;
 
   const ListaBoletosEntity(
@@ -31,6 +32,7 @@ class ListaBoletosEntity {
       this.titcob,
       this.endcob,
       this.apelido,
+      this.conts,
       this.logo});
 
   @override

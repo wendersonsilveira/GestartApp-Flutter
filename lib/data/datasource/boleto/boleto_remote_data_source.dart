@@ -30,6 +30,34 @@ class BoletoRemoteDataSource {
     }
   }
 
+  Future<ResourceData<List<BoletoEntity>>> getBoletosUnidade(int cordord) async {
+    try {
+      final result = await _dio.get('unidade_faturas/$cordord');
+      return ResourceData<List<BoletoEntity>>(
+          status: Status.success, data: BoletoEntity().fromMapList(result));
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os boletos",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<DetalheBoletoEntity>> getBoletoUnidade(String conts) async {
+    try {
+      final result = await _dio.get('unidade_fatura_detalhe/$conts');
+      return ResourceData<DetalheBoletoEntity>(
+          status: Status.success, data: DetalheBoletoEntity().fromMap(result[0]));
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os boletos",
+          error: ErrorMapper.from(e));
+    }
+  }
+
   Future<ResourceData<DetalheBoletoEntity>> getBoleto(int codord) async {
     try {
       final result = await _dio.get('fatura/$codord');

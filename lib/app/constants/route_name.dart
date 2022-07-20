@@ -31,6 +31,7 @@ class RouteName {
   static const String relatorioReservas = '/relatorio_reservas';
   static const String listaReservas = '/lista_reservas';
   static const String listaBoletos = '/lista_boletos';
+  static const String boletosUnidade = '/boletos_unidade';
 
   static const String veiculos = '/veiculos';
   static const String listar_espacos = '/listar_espacos';

@@ -1,3 +1,4 @@
+import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/boleto/boleto_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
@@ -16,6 +17,7 @@ class ListaBoletosController = _ListaBoletosControllerBase
     with _$ListaBoletosController;
 
 abstract class _ListaBoletosControllerBase with Store {
+  int params;
   final _getBoletos = getIt.get<GetBoletosUseCase>();
   final _getUnidades = getIt.get<GetUnidadesCompUseCase>();
 
@@ -50,7 +52,7 @@ abstract class _ListaBoletosControllerBase with Store {
     } else {
       if (query.length >= 3) {
         filteredUnidades = unidades.data
-            .where((e) => (e.nompro.toLowerCase() +                    
+            .where((e) => (e.nompro.toLowerCase() +
                     e.codimo.toLowerCase() +
                     (e.propri != null ? e.propri.toLowerCase() : ''))
                 .contains(query.toLowerCase()))
@@ -59,8 +61,12 @@ abstract class _ListaBoletosControllerBase with Store {
     }
   }
 
+  void getBoletosUnidade(int codord) {
+    Modular.navigator.pushNamed(RouteName.boletosUnidade, arguments: codord);
+  }
+
   @action
-  Future<void> getBoletos(codCon) async {
-    boletos = await _getBoletos({"CODCON": codCon});
+  Future<void> getBoletos(codord) async {
+    boletos = await _getBoletos({"UNIDADE": codord});
   }
 }

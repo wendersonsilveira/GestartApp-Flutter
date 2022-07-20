@@ -68,6 +68,7 @@ extension DetalheBoletoMapper on DetalheBoletoEntity {
       codCed: map['CODCED'],
       codigoAgencia: map['CODIGO_AGENCIA'],
       logo: map['LOGO'],
+      conts: map['CONTS'],
       linkBoleto: map['LINK_BOLETO'],
     );
   }

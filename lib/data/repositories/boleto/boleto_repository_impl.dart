@@ -17,6 +17,20 @@ class BoletoRepositoryImpl implements BoletoRepository {
   }
 
   @override
+  Future<ResourceData<List<BoletoEntity>>> getBoletosUnidade(int cordord) async {
+    final resource = await _boletoRemoteDataSource.getBoletosUnidade(cordord);
+
+    return resource;
+  }
+
+  @override
+  Future<ResourceData<DetalheBoletoEntity>> getBoletoUnidade(String conts) async {
+    final resource = await _boletoRemoteDataSource.getBoletoUnidade(conts);
+
+    return resource;
+  }
+
+  @override
   Future<ResourceData<DetalheBoletoEntity>> getBoleto(int codord) async {
     final resource = await _boletoRemoteDataSource.getBoleto(codord);
 

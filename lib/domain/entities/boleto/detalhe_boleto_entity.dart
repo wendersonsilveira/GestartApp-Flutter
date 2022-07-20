@@ -47,6 +47,7 @@ class DetalheBoletoEntity {
   final String codCed;
   final String codigoAgencia;
   final String logo;
+  final String conts;
   final String linkBoleto;
 
   const DetalheBoletoEntity(
@@ -95,10 +96,11 @@ class DetalheBoletoEntity {
       this.codCed,
       this.codigoAgencia,
       this.logo,
+      this.conts,
       this.linkBoleto});
 
-  // @override
-  // String toString() {
-  //   return 'PautaEntity(codcon: $codced)';
-  // }
+  @override
+  String toString() {
+    return 'DetalhesBoleto(conts: $conts)';
+  }
 }

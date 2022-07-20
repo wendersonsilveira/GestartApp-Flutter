@@ -1,3 +1,4 @@
+import 'package:Gestart/app/modules/sindico/relatorios/boletos/boletos-unidade/boletos_unidade_page.dart';
 import 'package:Gestart/app/modules/sindico/relatorios/boletos/lista_boletos_controller.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
@@ -7,7 +8,6 @@ import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
 
 class ListaBoletosPage extends StatefulWidget {
   final String title;
@@ -31,18 +31,6 @@ class _ListaBoletosPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: GestureDetector(
-            onTap: () => () {},
-            child: Container(
-              height: 50,
-              color: AppColorScheme.primaryColor,
-              child: Center(
-                child: Text(
-                  "Pesquisar",
-                  style: TextStyle(color: AppColorScheme.white),
-                ),
-              ),
-            )),
         appBar: AppBarCustom(
           context,
           title: Text(widget.title),
@@ -71,9 +59,7 @@ class _ListaBoletosPageState
                   TextField(
                     onChanged: controller.searchUnidades,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      hintText: 'Unidade'
-                    ),
+                        prefixIcon: Icon(Icons.search), hintText: 'Unidade'),
                   ),
                   Expanded(
                     child: ListView.builder(
@@ -81,20 +67,25 @@ class _ListaBoletosPageState
                         itemBuilder: (BuildContext context, int index) {
                           return Card(
                               child: ListTile(
-                                title: Row(
-                                  children: [
-                                    Flexible(
-                                      child: Container(
+                            onTap: () {
+                              controller.getBoletosUnidade(
+                                  controller.filteredUnidades[index].codord);
+                            },
+                            title: Row(
+                              children: [
+                                Flexible(
+                                    child: Container(
                                         child: Text(
-                                          '${controller.filteredUnidades[index].codimo} - ${controller.filteredUnidades[index].nompro}', overflow: TextOverflow.ellipsis
-                                          )
-                                      )
-                                    ),
-                                  ],
-                                ),
-                                subtitle: controller.filteredUnidades[index].propri != null 
-                                    ? Text('Inquilino(a): ${controller.filteredUnidades[index].propri}')
-                                    : Text(''),
+                                            '${controller.filteredUnidades[index].codimo} - ${controller.filteredUnidades[index].nompro}',
+                                            overflow: TextOverflow.ellipsis))),
+                              ],
+                            ),
+                            subtitle: controller
+                                        .filteredUnidades[index].propri !=
+                                    null
+                                ? Text(
+                                    'Inquilino(a): ${controller.filteredUnidades[index].propri}')
+                                : Text(''),
                           ));
                         }),
                   )

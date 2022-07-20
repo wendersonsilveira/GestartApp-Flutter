@@ -16,6 +16,11 @@ class BoletoEntity {
   final String endcob;
   final String apelido;
   final String logo;
+  final String mesAno;
+  final String lansDetail;
+  final String status;
+  final String conts;
+  final double total;
 
   const BoletoEntity(
       {this.id,
@@ -31,6 +36,11 @@ class BoletoEntity {
       this.titcob,
       this.endcob,
       this.apelido,
+      this.mesAno,
+      this.lansDetail,
+      this.status,
+      this.conts,
+      this.total,
       this.logo});
 
   @override
