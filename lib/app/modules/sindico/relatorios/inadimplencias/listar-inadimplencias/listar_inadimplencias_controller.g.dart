@@ -60,15 +60,6 @@ mixin _$ListaInadimplenciasController
         .run(() => super.getInadimplencias(params));
   }
 
-  final _$getInadimplenciasPDFAsyncAction =
-      AsyncAction('_ListaInadimplenciasControllerBase.getInadimplenciasPDF');
-
-  @override
-  Future<void> getInadimplenciasPDF(SendParamsRelReservaEntity params) {
-    return _$getInadimplenciasPDFAsyncAction
-        .run(() => super.getInadimplenciasPDF(params));
-  }
-
   @override
   String toString() {
     return '''

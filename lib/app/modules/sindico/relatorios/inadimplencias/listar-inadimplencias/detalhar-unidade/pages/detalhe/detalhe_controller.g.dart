@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'detalhar_unidade_controller.dart';
+part of 'detalhe_controller.dart';
 
 // **************************************************************************
 // InjectionGenerator
 // **************************************************************************
 
-final $DetalharUnidadeController = BindInject(
-  (i) => DetalharUnidadeController(),
+final $DetalheController = BindInject(
+  (i) => DetalheController(),
   singleton: true,
   lazy: true,
 );
@@ -18,9 +18,9 @@ final $DetalharUnidadeController = BindInject(
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$DetalharUnidadeController on _DetalharUnidadeControllerBase, Store {
+mixin _$DetalheController on _DetalheControllerBase, Store {
   final _$inadimplenciasUnidadeAtom =
-      Atom(name: '_DetalharUnidadeControllerBase.inadimplenciasUnidade');
+      Atom(name: '_DetalheControllerBase.inadimplenciasUnidade');
 
   @override
   ResourceData<List<InadimplenciaAdmDetalheEntity>> get inadimplenciasUnidade {
@@ -38,7 +38,7 @@ mixin _$DetalharUnidadeController on _DetalharUnidadeControllerBase, Store {
   }
 
   final _$getInadimplenciasUnidadeAsyncAction =
-      AsyncAction('_DetalharUnidadeControllerBase.getInadimplenciasUnidade');
+      AsyncAction('_DetalheControllerBase.getInadimplenciasUnidade');
 
   @override
   Future getInadimplenciasUnidade(SendParamsRelInadimplenciaEntity params) {

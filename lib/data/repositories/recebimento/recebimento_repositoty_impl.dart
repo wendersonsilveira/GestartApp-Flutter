@@ -4,6 +4,7 @@ import 'package:Gestart/domain/entities/recebimento/inadimplencia_adm_detalhe_en
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_adm_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_historico_entity.dart';
+import 'package:Gestart/domain/entities/recebimento/inadimplencia_processos_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/pagamento_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/recebimento_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplencia_entity.dart';
@@ -109,6 +110,15 @@ class RecebimentoRepositoryImpl implements RecebimentoRepository {
       getIncidenciasInadimplenciasUnidade(int codOrd) async {
     final resource =
         await _recebimentoRemoteDataSource.getIncidenciasInadimplencias(codOrd);
+
+    return resource;
+  }
+
+  @override
+  Future<ResourceData<List<ProcessoInadimplenciasEntity>>>
+      getProcessosInadimplenciasUnidade(int codOrd) async {
+    final resource =
+        await _recebimentoRemoteDataSource.getProcessosInadim(codOrd);
 
     return resource;
   }

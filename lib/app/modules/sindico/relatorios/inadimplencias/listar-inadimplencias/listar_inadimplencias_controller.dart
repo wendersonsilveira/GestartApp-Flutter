@@ -6,7 +6,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplencia_entity.dart';
-import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
 import 'package:Gestart/domain/usecases/recebimento/get_inadinplencias_adm_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
@@ -24,7 +23,6 @@ abstract class _ListaInadimplenciasControllerBase with Store {
   int codCon;
 
   final _getInadimplencias = getIt.get<GetInadimplenciasAdmUseCase>();
-  // final _getInadimplenciasRelatorioPDF = getIt.get<GetInadimplenciasRelatorioUseCase>();
 
   @observable
   ResourceData<List<InadimplenciaAdmEntity>> inadimplenciasAdm =
@@ -36,13 +34,14 @@ abstract class _ListaInadimplenciasControllerBase with Store {
     print(inadimplenciasAdm);
   }
 
-  @action
-  Future<void> getInadimplenciasPDF(SendParamsRelReservaEntity params) async {
-    // String lastname = perfil.data.sobreNome.replaceAll(' ', '');
-    // String url =
-    //     "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/get_reservas?CODCON=${params.codCon}&DATINI=${params.dataIni}&DATFIM=${params.dataFim}&TIPO=${params.tipo}&USER_NAME=${params.usr_name}&USER_LASTNAME=${lastname}";
-    // _launchURL(url);
-  }
+  // @action
+  // Future<void> getInadimplenciasPDF(
+  //     SendParamsRelInadimplenciaEntity params) async {
+  //   // String lastname = perfil.data.sobreNome.replaceAll(' ', '');
+  //   String url =
+  //       "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/get_adm_inadimplencia?CODCON=${params.codCon}&CODORD=${params.codOrd}&TIPTAX=${params.tipTax}&TIPCOB=${params.tipCob}&DATINI=${params.datIni}&DATFIM=${params.datFim}&TIPO=${params.tipo}";
+  //   _launchURL(url);
+  // }
 
   init(params) async {
     var storage = await SharedPreferences.getInstance();

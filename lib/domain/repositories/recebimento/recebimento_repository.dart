@@ -1,6 +1,7 @@
 import 'package:Gestart/domain/entities/recebimento/acrodo_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_historico_entity.dart';
+import 'package:Gestart/domain/entities/recebimento/inadimplencia_processos_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/pagamento_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/recebimento_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplencia_entity.dart';
@@ -30,4 +31,6 @@ abstract class RecebimentoRepository {
       getInadimplenciasUnidade(SendParamsRelInadimplenciaEntity params);
   Future<ResourceData<List<IncidenciaInadimplenciasEntity>>>
       getIncidenciasInadimplenciasUnidade(int codOrd);
+  Future<ResourceData<List<ProcessoInadimplenciasEntity>>>
+      getProcessosInadimplenciasUnidade(int codOrd);
 }

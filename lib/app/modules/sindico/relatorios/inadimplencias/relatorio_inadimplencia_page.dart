@@ -10,6 +10,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'relatorio_inadimplencia_controller.dart';
 
@@ -29,28 +30,35 @@ class _RelatorioInadimplenciaPageState extends ModularState<
   bool enableButton = false;
   DateTime startDate;
   DateTime endDate;
+  List<TaxaEntity> taxaEntity = [];
+  List<MultiSelectItem<TaxaEntity>> teste = [];
+
   @override
   void initState() {
     super.initState();
     // controller.getAvisos();
     controller.init();
+    endDate = DateTime.now();
+    controller.setDataFinal(UIHelper.formatDate(DateTime.now()));
   }
 
+  final _multiSelectKey = GlobalKey<FormFieldState>();
+
   _setFiltros() {
-    if (controller.dataIni == null || controller.dataFim == null)
-      CustomAlertDialog.info(
-          context,
-          'Periodo obrigatorio',
-          'Favor inserir Data Inicial e Data Final para consulta do relatório',
-          (_) => Modular.navigator.pop());
-    else if (controller.dataIni == null && controller.dataFim == null)
-      CustomAlertDialog.info(
-          context,
-          'Periodo obrigatorio',
-          'Favor inserir periodo para consulta do relatório',
-          (_) => Modular.navigator.pop());
-    else
-      controller.setFiltros();
+    // if (controller.dataIni == null || controller.dataFim == null)
+    //   CustomAlertDialog.info(
+    //       context,
+    //       'Periodo obrigatorio',
+    //       'Favor inserir Data Inicial e Data Final para consulta do relatório',
+    //       (_) => Modular.navigator.pop());
+    // else if (controller.dataIni == null && controller.dataFim == null)
+    //   CustomAlertDialog.info(
+    //       context,
+    //       'Periodo obrigatorio',
+    //       'Favor inserir periodo para consulta do relatório',
+    //       (_) => Modular.navigator.pop());
+    // else
+    controller.setFiltros();
   }
 
   @override
@@ -104,25 +112,8 @@ class _RelatorioInadimplenciaPageState extends ModularState<
                                             label: 'Unidade',
                                             hint: 'Unidade',
                                             onChanged: (v) => v != null
-                                                ? controller.setCodImo(v.codimo)
-                                                : controller.setCodImo(null),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: DropdownSearch<TaxaEntity>(
-                                            mode: Mode.BOTTOM_SHEET,
-                                            showSearchBox: true,
-                                            items: controller.tiposTaxa.data,
-                                            showClearButton: true,
-                                            itemAsString: (TaxaEntity t) =>
-                                                t.taxaAsString(),
-                                            label: 'Taxa',
-                                            hint: 'Taxa',
-                                            onChanged: (value) => value != null
-                                                ? controller
-                                                    .setTipTax(value.tiptax)
-                                                : controller.setTipTax(null),
+                                                ? controller.seUnidade(v.codord)
+                                                : controller.seUnidade(null),
                                           ),
                                         ),
                                         Padding(
@@ -142,6 +133,80 @@ class _RelatorioInadimplenciaPageState extends ModularState<
                                                 : controller.setTipCob(null),
                                           ),
                                         ),
+                                        Observer(builder: (_) {
+                                          return Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Column(
+                                                children: <Widget>[
+                                                  MultiSelectBottomSheetField<
+                                                      TaxaEntity>(
+                                                    initialChildSize: 0.4,
+                                                    listType:
+                                                        MultiSelectListType
+                                                            .CHIP,
+                                                    // searchable: true,
+                                                    buttonText: Text(
+                                                        "Selecione as taxas"),
+                                                    title: Text("taxas"),
+                                                    items: controller
+                                                        .tiposTaxa.data
+                                                        .map((e) =>
+                                                            MultiSelectItem(
+                                                                e, e.destax))
+                                                        .toList(),
+                                                    onConfirm: (values) {
+                                                      controller
+                                                          .insertSelectedTaxas(
+                                                              values);
+                                                    },
+                                                    chipDisplay:
+                                                        MultiSelectChipDisplay(
+                                                      onTap: (value) {
+                                                        setState(() {
+                                                          controller
+                                                              .removedTaxa(
+                                                                  value);
+                                                        });
+                                                      },
+                                                    ),
+                                                  ),
+                                                  controller.selectedTaxas ==
+                                                              null ||
+                                                          controller
+                                                              .selectedTaxas
+                                                              .isEmpty
+                                                      ? Container(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          alignment: Alignment
+                                                              .centerLeft,
+                                                          child: Text(
+                                                            "Todas as taxas selecionadas",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black54),
+                                                          ))
+                                                      : Container(),
+                                                ],
+                                              )
+                                              //  DropdownSearch<TaxaEntity>(
+                                              //   mode: Mode.BOTTOM_SHEET,
+                                              //   showSearchBox: true,
+                                              //   items: controller.tiposTaxa.data,
+                                              //   showClearButton: true,
+                                              //   itemAsString: (TaxaEntity t) =>
+                                              //       t.taxaAsString(),
+                                              //   label: 'Taxa',
+                                              //   hint: 'Taxa',
+                                              //   onChanged: (value) => value != null
+                                              //       ? controller
+                                              //           .setTipTax(value.tiptax)
+                                              //       : controller.setTipTax(null),
+                                              // ),
+                                              );
+                                        }),
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Column(

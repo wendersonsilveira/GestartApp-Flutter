@@ -436,7 +436,7 @@ class _DashboardPageState
                                   Card(
                                     child: ItemServicoWidget(
                                       condominioAtivo: true,
-                                      descricao: 'Notificações',
+                                      descricao: 'Comunicados',
                                       icone: FlutterIcons.error_outline_mdi,
                                       routeName: RouteName.informativos_page,
                                     ),

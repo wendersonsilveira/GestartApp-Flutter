@@ -52,6 +52,22 @@ mixin _$RelatorioInadimplenciaController
     });
   }
 
+  final _$selectedTaxasAtom =
+      Atom(name: '_RelatorioInadimplenciaControllerBase.selectedTaxas');
+
+  @override
+  List<TaxaEntity> get selectedTaxas {
+    _$selectedTaxasAtom.reportRead();
+    return super.selectedTaxas;
+  }
+
+  @override
+  set selectedTaxas(List<TaxaEntity> value) {
+    _$selectedTaxasAtom.reportWrite(value, super.selectedTaxas, () {
+      super.selectedTaxas = value;
+    });
+  }
+
   final _$getUnidadesAsyncAction =
       AsyncAction('_RelatorioInadimplenciaControllerBase.getUnidades');
 
@@ -72,6 +88,31 @@ mixin _$RelatorioInadimplenciaController
       ActionController(name: '_RelatorioInadimplenciaControllerBase');
 
   @override
+  dynamic insertSelectedTaxas(List<TaxaEntity> taxas) {
+    final _$actionInfo =
+        _$_RelatorioInadimplenciaControllerBaseActionController.startAction(
+            name: '_RelatorioInadimplenciaControllerBase.insertSelectedTaxas');
+    try {
+      return super.insertSelectedTaxas(taxas);
+    } finally {
+      _$_RelatorioInadimplenciaControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic removedTaxa(TaxaEntity taxa) {
+    final _$actionInfo = _$_RelatorioInadimplenciaControllerBaseActionController
+        .startAction(name: '_RelatorioInadimplenciaControllerBase.removedTaxa');
+    try {
+      return super.removedTaxa(taxa);
+    } finally {
+      _$_RelatorioInadimplenciaControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setDataInicial(dynamic value) {
     final _$actionInfo =
         _$_RelatorioInadimplenciaControllerBaseActionController.startAction(
@@ -85,11 +126,11 @@ mixin _$RelatorioInadimplenciaController
   }
 
   @override
-  dynamic setCodImo(dynamic value) {
+  dynamic seUnidade(int value) {
     final _$actionInfo = _$_RelatorioInadimplenciaControllerBaseActionController
-        .startAction(name: '_RelatorioInadimplenciaControllerBase.setCodImo');
+        .startAction(name: '_RelatorioInadimplenciaControllerBase.seUnidade');
     try {
-      return super.setCodImo(value);
+      return super.seUnidade(value);
     } finally {
       _$_RelatorioInadimplenciaControllerBaseActionController
           .endAction(_$actionInfo);
@@ -137,7 +178,8 @@ mixin _$RelatorioInadimplenciaController
   String toString() {
     return '''
 unidades: ${unidades},
-tiposTaxa: ${tiposTaxa}
+tiposTaxa: ${tiposTaxa},
+selectedTaxas: ${selectedTaxas}
     ''';
   }
 }

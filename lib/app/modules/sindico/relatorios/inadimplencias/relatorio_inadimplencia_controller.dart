@@ -23,6 +23,7 @@ abstract class _RelatorioInadimplenciaControllerBase with Store {
 
   int codCon;
   String codImo;
+  int codOrd;
   String dataIni;
   String dataFim;
   String tipTax;
@@ -34,13 +35,23 @@ abstract class _RelatorioInadimplenciaControllerBase with Store {
 
   @observable
   ResourceData<List<TaxaEntity>> tiposTaxa =
-      ResourceData(status: Status.loading);
+      ResourceData(status: Status.loading, data: []);
+
+  @observable
+  List<TaxaEntity> selectedTaxas = [];
+  List<String> _codTaxas = [];
+
+  @action
+  insertSelectedTaxas(List<TaxaEntity> taxas) => selectedTaxas = taxas;
+
+  @action
+  removedTaxa(TaxaEntity taxa) => selectedTaxas.remove(taxa);
 
   @action
   setDataInicial(value) => dataIni = value;
 
   @action
-  setCodImo(value) => codImo = value;
+  seUnidade(int value) => codOrd = value;
 
   @action
   setDataFinal(value) => dataFim = value;
@@ -63,13 +74,16 @@ abstract class _RelatorioInadimplenciaControllerBase with Store {
   setTipTax(value) => tipTax = value;
 
   setFiltros() {
+    // selectedTaxas.map((e) => {_codTaxas.add(e.tiptax)});
+    _codTaxas = selectedTaxas.map((e) => (e.tiptax)).toList();
     SendParamsRelInadimplenciaEntity params = SendParamsRelInadimplenciaEntity(
         codCon: codCon,
+        codOrd: codOrd,
         codImo: codImo,
         datIni: dataIni,
         datFim: dataFim,
         tipCob: tipCob,
-        tipTax: tipTax);
+        tipTax: _codTaxas.isEmpty ? null : _codTaxas);
 
     print(params);
 

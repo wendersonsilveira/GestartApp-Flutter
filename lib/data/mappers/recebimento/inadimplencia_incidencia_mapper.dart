@@ -9,8 +9,8 @@ extension IncidenciaInadimplenciasMapper on IncidenciaInadimplenciasEntity {
     if (map == null) return null;
     return IncidenciaInadimplenciasEntity(
       nomTip: map['NOMTIP'],
-      datInc: DateTime.parse(map['DATINC']),
-      datDis: DateTime.parse(map['DATDIS']),
+      datInc: map['DATINC'] != null ? DateTime.parse(map['DATINC']) : null,
+      datDis: map['DATDIS'] != null ? DateTime.parse(map['DATDIS']) : null,
       valDiv: map['VALDIV'] != null ? map['VALDIV'].toDouble() : 0,
       nomCar: map['NOMCAR'] != null ? map['NOMCAR'] : '',
       numDoc: map['NUMDOC'] != null ? map['NUMDOC'] : '',
