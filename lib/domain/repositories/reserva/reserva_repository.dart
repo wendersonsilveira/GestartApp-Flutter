@@ -2,7 +2,6 @@ import 'package:Gestart/domain/entities/reserva/hora_entity.dart';
 import 'package:Gestart/domain/entities/reserva/reserva_entity.dart';
 import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
 abstract class ReservaRepository {
   Future<ResourceData<List<ReservaEntity>>> getReservas();

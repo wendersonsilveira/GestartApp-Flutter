@@ -188,12 +188,14 @@ class AppModule extends MainModule {
             child: (_, args) => AssembleiaPage()),
         ModularRouter(RouteName.detalhes_assembleia,
             child: (_, args) => DetalhesAssembleiaPage(id: args.data)),
-        ModularRouter(RouteName.view_documento,
-            child: (_, args) => ViewDocumentosPage(
-                  url: args.data[0],
-                  title: args.data[1],
-                  document: args.data[2],
-                )),
+        ModularRouter(
+          RouteName.view_documento,
+          // child: (_, args) => ViewDocumentosPage(
+          //       url: args.data[0],
+          //       title: args.data[1],
+          //       document: args.data[2],
+          //     )
+        ),
         ModularRouter(RouteName.cadastro_pet,
             child: (_, args) => CadastroPetPage(id: args.data)),
         ModularRouter(RouteName.boleto, child: (_, args) => BoletoPage()),

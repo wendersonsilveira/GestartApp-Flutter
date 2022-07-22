@@ -11,7 +11,7 @@ import 'package:Gestart/domain/usecases/reserva/get_reservas_relatorio_pdf_use_c
 import 'package:Gestart/domain/usecases/reserva/get_reservas_relatorio_use_case.dart';
 import 'package:Gestart/domain/usecases/user/get_perfil_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+// import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
