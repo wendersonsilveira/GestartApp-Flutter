@@ -2,7 +2,7 @@ import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+// import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'ativar_condominio_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,11 +32,11 @@ class _AtivarCondominioPageState
         child: Column(
           children: <Widget>[
             ListTile(
-                leading: Icon(
-                  FlutterIcons.person_mdi,
-                  size: 50.h,
-                  color: AppColorScheme.primaryColor,
-                ),
+                // leading: Icon(
+                //   FlutterIcons.person_mdi,
+                //   size: 50.h,
+                //   color: AppColorScheme.primaryColor,
+                // ),
                 trailing: Icon(
                   Icons.arrow_right,
                   size: 30,
@@ -45,16 +45,15 @@ class _AtivarCondominioPageState
                 subtitle:
                     Text('Coloque o Usuário e Senha que vem no seu boleto'),
                 onTap: () {
-                  Modular.navigator
-                      .pushNamed(RouteName.condominio_online_ativar);
+                  Modular.to.pushNamed(RouteName.condominio_online_ativar);
                 }),
             Divider(),
             ListTile(
-              leading: Icon(
-                FlutterIcons.email_mco,
-                size: 50.h,
-                color: AppColorScheme.primaryColor,
-              ),
+              // leading: Icon(
+              //   FlutterIcons.email_mco,
+              //   size: 50.h,
+              //   color: AppColorScheme.primaryColor,
+              // ),
               trailing: Icon(
                 Icons.arrow_right,
                 size: 30,
@@ -62,7 +61,7 @@ class _AtivarCondominioPageState
               title: Text('Por código de ativação'),
               subtitle: Text('Você receberá um Email com o código de ativação'),
               onTap: () {
-                Modular.navigator.pushNamed(RouteName.ativar_codigo_email);
+                Modular.to.pushNamed(RouteName.ativar_codigo_email);
               },
             ),
           ],

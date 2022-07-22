@@ -28,7 +28,7 @@ class _CadastroPageState
     final r = await controller.cadastarReserva(widget.reserva);
 
     if (r.status == Status.success) {
-      Modular.navigator.pop();
+      Modular.to.pop();
       statusReserva('Sucesso', r.message, true);
     } else {
       statusReserva('Falha', r.message, false);
@@ -48,7 +48,7 @@ class _CadastroPageState
         ),
         actions: <Widget>[
           TextButton(
-            onPressed: () => Modular.navigator.pop(),
+            onPressed: () => Modular.to.pop(),
             child: const Text('CANCELAR'),
           ),
           TextButton(
@@ -83,7 +83,7 @@ class _CadastroPageState
               if (success) {
                 goToReservas();
               } else {
-                Modular.navigator.pop();
+                Modular.to.pop();
               }
             },
             child: const Text('OK'),

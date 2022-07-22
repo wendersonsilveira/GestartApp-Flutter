@@ -80,7 +80,7 @@ class _CadastroPetPageState
       if (r.status == Status.success) {
         showInSnackBar('Pet adicionado com sucesso');
         Timer(Duration(seconds: 1), () {
-          Modular.navigator.pop();
+          Modular.to.pop();
           controller.alteraLoading(false);
         });
       }

@@ -46,7 +46,7 @@ class _CodigoAtivacaoPageState
     else if (result == 1) {
       UIHelper.showInSnackBar('Ativado com sucesso', _scaffoldKey);
       Timer(Duration(seconds: 1), () {
-        Modular.navigator.pop();
+        Modular.to.pop();
       });
     }
   }

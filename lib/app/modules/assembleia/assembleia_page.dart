@@ -6,7 +6,7 @@ import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+// import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'assembleia_controller.dart';
@@ -120,22 +120,20 @@ class _AssembleiaPageState
                                                         .allLists[0]
                                                         .map((e) => ListTile(
                                                               onTap: () {
-                                                                Modular
-                                                                    .navigator
-                                                                    .pushNamed(
-                                                                        RouteName
-                                                                            .detalhes_assembleia,
-                                                                        arguments:
-                                                                            e.id);
+                                                                Modular.to.pushNamed(
+                                                                    RouteName
+                                                                        .detalhes_assembleia,
+                                                                    arguments:
+                                                                        e.id);
                                                               },
-                                                              leading: Icon(
-                                                                FlutterIcons
-                                                                    .calendar_alert_mco,
-                                                                size: 35,
-                                                                color:
-                                                                    AppColorScheme
-                                                                        .black,
-                                                              ),
+                                                              // leading: Icon(
+                                                              //   FlutterIcons
+                                                              //       .calendar_alert_mco,
+                                                              //   size: 35,
+                                                              //   color:
+                                                              //       AppColorScheme
+                                                              //           .black,
+                                                              // ),
                                                               subtitle:
                                                                   SubTitleWidget(
                                                                 data: e.datreu,
@@ -181,21 +179,19 @@ class _AssembleiaPageState
                                                           children: [
                                                             ListTile(
                                                               onTap: () {
-                                                                Modular
-                                                                    .navigator
-                                                                    .pushNamed(
-                                                                        RouteName
-                                                                            .detalhes_assembleia,
-                                                                        arguments:
-                                                                            e.id);
+                                                                Modular.to.pushNamed(
+                                                                    RouteName
+                                                                        .detalhes_assembleia,
+                                                                    arguments:
+                                                                        e.id);
                                                               },
-                                                              leading: Icon(
-                                                                FlutterIcons
-                                                                    .calendar_check_faw5s,
-                                                                size: 35,
-                                                                color: AppColorScheme
-                                                                    .primaryColor,
-                                                              ),
+                                                              // leading: Icon(
+                                                              //   FlutterIcons
+                                                              //       .calendar_check_faw5s,
+                                                              //   size: 35,
+                                                              //   color: AppColorScheme
+                                                              //       .primaryColor,
+                                                              // ),
                                                               subtitle:
                                                                   SubTitleWidget(
                                                                 data: e.datreu,

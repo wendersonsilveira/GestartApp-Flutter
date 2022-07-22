@@ -8,8 +8,8 @@ part of 'notificacoes_controller.dart';
 
 final $NotificacoesController = BindInject(
   (i) => NotificacoesController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

@@ -30,7 +30,7 @@ class HorariosPage extends StatefulWidget {
 
 class _HorariosPageState
     extends ModularState<HorariosPage, HorariosController> {
-  CalendarController _calendarController = CalendarController();
+  // CalendarController _calendarController = CalendarController();
 
   DateTime now = DateTime.now();
   var r;
@@ -98,7 +98,7 @@ class _HorariosPageState
                                 FlatButton(
                                   child: Text("OK"),
                                   onPressed: () {
-                                    Modular.navigator.pop();
+                                    Modular.to.pop();
                                   },
                                 ),
                               ],
@@ -127,7 +127,7 @@ class _HorariosPageState
         ),
         actions: <Widget>[
           TextButton(
-            onPressed: () => Modular.navigator.pop(),
+            onPressed: () => Modular.to.pop(),
             child: const Text(
               'CANCELAR',
               style: TextStyle(color: AppColorScheme.feedbackDangerBase),
@@ -135,7 +135,7 @@ class _HorariosPageState
           ),
           TextButton(
             onPressed: () {
-              Modular.navigator.pushNamed(RouteName.reservaCadastro,
+              Modular.to.pushNamed(RouteName.reservaCadastro,
                   arguments: controller.reserva);
             },
             child: const Text('CONCORDO'),
@@ -243,7 +243,7 @@ class _HorariosPageState
             onPressed: () {
               controller.setMsgErro(null);
               controller.zerarHorarioFinal();
-              Modular.navigator.pop();
+              Modular.to.pop();
             },
             child: const Text('Cancelar'),
           ),
@@ -291,22 +291,23 @@ class _HorariosPageState
         builder: (_) => Column(
           children: <Widget>[
             controller.espacoJSON != null
-                ? TableCalendar(
-                    calendarController: _calendarController,
-                    locale: 'pt_BR',
-                    initialCalendarFormat: CalendarFormat.month,
-                    enabledDayPredicate: checkDay,
-                    headerStyle: HeaderStyle(
-                      formatButtonVisible: false,
-                      centerHeaderTitle: true,
-                    ),
-                    calendarStyle: CalendarStyle(
-                      todayColor: AppColorScheme.secondaryColor,
-                      selectedColor: AppColorScheme.primaryColor,
-                    ),
-                    onDaySelected: (data, b, c) =>
-                        controller.getHorariosEspaco(data),
-                  )
+                ? Container()
+                // ? TableCalendar(
+                //     calendarController: _calendarController,
+                //     locale: 'pt_BR',
+                //     initialCalendarFormat: CalendarFormat.month,
+                //     enabledDayPredicate: checkDay,
+                //     headerStyle: HeaderStyle(
+                //       formatButtonVisible: false,
+                //       centerHeaderTitle: true,
+                //     ),
+                //     calendarStyle: CalendarStyle(
+                //       todayColor: AppColorScheme.secondaryColor,
+                //       selectedColor: AppColorScheme.primaryColor,
+                //     ),
+                //     onDaySelected: (data, b, c) =>
+                //         controller.getHorariosEspaco(data),
+                //   )
                 : CircularProgressCustom(),
             Observer(
                 builder: (_) => controller.horarios == null
@@ -333,39 +334,39 @@ class _HorariosPageState
                                             ? AppColorScheme.feedbackDangerDark
                                             : AppColorScheme.primaryColor,
                                       ),
-                                      trailing:
-                                          controller.horarios[index].reservaId >
-                                                  0
-                                              ? OutlineButton(
-                                                  child: Text(
-                                                    'Reservado',
-                                                    style: TextStyle(
-                                                        color: AppColorScheme
-                                                            .feedbackDangerDark),
-                                                  ),
-                                                  borderSide: BorderSide(
-                                                      color: AppColorScheme
-                                                          .feedbackDangerDark),
-                                                  onPressed: () =>
-                                                      print('Reservado'),
-                                                )
-                                              : OutlineButton(
-                                                  child: Text('Selecionar',
-                                                      style: TextStyle(
-                                                        color: AppColorScheme
-                                                            .primaryColor,
-                                                      )),
-                                                  borderSide: BorderSide(
-                                                      color: AppColorScheme
-                                                          .primaryColor),
-                                                  onPressed: () =>
-                                                      openDialogHorario(
-                                                          controller
-                                                              .horarios[index]
-                                                              .horiniId,
-                                                          controller
-                                                              .horarios[index]
-                                                              .horfimId)),
+                                      // trailing:
+                                      //     controller.horarios[index].reservaId >
+                                      //             0
+                                      //         ? OutlineButton(
+                                      //             child: Text(
+                                      //               'Reservado',
+                                      //               style: TextStyle(
+                                      //                   color: AppColorScheme
+                                      //                       .feedbackDangerDark),
+                                      //             ),
+                                      //             borderSide: BorderSide(
+                                      //                 color: AppColorScheme
+                                      //                     .feedbackDangerDark),
+                                      //             onPressed: () =>
+                                      //                 print('Reservado'),
+                                      //           )
+                                      //         : OutlineButton(
+                                      //             child: Text('Selecionar',
+                                      //                 style: TextStyle(
+                                      //                   color: AppColorScheme
+                                      //                       .primaryColor,
+                                      //                 )),
+                                      //             borderSide: BorderSide(
+                                      //                 color: AppColorScheme
+                                      //                     .primaryColor),
+                                      //             onPressed: () =>
+                                      //                 openDialogHorario(
+                                      //                     controller
+                                      //                         .horarios[index]
+                                      //                         .horiniId,
+                                      //                     controller
+                                      //                         .horarios[index]
+                                      //                         .horfimId)),
                                     ),
                                   ),
                                 ),

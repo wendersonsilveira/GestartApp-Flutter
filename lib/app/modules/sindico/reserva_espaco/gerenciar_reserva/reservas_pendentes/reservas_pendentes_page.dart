@@ -80,7 +80,7 @@ class _ReservasPendentesPageState
                                 itemBuilder: (BuildContext context, int index) {
                                   return GestureDetector(
                                     onTap: () {
-                                      Modular.navigator.pushNamed(
+                                      Modular.to.pushNamed(
                                           RouteName.detalhes_reserva,
                                           arguments: controller
                                               .reservasPendentes[index].id);

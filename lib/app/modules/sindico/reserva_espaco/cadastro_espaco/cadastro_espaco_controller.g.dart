@@ -8,8 +8,8 @@ part of 'cadastro_espaco_controller.dart';
 
 final $CadastroEspacoController = BindInject(
   (i) => CadastroEspacoController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

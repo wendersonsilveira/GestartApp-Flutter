@@ -41,13 +41,13 @@ class _RelatorioReservasPageState
           context,
           'Periodo obrigatorio',
           'Favor inserir Data Inicial e Data Final para consulta do relatório',
-          (_) => Modular.navigator.pop());
+          (_) => Modular.to.pop());
     else if (controller.dataIni == null && controller.dataFim == null)
       CustomAlertDialog.info(
           context,
           'Periodo obrigatorio',
           'Favor inserir periodo para consulta do relatório',
-          (_) => Modular.navigator.pop());
+          (_) => Modular.to.pop());
     else
       controller.setFiltros();
   }
@@ -91,90 +91,91 @@ class _RelatorioReservasPageState
                                           child: Text(
                                               "Insira os filtros para configurar seu relatório"),
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: DropdownSearch<UnidadeEntity>(
-                                            mode: Mode.BOTTOM_SHEET,
-                                            showSearchBox: true,
-                                            items: controller.unidades.data,
-                                            showClearButton: true,
-                                            itemAsString: (UnidadeEntity u) =>
-                                                u.unidadeAsString(),
-                                            label: "Unidade",
-                                            hint: "Unidade",
-                                            onChanged: (unidade) => unidade !=
-                                                    null
-                                                ? controller
-                                                    .setUnidade(unidade.codimo)
-                                                : controller.setUnidade(null),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: DropdownSearch<EspacoEntity>(
-                                            mode: Mode.BOTTOM_SHEET,
-                                            showSearchBox: true,
-                                            items: controller.espacos.data,
-                                            showClearButton: true,
-                                            itemAsString: (EspacoEntity u) =>
-                                                u.espacoAsString(),
-                                            label: "Espaço",
-                                            hint: "Espaço",
-                                            onChanged: (espaco) => espaco !=
-                                                    null
-                                                ? controller
-                                                    .setEspaco(espaco.id)
-                                                : controller.setEspaco(null),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: DropdownSearch<String>(
-                                              mode: Mode.BOTTOM_SHEET,
-                                              showClearButton: true,
-                                              items: [
-                                                "Aguardando aprovação",
-                                                "Aprovado",
-                                                "Rejeitado",
-                                                "Cancelado"
-                                              ],
-                                              smallSheet: true,
-                                              label: "Status",
-                                              hint: "Status",
-                                              onChanged: (v) =>
-                                                  controller.setStatus(v)),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                  bottom: 10,
-                                                ),
-                                                child: Text('Período'),
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
-                                                children: [
-                                                  startDate != null
-                                                      ? Text(
-                                                          UIHelper.formatDate(
-                                                              startDate))
-                                                      : Text('Data Inicial'),
-                                                  Text('-'),
-                                                  endDate != null
-                                                      ? Text(
-                                                          UIHelper.formatDate(
-                                                              endDate))
-                                                      : Text('Data Final'),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
+                                        // Padding(
+                                        //   padding: const EdgeInsets.all(8.0),
+                                        //   child:
+                                        //    DropdownSearch<UnidadeEntity>(
+                                        //     mode: Mode.BOTTOM_SHEET,
+                                        //     showSearchBox: true,
+                                        //     items: controller.unidades.data,
+                                        //     showClearButton: true,
+                                        //     itemAsString: (UnidadeEntity u) =>
+                                        //         u.unidadeAsString(),
+                                        //     label: "Unidade",
+                                        //     hint: "Unidade",
+                                        //     onChanged: (unidade) => unidade !=
+                                        //             null
+                                        //         ? controller
+                                        //             .setUnidade(unidade.codimo)
+                                        //         : controller.setUnidade(null),
+                                        //   ),
+                                        // ),
+                                        // Padding(
+                                        //   padding: const EdgeInsets.all(8.0),
+                                        //   child: DropdownSearch<EspacoEntity>(
+                                        //     mode: Mode.BOTTOM_SHEET,
+                                        //     showSearchBox: true,
+                                        //     items: controller.espacos.data,
+                                        //     showClearButton: true,
+                                        //     itemAsString: (EspacoEntity u) =>
+                                        //         u.espacoAsString(),
+                                        //     label: "Espaço",
+                                        //     hint: "Espaço",
+                                        //     onChanged: (espaco) => espaco !=
+                                        //             null
+                                        //         ? controller
+                                        //             .setEspaco(espaco.id)
+                                        //         : controller.setEspaco(null),
+                                        //   ),
+                                        // ),
+                                        // Padding(
+                                        //   padding: const EdgeInsets.all(8.0),
+                                        //   child: DropdownSearch<String>(
+                                        //       mode: Mode.BOTTOM_SHEET,
+                                        //       showClearButton: true,
+                                        //       items: [
+                                        //         "Aguardando aprovação",
+                                        //         "Aprovado",
+                                        //         "Rejeitado",
+                                        //         "Cancelado"
+                                        //       ],
+                                        //       smallSheet: true,
+                                        //       label: "Status",
+                                        //       hint: "Status",
+                                        //       onChanged: (v) =>
+                                        //           controller.setStatus(v)),
+                                        // ),
+                                        // Padding(
+                                        //   padding: const EdgeInsets.all(8.0),
+                                        //   child: Column(
+                                        //     children: [
+                                        //       Padding(
+                                        //         padding: const EdgeInsets.only(
+                                        //           bottom: 10,
+                                        //         ),
+                                        //         child: Text('Período'),
+                                        //       ),
+                                        //       Row(
+                                        //         mainAxisAlignment:
+                                        //             MainAxisAlignment
+                                        //                 .spaceAround,
+                                        //         children: [
+                                        //           startDate != null
+                                        //               ? Text(
+                                        //                   UIHelper.formatDate(
+                                        //                       startDate))
+                                        //               : Text('Data Inicial'),
+                                        //           Text('-'),
+                                        //           endDate != null
+                                        //               ? Text(
+                                        //                   UIHelper.formatDate(
+                                        //                       endDate))
+                                        //               : Text('Data Final'),
+                                        //         ],
+                                        //       ),
+                                        //     ],
+                                        //   ),
+                                        // ),
                                         SfDateRangePicker(
                                           view: DateRangePickerView.month,
                                           selectionMode:

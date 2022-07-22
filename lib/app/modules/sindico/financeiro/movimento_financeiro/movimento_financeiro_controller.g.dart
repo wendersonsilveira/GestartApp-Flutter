@@ -8,8 +8,8 @@ part of 'movimento_financeiro_controller.dart';
 
 final $MovimentoFinanceiroController = BindInject(
   (i) => MovimentoFinanceiroController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************
@@ -20,7 +20,7 @@ final $MovimentoFinanceiroController = BindInject(
 
 mixin _$MovimentoFinanceiroController
     on _MovimentoFinanceiroControllerBase, Store {
-  Computed<int> _$statusPageComputed;
+  Computed<int>? _$statusPageComputed;
 
   @override
   int get statusPage =>

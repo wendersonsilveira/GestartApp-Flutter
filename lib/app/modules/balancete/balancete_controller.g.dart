@@ -8,8 +8,8 @@ part of 'balancete_controller.dart';
 
 final $BalanceteController = BindInject(
   (i) => BalanceteController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

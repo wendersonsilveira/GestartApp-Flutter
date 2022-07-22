@@ -26,16 +26,16 @@ class ErrorMapper {
 
   static String _dioError(DioError error) {
     switch (error.type) {
-      case DioErrorType.SEND_TIMEOUT:
-      case DioErrorType.CONNECT_TIMEOUT:
-      case DioErrorType.RECEIVE_TIMEOUT:
+      case DioErrorType.sendTimeout:
+      case DioErrorType.connectTimeout:
+      case DioErrorType.receiveTimeout:
         return "Falha na conexão";
         break;
-      case DioErrorType.CANCEL:
+      case DioErrorType.cancel:
         return "Requisição cancelada";
         break;
-      case DioErrorType.RESPONSE:
-      case DioErrorType.DEFAULT:
+      case DioErrorType.response:
+      case DioErrorType.other:
       default:
         break;
     }

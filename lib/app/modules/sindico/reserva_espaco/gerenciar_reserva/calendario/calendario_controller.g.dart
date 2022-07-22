@@ -8,8 +8,8 @@ part of 'calendario_controller.dart';
 
 final $CalendarioController = BindInject(
   (i) => CalendarioController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

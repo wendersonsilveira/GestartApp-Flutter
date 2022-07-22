@@ -206,7 +206,7 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
             actions: [
               TextButton(
                 child: Text('OK'),
-                onPressed: () => Modular.navigator.pop(),
+                onPressed: () => Modular.to.pop(),
               )
             ],
           );

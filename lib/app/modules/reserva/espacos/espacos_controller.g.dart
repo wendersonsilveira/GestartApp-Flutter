@@ -8,8 +8,8 @@ part of 'espacos_controller.dart';
 
 final $EspacosController = BindInject(
   (i) => EspacosController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

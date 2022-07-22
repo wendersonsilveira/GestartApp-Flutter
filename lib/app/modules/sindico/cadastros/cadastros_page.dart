@@ -6,7 +6,7 @@ import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/empty/empt_widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+// import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'cadastros_controller.dart';
@@ -89,7 +89,7 @@ class _CadastrosPageState
   Future<void> getFiltro() async {
     return showDialog(
       context: context,
-      child: SimpleDialog(
+      builder: (context) => SimpleDialog(
         contentPadding: EdgeInsets.all(20),
         children: [
           FiltroUnidadeWdget(
@@ -97,7 +97,7 @@ class _CadastrosPageState
             filtro: filtro,
             onSubmit: (filtter) {
               controller.getUnidades(filtro);
-              Modular.navigator.pop();
+              Modular.to.pop();
             },
           ),
         ],
@@ -176,7 +176,7 @@ class _CadastrosPageState
                                                 MainAxisAlignment.center,
                                             children: [
                                               Icon(
-                                                FlutterIcons.users_fea,
+                                                Icons.verified_user_sharp,
                                                 color:
                                                     AppColorScheme.primaryColor,
                                                 size: 15,
@@ -347,7 +347,7 @@ class _CadastrosPageState
                                       filtro['FILTER_HAS_VEICULOS'] = 1;
                                       mudarPage(1);
                                     },
-                                    leading: Icon(FlutterIcons.car_alt_faw5s),
+                                    leading: Icon(Icons.car_rental),
                                     title: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -605,7 +605,7 @@ class _CadastrosPageState
                                                                             children: [
                                                                               Container(
                                                                                 padding: EdgeInsets.only(right: 8),
-                                                                                child: Icon(FlutterIcons.car_alt_faw5s, color: AppColorScheme.primaryColor),
+                                                                                child: Icon(Icons.car_repair, color: AppColorScheme.primaryColor),
                                                                               ),
                                                                               Text(
                                                                                 '${controller.unidades[index].veiculos} VEÍCULOS',

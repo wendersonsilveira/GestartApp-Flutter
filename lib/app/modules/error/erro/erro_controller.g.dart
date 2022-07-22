@@ -8,8 +8,8 @@ part of 'erro_controller.dart';
 
 final $ErroController = BindInject(
   (i) => ErroController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

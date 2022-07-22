@@ -8,8 +8,8 @@ part of 'dashboard_controller.dart';
 
 final $DashboardController = BindInject(
   (i) => DashboardController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************
@@ -19,14 +19,14 @@ final $DashboardController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$DashboardController on _DashboardControllerBase, Store {
-  Computed<bool> _$statusLoadingComputed;
+  Computed<bool>? _$statusLoadingComputed;
 
   @override
   bool get statusLoading =>
       (_$statusLoadingComputed ??= Computed<bool>(() => super.statusLoading,
               name: '_DashboardControllerBase.statusLoading'))
           .value;
-  Computed<bool> _$isSindicoComputed;
+  Computed<bool>? _$isSindicoComputed;
 
   @override
   bool get isSindico =>
@@ -224,6 +224,22 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
     });
   }
 
+  final _$deviceVersionAtom =
+      Atom(name: '_DashboardControllerBase.deviceVersion');
+
+  @override
+  String get deviceVersion {
+    _$deviceVersionAtom.reportRead();
+    return super.deviceVersion;
+  }
+
+  @override
+  set deviceVersion(String value) {
+    _$deviceVersionAtom.reportWrite(value, super.deviceVersion, () {
+      super.deviceVersion = value;
+    });
+  }
+
   final _$getInforCondominiosAsyncAction =
       AsyncAction('_DashboardControllerBase.getInforCondominios');
 
@@ -284,6 +300,7 @@ servicoReservaDisponivel: ${servicoReservaDisponivel},
 servicoReserva: ${servicoReserva},
 chekedSindico: ${chekedSindico},
 setup: ${setup},
+deviceVersion: ${deviceVersion},
 statusLoading: ${statusLoading},
 isSindico: ${isSindico}
     ''';

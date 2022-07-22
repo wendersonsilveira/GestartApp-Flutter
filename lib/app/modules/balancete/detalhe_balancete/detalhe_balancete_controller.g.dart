@@ -8,8 +8,8 @@ part of 'detalhe_balancete_controller.dart';
 
 final $DetalheBalanceteController = BindInject(
   (i) => DetalheBalanceteController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

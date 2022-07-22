@@ -9,7 +9,7 @@ import 'sign_in/sign_in_controller.dart';
 import 'sign_in/sign_in_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class LoginModule extends ChildModule {
+class LoginModule extends Module {
   @override
   List<Bind> get binds => [
         $ForgotPasswordController,
@@ -18,13 +18,14 @@ class LoginModule extends ChildModule {
       ];
 
   @override
-  List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, child: (_, args) => SignInPage()),
-        ModularRouter(RouteName.signup,
-            child: (_, args) => SignUpPage(cpfCnpj: args.data)),
-        ModularRouter(RouteName.forgot_password,
-            child: (_, args) => ForgotPasswordPage()),
+  List<ModularRoute> get routers => [
+        ChildRoute(Modular.initialRoute,
+            ModularChild: (_, args) => SignInPage()),
+        ChildRoute(RouteName.signup,
+            ModularChild: (_, args) => SignUpPage(cpfCnpj: args.data)),
+        ChildRoute(RouteName.forgot_password,
+            ModularChild: (_, args) => ForgotPasswordPage()),
       ];
 
-  static Inject get to => Inject<LoginModule>.of();
+  // static Inject get to => Inject<LoginModule>.of();
 }

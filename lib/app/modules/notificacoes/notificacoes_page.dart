@@ -27,7 +27,7 @@ class _NotificacoesPageState
   }
 
   sendToDetail(int id, String page) {
-    Modular.navigator.pushNamed(page, arguments: id);
+    Modular.to.pushNamed(page, arguments: id);
   }
 
   @override

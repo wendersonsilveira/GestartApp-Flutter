@@ -70,7 +70,7 @@ class _CadastroAvisoPagePageState
       } else {
         showInSnackBar(r.message);
         Timer(Duration(seconds: 1), () {
-          Modular.navigator.pop();
+          Modular.to.pop();
           setLoading(false);
         });
       }

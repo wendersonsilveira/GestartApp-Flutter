@@ -2,7 +2,7 @@ import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/cadastros/components/item_cadastro_widget.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+// import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'cadastros_controller.dart';
 
@@ -14,7 +14,8 @@ class CadastrosPage extends StatefulWidget {
   _CadastrosPageState createState() => _CadastrosPageState();
 }
 
-class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosController> {
+class _CadastrosPageState
+    extends ModularState<CadastrosPage, CadastrosController> {
   //use 'controller' variable to access controller
 
   @override
@@ -28,12 +29,12 @@ class _CadastrosPageState extends ModularState<CadastrosPage, CadastrosControlle
           children: [
             ItemCadastroWidget(
               descricao: 'Pets',
-              icone: Icons.pets,
+              // icone: Icons.pets,
               routeName: RouteName.pets,
             ),
             ItemCadastroWidget(
               descricao: 'Veículos',
-              icone: FlutterIcons.car_alt_faw5s,
+              // icone: Icons.car_crash,
               routeName: RouteName.veiculos,
             ),
           ],

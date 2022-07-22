@@ -4,26 +4,27 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ItemCadastroWidget extends StatelessWidget {
-  const ItemCadastroWidget({Key key, this.descricao, this.icone, this.routeName}) : super(key: key);
+  const ItemCadastroWidget({Key key, this.descricao, this.routeName})
+      : super(key: key);
 
   final String descricao;
-  final IconData icone;
+  // final IconData icone;
   final String routeName;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Modular.navigator.pushNamed(routeName);
+        Modular.to.pushNamed(routeName);
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
         child: Card(
           child: ListTile(
             title: Text(descricao),
-            leading: Icon(
-              icone,
-              color: AppColorScheme.primaryColor,
-            ),
+            // leading: Icon(
+            //   icone,
+            //   color: AppColorScheme.primaryColor,
+            // ),
             trailing: Icon(Icons.chevron_right),
           ),
         ),

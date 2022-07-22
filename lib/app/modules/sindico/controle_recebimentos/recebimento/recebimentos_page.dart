@@ -13,7 +13,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class RecebimentosPage extends StatefulWidget {
   final String title;
-  const RecebimentosPage({Key key, this.title = 'Recebimentos'}) : super(key: key);
+  const RecebimentosPage({Key key, this.title = 'Recebimentos'})
+      : super(key: key);
 
   @override
   _RecebimentosPageState createState() => _RecebimentosPageState();
@@ -57,13 +58,13 @@ class _RecebimentosPageState extends State<RecebimentosPage> {
   Future<void> getFiltro() async {
     return showDialog(
       context: context,
-      child: SimpleDialog(
+      builder: (context) => SimpleDialog(
         contentPadding: EdgeInsets.all(20),
         children: [
           FiltroWdget(
             onSubmit: (filtter) {
               getRecebimentos(filtter);
-              Modular.navigator.pop();
+              Modular.to.pop();
             },
             getHeader: setHeader,
           ),
@@ -106,7 +107,8 @@ class _RecebimentosPageState extends State<RecebimentosPage> {
                         children: [
                           Expanded(child: Text('Data do pagamento:')),
                           Expanded(
-                            child: Text('${UIHelper.formatDateFromString(filtro["DATPAG_1"])} - ${UIHelper.formatDateFromString(filtro["DATPAG_2"])}'),
+                            child: Text(
+                                '${UIHelper.formatDateFromString(filtro["DATPAG_1"])} - ${UIHelper.formatDateFromString(filtro["DATPAG_2"])}'),
                           ),
                         ],
                       ),
@@ -144,14 +146,17 @@ class _RecebimentosPageState extends State<RecebimentosPage> {
                             return Card(
                               child: ListTile(
                                 leading: CircleAvatar(
-                                  backgroundImage: NetworkImage(recebimentos[index].linkPhoto),
+                                  backgroundImage: NetworkImage(
+                                      recebimentos[index].linkPhoto),
                                 ),
                                 title: Text(recebimentos[index].unidade),
-                                subtitle: Text('VALOR: ${UIHelper.moneyFormat(recebimentos[index].valor)}'),
+                                subtitle: Text(
+                                    'VALOR: ${UIHelper.moneyFormat(recebimentos[index].valor)}'),
                                 trailing: Icon(Icons.chevron_right),
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => RecebimentoDetalhesPage(
+                                    builder: (context) =>
+                                        RecebimentoDetalhesPage(
                                       filtro: filtro,
                                       codOrd: recebimentos[index].codOrd,
                                     ),

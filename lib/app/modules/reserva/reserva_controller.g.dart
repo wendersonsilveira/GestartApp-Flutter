@@ -8,8 +8,8 @@ part of 'reserva_controller.dart';
 
 final $ReservaController = BindInject(
   (i) => ReservaController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

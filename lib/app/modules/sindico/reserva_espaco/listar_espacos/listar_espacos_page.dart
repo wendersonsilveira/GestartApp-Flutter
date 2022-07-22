@@ -8,7 +8,7 @@ import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+// import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'listar_espacos_controller.dart';
@@ -88,7 +88,7 @@ class _ListarEspacosPageState
           center: false,
           actions: [
             TextButton(
-              onPressed: () => Modular.navigator
+              onPressed: () => Modular.to
                   .pushNamed(RouteName.cadastro_espaco, arguments: null)
                   .then((value) => controller.init()),
               child: Text('ADICIONAR', style: AppTextTheme.textActionButton),
@@ -135,7 +135,7 @@ class _ListarEspacosPageState
                                           leading: Container(
                                             padding: EdgeInsets.only(top: 9),
                                             child: Icon(
-                                              FlutterIcons.square_faw,
+                                              Icons.access_alarm_sharp,
                                               size: 50.h,
                                               color: controller.espacos
                                                       .data[index].statusEspaco
@@ -143,11 +143,10 @@ class _ListarEspacosPageState
                                                   : Colors.grey[400],
                                             ),
                                           ),
-                                          onTap: () => Modular.navigator
-                                              .pushNamed(
-                                                  RouteName.cadastro_espaco,
-                                                  arguments: controller
-                                                      .espacos.data[index].id),
+                                          onTap: () => Modular.to.pushNamed(
+                                              RouteName.cadastro_espaco,
+                                              arguments: controller
+                                                  .espacos.data[index].id),
                                         ),
                                         confirmDismiss: (_) =>
                                             checarSeExisteReservas(controller
@@ -163,7 +162,7 @@ class _ListarEspacosPageState
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            FlutterIcons.exclamation_triangle_faw,
+                            Icons.access_alarm_sharp,
                             size: 70,
                             color: AppColorScheme.primaryColor,
                           ),

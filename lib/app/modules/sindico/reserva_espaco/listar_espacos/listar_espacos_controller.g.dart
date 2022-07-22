@@ -8,8 +8,8 @@ part of 'listar_espacos_controller.dart';
 
 final $ListarEspacosController = BindInject(
   (i) => ListarEspacosController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

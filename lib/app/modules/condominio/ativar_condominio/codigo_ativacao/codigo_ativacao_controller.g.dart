@@ -8,8 +8,8 @@ part of 'codigo_ativacao_controller.dart';
 
 final $CodigoAtivacaoController = BindInject(
   (i) => CodigoAtivacaoController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

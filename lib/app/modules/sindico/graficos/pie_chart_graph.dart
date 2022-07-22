@@ -23,11 +23,12 @@ class _BarChartGraphState extends State<BarChartGraph> {
   Widget build(BuildContext context) {
     List<charts.Series<BarChartModel, String>> series = [
       charts.Series(
-          id: "Contas",
-          data: widget.data,
-          domainFn: (BarChartModel series, _) => series.descricao,
-          measureFn: (BarChartModel series, _) => series.valor,
-          colorFn: (BarChartModel series, _) => series.color),
+          // id: "Contas",
+          // data: widget.data,
+          // domainFn: (BarChartModel series, _) => series.descricao,
+          // measureFn: (BarChartModel series, _) => series.valor,
+          // colorFn: (BarChartModel series, _) => series.color
+          ),
     ];
 
     return _buildFinancialList(series);

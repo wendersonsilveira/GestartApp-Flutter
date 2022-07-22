@@ -1,6 +1,6 @@
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+// import 'package:flutter_icons/flutter_icons.dart';
 
 class IconStatusHelperWidget extends StatefulWidget {
   const IconStatusHelperWidget({Key key, this.status}) : super(key: key);
@@ -19,10 +19,11 @@ class IconStatusHelperWidgetState extends State<IconStatusHelperWidget> {
           width: 70,
           child: Column(
             children: [
-              Icon(FlutterIcons.error_outline_mdi,
+              Icon(Icons.error_outline,
                   color: AppColorScheme.tagYellow2, size: 32),
               Text('Aguardando',
-                  style: TextStyle(color: AppColorScheme.tagYellow2, fontSize: 12)),
+                  style: TextStyle(
+                      color: AppColorScheme.tagYellow2, fontSize: 12)),
             ],
           ),
         );
@@ -32,10 +33,11 @@ class IconStatusHelperWidgetState extends State<IconStatusHelperWidget> {
           width: 70,
           child: Column(
             children: [
-              Icon(FlutterIcons.check_circle_outline_mco,
+              Icon(Icons.check_box,
                   color: AppColorScheme.primaryColor, size: 32),
               Text('Aprovada',
-                  style: TextStyle(color: AppColorScheme.primaryColor, fontSize: 12)),
+                  style: TextStyle(
+                      color: AppColorScheme.primaryColor, fontSize: 12)),
             ],
           ),
         );
@@ -45,9 +47,9 @@ class IconStatusHelperWidgetState extends State<IconStatusHelperWidget> {
           width: 70,
           child: Column(
             children: [
-              Icon(FlutterIcons.highlight_off_mdi,
-                  color: AppColorScheme.tagRed2, size: 32),
-              Text('Rejeitada', style: TextStyle(color: AppColorScheme.tagRed2, fontSize: 12))
+              Icon(Icons.highlight, color: AppColorScheme.tagRed2, size: 32),
+              Text('Rejeitada',
+                  style: TextStyle(color: AppColorScheme.tagRed2, fontSize: 12))
             ],
           ),
         );
@@ -57,9 +59,11 @@ class IconStatusHelperWidgetState extends State<IconStatusHelperWidget> {
           width: 70,
           child: Column(
             children: [
-              Icon(FlutterIcons.highlight_off_mdi,
+              Icon(Icons.highlight_off,
                   color: AppColorScheme.tagRed2, size: 32),
-              Text('Cancelada', style: TextStyle(color: AppColorScheme.tagRed2, fontSize: 12)),
+              Text('Cancelada',
+                  style:
+                      TextStyle(color: AppColorScheme.tagRed2, fontSize: 12)),
             ],
           ),
         );

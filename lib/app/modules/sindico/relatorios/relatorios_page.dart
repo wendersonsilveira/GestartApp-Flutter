@@ -1,7 +1,7 @@
 import 'package:Gestart/app/modules/sindico/relatorios/reservas/relatorio_reservas_page.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+// import 'package:flutter_icons/flutter_icons.dart';
 
 class RelatoriosPage extends StatefulWidget {
   const RelatoriosPage({Key key}) : super(key: key);
@@ -29,8 +29,7 @@ class _RelatoriosPageState extends State<RelatoriosPage> {
                   child: ListTile(
                     title: Text('Reservas de espaço'),
                     leading: Icon(
-                      FlutterIcons.square_faw,
-                      color: AppColorScheme.primaryColor,
+                      Icons.access_alarm_sharp,
                     ),
                     trailing: Icon(Icons.chevron_right),
                     onTap: () {

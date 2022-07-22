@@ -8,8 +8,8 @@ part of 'forgot_password_controller.dart';
 
 final $ForgotPasswordController = BindInject(
   (i) => ForgotPasswordController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

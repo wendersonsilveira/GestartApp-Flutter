@@ -8,8 +8,8 @@ part of 'veiculos_controller.dart';
 
 final $VeiculosController = BindInject(
   (i) => VeiculosController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

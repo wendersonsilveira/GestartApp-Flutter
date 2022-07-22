@@ -8,8 +8,8 @@ part of 'sindico_controller.dart';
 
 final $SindicoController = BindInject(
   (i) => SindicoController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

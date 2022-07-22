@@ -8,8 +8,8 @@ part of 'cadastro_pet_controller.dart';
 
 final $CadastroPetController = BindInject(
   (i) => CadastroPetController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

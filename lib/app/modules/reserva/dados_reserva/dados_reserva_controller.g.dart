@@ -8,8 +8,8 @@ part of 'dados_reserva_controller.dart';
 
 final $DadosReservaController = BindInject(
   (i) => DadosReservaController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

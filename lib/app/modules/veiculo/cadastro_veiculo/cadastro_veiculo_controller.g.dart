@@ -8,8 +8,8 @@ part of 'cadastro_veiculo_controller.dart';
 
 final $CadastroVeiculoController = BindInject(
   (i) => CadastroVeiculoController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

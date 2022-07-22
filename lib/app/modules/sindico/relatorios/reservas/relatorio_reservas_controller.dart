@@ -79,7 +79,7 @@ abstract class _RelatorioReservasControllerBase with Store {
         dataFim: dataFim,
         tipo: tipo);
 
-    Modular.navigator.pushNamed(RouteName.listaReservas, arguments: params);
+    Modular.to.pushNamed(RouteName.listaReservas, arguments: params);
   }
 
   init() async {

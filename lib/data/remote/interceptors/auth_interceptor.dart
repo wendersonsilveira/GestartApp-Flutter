@@ -25,10 +25,11 @@ class AuthInterceptor extends Interceptor {
   static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   Map<String, dynamic> _deviceData = <String, dynamic>{};
   @override
-  Future onError(DioError error) async {
-    if (error.response?.statusCode == 401 && error.request.path != 'login')
-      goToLogin();
-    return super.onError(error);
+  @override
+  Future onError(DioError error, handler) async {
+    if (error.response?.statusCode == 401 &&
+        error.requestOptions.path != 'login') goToLogin();
+    return super.onError(error, handler);
   }
 
   Map<String, dynamic> _readIosDeviceInfo(IosDeviceInfo data) {
@@ -101,12 +102,13 @@ class AuthInterceptor extends Interceptor {
 
   goToLogin() {
     getIt.get<SharedPreferencesManager>().removeAll();
-    Modular.navigator.popAndPushNamed(RouteName.login,
+    Modular.to.popAndPushNamed(RouteName.login,
         arguments: 'Sua sessão expirou, logue–se novamente.');
   }
 
   @override
-  Future onRequest(RequestOptions options) async {
+  Future onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
     versions = await _initPackageInfo();
     String platform = Platform.isIOS ? "IOS" : 'Android';
     var tokenFcm = await sharedPreferences.getString('devicekey');
@@ -118,6 +120,6 @@ class AuthInterceptor extends Interceptor {
     if (platform != null) options.headers['platform'] = platform;
     if (versions['versionPlatform'] != null)
       options.headers['platform_version'] = versions['versionPlatform'];
-    return super.onRequest(options);
+    return super.onRequest(options, handler);
   }
 }

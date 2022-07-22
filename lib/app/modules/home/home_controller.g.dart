@@ -8,8 +8,8 @@ part of 'home_controller.dart';
 
 final $HomeController = BindInject(
   (i) => HomeController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

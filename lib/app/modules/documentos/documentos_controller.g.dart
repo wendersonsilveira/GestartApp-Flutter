@@ -8,8 +8,8 @@ part of 'documentos_controller.dart';
 
 final $DocumentosController = BindInject(
   (i) => DocumentosController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

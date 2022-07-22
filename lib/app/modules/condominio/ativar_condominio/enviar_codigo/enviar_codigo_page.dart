@@ -41,7 +41,7 @@ class _EnviarCodigoPageState
         UIHelper.showInSnackBar(
             'O código foi enviado para o seu E-mail', _scaffoldKey);
         Timer(Duration(seconds: 2), () {
-          Modular.navigator.pop();
+          Modular.to.pop();
         });
       }
     } else
@@ -107,7 +107,7 @@ class _EnviarCodigoPageState
                                             : false,
                                       )
                                     : ContainedButtonWidget(
-                                      onPressed: (){},
+                                        onPressed: () {},
                                         text: "Gerar Código",
                                       ),
                               ),
@@ -127,7 +127,7 @@ class _EnviarCodigoPageState
                 }
               }),
               GestureDetector(
-                  onTap: () => Modular.navigator.pop(),
+                  onTap: () => Modular.to.pop(),
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 12),
                     child: Text(

@@ -3,7 +3,8 @@ import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_adm_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter/material.dart';
+// import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,19 +25,19 @@ abstract class _SindicoControllerBase with Store {
 
   final List<dynamic> menus = [
     {
-      'icon': FlutterIcons.calendar_account_mco,
+      'icon': Icons.access_alarm_sharp,
       'title': 'Reserva de Espaço',
       'indice': 1
     },
     {
-      'icon': FlutterIcons.hand_holding_usd_faw5s,
+      'icon': Icons.access_alarm_sharp,
       'title': 'Controle de Recebimentos',
       'indice': 2
     },
-    {'icon': FlutterIcons.usd_faw, 'title': 'Financeiro', 'indice': 3},
-    {'icon': FlutterIcons.rss_ent, 'title': 'Comunicação', 'indice': 4},
-    {'icon': FlutterIcons.id_card_faw, 'title': 'Cadastros', 'indice': 5},
-    {'icon': FlutterIcons.md_analytics_ion, 'title': 'Relatórios', 'indice': 6}
+    {'icon': Icons.access_alarm_sharp, 'title': 'Financeiro', 'indice': 3},
+    {'icon': Icons.access_alarm_sharp, 'title': 'Comunicação', 'indice': 4},
+    {'icon': Icons.access_alarm_sharp, 'title': 'Cadastros', 'indice': 5},
+    {'icon': Icons.access_alarm_sharp, 'title': 'Relatórios', 'indice': 6}
   ];
 
   @observable

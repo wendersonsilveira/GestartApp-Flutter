@@ -62,16 +62,16 @@ class CustomDio {
       return res.data;
     } catch (error) {
       if (error.response == null) {
-        Modular.navigator.pushNamed(RouteName.error_page,
+        Modular.to.pushNamed(RouteName.error_page,
             arguments: 'Serviço indisponível. Verifique sua conexão.');
       } else if (error.response.statusCode == 404) {
-        Modular.navigator.popAndPushNamed(RouteName.error_page,
+        Modular.to.popAndPushNamed(RouteName.error_page,
             arguments: 'Recurso não encontrado.');
       } else if (error.response.statusCode == 401) {
-        Modular.navigator.popAndPushNamed(RouteName.error_page,
+        Modular.to.popAndPushNamed(RouteName.error_page,
             arguments: 'Usuário desconectado! Favor efetuar login.');
       } else {
-        Modular.navigator.pushNamed(RouteName.error_page,
+        Modular.to.pushNamed(RouteName.error_page,
             arguments: 'Houve um erro inesperado.');
       }
 

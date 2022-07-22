@@ -35,7 +35,7 @@ class _AlterarPerfilPageState
   enviarAlteracao() {
     if (_formKey.currentState.validate()) {
       controller.alterar().then((value) {
-        if (value) Modular.navigator.pop();
+        if (value) Modular.to.pop();
       });
     }
   }

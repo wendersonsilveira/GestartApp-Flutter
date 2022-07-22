@@ -10,13 +10,13 @@ import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/di/di.dart';
-import 'package:flushbar/flushbar.dart';
+// import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+// import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+// import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'components/button_services/button_services_widget.dart';
 import 'components/itens_services/item_servico_widget.dart';
@@ -35,7 +35,7 @@ class DashboardPage extends StatefulWidget {
   _DashboardPageState createState() => _DashboardPageState();
 }
 
-final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+// final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 final sharedPreferences = getIt.get<SharedPreferencesManager>();
 final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -45,7 +45,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 class _DashboardPageState
     extends ModularState<DashboardPage, DashboardController> {
   //use 'controller' variable to access controller
-  PDFDocument document;
+  // PDFDocument document;
   bool isNotifyConfig = false;
   PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
@@ -55,11 +55,11 @@ class _DashboardPageState
   );
   @override
   void initState() {
-    _firebaseMessaging.getToken().then((value) {
-      sharedPreferences.putString('devicekey', value);
-    });
+    // _firebaseMessaging.getToken().then((value) {
+    //   sharedPreferences.putString('devicekey', value);
+    // });
     _initPackageInfo();
-    Platform.isIOS ? configNotificationIOS() : configNotificationAndroid();
+    // Platform.isIOS ? configNotificationIOS() : configNotificationAndroid();
 
     controller.testsUseCases();
     initNotificationLocal();
@@ -100,7 +100,7 @@ class _DashboardPageState
         var arrayString = payload.split('**');
         String page = arrayString[0].trim();
         int id = int.parse(arrayString[1]);
-        Modular.navigator.pushNamed('$page', arguments: id);
+        Modular.to.pushNamed('$page', arguments: id);
       },
     );
   }
@@ -136,109 +136,109 @@ class _DashboardPageState
       {String page = '', String id = ''}) {
     int iD = id != '' ? int.parse(id) : null;
     String toPage = page.trim();
-    Flushbar(
-      icon: Image.asset(
-        AppImages.icon,
-        height: 30,
-        width: 30,
-      ),
-      shouldIconPulse: true,
-      message: message,
-      backgroundColor: Color.fromRGBO(60, 60, 60, 20),
-      title: titulo,
-      onTap: (_) {
-        if (toPage.isNotEmpty && iD != null)
-          Modular.navigator.pushNamed('$toPage', arguments: int.parse(id));
-        else if (toPage.isNotEmpty && iD == null)
-          Modular.navigator.pushNamed('$toPage');
-        else
-          print('Apenas notificação');
-      },
-      duration: Duration(seconds: 2),
-      flushbarPosition: FlushbarPosition.TOP,
-    )..show(context);
+    // Flushbar(
+    //   icon: Image.asset(
+    //     AppImages.icon,
+    //     height: 30,
+    //     width: 30,
+    //   ),
+    //   shouldIconPulse: true,
+    //   message: message,
+    //   backgroundColor: Color.fromRGBO(60, 60, 60, 20),
+    //   title: titulo,
+    //   onTap: (_) {
+    //     if (toPage.isNotEmpty && iD != null)
+    //       Modular.navigator.pushNamed('$toPage', arguments: int.parse(id));
+    //     else if (toPage.isNotEmpty && iD == null)
+    //       Modular.navigator.pushNamed('$toPage');
+    //     else
+    //       print('Apenas notificação');
+    //   },
+    //   duration: Duration(seconds: 2),
+    //   flushbarPosition: FlushbarPosition.TOP,
+    // )..show(context);
   }
 
   configNotificationIOS() {
-    _firebaseMessaging.configure(
-      onMessage: (Map<String, dynamic> message) async {
-        var texto = message['body'];
-        var titulo = message['title'];
-        showTopSnackBar(context, texto, titulo,
-            page: '/${message['servico']}', id: '${message['item_id']}');
-      },
-      onLaunch: (Map<String, dynamic> message) async {
-        print("onLaunch: $message");
-      },
-      onResume: (Map<String, dynamic> message) async {
-        String toPage = message['servico'] != null
-            ? '/' + message['servico'].toString().trim()
-            : null;
-        int id =
-            message['item_id'] != null ? int.parse(message['item_id']) : null;
-        if (toPage != null && id != null)
-          Modular.navigator.pushNamed(toPage, arguments: id);
-        else if (toPage != null && id == null)
-          Modular.navigator.pushNamed(toPage);
-        else
-          print('apenas notificacao');
-      },
-    );
-    _firebaseMessaging.requestNotificationPermissions(
-        const IosNotificationSettings(sound: true, badge: true, alert: true));
-    _firebaseMessaging.onIosSettingsRegistered
-        .listen((IosNotificationSettings settings) {
-      print("Settings registered: $settings");
-    });
-    _firebaseMessaging.getToken().then((String token) {
-      assert(token != null);
+    // _firebaseMessaging.configure(
+    //   onMessage: (Map<String, dynamic> message) async {
+    //     var texto = message['body'];
+    //     var titulo = message['title'];
+    //     showTopSnackBar(context, texto, titulo,
+    //         page: '/${message['servico']}', id: '${message['item_id']}');
+    //   },
+    //   onLaunch: (Map<String, dynamic> message) async {
+    //     print("onLaunch: $message");
+    //   },
+    //   onResume: (Map<String, dynamic> message) async {
+    //     String toPage = message['servico'] != null
+    //         ? '/' + message['servico'].toString().trim()
+    //         : null;
+    //     int id =
+    //         message['item_id'] != null ? int.parse(message['item_id']) : null;
+    //     if (toPage != null && id != null)
+    //       Modular.to.pushNamed(toPage, arguments: id);
+    //     else if (toPage != null && id == null)
+    //       Modular.to.pushNamed(toPage);
+    //     else
+    //       print('apenas notificacao');
+    //   },
+    // );
+    // _firebaseMessaging.requestNotificationPermissions(
+    //     const IosNotificationSettings(sound: true, badge: true, alert: true));
+    // _firebaseMessaging.onIosSettingsRegistered
+    //     .listen((IosNotificationSettings settings) {
+    //   print("Settings registered: $settings");
+    // });
+    // _firebaseMessaging.getToken().then((String token) {
+    //   assert(token != null);
 
-      print('token: $token');
-    });
+    //   print('token: $token');
+    // });
   }
 
-  configNotificationAndroid() {
-    _firebaseMessaging.configure(
-      onMessage: (Map<String, dynamic> message) async {
-        print("onMessage: $message");
-        sendNotificationLocal(
-            '${message['data']['title']}', '${message['data']['body']}',
-            page: '/${message['data']['servico']}',
-            id: int.parse(message['data']['item_id']));
-      },
-      onBackgroundMessage: myBackgroundMessageHandler,
-      onLaunch: (Map<String, dynamic> message) async {
-        print("onLaunch: $message");
-      },
-      onResume: (Map<String, dynamic> message) async {
-        String page = '/${message['data']['servico']}';
-        int idItem = int.parse(message['data']['item_id']);
-        Modular.navigator.pushNamed(page.trim(), arguments: idItem);
-      },
-    );
-    _firebaseMessaging.requestNotificationPermissions(
-        const IosNotificationSettings(sound: true, badge: true, alert: true));
-    _firebaseMessaging.onIosSettingsRegistered
-        .listen((IosNotificationSettings settings) {
-      print('registered: $settings');
-    });
-  }
+  // configNotificationAndroid() {
+  //   _firebaseMessaging.configure(
+  //     onMessage: (Map<String, dynamic> message) async {
+  //       print("onMessage: $message");
+  //       sendNotificationLocal(
+  //           '${message['data']['title']}', '${message['data']['body']}',
+  //           page: '/${message['data']['servico']}',
+  //           id: int.parse(message['data']['item_id']));
+  //     },
+  //     onBackgroundMessage: myBackgroundMessageHandler,
+  //     onLaunch: (Map<String, dynamic> message) async {
+  //       print("onLaunch: $message");
+  //     },
+  //     onResume: (Map<String, dynamic> message) async {
+  //       String page = '/${message['data']['servico']}';
+  //       int idItem = int.parse(message['data']['item_id']);
+  //       Modular.navigator.pushNamed(page.trim(), arguments: idItem);
+  //     },
+  //   );
+  //   _firebaseMessaging.requestNotificationPermissions(
+  //       const IosNotificationSettings(sound: true, badge: true, alert: true));
+  //   _firebaseMessaging.onIosSettingsRegistered
+  //       .listen((IosNotificationSettings settings) {
+  //     print('registered: $settings');
+  //   });
+  // }
 
   static Future<dynamic> myBackgroundMessageHandler(
       Map<String, dynamic> message) async {
     return Future<void>.value();
   }
 
-  sendNotificationLocal(String titulo, message, {String page, int id}) async {
-    var android = new AndroidNotificationDetails(
-        'channelId', 'channelName', 'channelDescription');
+  // sendNotificationLocal(String titulo, message, {String page, int id}) async {
+  //   var android = new AndroidNotificationDetails(
+  //       'channelId', 'channelName', 'channelDescription');
 
-    var iOS = new IOSNotificationDetails();
+  //   var iOS = new IOSNotificationDetails();
 
-    var platform = new NotificationDetails(android: android, iOS: iOS);
-    await flutterLocalNotificationsPlugin.show(0, titulo, message, platform,
-        payload: '$page**$id');
-  }
+  //   var platform = new NotificationDetails(android: android, iOS: iOS);
+  //   await flutterLocalNotificationsPlugin.show(0, titulo, message, platform,
+  //       payload: '$page**$id');
+  // }
 
   Widget _infoTile(String title, String subtitle, String v) {
     // return ListTile(
@@ -317,7 +317,7 @@ class _DashboardPageState
         actions: [
           IconButton(
             icon: Icon(
-              FlutterIcons.exclamation_evi,
+              Icons.assistant_direction,
               color: AppColorScheme.white,
               size: 30,
             ),
@@ -368,13 +368,13 @@ class _DashboardPageState
                                   ButtonSercicesWidget(
                                       condominioAtivo:
                                           controller.existeCondominiosAtivos,
-                                      icon: FlutterIcons.barcode_ant,
+                                      icon: Icons.bar_chart_outlined,
                                       descricao: 'Boleto Digital',
                                       route: RouteName.boleto),
                                   ButtonSercicesWidget(
                                     condominioAtivo:
                                         controller.existeCondominiosAtivos,
-                                    icon: FlutterIcons.md_paper_ion,
+                                    icon: Icons.abc,
                                     descricao: 'Prestação de Contas',
                                     route: RouteName.balancetes,
                                   ),
@@ -402,7 +402,7 @@ class _DashboardPageState
                                       condominioAtivo:
                                           controller.existeCondominiosAtivos,
                                       descricao: 'Assembleia',
-                                      icone: FlutterIcons.gavel_faw5s,
+                                      icone: Icons.gavel,
                                       routeName: RouteName.assembleia,
                                       condominios: controller.condominios.data,
                                     ),
@@ -412,7 +412,7 @@ class _DashboardPageState
                                       condominioAtivo:
                                           controller.existeCondominiosAtivos,
                                       descricao: 'Documentos',
-                                      icone: FlutterIcons.file1_ant,
+                                      icone: Icons.file_copy,
                                       routeName: RouteName.documentos,
                                     ),
                                   ),
@@ -421,7 +421,7 @@ class _DashboardPageState
                                       condominioAtivo:
                                           controller.existeCondominiosAtivos,
                                       descricao: 'Seu Condomínio',
-                                      icone: FlutterIcons.building_faw,
+                                      icone: Icons.house,
                                       routeName: RouteName.infor_condominio,
                                     ),
                                   ),
@@ -429,7 +429,7 @@ class _DashboardPageState
                                     child: ItemServicoWidget(
                                       condominioAtivo: true,
                                       descricao: 'Cadastro',
-                                      icone: FlutterIcons.id_card_mco,
+                                      icone: Icons.card_travel,
                                       routeName: RouteName.cadastros,
                                     ),
                                   ),
@@ -437,7 +437,7 @@ class _DashboardPageState
                                     child: ItemServicoWidget(
                                       condominioAtivo: true,
                                       descricao: 'Notificações',
-                                      icone: FlutterIcons.error_outline_mdi,
+                                      icone: Icons.error,
                                       routeName: RouteName.informativos_page,
                                     ),
                                   ),
@@ -446,8 +446,7 @@ class _DashboardPageState
                                           child: ItemServicoWidget(
                                             condominioAtivo: true,
                                             descricao: 'Painel do Síndico',
-                                            icone:
-                                                FlutterIcons.md_analytics_ion,
+                                            icone: Icons.analytics,
                                             routeName: RouteName.painel_sindico,
                                           ),
                                         )

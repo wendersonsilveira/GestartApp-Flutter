@@ -103,7 +103,7 @@ class _PesquisaPageState
         String k = key;
         double r = k.similarityTo(keyWord);
         if (r > 0.6) {
-          Modular.navigator.pushNamed(routes[key]);
+          Modular.to.pushNamed(routes[key]);
           stopListern();
           match = true;
 

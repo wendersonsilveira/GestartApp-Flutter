@@ -8,8 +8,8 @@ part of 'contas_fixas_controller.dart';
 
 final $ContasFixasController = BindInject(
   (i) => ContasFixasController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

@@ -56,16 +56,16 @@ abstract class _PerfilControllerBase with Store {
     perfil = await _getPerfil();
   }
 
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   Future<void> logout() async {
     sharedPreferences.removeAll();
     destruirKeyFB();
-    Modular.navigator.popAndPushNamed(RouteName.login);
+    Modular.to.popAndPushNamed(RouteName.login);
   }
 
   destruirKeyFB() async {
-    await _firebaseMessaging.deleteInstanceID();
+    // await _firebaseMessaging.deleteInstanceID();
   }
 
   Future<dynamic> alterarSenha(PasswordEntity pass) async {
