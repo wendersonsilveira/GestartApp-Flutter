@@ -2,7 +2,6 @@ import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/styles/app_text_theme.dart';
 import 'package:Gestart/app/widgets/buttons/flat_button_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ErrorDialog extends StatelessWidget {
@@ -18,8 +17,7 @@ class ErrorDialog extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Icon(FlutterIcons.error_outline_mdi,
-              color: AppColorScheme.feedbackDangerDark),
+          Icon(Icons.ac_unit, color: AppColorScheme.feedbackDangerDark),
           SizedBox(
             width: 20.w,
           ),

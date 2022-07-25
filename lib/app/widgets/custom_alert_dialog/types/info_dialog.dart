@@ -1,8 +1,6 @@
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/styles/app_text_theme.dart';
-import 'package:Gestart/app/widgets/buttons/flat_button_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InfoDialog extends StatelessWidget {
@@ -10,7 +8,12 @@ class InfoDialog extends StatelessWidget {
   final String message;
   final Function onClickButton;
   final String textButton;
-  const InfoDialog({Key key, this.title, this.message, this.textButton = 'OK', this.onClickButton})
+  const InfoDialog(
+      {Key key,
+      this.title,
+      this.message,
+      this.textButton = 'OK',
+      this.onClickButton})
       : super(key: key);
 
   @override
@@ -22,7 +25,7 @@ class InfoDialog extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Icon(FlutterIcons.info_circle_faw, color: AppColorScheme.tagOrange2),
+          Icon(Icons.ac_unit, color: AppColorScheme.tagOrange2),
           SizedBox(
             width: 20.w,
           ),

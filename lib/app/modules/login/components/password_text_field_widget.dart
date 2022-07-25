@@ -1,6 +1,5 @@
 import 'package:Gestart/app/widgets/inputs/outlined_text_field_light_form_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
 class PasswordTextFieldWidget extends StatefulWidget {
   final TextEditingController controller;
@@ -37,15 +36,13 @@ class _PasswordTextFieldWidgetState extends State<PasswordTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return OutlinedTextFieldLightFormWidget(
-      prefixIcon: FlutterIcons.lock_outline_mco,
+      prefixIcon: Icons.ac_unit,
       textError: widget.errorText,
       validator: widget.validator,
       controller: widget.controller,
       obscure: obscure,
       hint: widget.placeholder,
-      leftIcon: obscure
-          ? FlutterIcons.eye_outline_mco
-          : FlutterIcons.eye_off_outline_mco,
+      leftIcon: obscure ? Icons.ac_unit : Icons.ac_unit,
       onPressLeftIcon: () {
         setState(() {
           obscure = !obscure;

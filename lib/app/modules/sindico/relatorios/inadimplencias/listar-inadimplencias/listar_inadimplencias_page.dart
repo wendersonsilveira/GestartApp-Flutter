@@ -10,7 +10,6 @@ import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplenci
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_adm_entity.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'listar_inadimplencias_controller.dart';

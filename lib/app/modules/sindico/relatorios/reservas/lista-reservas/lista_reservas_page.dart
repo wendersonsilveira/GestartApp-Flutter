@@ -7,7 +7,6 @@ import 'package:Gestart/app/widgets/empty/empt_widget.dart';
 import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'lista_reservas_controller.dart';
@@ -44,21 +43,20 @@ class _ListaReservasPageState
             GestureDetector(
               onTap: () => {
                 params2 = SendParamsRelReservaEntity(
-                codCon: widget.params.codCon,
-                codimo: widget.params.codimo,
-                status: widget.params.status,
-                espaco: widget.params.espaco,
-                dataIni: widget.params.dataIni,
-                dataFim: widget.params.dataFim,
-                tipo: 'PDF',
-                usr_name: controller.perfil.data.nome,
-                usr_lastname: controller.perfil.data.sobreNome
-                ),
+                    codCon: widget.params.codCon,
+                    codimo: widget.params.codimo,
+                    status: widget.params.status,
+                    espaco: widget.params.espaco,
+                    dataIni: widget.params.dataIni,
+                    dataFim: widget.params.dataFim,
+                    tipo: 'PDF',
+                    usr_name: controller.perfil.data.nome,
+                    usr_lastname: controller.perfil.data.sobreNome),
                 controller.getReservasPDF(params2)
               },
               child: Padding(
                 padding: const EdgeInsets.only(right: 8.0),
-                child: Icon(FlutterIcons.download_ant),
+                child: Icon(Icons.ac_unit),
               ),
             )
           ],

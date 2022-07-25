@@ -6,7 +6,6 @@ import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'veiculos_controller.dart';
@@ -85,7 +84,7 @@ class _VeiculosPageState
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            FlutterIcons.car_alt_faw5s,
+                            Icons.ac_unit,
                             size: 70,
                             color: AppColorScheme.primaryColor,
                           ),
@@ -132,7 +131,7 @@ class _VeiculosPageState
                                       leading: Container(
                                         padding: EdgeInsets.only(top: 9),
                                         child: Icon(
-                                          FlutterIcons.car_alt_faw5s,
+                                          Icons.ac_unit,
                                           size: 50.h,
                                           color: AppColorScheme.primaryColor,
                                         ),

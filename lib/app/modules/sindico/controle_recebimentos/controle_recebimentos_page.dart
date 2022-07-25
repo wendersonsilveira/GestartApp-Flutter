@@ -6,7 +6,6 @@ import 'package:Gestart/app/modules/sindico/controle_recebimentos/inadimplencia/
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class ControleRecebimentosPage extends StatefulWidget {
@@ -47,7 +46,7 @@ class _ControleRecebimentosPageState extends State<ControleRecebimentosPage> {
                   child: ListTile(
                     title: Text('Recebimentos'),
                     leading: Icon(
-                      FlutterIcons.square_faw,
+                      Icons.ac_unit,
                       color: AppColorScheme.primaryColor,
                     ),
                     trailing: Icon(Icons.chevron_right),
@@ -58,7 +57,7 @@ class _ControleRecebimentosPageState extends State<ControleRecebimentosPage> {
                   child: ListTile(
                     title: Text('Inadimplência'),
                     leading: Icon(
-                      FlutterIcons.square_faw,
+                      Icons.ac_unit,
                       color: AppColorScheme.primaryColor,
                     ),
                     trailing: Icon(Icons.chevron_right),
@@ -78,7 +77,7 @@ class _ControleRecebimentosPageState extends State<ControleRecebimentosPage> {
                   child: ListTile(
                     title: Text('Acordos'),
                     leading: Icon(
-                      FlutterIcons.square_faw,
+                      Icons.ac_unit,
                       color: AppColorScheme.primaryColor,
                     ),
                     trailing: Icon(Icons.chevron_right),

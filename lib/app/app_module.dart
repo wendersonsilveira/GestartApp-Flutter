@@ -209,7 +209,6 @@ class AppModule extends MainModule {
             child: (_, args) => ViewDocumentosPage(
                   url: args.data[0],
                   title: args.data[1],
-                  document: args.data[2],
                 )),
         ModularRouter(RouteName.cadastro_pet,
             child: (_, args) => CadastroPetPage(id: args.data)),

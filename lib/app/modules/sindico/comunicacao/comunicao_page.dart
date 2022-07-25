@@ -1,7 +1,6 @@
 import 'package:Gestart/app/modules/sindico/comunicacao/avisos/avisos_page..dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
 class ComunicacaoPage extends StatefulWidget {
   const ComunicacaoPage({Key key}) : super(key: key);
@@ -29,7 +28,7 @@ class _ComunicacaoPageState extends State<ComunicacaoPage> {
                   child: ListTile(
                     title: Text('Avisos'),
                     leading: Icon(
-                      FlutterIcons.square_faw,
+                      Icons.ac_unit,
                       color: AppColorScheme.primaryColor,
                     ),
                     trailing: Icon(Icons.chevron_right),

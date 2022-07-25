@@ -1,7 +1,6 @@
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class InicialPage extends StatefulWidget {
@@ -24,8 +23,8 @@ class _InicialPageState extends State<InicialPage> {
           ),
           Card(
             child: ListTile(
-                leading: Icon(FlutterIcons.square_faw,
-                    color: AppColorScheme.primaryColor),
+                leading:
+                    Icon(Icons.ac_unit, color: AppColorScheme.primaryColor),
                 title: Text('Cadastro de Espaços'),
                 trailing: Icon(Icons.arrow_right),
                 onTap: () =>
@@ -33,8 +32,8 @@ class _InicialPageState extends State<InicialPage> {
           ),
           Card(
             child: ListTile(
-                leading: Icon(FlutterIcons.calendar_account_mco,
-                    color: AppColorScheme.primaryColor),
+                leading:
+                    Icon(Icons.ac_unit, color: AppColorScheme.primaryColor),
                 title: Text('Gerenciamento de Reservas'),
                 trailing: Icon(Icons.arrow_right),
                 onTap: () =>
@@ -42,8 +41,8 @@ class _InicialPageState extends State<InicialPage> {
           ),
           Card(
             child: ListTile(
-                leading: Icon(FlutterIcons.calendar_account_outline_mco,
-                    color: AppColorScheme.primaryColor),
+                leading:
+                    Icon(Icons.ac_unit, color: AppColorScheme.primaryColor),
                 title: Text('Relatório de reservas'),
                 trailing: Icon(Icons.arrow_right),
                 onTap: () =>

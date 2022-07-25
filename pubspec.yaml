@@ -36,13 +36,13 @@ dependencies:
   flutter_share: ^1.0.5
   string_validator: ^0.1.4
   path_provider: ^1.6.27
-  flutter_icons: ^1.1.0
+  # flutter_icons: ^1.1.0
   flutter_screenutil: ^4.0.3+1
   google_fonts: ^1.1.1
   dio: ^3.0.10
   flutter_mobx: ^1.1.0+2
   mobx: ^1.2.1+4
-  flutter_plugin_pdf_viewer: ^1.0.7
+  # flutter_plugin_pdf_viewer: ^1.0.7
   barcode: ^1.17.1
   package_info_plus: ^0.6.4
   device_info_plus: ^0.7.2
@@ -61,8 +61,6 @@ dependencies:
   firebase_messaging: ^7.0.3
   
 
-  # Validators
-  cpfcnpj: ^1.0.3
 
   # Mask
   easy_mask: ^1.1.5
@@ -100,8 +98,8 @@ dependencies:
   speech_to_text: ^3.2.0 #converter voz em texto
   avatar_glow: ^1.2.0 #animações
   string_similarity: ^1.1.0 #comparar strings
-  flutter_local_notifications: 4.0.1+2
-  flushbar: ^1.10.4
+  # flutter_local_notifications: 4.0.1+2
+  # flushbar: ^1.10.4
 
 dev_dependencies:
   mockito: ^4.1.3

@@ -6,7 +6,6 @@ import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'documentos_controller.dart';
@@ -20,7 +19,8 @@ class DocumentosPage extends StatefulWidget {
   _DocumentosPageState createState() => _DocumentosPageState();
 }
 
-class _DocumentosPageState extends ModularState<DocumentosPage, DocumentosController> {
+class _DocumentosPageState
+    extends ModularState<DocumentosPage, DocumentosController> {
   @override
   void initState() {
     controller.init();
@@ -66,7 +66,8 @@ class _DocumentosPageState extends ModularState<DocumentosPage, DocumentosContro
                                     SizedBox(
                                       height: 30.h,
                                     ),
-                                    Text('Não existe documentos para este condomínio'),
+                                    Text(
+                                        'Não existe documentos para este condomínio'),
                                   ],
                                 ),
                               )
@@ -75,16 +76,18 @@ class _DocumentosPageState extends ModularState<DocumentosPage, DocumentosContro
                                 itemBuilder: (BuildContext context, int index) {
                                   return DownloadListItemWidget(
                                     leading: Icon(
-                                      FlutterIcons.file1_ant,
+                                      Icons.ac_unit,
                                       color: AppColorScheme.primaryColor,
                                     ),
                                     title: Text(
                                       '${controller.listaView[index].pasta}',
                                       overflow: TextOverflow.ellipsis,
                                     ),
-                                    subtitle: Text(' ${controller.listaView[index].descricao}'),
-                                    trailing: Icon(FlutterIcons.download_faw),
-                                    fileURL: controller.listaView[index].linkDocumento,
+                                    subtitle: Text(
+                                        ' ${controller.listaView[index].descricao}'),
+                                    trailing: Icon(Icons.ac_unit),
+                                    fileURL: controller
+                                        .listaView[index].linkDocumento,
                                     fileName:
                                         '${controller.listaView[index].descricao}_${controller.listaView[index].apelido.substring(0, 4)}_${controller.listaView[index].id}.${controller.listaView[index].tipo}',
                                   );

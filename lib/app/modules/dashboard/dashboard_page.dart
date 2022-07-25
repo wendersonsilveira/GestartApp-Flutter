@@ -4,19 +4,16 @@ import 'dart:io';
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/dashboard/components/cards/card_infor_widget.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
-import 'package:Gestart/app/styles/app_images.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
 import 'package:Gestart/app/widgets/icons/icons_utils.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/di/di.dart';
-import 'package:flushbar/flushbar.dart';
+// import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'components/button_services/button_services_widget.dart';
 import 'components/itens_services/item_servico_widget.dart';
@@ -24,7 +21,7 @@ import 'dashboard_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:Gestart/data/local/shared_preferences.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -39,13 +36,12 @@ final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 final sharedPreferences = getIt.get<SharedPreferencesManager>();
 final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+// final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+//     FlutterLocalNotificationsPlugin();
 
 class _DashboardPageState
     extends ModularState<DashboardPage, DashboardController> {
   //use 'controller' variable to access controller
-  PDFDocument document;
   bool isNotifyConfig = false;
   PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
@@ -84,25 +80,25 @@ class _DashboardPageState
   }
 
   initNotificationLocal() {
-    var android = new AndroidInitializationSettings('icon');
+    // var android = new AndroidInitializationSettings('icon');
 
-    final IOSInitializationSettings initializationSettingsIOS =
-        IOSInitializationSettings(
-            onDidReceiveLocalNotification: onDidReceiveLocalNotification);
-    flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
-        IOSFlutterLocalNotificationsPlugin>();
+    // final IOSInitializationSettings initializationSettingsIOS =
+    //     IOSInitializationSettings(
+    //         onDidReceiveLocalNotification: onDidReceiveLocalNotification);
+    // flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+    //     IOSFlutterLocalNotificationsPlugin>();
 
-    var initSettings = new InitializationSettings(
-        android: android, iOS: initializationSettingsIOS);
-    flutterLocalNotificationsPlugin.initialize(
-      initSettings,
-      onSelectNotification: (payload) async {
-        var arrayString = payload.split('**');
-        String page = arrayString[0].trim();
-        int id = int.parse(arrayString[1]);
-        Modular.navigator.pushNamed('$page', arguments: id);
-      },
-    );
+    // var initSettings = new InitializationSettings(
+    //     android: android, iOS: initializationSettingsIOS);
+    // flutterLocalNotificationsPlugin.initialize(
+    //   initSettings,
+    //   onSelectNotification: (payload) async {
+    //     var arrayString = payload.split('**');
+    //     String page = arrayString[0].trim();
+    //     int id = int.parse(arrayString[1]);
+    //     Modular.navigator.pushNamed('$page', arguments: id);
+    //   },
+    // );
   }
 
   Future<void> _initPackageInfo() async {
@@ -134,29 +130,29 @@ class _DashboardPageState
 
   void showTopSnackBar(BuildContext context, String message, String titulo,
       {String page = '', String id = ''}) {
-    int iD = id != '' ? int.parse(id) : null;
-    String toPage = page.trim();
-    Flushbar(
-      icon: Image.asset(
-        AppImages.icon,
-        height: 30,
-        width: 30,
-      ),
-      shouldIconPulse: true,
-      message: message,
-      backgroundColor: Color.fromRGBO(60, 60, 60, 20),
-      title: titulo,
-      onTap: (_) {
-        if (toPage.isNotEmpty && iD != null)
-          Modular.navigator.pushNamed('$toPage', arguments: int.parse(id));
-        else if (toPage.isNotEmpty && iD == null)
-          Modular.navigator.pushNamed('$toPage');
-        else
-          print('Apenas notificação');
-      },
-      duration: Duration(seconds: 2),
-      flushbarPosition: FlushbarPosition.TOP,
-    )..show(context);
+    // int iD = id != '' ? int.parse(id) : null;
+    // String toPage = page.trim();
+    // Flushbar(
+    //   icon: Image.asset(
+    //     AppImages.icon,
+    //     height: 30,
+    //     width: 30,
+    //   ),
+    //   shouldIconPulse: true,
+    //   message: message,
+    //   backgroundColor: Color.fromRGBO(60, 60, 60, 20),
+    //   title: titulo,
+    //   onTap: (_) {
+    //     if (toPage.isNotEmpty && iD != null)
+    //       Modular.navigator.pushNamed('$toPage', arguments: int.parse(id));
+    //     else if (toPage.isNotEmpty && iD == null)
+    //       Modular.navigator.pushNamed('$toPage');
+    //     else
+    //       print('Apenas notificação');
+    //   },
+    //   duration: Duration(seconds: 2),
+    //   flushbarPosition: FlushbarPosition.TOP,
+    // )..show(context);
   }
 
   configNotificationIOS() {
@@ -230,14 +226,14 @@ class _DashboardPageState
   }
 
   sendNotificationLocal(String titulo, message, {String page, int id}) async {
-    var android = new AndroidNotificationDetails(
-        'channelId', 'channelName', 'channelDescription');
+    // var android = new AndroidNotificationDetails(
+    //     'channelId', 'channelName', 'channelDescription');
 
-    var iOS = new IOSNotificationDetails();
+    // var iOS = new IOSNotificationDetails();
 
-    var platform = new NotificationDetails(android: android, iOS: iOS);
-    await flutterLocalNotificationsPlugin.show(0, titulo, message, platform,
-        payload: '$page**$id');
+    // var platform = new NotificationDetails(android: android, iOS: iOS);
+    // await flutterLocalNotificationsPlugin.show(0, titulo, message, platform,
+    //     payload: '$page**$id');
   }
 
   // Widget _infoTile(String title, String subtitle, String v) {
@@ -317,7 +313,7 @@ class _DashboardPageState
         actions: [
           IconButton(
             icon: Icon(
-              FlutterIcons.exclamation_evi,
+              Icons.ac_unit,
               color: AppColorScheme.white,
               size: 30,
             ),
@@ -368,13 +364,13 @@ class _DashboardPageState
                                   ButtonSercicesWidget(
                                       condominioAtivo:
                                           controller.existeCondominiosAtivos,
-                                      icon: FlutterIcons.barcode_ant,
+                                      icon: Icons.ac_unit,
                                       descricao: 'Boleto Digital',
                                       route: RouteName.boleto),
                                   ButtonSercicesWidget(
                                     condominioAtivo:
                                         controller.existeCondominiosAtivos,
-                                    icon: FlutterIcons.md_paper_ion,
+                                    icon: Icons.ac_unit,
                                     descricao: 'Prestação de Contas',
                                     route: RouteName.balancetes,
                                   ),
@@ -402,7 +398,7 @@ class _DashboardPageState
                                       condominioAtivo:
                                           controller.existeCondominiosAtivos,
                                       descricao: 'Assembleia',
-                                      icone: FlutterIcons.gavel_faw5s,
+                                      icone: Icons.ac_unit,
                                       routeName: RouteName.assembleia,
                                       condominios: controller.condominios.data,
                                     ),
@@ -412,7 +408,7 @@ class _DashboardPageState
                                       condominioAtivo:
                                           controller.existeCondominiosAtivos,
                                       descricao: 'Documentos',
-                                      icone: FlutterIcons.file1_ant,
+                                      icone: Icons.ac_unit,
                                       routeName: RouteName.documentos,
                                     ),
                                   ),
@@ -421,7 +417,7 @@ class _DashboardPageState
                                       condominioAtivo:
                                           controller.existeCondominiosAtivos,
                                       descricao: 'Seu Condomínio',
-                                      icone: FlutterIcons.building_faw,
+                                      icone: Icons.ac_unit,
                                       routeName: RouteName.infor_condominio,
                                     ),
                                   ),
@@ -429,7 +425,7 @@ class _DashboardPageState
                                     child: ItemServicoWidget(
                                       condominioAtivo: true,
                                       descricao: 'Cadastro',
-                                      icone: FlutterIcons.id_card_mco,
+                                      icone: Icons.ac_unit,
                                       routeName: RouteName.cadastros,
                                     ),
                                   ),
@@ -437,7 +433,7 @@ class _DashboardPageState
                                     child: ItemServicoWidget(
                                       condominioAtivo: true,
                                       descricao: 'Comunicados',
-                                      icone: FlutterIcons.error_outline_mdi,
+                                      icone: Icons.ac_unit,
                                       routeName: RouteName.informativos_page,
                                     ),
                                   ),
@@ -446,8 +442,7 @@ class _DashboardPageState
                                           child: ItemServicoWidget(
                                             condominioAtivo: true,
                                             descricao: 'Painel do Síndico',
-                                            icone:
-                                                FlutterIcons.md_analytics_ion,
+                                            icone: Icons.ac_unit,
                                             routeName: RouteName.painel_sindico,
                                           ),
                                         )

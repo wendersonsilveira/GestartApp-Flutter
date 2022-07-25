@@ -8,7 +8,6 @@ import 'package:Gestart/app/widgets/inputs/underline_text_field_widget.dart';
 import 'package:Gestart/domain/entities/user/create_user_entity.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'sign_up_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -114,7 +113,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                         labelText: "Nome",
                         controller: _nomeController,
                         validator: Validators.empty,
-                        leftIcon: FlutterIcons.account_outline_mco,
+                        leftIcon: Icons.ac_unit,
                         keyboardType: TextInputType.name,
                         focusNode: _nomeFocus,
                         onSubmitted: (value) {
@@ -124,7 +123,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                         labelText: "Sobrenome",
                         controller: _sobreNomeController,
                         validator: Validators.empty,
-                        leftIcon: FlutterIcons.account_outline_mco,
+                        leftIcon: Icons.ac_unit,
                         keyboardType: TextInputType.name,
                         focusNode: _sobreNomeFocus,
                         onSubmitted: (value) {
@@ -134,7 +133,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                         labelText: "Email",
                         controller: _emailController,
                         validator: Validators.email,
-                        leftIcon: FlutterIcons.email_multiple_outline_mco,
+                        leftIcon: Icons.ac_unit,
                         keyboardType: TextInputType.emailAddress,
                         focusNode: _emailFocus,
                         onSubmitted: (value) {
@@ -144,7 +143,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                         labelText: "Confime o E-mail",
                         controller: _confirmarEmailController,
                         validator: Validators.email,
-                        leftIcon: FlutterIcons.email_multiple_outline_mco,
+                        leftIcon: Icons.ac_unit,
                         keyboardType: TextInputType.emailAddress,
                         focusNode: _confirmarEmailFocus,
                         onSubmitted: (value) {
@@ -154,7 +153,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                         labelText: "Telefone",
                         controller: _telefoneController,
                         validator: Validators.phone,
-                        leftIcon: FlutterIcons.phone_android_mdi,
+                        leftIcon: Icons.ac_unit,
                         keyboardType: TextInputType.number,
                         focusNode: _telefoneFocus,
                         onSubmitted: (value) {
@@ -164,7 +163,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                         labelText: "",
                         controller: _cpfCnpjController,
                         validator: Validators.cpfOrCnpj,
-                        leftIcon: FlutterIcons.account_outline_mco,
+                        leftIcon: Icons.ac_unit,
                         keyboardType: TextInputType.name,
                         focusNode: _cpfCnpjFocus,
                         onSubmitted: (value) {
@@ -175,7 +174,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                         controller: _senhaController,
                         validator: Validators.password,
                         keyboardType: TextInputType.name,
-                        leftIcon: FlutterIcons.lock_ant,
+                        leftIcon: Icons.ac_unit,
                         focusNode: _senhaFocus,
                         onSubmitted: (value) {
                           Focus.of(context).requestFocus(_senhaFocus);
@@ -184,7 +183,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                         labelText: "Confirme a Senha",
                         controller: _confirmarSenhaController,
                         validator: Validators.password,
-                        leftIcon: FlutterIcons.lock_ant,
+                        leftIcon: Icons.ac_unit,
                         keyboardType: TextInputType.name,
                         focusNode: _confirmarSenhaFocus,
                         onSubmitted: (value) {

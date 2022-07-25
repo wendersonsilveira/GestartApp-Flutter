@@ -11,9 +11,6 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
