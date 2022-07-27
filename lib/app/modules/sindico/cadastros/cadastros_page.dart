@@ -73,8 +73,8 @@ class _CadastrosPageState
   }
 
   TabBar get _tabBar => TabBar(
-        indicatorColor: Colors.green[600],
-        labelColor: Colors.green[600],
+        indicatorColor: Colors.white,
+        labelColor: Colors.white,
         controller: _tabController,
         tabs: [
           Tab(
@@ -144,6 +144,7 @@ class _CadastrosPageState
         appBar: AppBarCustom(
           context,
           title: Text(widget.title),
+          bottom: _tabBar,
         ),
         backgroundColor: Colors.white,
         body: Observer(
