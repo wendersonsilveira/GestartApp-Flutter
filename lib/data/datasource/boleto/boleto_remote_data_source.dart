@@ -4,6 +4,8 @@ import 'package:Gestart/domain/entities/boleto/boleto_entity.dart';
 import 'package:Gestart/domain/entities/boleto/detalhe_boleto_entity.dart';
 import 'package:Gestart/data/mappers/boleto/boleto_mapper.dart';
 import 'package:Gestart/data/mappers/boleto/detalhe_boleto_mapper.dart';
+import 'package:Gestart/data/mappers/boleto/detalhe_boleto_unidade_mapper.dart';
+import 'package:Gestart/domain/entities/boleto/detalhe_boleto_unidade_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 
 import 'package:Gestart/domain/utils/status.dart';
@@ -44,11 +46,11 @@ class BoletoRemoteDataSource {
     }
   }
 
-  Future<ResourceData<DetalheBoletoEntity>> getBoletoUnidade(String conts) async {
+  Future<ResourceData<List<DetalheBoletoUnidadeEntity>>> getBoletoUnidade(String conts) async {
     try {
       final result = await _dio.get('unidade_fatura_detalhe/$conts');
-      return ResourceData<DetalheBoletoEntity>(
-          status: Status.success, data: DetalheBoletoEntity().fromMap(result[0]));
+      return ResourceData<List<DetalheBoletoUnidadeEntity>>(
+          status: Status.success, data: DetalheBoletoUnidadeEntity().fromMapList(result));
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,

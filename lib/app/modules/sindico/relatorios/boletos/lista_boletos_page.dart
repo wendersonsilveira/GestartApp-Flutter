@@ -51,10 +51,8 @@ class _ListaBoletosPageState
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Container(
-                        child: Text(
-                      'Selecione uma unidade',
-                      style: TextStyle(fontSize: 16),
-                    )),
+                        child: Text('Selecione uma unidade', style: TextStyle(fontSize: 16))
+                      ),
                   ),
                   TextField(
                     onChanged: controller.searchUnidades,

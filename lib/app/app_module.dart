@@ -1,4 +1,6 @@
 import 'package:Gestart/app/modules/informativos/informativos_page.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/boletos/boletos-unidade/boletos-detalhes/boletos_detalhes_controller.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/boletos/boletos-unidade/boletos-detalhes/boletos_detalhes_page.dart';
 import 'package:Gestart/app/modules/sindico/relatorios/boletos/boletos-unidade/boletos_unidade_controller.dart';
 import 'package:Gestart/app/modules/sindico/relatorios/boletos/lista_boletos_controller.dart';
 import 'package:Gestart/app/modules/sindico/relatorios/boletos/lista_boletos_page.dart';
@@ -177,7 +179,8 @@ class AppModule extends MainModule {
         $ErroController,
         $InformativosController,
         $ListaBoletosController,
-        $BoletosUnidadeController
+        $BoletosUnidadeController,
+        $BoletosDetalhesController
       ];
 
   @override
@@ -290,6 +293,10 @@ class AppModule extends MainModule {
         ModularRouter(RouteName.boletosUnidade,
             child: (_, args) => BoletosUnidadePage(
               codord: args.data,
+            )),
+        ModularRouter(RouteName.boletosDetalhes,
+            child: (_, args) => BoletosDetalhesPage(
+              conts: args.data,
             )),
         ModularRouter(RouteName.error_page,
             child: (_, args) => ErroPage(

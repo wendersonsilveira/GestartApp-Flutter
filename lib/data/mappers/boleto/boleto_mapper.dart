@@ -46,7 +46,7 @@ extension BoletoMapper on BoletoEntity {
       mesAno: map['MESANO'],
       lansDetail: map['LANS_DETAIL'],
       status: map['STATUS'],
-      total: map['TOTAL'],
+      total: (map['TOTAL'])?.toDouble(),
       conts: map['CONTS'],
       logo: map['LOGO'],
     );

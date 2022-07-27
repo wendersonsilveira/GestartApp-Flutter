@@ -62,32 +62,8 @@ class _BoletosUnidadePageState
                                 children: [
                                   ListTile(
                                     onTap: () {
-                                      controller.getBoleto(
+                                      controller.getBoletosDetalhes(
                                           controller.boletos.data[index].conts);
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            title: Text('Detalhes da fatura'),
-                                            content: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  controller.boletos.data[index]
-                                                      .nomcon,
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                Text('Dados do pagador:'),
-                                                Text('TESTE'),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      );
                                     },
                                     leading: Icon(FlutterIcons.barcode_ant),
                                     title: Text(
@@ -96,10 +72,8 @@ class _BoletosUnidadePageState
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                            '${controller.boletos.data[index].lansDetail}'),
-                                        Text(
-                                            'Valor total: ${controller.boletos.data[index].total}')
+                                        Text('${controller.boletos.data[index].lansDetail}'),
+                                        Text('Valor : ${controller.boletos.data[index].total}')
                                       ],
                                     ),
                                   ),

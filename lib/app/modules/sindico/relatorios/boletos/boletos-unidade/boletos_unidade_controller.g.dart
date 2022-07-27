@@ -34,21 +34,6 @@ mixin _$BoletosUnidadeController on _BoletosUnidadeControllerBase, Store {
     });
   }
 
-  final _$boletoAtom = Atom(name: '_BoletosUnidadeControllerBase.boleto');
-
-  @override
-  ResourceData<DetalheBoletoEntity> get boleto {
-    _$boletoAtom.reportRead();
-    return super.boleto;
-  }
-
-  @override
-  set boleto(ResourceData<DetalheBoletoEntity> value) {
-    _$boletoAtom.reportWrite(value, super.boleto, () {
-      super.boleto = value;
-    });
-  }
-
   final _$getBoletosAsyncAction =
       AsyncAction('_BoletosUnidadeControllerBase.getBoletos');
 
@@ -60,8 +45,7 @@ mixin _$BoletosUnidadeController on _BoletosUnidadeControllerBase, Store {
   @override
   String toString() {
     return '''
-boletos: ${boletos},
-boleto: ${boleto}
+boletos: ${boletos}
     ''';
   }
 }

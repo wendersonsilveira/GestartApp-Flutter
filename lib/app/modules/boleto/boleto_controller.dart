@@ -1,6 +1,8 @@
+import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/boleto/boleto_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
+import 'package:Gestart/domain/usecases/boleto/get_boletos_unidade_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boletos_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
@@ -15,7 +17,7 @@ part 'boleto_controller.g.dart';
 class BoletoController = _BoletoControllerBase with _$BoletoController;
 
 abstract class _BoletoControllerBase with Store {
-  final _getBoletos = getIt.get<GetBoletosUseCase>();
+  final _getBoletos = getIt.get<GetBoletosUnidadeUseCase>();
   final _getUnidades = getIt.get<GetUnidadesUseCase>();
 
   @observable
@@ -27,41 +29,32 @@ abstract class _BoletoControllerBase with Store {
   int status = 0;
 
   @observable
-  ResourceData<List<BoletoEntity>> boletos;
+  ResourceData<List<BoletoEntity>> boletos =
+      ResourceData(status: Status.loading);
 
   @observable
   int codOrd;
 
   init() async {
     unidades = ResourceData(status: Status.loading);
-    getUnidades().then((value) => getBoletos());
+    getUnidades();
   }
 
   @action
-  setarStatus(value) => status = value;
+  Future<void> getBoletos(int codOrd) async {
+    boletos = await _getBoletos(codOrd);
+    print(boletos);
+  }
 
   @action
-  getBoletos() async {
-    boletos = await _getBoletos();
-
-    var storage = await SharedPreferences.getInstance();
-    int cod = storage.getInt('codord');
-    if (codOrd == null) {
-      if (cod != null) {
-        codOrd = cod;
-      } else {
-        codOrd = unidades.data[0].codord;
-      }
-    } else {
-      codOrd = unidades.data[0].codord;
-    }
-    changeDropdown(codOrd);
+  Future<void> getBoletoDetalhes(String conts) {
+    Modular.navigator.pushNamed(RouteName.boletosDetalhes, arguments: conts);
   }
 
   @action
   changeDropdown(int codOrd) {
-    listaView = boletos.data.where((i) => i.codord == codOrd).toList();
-    setarStatus(1);
+    this.boletos = ResourceData<List<BoletoEntity>>(data: []);
+    getBoletos(codOrd);
   }
 
   @action

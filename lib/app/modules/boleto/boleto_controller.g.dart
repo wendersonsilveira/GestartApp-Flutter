@@ -98,8 +98,8 @@ mixin _$BoletoController on _BoletoControllerBase, Store {
       AsyncAction('_BoletoControllerBase.getBoletos');
 
   @override
-  Future getBoletos() {
-    return _$getBoletosAsyncAction.run(() => super.getBoletos());
+  Future<void> getBoletos(int codOrd) {
+    return _$getBoletosAsyncAction.run(() => super.getBoletos(codOrd));
   }
 
   final _$getUnidadesAsyncAction =
@@ -114,11 +114,11 @@ mixin _$BoletoController on _BoletoControllerBase, Store {
       ActionController(name: '_BoletoControllerBase');
 
   @override
-  dynamic setarStatus(dynamic value) {
+  Future<void> getBoletoDetalhes(String conts) {
     final _$actionInfo = _$_BoletoControllerBaseActionController.startAction(
-        name: '_BoletoControllerBase.setarStatus');
+        name: '_BoletoControllerBase.getBoletoDetalhes');
     try {
-      return super.setarStatus(value);
+      return super.getBoletoDetalhes(conts);
     } finally {
       _$_BoletoControllerBaseActionController.endAction(_$actionInfo);
     }
