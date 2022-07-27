@@ -8,8 +8,8 @@ part of 'relatorio_inadimplencia_controller.dart';
 
 final $RelatorioInadimplenciaController = BindInject(
   (i) => RelatorioInadimplenciaController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

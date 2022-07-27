@@ -65,13 +65,13 @@ class _InadimplenciaPageState extends State<InadimplenciaPage> {
   Future<void> getFiltro() async {
     return showDialog(
       context: context,
-      child: SimpleDialog(
+      builder: (context) => SimpleDialog(
         contentPadding: EdgeInsets.all(20),
         children: [
           FiltroInadimWdget(
             onSubmit: (filtter) {
               getInadimplencias(filtter);
-              Modular.navigator.pop();
+              Modular.to.pop();
             },
             getHeader: setHeader,
           ),

@@ -41,7 +41,7 @@ class _DetalhesReservaPageState
     if (result.status == Status.success) {
       UIHelper.showInSnackBar(result.message, _scaffoldKey);
       Timer(Duration(seconds: 2), () {
-        Modular.navigator.pop();
+        Modular.to.pop();
       });
     } else
       UIHelper.showInSnackBar(result.error.message, _scaffoldKey);
@@ -53,7 +53,7 @@ class _DetalhesReservaPageState
     if (result.status == Status.success) {
       UIHelper.showInSnackBar(result.message, _scaffoldKey);
       Timer(Duration(seconds: 2), () {
-        Modular.navigator.pop();
+        Modular.to.pop();
       });
     } else
       UIHelper.showInSnackBar(result.error.message, _scaffoldKey);

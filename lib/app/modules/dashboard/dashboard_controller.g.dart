@@ -8,8 +8,8 @@ part of 'dashboard_controller.dart';
 
 final $DashboardController = BindInject(
   (i) => DashboardController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

@@ -6,8 +6,7 @@ class IconListItemWidget extends StatelessWidget {
   final String link;
   final String icon;
 
-  const IconListItemWidget({Key key, this.link, this.icon = null})
-      : super(key: key);
+  const IconListItemWidget({Key key, this.link, this.icon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

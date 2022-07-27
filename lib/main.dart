@@ -13,6 +13,9 @@ void main() {
     ScreenUtilInit(
         designSize: Size(750, 1334),
         allowFontScaling: false,
-        builder: () => ModularApp(module: AppModule())),
+        builder: () => ModularApp(
+              module: AppModule(),
+              child: null,
+            )),
   );
 }

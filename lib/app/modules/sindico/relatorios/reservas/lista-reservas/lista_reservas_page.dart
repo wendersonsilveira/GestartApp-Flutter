@@ -151,10 +151,10 @@ class _ListaReservasPageState
                                                   ]),
                                             ),
                                             actions: [
-                                              FlatButton(
+                                              TextButton(
                                                 child: Text("OK"),
                                                 onPressed: () {
-                                                  Modular.navigator.pop();
+                                                  Modular.to.pop();
                                                 },
                                               ),
                                             ],

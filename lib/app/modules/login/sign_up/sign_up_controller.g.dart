@@ -8,8 +8,8 @@ part of 'sign_up_controller.dart';
 
 final $SignUpController = BindInject(
   (i) => SignUpController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

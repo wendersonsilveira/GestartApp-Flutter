@@ -62,7 +62,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
       if (createUser.status == Status.success) {
         showInSnackBar('Usuario criado com sucesso');
         Timer(Duration(seconds: 1), () {
-          Modular.navigator.pop();
+          Modular.to.pop();
         });
       }
     }

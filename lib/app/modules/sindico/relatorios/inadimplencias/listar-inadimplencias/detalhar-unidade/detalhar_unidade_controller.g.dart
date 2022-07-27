@@ -8,8 +8,8 @@ part of 'detalhar_unidade_controller.dart';
 
 final $DetalharUnidadeController = BindInject(
   (i) => DetalharUnidadeController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

@@ -88,7 +88,7 @@ class _CadastrosPageState
   Future<void> getFiltro() async {
     return showDialog(
       context: context,
-      child: SimpleDialog(
+      builder: (context) => SimpleDialog(
         contentPadding: EdgeInsets.all(20),
         children: [
           FiltroUnidadeWdget(
@@ -96,7 +96,7 @@ class _CadastrosPageState
             filtro: filtro,
             onSubmit: (filtter) {
               controller.getUnidades(filtro);
-              Modular.navigator.pop();
+              Modular.to.pop();
             },
           ),
         ],

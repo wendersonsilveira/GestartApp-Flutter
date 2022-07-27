@@ -8,8 +8,8 @@ part of 'assembleia_controller.dart';
 
 final $AssembleiaController = BindInject(
   (i) => AssembleiaController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

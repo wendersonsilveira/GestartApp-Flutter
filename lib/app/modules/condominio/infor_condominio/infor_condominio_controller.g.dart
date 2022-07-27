@@ -8,8 +8,8 @@ part of 'infor_condominio_controller.dart';
 
 final $InforCondominioController = BindInject(
   (i) => InforCondominioController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

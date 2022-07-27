@@ -18,7 +18,7 @@ class ControleRecebimentosPage extends StatefulWidget {
 
 class _ControleRecebimentosPageState extends State<ControleRecebimentosPage> {
   navigateTo(String routeName) {
-    Modular.navigator.pushNamed(routeName).then((value) {
+    Modular.to.pushNamed(routeName).then((value) {
       FiltroWdget.filtro['CODORD'] = 0;
       FiltroWdget.filtro['TIPTAX'] = '0';
       FiltroWdget.filtro['DATPAG_1'] = UIHelper.formatDateFromDateTimeReverse(

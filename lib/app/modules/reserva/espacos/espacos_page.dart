@@ -69,7 +69,7 @@ class _EspacosPageState extends ModularState<EspacosPage, EspacosController> {
                               Icons.arrow_right,
                               size: 40,
                             ),
-                            onTap: () => Modular.navigator.pushNamed(
+                            onTap: () => Modular.to.pushNamed(
                                 RouteName.reservaHorarios,
                                 arguments: [
                                   controller.espacos[index].id,

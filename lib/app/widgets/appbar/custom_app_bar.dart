@@ -41,7 +41,7 @@ class AppBarCustom extends AppBar {
                           Icons.ac_unit,
                           size: 60.h,
                         ),
-                        onPressed: () => Modular.navigator.pop(),
+                        onPressed: () => Modular.to.pop(),
                       )
                 : leading,
             titleSpacing: titleSpacing,

@@ -41,13 +41,13 @@ class _RelatorioReservasPageState
           context,
           'Periodo obrigatorio',
           'Favor inserir Data Inicial e Data Final para consulta do relatório',
-          (_) => Modular.navigator.pop());
+          (_) => Modular.to.pop());
     else if (controller.dataIni == null && controller.dataFim == null)
       CustomAlertDialog.info(
           context,
           'Periodo obrigatorio',
           'Favor inserir periodo para consulta do relatório',
-          (_) => Modular.navigator.pop());
+          (_) => Modular.to.pop());
     else
       controller.setFiltros();
   }

@@ -51,7 +51,7 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
           CustomAlertDialog.error(context, login.message);
         });
       } else if (login.data.status == 1) {
-        Modular.navigator.popAndPushNamed(RouteName.home);
+        Modular.to.popAndPushNamed(RouteName.home);
       }
     }
   }
@@ -82,7 +82,7 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                 FlatButton(
                     onPressed: () {
                       Navigator.of(context).pop();
-                      Modular.navigator.pushNamed(RouteName.signup,
+                      Modular.to.pushNamed(RouteName.signup,
                           arguments: _cpfCnpjController.text);
                     },
                     child: Text('Ok'))
@@ -189,7 +189,7 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                                 style: TextStyle(color: Colors.white),
                               ),
                               onTap: () => {
-                                    Modular.navigator
+                                    Modular.to
                                         .pushNamed(RouteName.forgot_password),
                                   }),
                         ],

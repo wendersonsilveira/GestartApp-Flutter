@@ -17,7 +17,7 @@ class _ErroPageState extends ModularState<ErroPage, ErroController> {
   //use 'controller' variable to access controller
   @override
   void initState() {
-    print(Modular.navigator.path);
+    print(Modular.to.path);
     super.initState();
   }
 
@@ -53,7 +53,7 @@ class _ErroPageState extends ModularState<ErroPage, ErroController> {
               ButtonExpandedWidget(
                 descricao: 'Recarregar',
                 funcao: () {
-                  Modular.navigator.pop();
+                  Modular.to.pop();
                 },
               ),
             ],

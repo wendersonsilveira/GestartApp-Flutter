@@ -300,8 +300,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => GetReservaAdmUseCase(get<ReservaRepository>()));
   gh.factory<CancelarReservaUseCase>(
       () => CancelarReservaUseCase(get<ReservaRepository>()));
-  gh.factory<GetReservasRelatorioPDFUseCase>(
-      () => GetReservasRelatorioPDFUseCase(get<ReservaRepository>()));
+  // gh.factory<GetReservasRelatorioPDFUseCase>(
+  //     () => GetReservasRelatorioPDFUseCase(get<ReservaRepository>()));
 
   //espacos
   gh.factory<EspacoRemoteDataSource>(

@@ -8,8 +8,8 @@ part of 'enviar_codigo_controller.dart';
 
 final $EnviarCodigoController = BindInject(
   (i) => EnviarCodigoController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

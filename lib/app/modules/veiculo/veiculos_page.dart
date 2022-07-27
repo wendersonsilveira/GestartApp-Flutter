@@ -32,7 +32,7 @@ class _VeiculosPageState
   }
 
   _editarVeiculo(int id) {
-    Modular.navigator
+    Modular.to
         .pushNamed(RouteName.cadastroVeiculo, arguments: id)
         .then((value) => controller.getVeiculos());
   }
@@ -47,7 +47,7 @@ class _VeiculosPageState
   deleteVeiculo(int id) async {
     final ResourceData r = await controller.deleteVeiculo(id);
     if (r.status == Status.success) {
-      Modular.navigator.pop(true);
+      Modular.to.pop(true);
       showInSnackBar("Veiculo excluído com sucesso");
     } else {
       showInSnackBar(r.message);
@@ -173,9 +173,8 @@ class _VeiculosPageState
                                                 ),
                                               ),
                                               FlatButton(
-                                                onPressed: () => Modular
-                                                    .navigator
-                                                    .pop(false),
+                                                onPressed: () =>
+                                                    Modular.to.pop(false),
                                                 child: const Text("Não"),
                                               ),
                                             ],

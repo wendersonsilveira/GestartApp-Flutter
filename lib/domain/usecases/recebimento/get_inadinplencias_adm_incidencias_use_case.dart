@@ -1,5 +1,4 @@
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_incidencias_entity.dart';
-import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplencia_entity.dart';
 import 'package:Gestart/domain/repositories/recebimento/recebimento_repository.dart';
 import 'package:Gestart/domain/usecases/base/base_future_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';

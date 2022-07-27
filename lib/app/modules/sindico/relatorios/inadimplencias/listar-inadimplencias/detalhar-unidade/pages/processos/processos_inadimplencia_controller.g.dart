@@ -8,8 +8,8 @@ part of 'processos_inadimplencia_controller.dart';
 
 final $ProcessosInadimplenciaController = BindInject(
   (i) => ProcessosInadimplenciaController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

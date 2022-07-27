@@ -1,4 +1,3 @@
-import 'package:Gestart/domain/entities/reserva/reserva_entity.dart';
 import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
 
 extension SendParamsRelReserva on SendParamsRelReservaEntity {

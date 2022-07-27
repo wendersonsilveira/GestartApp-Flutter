@@ -94,7 +94,6 @@ class RecebimentoRemoteDataSource {
   Future<ResourceData<List<InadimplenciaAdmEntity>>> getInadimplenciasAdm(
       SendParamsRelInadimplenciaEntity params) async {
     try {
-      final q = params.toMap();
       final result =
           await _dio.post('get_adm_inadimplencia', data: params.toMap());
       if (result.length > 0)

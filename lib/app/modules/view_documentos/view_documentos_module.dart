@@ -2,15 +2,15 @@ import 'package:Gestart/app/modules/view_documentos/view_documentos_controller.d
 import 'package:Gestart/app/modules/view_documentos/view_documentos_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class ViewDocumentosModule extends ChildModule {
+class ViewDocumentosModule extends Module {
   @override
   List<Bind> get binds => [$ViewDocumentosController];
 
   @override
-  List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute,
+  List<ModularRoute> get routers => [
+        ChildRoute(Modular.initialRoute,
             child: (_, args) => ViewDocumentosPage()),
       ];
 
-  static Inject get to => Inject<ViewDocumentosModule>.of();
+  //static Inject get to => Inject<ViewDocumentosModule>.of();
 }

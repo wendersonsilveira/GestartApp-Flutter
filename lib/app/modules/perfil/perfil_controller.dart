@@ -61,7 +61,7 @@ abstract class _PerfilControllerBase with Store {
   Future<void> logout() async {
     sharedPreferences.removeAll();
     destruirKeyFB();
-    Modular.navigator.popAndPushNamed(RouteName.login);
+    Modular.to.popAndPushNamed(RouteName.login);
   }
 
   destruirKeyFB() async {

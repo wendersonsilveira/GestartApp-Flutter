@@ -8,8 +8,8 @@ part of 'pets_controller.dart';
 
 final $PetsController = BindInject(
   (i) => PetsController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

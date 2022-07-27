@@ -8,8 +8,8 @@ part of 'listar_inadimplencias_controller.dart';
 
 final $ListaInadimplenciasController = BindInject(
   (i) => ListaInadimplenciasController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

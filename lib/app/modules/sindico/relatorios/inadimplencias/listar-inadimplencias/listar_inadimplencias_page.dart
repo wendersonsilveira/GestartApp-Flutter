@@ -41,7 +41,7 @@ class _ListaInadimplenciasPageState extends ModularState<
         codOrd: inadimplencia.codOrd,
         datFim: widget.params.datFim,
         datIni: widget.params.datIni);
-    Modular.navigator.pushNamed(RouteName.detalharInadimplenciasUnidade,
+    Modular.to.pushNamed(RouteName.detalharInadimplenciasUnidade,
         arguments: [params2, inadimplencia]);
   }
 

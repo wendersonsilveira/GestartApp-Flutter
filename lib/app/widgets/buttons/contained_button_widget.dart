@@ -9,7 +9,8 @@ class ContainedButtonWidget extends StatelessWidget {
   final Function onPressed;
   final String text;
   final bool loading;
-  ContainedButtonWidget({@required this.text, @required this.onPressed, this.loading: false});
+  ContainedButtonWidget(
+      {@required this.text, @required this.onPressed, this.loading: false});
   @override
   Widget build(BuildContext context) {
     return Container(

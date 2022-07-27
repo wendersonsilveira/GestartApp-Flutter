@@ -53,7 +53,7 @@ class _ForgotPasswordPageState
                 FlatButton(
                     onPressed: () {
                       Navigator.of(context).pop();
-                      Modular.navigator.pop();
+                      Modular.to.pop();
                     },
                     child: Text('Ok'))
               ],

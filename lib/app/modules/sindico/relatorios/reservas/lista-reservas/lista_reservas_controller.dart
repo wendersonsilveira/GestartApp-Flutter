@@ -25,7 +25,6 @@ abstract class _ListaReservasControllerBase with Store {
   int codCon;
 
   final _getReservas = getIt.get<GetReservasRelatorioUseCase>();
-  final _getReservasRelatorioPDF = getIt.get<GetReservasRelatorioUseCase>();
   // final _getReservasPDF = getIt.get<GetReservasRelatorioPDFUseCase>();
   final _getPerfil = getIt.get<GetPerfilUseCase>();
 

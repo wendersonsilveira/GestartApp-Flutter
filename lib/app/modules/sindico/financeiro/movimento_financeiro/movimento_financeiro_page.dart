@@ -124,11 +124,10 @@ class _MovimentoFinanceiroPageState extends ModularState<
                                       return Column(
                                         children: [
                                           ListTile(
-                                              onTap: () => Modular.navigator
-                                                  .pushNamed(
-                                                      RouteName
-                                                          .movimento_financeiro_detalhe,
-                                                      arguments: e),
+                                              onTap: () => Modular.to.pushNamed(
+                                                  RouteName
+                                                      .movimento_financeiro_detalhe,
+                                                  arguments: e),
                                               trailing: Icon(Icons.arrow_right),
                                               title: e.nomSal != null
                                                   ? Row(

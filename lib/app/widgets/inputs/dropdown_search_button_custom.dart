@@ -1,4 +1,3 @@
-import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 
 class DropdownSearchButtonWidget extends StatefulWidget {
@@ -108,13 +107,13 @@ class _DropdownSearchButtonWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
+    return ElevatedButton(
       onPressed: _showOptionsList,
       child: Text(widget.value, style: TextStyle(color: Colors.white)),
-      color: AppColorScheme.primaryColor,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18.0),
-          side: BorderSide(color: AppColorScheme.primaryColor)),
+      // color: AppColorScheme.primaryColor,
+      // shape: RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.circular(18.0),
+      //     side: BorderSide(color: AppColorScheme.primaryColor)),
     );
   }
 }

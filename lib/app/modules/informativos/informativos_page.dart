@@ -36,10 +36,9 @@ class _InformativosPageState
           leading: new IconButton(
             icon: new Icon(Icons.arrow_back),
             onPressed: () {
-                Modular.navigator.pop();
+              Modular.to.pop();
             },
           ),
-          
         ),
         body: Observer(
             builder: (_) => controller.infor.status == Status.loading
@@ -59,7 +58,7 @@ class _InformativosPageState
                                 children: [
                                   ListTile(
                                     onTap: () {
-                                      Modular.navigator.pushNamed(
+                                      Modular.to.pushNamed(
                                           RouteName.informativo,
                                           arguments:
                                               controller.infor.data[index].id);

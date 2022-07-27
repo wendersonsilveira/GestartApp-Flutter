@@ -8,8 +8,8 @@ part of 'informativo_controller.dart';
 
 final $InformativoController = BindInject(
   (i) => InformativoController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

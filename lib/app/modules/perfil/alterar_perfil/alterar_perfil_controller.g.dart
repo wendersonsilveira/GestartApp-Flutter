@@ -8,8 +8,8 @@ part of 'alterar_perfil_controller.dart';
 
 final $AlterarPerfilController = BindInject(
   (i) => AlterarPerfilController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

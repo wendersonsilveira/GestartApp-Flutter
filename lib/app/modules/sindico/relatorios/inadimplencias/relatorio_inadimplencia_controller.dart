@@ -87,8 +87,7 @@ abstract class _RelatorioInadimplenciaControllerBase with Store {
 
     print(params);
 
-    Modular.navigator
-        .pushNamed(RouteName.listarInadimplencia, arguments: params);
+    Modular.to.pushNamed(RouteName.listarInadimplencia, arguments: params);
   }
 
   init() async {

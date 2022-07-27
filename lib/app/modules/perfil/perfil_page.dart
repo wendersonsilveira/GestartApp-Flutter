@@ -68,7 +68,7 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
                 TextButton(
                     onPressed: () {
                       zerarFormulario();
-                      Modular.navigator.pop();
+                      Modular.to.pop();
                     },
                     child: Text(
                       'Cancelar',
@@ -93,12 +93,12 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
   alterarPefril() {
     controller.checarSenha(_senhaAtual.text).then((value) {
       if (value) {
-        Modular.navigator
+        Modular.to
             .popAndPushNamed(RouteName.alterar_perfil,
                 arguments: controller.perfil.data)
             .then((value) => controller.init());
       } else {
-        Modular.navigator.pop();
+        Modular.to.pop();
         showInSnackBar('Senha Incorreta');
       }
     });
@@ -143,7 +143,7 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
                 TextButton(
                     onPressed: () {
                       zerarFormulario();
-                      Modular.navigator.pop();
+                      Modular.to.pop();
                     },
                     child: Text(
                       'Cancelar',
@@ -187,7 +187,7 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
           .then((value) {
         if (value['id'] == true) {
           zerarFormulario();
-          Modular.navigator.pop();
+          Modular.to.pop();
           showInSnackBar(value['message']);
         } else if (value['message'] == 'MESMA_SENHA')
           showDialog(
@@ -212,13 +212,13 @@ class _PerfilPageState extends ModularState<PerfilPage, PerfilController> {
   confirmarExclusao() {
     controller.checarSenha(_senhaAtual.text).then((value) {
       if (value) {
-        Modular.navigator.pop();
+        Modular.to.pop();
         showInSnackBar('Usuario excluido com sucesso');
         Timer(Duration(seconds: 1), () {
           controller.excluirConta();
         });
       } else {
-        Modular.navigator.pop();
+        Modular.to.pop();
         showInSnackBar('Senha Incorreta');
       }
     });

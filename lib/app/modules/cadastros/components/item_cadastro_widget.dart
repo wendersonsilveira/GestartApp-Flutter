@@ -14,7 +14,7 @@ class ItemCadastroWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Modular.navigator.pushNamed(routeName);
+        Modular.to.pushNamed(routeName);
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),

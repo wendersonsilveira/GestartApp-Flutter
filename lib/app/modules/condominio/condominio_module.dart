@@ -11,7 +11,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'ativar_condominio/ativar_condominio_page.dart';
 import 'condominio_page.dart';
 
-class CondominioModule extends ChildModule {
+class CondominioModule extends Module {
   @override
   List<Bind> get binds => [
         $EnviarCodigoController,
@@ -24,12 +24,11 @@ class CondominioModule extends ChildModule {
       ];
 
   @override
-  List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute,
-            child: (_, args) => CondominioPage()),
-        ModularRouter(RouteName.ativar_condominio,
+  List<ModularRoute> get routers => [
+        ChildRoute(Modular.initialRoute, child: (_, args) => CondominioPage()),
+        ChildRoute(RouteName.ativar_condominio,
             child: (_, args) => AtivarCondominioPage()),
       ];
 
-  static Inject get to => Inject<CondominioModule>.of();
+  //static Inject get to => Inject<CondominioModule>.of();
 }

@@ -9,8 +9,6 @@ import 'package:Gestart/data/local/shared_preferences.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:injectable/injectable.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -23,7 +21,6 @@ class AuthInterceptor extends Interceptor {
   String platform = "";
   AuthInterceptor(this._dio);
   static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
-  Map<String, dynamic> _deviceData = <String, dynamic>{};
   @override
   Future onError(DioError error) async {
     if (error.response?.statusCode == 401 && error.request.path != 'login')
@@ -101,7 +98,7 @@ class AuthInterceptor extends Interceptor {
 
   goToLogin() {
     getIt.get<SharedPreferencesManager>().removeAll();
-    Modular.navigator.popAndPushNamed(RouteName.login,
+    Modular.to.popAndPushNamed(RouteName.login,
         arguments: 'Sua sessão expirou, logue–se novamente.');
   }
 

@@ -3,16 +3,16 @@ import 'package:Gestart/app/modules/veiculo/veiculos_page.dart';
 import 'veiculos_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class VeiculosModule extends ChildModule {
+class VeiculosModule extends Module {
   @override
   List<Bind> get binds => [
         $VeiculosController,
       ];
 
   @override
-  List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, child: (_, args) => VeiculosPage()),
+  List<ModularRoute> get routers => [
+        ChildRoute(Modular.initialRoute, child: (_, args) => VeiculosPage()),
       ];
 
-  static Inject get to => Inject<VeiculosModule>.of();
+  //static Inject get to => Inject<VeiculosModule>.of();
 }

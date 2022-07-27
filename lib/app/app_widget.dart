@@ -36,14 +36,14 @@ class _AppWidgetState extends ModularState<AppWidget, AppController> {
               supportedLocales: <Locale>[
                 Locale.fromSubtags(languageCode: 'pt')
               ],
-              navigatorKey: Modular.navigatorKey,
+              // navigatorKey: Modular.navigatorKey,
               title: 'Gestart App',
               theme: ThemeData(
                 primarySwatch: Colors.blue,
               ),
               initialRoute: controller.initRouter,
               debugShowCheckedModeBanner: false,
-              onGenerateRoute: Modular.generateRoute,
+              // onGenerateRoute: Modular.generateRoute,
             );
     });
   }

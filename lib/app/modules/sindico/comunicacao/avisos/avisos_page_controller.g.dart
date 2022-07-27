@@ -8,8 +8,8 @@ part of 'avisos_page_controller.dart';
 
 final $AvisosPageController = BindInject(
   (i) => AvisosPageController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

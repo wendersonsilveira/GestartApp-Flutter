@@ -2,7 +2,7 @@ import 'detalhe_balancete/detalhe_balancete_controller.dart';
 import 'balancete_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class BalanceteModule extends ChildModule {
+class BalanceteModule extends Module {
   @override
   List<Bind> get binds => [
         $DetalheBalanceteController,
@@ -10,7 +10,7 @@ class BalanceteModule extends ChildModule {
       ];
 
   @override
-  List<ModularRouter> get routers => [];
+  List<ModularRoute> get routers => [];
 
-  static Inject get to => Inject<BalanceteModule>.of();
+  //static Inject get to => Inject<BalanceteModule>.of();
 }

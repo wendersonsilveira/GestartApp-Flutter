@@ -76,7 +76,7 @@ class _UnidadesPageState
                               Icons.arrow_right,
                               size: 40,
                             ),
-                            onTap: () => Modular.navigator.pushNamed(
+                            onTap: () => Modular.to.pushNamed(
                                 RouteName.reservaEspacos,
                                 arguments: [
                                   controller.unidades[index].codcon,

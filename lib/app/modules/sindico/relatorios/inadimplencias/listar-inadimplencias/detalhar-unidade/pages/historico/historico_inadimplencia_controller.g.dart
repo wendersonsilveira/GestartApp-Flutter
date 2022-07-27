@@ -8,8 +8,8 @@ part of 'historico_inadimplencia_controller.dart';
 
 final $HistoricoInadimplenciaController = BindInject(
   (i) => HistoricoInadimplenciaController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

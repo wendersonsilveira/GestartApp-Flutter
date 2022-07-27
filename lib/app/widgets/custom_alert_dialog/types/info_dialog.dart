@@ -42,7 +42,7 @@ class InfoDialog extends StatelessWidget {
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
-            onClickButton != null ? onClickButton() : null;
+            onClickButton != null ?? onClickButton();
           },
           child: Text(textButton),
         )
