@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:Gestart/domain/entities/setup/setup_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesManager {

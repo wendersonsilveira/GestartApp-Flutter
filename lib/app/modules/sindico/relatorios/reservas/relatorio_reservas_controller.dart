@@ -1,5 +1,4 @@
 import 'package:Gestart/app/constants/route_name.dart';
-import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/reserva/espaco_entity.dart';
 import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.dart';
@@ -79,7 +78,7 @@ abstract class _RelatorioReservasControllerBase with Store {
         dataFim: dataFim,
         tipo: tipo);
 
-    Modular.navigator.pushNamed(RouteName.listaReservas, arguments: params);
+    Modular.to.pushNamed(RouteName.listaReservas, arguments: params);
   }
 
   init() async {
