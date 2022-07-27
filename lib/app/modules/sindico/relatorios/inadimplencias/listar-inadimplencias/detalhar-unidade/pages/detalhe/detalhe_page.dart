@@ -9,7 +9,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplencia_entity.dart';
 
-import '../../detalhar_unidade_controller.dart';
 import 'detalhe_controller.dart';
 
 class DetalhePage extends StatefulWidget {

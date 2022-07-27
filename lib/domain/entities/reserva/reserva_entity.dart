@@ -67,17 +67,12 @@ class ReservaEntity {
     switch (this.status) {
       case 0:
         return 'Aguardando Aprovação';
-        break;
       case 1:
         return 'Aprovado';
-        break;
       case 2:
         return 'Cancelado';
-        break;
-      case 3:
+      default:
         return 'Rejeitado';
-        break;
     }
-    ;
   }
 }
