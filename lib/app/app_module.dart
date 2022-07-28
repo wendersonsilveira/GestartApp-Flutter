@@ -194,7 +194,7 @@ class AppModule extends Module {
   @override
   List<ModularRoute> get routes => [
         // ModuleRoute(Modular.initialRoute, module:  LoginModule()),
-        ChildRoute(RouteName.condominio, child: (_, args) => CondominioPage()),
+        ChildRoute(RouteName.condominio, : (_, args) => CondominioPage()),
         ChildRoute(RouteName.dashboard, child: (_, args) => DashboardPage()),
         ChildRoute(RouteName.ativar_condominio,
             child: (_, args) => AtivarCondominioPage()),
