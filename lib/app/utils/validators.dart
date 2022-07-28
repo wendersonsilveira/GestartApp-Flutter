@@ -1,6 +1,3 @@
-import 'package:string_validator/string_validator.dart';
-import 'package:cpfcnpj/cpfcnpj.dart';
-
 abstract class Validators {
   static String string({String value, String message}) {
     return value.isNotEmpty ? null : message;
@@ -45,13 +42,97 @@ abstract class Validators {
       return "CPF ou CNPJ em branco";
     }
 
-    if (CPF.isValid(value)) {
+    if (isCpfValid(value)) {
       return null;
-    } else if (CNPJ.isValid(value)) {
+    } else if (isCnpjValid(value)) {
       return null;
     } else {
       return "CPF ou CNPJ inválido";
     }
+  }
+
+  static bool isCnpjValid(String cnpj) {
+    if (cnpj == null) return false;
+
+    // Obter somente os números do CNPJ
+    var numeros = cnpj.replaceAll(RegExp(r'[^0-9]'), '');
+
+    // Testar se o CNPJ possui 14 dígitos
+    if (numeros.length != 14) return false;
+
+    // Testar se todos os dígitos do CNPJ são iguais
+    if (RegExp(r'^(\d)\1*$').hasMatch(numeros)) return false;
+
+    // Dividir dígitos
+    List<int> digitos =
+        numeros.split('').map((String d) => int.parse(d)).toList();
+
+    // Calcular o primeiro dígito verificador
+    var calc_dv1 = 0;
+    var j = 0;
+    for (var i in Iterable<int>.generate(12, (i) => i < 4 ? 5 - i : 13 - i)) {
+      calc_dv1 += digitos[j++] * i;
+    }
+    calc_dv1 %= 11;
+    var dv1 = calc_dv1 < 2 ? 0 : 11 - calc_dv1;
+
+    // Testar o primeiro dígito verificado
+    if (digitos[12] != dv1) return false;
+
+    // Calcular o segundo dígito verificador
+    var calc_dv2 = 0;
+    j = 0;
+    for (var i in Iterable<int>.generate(13, (i) => i < 5 ? 6 - i : 14 - i)) {
+      calc_dv2 += digitos[j++] * i;
+    }
+    calc_dv2 %= 11;
+    var dv2 = calc_dv2 < 2 ? 0 : 11 - calc_dv2;
+
+    // Testar o segundo dígito verificador
+    if (digitos[13] != dv2) return false;
+
+    return true;
+  }
+
+  static bool isCpfValid(String cpf) {
+    if (cpf == null) return false;
+
+    // Obter somente os números do CPF
+    var numeros = cpf.replaceAll(RegExp(r'[^0-9]'), '');
+
+    // Testar se o CPF possui 11 dígitos
+    if (numeros.length != 11) return false;
+
+    // Testar se todos os dígitos do CPF são iguais
+    if (RegExp(r'^(\d)\1*$').hasMatch(numeros)) return false;
+
+    // Dividir dígitos
+    List<int> digitos =
+        numeros.split('').map((String d) => int.parse(d)).toList();
+
+    // Calcular o primeiro dígito verificador
+    var calc_dv1 = 0;
+    for (var i in Iterable<int>.generate(9, (i) => 10 - i)) {
+      calc_dv1 += digitos[10 - i] * i;
+    }
+    calc_dv1 %= 11;
+    var dv1 = calc_dv1 < 2 ? 0 : 11 - calc_dv1;
+
+    // Testar o primeiro dígito verificado
+    if (digitos[9] != dv1) return false;
+
+    // Calcular o segundo dígito verificador
+    var calc_dv2 = 0;
+    for (var i in Iterable<int>.generate(10, (i) => 11 - i)) {
+      calc_dv2 += digitos[11 - i] * i;
+    }
+    calc_dv2 %= 11;
+    var dv2 = calc_dv2 < 2 ? 0 : 11 - calc_dv2;
+
+    // Testar o segundo dígito verificador
+    if (digitos[10] != dv2) return false;
+
+    return true;
   }
 
   static String phone(String value) {
@@ -72,6 +153,12 @@ abstract class Validators {
   }
 
   static String email(String email) {
+    RegExp _email = RegExp(
+        r"^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$");
+    bool isEmail(String str) {
+      return _email.hasMatch(str.toLowerCase());
+    }
+
     if (email == null || email.isEmpty) {
       return "Email em branco";
     } else if (isEmail(email)) {

@@ -4,7 +4,6 @@ import 'package:Gestart/domain/entities/reserva/send_params_rel_reserva_entity.d
 import 'package:Gestart/domain/repositories/reserva/reserva_repository.dart';
 import 'package:Gestart/data/datasource/reserva/reserva_remote_data_source.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
 class ReservaRepositoryImpl implements ReservaRepository {
   ReservaRemoteDataSource _reservaRemoteDataSource;

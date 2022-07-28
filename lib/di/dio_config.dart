@@ -84,7 +84,6 @@ import 'package:Gestart/domain/usecases/auth/login_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boleto_use_case.dart';
 import 'package:Gestart/domain/usecases/recebimento/get_inadinplencias_adm_processos_use_case.dart';
 import 'package:Gestart/domain/usecases/recebimento/get_inadinplencias_adm_use_case.dart';
-import 'package:Gestart/domain/usecases/reserva/get_reservas_relatorio_pdf_use_case.dart';
 import 'package:Gestart/domain/usecases/taxa/get_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_condominio_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boletos_use_case.dart';
@@ -300,8 +299,6 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => GetReservaAdmUseCase(get<ReservaRepository>()));
   gh.factory<CancelarReservaUseCase>(
       () => CancelarReservaUseCase(get<ReservaRepository>()));
-  gh.factory<GetReservasRelatorioPDFUseCase>(
-      () => GetReservasRelatorioPDFUseCase(get<ReservaRepository>()));
 
   //espacos
   gh.factory<EspacoRemoteDataSource>(
