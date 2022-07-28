@@ -1,6 +1,7 @@
 import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/admin-cadastro/resumo_unidade_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
+import 'package:Gestart/domain/entities/unidade/unidade_infor_entity.dart';
 import 'package:Gestart/domain/usecases/adm-cadastros/get_resumo_unidade_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_filtro_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
@@ -24,7 +25,7 @@ abstract class _CadastrosControllerBase with Store {
   ResumoUnidadeEntity resumo;
 
   @observable
-  List<UnidadeEntity> unidades;
+  List<UnidadeInforEntity> unidades;
 
   @observable
   bool isLoadingNex = false;
@@ -45,23 +46,35 @@ abstract class _CadastrosControllerBase with Store {
   }
 
   @action
-  getUnidades(Map<String, dynamic> filtro) async {
-    isLoading = false;
-    filtro['CODCON'] = codCon;
-    ResourceData r = await _getUnidade(filtro);
+  getUnidades() async {
+    ResourceData r = await _getUnidade(codCon);
     unidades = r.data;
     isLoading = true;
   }
 
-  getNexFilterUnidades(Map<String, dynamic> filtro) async {
-    isLoadingNex = true;
-    filtro['CODCON'] = codCon;
-    ResourceData r = await _getUnidade(filtro);
-    if (r.data != null) {
-      unidades.addAll(r.data);
-    } else {
-      finalList = true;
-    }
-    isLoadingNex = false;
+  @action
+  filterUnidades(Map map) {
+    print(map);
+    this.unidades = this
+        .unidades
+        .where((e) => e.hasInquilino == map['FILTER_HAS_INQUILINO'] ||
+            e.hasPets == map['FILTER_HAS_PETS'] ||
+            e.hasUser == map['FILTER_IS_USER'] ||
+            e.hasVeiculos == map['FILTER_HAS_VEICULOS']
+            )
+        .toList();
+    print(this.unidades);
   }
+
+  // getNexFilterUnidades(Map<String, dynamic> filtro) async {
+  //   isLoadingNex = true;
+  //   filtro['CODCON'] = codCon;
+  //   ResourceData r = await _getUnidade(filtro);
+  //   if (r.data != null) {
+  //     unidades.addAll(r.data);
+  //   } else {
+  //     finalList = true;
+  //   }
+  //   isLoadingNex = false;
+  // }
 }

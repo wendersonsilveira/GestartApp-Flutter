@@ -30,13 +30,10 @@ class _CadastrosPageState
   TabController _tabController;
 
   Map<String, dynamic> filtro = {
-    "FILTER_IS_USER": null,
+    "FILTER_HAS_USER": null,
     "FILTER_HAS_INQUILINO": null,
     "FILTER_HAS_PETS": null,
     "FILTER_HAS_VEICULOS": null,
-    "FILTER_ARGUMENTO": null,
-    "FILTER_OFFSET": 0,
-    "FILTER_LIMIT": 10,
   };
 
   ScrollController _scrollController = new ScrollController();
@@ -52,17 +49,7 @@ class _CadastrosPageState
     super.initState();
     _tabController = new TabController(length: 2, vsync: this);
     controller.getResumo().then((value) {
-      controller.getUnidades(filtro);
-    });
-
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        if (!controller.finalList) {
-          filtro['FILTER_OFFSET'] += 10;
-          controller.getNexFilterUnidades(filtro);
-        }
-      }
+      controller.getUnidades();
     });
   }
 
@@ -96,7 +83,7 @@ class _CadastrosPageState
             getHeader: getTagFilter,
             filtro: filtro,
             onSubmit: (filtter) {
-              controller.getUnidades(filtro);
+              controller.filterUnidades(filtter);
               Modular.navigator.pop();
             },
           ),
@@ -107,22 +94,19 @@ class _CadastrosPageState
 
   cleanFilter() {
     filtro = {
-      "FILTER_IS_USER": null,
+      "FILTER_HAS_USER": null,
       "FILTER_HAS_INQUILINO": null,
       "FILTER_HAS_PETS": null,
       "FILTER_HAS_VEICULOS": null,
-      "FILTER_ARGUMENTO": null,
-      "FILTER_OFFSET": 0,
-      "FILTER_LIMIT": 10,
     };
     items = [];
 
-    controller.getUnidades(filtro);
+    controller.getUnidades();
   }
 
   removeFilterItem(String key) {
     filtro[key] = null;
-    controller.getUnidades(filtro);
+    controller.getUnidades();
     setState(() {
       items = items.where((element) => element['key'] != key).toList();
     });
@@ -133,7 +117,7 @@ class _CadastrosPageState
       _tabController.animateTo(index,
           duration: Duration(milliseconds: 200), curve: Curves.easeIn);
     });
-    controller.getUnidades(filtro);
+    controller.getUnidades();
   }
 
   @override
@@ -302,6 +286,9 @@ class _CadastrosPageState
                                 ),
                               ],
                             ),
+
+                            //DETALHES
+
                             Card(
                               child: ExpansionTile(
                                 title: Text('Ver mais'),
@@ -309,8 +296,8 @@ class _CadastrosPageState
                                   Divider(height: 5, color: Colors.grey),
                                   ListTile(
                                     onTap: () {
-                                      filtro['FILTER_HAS_PETS'] = 1;
-                                      mudarPage(1);
+                                      // filtro['FILTER_HAS_PETS'] = 1;
+                                      // mudarPage(1);
                                     },
                                     leading: Icon(Icons.pets),
                                     title: Row(
@@ -344,8 +331,8 @@ class _CadastrosPageState
                                           height: 5, color: Colors.grey)),
                                   ListTile(
                                     onTap: () {
-                                      filtro['FILTER_HAS_VEICULOS'] = 1;
-                                      mudarPage(1);
+                                      // filtro['FILTER_HAS_VEICULOS'] = 1;
+                                      // mudarPage(1);
                                     },
                                     leading: Icon(FlutterIcons.car_alt_faw5s),
                                     title: Row(
@@ -434,17 +421,19 @@ class _CadastrosPageState
                                       Icons.delete,
                                       color: Colors.red,
                                     ),
-                                    onPressed: cleanFilter,
+                                    onPressed: () {
+                                      controller.getUnidades();
+                                      items = [];
+                                    },
                                   ),
                                 ),
                                 Container(
                                   child: IconButton(
-                                    icon: Icon(
-                                      Icons.filter_list,
-                                      color: AppColorScheme.primaryColor,
-                                    ),
-                                    onPressed: getFiltro,
-                                  ),
+                                      icon: Icon(
+                                        Icons.filter_list,
+                                        color: AppColorScheme.primaryColor,
+                                      ),
+                                      onPressed: getFiltro),
                                 ),
                               ],
                             ),
@@ -482,156 +471,158 @@ class _CadastrosPageState
                         ? Expanded(
                             child: RefreshIndicator(
                               onRefresh: () async {
-                                filtro['FILTER_OFFSET'] = 0;
-                                controller.getUnidades(filtro);
+                                controller.getUnidades();
                               },
                               child:
                                   controller.unidades != null &&
                                           controller.unidades.length > 0
                                       ? ListView.builder(
                                           controller: _scrollController,
-                                          itemCount: controller.isLoadingNex &&
-                                                  !controller.finalList
-                                              ? controller.unidades.length + 1
-                                              : controller.unidades.length,
+                                          itemCount: controller.unidades.length,
                                           itemBuilder: (_, index) {
-                                            return index ==
-                                                        controller
-                                                            .unidades.length &&
-                                                    !controller.finalList
-                                                ? Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            10),
-                                                    child:
-                                                        CircularProgressCustom(),
-                                                  )
-                                                : GestureDetector(
-                                                    onTap: () {
-                                                      Navigator.of(context)
-                                                          .push(
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              DetalhesPage(
-                                                            codOrd: controller
-                                                                .unidades[index]
-                                                                .codord,
-                                                            condonUserId:
-                                                                controller
-                                                                    .unidades[
-                                                                        index]
-                                                                    .condonUserId,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                    child: Card(
-                                                      margin: EdgeInsets.only(
-                                                          top: 8),
-                                                      child: Container(
-                                                        padding:
-                                                            EdgeInsets.all(10),
-                                                        child: Row(
+                                            return GestureDetector(
+                                              onTap: () {}, // {
+                                              //   Navigator.of(context)
+                                              //       .push(
+                                              //     MaterialPageRoute(
+                                              //       builder: (context) =>
+                                              //           DetalhesPage(
+                                              //         codOrd: controller
+                                              //             .unidades[index]
+                                              //             .codord,
+                                              //         condonUserId:
+                                              //             controller
+                                              //                 .unidades[
+                                              //                     index]
+                                              //                 .condonUserId,
+                                              //       ),
+                                              //     ),
+                                              //   );
+                                              // },
+                                              child: Card(
+                                                margin: EdgeInsets.only(top: 8),
+                                                child: Container(
+                                                  padding: EdgeInsets.all(10),
+                                                  child: Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
                                                           children: [
-                                                            Expanded(
-                                                              child: Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
+                                                            Text(
+                                                                'Unidade: ${controller.unidades[index].codimo}'),
+                                                            Text(
+                                                                'Proprietário: ${controller.unidades[index].nompro}'),
+                                                            Padding(
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          12),
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
                                                                 children: [
-                                                                  Text(
-                                                                      'Unidade: ${controller.unidades[index].codimo}'),
-                                                                  Text(
-                                                                      'Proprietário: ${controller.unidades[index].nompro}'),
-                                                                  Padding(
-                                                                    padding: EdgeInsets.symmetric(
-                                                                        vertical:
-                                                                            12),
-                                                                    child: Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceBetween,
-                                                                      children: [
-                                                                        controller.unidades[index].isUser !=
-                                                                                0
-                                                                            ? Text('USUÁRIO ATIVO',
-                                                                                style: TextStyle(color: AppColorScheme.primaryColor))
-                                                                            : Text('NÃO É USUÁRIO', style: TextStyle(color: Colors.red)),
-                                                                        controller.unidades[index].asInquilino >
-                                                                                0
-                                                                            ? Text(
-                                                                                'TEM INQUILINO',
-                                                                                style: TextStyle(
-                                                                                  color: AppColorScheme.primaryColor,
-                                                                                ),
-                                                                              )
-                                                                            : Text(
-                                                                                'NÂO TEM INQUILO',
-                                                                                style: TextStyle(color: Colors.red),
-                                                                              ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                  Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      Expanded(
-                                                                        child:
-                                                                            Container(
-                                                                          child:
-                                                                              Row(
-                                                                            children: [
-                                                                              Container(
-                                                                                padding: EdgeInsets.only(right: 8),
-                                                                                child: Icon(Icons.pets, color: AppColorScheme.primaryColor),
-                                                                              ),
-                                                                              Text(
-                                                                                '${controller.unidades[index].pets} PETS',
-                                                                                style: TextStyle(fontSize: 13),
-                                                                              ),
-                                                                            ],
+                                                                  controller.unidades[index].hasUser ==
+                                                                          1
+                                                                      ? Text(
+                                                                          'USUÁRIO ATIVO',
+                                                                          style: TextStyle(
+                                                                              color: AppColorScheme
+                                                                                  .primaryColor))
+                                                                      : Text(
+                                                                          'NÃO É USUÁRIO',
+                                                                          style:
+                                                                              TextStyle(color: Colors.red)),
+                                                                  controller.unidades[index]
+                                                                              .hasInquilino >
+                                                                          0
+                                                                      ? Text(
+                                                                          'TEM INQUILINO',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            color:
+                                                                                AppColorScheme.primaryColor,
                                                                           ),
+                                                                        )
+                                                                      : Text(
+                                                                          'NÂO TEM INQUILO',
+                                                                          style:
+                                                                              TextStyle(color: Colors.red),
                                                                         ),
-                                                                      ),
-                                                                      Expanded(
-                                                                        child:
-                                                                            Container(
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.end,
-                                                                            children: [
-                                                                              Container(
-                                                                                padding: EdgeInsets.only(right: 8),
-                                                                                child: Icon(FlutterIcons.car_alt_faw5s, color: AppColorScheme.primaryColor),
-                                                                              ),
-                                                                              Text(
-                                                                                '${controller.unidades[index].veiculos} VEÍCULOS',
-                                                                                style: TextStyle(fontSize: 13, color: Colors.black54),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      )
-                                                                    ],
-                                                                  )
                                                                 ],
                                                               ),
                                                             ),
-                                                            Container(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      left: 5),
-                                                              child: Icon(Icons
-                                                                  .chevron_right),
-                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Expanded(
+                                                                  child:
+                                                                      Container(
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Container(
+                                                                          padding:
+                                                                              EdgeInsets.only(right: 8),
+                                                                          child: Icon(
+                                                                              Icons.pets,
+                                                                              color: AppColorScheme.primaryColor),
+                                                                        ),
+                                                                        Text(
+                                                                          '${controller.unidades[index].hasPets} PETS',
+                                                                          style:
+                                                                              TextStyle(fontSize: 13),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Expanded(
+                                                                  child:
+                                                                      Container(
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .end,
+                                                                      children: [
+                                                                        Container(
+                                                                          padding:
+                                                                              EdgeInsets.only(right: 8),
+                                                                          child: Icon(
+                                                                              FlutterIcons.car_alt_faw5s,
+                                                                              color: AppColorScheme.primaryColor),
+                                                                        ),
+                                                                        Text(
+                                                                          '${controller.unidades[index].hasVeiculos} VEÍCULOS',
+                                                                          style: TextStyle(
+                                                                              fontSize: 13,
+                                                                              color: Colors.black54),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            )
                                                           ],
                                                         ),
                                                       ),
-                                                    ),
-                                                  );
+                                                      Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 5),
+                                                        child: Icon(Icons
+                                                            .chevron_right),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            );
                                           },
                                         )
                                       : EmptyWidget(
