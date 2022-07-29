@@ -9,9 +9,6 @@ import 'package:Gestart/domain/utils/status.dart';
 import 'package:Gestart/app/modules/sindico/graficos/pie_chart_model.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:collection/collection.dart';
-import 'package:string_validator/string_validator.dart';
-
 part 'contas_fixas_controller.g.dart';
 
 @Injectable()

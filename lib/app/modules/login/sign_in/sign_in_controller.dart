@@ -1,4 +1,3 @@
-import 'package:Gestart/app/modules/dashboard/dashboard_page.dart';
 import 'package:Gestart/domain/entities/auth/check_auth_entity.dart';
 import 'package:Gestart/domain/entities/auth/login_entity.dart';
 import 'package:Gestart/domain/entities/user/user_entity.dart';

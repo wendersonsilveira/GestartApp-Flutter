@@ -1,5 +1,4 @@
 import 'package:Gestart/di/di.dart';
-import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/usecases/condominio/send_codigo_ativacao_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';

@@ -52,6 +52,7 @@ abstract class _SindicoControllerBase with Store {
     if (codCon == null) {
       if (cod != null) {
         codCon = cod;
+        storage.setInt('codCon', codCon);
       } else {
         codCon = unidades.data[0].codcon;
         storage.setInt('codCon', codCon);

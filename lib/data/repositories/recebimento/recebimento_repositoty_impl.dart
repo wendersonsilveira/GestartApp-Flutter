@@ -1,9 +1,14 @@
 import 'package:Gestart/data/datasource/recebimento/recebimento_data_source.dart';
 import 'package:Gestart/domain/entities/recebimento/acrodo_entity.dart';
+import 'package:Gestart/domain/entities/recebimento/inadimplencia_adm_detalhe_entity.dart';
+import 'package:Gestart/domain/entities/recebimento/inadimplencia_adm_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/inadimplencia_historico_entity.dart';
+import 'package:Gestart/domain/entities/recebimento/inadimplencia_processos_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/pagamento_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/recebimento_entity.dart';
+import 'package:Gestart/domain/entities/recebimento/send_params_rel_inadimplencia_entity.dart';
+import 'package:Gestart/domain/entities/recebimento/inadimplencia_incidencias_entity.dart';
 import 'package:Gestart/domain/entities/recebimento/tipo_taxa_entity.dart';
 import 'package:Gestart/domain/repositories/recebimento/recebimento_repository.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
@@ -14,10 +19,12 @@ class RecebimentoRepositoryImpl implements RecebimentoRepository {
   RecebimentoRepositoryImpl(this._recebimentoRemoteDataSource);
 
   @override
-  Future<ResourceData<List<RecebimentoEntity>>> getRecebimentos(Map<String, dynamic> filtro) async {
+  Future<ResourceData<List<RecebimentoEntity>>> getRecebimentos(
+      Map<String, dynamic> filtro) async {
     int codCon = filtro['CODCON'];
     filtro.remove('CODCON');
-    final resource = await _recebimentoRemoteDataSource.getRecebimentos(codCon, filtro);
+    final resource =
+        await _recebimentoRemoteDataSource.getRecebimentos(codCon, filtro);
 
     return resource;
   }
@@ -30,31 +37,38 @@ class RecebimentoRepositoryImpl implements RecebimentoRepository {
   }
 
   @override
-  Future<ResourceData<List<PagamentoEntity>>> getPagamentos(Map<String, dynamic> filtro) async {
+  Future<ResourceData<List<PagamentoEntity>>> getPagamentos(
+      Map<String, dynamic> filtro) async {
     final resource = await _recebimentoRemoteDataSource.getPagamentos(filtro);
 
     return resource;
   }
 
   @override
-  Future<ResourceData<List<InadimplenciaEntity>>> getInadimplencias(Map<String, dynamic> filtro) async {
+  Future<ResourceData<List<InadimplenciaEntity>>> getInadimplencias(
+      Map<String, dynamic> filtro) async {
     int codCon = filtro['CODCON'];
     filtro.remove('CODCON');
-    final resource = await _recebimentoRemoteDataSource.getInadimplencias(codCon, filtro);
+    final resource =
+        await _recebimentoRemoteDataSource.getInadimplencias(codCon, filtro);
 
     return resource;
   }
 
   @override
-  Future<ResourceData<List<InadimplenciaEntity>>> getInadimplencia(Map<String, dynamic> filtro) async {
-    final resource = await _recebimentoRemoteDataSource.getInadimplencia(filtro);
+  Future<ResourceData<List<InadimplenciaEntity>>> getInadimplencia(
+      Map<String, dynamic> filtro) async {
+    final resource =
+        await _recebimentoRemoteDataSource.getInadimplencia(filtro);
 
     return resource;
   }
 
   @override
-  Future<ResourceData<List<HistoricoInadimEntity>>> getHistoricoInadim(int codOrd) async {
-    final resource = await _recebimentoRemoteDataSource.getHistoricoInadim(codOrd);
+  Future<ResourceData<List<HistoricoInadimEntity>>> getHistoricoInadim(
+      int codOrd) async {
+    final resource =
+        await _recebimentoRemoteDataSource.getHistoricoInadim(codOrd);
 
     return resource;
   }
@@ -69,6 +83,42 @@ class RecebimentoRepositoryImpl implements RecebimentoRepository {
   @override
   Future<ResourceData<List<AcordoEntity>>> getAcordo(int numAco) async {
     final resource = await _recebimentoRemoteDataSource.getAcordo(numAco);
+
+    return resource;
+  }
+
+  @override
+  Future<ResourceData<List<InadimplenciaAdmEntity>>> getInadimplenciasAdm(
+      SendParamsRelInadimplenciaEntity params) async {
+    final resource =
+        await _recebimentoRemoteDataSource.getInadimplenciasAdm(params);
+
+    return resource;
+  }
+
+  @override
+  Future<ResourceData<List<InadimplenciaAdmDetalheEntity>>>
+      getInadimplenciasUnidade(SendParamsRelInadimplenciaEntity params) async {
+    final resource =
+        await _recebimentoRemoteDataSource.getInadimplenciasUnidade(params);
+
+    return resource;
+  }
+
+  @override
+  Future<ResourceData<List<IncidenciaInadimplenciasEntity>>>
+      getIncidenciasInadimplenciasUnidade(int codOrd) async {
+    final resource =
+        await _recebimentoRemoteDataSource.getIncidenciasInadimplencias(codOrd);
+
+    return resource;
+  }
+
+  @override
+  Future<ResourceData<List<ProcessoInadimplenciasEntity>>>
+      getProcessosInadimplenciasUnidade(int codOrd) async {
+    final resource =
+        await _recebimentoRemoteDataSource.getProcessosInadim(codOrd);
 
     return resource;
   }

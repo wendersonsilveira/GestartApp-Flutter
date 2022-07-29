@@ -1,5 +1,4 @@
 import 'package:Gestart/app/modules/sindico/controle_recebimentos/components/filtro_inadim_wigedt.dart';
-import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/styles/app_images.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';

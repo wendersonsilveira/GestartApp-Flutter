@@ -1,3 +1,4 @@
+import 'package:Gestart/app/modules/sindico/relatorios/inadimplencias/relatorio_inadimplencia_page.dart';
 import 'package:Gestart/app/modules/sindico/relatorios/reservas/relatorio_reservas_page.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,21 @@ class _RelatoriosPageState extends State<RelatoriosPage> {
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => RelatorioReservasPage(),
+                      ));
+                    },
+                  ),
+                ),
+                Card(
+                  child: ListTile(
+                    title: Text('Relatório de inadimplência'),
+                    leading: Icon(
+                      FlutterIcons.square_faw,
+                      color: AppColorScheme.primaryColor,
+                    ),
+                    trailing: Icon(Icons.chevron_right),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => RelatorioInadimplenciaPage(),
                       ));
                     },
                   ),

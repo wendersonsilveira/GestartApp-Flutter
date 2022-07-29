@@ -1,5 +1,4 @@
 import 'package:Gestart/app/modules/dashboard/dashboard_page.dart';
-import 'package:Gestart/app/modules/informativos/informativos_page.dart';
 import 'package:Gestart/app/modules/notificacoes/notificacoes_page.dart';
 import 'package:Gestart/app/modules/perfil/perfil_page.dart';
 import 'package:Gestart/app/modules/pesquisa_voz/pesquisa_page.dart';
@@ -45,21 +44,15 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {
-        //android
-        CustomAlertDialog.question(context,
-            message: "Deseja sair do GestartApp?",
-            onActionPositiveButton: () =>
-                SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
-            onActionNegativeButton: () => Modular.navigator.pop,
-            textButtonPositive: "Sim",
-            colorPositive: AppColorScheme.feedbackDangerDark,
-            textButtonNegative: "Cancelar",
-            title: "Sair");
-
-        //usar essa função para ios
-        //MinimizeApp.minimizeApp();
-      },
+      onWillPop: () => CustomAlertDialog.question(context,
+          message: "Deseja sair do GestartApp?",
+          onActionPositiveButton: () =>
+              SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
+          onActionNegativeButton: () => Modular.navigator.pop,
+          textButtonPositive: "Sim",
+          colorPositive: AppColorScheme.feedbackDangerDark,
+          textButtonNegative: "Cancelar",
+          title: "Sair"),
       child: Scaffold(
           key: _scaffoldKey,
           bottomNavigationBar: BottomNavigationBar(
