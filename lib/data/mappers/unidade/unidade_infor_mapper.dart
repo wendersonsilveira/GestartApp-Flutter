@@ -2,6 +2,7 @@ import 'package:Gestart/domain/entities/unidade/unidade_infor_entity.dart';
 
 extension UnidadeInforMapper on UnidadeInforEntity {
   UnidadeInforEntity copyWith({
+    int condonUserId,
     String codimo,
     int codord,
     String nompro,
@@ -12,6 +13,7 @@ extension UnidadeInforMapper on UnidadeInforEntity {
     
   }) {
     return UnidadeInforEntity(
+      condonUserId: condonUserId ?? this.condonUserId,
       codimo: codimo ?? this.codimo,
       codord: codord ?? this.codord,
       nompro: nompro ?? this.nompro,
@@ -28,6 +30,7 @@ extension UnidadeInforMapper on UnidadeInforEntity {
     if (map == null) return null;
 
     return UnidadeInforEntity(      
+      condonUserId: map['CONDON_USER_ID'],
       codimo: map['CODIMO'] != null
           ? map['CODIMO']
           : map['unidade'] != null

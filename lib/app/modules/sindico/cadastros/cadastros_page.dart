@@ -481,24 +481,24 @@ class _CadastrosPageState
                                           itemCount: controller.unidades.length,
                                           itemBuilder: (_, index) {
                                             return GestureDetector(
-                                              onTap: () {}, // {
-                                              //   Navigator.of(context)
-                                              //       .push(
-                                              //     MaterialPageRoute(
-                                              //       builder: (context) =>
-                                              //           DetalhesPage(
-                                              //         codOrd: controller
-                                              //             .unidades[index]
-                                              //             .codord,
-                                              //         condonUserId:
-                                              //             controller
-                                              //                 .unidades[
-                                              //                     index]
-                                              //                 .condonUserId,
-                                              //       ),
-                                              //     ),
-                                              //   );
-                                              // },
+                                              onTap: () {
+                                                Navigator.of(context)
+                                                    .push(
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        DetalhesPage(
+                                                      codOrd: controller
+                                                          .unidades[index]
+                                                          .codord,
+                                                      condonUserId:
+                                                          controller
+                                                              .unidades[
+                                                                  index]
+                                                              .condonUserId,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                               child: Card(
                                                 margin: EdgeInsets.only(top: 8),
                                                 child: Container(

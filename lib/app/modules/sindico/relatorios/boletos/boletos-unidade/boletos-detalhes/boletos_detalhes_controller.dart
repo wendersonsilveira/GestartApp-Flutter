@@ -5,6 +5,7 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:Gestart/domain/utils/status.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 part 'boletos_detalhes_controller.g.dart';
 
@@ -28,4 +29,12 @@ abstract class _BoletosDetalhesControllerBase with Store {
     boleto = await _getBoleto(conts);
     print(boleto);
   }
+
+  Future<void> getBoletoPDF(String url) {
+    this._launchURL(url);
+  }
+
+  void _launchURL(_url) async => await canLaunch(_url)
+      ? await launch(_url)
+      : throw 'Could not launch $_url';
 }

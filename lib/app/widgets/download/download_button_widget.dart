@@ -57,6 +57,7 @@ class _DownloadButtonWidgetState extends State<DownloadButtonWidget> {
       if (await Permission.storage.request().isGranted) {
         final dir = await AndroidPathProvider.downloadsPath;
         String _name = widget.fileName.replaceAll(r'/', '_');
+        _name = _name.replaceAll(' ', '_');
 
         int version = await sharedPreferences.getInt('versaoArquivos');
 

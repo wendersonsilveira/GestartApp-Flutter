@@ -72,7 +72,7 @@ class _BoletosUnidadePageState
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text('${controller.boletos.data[index].lansDetail}'),
+                                        Text('Unidade: ${controller.boletos.data[index].codimo}'),
                                         Text('Valor : ${controller.boletos.data[index].total}')
                                       ],
                                     ),

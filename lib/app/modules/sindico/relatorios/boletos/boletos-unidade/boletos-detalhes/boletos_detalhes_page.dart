@@ -135,9 +135,9 @@ class _BoletosDetalhesPageState
                                         CrossAxisAlignment.center,
                                     children: [
                                         Expanded(
-                                            child: Text(
-                                            controller
-                                                .boleto.data[0].coMensagemAberto,
+                                          child: Text(
+                                            controller.boleto.data[0]
+                                                .coMensagemAberto,
                                             style: TextStyle(color: Colors.red),
                                           ),
                                         )
@@ -165,24 +165,25 @@ class _BoletosDetalhesPageState
                     Column(
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          child: DownloadButtonWidget(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 5),
-                            fontSize: 14,
-                            title: 'BAIXAR PDF',
-                            color: AppColorScheme.backgroundColor,
-                            fileName:
-                                'Boleto_${controller.boleto.data[0].nomcom}_${controller.boleto.data[0].id}_${controller.boleto.data[0].codimo}_${UIHelper.formatDate(controller.boleto.data[0].datVen)}.pdf',
-                            fileURL: controller.boleto.data[0].linkBoleto,
-                            shap: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                                side: BorderSide(
-                                    color: AppColorScheme.primaryColor)),
-                          ),
-                        ),
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: 
+                            DownloadButtonWidget(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 5),
+                              fontSize: 14,
+                              title: 'BAIXAR PDF',
+                              color: AppColorScheme.backgroundColor,
+                              fileName:
+                                  'Boleto_${controller.boleto.data[0].nomcom}_${controller.boleto.data[0].id}_${controller.boleto.data[0].codimo}_${UIHelper.formatDate(controller.boleto.data[0].datVen)}.pdf',
+                              fileURL: controller.boleto.data[0].linkBoleto,
+                              shap: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side: BorderSide(
+                                      color: AppColorScheme.primaryColor)),
+                            ),
+                            ),
                         ButtonExpandedWidget(
-                          descricao: 'COPIAR CODIGO',
+                          descricao: 'COPIAR CÓDIGO',
                           funcao: () {
                             Clipboard.setData(new ClipboardData(
                                 text:
@@ -216,7 +217,7 @@ class _BoletosDetalhesPageState
                                           fontStyle: FontStyle.normal),
                                     ));
                               },
-                              body: Expanded(
+                              body: Container(
                                   child: Column(
                                 children: controller.boleto.data.map((e) {
                                   print(e);
