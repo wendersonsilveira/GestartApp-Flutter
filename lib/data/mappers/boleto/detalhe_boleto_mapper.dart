@@ -19,6 +19,9 @@ extension DetalheBoletoMapper on DetalheBoletoEntity {
   //   ),
   // }
 
+  List<DetalheBoletoEntity> fromMapList(List<dynamic> data) => List.from(data).map((element) => fromMap(element)).toList();
+
+
   DetalheBoletoEntity fromMap(Map<String, dynamic> map) {
     if (map == null || map.length == 0) return null;
 
@@ -68,6 +71,7 @@ extension DetalheBoletoMapper on DetalheBoletoEntity {
       codCed: map['CODCED'],
       codigoAgencia: map['CODIGO_AGENCIA'],
       logo: map['LOGO'],
+      conts: map['CONTS'],
       linkBoleto: map['LINK_BOLETO'],
     );
   }

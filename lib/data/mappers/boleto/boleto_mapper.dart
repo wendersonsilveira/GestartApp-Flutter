@@ -16,6 +16,10 @@ extension BoletoMapper on BoletoEntity {
       titcob: titcob ?? this.titcob,
       endcob: endcob ?? this.endcob,
       apelido: apelido ?? this.apelido,
+      mesAno: mesAno ?? this.mesAno,
+      lansDetail: lansDetail ?? this.lansDetail,
+      conts: conts ?? this.conts,
+      status: status ?? this.status,
       logo: logo ?? this.logo,
     );
   }
@@ -30,7 +34,7 @@ extension BoletoMapper on BoletoEntity {
       identificador: map['IDENTIFICADOR'],
       datven: DateTime.parse(map['DATVEN']),
       datemi: DateTime.parse(map['DATEMI']),
-      valtot: (map['VALTOT']).toDouble(),
+      valtot: (map['VALTOT'])?.toDouble(),
       nompro: map['NOMPRO'],
       codcon: map['CODCON'],
       nomcon: map['NOMCON'],
@@ -39,6 +43,11 @@ extension BoletoMapper on BoletoEntity {
       titcob: map['TITCOB'],
       endcob: map['ENDCOB'],
       apelido: map['APELIDO'],
+      mesAno: map['MESANO'],
+      lansDetail: map['LANS_DETAIL'],
+      status: map['STATUS'],
+      total: (map['TOTAL'])?.toDouble(),
+      conts: map['CONTS'],
       logo: map['LOGO'],
     );
   }

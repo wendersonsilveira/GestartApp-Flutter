@@ -34,6 +34,9 @@ class RouteName {
   static const String detalharInadimplenciasUnidade =
       '/detalhar_inadimplencias_unidade';
   static const String listaReservas = '/lista_reservas';
+  static const String listaBoletos = '/lista_boletos';
+  static const String boletosUnidade = '/boletos_unidade';
+  static const String boletosDetalhes = '/boletos_detalhes';
 
   static const String veiculos = '/veiculos';
   static const String listar_espacos = '/listar_espacos';

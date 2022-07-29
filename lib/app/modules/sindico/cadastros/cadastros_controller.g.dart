@@ -52,13 +52,13 @@ mixin _$CadastrosController on _CadastrosControllerBase, Store {
   final _$unidadesAtom = Atom(name: '_CadastrosControllerBase.unidades');
 
   @override
-  List<UnidadeEntity> get unidades {
+  List<UnidadeInforEntity> get unidades {
     _$unidadesAtom.reportRead();
     return super.unidades;
   }
 
   @override
-  set unidades(List<UnidadeEntity> value) {
+  set unidades(List<UnidadeInforEntity> value) {
     _$unidadesAtom.reportWrite(value, super.unidades, () {
       super.unidades = value;
     });
@@ -122,8 +122,22 @@ mixin _$CadastrosController on _CadastrosControllerBase, Store {
       AsyncAction('_CadastrosControllerBase.getUnidades');
 
   @override
-  Future getUnidades(Map<String, dynamic> filtro) {
-    return _$getUnidadesAsyncAction.run(() => super.getUnidades(filtro));
+  Future getUnidades() {
+    return _$getUnidadesAsyncAction.run(() => super.getUnidades());
+  }
+
+  final _$_CadastrosControllerBaseActionController =
+      ActionController(name: '_CadastrosControllerBase');
+
+  @override
+  dynamic filterUnidades(Map<dynamic, dynamic> map) {
+    final _$actionInfo = _$_CadastrosControllerBaseActionController.startAction(
+        name: '_CadastrosControllerBase.filterUnidades');
+    try {
+      return super.filterUnidades(map);
+    } finally {
+      _$_CadastrosControllerBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override

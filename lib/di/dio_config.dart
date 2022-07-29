@@ -67,6 +67,8 @@ import 'package:Gestart/domain/repositories/veiculo/veiculo_repository.dart';
 import 'package:Gestart/domain/usecases/adm-cadastros/get_resumo_unidade_use_case.dart';
 import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
 import 'package:Gestart/domain/usecases/balancete/get_balancete_use_case.dart';
+import 'package:Gestart/domain/usecases/boleto/get_boleto_unidade_use_case.dart';
+import 'package:Gestart/domain/usecases/boleto/get_boletos_unidade_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/create_aviso_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/get_aviso_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/get_avisos_use_case.dart';
@@ -85,6 +87,7 @@ import 'package:Gestart/domain/usecases/boleto/get_boleto_use_case.dart';
 import 'package:Gestart/domain/usecases/recebimento/get_inadinplencias_adm_processos_use_case.dart';
 import 'package:Gestart/domain/usecases/recebimento/get_inadinplencias_adm_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_relatorio_pdf_use_case.dart';
+import 'package:Gestart/domain/usecases/unidade/get_unidades_comp_use_case.dart';
 import 'package:Gestart/domain/usecases/taxa/get_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_condominio_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boletos_use_case.dart';
@@ -227,6 +230,8 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<GetBoletosUseCase>(
       () => GetBoletosUseCase(get<BoletoRepository>()));
   gh.factory<GetBoletoUseCase>(() => GetBoletoUseCase(get<BoletoRepository>()));
+  gh.factory<GetBoletosUnidadeUseCase>(() => GetBoletosUnidadeUseCase(get<BoletoRepository>()));
+  gh.factory<GetBoletoUnidadeUseCase>(() => GetBoletoUnidadeUseCase(get<BoletoRepository>()));
 
   //parcelamento
   gh.factory<ParcelamentoBoletoRemoteDataSource>(
@@ -249,6 +254,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => GetUnidadeDetalhesUseCase(get<UnidadeRepository>()));
   gh.factory<GetUnidadesCondominioUseCase>(
       () => GetUnidadesCondominioUseCase(get<UnidadeRepository>()));
+  gh.factory<GetUnidadesCompUseCase>(
+      () => GetUnidadesCompUseCase(get<UnidadeRepository>()));
 
   //balancetes
   gh.factory<BalanceteRemoteDataSource>(

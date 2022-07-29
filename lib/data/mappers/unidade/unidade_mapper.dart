@@ -14,6 +14,7 @@ extension UnidadeMapper on UnidadeEntity {
     String logo,
     int gestartapp,
     int gestartappReserva,
+    String propri
   }) {
     return UnidadeEntity(
       codcon: codcon ?? this.codcon,
@@ -21,6 +22,7 @@ extension UnidadeMapper on UnidadeEntity {
       codimo: codimo ?? this.codimo,
       codord: codord ?? this.codord,
       nomcon: nomcon ?? this.nomcon,
+      propri: propri ?? this.propri,
       parentCondonUserId: parentCondonUserId ?? this.parentCondonUserId,
       condonUserId: condonUserId ?? this.condonUserId,
       perfil: perfil ?? this.perfil,

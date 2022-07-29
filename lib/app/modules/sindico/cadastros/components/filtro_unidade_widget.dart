@@ -21,7 +21,7 @@ class _FiltroUnidadeWdgetState extends State<FiltroUnidadeWdget> {
   bool isLoading = false;
 
   Map<String, dynamic> filtro = {
-    "FILTER_IS_USER": null,
+    "FILTER_HAS_USER": null,
     "FILTER_HAS_INQUILINO": null,
     "FILTER_HAS_PETS": null,
     "FILTER_HAS_VEICULOS": null,
@@ -31,7 +31,7 @@ class _FiltroUnidadeWdgetState extends State<FiltroUnidadeWdget> {
   };
 
   Map<String, dynamic> headerTpl = {
-    "FILTER_IS_USER": {1: 'Usuários ativos', 0: 'Usuários potenciais'},
+    "FILTER_HAS_USER": {1: 'Usuários ativos', 0: 'Usuários potenciais'},
     "FILTER_HAS_INQUILINO": {1: 'Tem inquilino', 0: 'Não tem inquilino'},
     "FILTER_HAS_PETS": {1: 'Tem pet', 0: 'Não tem pet'},
     "FILTER_HAS_VEICULOS": {1: 'Tem veículo', 0: 'Não tem veículo'}

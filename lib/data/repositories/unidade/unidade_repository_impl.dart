@@ -1,5 +1,6 @@
 import 'package:Gestart/data/datasource/unidade/unidade_remote_data_source.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
+import 'package:Gestart/domain/entities/unidade/unidade_infor_entity.dart';
 import 'package:Gestart/domain/repositories/unidade/unidade_repository.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 
@@ -25,6 +26,12 @@ class UnidadeRepositoryImpl implements UnidadeRepository {
   }
 
   @override
+  Future<ResourceData<List<UnidadeEntity>>> getUnidadesComplemento(codcon) async {
+    final resource = await _unidadeRemoteDataSource.getUnidadesComplemento(codcon);
+    return resource;
+  }
+
+  @override
   Future<ResourceData<List<UnidadeEntity>>> getUnidadesAdm() async {
     final resource = await _unidadeRemoteDataSource.getUnidadesAdm();
 
@@ -41,13 +48,11 @@ class UnidadeRepositoryImpl implements UnidadeRepository {
   }
 
   @override
-  Future<ResourceData<List<UnidadeEntity>>> getUnidadesFiltro(
-      Map<String, dynamic> filtro) async {
-    int codCon = filtro['CODCON'];
-    filtro.remove('CODCON');
+  Future<ResourceData<List<UnidadeInforEntity>>> getUnidadesFiltro(dynamic codcon) async {
+    dynamic codCon = codcon;
 
     final resource =
-        await _unidadeRemoteDataSource.getUnidadesFiltro(codCon, filtro);
+        await _unidadeRemoteDataSource.getUnidadesFiltro(codCon);
 
     return resource;
   }

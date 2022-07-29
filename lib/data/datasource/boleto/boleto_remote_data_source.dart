@@ -4,6 +4,8 @@ import 'package:Gestart/domain/entities/boleto/boleto_entity.dart';
 import 'package:Gestart/domain/entities/boleto/detalhe_boleto_entity.dart';
 import 'package:Gestart/data/mappers/boleto/boleto_mapper.dart';
 import 'package:Gestart/data/mappers/boleto/detalhe_boleto_mapper.dart';
+import 'package:Gestart/data/mappers/boleto/detalhe_boleto_unidade_mapper.dart';
+import 'package:Gestart/domain/entities/boleto/detalhe_boleto_unidade_entity.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 
 import 'package:Gestart/domain/utils/status.dart';
@@ -21,6 +23,34 @@ class BoletoRemoteDataSource {
       final result = await _dio.get('faturas');
       return ResourceData<List<BoletoEntity>>(
           status: Status.success, data: BoletoEntity().fromMapList(result));
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os boletos",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<List<BoletoEntity>>> getBoletosUnidade(int cordord) async {
+    try {
+      final result = await _dio.get('unidade_faturas/$cordord');
+      return ResourceData<List<BoletoEntity>>(
+          status: Status.success, data: BoletoEntity().fromMapList(result));
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os boletos",
+          error: ErrorMapper.from(e));
+    }
+  }
+
+  Future<ResourceData<List<DetalheBoletoUnidadeEntity>>> getBoletoUnidade(String conts) async {
+    try {
+      final result = await _dio.get('unidade_fatura_detalhe/$conts');
+      return ResourceData<List<DetalheBoletoUnidadeEntity>>(
+          status: Status.success, data: DetalheBoletoUnidadeEntity().fromMapList(result));
     } on DioError catch (e) {
       return ResourceData(
           status: Status.failed,
