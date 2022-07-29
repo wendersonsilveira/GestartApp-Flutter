@@ -190,7 +190,7 @@ class AppModule extends MainModule {
         $InformativosController,
         $ListaBoletosController,
         $BoletosUnidadeController,
-        $BoletosDetalhesController
+        $BoletosDetalhesController,
         $ListaInadimplenciasController,
         $DetalharUnidadeController,
         $DetalheController,
