@@ -26,6 +26,10 @@ import 'modules/sindico/financeiro/movimento_financeiro/movimento_financeiro_con
 import 'modules/sindico/comunicacao/avisos/avisos_page_controller.dart';
 import 'modules/sindico/comunicacao/avisos/cadastro/cadastro_aviso_page_controller.dart';
 import 'modules/sindico/financeiro/contas_fixas/contas_fixas_controller.dart';
+import 'modules/sindico/relatorios/inadimplencias/listar-inadimplencias/detalhar-unidade/pages/detalhe/detalhe_controller.dart';
+import 'modules/sindico/relatorios/inadimplencias/listar-inadimplencias/detalhar-unidade/pages/historico/historico_inadimplencia_controller.dart';
+import 'modules/sindico/relatorios/inadimplencias/listar-inadimplencias/detalhar-unidade/pages/incidencias/incidencias_inadimplencia_controller.dart';
+import 'modules/sindico/relatorios/inadimplencias/listar-inadimplencias/detalhar-unidade/pages/processos/processos_inadimplencia_controller.dart';
 import 'modules/sindico/relatorios/reservas/lista-reservas/lista_reservas_controller.dart';
 import 'modules/sindico/reserva_espaco/gerenciar_reserva/detalhes_reserva/detalhes_reserva_controller.dart';
 import 'modules/sindico/reserva_espaco/gerenciar_reserva/detalhes_reserva/detalhes_reserva_page.dart';
@@ -109,7 +113,12 @@ import 'package:Gestart/app/modules/sindico/financeiro/contas_fixas/contas_fixas
 import 'package:Gestart/app/modules/sindico/relatorios/reservas/relatorio_reservas_page.dart';
 import 'package:Gestart/app/modules/sindico/relatorios/reservas/lista-reservas/lista_reservas_page.dart';
 import 'package:Gestart/app/modules/sindico/relatorios/boletos/boletos-unidade/boletos_unidade_page.dart';
-
+import 'package:Gestart/app/modules/sindico/relatorios/inadimplencias/relatorio_inadimplencia_controller.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/inadimplencias/relatorio_inadimplencia_page.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/inadimplencias/listar-inadimplencias/listar_inadimplencias_controller.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/inadimplencias/listar-inadimplencias/listar_inadimplencias_page.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/inadimplencias/listar-inadimplencias/detalhar-unidade/detalhar_unidade_controller.dart';
+import 'package:Gestart/app/modules/sindico/relatorios/inadimplencias/listar-inadimplencias/detalhar-unidade/detalhar_unidade_page.dart';
 import 'constants/route_name.dart';
 import 'modules/condominio/condominio_controller.dart';
 import 'modules/condominio/condominio_page.dart';
@@ -175,12 +184,19 @@ class AppModule extends MainModule {
         $EnviarCodigoController,
         $DetalheBalanceteController,
         $RelatorioReservasController,
+        $RelatorioInadimplenciaController,
         $ListaReservasController,
         $ErroController,
         $InformativosController,
         $ListaBoletosController,
         $BoletosUnidadeController,
         $BoletosDetalhesController
+        $ListaInadimplenciasController,
+        $DetalharUnidadeController,
+        $DetalheController,
+        $HistoricoInadimplenciaController,
+        $ProcessosInadimplenciaController,
+        $IncidenciasInadimplenciaController
       ];
 
   @override
@@ -286,6 +302,17 @@ class AppModule extends MainModule {
             child: (_, args) => ListaReservasPage(
                   params: args.data,
                 )),
+        ModularRouter(RouteName.listarInadimplencia,
+            child: (_, args) => ListaInadimplenciasPage(
+                  params: args.data,
+                )),
+        ModularRouter(RouteName.detalharInadimplenciasUnidade,
+            child: (_, args) => DetalharUnidadePage(
+                  params: args.data[0],
+                  inadimplencia: args.data[1],
+                )),
+        ModularRouter(RouteName.relatorioInadimplencia,
+            child: (_, args) => RelatorioInadimplenciaPage()),
         ModularRouter(RouteName.informativos_page,
             child: (_, args) => InformativosPage()),
         ModularRouter(RouteName.listaBoletos,

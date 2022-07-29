@@ -1,5 +1,4 @@
 import 'package:Gestart/app/modules/error/erro/component/button_expanded_widget.dart';
-import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'erro_controller.dart';

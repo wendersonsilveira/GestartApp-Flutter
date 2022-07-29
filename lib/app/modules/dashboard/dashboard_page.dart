@@ -96,7 +96,7 @@ class _DashboardPageState
         android: android, iOS: initializationSettingsIOS);
     flutterLocalNotificationsPlugin.initialize(
       initSettings,
-      onSelectNotification: (payload) {
+      onSelectNotification: (payload) async {
         var arrayString = payload.split('**');
         String page = arrayString[0].trim();
         int id = int.parse(arrayString[1]);
@@ -240,33 +240,33 @@ class _DashboardPageState
         payload: '$page**$id');
   }
 
-  Widget _infoTile(String title, String subtitle, String v) {
-    // return ListTile(
-    //     title: Row(
-    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //       children: [
-    //         Text(title),
-    //         Text(v,
-    //             style:
-    //                 TextStyle(color: AppColorScheme.tagGreen2, fontSize: 15)),
-    //       ],
-    //     ),
-    //     onTap: () {
-    //       _launchURL(Platform.isIOS
-    //           ? 'https://apps.apple.com/br/app/gestartapp/id1444521402'
-    //           : 'https://play.google.com/store/apps/details?id=com.gestart.gestartapp');
-    //     },
-    //     subtitle: Row(
-    //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //       children: [
-    //         Text(subtitle ?? 'Not set'),
-    //         Icon(
-    //           FlutterIcons.refresh_mdi,
-    //           color: AppColorScheme.tagGreen2,
-    //         )
-    //       ],
-    //     ));
-  }
+  // Widget _infoTile(String title, String subtitle, String v) {
+  //   // return ListTile(
+  //   //     title: Row(
+  //   //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //   //       children: [
+  //   //         Text(title),
+  //   //         Text(v,
+  //   //             style:
+  //   //                 TextStyle(color: AppColorScheme.tagGreen2, fontSize: 15)),
+  //   //       ],
+  //   //     ),
+  //   //     onTap: () {
+  //   //       _launchURL(Platform.isIOS
+  //   //           ? 'https://apps.apple.com/br/app/gestartapp/id1444521402'
+  //   //           : 'https://play.google.com/store/apps/details?id=com.gestart.gestartapp');
+  //   //     },
+  //   //     subtitle: Row(
+  //   //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //   //       children: [
+  //   //         Text(subtitle ?? 'Not set'),
+  //   //         Icon(
+  //   //           FlutterIcons.refresh_mdi,
+  //   //           color: AppColorScheme.tagGreen2,
+  //   //         )
+  //   //       ],
+  //   //     ));
+  // }
 
   void _launchURL(_url) async => await canLaunch(_url)
       ? await launch(_url)
@@ -291,8 +291,8 @@ class _DashboardPageState
     CustomAlertDialog.uploadInfo(context,
         textButton: 'Atualizar',
         barrierDismissible: !forceUpdate,
-        title: "GestartApp:  ${storeVersion}",
-        message: "Seu app está na versão ${deviceVersion}, Atualize pela loja ",
+        title: "GestartApp:  $storeVersion",
+        message: "Seu app está na versão $deviceVersion, Atualize pela loja ",
         onActionButton: () => _launchURL(Platform.isIOS
             ? 'https://apps.apple.com/br/app/gestartapp/id1444521402'
             : 'https://play.google.com/store/apps/details?id=com.gestart.gestartapp'));
@@ -436,7 +436,7 @@ class _DashboardPageState
                                   Card(
                                     child: ItemServicoWidget(
                                       condominioAtivo: true,
-                                      descricao: 'Notificações',
+                                      descricao: 'Comunicados',
                                       icone: FlutterIcons.error_outline_mdi,
                                       routeName: RouteName.informativos_page,
                                     ),
