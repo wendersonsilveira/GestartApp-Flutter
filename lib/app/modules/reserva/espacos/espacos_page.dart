@@ -1,6 +1,7 @@
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
+import 'package:Gestart/app/widgets/empty/empt_widget.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -39,7 +40,7 @@ class _EspacosPageState extends ModularState<EspacosPage, EspacosController> {
       ),
       body: Observer(
         builder: (_) => controller.espacos.length == 0
-            ? CircularProgressCustom()
+            ? Container(child: EmptyWidget(descricao: 'Não há espaços cadastrados nesse condomínio.'),)
             : Column(
                 children: [
                   Padding(
