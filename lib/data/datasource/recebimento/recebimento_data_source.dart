@@ -145,7 +145,7 @@ class RecebimentoRemoteDataSource {
       else
         return ResourceData<List<InadimplenciaEntity>>(
             status: Status.success, data: null);
-    } on DioError catch (e) {
+    } on DioError catch (e) {   
       return ResourceData(
           status: Status.failed,
           data: null,

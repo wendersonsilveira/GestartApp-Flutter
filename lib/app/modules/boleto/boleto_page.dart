@@ -5,6 +5,7 @@ import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
 import 'package:Gestart/app/widgets/inputs/dropdown_button_field3.widget.dart';
 import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
+import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -43,10 +44,14 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
           case Status.loading:
             return Container(child: CircularProgressCustom());
             break;
-
           case Status.success:
-            return Column(
-              children: <Widget>[
+            !controller.unidadeSelecionada
+                ? controller.getBoletos(controller.unidades.data[0].codord)
+                : () {};
+            return 
+            Column(
+              children: 
+              <Widget>[
                 Container(
                   height: 110.h,
                   child: DropdownButtonField3Widget(
@@ -55,12 +60,15 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
                     value: controller.codOrd,
                     list: controller.unidades.data,
                     onChanged: (value) {
+                      controller.unidadeSelecionada = true;
                       controller.codOrd = null;
                       controller.getBoletos(value);
                     },
                   ),
                 ),
-                controller.boletos.data != null && controller.boletos.data.length > 0
+                controller.boletos.status == Status.loading ? CircularProgressCustom()
+                : controller.boletos.data != null &&
+                        controller.boletos.data.length > 0
                     ? Expanded(
                         child: Container(
                           height: 50.h,
@@ -106,35 +114,35 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
                         ),
                       )
                     : Expanded(
-                        child: controller.codOrd != null ? Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.subtitles_off,
-                              size: 70,
-                              color: AppColorScheme.primaryColor,
-                            ),
-                            SizedBox(
-                              height: 30.h,
-                            ),
-                            Text('Não existe boletos para esta unidade'),
-                          ],
-                        )
-                        : Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.subtitles_off,
-                              size: 70,
-                              color: AppColorScheme.primaryColor,
-                            ),
-                            SizedBox(
-                              height: 30.h,
-                            ),
-                            Text('Selecione a unidade'),
-                          ],
-                        )
-                      )
+                        child: controller.codOrd != null
+                            ? Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.subtitles_off,
+                                    size: 70,
+                                    color: AppColorScheme.primaryColor,
+                                  ),
+                                  SizedBox(
+                                    height: 30.h,
+                                  ),
+                                  Text('Não existe boletos para esta unidade'),
+                                ],
+                              )
+                            : Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.subtitles_off,
+                                    size: 70,
+                                    color: AppColorScheme.primaryColor,
+                                  ),
+                                  SizedBox(
+                                    height: 30.h,
+                                  ),
+                                  Text('Selecione a unidade'),
+                                ],
+                              ))
               ],
             );
           default:

@@ -35,6 +35,9 @@ abstract class _BoletoControllerBase with Store {
   @observable
   int codOrd;
 
+  @observable
+  bool unidadeSelecionada = false;
+
   init() async {
     unidades = ResourceData(status: Status.loading);
     getUnidades();
