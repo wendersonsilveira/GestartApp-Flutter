@@ -126,7 +126,7 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
                           ),
                           Text('Não existem boletos para esta unidade'),
                         ],
-                      ),
+                    ),
                     )
               ],
             );
