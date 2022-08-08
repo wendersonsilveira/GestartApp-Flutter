@@ -114,35 +114,20 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
                         ),
                       )
                     : Expanded(
-                        child: controller.codOrd != null
-                            ? Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.subtitles_off,
-                                    size: 70,
-                                    color: AppColorScheme.primaryColor,
-                                  ),
-                                  SizedBox(
-                                    height: 30.h,
-                                  ),
-                                  Text('Não existe boletos para esta unidade'),
-                                ],
-                              )
-                            : Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.subtitles_off,
-                                    size: 70,
-                                    color: AppColorScheme.primaryColor,
-                                  ),
-                                  SizedBox(
-                                    height: 30.h,
-                                  ),
-                                  Text('Selecione a unidade'),
-                                ],
-                              ))
+                      child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.subtitles_off,
+                            size: 70,
+                            color: AppColorScheme.primaryColor,
+                          ),
+                          SizedBox(
+                            height: 30.h,
+                          ),
+                          Text('Não existem boletos para esta unidade'),
+                        ],
+                      ),
+                    )
               ],
             );
           default:
