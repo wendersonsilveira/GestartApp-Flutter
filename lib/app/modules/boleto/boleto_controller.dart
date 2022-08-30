@@ -3,13 +3,11 @@ import 'package:Gestart/di/di.dart';
 import 'package:Gestart/domain/entities/boleto/boleto_entity.dart';
 import 'package:Gestart/domain/entities/unidade/unidade_entity.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boletos_unidade_use_case.dart';
-import 'package:Gestart/domain/usecases/boleto/get_boletos_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'boleto_controller.g.dart';
 
@@ -46,17 +44,19 @@ abstract class _BoletoControllerBase with Store {
   @action
   Future<void> getBoletos(int codOrd) async {
     boletos = await _getBoletos(codOrd);
-    print(boletos);
   }
 
   @action
-  Future<void> getBoletoDetalhes(String conts) {
+  Future<void> getBoletoDetalhes(String conts) async {
     Modular.navigator.pushNamed(RouteName.boletosDetalhes, arguments: conts);
   }
 
   @action
   changeDropdown(int codOrd) {
-    this.boletos = ResourceData<List<BoletoEntity>>(data: []);
+    this.boletos = ResourceData<List<BoletoEntity>>(
+      data: [],
+      status: Status.loading,
+    );
     getBoletos(codOrd);
   }
 

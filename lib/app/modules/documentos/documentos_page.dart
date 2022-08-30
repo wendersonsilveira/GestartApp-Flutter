@@ -20,7 +20,8 @@ class DocumentosPage extends StatefulWidget {
   _DocumentosPageState createState() => _DocumentosPageState();
 }
 
-class _DocumentosPageState extends ModularState<DocumentosPage, DocumentosController> {
+class _DocumentosPageState
+    extends ModularState<DocumentosPage, DocumentosController> {
   @override
   void initState() {
     controller.init();
@@ -30,11 +31,12 @@ class _DocumentosPageState extends ModularState<DocumentosPage, DocumentosContro
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBarCustom(
-          context,
-          title: Text(widget.title),
-        ),
-        body: Observer(builder: (_) {
+      appBar: AppBarCustom(
+        context,
+        title: Text(widget.title),
+      ),
+      body: Observer(
+        builder: (_) {
           switch (controller.documentos.status) {
             case Status.loading:
               return CircularProgressCustom();
@@ -66,7 +68,8 @@ class _DocumentosPageState extends ModularState<DocumentosPage, DocumentosContro
                                     SizedBox(
                                       height: 30.h,
                                     ),
-                                    Text('Não existe documentos para este condomínio'),
+                                    Text(
+                                        'Não existe documentos para este condomínio'),
                                   ],
                                 ),
                               )
@@ -82,9 +85,11 @@ class _DocumentosPageState extends ModularState<DocumentosPage, DocumentosContro
                                       '${controller.listaView[index].pasta}',
                                       overflow: TextOverflow.ellipsis,
                                     ),
-                                    subtitle: Text(' ${controller.listaView[index].descricao}'),
+                                    subtitle: Text(
+                                        ' ${controller.listaView[index].descricao}'),
                                     trailing: Icon(FlutterIcons.download_faw),
-                                    fileURL: controller.listaView[index].linkDocumento,
+                                    fileURL: controller
+                                        .listaView[index].linkDocumento,
                                     fileName:
                                         '${controller.listaView[index].descricao}_${controller.listaView[index].apelido.substring(0, 4)}_${controller.listaView[index].id}.${controller.listaView[index].tipo}',
                                   );
@@ -100,6 +105,8 @@ class _DocumentosPageState extends ModularState<DocumentosPage, DocumentosContro
                 onPressed: controller.init,
               );
           }
-        }));
+        },
+      ),
+    );
   }
 }

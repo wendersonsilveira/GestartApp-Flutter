@@ -88,12 +88,12 @@ mixin _$ListaReservasController on _ListaReservasControllerBase, Store {
     return _$getReservasAsyncAction.run(() => super.getReservas(params));
   }
 
-  final _$getReservasPDFAsyncAction =
-      AsyncAction('_ListaReservasControllerBase.getReservasPDF');
+  final _$getPerfilAsyncAction =
+      AsyncAction('_ListaReservasControllerBase.getPerfil');
 
   @override
-  Future<void> getReservasPDF(SendParamsRelReservaEntity params) {
-    return _$getReservasPDFAsyncAction.run(() => super.getReservasPDF(params));
+  Future<void> getPerfil() {
+    return _$getPerfilAsyncAction.run(() => super.getPerfil());
   }
 
   @override

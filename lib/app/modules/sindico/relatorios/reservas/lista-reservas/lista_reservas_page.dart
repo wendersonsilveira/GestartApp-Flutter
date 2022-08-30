@@ -1,6 +1,9 @@
 import 'package:Gestart/app/modules/sindico/component/icon_status_helper_widget.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
+import 'package:Gestart/app/widgets/download/download_button_widget.dart';
+import 'package:Gestart/app/widgets/download/download_item_widget.dart';
+import 'package:Gestart/app/widgets/download/download_list_item_widget.dart';
 import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
 import 'package:Gestart/app/widgets/empty/empt_widget.dart';
@@ -28,8 +31,8 @@ class _ListaReservasPageState
     extends ModularState<ListaReservasPage, ListaReservasController> {
   @override
   void initState() {
-    super.initState();
     controller.init(widget.params);
+    super.initState();
   }
 
   SendParamsRelReservaEntity params2;
@@ -41,26 +44,41 @@ class _ListaReservasPageState
           context,
           title: Text(widget.title),
           actions: [
-            GestureDetector(
-              onTap: () => {
-                params2 = SendParamsRelReservaEntity(
-                codCon: widget.params.codCon,
-                codimo: widget.params.codimo,
-                status: widget.params.status,
-                espaco: widget.params.espaco,
-                dataIni: widget.params.dataIni,
-                dataFim: widget.params.dataFim,
-                tipo: 'PDF',
-                usr_name: controller.perfil.data.nome,
-                usr_lastname: controller.perfil.data.sobreNome
-                ),
-                controller.getReservasPDF(params2)
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: Icon(FlutterIcons.download_ant),
-              ),
+            SizedBox(
+              height: 20,
+              width: 50,
+              child: DownloadItemWidget(params: widget.params,),
             )
+            // GestureDetector(
+            //   onTap: () => {
+            //     params2 = SendParamsRelReservaEntity(
+            //     codCon: widget.params.codCon,
+            //     codimo: widget.params.codimo,
+            //     status: widget.params.status,
+            //     espaco: widget.params.espaco,
+            //     dataIni: widget.params.dataIni,
+            //     dataFim: widget.params.dataFim,
+            //     tipo: 'PDF',
+            //     usr_name: controller.perfil.data.nome,
+            //     usr_lastname: controller.perfil.data.sobreNome
+            //     ),
+            //     // controller.getReservasPDF(params2)
+            //     // DownloadListItemWidget(
+            //     //   fileName: ('relatorio_reservas_${params2.codCon}_${params2.dataIni}_${params2.dataFim}').replaceAll(r'/', '-'),
+            //     //   fileURL: "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/get_reservas?CODCON=${params2.codCon}&DATINI=${params2.dataIni}&DATFIM=${params2.dataFim}&TIPO=${params2.tipo}&USER_NAME=${params2.usr_name}&USER_LASTNAME=${params2.usr_lastname}",
+
+            //     // )
+            //     DownloadButtonWidget(
+            //       fileName: ('relatorio_reservas_${params2.codCon}_${params2.dataIni}_${params2.dataFim}').replaceAll(r'/', '-'),
+            //       fileURL: "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/get_reservas?CODCON=${params2.codCon}&DATINI=${params2.dataIni}&DATFIM=${params2.dataFim}&TIPO=${params2.tipo}&USER_NAME=${params2.usr_name}&USER_LASTNAME=${params2.usr_lastname}",
+
+            //     )
+            //   },
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(right: 8.0),
+            //     child: Icon(FlutterIcons.download_ant),
+            //   ),
+            // )
           ],
         ),
         body: Observer(

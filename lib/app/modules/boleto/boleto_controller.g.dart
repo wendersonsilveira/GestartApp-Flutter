@@ -94,12 +94,37 @@ mixin _$BoletoController on _BoletoControllerBase, Store {
     });
   }
 
+  final _$unidadeSelecionadaAtom =
+      Atom(name: '_BoletoControllerBase.unidadeSelecionada');
+
+  @override
+  bool get unidadeSelecionada {
+    _$unidadeSelecionadaAtom.reportRead();
+    return super.unidadeSelecionada;
+  }
+
+  @override
+  set unidadeSelecionada(bool value) {
+    _$unidadeSelecionadaAtom.reportWrite(value, super.unidadeSelecionada, () {
+      super.unidadeSelecionada = value;
+    });
+  }
+
   final _$getBoletosAsyncAction =
       AsyncAction('_BoletoControllerBase.getBoletos');
 
   @override
   Future<void> getBoletos(int codOrd) {
     return _$getBoletosAsyncAction.run(() => super.getBoletos(codOrd));
+  }
+
+  final _$getBoletoDetalhesAsyncAction =
+      AsyncAction('_BoletoControllerBase.getBoletoDetalhes');
+
+  @override
+  Future<void> getBoletoDetalhes(String conts) {
+    return _$getBoletoDetalhesAsyncAction
+        .run(() => super.getBoletoDetalhes(conts));
   }
 
   final _$getUnidadesAsyncAction =
@@ -112,17 +137,6 @@ mixin _$BoletoController on _BoletoControllerBase, Store {
 
   final _$_BoletoControllerBaseActionController =
       ActionController(name: '_BoletoControllerBase');
-
-  @override
-  Future<void> getBoletoDetalhes(String conts) {
-    final _$actionInfo = _$_BoletoControllerBaseActionController.startAction(
-        name: '_BoletoControllerBase.getBoletoDetalhes');
-    try {
-      return super.getBoletoDetalhes(conts);
-    } finally {
-      _$_BoletoControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
 
   @override
   dynamic changeDropdown(int codOrd) {
@@ -142,7 +156,8 @@ unidades: ${unidades},
 listaView: ${listaView},
 status: ${status},
 boletos: ${boletos},
-codOrd: ${codOrd}
+codOrd: ${codOrd},
+unidadeSelecionada: ${unidadeSelecionada}
     ''';
   }
 }
