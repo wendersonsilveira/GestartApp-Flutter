@@ -88,8 +88,8 @@ abstract class _CadastroEspacoControllerBase with Store {
     this.ativarSab = espaco.sab;
     this.sabIni = espaco.sabIni;
     this.sabFim = espaco.sabFim;
-    this.apenasProprietarioReserva = espaco.aprovacao;
-    this.autorizacaoResponsavel = espaco.apenasMaster;
+    this.apenasProprietarioReserva = espaco.apenasMaster;
+    this.autorizacaoResponsavel = espaco.aprovacao;
     this.statusEspaco = espaco.statusEspaco;
   }
 
