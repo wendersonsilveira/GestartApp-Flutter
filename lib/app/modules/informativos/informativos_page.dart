@@ -52,19 +52,19 @@ class _InformativosPageState
             return Column(
               children: <Widget>[
                 Container(
-                  height: 110,
-                  child: DropdownButtonFieldWidget(
+                  child: controller.unidades.data.length > 1 ? DropdownButtonFieldWidget(
                     label: 'Condomínio',
                     hint: 'Selecione',
                     value: controller.codCon,
-                    list: controller.condominios.data,
+                    list: controller.unidades.data,
                     onChanged: (value) {
-                      // controller.unidadeSelecionada = true;
-                      // controller.codOrd = null;
-                      // controller.getBoletos(value);
-                      return print(value);
+                      controller.getComunicados(value);
                     },
-                  ),
+                  )
+                  : SizedBox(
+                    height: 0,
+                  )
+                  ,
                 ),
                 Expanded(
                   child: ListView.builder(

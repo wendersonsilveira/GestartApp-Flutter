@@ -31,6 +31,24 @@ class FeedRemoteDataSource {
     }
   }
 
+  Future<ResourceData<List<FeedEntity>>> getComunicadosCondom(int codcon) async {
+    try {
+      final result = await _dio.get('condom_feed/$codcon');
+      if (result.length > 0)
+        return ResourceData<List<FeedEntity>>(
+            status: Status.success, data: FeedEntity().fromMapList(result));
+      else
+        return ResourceData<List<FeedEntity>>(status: Status.success, data: []);
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: [],
+          message: "Erro ao listar as informações",
+          error: ErrorMapper.from(e));
+      //
+    }
+  }
+
   Future<ResourceData<FeedEntity>> getAviso(int id) async {
     try {
       final result = await _dio.get('aviso/$id');

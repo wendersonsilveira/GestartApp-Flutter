@@ -16,6 +16,13 @@ class FeedRepositoryImpl implements FeedRepository {
   }
 
   @override
+  Future<ResourceData<List<FeedEntity>>> getComunicadosCondom(codcon) async {
+    final resource = await _feedRemoteDataSource.getComunicadosCondom(codcon);
+
+    return resource;
+  }
+
+  @override
   Future<ResourceData<FeedEntity>> getAviso(int id) async {
     final resource = await _feedRemoteDataSource.getAviso(id);
 

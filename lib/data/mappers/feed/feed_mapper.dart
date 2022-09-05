@@ -12,6 +12,7 @@ extension FeedMapper on FeedEntity {
       descricao: map['DESCRI'],
       atensiosamente: map['ATENCIOSAMENTE'],
       urlDigital: map['URL_DIGITAL'],
+      linkMalaDireta: map['LINK_MALADIRETA'],
       condonUserId: map['CONDON_USER_ID'],
       id: map['ID'],
       apelido: map['APELIDO'],

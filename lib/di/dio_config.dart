@@ -84,6 +84,7 @@ import 'package:Gestart/data/repositories/auth/auth_repository_impl.dart';
 import 'package:Gestart/data/datasource/auth/auth_remote_data_source.dart';
 import 'package:Gestart/domain/usecases/auth/login_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boleto_use_case.dart';
+import 'package:Gestart/domain/usecases/feed/get_condom_comunicados_use_case.dart';
 import 'package:Gestart/domain/usecases/recebimento/get_inadinplencias_adm_processos_use_case.dart';
 import 'package:Gestart/domain/usecases/recebimento/get_inadinplencias_adm_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/get_reservas_relatorio_pdf_use_case.dart';
@@ -276,6 +277,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => FeedRemoteDataSource(get<CustomDio>()));
   gh.factory<GetInformacoesUseCase>(
       () => GetInformacoesUseCase(get<FeedRepository>()));
+  gh.factory<GetCondomComunicadosUseCase>(
+      () => GetCondomComunicadosUseCase(get<FeedRepository>()));
   gh.factory<GetAvisoUseCase>(() => GetAvisoUseCase(get<FeedRepository>()));
 
   //notifricacao
