@@ -188,7 +188,7 @@ class _DownloadItemWidgetState extends State<DownloadItemWidget> {
             ],
           ),
           content: Container(
-            height: 160,
+            height: 300,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

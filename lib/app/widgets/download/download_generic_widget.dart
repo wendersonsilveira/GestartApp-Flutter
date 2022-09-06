@@ -182,7 +182,7 @@ class _DownloadGenericWidgetState extends State<DownloadGenericWidget> {
             ],
           ),
           content: Container(
-            height: 160,
+            height: 300,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

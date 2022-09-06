@@ -119,9 +119,9 @@ class _HorariosPageState
         ),
         content: Observer(
           builder: (_) => Container(
-            height: 70,
-            child: Column(
-              children: [Text(controller.espaco.obs)],
+            height: 250,
+            child: SingleChildScrollView(
+              child: Text(controller.espaco.obs),
             ),
           ),
         ),
