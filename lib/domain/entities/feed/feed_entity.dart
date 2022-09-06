@@ -12,6 +12,7 @@ class FeedEntity {
   final int id;
   final String apelido;
   final String logo;
+  final String linkMalaDireta;
 
   const FeedEntity(
       {this.codCon,
@@ -23,10 +24,11 @@ class FeedEntity {
       this.condonUserId,
       this.id,
       this.apelido,
+      this.linkMalaDireta,
       this.logo});
 
   @override
   String toString() {
-    return 'FeedEntity(codCon: $codCon, datEmi: $datEmi, att: $att, descricao: $descricao, atensiosamente: $atensiosamente, urlDigital: $urlDigital, condonUserId: $condonUserId, id: $id, apelido: $apelido, logo: $logo)';
+    return 'FeedEntity(codCon: $codCon, datEmi: $datEmi, att: $att, descricao: $descricao, atensiosamente: $atensiosamente, urlDigital: $urlDigital, linkMalaDireta: $linkMalaDireta, condonUserId: $condonUserId, id: $id, apelido: $apelido, logo: $logo)';
   }
 }

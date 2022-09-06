@@ -22,5 +22,6 @@ abstract class _InformativoControllerBase with Store {
   init(int id) async {
     aviso = ResourceData(status: Status.loading);
     aviso = await _getAviso(id);
+    print(aviso);
   }
 }

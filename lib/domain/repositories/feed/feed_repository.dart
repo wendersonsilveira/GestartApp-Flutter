@@ -3,5 +3,6 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 
 abstract class FeedRepository {
   Future<ResourceData<List<FeedEntity>>> getInformacoes();
+  Future<ResourceData<List<FeedEntity>>> getComunicadosCondom(codcon);
   Future<ResourceData<FeedEntity>> getAviso(int id);
 }

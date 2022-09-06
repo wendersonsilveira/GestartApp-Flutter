@@ -101,12 +101,13 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
                                   height: 15,
                                 ),
                                 GridView.count(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    crossAxisCount: 3,
-                                    childAspectRatio: 100.w / 90.h,
-                                    children: List.generate(
-                                        controller.menus.length, (index) {
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  crossAxisCount: 3,
+                                  childAspectRatio: 100.w / 90.h,
+                                  children: List.generate(
+                                    controller.menus.length,
+                                    (index) {
                                       return ButtonMenuWidget(
                                         icone: controller.menus[index]['icon'],
                                         descricao: controller.menus[index]
@@ -125,7 +126,9 @@ class _SindicoPageState extends ModularState<SindicoPage, SindicoController> {
                                           }
                                         },
                                       );
-                                    })),
+                                    },
+                                  ),
+                                ),
                               ],
                             ),
                           ),
