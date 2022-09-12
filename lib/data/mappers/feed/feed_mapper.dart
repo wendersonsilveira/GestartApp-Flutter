@@ -16,6 +16,8 @@ extension FeedMapper on FeedEntity {
       condonUserId: map['CONDON_USER_ID'],
       id: map['ID'],
       apelido: map['APELIDO'],
+      fileName: map['FILE_NAME'],
+      fileUrl: map['FILE_LINK'],
       logo: map['LOGO'],
     );
   }

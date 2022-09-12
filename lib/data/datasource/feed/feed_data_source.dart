@@ -49,7 +49,7 @@ class FeedRemoteDataSource {
     }
   }
 
-  Future<ResourceData<FeedEntity>> getAviso(int id) async {
+  Future<ResourceData<FeedEntity>> getAviso(int id) async { 
     try {
       final result = await _dio.get('aviso/$id');
       if (result.length > 0)

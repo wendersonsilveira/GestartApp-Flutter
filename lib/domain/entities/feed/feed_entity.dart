@@ -13,6 +13,8 @@ class FeedEntity {
   final String apelido;
   final String logo;
   final String linkMalaDireta;
+  final String fileName;
+  final String fileUrl;
 
   const FeedEntity(
       {this.codCon,
@@ -25,10 +27,12 @@ class FeedEntity {
       this.id,
       this.apelido,
       this.linkMalaDireta,
+      this.fileName,
+      this.fileUrl,
       this.logo});
 
   @override
   String toString() {
-    return 'FeedEntity(codCon: $codCon, datEmi: $datEmi, att: $att, descricao: $descricao, atensiosamente: $atensiosamente, urlDigital: $urlDigital, linkMalaDireta: $linkMalaDireta, condonUserId: $condonUserId, id: $id, apelido: $apelido, logo: $logo)';
+    return 'FeedEntity(codCon: $codCon, datEmi: $datEmi, att: $att, descricao: $descricao, atensiosamente: $atensiosamente, urlDigital: $urlDigital, linkMalaDireta: $linkMalaDireta, condonUserId: $condonUserId, id: $id, apelido: $apelido, logo: $logo, filename: $fileName, fileUrl: $fileUrl)';
   }
 }
