@@ -64,17 +64,31 @@ class _InformativoPageState
                               controller.aviso.data.descricao.trim(),
                               textAlign: TextAlign.start,
                             ),
-                            // SizedBox(
-                            //   height: 10,
-                            // ),
-                            // DownloadGenericWidget(
-                            //   fileName: controller.aviso.data.apelido,
-                            //   fileURL: controller.aviso.data.linkMalaDireta,
-                            // ),
-                            // Text(
-                            //   controller.aviso.data.linkMalaDireta,
-                            //   textAlign: TextAlign.start,
-                            // ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Divider(),
+                            controller.aviso.data.fileUrl == null
+                                ? Container(
+                                    height: 0,
+                                  )
+                                : Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: DownloadGenericWidget(
+                                          fileName: controller.aviso.data.fileName,
+                                          fileURL: controller
+                                              .aviso.data.fileUrl,
+                                        ),
+                                      ),
+                                      Text(
+                                        controller.aviso.data.fileName,
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
                           ],
                         ),
                       ),
