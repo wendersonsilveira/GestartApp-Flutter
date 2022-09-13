@@ -61,7 +61,7 @@ class _DownloadItemWidgetState extends State<DownloadItemWidget> {
             ('relatorio_reservas_${widget.params.codCon}_${widget.params.dataIni}_${widget.params.dataFim}')
                 .replaceAll(r'/', '-');
         final String _url =
-            "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/get_reservas?CODCON=${widget.params.codCon}&DATINI=${widget.params.dataIni}&DATFIM=${widget.params.dataFim}&TIPO=PDF&USER_NAME=${(perfil.data.nome).split(' ')[0]}&USER_LASTNAME=${(perfil.data.sobreNome).split(' ')[0]}";
+            "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/get_reservas?CODCON=${widget.params.codCon}&DATINI=${widget.params.dataIni}&DATFIM=${widget.params.dataFim}&TIPO=PDF&USER_NAME=${(perfil.data.nome).split(' ')[0]}&USER_LASTNAME=${(perfil.data.sobreNome)?.split(' ')[0]}";
 
         int version = await sharedPreferences.getInt('versaoArquivos');
         _name = 'v_${version}_$_name';

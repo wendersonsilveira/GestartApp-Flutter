@@ -28,6 +28,6 @@ abstract class _DadosReservaControllerBase with Store {
 
   @action
   Future<ResourceData> cancelarReserva(int id) {
-    return _cancelarReserva(id);
+    return  _cancelarReserva(id);
   }
 }
