@@ -196,7 +196,20 @@ class _DadosReservaPageState
                             color: AppColorScheme.feedbackDangerBase,
                             padding: EdgeInsets.symmetric(vertical: 2),
                             onPressed: () {
-                              confirmCancelar();
+                              if (controller.reserva.data.datIni
+                                  .isAfter(DateTime.now())) {
+                                confirmCancelar();
+                              } else {
+                                return showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                    title: Text('Cancelamento não autorizado'),
+                                    content: Text(
+                                        'Prazo para cancelamento expirado. Contate o síndico para mais informações.'),
+                                  ),
+                                );
+                              }
                             },
                           ),
                         ),
