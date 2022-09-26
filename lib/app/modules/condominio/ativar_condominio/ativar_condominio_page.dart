@@ -31,24 +31,24 @@ class _AtivarCondominioPageState
         margin: EdgeInsets.only(bottom: 5, left: 10, right: 10, top: 20),
         child: Column(
           children: <Widget>[
-            ListTile(
-                leading: Icon(
-                  FlutterIcons.person_mdi,
-                  size: 50.h,
-                  color: AppColorScheme.primaryColor,
-                ),
-                trailing: Icon(
-                  Icons.arrow_right,
-                  size: 30,
-                ),
-                title: Text('Pelo condomínio online'),
-                subtitle:
-                    Text('Coloque o Usuário e Senha que vem no seu boleto'),
-                onTap: () {
-                  Modular.navigator
-                      .pushNamed(RouteName.condominio_online_ativar);
-                }),
-            Divider(),
+            // ListTile(
+            //     leading: Icon(
+            //       FlutterIcons.person_mdi,
+            //       size: 50.h,
+            //       color: AppColorScheme.primaryColor,
+            //     ),
+            //     trailing: Icon(
+            //       Icons.arrow_right,
+            //       size: 30,
+            //     ),
+            //     title: Text('Pelo condomínio online'),
+            //     subtitle:
+            //         Text('Coloque o Usuário e Senha que vem no seu boleto'),
+            //     onTap: () {
+            //       Modular.navigator
+            //           .pushNamed(RouteName.condominio_online_ativar);
+            //     }),
+            // Divider(),
             ListTile(
               leading: Icon(
                 FlutterIcons.email_mco,

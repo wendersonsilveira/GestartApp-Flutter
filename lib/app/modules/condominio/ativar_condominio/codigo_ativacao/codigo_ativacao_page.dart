@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/condominio/ativar_condominio/enviar_codigo/enviar_codigo_page.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
@@ -44,9 +45,9 @@ class _CodigoAtivacaoPageState
       CustomAlertDialog.error(
           context, 'Gere um Novo Código, esse só é valido por 2 horas.');
     else if (result == 1) {
-      UIHelper.showInSnackBar('Ativado com sucesso', _scaffoldKey);
+      UIHelper.showInSnackBar('Ativado com sucesso! Redirecionando para login.', _scaffoldKey);
       Timer(Duration(seconds: 1), () {
-        Modular.navigator.pop();
+        Modular.navigator.popAndPushNamed(RouteName.login);
       });
     }
   }
@@ -113,6 +114,14 @@ class _CodigoAtivacaoPageState
                     SizedBox(height: 10),
                     GestureDetector(
                         onTap: () => mudarPage(1),
+                        // onTap: () {
+                        //   Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => EnviarCodigoPage(),
+                        //     ),
+                        //   );
+                        // },
                         child: Padding(
                           padding: EdgeInsets.symmetric(vertical: 12),
                           child: Text(
