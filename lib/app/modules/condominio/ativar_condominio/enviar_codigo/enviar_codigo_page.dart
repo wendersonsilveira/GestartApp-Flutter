@@ -25,7 +25,9 @@ class _EnviarCodigoPageState
     extends ModularState<EnviarCodigoPage, EnviarCodigoController> {
   //use 'controller' variable to access controller
   @override
-  void initState() => controller.getEmails();
+  void initState() {
+    controller.getEmails();
+  }
 
   int idEmail = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
