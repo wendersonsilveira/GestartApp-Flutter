@@ -8,6 +8,7 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:string_validator/string_validator.dart';
 
 part 'reservas_pendentes_controller.g.dart';
 
@@ -27,6 +28,9 @@ abstract class _ReservasPendentesControllerBase with Store {
   List<ReservaEntity> reservasPendentes = [];
 
   @observable
+  List<ReservaEntity> reservasPendentesData = [];
+
+  @observable
   ResourceData statusAprovar;
 
   @observable
@@ -44,8 +48,20 @@ abstract class _ReservasPendentesControllerBase with Store {
 
   @action
   inserirReservasPendentes() {
-    reservasPendentes =
-        reservasAdm.data.where((element) => element.status == 0).toList();
+    reservasPendentes = reservasAdm.data
+        .where((element) =>
+            element.status == 0 &&
+            element.datIni
+                .add(
+                  Duration(
+                    hours: int.parse(
+                            element.horIniDescricao.trim().split(':')[0]) + 3,
+                    minutes: int.parse(element.horIniDescricao.trim().split(':')[1].split(' ')[0])
+                  ),
+                )
+                .isAfter(DateTime.now().toUtc()))
+        .toList();
+    print(reservasPendentes);
   }
 
   @action

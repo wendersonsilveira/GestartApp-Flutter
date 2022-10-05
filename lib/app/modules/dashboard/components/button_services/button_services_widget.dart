@@ -11,7 +11,7 @@ class ButtonSercicesWidget extends StatefulWidget {
       this.descricao,
       this.condominioAtivo,
       this.route,
-      this.statusReserva = 1})
+      this.statusReserva =1})
       : super(key: key);
 
   final bool condominioAtivo;

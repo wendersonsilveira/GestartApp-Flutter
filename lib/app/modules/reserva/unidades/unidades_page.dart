@@ -20,7 +20,7 @@ class _UnidadesPageState
   //use 'controller' variable to access controller
   @override
   void initState() {
-    controller.getUnidades();
+    controller.init();
     super.initState();
   }
 
@@ -49,13 +49,13 @@ class _UnidadesPageState
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ListView.builder(
-                        itemCount: controller.unidades.length,
+                        itemCount: controller.unidadesReserva.length,
                         itemBuilder: (BuildContext context, int index) => Card(
                           child: ListTile(
                             title:
-                                Text(controller.unidades[index].apelido.trim()),
+                                Text(controller.unidadesReserva[index].apelido.trim()),
                             subtitle: Text('Unidade: ' +
-                                controller.unidades[index].codimo),
+                                controller.unidadesReserva[index].codimo),
                             leading: Container(
                               height: 45,
                               width: 45,
@@ -79,8 +79,8 @@ class _UnidadesPageState
                             onTap: () => Modular.navigator.pushNamed(
                                 RouteName.reservaEspacos,
                                 arguments: [
-                                  controller.unidades[index].codcon,
-                                  controller.unidades[index].codord
+                                  controller.unidadesReserva[index].codcon,
+                                  controller.unidadesReserva[index].codord
                                 ]),
                           ),
                         ),

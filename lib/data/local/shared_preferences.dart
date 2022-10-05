@@ -38,6 +38,16 @@ class SharedPreferencesManager {
     }
   }
 
+  Future<bool> putStringList(String key, List<String> value) async {
+    try {
+      SharedPreferences share = await instance.future;
+      share.setStringList(key, value);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   Future<bool> putMap(String key, Map<String, dynamic> json) async {
     try {
       SharedPreferences share = await instance.future;
@@ -85,6 +95,16 @@ class SharedPreferencesManager {
       return value;
     } catch (e) {
       return '';
+    }
+  }
+
+  Future<List<String>> getStringList(String key) async {
+    try {
+      SharedPreferences share = await instance.future;
+      List<String> value = share.getStringList(key);
+      return value;
+    } catch (e) {
+      return [];
     }
   }
 

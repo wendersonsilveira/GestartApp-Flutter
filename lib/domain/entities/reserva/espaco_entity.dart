@@ -12,6 +12,7 @@ class EspacoEntity {
   final int antMin;
   final int antMax;
   final int intRes;
+  final int minCancel;
   final bool dom;
   final int domIni;
   final int domFim;
@@ -57,6 +58,7 @@ class EspacoEntity {
     this.antMin,
     this.antMax,
     this.intRes,
+    this.minCancel,
     this.dom,
     this.domIni,
     this.domFim,

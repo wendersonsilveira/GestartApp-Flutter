@@ -41,6 +41,7 @@ android {
         applicationId "com.gestart.gestartapp"
         minSdkVersion 21
         targetSdkVersion 30
+
         // versionCode flutterVersionCode.toInteger()
         versionCode 53
         versionName "1.47.6"

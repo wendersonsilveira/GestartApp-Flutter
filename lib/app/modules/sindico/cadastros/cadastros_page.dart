@@ -627,7 +627,7 @@ class _CadastrosPageState
                                         )
                                       : EmptyWidget(
                                           descricao:
-                                              "Nem um resultado correspondente ao filtro.",
+                                              "Nenhum resultado correspondente ao filtro.",
                                         ),
                             ),
                           )

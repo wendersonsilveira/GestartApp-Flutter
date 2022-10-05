@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
@@ -49,6 +51,7 @@ class _DadosReservaPageState
             'Sucesso',
           ));
     } else {
+      String errorData = (r.error.exception.response.data["originalError"]["info"]["message"]).toString();
       openDialogInf(
           [
             TextButton(
@@ -59,10 +62,10 @@ class _DadosReservaPageState
             )
           ],
           Container(
-            child: Text(r.message),
+            child: Text(errorData),
           ),
           Text(
-            'Sucesso',
+            'Erro',
           ));
     }
   }
@@ -196,20 +199,7 @@ class _DadosReservaPageState
                             color: AppColorScheme.feedbackDangerBase,
                             padding: EdgeInsets.symmetric(vertical: 2),
                             onPressed: () {
-                              if (controller.reserva.data.datIni
-                                  .isAfter(DateTime.now())) {
-                                confirmCancelar();
-                              } else {
-                                return showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) =>
-                                      AlertDialog(
-                                    title: Text('Cancelamento não autorizado'),
-                                    content: Text(
-                                        'Prazo para cancelamento expirado. Contate o síndico para mais informações.'),
-                                  ),
-                                );
-                              }
+                              confirmCancelar();
                             },
                           ),
                         ),

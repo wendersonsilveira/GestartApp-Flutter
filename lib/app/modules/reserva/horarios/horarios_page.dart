@@ -70,7 +70,7 @@ class _HorariosPageState
                                   child: Text('Regras: ' +
                                       controller.espaco.descricao)),
                               content: Container(
-                                height: 300,
+                                height: 370,
                                 child: Column(children: [
                                   Divider(),
                                   InforConfigWidget(
@@ -91,6 +91,10 @@ class _HorariosPageState
                                   InforConfigWidget(
                                     descricao: 'Intervalo entre reservas:',
                                     horario: controller.espaco.intRes,
+                                  ),
+                                  InforConfigWidget(
+                                    descricao: 'Antecedência mínima para cencelamento:',
+                                    horario: controller.espaco.minCancel,
                                   ),
                                 ]),
                               ),

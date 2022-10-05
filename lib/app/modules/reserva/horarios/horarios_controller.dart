@@ -159,8 +159,11 @@ abstract class _HorariosControllerBase with Store {
     if (UIHelper.formatDate(dia) == UIHelper.formatDate(DateTime.now())) {
       var ant = antMin.descricao.replaceAll(r'hr', '').trim().split(':');
       final time = UIHelper.formatDateFromDateTimeReverse(dia).trim();
+
       final timeMin = DateTime.now()
           .add(Duration(hours: int.parse(ant[0]), minutes: int.parse(ant[1])));
+
+
       var dateIn = DateTime.parse(time +
           ' ' +
           horInSelect.descricao.replaceAll(r'hr', '').trim() +

@@ -21,6 +21,14 @@ abstract class _DetalhesReservaControllerBase with Store {
 
   @observable
   ResourceData<ReservaEntity> reserva;
+  @observable
+  ResourceData<ReservaEntity> res;
+
+  @observable
+  bool isButtondisabled;
+
+  @observable
+  DateTime dataUtil;
 
   @observable
   ResourceData statusAprovar;
@@ -30,7 +38,24 @@ abstract class _DetalhesReservaControllerBase with Store {
 
   init(int idReserva) async {
     reserva = ResourceData(status: Status.loading);
+    getDate(idReserva);
+  }
+
+  @action
+  getDate(int idReserva) async {
+    isButtondisabled = true;
     reserva = await _getReserva(idReserva);
+    dataUtil = reserva.data.datIni.add(
+      Duration(
+          hours: int.parse(
+            reserva.data.horIniDescricao.trim().split(':')[0],
+          ) + 3,
+          minutes: int.parse(
+              reserva.data.horIniDescricao.trim().split(':')[1].split(' ')[0])),
+    );
+    if ((dataUtil).isAfter(DateTime.now().toUtc())) {
+      isButtondisabled = false;
+    }
   }
 
   @action
