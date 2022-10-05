@@ -65,11 +65,14 @@ class _CadastroEspacoPageState
           message,
           _scaffoldKey,
         );
-        Timer(Duration(seconds: 1), () {
-          // Modular.navigator.pop();
-          Navigator.popUntil(
-              context, ModalRoute.withName(RouteName.listar_espacos));
-        });
+        Timer(
+          Duration(seconds: 1),
+          () {
+            // Modular.navigator.pop();
+            Navigator.popUntil(
+                context, ModalRoute.withName(RouteName.listar_espacos));
+          },
+        );
       }
     }
   }
@@ -102,37 +105,38 @@ class _CadastroEspacoPageState
                       child: Column(
                         children: [
                           Card(
-                              child: Container(
-                                  padding: EdgeInsets.only(
-                                      top: 0, left: 8, right: 8, bottom: 12),
-                                  child: Column(
-                                    children: [
-                                      UnderlineTextFieldWidget(
-                                        hint: 'Ex: Salão de Festas',
-                                        labelText: 'Nome*',
-                                        keyboardType: TextInputType.name,
-                                        validator: Validators.empty,
-                                        controller: _nomeController,
-                                      ),
-                                      UnderlineTextFieldWidget(
-                                        hint: 'Ex: 20',
-                                        labelText: 'Capacidade Máxima*',
-                                        keyboardType: TextInputType.number,
-                                        validator: Validators.empty,
-                                        controller: _capacidadeController,
-                                      ),
-                                      Container(
-                                          height: 5 * 18.0,
-                                          child: UnderlineTextFieldWidget(
-                                            maxLines: 5,
-                                            labelText:
-                                                'Observações/Regulamento',
-                                            validator: Validators.maxCaracteres,
-                                            controller:
-                                                _observacaoIniController,
-                                          )),
-                                    ],
-                                  ))),
+                            child: Container(
+                              padding: EdgeInsets.only(
+                                  top: 0, left: 8, right: 8, bottom: 12),
+                              child: Column(
+                                children: [
+                                  UnderlineTextFieldWidget(
+                                    hint: 'Ex: Salão de Festas',
+                                    labelText: 'Nome*',
+                                    keyboardType: TextInputType.name,
+                                    validator: Validators.empty,
+                                    controller: _nomeController,
+                                  ),
+                                  UnderlineTextFieldWidget(
+                                    hint: 'Ex: 20',
+                                    labelText: 'Capacidade Máxima*',
+                                    keyboardType: TextInputType.number,
+                                    validator: Validators.empty,
+                                    controller: _capacidadeController,
+                                  ),
+                                  Container(
+                                    height: 5 * 18.0,
+                                    child: UnderlineTextFieldWidget(
+                                      maxLines: 5,
+                                      labelText: 'Observações/Regulamento',
+                                      validator: Validators.maxCaracteres,
+                                      controller: _observacaoIniController,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                           Card(
                             child: Padding(
                               padding: EdgeInsets.only(
@@ -152,21 +156,22 @@ class _CadastroEspacoPageState
                                         ),
                                       ),
                                       Expanded(
-                                          child: DropDownValidator(
-                                              lista: controller.horarios.data,
-                                              onChange: (value) => {
-                                                    controller.setMinPer(value),
-                                                  },
-                                              value: controller
-                                                  .tempoMinPermanencia,
-                                              validator: (value) {
-                                                if (controller
-                                                        .tempoMinPermanencia >=
-                                                    controller
-                                                        .tempoMaxPermanencia) {
-                                                  return 'Permanência miníma não pode ser maior ou igual a máxima';
-                                                }
-                                              }))
+                                        child: DropDownValidator(
+                                          lista: controller.horarios.data,
+                                          onChange: (value) => {
+                                            controller.setMinPer(value),
+                                          },
+                                          value: controller.tempoMinPermanencia,
+                                          validator: (value) {
+                                            if (controller
+                                                    .tempoMinPermanencia >=
+                                                controller
+                                                    .tempoMaxPermanencia) {
+                                              return 'Permanência miníma não pode ser maior ou igual a máxima';
+                                            }
+                                          },
+                                        ),
+                                      )
                                     ],
                                   ),
                                   Row(
@@ -182,21 +187,22 @@ class _CadastroEspacoPageState
                                         ),
                                       ),
                                       Expanded(
-                                          child: DropDownValidator(
-                                              lista: controller.horarios.data,
-                                              onChange: (value) => {
-                                                    controller.setMaxPer(value),
-                                                  },
-                                              value: controller
-                                                  .tempoMaxPermanencia,
-                                              validator: (value) {
-                                                if (controller
-                                                        .tempoMinPermanencia >=
-                                                    controller
-                                                        .tempoMaxPermanencia) {
-                                                  return 'Permanência máxima não pode ser menor ou igual a mínima';
-                                                }
-                                              }))
+                                        child: DropDownValidator(
+                                          lista: controller.horarios.data,
+                                          onChange: (value) => {
+                                            controller.setMaxPer(value),
+                                          },
+                                          value: controller.tempoMaxPermanencia,
+                                          validator: (value) {
+                                            if (controller
+                                                    .tempoMinPermanencia >=
+                                                controller
+                                                    .tempoMaxPermanencia) {
+                                              return 'Permanência máxima não pode ser menor ou igual a mínima';
+                                            }
+                                          },
+                                        ),
+                                      )
                                     ],
                                   ),
                                   Row(
@@ -212,21 +218,23 @@ class _CadastroEspacoPageState
                                         ),
                                       ),
                                       Expanded(
-                                          child: DropDownValidator(
-                                              lista: controller.horarios.data,
-                                              onChange: (value) => {
-                                                    controller.setMinAnt(value),
-                                                  },
-                                              value: controller
-                                                  .tempoMinAntecedencia,
-                                              validator: (value) {
-                                                if (controller
-                                                        .tempoMinAntecedencia >=
-                                                    controller
-                                                        .tempoMaxAntecedencia) {
-                                                  return 'Antecedencia mínima não pode ser maior ou igual a máxima';
-                                                }
-                                              }))
+                                        child: DropDownValidator(
+                                          lista: controller.horarios.data,
+                                          onChange: (value) => {
+                                            controller.setMinAnt(value),
+                                          },
+                                          value:
+                                              controller.tempoMinAntecedencia,
+                                          validator: (value) {
+                                            if (controller
+                                                    .tempoMinAntecedencia >=
+                                                controller
+                                                    .tempoMaxAntecedencia) {
+                                              return 'Antecedencia mínima não pode ser maior ou igual a máxima';
+                                            }
+                                          },
+                                        ),
+                                      )
                                     ],
                                   ),
                                   Row(
@@ -242,21 +250,23 @@ class _CadastroEspacoPageState
                                         ),
                                       ),
                                       Expanded(
-                                          child: DropDownValidator(
-                                              lista: controller.horarios.data,
-                                              onChange: (value) => {
-                                                    controller.setMaxAnt(value),
-                                                  },
-                                              value: controller
-                                                  .tempoMaxAntecedencia,
-                                              validator: (value) {
-                                                if (controller
-                                                        .tempoMinAntecedencia >=
-                                                    controller
-                                                        .tempoMaxAntecedencia) {
-                                                  return 'Antecedencia máxima não pode ser menor ou igual a mínima';
-                                                }
-                                              }))
+                                        child: DropDownValidator(
+                                          lista: controller.horarios.data,
+                                          onChange: (value) => {
+                                            controller.setMaxAnt(value),
+                                          },
+                                          value:
+                                              controller.tempoMaxAntecedencia,
+                                          validator: (value) {
+                                            if (controller
+                                                    .tempoMinAntecedencia >=
+                                                controller
+                                                    .tempoMaxAntecedencia) {
+                                              return 'Antecedencia máxima não pode ser menor ou igual a mínima';
+                                            }
+                                          },
+                                        ),
+                                      )
                                     ],
                                   ),
                                   Row(
@@ -279,6 +289,30 @@ class _CadastroEspacoPageState
                                         },
                                         value: controller.tempoIntervaloReserva,
                                       ))
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          'Antecedência mínima de cancelamento*',
+                                          style: TextStyle(
+                                              fontSize: 26.sp,
+                                              fontFamily: 'roboto',
+                                              color: Colors.grey[600],
+                                              fontStyle: FontStyle.normal),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: DropDownValidator(
+                                          lista: controller.horarios.data,
+                                          onChange: (value) => {
+                                            controller.setMinCancel(value),
+                                          },
+                                          value:
+                                              controller.tempoMinCancelamento,
+                                        ),
+                                      )
                                     ],
                                   ),
                                 ],

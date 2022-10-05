@@ -55,18 +55,13 @@ abstract class _CadastroEspacoControllerBase with Store {
     return espacoEditar;
   }
 
-  // setarValoresIntRes() {
-  //   horariosIntRes = horarios.data
-  //       .where((element) => element.id <= setup.data.setupReserva.maxIntRes)
-  //       .toList();
-  // }
-
   setarValores(EspacoEntity espaco) {
     this.tempoMinPermanencia = espaco.perMin;
     this.tempoMaxPermanencia = espaco.perMax;
     this.tempoMinAntecedencia = espaco.antMin;
     this.tempoMaxAntecedencia = espaco.antMax;
     this.tempoIntervaloReserva = espaco.intRes;
+    this.tempoMinCancelamento = espaco.minCancel;
     this.ativarDom = espaco.dom;
     this.domIni = espaco.domIni;
     this.domFim = espaco.domFim;
@@ -107,6 +102,7 @@ abstract class _CadastroEspacoControllerBase with Store {
             antMin: this.tempoMinAntecedencia,
             antMax: this.tempoMaxAntecedencia,
             intRes: this.tempoIntervaloReserva,
+            minCancel: this.tempoMinCancelamento,
             dom: this.ativarDom,
             domIni: this.domIni,
             domFim: this.domFim,
@@ -142,6 +138,7 @@ abstract class _CadastroEspacoControllerBase with Store {
             antMin: this.tempoMinAntecedencia,
             antMax: this.tempoMaxAntecedencia,
             intRes: this.tempoIntervaloReserva,
+            minCancel: this.tempoMinCancelamento,
             dom: this.ativarDom,
             domIni: this.domIni,
             domFim: this.domFim,
@@ -186,6 +183,13 @@ abstract class _CadastroEspacoControllerBase with Store {
 
   @observable
   int tempoIntervaloReserva = 1;
+
+  @observable
+  int tempoMinCancelamento = 1;
+
+  setMinCancel(int idTempo) {
+    tempoMinCancelamento = idTempo;
+  }
 
   setMinPer(int idTempo) {
     tempoMinPermanencia = idTempo;

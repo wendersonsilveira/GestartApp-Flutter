@@ -47,6 +47,9 @@ abstract class _DashboardControllerBase with Store {
   ResourceData<List<UnidadeAtivaEntity>> condominiosAtivos;
 
   @observable
+  List<String> condominiosReserva = [];
+
+  @observable
   ResourceData<List<UnidadeEntity>> unidadesAtivasAdm;
 
   @observable
@@ -63,6 +66,9 @@ abstract class _DashboardControllerBase with Store {
 
   @observable
   bool chekedSindico = false;
+
+  @observable
+  bool possuiReserva = false;
 
   @observable
   ResourceData<SetupEntity> setup;
@@ -125,10 +131,20 @@ abstract class _DashboardControllerBase with Store {
 
   @action
   void checkServicoReservasActive() {
-    if (condominiosAtivos.data != null)
-      condominiosAtivos.data.map((e) => e.gestartappReserva == 1
-          ? servicoReservaDisponivel = 1
-          : servicoReservaDisponivel);
+    if (condominiosAtivos.data != null) {
+      condominiosAtivos.data.forEach((e) {
+        if (e.gestartappReserva == 1) {
+          servicoReservaDisponivel = 1;
+        } else {
+          servicoReservaDisponivel = servicoReservaDisponivel == 1 ? 1 : 0;
+        }
+        condominiosReserva
+            .add('CODCON : ${e.codcon}, RESERVA: ${e.gestartappReserva}');
+      });
+    sharedPreferences.putStringList('reservaService', condominiosReserva);
+    }
+
+    // print(condominiosReserva);
   }
 
   @action

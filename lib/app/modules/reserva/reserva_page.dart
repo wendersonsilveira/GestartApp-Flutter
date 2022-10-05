@@ -28,8 +28,8 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
   }
 
   cancelarReserva(int id) async {
-    final r = await controller.cancelarReserva(id);
-    if (r.status == Status.success) {
+    final res = await controller.cancelarReserva(id);
+    if (res.status == Status.success) {
       Modular.navigator.pop(true);
 
       openDialogInf(
@@ -45,7 +45,7 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
             )
           ],
           Container(
-            child: Text(r.message),
+            child: Text(res.message),
           ),
           Text(
             'Sucesso',
@@ -63,7 +63,7 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
             )
           ],
           Container(
-            child: Text(r.message),
+            child: Text(res.message),
           ),
           Text(
             'Sucesso',
@@ -239,7 +239,7 @@ class _ReservaPageState extends ModularState<ReservaPage, ReservaController> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                  'Espaço excluido, entre em contato com seu síndico para mais informações',
+                                                  'Espaço excluido. Contate a administração para mais informações',
                                                   style: TextStyle(
                                                       height: 1,
                                                       color: AppColorScheme

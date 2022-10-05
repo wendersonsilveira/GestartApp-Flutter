@@ -70,7 +70,7 @@ class _PesquisaPageState
   }
 
   errorListener(SpeechRecognitionError error) {
-    emptyMesg = 'Nem um recurso correspondente. Tente novamente.';
+    emptyMesg = 'Nenhum recurso correspondente. Tente novamente.';
 
     stopListern();
   }
@@ -114,7 +114,7 @@ class _PesquisaPageState
 
       if (!match) {
         emptyMesg =
-            'Nem um recurso correspondente para: $resultado. \n Tente novamente.';
+            'Nenhum recurso correspondente para: $resultado. \n Tente novamente.';
         stopListern();
       }
     }

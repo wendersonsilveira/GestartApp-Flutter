@@ -39,7 +39,7 @@ class ErrorMapper {
       default:
         break;
     }
-    if (error.response?.statusCode != null) {
+    if (error.response?.statusCode != null) { 
       switch (error.response.statusCode) {
         case 401:
           return error.response.data["error"][0];

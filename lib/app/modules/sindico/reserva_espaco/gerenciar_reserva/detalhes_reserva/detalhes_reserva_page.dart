@@ -121,19 +121,21 @@ class _DetalhesReservaPageState
                     if (controller.reserva.data.status == 0)
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 10),
-                        child: Row(
+                        child: Row(                          
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             FlatButton(
+                              disabledColor: Colors.black12,
+                              disabledTextColor: Colors.blueGrey,
                               padding: EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
-                              onPressed: () {
-                                aprovarReserva(widget.idReserva);
-                              },
+                              onPressed: controller.isButtondisabled ? null : () {
+                                 aprovarReserva(widget.idReserva);
+                               },
                               child: Text(
                                 'APROVAR',
                                 style: TextStyle(
-                                  color: AppColorScheme.primaryColor,
+                                  color: controller.isButtondisabled ? Colors.white : AppColorScheme.primaryColor,
                                 ),
                               ),
                               color: Colors.white,
@@ -141,28 +143,31 @@ class _DetalhesReservaPageState
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(20)),
                                 side: BorderSide(
-                                    color: AppColorScheme.primaryColor,
+                                    color: controller.isButtondisabled ? Colors.black12 : AppColorScheme.primaryColor,
                                     width: 1),
                               ),
                             ),
+
                             SizedBox(width: 15),
-                            FlatButton(
+                            FlatButton(                              
+                              disabledColor: Colors.black12,
+                              disabledTextColor: Colors.blueGrey,
                               padding: EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 5),
-                              onPressed: () {
-                                rejeitarReserva(widget.idReserva);
-                              },
+                              onPressed: controller.isButtondisabled ? null : () {
+                                 rejeitarReserva(widget.idReserva);
+                               },
                               child: Text(
                                 'REJEITAR',
                                 style: TextStyle(
-                                  color: Colors.red,
+                                  color: controller.isButtondisabled ? Colors.white : Colors.red,
                                 ),
                               ),
                               color: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(20)),
-                                side: BorderSide(color: Colors.red, width: 1),
+                                side: BorderSide(color: controller.isButtondisabled ? Colors.black12 : Colors.red, width: 1),
                               ),
                             )
                           ],

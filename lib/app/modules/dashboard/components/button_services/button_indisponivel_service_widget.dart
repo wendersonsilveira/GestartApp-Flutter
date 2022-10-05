@@ -20,7 +20,7 @@ class ButtonServicesIndisponivelWidget extends StatelessWidget {
               CustomAlertDialog.info(
                   context,
                   "Serviço não habilitado",
-                  "Esse serviço não está habilitado para este condomínio, entre em contato com o Síndico.",
+                  "O serviço não está habilitado para este condomínio. Contate a administração para mais informações.",
                   (_) => {Navigator.pop(context)});
             },
             child: Icon(
