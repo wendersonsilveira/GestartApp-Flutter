@@ -194,7 +194,7 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                             },
                           ),
                           ContainedButtonWidget(
-                            text: "Segunda via",
+                            text: "Segunda via de boleto",
                             onPressed: () {
                               Modular.navigator.pushNamed(
                                   RouteName.segunda_via_page,

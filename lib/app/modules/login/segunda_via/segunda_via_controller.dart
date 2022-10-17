@@ -54,7 +54,6 @@ abstract class _SegundaViaControllerBase with Store {
 
   @action
   Future<void> getBoletos(int codOrd) async {
-    boletos = ResourceData(status: Status.loading);
     boletos = await _getBoletos(codOrd);
     print(boletos);
   }
