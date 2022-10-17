@@ -19,48 +19,33 @@ final $SegundaViaController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SegundaViaController on _SegundaViaControllerBase, Store {
-  final _$hasFaturasAtom = Atom(name: '_SegundaViaControllerBase.hasFaturas');
+  final _$listaViewAtom = Atom(name: '_SegundaViaControllerBase.listaView');
 
   @override
-  bool get hasFaturas {
-    _$hasFaturasAtom.reportRead();
-    return super.hasFaturas;
+  List<BoletoEntity> get listaView {
+    _$listaViewAtom.reportRead();
+    return super.listaView;
   }
 
   @override
-  set hasFaturas(bool value) {
-    _$hasFaturasAtom.reportWrite(value, super.hasFaturas, () {
-      super.hasFaturas = value;
+  set listaView(List<BoletoEntity> value) {
+    _$listaViewAtom.reportWrite(value, super.listaView, () {
+      super.listaView = value;
     });
   }
 
-  final _$checkedAtom = Atom(name: '_SegundaViaControllerBase.checked');
+  final _$statusAtom = Atom(name: '_SegundaViaControllerBase.status');
 
   @override
-  bool get checked {
-    _$checkedAtom.reportRead();
-    return super.checked;
+  int get status {
+    _$statusAtom.reportRead();
+    return super.status;
   }
 
   @override
-  set checked(bool value) {
-    _$checkedAtom.reportWrite(value, super.checked, () {
-      super.checked = value;
-    });
-  }
-
-  final _$_getBoletosAtom = Atom(name: '_SegundaViaControllerBase._getBoletos');
-
-  @override
-  GetBoletosDocUseCase get _getBoletos {
-    _$_getBoletosAtom.reportRead();
-    return super._getBoletos;
-  }
-
-  @override
-  set _getBoletos(GetBoletosDocUseCase value) {
-    _$_getBoletosAtom.reportWrite(value, super._getBoletos, () {
-      super._getBoletos = value;
+  set status(int value) {
+    _$statusAtom.reportWrite(value, super.status, () {
+      super.status = value;
     });
   }
 
@@ -79,34 +64,64 @@ mixin _$SegundaViaController on _SegundaViaControllerBase, Store {
     });
   }
 
-  final _$loadingCheckAtom =
-      Atom(name: '_SegundaViaControllerBase.loadingCheck');
+  final _$codOrdAtom = Atom(name: '_SegundaViaControllerBase.codOrd');
 
   @override
-  ResourceData<int> get loadingCheck {
-    _$loadingCheckAtom.reportRead();
-    return super.loadingCheck;
+  int get codOrd {
+    _$codOrdAtom.reportRead();
+    return super.codOrd;
   }
 
   @override
-  set loadingCheck(ResourceData<int> value) {
-    _$loadingCheckAtom.reportWrite(value, super.loadingCheck, () {
-      super.loadingCheck = value;
+  set codOrd(int value) {
+    _$codOrdAtom.reportWrite(value, super.codOrd, () {
+      super.codOrd = value;
     });
   }
 
-  final _$userLoginAtom = Atom(name: '_SegundaViaControllerBase.userLogin');
+  final _$unidadeSelecionadaAtom =
+      Atom(name: '_SegundaViaControllerBase.unidadeSelecionada');
 
   @override
-  ResourceData<UserEntity> get userLogin {
-    _$userLoginAtom.reportRead();
-    return super.userLogin;
+  bool get unidadeSelecionada {
+    _$unidadeSelecionadaAtom.reportRead();
+    return super.unidadeSelecionada;
   }
 
   @override
-  set userLogin(ResourceData<UserEntity> value) {
-    _$userLoginAtom.reportWrite(value, super.userLogin, () {
-      super.userLogin = value;
+  set unidadeSelecionada(bool value) {
+    _$unidadeSelecionadaAtom.reportWrite(value, super.unidadeSelecionada, () {
+      super.unidadeSelecionada = value;
+    });
+  }
+
+  final _$unidadesAtom = Atom(name: '_SegundaViaControllerBase.unidades');
+
+  @override
+  ResourceData<List<UnidadeEntity>> get unidades {
+    _$unidadesAtom.reportRead();
+    return super.unidades;
+  }
+
+  @override
+  set unidades(ResourceData<List<UnidadeEntity>> value) {
+    _$unidadesAtom.reportWrite(value, super.unidades, () {
+      super.unidades = value;
+    });
+  }
+
+  final _$checkedAtom = Atom(name: '_SegundaViaControllerBase.checked');
+
+  @override
+  bool get checked {
+    _$checkedAtom.reportRead();
+    return super.checked;
+  }
+
+  @override
+  set checked(bool value) {
+    _$checkedAtom.reportWrite(value, super.checked, () {
+      super.checked = value;
     });
   }
 
@@ -114,19 +129,36 @@ mixin _$SegundaViaController on _SegundaViaControllerBase, Store {
       AsyncAction('_SegundaViaControllerBase.getBoletos');
 
   @override
-  Future<void> getBoletos(String cpfCnpj) {
-    return _$getBoletosAsyncAction.run(() => super.getBoletos(cpfCnpj));
+  Future<void> getBoletos(int codOrd) {
+    return _$getBoletosAsyncAction.run(() => super.getBoletos(codOrd));
+  }
+
+  final _$getUnidadesAsyncAction =
+      AsyncAction('_SegundaViaControllerBase.getUnidades');
+
+  @override
+  Future<void> getUnidades(String cpfCnpj) {
+    return _$getUnidadesAsyncAction.run(() => super.getUnidades(cpfCnpj));
+  }
+
+  final _$getBoletoDetalhesAsyncAction =
+      AsyncAction('_SegundaViaControllerBase.getBoletoDetalhes');
+
+  @override
+  Future<void> getBoletoDetalhes(String conts) {
+    return _$getBoletoDetalhesAsyncAction
+        .run(() => super.getBoletoDetalhes(conts));
   }
 
   final _$_SegundaViaControllerBaseActionController =
       ActionController(name: '_SegundaViaControllerBase');
 
   @override
-  Future<void> checkPage() {
+  dynamic changeDropdown(int codOrd) {
     final _$actionInfo = _$_SegundaViaControllerBaseActionController
-        .startAction(name: '_SegundaViaControllerBase.checkPage');
+        .startAction(name: '_SegundaViaControllerBase.changeDropdown');
     try {
-      return super.checkPage();
+      return super.changeDropdown(codOrd);
     } finally {
       _$_SegundaViaControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -135,11 +167,13 @@ mixin _$SegundaViaController on _SegundaViaControllerBase, Store {
   @override
   String toString() {
     return '''
-hasFaturas: ${hasFaturas},
-checked: ${checked},
+listaView: ${listaView},
+status: ${status},
 boletos: ${boletos},
-loadingCheck: ${loadingCheck},
-userLogin: ${userLogin}
+codOrd: ${codOrd},
+unidadeSelecionada: ${unidadeSelecionada},
+unidades: ${unidades},
+checked: ${checked}
     ''';
   }
 }

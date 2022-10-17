@@ -132,6 +132,7 @@ import 'package:Gestart/domain/usecases/setup/get_setup_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_adm_unidades_prop_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidade_detalhes_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_adm_use_case.dart';
+import 'package:Gestart/domain/usecases/unidade/get_unidades_doc_use_case.dart';
 import 'package:Gestart/domain/usecases/unidade/get_unidades_filtro_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/cancelar_reserva_use_case.dart';
 import 'package:Gestart/domain/usecases/reserva/create_reserva_use_case.dart';
@@ -259,6 +260,8 @@ Future<GetIt> initGetIt(GetIt get) async {
       () => GetUnidadesCondominioUseCase(get<UnidadeRepository>()));
   gh.factory<GetUnidadesCompUseCase>(
       () => GetUnidadesCompUseCase(get<UnidadeRepository>()));
+  gh.factory<GetUnidadesDocUseCase>(
+      () => GetUnidadesDocUseCase(get<UnidadeRepository>()));
 
   //balancetes
   gh.factory<BalanceteRemoteDataSource>(

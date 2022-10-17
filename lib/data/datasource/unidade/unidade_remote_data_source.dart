@@ -34,6 +34,26 @@ class UnidadeRemoteDataSource {
     }
   }
 
+
+  Future<ResourceData<List<UnidadeEntity>>> getUnidadesDoc(String cpfCnpj) async {
+    try {
+      final result = await _dio.get('v2/unidadesAtivas_doc/$cpfCnpj');
+
+      if (result.length > 0)
+        return ResourceData<List<UnidadeEntity>>(
+            status: Status.success, data: UnidadeEntity().fromMapList(result));
+      else
+        return ResourceData<List<UnidadeEntity>>(
+            status: Status.success, data: null);
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar as unidades ativas",
+          error: ErrorMapper.from(e));
+    }
+  }
+
   Future<ResourceData<List<UnidadeEntity>>> getUnidadesComplemento(codcon) async {
     try {
       final result = await _dio.get('adm-unidades-complemento/$codcon');
