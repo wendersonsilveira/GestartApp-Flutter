@@ -135,7 +135,7 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                     ),
                     Container(
                       width: 600.w,
-                      height: 400.h,
+                      height: 450.h,
                       child: Column(
                         children: [
                           OutlinedTextFieldWidget(
@@ -184,14 +184,23 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                             height: 26.h,
                           ),
                           GestureDetector(
-                              child: Text(
-                                "Esqueci minha senha",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              onTap: () => {
-                                    Modular.navigator
-                                        .pushNamed(RouteName.forgot_password),
-                                  }),
+                            child: Text(
+                              "Esqueci minha senha",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            onTap: () => {
+                              Modular.navigator
+                                  .pushNamed(RouteName.forgot_password),
+                            },
+                          ),
+                          ContainedButtonWidget(
+                            text: "Segunda via",
+                            onPressed: () {
+                              Modular.navigator.pushNamed(
+                                  RouteName.segunda_via_page,
+                                  arguments: _cpfCnpjController.text);
+                            },
+                          )
                         ],
                       ),
                     ),

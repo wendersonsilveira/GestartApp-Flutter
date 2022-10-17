@@ -55,6 +55,7 @@ class RouteName {
   static const String ativar_codigo_email = '/ativar_codigo_email';
   static const String detalhe_balancete = '/detalhe_balancete';
   static const String informativos_page = '/informativos_page';
+  static const String segunda_via_page = '/segunda_via_page';
   static const String error_page = '/error_page';
 
   static const Map allRoutesKeys = {

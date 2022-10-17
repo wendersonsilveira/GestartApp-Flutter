@@ -141,7 +141,7 @@ abstract class _DashboardControllerBase with Store {
         condominiosReserva
             .add('CODCON : ${e.codcon}, RESERVA: ${e.gestartappReserva}');
       });
-    sharedPreferences.putStringList('reservaService', condominiosReserva);
+      sharedPreferences.putStringList('reservaService', condominiosReserva);
     }
 
     // print(condominiosReserva);
@@ -153,6 +153,7 @@ abstract class _DashboardControllerBase with Store {
     condominios = await _getCondominios();
     condominiosAtivos = await _getCondominioAtivo();
     unidadesAtivasAdm = await _getUnidadesAtivas();
+    print(condominiosAtivos);
     checkCondominiosAtivos(condominiosAtivos.data != null ? true : false);
     checkServicoReservasActive();
 

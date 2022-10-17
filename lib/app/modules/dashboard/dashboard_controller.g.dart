@@ -111,6 +111,22 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
     });
   }
 
+  final _$condominiosReservaAtom =
+      Atom(name: '_DashboardControllerBase.condominiosReserva');
+
+  @override
+  List<String> get condominiosReserva {
+    _$condominiosReservaAtom.reportRead();
+    return super.condominiosReserva;
+  }
+
+  @override
+  set condominiosReserva(List<String> value) {
+    _$condominiosReservaAtom.reportWrite(value, super.condominiosReserva, () {
+      super.condominiosReserva = value;
+    });
+  }
+
   final _$unidadesAtivasAdmAtom =
       Atom(name: '_DashboardControllerBase.unidadesAtivasAdm');
 
@@ -209,6 +225,22 @@ mixin _$DashboardController on _DashboardControllerBase, Store {
     });
   }
 
+  final _$possuiReservaAtom =
+      Atom(name: '_DashboardControllerBase.possuiReserva');
+
+  @override
+  bool get possuiReserva {
+    _$possuiReservaAtom.reportRead();
+    return super.possuiReserva;
+  }
+
+  @override
+  set possuiReserva(bool value) {
+    _$possuiReservaAtom.reportWrite(value, super.possuiReserva, () {
+      super.possuiReserva = value;
+    });
+  }
+
   final _$setupAtom = Atom(name: '_DashboardControllerBase.setup');
 
   @override
@@ -293,12 +325,14 @@ versionInfo: ${versionInfo},
 storeVersion: ${storeVersion},
 condominios: ${condominios},
 condominiosAtivos: ${condominiosAtivos},
+condominiosReserva: ${condominiosReserva},
 unidadesAtivasAdm: ${unidadesAtivasAdm},
 statusCondominio: ${statusCondominio},
 existeCondominiosAtivos: ${existeCondominiosAtivos},
 servicoReservaDisponivel: ${servicoReservaDisponivel},
 servicoReserva: ${servicoReserva},
 chekedSindico: ${chekedSindico},
+possuiReserva: ${possuiReserva},
 setup: ${setup},
 deviceVersion: ${deviceVersion},
 statusLoading: ${statusLoading},

@@ -68,6 +68,7 @@ import 'package:Gestart/domain/usecases/adm-cadastros/get_resumo_unidade_use_cas
 import 'package:Gestart/domain/usecases/assembleia/get_editais_use_case.dart';
 import 'package:Gestart/domain/usecases/balancete/get_balancete_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boleto_unidade_use_case.dart';
+import 'package:Gestart/domain/usecases/boleto/get_boletos_doc_use_case.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boletos_unidade_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/create_aviso_use_case.dart';
 import 'package:Gestart/domain/usecases/cominicacao/get_aviso_use_case.dart';
@@ -231,6 +232,7 @@ Future<GetIt> initGetIt(GetIt get) async {
   gh.factory<GetBoletosUseCase>(
       () => GetBoletosUseCase(get<BoletoRepository>()));
   gh.factory<GetBoletoUseCase>(() => GetBoletoUseCase(get<BoletoRepository>()));
+  gh.factory<GetBoletosDocUseCase>(() => GetBoletosDocUseCase(get<BoletoRepository>()));
   gh.factory<GetBoletosUnidadeUseCase>(() => GetBoletosUnidadeUseCase(get<BoletoRepository>()));
   gh.factory<GetBoletoUnidadeUseCase>(() => GetBoletoUnidadeUseCase(get<BoletoRepository>()));
 

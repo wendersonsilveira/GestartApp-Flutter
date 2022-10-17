@@ -39,12 +39,12 @@ class _DownloadGenericWidgetState extends State<DownloadGenericWidget> {
   @override
   void initState() {
     super.initState();
-    getPerfil();
+    // getPerfil();
   }
 
-  Future<dynamic> getPerfil() async {
-    perfil = await _getPerfil();
-  }
+  // Future<dynamic> getPerfil() async {
+  //   perfil = await _getPerfil();
+  // }
 
   downloadStart() async {
     if (Platform.isAndroid)

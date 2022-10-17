@@ -19,6 +19,21 @@ final $InformativosController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$InformativosController on _InformativosControllerBase, Store {
+  final _$unidadesAtom = Atom(name: '_InformativosControllerBase.unidades');
+
+  @override
+  ResourceData<List<UnidadeEntity>> get unidades {
+    _$unidadesAtom.reportRead();
+    return super.unidades;
+  }
+
+  @override
+  set unidades(ResourceData<List<UnidadeEntity>> value) {
+    _$unidadesAtom.reportWrite(value, super.unidades, () {
+      super.unidades = value;
+    });
+  }
+
   final _$condominiosAtom =
       Atom(name: '_InformativosControllerBase.condominios');
 
@@ -80,6 +95,14 @@ mixin _$InformativosController on _InformativosControllerBase, Store {
     return _$getCondominiosAsyncAction.run(() => super.getCondominios());
   }
 
+  final _$getComunicadosAsyncAction =
+      AsyncAction('_InformativosControllerBase.getComunicados');
+
+  @override
+  Future<void> getComunicados(int codOrd) {
+    return _$getComunicadosAsyncAction.run(() => super.getComunicados(codOrd));
+  }
+
   final _$_InformativosControllerBaseActionController =
       ActionController(name: '_InformativosControllerBase');
 
@@ -97,6 +120,7 @@ mixin _$InformativosController on _InformativosControllerBase, Store {
   @override
   String toString() {
     return '''
+unidades: ${unidades},
 condominios: ${condominios},
 codCon: ${codCon},
 infor: ${infor}

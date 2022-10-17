@@ -5,6 +5,7 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 
 abstract class BoletoRepository {
   Future<ResourceData<List<BoletoEntity>>> getBoletos();
+  Future<ResourceData<List<BoletoEntity>>> getBoletosDoc(String cpfCnpj);
   Future<ResourceData<List<BoletoEntity>>> getBoletosUnidade(int codord);
   Future<ResourceData<List<DetalheBoletoUnidadeEntity>>> getBoletoUnidade(String conts);
   Future<ResourceData<DetalheBoletoEntity>> getBoleto(int codord);

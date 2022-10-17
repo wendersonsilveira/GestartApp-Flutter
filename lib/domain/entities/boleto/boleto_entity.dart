@@ -21,6 +21,8 @@ class BoletoEntity {
   final String status;
   final String conts;
   final double total;
+  final String linhaDigitavel;
+  final String linkBoleto;
 
   const BoletoEntity(
       {this.id,
@@ -41,6 +43,8 @@ class BoletoEntity {
       this.status,
       this.conts,
       this.total,
+      this.linhaDigitavel,
+      this.linkBoleto,
       this.logo});
 
   @override

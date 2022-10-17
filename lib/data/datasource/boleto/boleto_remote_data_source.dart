@@ -98,4 +98,19 @@ class BoletoRemoteDataSource {
           error: ErrorMapper.from(e));
     }
   }
+
+  Future<ResourceData<List<BoletoEntity>>> getBoletosDoc(String cpfCnpj) async {
+    try {
+      final result = await _dio.get('faturas_doc/$cpfCnpj');
+      return ResourceData<List<BoletoEntity>>(
+          status: Status.success, data: BoletoEntity().fromMapList(result));
+    } on DioError catch (e) {
+      return ResourceData(
+          status: Status.failed,
+          data: null,
+          message: "Erro ao listar os boletos",
+          error: ErrorMapper.from(e));
+    }
+  }
+
 }

@@ -55,7 +55,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  intl: ^0.16.1
+  intl: "0.16.1"
 
   #notificações
   firebase_messaging: ^7.0.3
