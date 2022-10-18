@@ -165,38 +165,44 @@ class _BoletosDetalhesPageState
                     Column(
                       children: [
                         Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: 
-                            DownloadButtonWidget(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 5),
-                              fontSize: 14,
-                              title: 'BAIXAR PDF',
-                              color: AppColorScheme.backgroundColor,
-                              fileName:
-                                  'Boleto_${controller.boleto.data[0].nomcom}_${controller.boleto.data[0].id}_${controller.boleto.data[0].codimo}_${UIHelper.formatDate(controller.boleto.data[0].datVen)}.pdf',
-                              fileURL: controller.boleto.data[0].linkBoleto,
-                              shap: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  side: BorderSide(
-                                      color: AppColorScheme.primaryColor)),
-                            ),
-                            ),
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: DownloadButtonWidget(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            fontSize: 14,
+                            title: 'BAIXAR PDF',
+                            color: AppColorScheme.backgroundColor,
+                            fileName:
+                                'Boleto_${controller.boleto.data[0].nomcom}_${controller.boleto.data[0].id}_${controller.boleto.data[0].codimo}_${UIHelper.formatDate(controller.boleto.data[0].datVen)}.pdf',
+                            fileURL: controller.boletoVencido
+                                ? null
+                                : controller.boleto.data[0].linkBoleto,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: BorderSide(
+                                    color: AppColorScheme.primaryColor)),
+                          ),
+                        ),
                         ButtonExpandedWidget(
                           descricao: 'COPIAR CÓDIGO',
-                          funcao: () {
-                            Clipboard.setData(new ClipboardData(
-                                text:
-                                    controller.boleto.data[0].linhaDigitavel));
-                            key.currentState.showSnackBar(new SnackBar(
-                              content: new Text("Código copiado com sucesso"),
-                            ));
-                          },
+                          funcao: controller.boletoVencido
+                              ? null
+                              : () {
+                                  Clipboard.setData(new ClipboardData(
+                                      text: controller
+                                          .boleto.data[0].linhaDigitavel));
+                                  key.currentState.showSnackBar(new SnackBar(
+                                    content:
+                                        new Text("Código copiado com sucesso"),
+                                  ));
+                                },
                         ),
                         ButtonExpandedWidget(
                           descricao: 'COMPARTILHAR',
-                          funcao: () => _shareContent('Boleto Bancário ' +
-                              controller.boleto.data[0].linkBoleto),
+                          funcao: controller.boletoVencido
+                              ? null
+                              : () => _shareContent('Boleto Bancário ' +
+                                  controller.boleto.data[0].linkBoleto),
                         ),
                       ],
                     ),
@@ -248,9 +254,12 @@ class _BoletosDetalhesPageState
                   ],
                 ),
               );
-            default:
+            case Status.failed:
               return Container(
                   child: PageError(messageError: 'Erro ao carregar a página'));
+              break;
+            default:
+              return Container();
           }
         }));
   }

@@ -48,6 +48,7 @@ class DetalheBoletoUnidadeEntity {
   final double valDesBoleto;
   final double valMen;
   final double valTot;
+  final int validadeSite;
   final double valTot_;
 
   const DetalheBoletoUnidadeEntity(
@@ -97,7 +98,8 @@ class DetalheBoletoUnidadeEntity {
       this.valDesBoleto,
       this.valMen,
       this.valTot,
-      this.valTot_
+      this.valTot_,
+      this.validadeSite,
       });
 
   // @override

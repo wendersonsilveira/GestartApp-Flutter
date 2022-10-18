@@ -57,6 +57,7 @@ class _SegundaViaPageState
             child: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: TextFormField(
+                keyboardType: TextInputType.number,
                 controller: _cpfCnpjController..text = widget.cpfCnpj,
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(2),

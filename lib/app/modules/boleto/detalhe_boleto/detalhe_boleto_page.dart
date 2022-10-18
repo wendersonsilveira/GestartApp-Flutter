@@ -145,7 +145,7 @@ class _DetalheBoletoPageState
                                 fileName:
                                     'Boleto_${controller.boleto.data.apelido}_${controller.boleto.data.id}_${controller.boleto.data.codImo}_${UIHelper.formatDate(controller.boleto.data.datVen)}.pdf',
                                 fileURL: controller.boleto.data.linkBoleto,
-                                shap: RoundedRectangleBorder(
+                                shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     side: BorderSide(
                                         color: AppColorScheme.primaryColor)),

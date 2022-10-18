@@ -1,4 +1,5 @@
 import 'package:Gestart/di/di.dart';
+import 'package:Gestart/domain/entities/boleto/detalhe_boleto_entity.dart';
 import 'package:Gestart/domain/entities/boleto/detalhe_boleto_unidade_entity.dart';
 import 'package:Gestart/domain/usecases/boleto/get_boleto_unidade_use_case.dart';
 import 'package:Gestart/domain/utils/resource_data.dart';
@@ -21,17 +22,29 @@ abstract class _BoletosDetalhesControllerBase with Store {
   ResourceData<List<DetalheBoletoUnidadeEntity>> boleto =
       ResourceData(status: Status.loading);
 
+  @observable
+  bool boletoVencido = false;
+
   init(String params) async {
     await getBoleto(params);
+    checkVencido();
   }
 
   Future<void> getBoleto(String conts) async {
     boleto = await _getBoleto(conts);
-    print(boleto);
   }
 
   Future<void> getBoletoPDF(String url) {
     this._launchURL(url);
+  }
+
+  @action
+  void checkVencido() {
+    boletoVencido = false;
+    if (boleto.data[0].datEmi
+        .add(Duration(days: boleto.data[0].validadeSite))
+        .isBefore(DateTime.now())) boletoVencido = true;
+    print(boletoVencido);
   }
 
   void _launchURL(_url) async => await canLaunch(_url)

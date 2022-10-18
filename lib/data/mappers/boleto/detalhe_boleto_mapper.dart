@@ -72,6 +72,7 @@ extension DetalheBoletoMapper on DetalheBoletoEntity {
       codigoAgencia: map['CODIGO_AGENCIA'],
       logo: map['LOGO'],
       conts: map['CONTS'],
+      validadeSite: map['VALIDADESITE'],
       linkBoleto: map['LINK_BOLETO'],
     );
   }

@@ -16,7 +16,7 @@ class ButtonExpandedWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
             child: RaisedButton(
               color: AppColorScheme.backgroundColor,
-              onPressed: funcao,
+              onPressed: funcao != null ? funcao : null,
               child: Text(
                 descricao,
                 style: TextStyle(color: AppColorScheme.primaryColor),
