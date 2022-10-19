@@ -3,15 +3,19 @@ import 'package:Gestart/app/modules/login/segunda_via/segunda_via_controller.dar
 import 'package:Gestart/app/styles/app_color_scheme.dart';
 import 'package:Gestart/app/utils/ui_helper.dart';
 import 'package:Gestart/app/widgets/appbar/custom_app_bar.dart';
+import 'package:Gestart/app/widgets/custom_alert_dialog/custom_alert_dialog.dart';
 import 'package:Gestart/app/widgets/empty/empt_widget.dart';
 import 'package:Gestart/app/widgets/inputs/dropdown_button_field3.widget.dart';
 import 'package:Gestart/app/widgets/page_error/page_error.dart';
 import 'package:Gestart/app/widgets/progress/circuclar_progress_custom.dart';
+import 'package:Gestart/domain/entities/auth/check_auth_entity.dart';
 import 'package:Gestart/domain/utils/status.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import 'package:cpfcnpj/cpfcnpj.dart';
 
 import 'segunda_via_controller.dart';
 
@@ -40,6 +44,22 @@ class _SegundaViaPageState
   void dispose() {
     _cpfCnpjController.dispose();
     super.dispose();
+  }
+
+  Future<void> _onactionCheckUser() async {
+    if (!_formKey.currentState.validate()) return;
+    if (_formKey.currentState.validate()) {
+      final check = await controller
+          .checkUser(IdUserEntity(cpfCnpj: _cpfCnpjController.text));
+
+      if (check.status == Status.failed) {
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+          CustomAlertDialog.error(context, check.error.message);
+        });
+      } else {
+        // return controller.getUnidades(controller.cpfCnpj);
+      }
+    }
   }
 
   @override
@@ -80,9 +100,11 @@ class _SegundaViaPageState
                           Icons.search_outlined,
                           color: Colors.white,
                         ),
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            controller.getUnidades(_cpfCnpjController.text);
+                        onPressed: () async {
+                          
+                          await _onactionCheckUser();
+                          if(_formKey.currentState.validate()) {
+                            await controller.getUnidades(_cpfCnpjController.text);
                           }
                         },
                       ),
@@ -91,7 +113,16 @@ class _SegundaViaPageState
                   if (value == null || value.isEmpty) {
                     return 'É necessário preencher com CPF ou CNPJ';
                   }
-                  return null;
+                  if (value.characters.length < 12) {
+                    if (CPF.isValid((CPF.format(value)))) {
+                      return null;
+                    }
+                  }
+                  if (CNPJ.isValid(CNPJ.format(value))) {
+                    return null;
+                  } else {
+                    return 'CPF ou CNPJ inválido';
+                  }
                 },
               ),
             ),
