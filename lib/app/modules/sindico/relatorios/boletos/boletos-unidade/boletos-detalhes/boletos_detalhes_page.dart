@@ -68,6 +68,7 @@ class _BoletosDetalhesPageState
                           children: [
                             Text((controller.boleto.data[0].nomcom)
                                 .toUpperCase()),
+                            Text('Unidade ${controller.boleto.data[0].codimo}')
                           ],
                         ),
                       ),
@@ -107,7 +108,7 @@ class _BoletosDetalhesPageState
                                   children: [
                                     TextSpan(text: 'Valor: '),
                                     TextSpan(
-                                        text: (controller.boleto.data[0].valTot)
+                                        text: ('${UIHelper.moneyFormat(controller.boleto.data[0].valTot)}')
                                             .toString(),
                                         style: TextStyle(
                                             color: Colors.green,
@@ -173,7 +174,7 @@ class _BoletosDetalhesPageState
                             title: 'BAIXAR PDF',
                             color: AppColorScheme.backgroundColor,
                             fileName:
-                                'Boleto_${controller.boleto.data[0].nomcom}_${controller.boleto.data[0].id}_${controller.boleto.data[0].codimo}_${UIHelper.formatDate(controller.boleto.data[0].datVen)}.pdf',
+                                'Boleto_${controller.boleto.data[0].nomcom}_${controller.boleto.data[0].id}_${controller.boleto.data[0].codimo}.pdf',
                             fileURL: controller.boletoVencido
                                 ? null
                                 : controller.boleto.data[0].linkBoleto,

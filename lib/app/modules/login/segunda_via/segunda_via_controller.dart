@@ -72,6 +72,9 @@ abstract class _SegundaViaControllerBase with Store {
 
   @action
   Future<ResourceData<int>> checkUser(IdUserEntity cpfCnpj) async {
+    codOrd = null;
+    boletos = ResourceData(status: Status.success, data: []);
+    unidadeSelecionada = false;
     loadingCheck = ResourceData(status: Status.loading);
     loadingCheck = await _checkUser(cpfCnpj);
     cpfCnpj = cpfCnpj;

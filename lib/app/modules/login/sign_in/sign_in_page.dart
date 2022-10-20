@@ -182,7 +182,24 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                           ),
                           SizedBox(
                             height: 26.h,
+                          ),                          
+                          Row(
+                            children: [
+                              Expanded(
+                                                          child: ContainedButtonWidget(
+                                  text: "Segunda via de boleto",
+                                  onPressed: () {
+                                    Modular.navigator.pushNamed(
+                                        RouteName.segunda_via_page,
+                                        arguments: _cpfCnpjController.text);
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
+                          SizedBox(
+                            height: 16.h,
+                          ), 
                           GestureDetector(
                             child: Text(
                               "Esqueci minha senha",
@@ -193,14 +210,6 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                                   .pushNamed(RouteName.forgot_password),
                             },
                           ),
-                          ContainedButtonWidget(
-                            text: "Segunda via de boleto",
-                            onPressed: () {
-                              Modular.navigator.pushNamed(
-                                  RouteName.segunda_via_page,
-                                  arguments: _cpfCnpjController.text);
-                            },
-                          )
                         ],
                       ),
                     ),

@@ -63,9 +63,9 @@ class _DownloadButtonWidgetState extends State<DownloadButtonWidget> {
         String _name = widget.fileName.replaceAll(r'/', '_');
         _name = _name.replaceAll(' ', '_');
 
-        int version = await sharedPreferences.getInt('versaoArquivos');
+        // int version = await sharedPreferences.getInt('versaoArquivos');
 
-        _name = 'v_${version}_$_name';
+        // _name = 'v_${version}_$_name';
 
         final String _url = widget.fileURL;
 
@@ -126,9 +126,9 @@ class _DownloadButtonWidgetState extends State<DownloadButtonWidget> {
       final dir = await getApplicationDocumentsDirectory();
       String _name = widget.fileName.replaceAll(r'/', '_');
 
-      int version = await sharedPreferences.getInt('versaoArquivos');
+      // int version = await sharedPreferences.getInt('versaoArquivos');
 
-      _name = 'v_${version}_$_name';
+      // _name = 'v_${version}_$_name';
 
       final String _url = widget.fileURL;
       setState(() {

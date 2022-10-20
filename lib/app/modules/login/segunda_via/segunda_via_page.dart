@@ -56,8 +56,6 @@ class _SegundaViaPageState
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
           CustomAlertDialog.error(context, check.error.message);
         });
-      } else {
-        // return controller.getUnidades(controller.cpfCnpj);
       }
     }
   }
@@ -77,6 +75,8 @@ class _SegundaViaPageState
             child: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: TextFormField(
+                textAlign: TextAlign.center,
+                maxLength: 14,
                 keyboardType: TextInputType.number,
                 controller: _cpfCnpjController..text = widget.cpfCnpj,
                 decoration: InputDecoration(
@@ -101,10 +101,10 @@ class _SegundaViaPageState
                           color: Colors.white,
                         ),
                         onPressed: () async {
-                          
                           await _onactionCheckUser();
-                          if(_formKey.currentState.validate()) {
-                            await controller.getUnidades(_cpfCnpjController.text);
+                          if (_formKey.currentState.validate()) {
+                            await controller
+                                .getUnidades(_cpfCnpjController.text);
                           }
                         },
                       ),
@@ -132,13 +132,15 @@ class _SegundaViaPageState
 
           Expanded(
             child: Observer(builder: (_) {
-              if (controller.unidades != null)
+              if (controller.unidades != null &&
+                  controller.loadingCheck.data == 1)
                 switch (controller.unidades.status) {
                   case Status.loading:
                     return Container(child: CircularProgressCustom());
                     break;
                   case Status.success:
-                    !controller.unidadeSelecionada
+                    !controller.unidadeSelecionada &&
+                            controller.unidades.data.length > 0
                         ? controller
                             .getBoletos(controller.unidades.data[0].codord)
                         : () {};
@@ -149,7 +151,9 @@ class _SegundaViaPageState
                           child: DropdownButtonField3Widget(
                             label: 'Unidade',
                             hint: 'Selecione',
-                            value: controller.codOrd,
+                            value: controller.codOrd != null
+                                ? controller.codOrd
+                                : controller.unidades.data[0].codord,
                             list: controller.unidades.data,
                             onChanged: (value) {
                               controller.unidadeSelecionada = true;
@@ -197,11 +201,8 @@ class _SegundaViaPageState
                                                     ),
                                                     TextoInforWidget(
                                                         titulo: 'Valor',
-                                                        valor: (controller
-                                                                .boletos
-                                                                .data[index]
-                                                                .total)
-                                                            .toString()),
+                                                        valor:
+                                                            ('${UIHelper.moneyFormat(controller.boletos.data[index].total)}')),
                                                     TextoInforWidget(
                                                       titulo: 'Unidade',
                                                       valor: controller.boletos
@@ -239,6 +240,10 @@ class _SegundaViaPageState
                   default:
                     return PageError(messageError: 'Erro o carregar a tela');
                 }
+              if (controller.loadingCheck.data == -1)
+                return EmptyWidget(
+                  descricao: 'CPF ou CNPJ não cadastrado.',
+                );
               return EmptyWidget(
                 descricao: 'Pesquise por um CPF ou CNPJ cadastrado.',
               );
