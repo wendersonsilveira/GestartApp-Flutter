@@ -8,7 +8,7 @@ class FlatButtonWidget extends StatelessWidget {
   final String text;
   final bool loading;
   final Color cor;
-  final ShapeBorder shap;
+  final ShapeBorder shape;
   final double fontSize;
   final EdgeInsetsGeometry padding;
   final Color focusColor;
@@ -18,7 +18,7 @@ class FlatButtonWidget extends StatelessWidget {
     @required this.onPressed,
     this.loading: false,
     this.cor,
-    this.shap,
+    this.shape,
     this.fontSize = 12,
     this.padding,
     this.focusColor,
@@ -26,6 +26,7 @@ class FlatButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
+      disabledTextColor: Colors.grey.shade300,
       height: 60.h,
       color: cor,
       focusColor: focusColor != null ? focusColor : Colors.white,
@@ -42,13 +43,13 @@ class FlatButtonWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: fontSize,
-                    color: shap != null
+                    color: shape != null
                         ? AppColorScheme.primaryColor
                         : Colors.white),
               ),
             ),
-      shape: shap != null
-          ? shap
+      shape: shape != null
+          ? shape
           : RoundedRectangleBorder(side: BorderSide(color: cor)),
     );
   }

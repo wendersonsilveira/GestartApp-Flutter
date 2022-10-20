@@ -48,6 +48,7 @@ class DetalheBoletoEntity {
   final String codigoAgencia;
   final String logo;
   final String conts;
+  final String validadeSite;
   final String linkBoleto;
 
   const DetalheBoletoEntity(
@@ -97,6 +98,7 @@ class DetalheBoletoEntity {
       this.codigoAgencia,
       this.logo,
       this.conts,
+      this.validadeSite,
       this.linkBoleto});
 
   @override

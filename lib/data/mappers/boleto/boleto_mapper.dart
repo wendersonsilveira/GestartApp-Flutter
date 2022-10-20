@@ -20,6 +20,8 @@ extension BoletoMapper on BoletoEntity {
       lansDetail: lansDetail ?? this.lansDetail,
       conts: conts ?? this.conts,
       status: status ?? this.status,
+      linhaDigitavel: linhaDigitavel ?? this.linhaDigitavel,
+      linkBoleto: linkBoleto ?? this.linkBoleto,
       logo: logo ?? this.logo,
     );
   }
@@ -48,6 +50,8 @@ extension BoletoMapper on BoletoEntity {
       status: map['STATUS'],
       total: (map['TOTAL'])?.toDouble(),
       conts: map['CONTS'],
+      linhaDigitavel: map['LINHA_DIGITAVEL'],
+      linkBoleto: map['LINK_BOLETO'],
       logo: map['LOGO'],
     );
   }

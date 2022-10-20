@@ -4,6 +4,7 @@ import 'package:Gestart/domain/utils/resource_data.dart';
 
 abstract class UnidadeRepository {
   Future<ResourceData<List<UnidadeEntity>>> getUnidades();
+  Future<ResourceData<List<UnidadeEntity>>> getUnidadesDoc(cpfCnpj);
   Future<ResourceData<List<UnidadeEntity>>> getUnidadesComplemento(codcon);
   Future<ResourceData<List<UnidadeEntity>>> getUnidadesAdm();
   Future<ResourceData<List<UnidadeEntity>>> getUnidadesCondominio(filtro);

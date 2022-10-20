@@ -135,7 +135,7 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                     ),
                     Container(
                       width: 600.w,
-                      height: 400.h,
+                      height: 450.h,
                       child: Column(
                         children: [
                           OutlinedTextFieldWidget(
@@ -182,16 +182,34 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                           ),
                           SizedBox(
                             height: 26.h,
-                          ),
-                          GestureDetector(
-                              child: Text(
-                                "Esqueci minha senha",
-                                style: TextStyle(color: Colors.white),
+                          ),                          
+                          Row(
+                            children: [
+                              Expanded(
+                                                          child: ContainedButtonWidget(
+                                  text: "Segunda via de boleto",
+                                  onPressed: () {
+                                    Modular.navigator.pushNamed(
+                                        RouteName.segunda_via_page,
+                                        arguments: _cpfCnpjController.text);
+                                  },
+                                ),
                               ),
-                              onTap: () => {
-                                    Modular.navigator
-                                        .pushNamed(RouteName.forgot_password),
-                                  }),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 16.h,
+                          ), 
+                          GestureDetector(
+                            child: Text(
+                              "Esqueci minha senha",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            onTap: () => {
+                              Modular.navigator
+                                  .pushNamed(RouteName.forgot_password),
+                            },
+                          ),
                         ],
                       ),
                     ),

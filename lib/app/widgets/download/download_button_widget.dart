@@ -15,18 +15,22 @@ class DownloadButtonWidget extends StatefulWidget {
   final String fileName;
   final String title;
   final Color color;
-  final ShapeBorder shap;
+  final ShapeBorder shape;
   final double fontSize;
   final Color focusColor;
   final EdgeInsetsGeometry padding;
+  final Color disabledColor;
+  final bool disabled;
 
   const DownloadButtonWidget({
     Key key,
     this.fileURL,
     this.fileName,
+    this.disabled = false,
     this.title,
     this.color,
-    this.shap,
+    this.disabledColor,
+    this.shape,
     this.fontSize = 12,
     this.padding,
     this.focusColor,
@@ -59,9 +63,9 @@ class _DownloadButtonWidgetState extends State<DownloadButtonWidget> {
         String _name = widget.fileName.replaceAll(r'/', '_');
         _name = _name.replaceAll(' ', '_');
 
-        int version = await sharedPreferences.getInt('versaoArquivos');
+        // int version = await sharedPreferences.getInt('versaoArquivos');
 
-        _name = 'v_${version}_$_name';
+        // _name = 'v_${version}_$_name';
 
         final String _url = widget.fileURL;
 
@@ -122,9 +126,9 @@ class _DownloadButtonWidgetState extends State<DownloadButtonWidget> {
       final dir = await getApplicationDocumentsDirectory();
       String _name = widget.fileName.replaceAll(r'/', '_');
 
-      int version = await sharedPreferences.getInt('versaoArquivos');
+      // int version = await sharedPreferences.getInt('versaoArquivos');
 
-      _name = 'v_${version}_$_name';
+      // _name = 'v_${version}_$_name';
 
       final String _url = widget.fileURL;
       setState(() {
@@ -219,7 +223,7 @@ class _DownloadButtonWidgetState extends State<DownloadButtonWidget> {
       onPressed: widget.fileURL != null ? downloadStart : null,
       cor: widget.color,
       loading: downloadStatus,
-      shap: widget.shap,
+      shape: widget.shape,
       focusColor: widget.focusColor,
       fontSize: widget.fontSize,
       padding: widget.padding,

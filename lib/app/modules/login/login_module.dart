@@ -3,10 +3,12 @@ import 'package:Gestart/app/modules/login/forgot_password/forgot_password_page.d
 import 'forgot_password/forgot_password_controller.dart';
 import 'package:Gestart/app/constants/route_name.dart';
 import 'package:Gestart/app/modules/login/sign_up/sign_up_page.dart';
+import 'package:Gestart/app/modules/login/segunda_via/segunda_via_page.dart';
 
 import 'sign_up/sign_up_controller.dart';
 import 'sign_in/sign_in_controller.dart';
 import 'sign_in/sign_in_page.dart';
+import 'segunda_via/segunda_via_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginModule extends ChildModule {
@@ -15,6 +17,7 @@ class LoginModule extends ChildModule {
         $ForgotPasswordController,
         $SignUpController,
         $SignInController,
+        $SegundaViaController,
       ];
 
   @override
@@ -22,6 +25,8 @@ class LoginModule extends ChildModule {
         ModularRouter(Modular.initialRoute, child: (_, args) => SignInPage()),
         ModularRouter(RouteName.signup,
             child: (_, args) => SignUpPage(cpfCnpj: args.data)),
+        ModularRouter(RouteName.segunda_via_page,
+            child: (_, args) => SegundaViaPage(cpfCnpj: args.data)),
         ModularRouter(RouteName.forgot_password,
             child: (_, args) => ForgotPasswordPage()),
       ];

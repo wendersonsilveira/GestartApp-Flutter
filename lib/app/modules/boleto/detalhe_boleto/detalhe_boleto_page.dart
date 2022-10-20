@@ -145,7 +145,7 @@ class _DetalheBoletoPageState
                                 fileName:
                                     'Boleto_${controller.boleto.data.apelido}_${controller.boleto.data.id}_${controller.boleto.data.codImo}_${UIHelper.formatDate(controller.boleto.data.datVen)}.pdf',
                                 fileURL: controller.boleto.data.linkBoleto,
-                                shap: RoundedRectangleBorder(
+                                shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     side: BorderSide(
                                         color: AppColorScheme.primaryColor)),
@@ -215,14 +215,14 @@ class _DetalheBoletoPageState
                     ]),
               );
               break;
-            case Status.failed:
+            case Status.loading:
+              return Center(child: CircularProgressCustom());              
+
+            default:
               return PageError(
                 messageError: "Erro ao carregar as informações",
                 onPressed: () => controller.init(idBoleto: widget.idBoleto),
               );
-              break;
-            default:
-              return Center(child: CircularProgressCustom());
           }
         },
       ),

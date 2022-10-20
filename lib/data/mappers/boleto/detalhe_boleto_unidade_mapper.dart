@@ -57,6 +57,7 @@ extension DetalheBoletoUnidadeMapper on DetalheBoletoUnidadeEntity {
       valMen: map['VALMEN']?.toDouble(),
       valTot: map['VALTOT']?.toDouble(),
       valTot_: map['VALTOT_']?.toDouble(),
+      validadeSite: map['VALIDADESITE'],
     );
   }
 

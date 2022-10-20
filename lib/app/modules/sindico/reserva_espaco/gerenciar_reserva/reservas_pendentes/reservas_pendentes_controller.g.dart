@@ -51,6 +51,23 @@ mixin _$ReservasPendentesController on _ReservasPendentesControllerBase, Store {
     });
   }
 
+  final _$reservasPendentesDataAtom =
+      Atom(name: '_ReservasPendentesControllerBase.reservasPendentesData');
+
+  @override
+  List<ReservaEntity> get reservasPendentesData {
+    _$reservasPendentesDataAtom.reportRead();
+    return super.reservasPendentesData;
+  }
+
+  @override
+  set reservasPendentesData(List<ReservaEntity> value) {
+    _$reservasPendentesDataAtom.reportWrite(value, super.reservasPendentesData,
+        () {
+      super.reservasPendentesData = value;
+    });
+  }
+
   final _$statusAprovarAtom =
       Atom(name: '_ReservasPendentesControllerBase.statusAprovar');
 
@@ -130,6 +147,7 @@ mixin _$ReservasPendentesController on _ReservasPendentesControllerBase, Store {
     return '''
 reservasAdm: ${reservasAdm},
 reservasPendentes: ${reservasPendentes},
+reservasPendentesData: ${reservasPendentesData},
 statusAprovar: ${statusAprovar},
 statusRejeitar: ${statusRejeitar}
     ''';

@@ -17,6 +17,13 @@ class UnidadeRepositoryImpl implements UnidadeRepository {
   }
 
   @override
+  Future<ResourceData<List<UnidadeEntity>>> getUnidadesDoc(cpfCnpj) async {
+    final resource = await _unidadeRemoteDataSource.getUnidadesDoc(cpfCnpj);
+
+    return resource;
+  }
+
+  @override
   Future<ResourceData<List<UnidadeEntity>>> getUnidadesCondominio(
       filtros) async {
     final resource =

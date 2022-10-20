@@ -180,6 +180,23 @@ mixin _$CadastroEspacoController on _CadastroEspacoControllerBase, Store {
     });
   }
 
+  final _$tempoMinCancelamentoAtom =
+      Atom(name: '_CadastroEspacoControllerBase.tempoMinCancelamento');
+
+  @override
+  int get tempoMinCancelamento {
+    _$tempoMinCancelamentoAtom.reportRead();
+    return super.tempoMinCancelamento;
+  }
+
+  @override
+  set tempoMinCancelamento(int value) {
+    _$tempoMinCancelamentoAtom.reportWrite(value, super.tempoMinCancelamento,
+        () {
+      super.tempoMinCancelamento = value;
+    });
+  }
+
   final _$ativarDomAtom = Atom(name: '_CadastroEspacoControllerBase.ativarDom');
 
   @override
@@ -846,6 +863,7 @@ tempoMaxPermanencia: ${tempoMaxPermanencia},
 tempoMinAntecedencia: ${tempoMinAntecedencia},
 tempoMaxAntecedencia: ${tempoMaxAntecedencia},
 tempoIntervaloReserva: ${tempoIntervaloReserva},
+tempoMinCancelamento: ${tempoMinCancelamento},
 ativarDom: ${ativarDom},
 ativarSeg: ${ativarSeg},
 ativarTer: ${ativarTer},
