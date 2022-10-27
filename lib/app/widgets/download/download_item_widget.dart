@@ -58,7 +58,7 @@ class _DownloadItemWidgetState extends State<DownloadItemWidget> {
       if (await Permission.storage.request().isGranted) {
         final dir = await AndroidPathProvider.downloadsPath;
         String _name =
-            ('relatorio_reservas_${widget.params.codCon}_${widget.params.dataIni}_${widget.params.dataFim}')
+            ('relatorio_reservas_${widget.params.codCon}_${widget.params.dataIni}_${widget.params.dataFim}.pdf')
                 .replaceAll(r'/', '-');
         final String _url =
             "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/get_reservas?CODCON=${widget.params.codCon}&DATINI=${widget.params.dataIni}&DATFIM=${widget.params.dataFim}&TIPO=PDF&USER_NAME=${(perfil.data.nome).split(' ')[0]}&USER_LASTNAME=${(perfil.data.sobreNome)?.split(' ')[0]}";
@@ -115,7 +115,7 @@ class _DownloadItemWidgetState extends State<DownloadItemWidget> {
   downloadIOS() async {
     try {
       final dir = await getApplicationDocumentsDirectory();
-      String _name = ('relatorio_reservas_${widget.params.codCon}_${widget.params.dataIni}_${widget.params.dataFim}')
+      String _name = ('relatorio_reservas_${widget.params.codCon}_${widget.params.dataIni}_${widget.params.dataFim}.pdf')
                 .replaceAll(r'/', '-');
       final String _url =
           "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/get_reservas?CODCON=${widget.params.codCon}&DATINI=${widget.params.dataIni}&DATFIM=${widget.params.dataFim}&TIPO=PDF&USER_NAME=${(perfil.data.nome).split(' ')[0]}&USER_LASTNAME=${(perfil.data.sobreNome).split(' ')[0]}";
