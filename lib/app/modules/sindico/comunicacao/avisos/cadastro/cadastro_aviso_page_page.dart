@@ -127,7 +127,7 @@ class _CadastroAvisoPagePageState
                       labelText: 'MENSAGEM',
                       hint:
                           'exemplo: Prezados(as), o elevador estará em manutenção...',
-                      maxLines: 4,
+                      maxLines: 10,
                       validator: Validators.empty,
                       controller: _msgController,
                       keyboardType: TextInputType.name,
