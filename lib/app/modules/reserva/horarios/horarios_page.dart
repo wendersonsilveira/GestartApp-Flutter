@@ -38,7 +38,8 @@ class _HorariosPageState
   void initState() {
     controller.getEspaco(widget.espacoId);
     controller.setCodOrd(widget.codord);
-    showConfigEspaco(context);
+    // showConfigEspaco(context);
+    openDialogInfo();
     super.initState();
   }
 
@@ -49,7 +50,8 @@ class _HorariosPageState
     if (per == null) {
       controller.criarJSONReserva();
       controller.setLoadingPerm(false);
-      openDialogInfo();
+      // openDialogInfo();
+      showConfigEspaco(context);
     } else {
       controller.setLoadingPerm(false);
       controller.setMsgErro(per);
@@ -93,17 +95,29 @@ class _HorariosPageState
                                     horario: controller.espaco.intRes,
                                   ),
                                   InforConfigWidget(
-                                    descricao: 'Antecedência mínima para cencelamento:',
+                                    descricao:
+                                        'Antecedência mínima para cencelamento:',
                                     horario: controller.espaco.minCancel,
                                   ),
                                 ]),
                               ),
                               actions: [
-                                FlatButton(
-                                  child: Text("OK"),
+                                TextButton(
+                                  onPressed: () => Modular.navigator.pop(),
+                                  child: const Text(
+                                    'CANCELAR',
+                                    style: TextStyle(
+                                        color:
+                                            AppColorScheme.feedbackDangerBase),
+                                  ),
+                                ),
+                                TextButton(
                                   onPressed: () {
-                                    Modular.navigator.pop();
+                                    Modular.navigator.pushNamed(
+                                        RouteName.reservaCadastro,
+                                        arguments: controller.reserva);
                                   },
+                                  child: const Text('CONCORDO'),
                                 ),
                               ],
                             )
@@ -114,39 +128,35 @@ class _HorariosPageState
   }
 
   openDialogInfo() async {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Text(
-          'Regras e orientações sobre o espaço que está sendo reservando',
-          softWrap: true,
-        ),
-        content: Observer(
-          builder: (_) => Container(
-            height: 250,
-            child: SingleChildScrollView(
-              child: Text(controller.espaco.obs),
-            ),
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Modular.navigator.pop(),
-            child: const Text(
-              'CANCELAR',
-              style: TextStyle(color: AppColorScheme.feedbackDangerBase),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              Modular.navigator.pushNamed(RouteName.reservaCadastro,
-                  arguments: controller.reserva);
-            },
-            child: const Text('CONCORDO'),
-          ),
-        ],
-      ),
-    );
+    return Timer(
+        Duration(seconds: 1),
+        () => {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  title: Text(
+                    'Regras e orientações sobre o espaço que está sendo reservando',
+                    softWrap: true,
+                  ),
+                  content: Observer(
+                    builder: (_) => Container(
+                      height: 250,
+                      child: SingleChildScrollView(
+                        child: Text(controller.espaco.obs),
+                      ),
+                    ),
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Modular.navigator.pop(),
+                      child: const Text(
+                        'Ok',
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            });
   }
 
   openDialogHorario(int hIni, int hFim) async {

@@ -79,6 +79,10 @@ class _ListarEspacosPageState
     return retorno;
   }
 
+  testeFuncao() {
+    print('teste função');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
