@@ -52,6 +52,16 @@ class _RelatorioReservasPageState
       controller.setFiltros();
   }
 
+  final dataIniController = TextEditingController();
+  final dataFimController = TextEditingController();
+
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    dataIniController.dispose();
+    dataFimController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,137 +82,225 @@ class _RelatorioReservasPageState
         title: Text(widget.title),
       ),
       body: Observer(
-          builder: (_) => Center(
-                child: SingleChildScrollView(
-                  child: Container(
-                    child: Column(
-                      children: [
-                        controller.unidades.status == Status.loading
-                            ? CircularProgressIndicator()
-                            : Column(
-                                children: [
-                                  Card(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          padding: EdgeInsets.all(20),
-                                          child: Text(
-                                              "Insira os filtros para configurar seu relatório"),
+          builder: (_) => SingleChildScrollView(
+                child: Container(
+                  child: Column(
+                    children: [
+                      controller.unidades.status == Status.loading
+                          ? CircularProgressIndicator()
+                          : Column(
+                              children: [
+                                Card(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.all(20),
+                                        child: Text(
+                                            "Insira os filtros para configurar seu relatório"),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: DropdownSearch<UnidadeEntity>(
+                                          mode: Mode.BOTTOM_SHEET,
+                                          showSearchBox: true,
+                                          items: controller.unidades.data,
+                                          showClearButton: true,
+                                          itemAsString: (UnidadeEntity u) =>
+                                              u.unidadeAsString(),
+                                          label: "Unidade",
+                                          hint: "Unidade",
+                                          onChanged: (unidade) => unidade !=
+                                                  null
+                                              ? controller
+                                                  .setUnidade(unidade.codimo)
+                                              : controller.setUnidade(null),
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: DropdownSearch<UnidadeEntity>(
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: DropdownSearch<EspacoEntity>(
+                                          mode: Mode.BOTTOM_SHEET,
+                                          showSearchBox: true,
+                                          items: controller.espacos.data,
+                                          showClearButton: true,
+                                          itemAsString: (EspacoEntity u) =>
+                                              u.espacoAsString(),
+                                          label: "Espaço",
+                                          hint: "Espaço",
+                                          onChanged: (espaco) => espaco != null
+                                              ? controller.setEspaco(espaco.id)
+                                              : controller.setEspaco(null),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: DropdownSearch<String>(
                                             mode: Mode.BOTTOM_SHEET,
-                                            showSearchBox: true,
-                                            items: controller.unidades.data,
                                             showClearButton: true,
-                                            itemAsString: (UnidadeEntity u) =>
-                                                u.unidadeAsString(),
-                                            label: "Unidade",
-                                            hint: "Unidade",
-                                            onChanged: (unidade) => unidade !=
-                                                    null
-                                                ? controller
-                                                    .setUnidade(unidade.codimo)
-                                                : controller.setUnidade(null),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: DropdownSearch<EspacoEntity>(
-                                            mode: Mode.BOTTOM_SHEET,
-                                            showSearchBox: true,
-                                            items: controller.espacos.data,
-                                            showClearButton: true,
-                                            itemAsString: (EspacoEntity u) =>
-                                                u.espacoAsString(),
-                                            label: "Espaço",
-                                            hint: "Espaço",
-                                            onChanged: (espaco) => espaco !=
-                                                    null
-                                                ? controller
-                                                    .setEspaco(espaco.id)
-                                                : controller.setEspaco(null),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: DropdownSearch<String>(
-                                              mode: Mode.BOTTOM_SHEET,
-                                              showClearButton: true,
-                                              items: [
-                                                "Aguardando aprovação",
-                                                "Aprovado",
-                                                "Rejeitado",
-                                                "Cancelado"
-                                              ],
-                                              // smallSheet: true,
-                                              label: "Status",
-                                              hint: "Status",
-                                              onChanged: (v) =>
-                                                  controller.setStatus(v)),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                  bottom: 10,
-                                                ),
-                                                child: Text('Período'),
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
-                                                children: [
-                                                  startDate != null
-                                                      ? Text(
-                                                          UIHelper.formatDate(
-                                                              startDate))
-                                                      : Text('Data Inicial'),
-                                                  Text('-'),
-                                                  endDate != null
-                                                      ? Text(
-                                                          UIHelper.formatDate(
-                                                              endDate))
-                                                      : Text('Data Final'),
-                                                ],
-                                              ),
+                                            items: [
+                                              "Aguardando aprovação",
+                                              "Aprovado",
+                                              "Rejeitado",
+                                              "Cancelado"
                                             ],
-                                          ),
+                                            // smallSheet: true,
+                                            label: "Status",
+                                            hint: "Status",
+                                            onChanged: (v) =>
+                                                controller.setStatus(v)),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                bottom: 10,
+                                              ),
+                                              child: Text('Período'),
+                                            ),
+                 
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  child: TextField(
+                                                    textAlign: TextAlign.center,
+                                                    controller:
+                                                        dataIniController,
+                                                    onTap: () async {
+                                                      final startDate =
+                                                          await showDatePicker(
+                                                        builder:
+                                                            (context, child) {
+                                                          return Theme(
+                                                            data: Theme.of(
+                                                                    context)
+                                                                .copyWith(
+                                                              colorScheme:
+                                                                  ColorScheme
+                                                                      .light(
+                                                                primary:
+                                                                    AppColorScheme
+                                                                        .primaryColor, // header background color
+                                                                onPrimary: Colors
+                                                                    .white, // header text color
+                                                                onSurface: Colors
+                                                                    .black87, // body text color
+                                                              ),
+                                                              textButtonTheme:
+                                                                  TextButtonThemeData(
+                                                                style: TextButton
+                                                                    .styleFrom(
+                                                                  primary:
+                                                                      AppColorScheme
+                                                                          .primaryColor, // button text color
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            child: child,
+                                                          );
+                                                        },
+                                                        context: context,
+                                                        initialDate:
+                                                            DateTime.now(),
+                                                        firstDate:
+                                                            DateTime(2017),
+                                                        lastDate:
+                                                            DateTime(2024),
+                                                      );
+                                                      controller.setDataInicial(
+                                                          UIHelper.formatDate(
+                                                              startDate));
+
+                                                      dataIniController.text =
+                                                          UIHelper.formatDate(
+                                                              startDate);
+                                                    },
+                                                    decoration: InputDecoration(
+                                                      hintText: 'Data inicial',
+                                                      contentPadding: EdgeInsets.all(5),
+                                                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                                                      suffixIcon: Icon(
+                                                          Icons.date_range),
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(width: 10,),
+                                                Expanded(
+                                                  child: TextField(
+                                                    textAlign: TextAlign.center,
+                                                    controller:
+                                                        dataFimController,
+                                                    onTap: () async {
+                                                      final finalDate =
+                                                          await showDatePicker(
+                                                        builder:
+                                                            (context, child) {
+                                                          return Theme(
+                                                            data: Theme.of(
+                                                                    context)
+                                                                .copyWith(
+                                                              colorScheme:
+                                                                  ColorScheme
+                                                                      .light(
+                                                                primary:
+                                                                    AppColorScheme
+                                                                        .primaryColor, // header background color
+                                                                onPrimary: Colors
+                                                                    .white, // header text color
+                                                                onSurface: Colors
+                                                                    .black87, // body text color
+                                                              ),
+                                                              textButtonTheme:
+                                                                  TextButtonThemeData(
+                                                                style: TextButton
+                                                                    .styleFrom(
+                                                                  primary:
+                                                                      AppColorScheme
+                                                                          .primaryColor, // button text color
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            child: child,
+                                                          );
+                                                        },
+                                                        context: context,
+                                                        initialDate:
+                                                            DateTime.now(),
+                                                        firstDate:
+                                                            DateTime(2017),
+                                                        lastDate:
+                                                            DateTime(2024),
+                                                      );
+                                                      controller.setDataFinal(
+                                                          UIHelper.formatDate(
+                                                              finalDate));
+                                                      dataFimController.text =
+                                                          UIHelper.formatDate(
+                                                              finalDate);
+                                                    },
+                                                    decoration: InputDecoration(
+                                                      hintText: 'Data final',
+                                                      contentPadding: EdgeInsets.all(5),
+                                                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                                                      suffixIcon: Icon(
+                                                          Icons.date_range),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
                                         ),
-                                        SfDateRangePicker(
-                                          view: DateRangePickerView.month,
-                                          selectionMode:
-                                              DateRangePickerSelectionMode
-                                                  .range,
-                                          onSelectionChanged: (v) => {
-                                            setState(() {
-                                              startDate = v.value.startDate;
-                                              endDate = v.value.endDate;
-                                              if (v.value.endDate != null) {
-                                                enableButton = !enableButton;
-                                                controller.setDataInicial(
-                                                    UIHelper.formatDate(
-                                                        startDate));
-                                                controller.setDataFinal(
-                                                    UIHelper.formatDate(
-                                                        endDate));
-                                              }
-                                            })
-                                          },
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                      ],
-                    ),
+                                ),
+                              ],
+                            ),
+                    ],
                   ),
                 ),
               )),
