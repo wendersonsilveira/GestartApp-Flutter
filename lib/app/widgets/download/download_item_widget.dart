@@ -11,9 +11,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:open_file/open_file.dart';
+// import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DownloadItemWidget extends StatefulWidget {
   final SendParamsRelReservaEntity params;
@@ -76,12 +77,14 @@ class _DownloadItemWidgetState extends State<DownloadItemWidget> {
           setState(() {
             downloadStatus = false;
           });
-          OpenFile.open('$dir/$_name').then((v) {
-            if (v.type == ResultType.noAppToOpen) {
-              showMessage(fileName,
-                  'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-            }
-          });
+          print('coisado...');
+          Share.shareFiles(['$dir/$_name'], text: 'Great picture');
+          // OpenFile.open('$dir/$_name').then((v) {
+          //   if (v.type == ResultType.noAppToOpen) {
+          //     showMessage(fileName,
+          //         'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+          //   }
+          // });
         } else {
           await Dio().download(_url, '$dir/$_name',
               onReceiveProgress: (int received, int total) {
@@ -95,12 +98,14 @@ class _DownloadItemWidgetState extends State<DownloadItemWidget> {
           setState(() {
             downloadStatus = false;
           });
-          OpenFile.open('$dir/$_name').then((v) {
-            if (v.type == ResultType.noAppToOpen) {
-              showMessage(fileName,
-                  'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-            }
-          });
+          print('coisado...');
+          Share.shareFiles(['$dir/$_name'], text: 'Great picture');
+          // OpenFile.open('$dir/$_name').then((v) {
+          //   if (v.type == ResultType.noAppToOpen) {
+          //     showMessage(fileName,
+          //         'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+          //   }
+          // });
         }
       }
     } on DioError catch (_) {
@@ -115,8 +120,9 @@ class _DownloadItemWidgetState extends State<DownloadItemWidget> {
   downloadIOS() async {
     try {
       final dir = await getApplicationDocumentsDirectory();
-      String _name = ('relatorio_reservas_${widget.params.codCon}_${widget.params.dataIni}_${widget.params.dataFim}.pdf')
-                .replaceAll(r'/', '-');
+      String _name =
+          ('relatorio_reservas_${widget.params.codCon}_${widget.params.dataIni}_${widget.params.dataFim}.pdf')
+              .replaceAll(r'/', '-');
       final String _url =
           "http://condominioonline.gestartcondominios.com.br:8080/gestartapp/get_reservas?CODCON=${widget.params.codCon}&DATINI=${widget.params.dataIni}&DATFIM=${widget.params.dataFim}&TIPO=PDF&USER_NAME=${(perfil.data.nome).split(' ')[0]}&USER_LASTNAME=${(perfil.data.sobreNome).split(' ')[0]}";
 
@@ -133,12 +139,14 @@ class _DownloadItemWidgetState extends State<DownloadItemWidget> {
         setState(() {
           downloadStatus = false;
         });
-        OpenFile.open(dir.path + '/$_name').then((value) {
-          if (value.type == ResultType.noAppToOpen) {
-            showMessage(fileName,
-                'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-          }
-        });
+        print('coisado...');
+        Share.shareFiles([dir.path + '/$_name'], text: 'Great picture');
+        // OpenFile.open(dir.path + '/$_name').then((value) {
+        //   if (value.type == ResultType.noAppToOpen) {
+        //     showMessage(fileName,
+        //         'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+        //   }
+        // });
       } else {
         await Dio().download(_url, dir.path + '/$_name',
             onReceiveProgress: (int received, int total) {
@@ -146,23 +154,27 @@ class _DownloadItemWidgetState extends State<DownloadItemWidget> {
             setState(() {
               downloadProgress = (received / total * 100);
             });
-            OpenFile.open(dir.path + '/$_name').then((value) {
-              if (value.type == ResultType.noAppToOpen) {
-                showMessage(fileName,
-                    'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-              }
-            });
+            print('coisado...');
+            Share.shareFiles([dir.path + '/$_name'], text: 'Great picture');
+            // OpenFile.open(dir.path + '/$_name').then((value) {
+            //   if (value.type == ResultType.noAppToOpen) {
+            //     showMessage(fileName,
+            //         'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+            //   }
+            // });
           }
         });
         setState(() {
           downloadStatus = false;
         });
-        OpenFile.open('$dir/$_name').then((value) {
-          if (value.type == ResultType.noAppToOpen) {
-            showMessage(fileName,
-                'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-          }
-        });
+        print('coisado...');
+        Share.shareFiles(['$dir/$_name'], text: 'Great picture');
+        // OpenFile.open('$dir/$_name').then((value) {
+        //   if (value.type == ResultType.noAppToOpen) {
+        //     showMessage(fileName,
+        //         'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+        //   }
+        // });
       }
     } on DioError catch (_) {
       setState(() {
@@ -222,10 +234,12 @@ class _DownloadItemWidgetState extends State<DownloadItemWidget> {
         downloadStart();
       },
       child: Container(
-        child: downloadStatus ? Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: CircularProgressIndicator(),
-        ) : Icon(FlutterIcons.download_ant),
+        child: downloadStatus
+            ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircularProgressIndicator(),
+              )
+            : Icon(FlutterIcons.download_ant),
       ),
     );
   }

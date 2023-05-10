@@ -43,7 +43,8 @@ abstract class _ListaBoletosControllerBase with Store {
 
   @action
   Future<void> getUnidades() async {
-    unidades = await _getUnidades(codCon);
+    print('teste 01');
+    // unidades = await _getUnidades(codCon);
   }
 
   void searchUnidades(String query) {

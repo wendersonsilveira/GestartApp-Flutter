@@ -40,18 +40,16 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
         title: Text('Boleto Digital'),
       ),
       body: Observer(builder: (_) {
-        switch (controller.unidades.status) {
+        switch (controller.boletos.status) {
           case Status.loading:
             return Container(child: CircularProgressCustom());
             break;
           case Status.success:
-            !controller.unidadeSelecionada
-                ? controller.getBoletos(controller.unidades.data[0].codord)
-                : () {};
-            return 
-            Column(
-              children: 
-              <Widget>[
+            // !controller.unidadeSelecionada
+            //     ?  controller.getBoletos(controller.unidades.data[0].codord)
+            //     : () {};
+            return Column(
+              children: <Widget>[
                 Container(
                   height: 110.h,
                   child: DropdownButtonField3Widget(
@@ -66,68 +64,71 @@ class _BoletoPageState extends ModularState<BoletoPage, BoletoController> {
                     },
                   ),
                 ),
-                controller.boletos.status == Status.loading ? CircularProgressCustom()
-                : controller.boletos.data != null &&
-                        controller.boletos.data.length > 0
-                    ? Expanded(
-                        child: Container(
-                          height: 50.h,
-                          child: ListView.builder(
-                            itemCount: controller.boletos.data.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Card(
-                                margin: EdgeInsets.all(10),
-                                child: Container(
-                                  child: ListTile(
-                                    onTap: () {
-                                      controller.getBoletoDetalhes(
-                                          (controller.boletos.data[index].conts)
-                                              .toString());
-                                    },
-                                    trailing: Icon(Icons.arrow_right),
-                                    title: Column(
-                                      children: [
-                                        TextoInforWidget(
-                                          titulo: 'Vencimento',
-                                          valor:
-                                              UIHelper.formatDateFromDateTime(
-                                                  controller.boletos.data[index]
-                                                      .datven),
+                controller.boletos.status == Status.loading
+                    ? CircularProgressCustom()
+                    : controller.boletos.data != null &&
+                            controller.boletos.data.length > 0
+                        ? Expanded(
+                            child: Container(
+                              height: 50.h,
+                              child: ListView.builder(
+                                itemCount: controller.boletos.data.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Card(
+                                    margin: EdgeInsets.all(10),
+                                    child: Container(
+                                      child: ListTile(
+                                        onTap: () {
+                                          controller.getBoletoDetalhes(
+                                              (controller.boletos.data[index]
+                                                      .conts)
+                                                  .toString());
+                                        },
+                                        trailing: Icon(Icons.arrow_right),
+                                        title: Column(
+                                          children: [
+                                            TextoInforWidget(
+                                              titulo: 'Vencimento',
+                                              valor: UIHelper
+                                                  .formatDateFromDateTime(
+                                                      controller.boletos
+                                                          .data[index].datven),
+                                            ),
+                                            TextoInforWidget(
+                                                titulo: 'Valor',
+                                                valor: (controller.boletos
+                                                        .data[index].total)
+                                                    .toString()),
+                                            TextoInforWidget(
+                                              titulo: 'Unidade',
+                                              valor: controller
+                                                  .boletos.data[index].codimo,
+                                            ),
+                                          ],
                                         ),
-                                        TextoInforWidget(
-                                            titulo: 'Valor',
-                                            valor: (controller
-                                                    .boletos.data[index].total)
-                                                .toString()),
-                                        TextoInforWidget(
-                                          titulo: 'Unidade',
-                                          valor: controller
-                                              .boletos.data[index].codimo,
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
+                                  );
+                                },
+                              ),
+                            ),
+                          )
+                        : Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.subtitles_off,
+                                  size: 70,
+                                  color: AppColorScheme.primaryColor,
                                 ),
-                              );
-                            },
-                          ),
-                        ),
-                      )
-                    : Expanded(
-                      child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.subtitles_off,
-                            size: 70,
-                            color: AppColorScheme.primaryColor,
-                          ),
-                          SizedBox(
-                            height: 30.h,
-                          ),
-                          Text('Não existem boletos para esta unidade'),
-                        ],
-                    ),
-                    )
+                                SizedBox(
+                                  height: 30.h,
+                                ),
+                                Text('Não existem boletos para esta unidade'),
+                              ],
+                            ),
+                          )
               ],
             );
           default:

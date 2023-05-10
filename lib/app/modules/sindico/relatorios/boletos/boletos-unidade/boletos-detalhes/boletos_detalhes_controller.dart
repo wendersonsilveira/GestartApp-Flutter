@@ -26,8 +26,9 @@ abstract class _BoletosDetalhesControllerBase with Store {
   bool boletoVencido = false;
 
   init(String params) async {
-    await getBoleto(params);
-    checkVencido();
+    print('hjsdhfsdjkfhsdjkfhsd');
+    // await getBoleto(params);
+    // checkVencido();
   }
 
   Future<void> getBoleto(String conts) async {

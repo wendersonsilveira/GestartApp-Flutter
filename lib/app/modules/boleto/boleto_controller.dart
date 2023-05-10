@@ -44,6 +44,7 @@ abstract class _BoletoControllerBase with Store {
   @action
   Future<void> getBoletos(int codOrd) async {
     boletos = await _getBoletos(codOrd);
+    print(boletos);
   }
 
   @action
@@ -63,5 +64,10 @@ abstract class _BoletoControllerBase with Store {
   @action
   Future<void> getUnidades() async {
     unidades = await _getUnidades();
+
+    if (unidades.status == Status.success)
+      await getBoletos(unidades.data[0].codord);
+    else if (unidades.status == Status.failed)
+      boletos = ResourceData(status: Status.failed);
   }
 }

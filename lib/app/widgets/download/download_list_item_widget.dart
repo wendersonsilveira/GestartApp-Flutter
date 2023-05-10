@@ -4,11 +4,13 @@ import 'package:Gestart/di/di.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:open_file/open_file.dart';
+// import 'package:open_file/open_file.dart';
 import 'package:android_path_provider/android_path_provider.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io' show Platform;
+
+import 'package:share_plus/share_plus.dart';
 
 class DownloadListItemWidget extends StatefulWidget {
   final String fileURL;
@@ -72,12 +74,14 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
           setState(() {
             downloadStatus = false;
           });
-          OpenFile.open('$dir/$_name').then((v) {
-            if (v.type == ResultType.noAppToOpen) {
-              showMessage(fileName,
-                  'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-            }
-          });
+          print('coisado...');
+          Share.shareFiles(['$dir/$_name'], text: 'Great picture');
+          // OpenFile.open('$dir/$_name').then((v) {
+          //   if (v.type == ResultType.noAppToOpen) {
+          //     showMessage(fileName,
+          //         'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+          //   }
+          // });
         } else {
           await Dio().download(_url, '$dir/$_name',
               onReceiveProgress: (int received, int total) {
@@ -91,12 +95,14 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
           setState(() {
             downloadStatus = false;
           });
-          OpenFile.open('$dir/$_name').then((v) {
-            if (v.type == ResultType.noAppToOpen) {
-              showMessage(fileName,
-                  'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-            }
-          });
+          print('coisado...');
+          Share.shareFiles(['$dir/$_name'], text: 'Great picture');
+          // OpenFile.open('$dir/$_name').then((v) {
+          //   if (v.type == ResultType.noAppToOpen) {
+          //     showMessage(fileName,
+          //         'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+          //   }
+          // });
         }
       }
     } on DioError catch (_) {
@@ -134,12 +140,14 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
         setState(() {
           downloadStatus = false;
         });
-        OpenFile.open(dir.path + '/$_name').then((value) {
-          if (value.type == ResultType.noAppToOpen) {
-            showMessage(fileName,
-                'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-          }
-        });
+        print('coisado...');
+        Share.shareFiles(['$dir/$_name'], text: 'Great picture');
+        // OpenFile.open(dir.path + '/$_name').then((value) {
+        //   if (value.type == ResultType.noAppToOpen) {
+        //     showMessage(fileName,
+        //         'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+        //   }
+        // });
       } else {
         await Dio().download(_url, dir.path + '/$_name',
             onReceiveProgress: (int received, int total) {
@@ -147,23 +155,27 @@ class _DownloadListItemWidgetState extends State<DownloadListItemWidget> {
             setState(() {
               downloadProgress = (received / total * 100);
             });
-            OpenFile.open(dir.path + '/$_name').then((value) {
-              if (value.type == ResultType.noAppToOpen) {
-                showMessage(fileName,
-                    'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-              }
-            });
+            print('coisado...');
+            Share.shareFiles(['$dir/$_name'], text: 'Great picture');
+            // OpenFile.open(dir.path + '/$_name').then((value) {
+            //   if (value.type == ResultType.noAppToOpen) {
+            //     showMessage(fileName,
+            //         'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+            //   }
+            // });
           }
         });
         setState(() {
           downloadStatus = false;
         });
-        OpenFile.open('$dir/$_name').then((value) {
-          if (value.type == ResultType.noAppToOpen) {
-            showMessage(fileName,
-                'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
-          }
-        });
+        print('coisado...');
+        Share.shareFiles(['$dir/$_name'], text: 'Great picture');
+        // OpenFile.open('$dir/$_name').then((value) {
+        //   if (value.type == ResultType.noAppToOpen) {
+        //     showMessage(fileName,
+        //         'Seu dispositivo não possui o aplicativo adequado para abrir o arquivo.\n O download foi concluído e o aquivo encontra-se na sua pasta de Downloads.');
+        //   }
+        // });
       }
     } on DioError catch (_) {
       setState(() {
