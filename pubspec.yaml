@@ -17,12 +17,12 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 6.0.1+1
 
-## Slidy Scripts 
-vars: 
+## Slidy Scripts
+vars:
     clean: flutter clean
     get: flutter pub get
     runner: flutter pub run build_runner
-scripts: 
+scripts:
     mobx_build: $runner build
     mobx_watch: $clean & $get & $runner watch
     mobx_build_clean: flutter pub run build_runner watch --delete-conflicting-outputs
@@ -59,7 +59,7 @@ dependencies:
 
   #notificações
   firebase_messaging: ^7.0.3
-  
+
 
   # Validators
   cpfcnpj: ^1.0.3
@@ -89,8 +89,8 @@ dependencies:
   share: ^0.6.5+4
   url_launcher: ^5.7.10
   table_calendar: ^2.3.3
-  
-  interval_time_picker: "^0.1.0" 
+
+  interval_time_picker: "^0.1.0"
 
   mask_text_input_formatter: "1.2.1"
 
@@ -126,9 +126,5 @@ flutter:
     - assets/images/home.png
     - assets/icon/
     - assets/images/logo.png
-    
+
   uses-material-design: true
-
-
-
- 
